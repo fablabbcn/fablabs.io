@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
     user = User.find_by email: params[:email]
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
-      redirect_to params[:goto], flash: { success: "Signed in!" }, only_path: true
+      redirect_to URI.parse(params[:goto]).path, flash: { success: "Signed in!" }, only_path: true
     else
       flash[:error] = "Invalid email or password"
       render "new"
