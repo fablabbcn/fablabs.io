@@ -4,6 +4,7 @@ source 'https://rubygems.org'
 gem 'rails', '4.0.0'
 gem 'authority', github: 'nathanl/authority'
 gem 'rolify', github: 'EppO/rolify'
+gem 'anjlab-bootstrap-rails', github: 'anjlab/bootstrap-rails', require: 'bootstrap-rails'
 # Use sqlite3 as the database for Active Record
 gem 'workflow', github: 'geekq/workflow'
 gem 'sqlite3'

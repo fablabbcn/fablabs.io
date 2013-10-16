@@ -5,6 +5,14 @@ GIT
     rolify (3.3.0.rc5)
 
 GIT
+  remote: git://github.com/anjlab/bootstrap-rails.git
+  revision: 206c1f542f7a479393f75e0da6ed9532cf5810ca
+  specs:
+    anjlab-bootstrap-rails (3.0.0.3)
+      railties (>= 3.0)
+      sass (>= 3.2)
+
+GIT
   remote: git://github.com/bmabey/database_cleaner.git
   revision: 6da38c4c1a565bbcc62ed9b84c2574537c6ebae2
   specs:
@@ -238,6 +246,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  anjlab-bootstrap-rails!
   authority!
   bcrypt-ruby (~> 3.0.0)
   capybara
