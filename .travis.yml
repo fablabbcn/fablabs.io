@@ -1,6 +1,6 @@
 language: ruby
 rvm:
-  - 2.0.0p247
+  - 2.0.0
 env:
   - DB=postgresql
   - secure: GSy3nrNpd3egIXrQJeMxyFiYKTxsNuGROAr8/8hGZZUsupCSNoYLpUa7DuVednikUOO7htOL+/fdr2BIGMW6jM+BMboGYvNaLz0AWj2zWSb56YP1+wx07GDq0uNp8cEXlF1kigD8GdBJRrbdnlW5V8WaLip6G22ZBQ3a9xijrRY=
