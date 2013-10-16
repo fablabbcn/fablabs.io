@@ -1,14 +1,14 @@
 class LabAuthorizer < ApplicationAuthorizer
 
   def readable_by?(user)
-    resource.approved? || user.has_role?(:admin)
+    resource.approved? || user.has_role?(:admin, resource)
   end
 
-  def self.updatable_by?(user)
-    user.has_role? :admin
+  def updatable_by?(user)
+    user.has_role? :admin, resource
   end
 
-  def self.deletable_by?(user)
+  def deletable_by?(user)
     user.has_role? :admin
   end
 

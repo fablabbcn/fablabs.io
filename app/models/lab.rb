@@ -12,6 +12,7 @@ class Lab < ActiveRecord::Base
 
   def approve
     UserMailer.lab_approved(self).deliver
+    creator.add_role :admin, self
   end
 
   def to_s

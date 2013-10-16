@@ -35,6 +35,7 @@ class LabsController < ApplicationController
 
   def edit
     @lab = Lab.friendly.find(params[:id])
+    authorize_action_for @lab
   end
 
   def update

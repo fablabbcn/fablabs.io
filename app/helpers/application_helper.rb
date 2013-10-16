@@ -25,4 +25,8 @@ module ApplicationHelper
     return content_tag(:h1, page_title, options)
   end
 
+  def body_classes
+    "c-#{controller_name} a-#{action_name}"
+  end
+
 end
