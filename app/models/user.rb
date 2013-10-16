@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  rolify
 
   include Authority::UserAbilities
 
@@ -20,7 +21,7 @@ class User < ActiveRecord::Base
   end
 
   def admin?
-    true
+    has_role? :admin
   end
 
 end

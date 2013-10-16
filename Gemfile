@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0'
 gem 'authority', github: 'nathanl/authority'
+gem 'rolify', github: 'EppO/rolify'
 # Use sqlite3 as the database for Active Record
 gem 'workflow', github: 'geekq/workflow'
 gem 'sqlite3'
@@ -40,6 +41,7 @@ group :test, :development do
   gem "rspec-rails"
 end
 group :test do
+  gem "launchy"
   gem "nyan-cat-formatter"
   gem "factory_girl_rails"
   gem "capybara"

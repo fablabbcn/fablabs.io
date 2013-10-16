@@ -1,0 +1,14 @@
+= title @lab
+
+%table
+  %tr
+    %th Slug
+    %td= @lab.slug
+  %tr
+    %th Creator
+    %td= link_to @lab.creator, @lab.creator
+  %tr
+    %th Description
+    %td= @lab.description
+
+-# = link_to "Edit Lab", backstage_edit_lab_path(@lab)

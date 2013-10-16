@@ -1,7 +1,6 @@
 class LabsController < ApplicationController
 
   before_filter :require_login, only: [:new, :create, :destroy]
-  authorize_actions_for Lab
 
   def index
     @labs = Lab.with_approved_state
@@ -9,10 +8,12 @@ class LabsController < ApplicationController
 
   def new
     @lab = current_user.created_labs.build
+    authorize_action_for @lab
   end
 
   def create
     @lab = current_user.created_labs.build lab_params
+    authorize_action_for @lab
     if @lab.save
       redirect_to labs_path, notice: "Thanks for adding your lab. We shall review your application and be in touch."
     else
@@ -21,15 +22,13 @@ class LabsController < ApplicationController
   end
 
   def show
-    if current_user.admin?
-      @lab = Lab.find(params[:id])
-    else
-      @lab = Lab.with_approved_state.find(params[:id])
-    end
+    @lab = Lab.find(params[:id])
+    authorize_action_for @lab
   end
 
   def destroy
     @lab = Lab.find(params[:id])
+    authorize_action_for @lab
     @lab.delete
     redirect_to labs_path, notice: "Lab deleted"
   end

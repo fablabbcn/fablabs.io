@@ -59,9 +59,11 @@ RSpec.configure do |config|
     # page.driver.post(sessions_url, { username: user.username, password: user.password})
   end
 
+  config.use_transactional_fixtures = true
+
   config.before(:suite) do
     DatabaseCleaner.strategy = :transaction
-    # DatabaseCleaner.clean_with(:truncation)
+    DatabaseCleaner.clean_with(:truncation)
   end
 
   config.before(:each) do

@@ -33,7 +33,8 @@ describe Lab do
 
       it "cannot see unapproved lab pages" do
         lab = FactoryGirl.create(:lab, name: 'A Lab')
-        expect{visit lab_path(lab)}.to raise_error(ActiveRecord::RecordNotFound)
+        visit lab_path(lab)
+        expect(page).to have_content 'Access Denied'
       end
 
     end
@@ -54,6 +55,7 @@ describe Lab do
     let(:user) { FactoryGirl.create(:user) }
 
     it "can delete lab" do
+      user.add_role :admin
       signin user
       lab = FactoryGirl.create(:lab, name: 'A Lab', workflow_state: 'approved')
       visit lab_path(lab)

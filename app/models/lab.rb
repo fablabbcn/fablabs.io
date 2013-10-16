@@ -1,5 +1,5 @@
 class Lab < ActiveRecord::Base
-
+  resourcify
   include Authority::Abilities
   self.authorizer_name = 'LabAuthorizer'
 

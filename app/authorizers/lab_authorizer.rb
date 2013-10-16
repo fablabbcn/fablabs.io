@@ -1,17 +1,15 @@
 class LabAuthorizer < ApplicationAuthorizer
 
-  def self.readable_by?(user)
-    true
+  def readable_by?(user)
+    resource.approved? || user.has_role?(:admin)
   end
 
   def self.deletable_by?(user)
-    true
-    # user.email == "john@bitsushi.com"
+    user.has_role? :admin
   end
 
   def self.creatable_by?(user)
-    true
-    # user.email == "john@bitsushi.com"
+    user.persisted?
   end
 
 end
