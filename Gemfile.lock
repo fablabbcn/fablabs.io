@@ -27,6 +27,7 @@ GEM
       tzinfo (~> 0.3.37)
     arel (4.0.0)
     atomic (1.1.14)
+    bcrypt-ruby (3.0.1)
     builder (3.1.4)
     capybara (2.1.0)
       mime-types (>= 1.16)
@@ -51,6 +52,9 @@ GEM
       factory_girl (~> 4.2.0)
       railties (>= 3.0.0)
     ffi (1.9.0)
+    figaro (0.7.0)
+      bundler (~> 1.0)
+      rails (>= 3, < 5)
     formatador (0.2.4)
     guard (1.8.2)
       formatador (>= 0.2.4)
@@ -168,9 +172,11 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bcrypt-ruby (~> 3.0.0)
   capybara
   coffee-rails (~> 4.0.0)
   factory_girl_rails
+  figaro
   guard-rspec
   jbuilder (~> 1.2)
   jquery-rails
