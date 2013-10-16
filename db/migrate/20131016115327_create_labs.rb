@@ -5,7 +5,7 @@ class CreateLabs < ActiveRecord::Migration
       t.string :name
       t.string :slug
       t.text :description
-
+      t.references :creator
       t.timestamps
     end
   end

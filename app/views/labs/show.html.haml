@@ -1,6 +1,6 @@
 = title @lab
 = simple_format @lab.description
 
-= link_to @lab, class: 'btn btn-danger', method: 'delete', confirm: "Are you sure?" do
+= link_to @lab, class: 'btn btn-danger', method: 'delete', data: { confirm: "Are you sure?" } do
   %span.glyphicon.glyphicon-remove
   Delete Lab

@@ -1,5 +1,7 @@
 class LabsController < ApplicationController
 
+  before_filter :require_login, only: [:new, :create, :destroy]
+
   def index
     @labs = Lab.all
   end

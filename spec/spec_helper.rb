@@ -51,4 +51,12 @@ RSpec.configure do |config|
     config.before(:all) { DeferredGarbageCollection.start }
     config.after(:all) { DeferredGarbageCollection.reconsider }
 
+  def signin(user)
+    visit signin_path
+    fill_in "Email", with: user.email
+    fill_in "Password", with: "password"
+    click_button "Sign in"
+    # page.driver.post(sessions_url, { username: user.username, password: user.password})
+  end
+
 end
