@@ -1,0 +1,15 @@
+language: ruby
+rvm:
+- 2.0.0p247
+env:
+  matrix:
+  - DB=postgresql
+  global:
+    secure: GSy3nrNpd3egIXrQJeMxyFiYKTxsNuGROAr8/8hGZZUsupCSNoYLpUa7DuVednikUOO7htOL+/fdr2BIGMW6jM+BMboGYvNaLz0AWj2zWSb56YP1+wx07GDq0uNp8cEXlF1kigD8GdBJRrbdnlW5V8WaLip6G22ZBQ3a9xijrRY=
+script:
+- RAILS_ENV=test bundle exec rake db:migrate --trace
+- bundle exec rake db:test:prepare
+- bundle exec rake
+before_script:
+- cp config/database.travis.yml config/database.yml
+- psql -c 'create database fablabs_test' -U postgres
