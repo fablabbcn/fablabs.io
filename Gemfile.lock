@@ -1,4 +1,10 @@
 GIT
+  remote: git://github.com/bmabey/database_cleaner.git
+  revision: 6da38c4c1a565bbcc62ed9b84c2574537c6ebae2
+  specs:
+    database_cleaner (1.2.0)
+
+GIT
   remote: git://github.com/geekq/workflow.git
   revision: c59f770b9d8a5caa4bc9ca9fd27b22fd8c543b8a
   specs:
@@ -196,6 +202,7 @@ DEPENDENCIES
   bcrypt-ruby (~> 3.0.0)
   capybara
   coffee-rails (~> 4.0.0)
+  database_cleaner!
   factory_girl_rails
   figaro
   guard-rspec

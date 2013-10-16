@@ -1,4 +1,5 @@
+= title "Add a Lab"
 = simple_form_for @lab do |f|
-  = f.input :name
+  = f.input :name, autofocus: true
   = f.input :description
   = f.submit 'Add Lab'

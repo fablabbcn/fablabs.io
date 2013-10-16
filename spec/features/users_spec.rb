@@ -12,13 +12,13 @@ describe User do
       fill_in 'user_password', with: 'password'
       fill_in 'user_password_confirmation', with: 'password'
       click_button "Sign Up"
-      page.should have_content "Thanks for signing up"
+      expect(page).to have_content "Thanks for signing up"
     end
 
     it "requires all fields to sign up" do
       visit signup_path
       click_button "Sign Up"
-      page.should have_content "errors prohibited"
+      expect(page).to have_content "errors prohibited"
     end
 
   end
