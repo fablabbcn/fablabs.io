@@ -23,7 +23,7 @@
             %span.fab Fab
             Foundation
         .collapse.navbar-collapse
-          = form_tag '#', class: 'navbar-form navbar-left', role: 'search' do
+          = form_tag labs_path, class: 'navbar-form navbar-left', role: 'search', method: 'get' do
             .form-group
               = text_field_tag 'q', nil, class: 'form-control', placeholder: 'Search Labs...', id: 'search-box'
           %ul.nav.navbar-nav.navbar-left

@@ -1,4 +1,9 @@
 Fablabs::Application.routes.draw do
+
+  %w(about developers).each do |action|
+    get action => "static##{action}", as: action
+  end
+
   resources :users
 
   resources :labs do
