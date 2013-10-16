@@ -2,8 +2,10 @@ language: ruby
 rvm:
   - 2.0.0
 env:
-  - DB=postgresql
-  - secure: GSy3nrNpd3egIXrQJeMxyFiYKTxsNuGROAr8/8hGZZUsupCSNoYLpUa7DuVednikUOO7htOL+/fdr2BIGMW6jM+BMboGYvNaLz0AWj2zWSb56YP1+wx07GDq0uNp8cEXlF1kigD8GdBJRrbdnlW5V8WaLip6G22ZBQ3a9xijrRY=
+  matrix:
+    - DB=postgresql
+  global:
+    secure: MlhI/NpTblhwPavClDAl87CxpPrgys3/EbmMLTQnq9zHBc8YbpnCeQ92eMs6NAMdh64090BOcbxSgph4aAKqdd5QoX7VU07sduEaaIkSaFQ26jN4rrc2iS6dHRFIGND6mZ2hmvrmw5zGvMYLTdP7vaTyjNzCDIZCmtOxcLJ4jCk=
 script:
   - RAILS_ENV=test bundle exec rake db:migrate --trace
   - bundle exec rake db:test:prepare
