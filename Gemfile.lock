@@ -119,6 +119,8 @@ GEM
     json (1.8.0)
     launchy (2.3.0)
       addressable (~> 2.3)
+    letter_opener (1.1.2)
+      launchy (~> 2.2)
     listen (2.1.1)
       celluloid (>= 0.15.2)
       rb-fsevent (>= 0.9.3)
@@ -236,6 +238,7 @@ DEPENDENCIES
   jbuilder (~> 1.2)
   jquery-rails
   launchy
+  letter_opener
   nyan-cat-formatter
   rails (= 4.0.0)
   rolify!

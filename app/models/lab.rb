@@ -8,6 +8,12 @@ class Lab < ActiveRecord::Base
   validates_presence_of :creator, on: :create
   validates_uniqueness_of :name
 
+  after_create :notify_everyone
+
+  def approve
+    UserMailer.lab_approved(self).deliver
+  end
+
   def to_s
     name
   end
@@ -29,6 +35,13 @@ class Lab < ActiveRecord::Base
     [
       :name
     ]
+  end
+
+private
+
+  def notify_everyone
+    UserMailer.lab_submitted(self).deliver
+    # AdminMailer.lab_submitted(lab).deliver
   end
 
 end

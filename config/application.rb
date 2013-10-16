@@ -27,5 +27,6 @@ module Fablabs
       g.integration_specs true
       g.fixture_replacement :factory_girl
     end
+
   end
 end
