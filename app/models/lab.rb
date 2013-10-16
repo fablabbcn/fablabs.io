@@ -15,10 +15,19 @@ class Lab < ActiveRecord::Base
   workflow do
     state :unverified do
       event :approve, transitions_to: :approved
-      event :reject, transitions_to: :rejected
+      # event :reject, transitions_to: :rejected
     end
     state :approved
     state :rejected
+  end
+
+  extend FriendlyId
+  friendly_id :slug_candidates, use: :slugged
+
+  def slug_candidates
+    [
+      :name
+    ]
   end
 
 end

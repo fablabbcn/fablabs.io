@@ -24,6 +24,13 @@ GIT
       activesupport (>= 3.0.0)
       rake (>= 0.8.7)
 
+GIT
+  remote: git://github.com/norman/friendly_id.git
+  revision: 2764077e3af32a88114d68c75e20ef738e4fa829
+  specs:
+    friendly_id (5.0.0)
+      activerecord (~> 4.0.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -223,6 +230,7 @@ DEPENDENCIES
   database_cleaner!
   factory_girl_rails
   figaro
+  friendly_id!
   guard-rspec
   haml-rails
   jbuilder (~> 1.2)

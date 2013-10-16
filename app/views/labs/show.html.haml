@@ -1,6 +1,10 @@
 = title @lab
 = simple_format @lab.description
 
-= link_to @lab, class: 'btn btn-danger', method: 'delete', data: { confirm: "Are you sure?" } do
-  %span.glyphicon.glyphicon-remove
-  Delete Lab
+- if @lab.deletable_by? current_or_null_user
+  = link_to @lab, class: 'btn btn-danger', method: 'delete', data: { confirm: "Are you sure?" } do
+    %span.glyphicon.glyphicon-remove
+    Delete Lab
+
+- if @lab.updatable_by? current_or_null_user
+  = link_to "Edit Lab", edit_lab_path(@lab)

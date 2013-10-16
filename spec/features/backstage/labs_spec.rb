@@ -19,4 +19,11 @@ describe Lab do
     page.should have_title(lab.name)
   end
 
+  it "can approve lab" do
+    lab = FactoryGirl.create(:lab)
+    visit backstage_lab_path(lab)
+    click_button "Approve Lab"
+    page.should have_content("Lab approved")
+  end
+
 end

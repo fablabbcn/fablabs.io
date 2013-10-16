@@ -8,7 +8,13 @@ Fablabs::Application.routes.draw do
   get "signup" => "users#new", :as => "signup"
 
   namespace :backstage do
-    resources :labs
+    resources :labs do
+      member do
+        patch :approve
+        # patch :reject
+      end
+    end
+
     root to: 'labs#index'
   end
 

@@ -22,15 +22,29 @@ class LabsController < ApplicationController
   end
 
   def show
-    @lab = Lab.find(params[:id])
+    @lab = Lab.friendly.find(params[:id])
     authorize_action_for @lab
   end
 
   def destroy
-    @lab = Lab.find(params[:id])
+    @lab = Lab.friendly.find(params[:id])
     authorize_action_for @lab
     @lab.delete
     redirect_to labs_path, notice: "Lab deleted"
+  end
+
+  def edit
+    @lab = Lab.friendly.find(params[:id])
+  end
+
+  def update
+    @lab = Lab.friendly.find(params[:id])
+    authorize_action_for @lab
+    if @lab.update_attributes lab_params
+      redirect_to @lab, notice: "Lab was successfully updated"
+    else
+      render :edit
+    end
   end
 
 private

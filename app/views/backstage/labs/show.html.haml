@@ -11,4 +11,7 @@
     %th Description
     %td= @lab.description
 
+- @lab.current_state.events.keys.each do |event|
+  = button_to "#{event.capitalize} Lab", {controller: 'labs', action: event}, method: :patch, class: 'btn btn-primary'
+
 -# = link_to "Edit Lab", backstage_edit_lab_path(@lab)

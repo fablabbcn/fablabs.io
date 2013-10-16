@@ -72,6 +72,17 @@ describe Lab do
       expect(page).to have_content "Thanks"
     end
 
+    it "can edit lab" do
+      lab = FactoryGirl.create(:lab, creator: user, workflow_state: 'approved')
+      user.add_role :admin
+      signin user
+      visit lab_path(lab)
+      click_link "Edit Lab"
+      fill_in "Name", with: 'New Name'
+      click_button 'Update Lab'
+      page.should have_content("Lab was successfully updated")
+    end
+
   end
 
 end
