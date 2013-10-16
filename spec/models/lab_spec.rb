@@ -4,6 +4,8 @@ describe Lab do
   it { should validate_presence_of(:name) }
   it { should validate_presence_of(:description) }
   it { should belong_to(:creator) }
+  it { should validate_presence_of(:creator) }
+  it { should validate_uniqueness_of(:name) }
 
   it "should be unverified" do
     expect(FactoryGirl.build(:lab)).to be_unverified

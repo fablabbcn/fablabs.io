@@ -1,7 +1,8 @@
 class Lab < ActiveRecord::Base
 
-  validates :name, :description, presence: true
   belongs_to :creator, class_name: 'User'
+  validates :name, :description, :creator, presence: true
+  validates_uniqueness_of :name
 
   def to_s
     name
