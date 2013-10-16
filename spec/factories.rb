@@ -6,6 +6,8 @@ FactoryGirl.define do
     name "Fab Lab BCN"
     slug "fablabbcn"
     description "A cool lab in Barcelona"
+    address_1 "Carrer de Pujades, 102"
+    country_code "es"
     creator
   end
 

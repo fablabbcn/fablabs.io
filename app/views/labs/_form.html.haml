@@ -1,0 +1,24 @@
+= simple_form_for lab do |f|
+  = render 'form_errors', resource: lab
+
+  = f.input :name, autofocus: true
+  = f.input :description
+  = f.input :slug
+  = f.input :avatar_src
+  = f.input :header_image_src
+  = f.input :phone
+  = f.input :email
+
+  = f.input :address_1, input_html: { data: {geo: "street_address"}}, label: 'Address'
+  = f.input :address_2, label: false
+  = f.input :address_3, label: false
+  = f.input :city, input_html: { data: {geo: "locality"}}
+  = f.input :postal_code, input_html: { data: {geo: "postal_code"}}
+  = f.input :country_code, as: 'country', label: 'Country', input_html: { data: {geo: "country_short"} }, wrapper_html: { class: 'boo'}, iso_codes: true#, input_html: { class: 'enhanced'}
+  = f.input :latitude, as: :hidden, input_html: { data: {geo: "lat"}}
+  = f.input :longitude, as: :hidden, input_html: { data: {geo: "lng"}}
+  = f.input :zoom, as: :hidden
+  = f.input :address_notes
+  = f.input :application_notes
+
+  = f.submit (lab.new_record? ? 'Add Lab' : 'Update Lab')

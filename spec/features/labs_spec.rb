@@ -68,13 +68,22 @@ describe Lab do
       visit new_lab_path
       fill_in 'Name', with: 'New Lab'
       fill_in 'Description', with: 'An awesome place'
+      fill_in 'lab_address_1', with: 'Mars'
+      select 'United Kingdom', from: 'Country'
       click_button 'Add Lab'
       expect(page).to have_content "Thanks"
     end
 
+    it "requires valid form to create lab" do
+      signin user
+      visit new_lab_path
+      click_button 'Add Lab'
+      expect(page).to have_content "errors"
+    end
+
     it "can edit lab" do
-      lab = FactoryGirl.create(:lab, creator: user, workflow_state: 'approved')
-      user.add_role :admin
+      lab = FactoryGirl.create(:lab, creator: user)
+      lab.approve!
       signin user
       visit lab_path(lab)
       click_link "Edit Lab"

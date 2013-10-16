@@ -8,6 +8,9 @@ gem 'rolify', github: 'EppO/rolify'
 gem 'workflow', github: 'geekq/workflow'
 gem 'sqlite3'
 gem 'simple_form'
+gem 'countries'
+gem 'country_select'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 gem 'haml-rails'

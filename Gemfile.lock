@@ -79,6 +79,10 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.6.3)
+    countries (0.9.2)
+      currencies (>= 0.4.0)
+    country_select (1.2.0)
+    currencies (0.4.2)
     diff-lcs (1.2.4)
     erubis (2.7.0)
     execjs (2.0.2)
@@ -229,6 +233,8 @@ DEPENDENCIES
   bcrypt-ruby (~> 3.0.0)
   capybara
   coffee-rails (~> 4.0.0)
+  countries
+  country_select
   database_cleaner!
   factory_girl_rails
   figaro

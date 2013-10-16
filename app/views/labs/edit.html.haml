@@ -1,15 +1,2 @@
 = title "Editing #{@lab}"
-
-= simple_form_for @lab do |f|
-  - if @lab.errors.any?
-    .bs-callout.bs-callout-warning
-      %h2= "#{pluralize(@lab.errors.count, "error")} prohibited this lab from being saved:"
-      %ul
-        - @lab.errors.full_messages.each do |msg|
-          %li= msg
-
-  = f.input :name
-  = f.input :slug
-  = f.input :description
-
-  = f.submit "Update Lab"
+= render 'form', lab: @lab

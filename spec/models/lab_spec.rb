@@ -2,10 +2,10 @@ require 'spec_helper'
 
 describe Lab do
 
-  it { should validate_presence_of(:name) }
-  it { should validate_presence_of(:description) }
+  %w(name description address_1 country_code creator).each do |requirement|
+    it { should validate_presence_of(requirement) }
+  end
   it { should belong_to(:creator) }
-  it { should validate_presence_of(:creator) }
 
   it "should validate uniqueness of name" do
     FactoryGirl.create(:lab, name: 'uniquename')
