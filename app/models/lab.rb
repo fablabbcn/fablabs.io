@@ -4,7 +4,8 @@ class Lab < ActiveRecord::Base
   self.authorizer_name = 'LabAuthorizer'
 
   belongs_to :creator, class_name: 'User'
-  validates :name, :description, :creator, presence: true
+  validates :name, :description, presence: true
+  validates_presence_of :creator, on: :create
   validates_uniqueness_of :name
 
   def to_s
