@@ -1,6 +1,7 @@
 class LabsController < ApplicationController
 
   before_filter :require_login, only: [:new, :create, :destroy]
+  authorize_actions_for Lab
 
   def index
     @labs = Lab.with_approved_state

@@ -4,4 +4,5 @@
   = content_tag_for :div, lab do
     = link_to lab, lab
 
-= link_to "Add a Lab", new_lab_path
+- if Lab.creatable_by? current_or_null_user
+  = link_to "Add a Lab", new_lab_path

@@ -10,6 +10,14 @@ GIT
   specs:
     workflow (1.1.0)
 
+GIT
+  remote: git://github.com/nathanl/authority.git
+  revision: c4e55d89389904cda888cbc01a0864728cfde950
+  specs:
+    authority (2.9.0)
+      activesupport (>= 3.0.0)
+      rake (>= 0.8.7)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -199,6 +207,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  authority!
   bcrypt-ruby (~> 3.0.0)
   capybara
   coffee-rails (~> 4.0.0)

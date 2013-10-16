@@ -1,5 +1,8 @@
 class Lab < ActiveRecord::Base
 
+  include Authority::Abilities
+  self.authorizer_name = 'LabAuthorizer'
+
   belongs_to :creator, class_name: 'User'
   validates :name, :description, :creator, presence: true
   validates_uniqueness_of :name

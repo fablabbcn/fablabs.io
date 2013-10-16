@@ -7,7 +7,7 @@
         - @user.errors.full_messages.each do |msg|
           %li= msg
 
-  = f.input :first_name
+  = f.input :first_name, autofocus: true
   = f.input :last_name
   = f.input :email
   = f.input :password
