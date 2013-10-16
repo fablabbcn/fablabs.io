@@ -1,0 +1,15 @@
+= simple_form_for @user do |f|
+
+  - if @user.errors.any?
+    .bs-callout.bs-callout-warning
+      %h2= "#{pluralize(@user.errors.count, "error")} prohibited this lab from being saved:"
+      %ul
+        - @user.errors.full_messages.each do |msg|
+          %li= msg
+
+  = f.input :first_name
+  = f.input :last_name
+  = f.input :email
+  = f.input :password
+  = f.input :password_confirmation
+  = f.submit 'Sign Up', class: 'btn btn-success'

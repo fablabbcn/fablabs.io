@@ -5,7 +5,7 @@ Fablabs::Application.routes.draw do
 
   get "signout" => "sessions#destroy", :as => "signout"
   get "signin" => "sessions#new", :as => "signin"
-  # get "signup" => "users#new", :as => "signup"
+  get "signup" => "users#new", :as => "signup"
 
   root to: 'labs#index'
 end

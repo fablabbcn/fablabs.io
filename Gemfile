@@ -4,6 +4,7 @@ source 'https://rubygems.org'
 gem 'rails', '4.0.0'
 
 # Use sqlite3 as the database for Active Record
+gem 'workflow', github: 'geekq/workflow'
 gem 'sqlite3'
 gem 'simple_form'
 # Use SCSS for stylesheets

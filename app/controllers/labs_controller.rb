@@ -7,11 +7,11 @@ class LabsController < ApplicationController
   end
 
   def new
-    @lab = Lab.new
+    @lab = current_user.created_labs.build
   end
 
   def create
-    @lab = Lab.new lab_params
+    @lab = current_user.created_labs.build lab_params
     if @lab.save
       redirect_to labs_path, notice: "Thanks for adding your lab. We shall review your application and be in touch."
     else
