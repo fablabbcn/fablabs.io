@@ -45,6 +45,7 @@ group :test, :development do
   gem "rspec-rails"
 end
 group :test do
+  gem "pg" #for travis
   gem "launchy"
   gem "nyan-cat-formatter"
   gem "factory_girl_rails"
