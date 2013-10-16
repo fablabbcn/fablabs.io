@@ -1,10 +1,15 @@
 class AdminMailer < ActionMailer::Base
-  default from: "admin_notifications@fabfoundationworld.org"
+  if Rails.env.test?
+    default from: "admin_notifications@fabfoundationworld.org",
+            to: "john@bitsushi.com"
+  else
+    default from: "admin_notifications@fabfoundationworld.org",
+            to: User.with_role(:admin).pluck(:email)
+  end
 
   def lab_submitted lab
     @lab = lab
-    @user = 'john@bitsushi.com'
-    mail(to: "#{@user} <#{@user}>", subject: "#{@lab} submitted")
+    mail(subject: "#{@lab} submitted")
   end
 
 end
