@@ -15,7 +15,7 @@ describe UserMailer do
 
   it "lab_approved notification" do
     mail = UserMailer.lab_approved(lab)
-    mail.subject.should eq("#{lab} approved!")
+    mail.subject.should eq("#{lab} approved")
     mail.to.should eq([lab.creator.email])
     mail.from.should eq(["notifications@fabfoundationworld.org"])
     mail.body.encoded.should match(lab_url(lab))

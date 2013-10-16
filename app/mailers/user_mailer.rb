@@ -1,16 +1,12 @@
 class UserMailer < ActionMailer::Base
   default from: "notifications@fabfoundationworld.org"
 
-  def lab_submitted lab
-    @lab = lab
-    @user = @lab.creator
-    mail(to: "#{@user} <#{@user.email}>", subject: "#{@lab} submitted")
-  end
-
-  def lab_approved lab
-    @lab = lab
-    @user = @lab.creator
-    mail(to: "#{@user} <#{@user.email}>", subject: "#{@lab} approved!")
+  %w(submitted approved).each do |action|
+    define_method("lab_#{action}") do |lab|
+      @lab = lab
+      @user = @lab.creator
+      mail(to: "#{@user} <#{@user.email}>", subject: "#{@lab} #{action}")
+    end
   end
 
   def welcome user
