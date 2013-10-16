@@ -23,4 +23,22 @@ describe User do
 
   end
 
+  describe "authenticated user" do
+
+    it "can signout" do
+      signin FactoryGirl.create(:user)
+      click_link "Sign Out"
+      page.should have_link "Sign In"
+    end
+
+    it "can edit settings" do
+      signin FactoryGirl.create(:user)
+      click_link "Settings"
+      fill_in "First name", with: "Frank"
+      click_button "Update"
+      page.should have_content "Settings updated"
+    end
+
+  end
+
 end

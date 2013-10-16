@@ -17,6 +17,7 @@ Fablabs::Application.routes.draw do
   get "signout" => "sessions#destroy", :as => "signout"
   get "signin" => "sessions#new", :as => "signin"
   get "signup" => "users#new", :as => "signup"
+  get "settings" => "users#edit", :as => "settings"
 
   namespace :backstage do
     resources :labs do

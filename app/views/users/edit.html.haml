@@ -1,0 +1,7 @@
+= title "Settings"
+= simple_form_for @user do |f|
+  = render "form_errors", resource: @user
+  = f.input :first_name
+  = f.input :last_name
+  = f.input :email
+  = f.submit "Update", class: 'btn btn-primary'
