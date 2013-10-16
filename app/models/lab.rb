@@ -19,6 +19,33 @@ class Lab < ActiveRecord::Base
     name
   end
 
+  def admins
+    User.with_role(:admin, self) - User.with_role(:admin)
+  end
+
+  def admin_ids
+    @admin_ids ||= (User.with_role(:admin, self) - User.with_role(:admin)).map(&:id)
+  end
+
+  def admin_ids=(user_ids)
+    @admin_ids = user_ids
+  end
+
+  after_save :save_roles
+  def save_roles
+    if @admin_ids
+      @admin_ids.reject!(&:blank?)
+      users = User.with_role(:admin, self).where("users.id not IN (?)", @admin_ids)
+      users.each do |user|
+        user.revoke :admin, self
+      end
+      users = User.find(@admin_ids)
+      users.each do |user|
+        user.add_role :admin, self
+      end
+    end
+  end
+
   include Workflow
   workflow do
     state :unverified do

@@ -1,5 +1,7 @@
 = title "Labs"
 
+= link_to "Map", map_labs_path
+
 - @labs.each do |lab|
   = content_tag_for :div, lab do
     = link_to lab, lab

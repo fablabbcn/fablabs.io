@@ -1,6 +1,11 @@
 = title @lab
 = simple_format @lab.description
 
+-# - @lab.roles.select('users.email').includes(:users).each do |role|
+-#   = role.users
+
+= @lab.admin_ids
+
 - if @lab.deletable_by? current_or_null_user
   = link_to @lab, class: 'btn btn-danger', method: 'delete', data: { confirm: "Are you sure?" } do
     %span.glyphicon.glyphicon-remove
