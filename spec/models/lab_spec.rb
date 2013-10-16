@@ -1,23 +1,28 @@
 require 'spec_helper'
 
 describe Lab do
+
   it { should validate_presence_of(:name) }
   it { should validate_presence_of(:description) }
   it { should belong_to(:creator) }
   it { should validate_presence_of(:creator) }
-  # it { should validate_uniqueness_of(:name) }
 
-  it "should be unverified" do
+  it "should validate uniqueness of name" do
+    FactoryGirl.create(:lab, name: 'uniquename')
+    expect{ FactoryGirl.create(:lab, name: 'Uniquename') }.to raise_error(ActiveRecord::RecordInvalid)
+  end
+
+  it "is unverified" do
     expect(FactoryGirl.build(:lab)).to be_unverified
   end
 
-  it "should email creator and admins on create" do
+  it "emails creator and admins on create" do
     lab = FactoryGirl.create(:lab)
-    # p ActionMailer::Base.deliveries.last.inspect
-    expect(last_email.to).to include(lab.creator.email)
+    emails = ActionMailer::Base.deliveries.map(&:to).flatten
+    expect(emails - [lab.creator.email, 'john@bitsushi.com']).to be_empty
   end
 
-  it "should email creator on approval" do
+  it "emails creator on approval" do
     lab = FactoryGirl.create(:lab)
     lab.approve!
     expect(last_email.to).to include(lab.creator.email)
