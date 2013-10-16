@@ -17,7 +17,6 @@ gem 'database_cleaner', github: 'bmabey/database_cleaner'
 gem 'letter_opener'
 # Use CoffeeScript for .js.coffee assets and views
 gem 'coffee-rails', '~> 4.0.0'
-
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
@@ -48,6 +47,9 @@ group :test do
   gem "capybara"
   gem "guard-rspec"
   gem "shoulda-matchers"
+end
+group :development do
+  gem 'quiet_assets'
 end
 
 # Use ActiveModel has_secure_password

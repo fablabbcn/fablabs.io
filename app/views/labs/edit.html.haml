@@ -11,5 +11,6 @@
   = f.input :name
   = f.input :slug
   = f.input :description
+  = f.input :admin_ids, collection: User.all - [current_user], input_html: { multiple: true }, blank: false
 
   = f.submit "Update Lab"

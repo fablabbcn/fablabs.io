@@ -1,6 +1,12 @@
 Fablabs::Application.routes.draw do
   resources :users
-  resources :labs
+
+  resources :labs do
+    collection do
+      get :map
+    end
+  end
+
   resources :sessions
 
   get "signout" => "sessions#destroy", :as => "signout"

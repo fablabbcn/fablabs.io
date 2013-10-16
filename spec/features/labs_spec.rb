@@ -9,6 +9,12 @@ describe Lab do
       expect(page).to have_content "Labs"
     end
 
+    it "has map" do
+      visit labs_path
+      click_link "Map"
+      page.should have_title "Map"
+    end
+
     describe "approved labs" do
       it "can view labs index" do
         FactoryGirl.create(:lab, name: 'A Lab', workflow_state: 'approved')

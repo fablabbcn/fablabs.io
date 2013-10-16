@@ -2,6 +2,10 @@ class LabsController < ApplicationController
 
   before_filter :require_login, only: [:new, :create, :destroy]
 
+  def map
+    @labs = Lab.with_approved_state
+  end
+
   def index
     @labs = Lab.with_approved_state
   end
