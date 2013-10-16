@@ -34,11 +34,15 @@ group :doc do
   gem 'sdoc', require: false
 end
 
-gem "rspec-rails", :group => [:test, :development]
+group :test, :development do
+  gem "rspec-rails"
+end
 group :test do
+  gem "nyan-cat-formatter"
   gem "factory_girl_rails"
   gem "capybara"
   gem "guard-rspec"
+  gem "shoulda-matchers"
 end
 
 # Use ActiveModel has_secure_password
