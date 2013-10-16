@@ -3,7 +3,7 @@ class LabsController < ApplicationController
   before_filter :require_login, only: [:new, :create, :destroy]
 
   def index
-    @labs = Lab.all
+    @labs = Lab.with_approved_state
   end
 
   def new
@@ -20,7 +20,7 @@ class LabsController < ApplicationController
   end
 
   def show
-    @lab = Lab.find(params[:id])
+    @lab = Lab.with_approved_state.find(params[:id])
   end
 
   def destroy

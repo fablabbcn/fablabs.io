@@ -9,16 +9,33 @@ describe Lab do
       expect(page).to have_content "Labs"
     end
 
-    it "can view labs index" do
-      FactoryGirl.create(:lab, name: 'A Lab')
-      visit labs_path
-      expect(page).to have_link "A Lab"
+    describe "approved labs" do
+      it "can view labs index" do
+        FactoryGirl.create(:lab, name: 'A Lab', workflow_state: 'approved')
+        visit labs_path
+        expect(page).to have_link "A Lab"
+      end
+
+      it "has show page" do
+        lab = FactoryGirl.create(:lab, name: 'A Lab', workflow_state: 'approved')
+        visit lab_path(lab)
+        expect(page).to have_title 'A Lab'
+      end
     end
 
-    it "has show page" do
-      lab = FactoryGirl.create(:lab, name: 'A Lab')
-      visit lab_path(lab)
-      expect(page).to have_title 'A Lab'
+    describe "unverified labs" do
+
+      it "cannot see unapproved labs on index" do
+        FactoryGirl.create(:lab, name: 'A Lab')
+        visit labs_path
+        expect(page).to_not have_link "A Lab"
+      end
+
+      it "cannot see unapproved lab pages" do
+        lab = FactoryGirl.create(:lab, name: 'A Lab')
+        expect{visit lab_path(lab)}.to raise_error(ActiveRecord::RecordNotFound)
+      end
+
     end
 
   end
@@ -38,7 +55,7 @@ describe Lab do
 
     it "can delete lab" do
       signin user
-      lab = FactoryGirl.create(:lab, name: 'A Lab')
+      lab = FactoryGirl.create(:lab, name: 'A Lab', workflow_state: 'approved')
       visit lab_path(lab)
       click_link "Delete Lab"
       expect(page).to have_content "deleted"
