@@ -1,6 +1,6 @@
 - title "Labs"
 
-%table
+%table.table
   %thead
     %tr
       %td ID
@@ -9,12 +9,12 @@
       %td Slug
       %td State
       %td Created at
-
-  - @labs.each do |lab|
-    = content_tag_for :tr, lab do
-      %td= lab.id
-      %td= link_to lab, backstage_lab_path(lab)
-      %td= link_to lab.creator, lab.creator
-      %td= lab.slug
-      %td= lab.current_state
-      %td= l(lab.created_at, format: :short)
+  %tbody
+    - @labs.each do |lab|
+      = content_tag_for :tr, lab do
+        %td= lab.id
+        %td= link_to lab, backstage_lab_path(lab)
+        %td= link_to lab.creator, lab.creator
+        %td= lab.slug
+        %td= lab.current_state
+        %td= l(lab.created_at, format: :short)

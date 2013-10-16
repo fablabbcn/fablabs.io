@@ -1,6 +1,6 @@
 class LabsController < ApplicationController
 
-  before_filter :require_login, only: [:new, :create, :destroy]
+  before_filter :require_login, except: [:index, :map, :show]
 
   def map
     @labs = Lab.with_approved_state

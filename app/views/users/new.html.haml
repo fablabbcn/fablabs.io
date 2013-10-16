@@ -1,3 +1,5 @@
+= title "Sign Up"
+
 = simple_form_for @user do |f|
 
   - if @user.errors.any?
@@ -9,7 +11,7 @@
 
   = f.input :first_name, autofocus: true
   = f.input :last_name
-  = f.input :email
+  = f.input :email, autocapitalize: "off", autocorrect: "off"
   = f.input :password
   = f.input :password_confirmation
-  = f.submit 'Sign Up', class: 'btn btn-success'
+  = f.submit 'Sign Up', class: 'btn btn-primary'

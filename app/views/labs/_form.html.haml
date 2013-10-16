@@ -1,7 +1,7 @@
 = simple_form_for lab do |f|
   = render 'form_errors', resource: lab
 
-  = f.input :name, autofocus: true
+  = f.input :name, autofocus: lab.name.blank?
   = f.input :description
   = f.input :slug
   = f.input :avatar_src

@@ -16,8 +16,12 @@ class User < ActiveRecord::Base
     state :verified
   end
 
+  def full_name
+    "#{first_name} #{last_name}"
+  end
+
   def to_s
-    email
+    full_name
   end
 
   def admin?
