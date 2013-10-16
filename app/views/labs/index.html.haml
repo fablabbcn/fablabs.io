@@ -1,10 +1,10 @@
 = title "Labs"
 
-= link_to "Map", map_labs_path
+= link_to "Map", map_labs_path, class: 'btn btn-primary'
 
 - @labs.each do |lab|
   = content_tag_for :div, lab do
     = link_to lab, lab
 
 - if Lab.creatable_by? current_or_null_user
-  = link_to "Add a Lab", new_lab_path
+  = link_to "Add a Lab", new_lab_path, class: 'btn btn-primary'

@@ -1,4 +1,4 @@
-= simple_form_for lab do |f|
+= simple_form_for lab, html: { class: 'form-horizontal' } do |f|
   = render 'form_errors', resource: lab
 
   = f.input :name, autofocus: lab.name.blank?
