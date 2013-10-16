@@ -21,7 +21,11 @@ class LabsController < ApplicationController
   end
 
   def show
-    @lab = Lab.with_approved_state.find(params[:id])
+    if current_user.admin?
+      @lab = Lab.find(params[:id])
+    else
+      @lab = Lab.with_approved_state.find(params[:id])
+    end
   end
 
   def destroy

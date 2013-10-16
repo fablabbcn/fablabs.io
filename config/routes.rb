@@ -7,5 +7,10 @@ Fablabs::Application.routes.draw do
   get "signin" => "sessions#new", :as => "signin"
   get "signup" => "users#new", :as => "signup"
 
+  namespace :backstage do
+    resources :labs
+    root to: 'labs#index'
+  end
+
   root to: 'labs#index'
 end

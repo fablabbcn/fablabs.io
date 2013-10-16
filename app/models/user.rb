@@ -15,4 +15,12 @@ class User < ActiveRecord::Base
     state :verified
   end
 
+  def to_s
+    email
+  end
+
+  def admin?
+    true
+  end
+
 end
