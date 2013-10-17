@@ -5,13 +5,6 @@ Fablabs::Application.routes.draw do
   end
 
   resources :users
-
-  resources :labs do
-    collection do
-      get :map
-    end
-  end
-
   resources :sessions
 
   get "signout" => "sessions#destroy", :as => "signout"
@@ -26,9 +19,23 @@ Fablabs::Application.routes.draw do
         # patch :reject
       end
     end
-
     root to: 'labs#index'
   end
 
+
   root to: 'labs#index'
+
+
+  # resources :labs, path: '', only: [:show]
+  # get 'labs' => 'labs#index'
+  # resources :labs, only: [:show, :destroy], path: ''
+   #, except: [:show]
+  resources :labs do
+    collection do
+      get :map
+    end
+  end
+
+
+
 end

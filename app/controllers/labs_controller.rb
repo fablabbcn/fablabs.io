@@ -8,6 +8,12 @@ class LabsController < ApplicationController
 
   def index
     @labs = Lab.with_approved_state
+    @labs2 = Lab.select('labs.country_code').with_approved_state
+    @countries = @labs2.map{|l| [l.country, l.country_code, 1]}.sort
+    respond_to do |format|
+      format.html
+      format.json { render json: @labs }
+    end
   end
 
   def new

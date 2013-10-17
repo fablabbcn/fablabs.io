@@ -11,7 +11,7 @@ gem 'sqlite3'
 gem 'simple_form'
 gem 'countries'
 gem 'country_select'
-
+gem 'active_model_serializers'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 gem 'haml-rails'
@@ -43,6 +43,7 @@ end
 
 group :test, :development do
   gem "rspec-rails"
+  gem 'holder_rails', github: 'NARKOZ/holder_rails'
 end
 group :test do
   gem "pg" #for travis

@@ -1,17 +1,22 @@
 - title "Labs"
 
 .row
-  .col-md-3
-    .panel.panel-default
-      .panel-heading All Countries
-      %ul.list-group
-        - Country.all[0..20].each do |country|
-          %li.list-group-item
-            %div{class: "flag flag-#{country[1].downcase} pull-left"}
-            = country[0]
-            %span.badge.pull-right= (rand() * 30).to_i
-
   .col-md-9
+    .labs
+      - 10.times do
+        - @labs.each do |lab|
+          = content_tag_for :div, lab, class: 'media' do
+            = link_to lab, class: 'pull-left' do
+              = holder_tag 100
+            .media-body
+              %h4.media-heading= link_to lab, lab
+              .lab-description= lab.description
+
+    - if Lab.creatable_by? current_or_null_user
+      = link_to "Add a Lab", new_lab_path, class: 'btn btn-primary'
+
+  .col-md-3
+
     .view-as
       View as:
       .btn-group
@@ -23,13 +28,17 @@
           %span.glyphicon.glyphicon-globe
           Map
 
+    -# .panel.panel-default
+    -#   .panel-heading All Countries
+    %ul.nav.nav-pills.nav-stacked
+      %li.all{class: ('active' if params[:country].blank?)}
+        = link_to url_for(params.merge(country: nil)) do
+          All Countries
+          %span.badge.pull-right= @labs.size
 
-    - @labs.each do |lab|
-      = content_tag_for :div, lab do
-        %h4= link_to lab, lab
-        = lab.description
-
-.row
-  .col-md-12
-    - if Lab.creatable_by? current_or_null_user
-      = link_to "Add a Lab", new_lab_path, class: 'btn btn-primary'
+      - @countries.each do |country|
+        %li{class: ('active' if params[:country] == country[1].downcase)}
+          -# %div{class: "flag flag-#{country[1].downcase} pull-left"}
+          = link_to url_for(params.merge(country: country[1].downcase)) do
+            = country[0]
+            %span.badge.pull-right= country[2]

@@ -5,6 +5,13 @@ GIT
     rolify (3.3.0.rc5)
 
 GIT
+  remote: git://github.com/NARKOZ/holder_rails.git
+  revision: 159273d3ac840702df171fc55d8e7781b4f3926c
+  specs:
+    holder_rails (2.1.0)
+      railties (>= 3.1.0)
+
+GIT
   remote: git://github.com/anjlab/bootstrap-rails.git
   revision: 206c1f542f7a479393f75e0da6ed9532cf5810ca
   specs:
@@ -51,6 +58,8 @@ GEM
       erubis (~> 2.7.0)
       rack (~> 1.5.2)
       rack-test (~> 0.6.2)
+    active_model_serializers (0.8.1)
+      activemodel (>= 3.0)
     activemodel (4.0.0)
       activesupport (= 4.0.0)
       builder (~> 3.1.0)
@@ -246,6 +255,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  active_model_serializers
   anjlab-bootstrap-rails!
   authority!
   bcrypt-ruby (~> 3.0.0)
@@ -260,6 +270,7 @@ DEPENDENCIES
   friendly_id!
   guard-rspec
   haml-rails
+  holder_rails!
   jbuilder (~> 1.2)
   jquery-rails
   launchy

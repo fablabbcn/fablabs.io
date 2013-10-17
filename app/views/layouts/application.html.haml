@@ -3,16 +3,16 @@
   %head
     %title= content_for?(:title) ? "#{yield(:title)}, Fab Foundation" : "Fab Foundation"
     -# = javascript_include_tag "http://maps.googleapis.com/maps/api/js?sensor=false&libraries=places"
-    -# = stylesheet_link_tag    "http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.css"
-    -# = javascript_include_tag "http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.js"
+    = stylesheet_link_tag    "http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.css"
+    = javascript_include_tag "http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.js"
     = stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true
     = javascript_include_tag "application", "data-turbolinks-track" => true
-    -# = javascript_include_tag "//api.filepicker.io/v1/filepicker.js"
+    = javascript_include_tag "//api.filepicker.io/v1/filepicker.js"
     = csrf_meta_tags
 
   %body{ class: body_classes }
 
-    .navbar.navbar-top.navbar-inverse{role: "navigation"}
+    .navbar.navbar-top{role: "navigation"}
       .container
         .navbar-header
           %button.navbar-toggle{"data-target" => ".navbar-collapse", "data-toggle" => "collapse", type: "button"}
@@ -21,10 +21,12 @@
             %span.icon-bar
           = link_to root_path, class: 'navbar-brand' do
             %span.fab Fab
-            Foundation
+            %span.foundation Foundation
         .collapse.navbar-collapse
           = form_tag labs_path, class: 'navbar-form navbar-left', role: 'search', method: 'get' do
             .form-group
+              - if params[:country].present?
+                = hidden_field_tag 'country', params[:country]
               = text_field_tag 'q', nil, class: 'form-control', placeholder: 'Search Labs...', id: 'search-box'
           %ul.nav.navbar-nav.navbar-left
             %li{class: ('active' if controller_name == 'labs')}= link_to "Labs", labs_path
@@ -45,15 +47,18 @@
               %li= link_to "Sign Up", signup_path
 
     .container#main
-      .row
-        .col-md-12
-        - flash.each do |name, msg|
-          = content_tag :div, msg, class: flash_class(name)
-
+      - if flash.any?
+        .row
+          .col-md-12
+          - flash.each do |name, msg|
+            = content_tag :div, msg, class: flash_class(name)
       = yield
 
-    -# %footer
-    -#   hello
+    %footer
+      .container
+        .row
+          .col-md-12
+            hello
 
     :javascript
       filepicker.setKey('#{ENV["FILEPICKER_API_KEY"]}');

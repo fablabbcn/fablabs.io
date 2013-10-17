@@ -19,6 +19,10 @@ class Lab < ActiveRecord::Base
     name
   end
 
+  def country
+    ::CountrySelect::COUNTRIES[country_code]
+  end
+
   def admins
     User.with_role(:admin, self) - User.with_role(:admin)
   end
