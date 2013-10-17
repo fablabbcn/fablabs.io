@@ -57,6 +57,11 @@
     %footer
       .container
         .row
-          .col-md-12
-            hello
-
+          .col-md-2
+            = image_tag "footer-logo.png"
+          .col-md-10
+            %ul
+              %li= link_to "Labs List", labs_path
+              %li= link_to "World Map", map_labs_path
+              %li= link_to "About", about_path
+              %li= link_to "The Fab Foundation", "http://www.fabfoundation.org"
