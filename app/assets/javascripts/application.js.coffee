@@ -11,11 +11,17 @@
 # about supported directives.
 #
 #= require jquery
+#= require jquery.turbolinks
 #= require jquery_ujs
 #= require turbolinks
 #= require holder
+#= require jquery.geocomplete
+#= require jquery.succinct
+#= require leaflet.markercluster
 #= require_tree .
 #= require twitter/bootstrap
 
-$(document).bind 'page:change', ->
+$(document).ready ->
   Holder.run()
+  $('.truncate').succinct
+    size: 300

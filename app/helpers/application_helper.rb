@@ -9,16 +9,16 @@ module ApplicationHelper
     end
   end
 
-  # def cropped_image_path image, dimensions
-  #   "http://fugu.johnre.es/images/crop/#{dimensions}/#{image.gsub(/https?:\/\//, '')}.jpg"
-  # end
+  def cropped_image_path image, dimensions
+    "http://fugu.johnre.es/images/crop/#{dimensions}/#{image.gsub(/https?:\/\//, '')}.jpg"
+  end
 
-  # def cropped_image_tag image, dimensions, options={}
-  #   image_tag(
-  #     cropped_image_path(image,dimensions),
-  #     options
-  #   )
-  # end
+  def cropped_image_tag image, dimensions, options={}
+    image_tag(
+      cropped_image_path(image,dimensions),
+      options
+    )
+  end
 
   def title(page_title, options={})
     content_for(:title, page_title.to_s)

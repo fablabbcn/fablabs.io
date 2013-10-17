@@ -1,8 +1,17 @@
-.c-labs {
+#lab-map {
+  width: 100%;
+  height: 250px;
+  background: #FFF;
+  border: 4px solid #FFF;
+  // border-radius: 4px;
+}
+
+.c-labs.a-map {
   .leaflet-top {
     top: 70px;
   }
 }
+
 .view-as {
   text-align: right;
   margin-bottom: 40px;
@@ -37,6 +46,35 @@ li.all {
   }
 }
 
+.c-labs.a-show {
+  .nearby-labs {
+    margin-bottom: 10px;
+    .nearby-lab-name {
+      font-weight: bold;
+    }
+  }
+  h1 {
+    margin: 0;
+  }
+  a.big-map-link {
+    display: block;
+    padding-top: 10px;
+  }
+  .lab-description {
+    margin: 1em 0;
+  }
+  #header-bg {
+    height: 310px;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+}
+
 #map {
   position: absolute;
   top: 0;
@@ -45,3 +83,16 @@ li.all {
   height: 100%;
   background: #8DCFF4;
 }
+
+
+#location-picker-map {
+  width: 95%;
+  height: 280px;
+  display: block;
+  margin: 20px auto;
+}
+
+.address input {
+  margin-bottom: 5px;
+}
+

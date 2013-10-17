@@ -42,7 +42,7 @@ describe User do
     it "can edit settings" do
       signin FactoryGirl.create(:user)
       click_link "Settings"
-      fill_in "First name", with: "Frank"
+      fill_in "Email", with: "fred@flintstone.com"
       click_button "Update"
       page.should have_content "Settings updated"
     end
@@ -50,7 +50,7 @@ describe User do
     it "needs valid data to update settings" do
       signin FactoryGirl.create(:user)
       click_link "Settings"
-      fill_in "First name", with: ""
+      fill_in "Email", with: ""
       click_button "Update"
       page.should have_content "error"
     end

@@ -4,7 +4,7 @@ Fablabs::Application.routes.draw do
     get action => "static##{action}", as: action
   end
 
-  resources :users
+  resources :users, path: 'u'
   resources :sessions
 
   get "signout" => "sessions#destroy", :as => "signout"
@@ -23,19 +23,16 @@ Fablabs::Application.routes.draw do
   end
 
 
-  root to: 'labs#index'
-
-
   # resources :labs, path: '', only: [:show]
   # get 'labs' => 'labs#index'
   # resources :labs, only: [:show, :destroy], path: ''
    #, except: [:show]
-  resources :labs do
+  resources :labs, path: 'l' do
     collection do
       get :map
     end
   end
 
-
+  root to: 'labs#index'
 
 end

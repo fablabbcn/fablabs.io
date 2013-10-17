@@ -1,17 +1,18 @@
 = title "Sign Up"
+.row
+  .col-md-12.box
+    = simple_form_for @user do |f|
 
-= simple_form_for @user do |f|
+      - if @user.errors.any?
+        .bs-callout.bs-callout-warning
+          %h2= "#{pluralize(@user.errors.count, "error")} prohibited this lab from being saved:"
+          %ul
+            - @user.errors.full_messages.each do |msg|
+              %li= msg
 
-  - if @user.errors.any?
-    .bs-callout.bs-callout-warning
-      %h2= "#{pluralize(@user.errors.count, "error")} prohibited this lab from being saved:"
-      %ul
-        - @user.errors.full_messages.each do |msg|
-          %li= msg
-
-  = f.input :first_name, autofocus: true
-  = f.input :last_name
-  = f.input :email, autocapitalize: "off", autocorrect: "off"
-  = f.input :password
-  = f.input :password_confirmation
-  = f.submit 'Sign Up', class: 'btn btn-primary'
+      = f.input :first_name, autofocus: true
+      = f.input :last_name
+      = f.input :email, autocapitalize: "off", autocorrect: "off"
+      = f.input :password
+      = f.input :password_confirmation
+      = f.submit 'Sign Up', class: 'btn btn-primary'

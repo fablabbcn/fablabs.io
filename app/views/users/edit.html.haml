@@ -1,7 +1,19 @@
 = title "Settings"
-= simple_form_for @user do |f|
-  = render "form_errors", resource: @user
-  = f.input :first_name
-  = f.input :last_name
-  = f.input :email
-  = f.submit "Update", class: 'btn btn-primary'
+.row
+  .col-md-12.box
+    = simple_form_for @user do |f|
+      = render "form_errors", resource: @user
+      %fieldset
+        .row
+          .col-md-6
+            = f.input :first_name, label: 'Name', placeholder: 'First'
+          .col-md-6
+            = f.input :last_name, label: " ", placeholder: 'Last'
+        = f.input :email
+
+      %fieldset
+        .row
+          .col-md-2= image_tag @user.avatar, width: 100
+          .col-md-10= f.input :avatar_src, input_html: { class: 'fp' }, label: 'Avatar'
+
+      = f.submit "Update", class: 'btn btn-primary'

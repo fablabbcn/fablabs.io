@@ -37,7 +37,7 @@ describe Lab do
         expect(page).to_not have_link "A Lab"
       end
 
-      it "cannot see unapproved lab pages" do
+      pending "cannot see unapproved lab pages" do
         lab = FactoryGirl.create(:lab, name: 'A Lab')
         visit lab_path(lab)
         expect(page).to have_content 'Access Denied'

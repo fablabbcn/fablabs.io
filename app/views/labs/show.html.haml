@@ -1,15 +1,99 @@
-= title @lab
-= simple_format @lab.description
+-# = @lab.admin_ids
+#header-bg.hidden-xs{style: "background-image: url('#{@lab.header_image_src}');"}
 
--# - @lab.roles.select('users.email').includes(:users).each do |role|
--#   = role.users
+.row
+  .col-md-8.box
+    .media
+      = link_to @lab, class: 'pull-left' do
+        = cropped_image_tag @lab.avatar, '100x100', class: 'big-avatar'
+      .media-body
+        = title @lab.name
+        .lab-contact-details
+          .lab-address= @lab.formatted_address
+          - if @lab.phone.present?
+            .lab-phone
+              %span.glyphicon.glyphicon-earphone
+              = @lab.phone
+          - if @lab.email.present?
+            .lab-email
+              %span.glyphicon.glyphicon-envelope
+              = mail_to @lab.email, @lab.email
 
-= @lab.admin_ids
+        -# - if current_or_null_user.has_role? :admin
+        -#   - @lab.current_state.events.keys.each do |event|
+        -#     = button_to "#{event.capitalize} Lab", {controller: 'labs', action: 'verify'}, method: :patch, class: 'btn btn-primary'
 
-- if @lab.deletable_by? current_or_null_user
-  = link_to @lab, class: 'btn btn-danger', method: 'delete', data: { confirm: "Are you sure?" } do
-    %span.glyphicon.glyphicon-remove
-    Delete Lab
+    .lab-description= simple_format @lab.description
+    .btn-group
+      -# - if current_or_null_user.can_claim? @lab
+      -#   = link_to claim_lab_path(@lab), class: 'btn btn-primary' do
+      -#     %span.glyphicon.glyphicon-user
+      -#     Claim Ownership
+      -# = link_to admin_roles_lab_path(@lab), class: 'btn btn-primary' do
+      -#   %span.glyphicon.glyphicon-user
+      -#   Manage Admins
 
-- if @lab.updatable_by? current_or_null_user
-  = link_to "Edit Lab", edit_lab_path(@lab)
+      - if @lab.updatable_by? current_or_null_user
+        = link_to edit_lab_path(@lab), class: 'btn btn-primary' do
+          %span.glyphicon.glyphicon-edit
+          Edit Lab
+
+      - if @lab.deletable_by? current_or_null_user
+        = link_to @lab, class: 'btn btn-danger', method: 'delete', data: { confirm: "Are you sure?" } do
+          %span.glyphicon.glyphicon-remove
+          Delete Lab
+
+    -# %hr/
+
+    -# %ul.nav.nav-tabs
+    -#   %li.active= link_to "Contacts", "#"
+    -#   %li= link_to t('labs.show.lab_facilities'), "#"
+    -#   %li= link_to "External Links", "#"
+
+    -# %table.table
+    -#   %thead
+    -#     %tr
+    -#       %th Name
+    -#       %th Position
+    -#       %th Email
+    -#       %th Phone
+    -#   %tbody
+    -#     - 5.times do
+    -#       %tr
+    -#         %td= link_to "Tomas Diez", User.first
+    -#         %td Director
+    -#         %td= mail_to "tomas@fablabbcn.org", "tomas@fablabbcn.org"
+    -#         %td 0294280724
+
+  .col-md-4
+    #lab-map{ data: { latitude: @lab.latitude, longitude: @lab.longitude }}
+    = link_to "https://maps.google.com", class: 'big-map-link' do
+      %span.glyphicon.glyphicon-fullscreen
+      View full-size map
+
+    %hr/
+
+    - if @nearby_labs
+      %h5= t('labs.show.nearby_labs')
+      .nearby-labs
+        - @nearby_labs.each do |lab|
+          .media
+            = link_to lab, class: 'pull-left' do
+              = cropped_image_tag lab.avatar, '40x40'
+            .media-body
+              %h5.media-heading= link_to lab, lab, class: 'nearby-lab-name'
+              = "#{lab.distance.ceil}km away"
+      = link_to labs_path(country: @lab.country_code) do
+        Browse all labs in
+        %strong #{@lab.country}
+        »
+
+    -# %hr/
+
+    -# %h5= t('labs.show.lab_facilities')
+    -# %ul.list-group
+    -#   %li.list-group-item 3D Printing
+    -#   %li.list-group-item Vinyl Cutting
+    -#   %li.list-group-item Large Format CNC
+    -# = link_to "#" do
+    -#   More facilities details »

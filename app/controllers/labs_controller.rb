@@ -8,8 +8,18 @@ class LabsController < ApplicationController
 
   def index
     @labs = Lab.with_approved_state
-    @labs2 = Lab.select('labs.country_code').with_approved_state
-    @countries = @labs2.map{|l| [l.country, l.country_code, 1]}.sort
+    if params[:q].present?
+      @labs = @labs.where(name: params["q"])
+    end
+    @count = @labs.size
+
+    @c = Hash.new(0)
+    @labs.pluck(:country_code).map{ |v| @c[v] += 1 }
+
+    if params[:country].present?
+      @labs = @labs.where(country_code: params["country"])
+    end
+
     respond_to do |format|
       format.html
       format.json { render json: @labs }
@@ -33,6 +43,7 @@ class LabsController < ApplicationController
 
   def show
     @lab = Lab.friendly.find(params[:id])
+    @nearby_labs = @lab.nearbys(500)
     authorize_action_for @lab
   end
 

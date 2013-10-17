@@ -1,13 +1,28 @@
 class CreateUsers < ActiveRecord::Migration
   def change
     create_table :users do |t|
+
       t.string :workflow_state
       t.string :first_name
       t.string :last_name
       t.string :email
       t.string :password_digest
+      t.string :avatar_src
+
+      t.string :city
+      t.string :country_code
+      t.float  :latitude
+      t.float  :longitude
+
+      t.string :url
+      t.date :dob
+      t.text :bio
+
+      t.string :my_locale
+      t.string :my_timezone
 
       t.timestamps
+
     end
   end
 end

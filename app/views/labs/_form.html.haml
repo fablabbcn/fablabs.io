@@ -1,24 +1,52 @@
 = simple_form_for lab, html: { class: 'form-horizontal' } do |f|
   = render 'form_errors', resource: lab
 
-  = f.input :name, autofocus: lab.name.blank?
-  = f.input :description
-  = f.input :slug
-  = f.input :avatar_src
-  = f.input :header_image_src
-  = f.input :phone
-  = f.input :email
+  %fieldset
+    %legend Basic Details
+    = f.input :name, autofocus: lab.name.blank?
+    = f.input :description, hint: 'A brief overview of the lab', input_html: { rows: 4 }
+    = f.input :slug, hint: "This is the 'username' of the lab, it will be in the URL" do
+      .input-group
+        %span.input-group-addon http://labs.fabfoundation.org/
+        = f.input_field :slug, class: 'form-control'
 
-  = f.input :address_1, input_html: { data: {geo: "street_address"}}, label: 'Address'
-  = f.input :address_2, label: false
-  = f.input :address_3, label: false
-  = f.input :city, input_html: { data: {geo: "locality"}}
-  = f.input :postal_code, input_html: { data: {geo: "postal_code"}}
-  = f.input :country_code, as: 'country', label: 'Country', input_html: { data: {geo: "country_short"} }, wrapper_html: { class: 'boo'}, iso_codes: true#, input_html: { class: 'enhanced'}
-  = f.input :latitude, as: :hidden, input_html: { data: {geo: "lat"}}
-  = f.input :longitude, as: :hidden, input_html: { data: {geo: "lng"}}
-  = f.input :zoom, as: :hidden
-  = f.input :address_notes
-  = f.input :application_notes
+  %fieldset
+    %legend Lab Images
+    = f.input :avatar_src, input_html: { class: 'fp' }, label: 'Avatar'
+    = f.input :header_image_src, input_html: { class: 'fp' }, label: 'Header Image'
+
+  %fieldset
+    %legend Lab Location
+    .address
+      %fieldset
+        %legend Step 1
+        %p Enter the lab's address in the textbox below. Then drag the map marker to pinpoint its exact position.
+        = f.input :geocomplete, input_html: { id: 'geocomplete' }
+      %fieldset
+        %legend Step 2
+        .row
+          .col-md-4#map-holder
+            #location-picker-map
+          .col-md-8
+            = f.input :address_1, input_html: { data: {geo: "street_address"}}, label: 'Address', placeholder: 'Address Line 1'
+            = f.input :address_2, label: false, placeholder: 'Address Line 2 (Optional)'
+            = f.input :address_3, label: false, placeholder: 'Address Line 3 (Optional)'
+            = f.input :city, input_html: { data: {geo: "locality"}}
+            = f.input :postal_code, input_html: { data: {geo: "postal_code"}}
+            = f.input :country_code, as: 'country', label: 'Country', input_html: { data: {geo: "country_short"} }, wrapper_html: { class: 'boo'}, iso_codes: true#, input_html: { class: 'enhanced'}
+            = f.input :latitude, as: :hidden, input_html: { data: {geo: "lat"}}
+            = f.input :longitude, as: :hidden, input_html: { data: {geo: "lng"}}
+            = f.input :zoom, as: :hidden
+        = f.input :address_notes, hint: 'Any details that might be useful for someone trying to find the lab. For example, "Come through the red door".'
+
+  %fieldset
+    %legend Lab Contact Details
+    = f.input :phone, hint: "A general enquiries phone number for the lab"
+    = f.input :email, hint: "A general enquiries email address for the lab"
+
+  - if !@lab.new_record?
+    %fieldset
+      %legend Anything else?
+      = f.input :application_notes
 
   = f.submit (lab.new_record? ? 'Add Lab' : 'Update Lab'), class: 'btn btn-large btn-primary'

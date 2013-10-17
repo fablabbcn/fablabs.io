@@ -10,6 +10,18 @@ class Lab < ActiveRecord::Base
 
   after_create :notify_everyone
 
+  attr_accessor :geocomplete
+  geocoded_by :formatted_address
+
+  def formatted_address
+    [address_1, address_2, address_3, city, postal_code, country]
+    .reject(&:blank?).join(", ")
+  end
+
+  def avatar
+    avatar_src || ActionController::Base.helpers.asset_path('/assets/default-lab-avatar.png')
+  end
+
   def approve
     UserMailer.lab_approved(self).deliver
     creator.add_role :admin, self
