@@ -4,6 +4,14 @@ describe User do
 
   describe "UNauthenticated user" do
 
+    it "requires valid credentials to login" do
+      visit signin_path
+      fill_in "Email", with: 'blahblah@blah.com'
+      fill_in "Password", with: "password"
+      click_button "Sign in"
+      expect(page).to have_content("Invalid email or password")
+    end
+
     it "can signup" do
       visit signup_path
       fill_in 'First name', with: 'John'
@@ -37,6 +45,14 @@ describe User do
       fill_in "First name", with: "Frank"
       click_button "Update"
       page.should have_content "Settings updated"
+    end
+
+    it "needs valid data to update settings" do
+      signin FactoryGirl.create(:user)
+      click_link "Settings"
+      fill_in "First name", with: ""
+      click_button "Update"
+      page.should have_content "error"
     end
 
   end
