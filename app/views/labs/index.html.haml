@@ -4,26 +4,26 @@
     .labs
       = render @labs
     - if Lab.creatable_by? current_or_null_user
-      = link_to "Add a Lab", new_lab_path, class: 'btn btn-primary'
+      = link_to I18n.t("labs.index.add_a_lab", :default => "Add a Lab"), new_lab_path, class: 'btn btn-primary'
 
   .col-md-3
 
     .view-as
-      View as:
+      = I18n.t("labs.index.view_as", :default => "View as")
+      \:
       .btn-group
         = link_to labs_path, class: "btn btn-default #{'active' if action_name == 'index'}" do
           %span.glyphicon.glyphicon-list
-          List
+          = I18n.t("labs.index.list", :default => "List")
 
         = link_to map_labs_path, class: "btn btn-default #{'active' if request.path == map_labs_path}" do
           %span.glyphicon.glyphicon-globe
-          Map
-    -# .panel.panel-default
-    -#   .panel-heading All Countries
+          = I18n.t("labs.index.map", :default => "Map")
+
     %ul.nav.nav-pills.nav-stacked
       %li.all{class: ('active' if params[:country].blank?)}
         = link_to url_for(params.merge(country: nil)) do
-          All Countries
+          = I18n.t("labs.index.all_countries", :default => "All Countries")
           %span.badge.pull-right= @count
 
       - @countries.each do |country,country_code,count|
