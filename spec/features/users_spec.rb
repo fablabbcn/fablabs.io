@@ -33,10 +33,19 @@ describe User do
 
   describe "authenticated user" do
 
+    it "admin can see backstage link" do
+      user = FactoryGirl.create(:user)
+      signin user
+      expect(page).to_not have_link('Backstage')
+      user.add_role :admin
+      visit root_path
+      expect(page).to have_link('Backstage')
+    end
+
     it "can signout" do
       signin FactoryGirl.create(:user)
       click_link "Sign Out"
-      page.should have_link "Sign In"
+      expect(page).to have_link "Sign In"
     end
 
     it "can edit settings" do
@@ -44,7 +53,7 @@ describe User do
       click_link "Settings"
       fill_in "Email", with: "fred@flintstone.com"
       click_button "Update"
-      page.should have_content "Settings updated"
+      expect(page).to have_content "Settings updated"
     end
 
     it "needs valid data to update settings" do
@@ -52,7 +61,7 @@ describe User do
       click_link "Settings"
       fill_in "Email", with: ""
       click_button "Update"
-      page.should have_content "error"
+      expect(page).to have_content "error"
     end
 
   end

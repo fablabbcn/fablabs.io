@@ -6,6 +6,7 @@
     .media
       = link_to @lab, class: 'pull-left' do
         = cropped_image_tag @lab.avatar, '100x100', class: 'big-avatar'
+        -# = image_tag @lab.avatar, width: 100, class: 'big-avatar'
       .media-body
         = title @lab.name
         .lab-contact-details

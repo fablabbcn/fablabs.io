@@ -1,6 +1,7 @@
 = content_tag_for :div, lab, class: 'media' do
   = link_to lab, class: 'pull-left' do
     = cropped_image_tag lab.avatar, '100x100', class: 'big-avatar'
+    -# = image_tag lab.avatar, width: 100, class: 'big-avatar'
   .media-body
     %h4.media-heading= link_to lab, lab
     .lab-description.truncate= lab.description

@@ -19,7 +19,7 @@ class Lab < ActiveRecord::Base
   end
 
   def avatar
-    avatar_src || ActionController::Base.helpers.asset_path('/assets/default-lab-avatar.png')
+    avatar_src.present? ? avatar_src : ActionController::Base.helpers.asset_path('/assets/default-lab-avatar.png')
   end
 
   def approve

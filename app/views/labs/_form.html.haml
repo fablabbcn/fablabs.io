@@ -12,8 +12,11 @@
 
   %fieldset
     %legend Lab Images
-    = f.input :avatar_src, input_html: { class: 'fp' }, label: 'Avatar'
-    = f.input :header_image_src, input_html: { class: 'fp' }, label: 'Header Image'
+    .row
+      .col-md-3= image_tag @lab.avatar, width: 100
+      .col-md-9= f.input :avatar_src, input_html: { class: 'fp' }, label: 'Avatar'
+    -# = @lab.header_image
+    -# = f.input :header_image_src, input_html: { class: 'fp' }, label: 'Header Image'
 
   %fieldset
     %legend Lab Location
@@ -21,8 +24,8 @@
       %fieldset
         %legend Step 1
         %p Enter the lab's address in the textbox below. Then drag the map marker to pinpoint its exact position.
-        = f.input :geocomplete, input_html: { id: 'geocomplete' }
-      %fieldset
+        = f.input :geocomplete, input_html: { id: 'geocomplete', data: { latlng: "#{@lab.latitude}, #{@lab.longitude}"} }
+      %fieldset.step-2
         %legend Step 2
         .row
           .col-md-4#map-holder

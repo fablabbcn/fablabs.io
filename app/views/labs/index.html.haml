@@ -1,5 +1,4 @@
 - title "Labs"
-
 .row
   .col-md-9.box
     .labs
@@ -27,9 +26,9 @@
           All Countries
           %span.badge.pull-right= @count
 
-      - @c.each do |country_code,count|
+      - @countries.each do |country,country_code,count|
         %li{class: ('active' if params[:country] == country_code)}
           -# %div{class: "flag flag-#{country[1].downcase} pull-left"}
           = link_to url_for(params.merge(country: country_code)) do
-            = ::CountrySelect::COUNTRIES[country_code]
+            = country
             %span.badge.pull-right= count

@@ -9,6 +9,7 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
+ *= require Control.Loading.css
  *= require_tree .
  */
 
@@ -35,6 +36,7 @@ a:hover {
   padding-top: 20px;
   padding-bottom: 20px;
   background: #FFF;
+  margin-bottom: 20px;
 }
 
 header .navbar {
@@ -71,13 +73,18 @@ header .navbar {
 }
 
 fieldset {
-  // border: 1px solid #CCC;
+  border-top: 1px solid #EEE;
   overflow: hidden;
   margin-bottom: 20px;
   padding: 10px;
-  background: #FAFAFA;
+  background: #FEFEFE;
   fieldset {
     background: #FFF;
+    border: none;
+    legend {
+      font-weight: normal;
+      color: #AAA;
+    }
   }
 }
 

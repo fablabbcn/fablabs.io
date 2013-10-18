@@ -15,6 +15,7 @@
 #= require jquery_ujs
 #= require turbolinks
 #= require holder
+#= require Control.Loading.js
 #= require jquery.geocomplete
 #= require jquery.succinct
 #= require leaflet.markercluster

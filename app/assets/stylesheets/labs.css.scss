@@ -75,6 +75,12 @@ li.all {
   }
 }
 
+input#lab_name {
+  font-size: 1.5em;
+  height: auto;
+  font-weight: normal;
+}
+
 #map {
   position: absolute;
   top: 0;
@@ -96,3 +102,6 @@ li.all {
   margin-bottom: 5px;
 }
 
+#geocomplete {
+  color: #CCC;
+}

@@ -10,7 +10,7 @@ gem 'geocoder', github: 'alexreisner/geocoder'
 gem 'workflow', github: 'geekq/workflow'
 gem 'sqlite3'
 gem 'simple_form'
-gem 'countries'
+gem 'countries', github: "hexorx/countries"
 gem 'country_select'
 gem 'active_model_serializers'
 gem 'jquery-turbolinks'
