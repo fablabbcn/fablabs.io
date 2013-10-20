@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   has_many :created_labs, class_name: 'Lab', foreign_key: 'creator_id'
   has_many :recoveries
   validates_uniqueness_of :email, case_sensitive: false
-  validates :password, presence: true, length: { minimum: 6 }, on: :update, if: lambda{ new_record? || !password.nil? }
+  validates :password, presence: true, length: { minimum: 6 }, if: lambda{ new_record? || !password.nil? }
 
   include Workflow
   workflow do

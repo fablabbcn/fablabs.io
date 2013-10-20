@@ -24,6 +24,10 @@ class Recovery < ActiveRecord::Base
     key
   end
 
+  def self.find_by_key key
+    select([:user_id, :key, 'MAX(id)']).group(:user_id){|recovery| where(key: key) }.first
+  end
+
 private
 
   def generate_key

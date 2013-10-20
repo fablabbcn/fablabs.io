@@ -15,34 +15,28 @@ describe Lab do
       page.should have_title "Map"
     end
 
-    describe "approved labs" do
-      it "can view labs index" do
-        FactoryGirl.create(:lab, name: 'A Lab', workflow_state: 'approved')
-        visit labs_path
-        expect(page).to have_link "A Lab"
-      end
-
-      it "has show page" do
-        lab = FactoryGirl.create(:lab, name: 'A Lab', workflow_state: 'approved')
-        visit lab_path(lab)
-        expect(page).to have_title 'A Lab'
-      end
+    it "approved labs are on index page" do
+      FactoryGirl.create(:lab, name: 'A Lab', workflow_state: 'approved')
+      visit labs_path
+      expect(page).to have_link "A Lab"
     end
 
-    describe "unverified labs" do
+    it "unapproved labs are not on the index page" do
+      FactoryGirl.create(:lab, name: 'A Lab')
+      visit labs_path
+      expect(page).to_not have_link "A Lab"
+    end
 
-      it "cannot see unapproved labs on index" do
-        FactoryGirl.create(:lab, name: 'A Lab')
-        visit labs_path
-        expect(page).to_not have_link "A Lab"
-      end
+    it "approved labs have show page" do
+      lab = FactoryGirl.create(:lab, name: 'A Lab', workflow_state: 'approved')
+      visit lab_path(lab)
+      expect(page).to have_title 'A Lab'
+    end
 
-      pending "cannot see unapproved lab pages" do
-        lab = FactoryGirl.create(:lab, name: 'A Lab')
-        visit lab_path(lab)
-        expect(page).to have_content 'Access Denied'
-      end
-
+    pending "unapproved labs don't have show page" do
+      lab = FactoryGirl.create(:lab, name: 'A Lab')
+      visit lab_path(lab)
+      expect(page).to have_content 'Access Denied'
     end
 
   end
