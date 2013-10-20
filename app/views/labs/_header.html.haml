@@ -1,0 +1,11 @@
+.view-as
+  = I18n.t("labs.index.view_as", :default => "View as")
+  \:
+  .btn-group
+    = link_to labs_path, class: "btn btn-default #{'active' if action_name == 'index'}" do
+      %span.glyphicon.glyphicon-list
+      = I18n.t("labs.index.list", :default => "List")
+
+    = link_to map_labs_path, class: "btn btn-default #{'active' if request.path == map_labs_path}" do
+      %span.glyphicon.glyphicon-globe
+      = I18n.t("labs.index.map", :default => "Map")

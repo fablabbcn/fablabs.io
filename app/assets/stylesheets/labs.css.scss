@@ -15,6 +15,14 @@
 .view-as {
   text-align: right;
   margin-bottom: 40px;
+  position: relative;
+  z-index: 100;
+  pointer-events: none;
+  a {
+    pointer-events: auto;
+  }
+  // background: rgba(#F2F2F2, 0.4);
+  // border-radius: 2px;
 }
 // .c-labs .nav li {
 //   & > a {

@@ -7,18 +7,7 @@
       = link_to I18n.t("labs.index.add_a_lab", :default => "Add a Lab"), new_lab_path, class: 'btn btn-primary'
 
   .col-md-3
-
-    .view-as
-      = I18n.t("labs.index.view_as", :default => "View as")
-      \:
-      .btn-group
-        = link_to labs_path, class: "btn btn-default #{'active' if action_name == 'index'}" do
-          %span.glyphicon.glyphicon-list
-          = I18n.t("labs.index.list", :default => "List")
-
-        = link_to map_labs_path, class: "btn btn-default #{'active' if request.path == map_labs_path}" do
-          %span.glyphicon.glyphicon-globe
-          = I18n.t("labs.index.map", :default => "Map")
+    = render "header"
 
     %ul.nav.nav-pills.nav-stacked
       %li.all{class: ('active' if params[:country].blank?)}
