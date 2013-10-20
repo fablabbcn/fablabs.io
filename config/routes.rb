@@ -6,6 +6,7 @@ Fablabs::Application.routes.draw do
 
   resources :users, path: 'u'
   resources :sessions
+  resources :recoveries
 
   get "signout" => "sessions#destroy", :as => "signout"
   get "signin" => "sessions#new", :as => "signin"

@@ -1,12 +1,13 @@
 class User < ActiveRecord::Base
   rolify
-
+  has_secure_password
   include Authority::UserAbilities
 
   validates :first_name, :last_name, :email, presence: true
   has_many :created_labs, class_name: 'Lab', foreign_key: 'creator_id'
+  has_many :recoveries
   validates_uniqueness_of :email, case_sensitive: false
-  has_secure_password
+  validates :password, presence: true, length: { minimum: 6 }, on: :update, if: lambda{ new_record? || !password.nil? }
 
   include Workflow
   workflow do
@@ -30,6 +31,10 @@ class User < ActiveRecord::Base
 
   def admin?
     has_role? :admin
+  end
+
+  def recovery_key
+    recoveries.last.key
   end
 
   before_create :downcase_email

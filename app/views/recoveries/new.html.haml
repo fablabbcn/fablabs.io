@@ -1,0 +1,6 @@
+= title "Reset Your Password"
+
+= simple_form_for @recovery do |f|
+  -# = render "form_errors", resource: @recovery
+  = f.input :email
+  = f.submit 'Reset Password'

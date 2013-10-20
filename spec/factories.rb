@@ -19,4 +19,9 @@ FactoryGirl.define do
     password_confirmation "password"
   end
 
+  factory :recovery do
+    user
+    ip '8.8.8.8'
+  end
+
 end

@@ -14,4 +14,9 @@ class UserMailer < ActionMailer::Base
     mail(to: "#{@user} <#{@user.email}>", subject: "Welcome")
   end
 
+  def account_recovery_instructions user
+    @user = user
+    mail(to: "#{@user} <#{@user.email}>", from: "support@fabfoundationworld.org", subject: "Account Recovery Instructions")
+  end
+
 end

@@ -29,4 +29,13 @@ describe UserMailer do
     mail.body.encoded.should match(root_url)
   end
 
+  it "account_recovery_instructions" do
+    recovery = FactoryGirl.create(:recovery, user: user, email: user.email)
+    mail = UserMailer.account_recovery_instructions(user)
+    mail.subject.should eq("Account Recovery Instructions")
+    mail.to.should eq([user.email])
+    mail.from.should eq(["support@fabfoundationworld.org"])
+    mail.body.encoded.should match( recovery_url(user.recovery_key) )
+  end
+
 end
