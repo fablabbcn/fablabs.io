@@ -18,7 +18,7 @@ class LabsController < ApplicationController
     @labs.pluck(:country_code).map{ |v| @c[v] += 1 }
     @countries = []
     @c.each do |country_code, count|
-      @countries.push([LocalCountry[country_code].name, country_code, count])
+      @countries.push([Country[country_code].name, country_code, count])
     end
     @countries.sort_by!{|k|k.first}
 
