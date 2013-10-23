@@ -1,15 +1,18 @@
 = title "Sign in"
+.row
+  .col-md-12.box
 
-= form_tag sessions_path do
-  = hidden_field_tag :goto, params[:goto]
-  .field
-    = label_tag :email
-    = text_field_tag :email, params[:email], placeholder: 'Email', autofocus: params[:email].blank?, autocapitalize: "off", autocorrect: "off"
-  .field
-    = label_tag :password
-    = password_field_tag :password, nil, placeholder: 'Password'
+    = form_tag sessions_path do
+      -# = simple_form_for :signin, { url: sessions_path } do
+      = hidden_field_tag :goto, params[:goto]
+      .field
+        = label_tag :email
+        = text_field_tag :email, params[:email], placeholder: 'Email', autofocus: params[:email].blank?, autocapitalize: "off", autocorrect: "off"
+      .field
+        = label_tag :password
+        = password_field_tag :password, nil, placeholder: 'Password'
 
-  .actions= submit_tag "Sign in", class: 'btn btn-primary'
+      .actions= submit_tag "Sign in", class: 'btn btn-primary'
 
-  %p= link_to "Forgotten Password?", new_recovery_path
+      %p= link_to "Forgotten Password?", new_recovery_path
 

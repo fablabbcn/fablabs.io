@@ -1,6 +1,6 @@
 - if resource.errors.any?
-  .bs-callout.bs-callout-warning
-    %h2= "#{pluralize(resource.errors.count, "error")} prohibited this lab from being saved:"
+  .bs-callout.bs-callout-warning.errors
+    %h2= "Uh oh. #{pluralize(resource.errors.count, "problem")} need(s) fixing before you can continue:"
     %ul
       - resource.errors.full_messages.each do |msg|
         %li= msg

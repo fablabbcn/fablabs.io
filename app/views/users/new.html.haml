@@ -2,13 +2,7 @@
 .row
   .col-md-12.box
     = simple_form_for @user do |f|
-
-      - if @user.errors.any?
-        .bs-callout.bs-callout-warning
-          %h2= "#{pluralize(@user.errors.count, "error")} prohibited this lab from being saved:"
-          %ul
-            - @user.errors.full_messages.each do |msg|
-              %li= msg
+      = render "form_errors", resource: @user
 
       = f.input :first_name, autofocus: true
       = f.input :last_name

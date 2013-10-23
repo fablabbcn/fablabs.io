@@ -26,7 +26,7 @@ describe User do
     it "requires all fields to sign up" do
       visit signup_path
       click_button "Sign Up"
-      expect(page).to have_content "errors prohibited"
+      expect(page).to have_css ".errors"
     end
 
   end
@@ -61,7 +61,7 @@ describe User do
       click_link "Settings"
       fill_in "Email", with: ""
       click_button "Update"
-      expect(page).to have_content "error"
+      expect(page).to have_css ".errors"
     end
 
   end

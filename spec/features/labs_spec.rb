@@ -78,7 +78,7 @@ describe Lab do
       signin user
       visit new_lab_path
       click_button 'Add Lab'
-      expect(page).to have_content "errors"
+      expect(page).to have_css ".errors"
     end
 
     it "can edit lab" do

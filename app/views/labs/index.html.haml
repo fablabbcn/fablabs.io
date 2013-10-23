@@ -1,6 +1,9 @@
 - title "Labs"
+
 .row
   .col-md-9.box
+    - if params[:q]
+      %h1 Search results for '#{params[:q]}'
     .labs
       = render @labs
     - if Lab.creatable_by? current_or_null_user

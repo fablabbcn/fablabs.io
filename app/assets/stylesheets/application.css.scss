@@ -109,3 +109,23 @@ h1 {
   box-shadow: none;
   background: none;
 }
+
+.input {
+  margin-bottom: 1em;
+}
+
+.field_with_errors .error {
+  color: red;
+}
+
+.bs-callout-warning {
+  border-left: 5px solid red;
+  color: red;
+  background: #FAE8E8;
+  padding: 1px 15px;
+  margin-bottom: 1em;
+  h2 {
+    font-weight: bold;
+    font-size: 1.4em;
+  }
+}
