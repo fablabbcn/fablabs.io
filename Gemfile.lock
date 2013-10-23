@@ -6,9 +6,9 @@ GIT
 
 GIT
   remote: git://github.com/NARKOZ/holder_rails.git
-  revision: 159273d3ac840702df171fc55d8e7781b4f3926c
+  revision: 0b9972672339a9d32b8c8272d752d271663df4bf
   specs:
-    holder_rails (2.1.0)
+    holder_rails (2.2.0)
       railties (>= 3.1.0)
 
 GIT
@@ -39,7 +39,7 @@ GIT
 
 GIT
   remote: git://github.com/hexorx/countries.git
-  revision: 0d8e4b4680bdaf0be021129e2767e13d594e6bfc
+  revision: b4fac5577b10178b2ca1c621fdee179babc9eb9a
   specs:
     countries (0.9.1)
       currencies (~> 0.4.2)
@@ -89,7 +89,7 @@ GEM
       thread_safe (~> 0.1)
       tzinfo (~> 0.3.37)
     addressable (2.3.5)
-    arel (4.0.0)
+    arel (4.0.1)
     atomic (1.1.14)
     bcrypt-ruby (3.0.1)
     builder (3.1.4)
@@ -126,7 +126,7 @@ GEM
       bundler (~> 1.0)
       rails (>= 3, < 5)
     formatador (0.2.4)
-    guard (2.1.1)
+    guard (2.2.1)
       formatador (>= 0.2.4)
       listen (~> 2.1)
       lumberjack (~> 1.0)
