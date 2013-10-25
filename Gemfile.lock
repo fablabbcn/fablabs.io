@@ -13,13 +13,13 @@ GIT
 
 GIT
   remote: git://github.com/alexreisner/geocoder.git
-  revision: 2c9ef6814c9adf111c0538f6c6b792ef126d2ec4
+  revision: 3e6ae91c499d7fb8a03993d036e2458a2f9b6f99
   specs:
     geocoder (1.1.8)
 
 GIT
   remote: git://github.com/anjlab/bootstrap-rails.git
-  revision: 8826a3bfbbcfb18709f0e8bb0eff9cf921a479c3
+  revision: 4f5c0167fc7722940f67701a5279a9427692d92f
   specs:
     anjlab-bootstrap-rails (3.0.0.3)
       railties (>= 3.0)
@@ -126,7 +126,7 @@ GEM
       bundler (~> 1.0)
       rails (>= 3, < 5)
     formatador (0.2.4)
-    guard (2.2.1)
+    guard (2.2.2)
       formatador (>= 0.2.4)
       listen (~> 2.1)
       lumberjack (~> 1.0)
@@ -168,7 +168,7 @@ GEM
       treetop (~> 1.4.8)
     method_source (0.8.2)
     mime-types (1.25)
-    mini_portile (0.5.1)
+    mini_portile (0.5.2)
     minitest (4.7.5)
     multi_json (1.8.2)
     nokogiri (1.6.0)

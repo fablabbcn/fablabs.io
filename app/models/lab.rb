@@ -32,7 +32,7 @@ class Lab < ActiveRecord::Base
   end
 
   def country
-    ::CountrySelect::COUNTRIES[country_code]
+    Country[country_code]
   end
 
   def admins

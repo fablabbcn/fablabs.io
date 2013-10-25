@@ -2,12 +2,33 @@ require 'spec_helper'
 
 describe Lab do
 
+  pending "MOAR TESTS"
+
   %w(name description address_1 country_code creator).each do |requirement|
     it { should validate_presence_of(requirement) }
   end
   it { should belong_to(:creator) }
 
-  it "should validate uniqueness of name" do
+  it "has country method" do
+    lab = FactoryGirl.build_stubbed(:lab, country_code: 'FR')
+    lab.country.name.should eq('France')
+  end
+
+  describe "avatar" do
+
+    it "has default avatar" do
+      user = FactoryGirl.build_stubbed(:user)
+      user.avatar.should include('default-user-avatar.png')
+    end
+
+    it "has custom avatar" do
+      user = FactoryGirl.build_stubbed(:user, avatar_src: 'http://i.imgur.com/XYBgt.gif')
+      user.avatar.should eq('http://i.imgur.com/XYBgt.gif')
+    end
+
+  end
+
+  it "validates uniqueness of name" do
     FactoryGirl.create(:lab, name: 'uniquename')
     expect{ FactoryGirl.create(:lab, name: 'Uniquename') }.to raise_error(ActiveRecord::RecordInvalid)
   end
