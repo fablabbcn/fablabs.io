@@ -7,24 +7,9 @@ class LabsController < ApplicationController
   end
 
   def index
-    @labs = Lab.with_approved_state
-    if params[:q].present?
-      # search logic would go here
-      @labs = @labs.where(name: params["q"])
-    end
-    @count = @labs.size
-
-    @c = Hash.new(0)
-    @labs.pluck(:country_code).map{ |v| @c[v] += 1 }
-    @countries = []
-    @c.each do |country_code, count|
-      @countries.push([Country[country_code].name, country_code, count])
-    end
-    @countries.sort_by!{|k|k.first}
-
-    if params[:country].present?
-      @labs = @labs.where(country_code: params["country"])
-    end
+    all_labs = Lab.search(params[:q]).with_approved_state
+    @countries = Lab.country_list_for all_labs
+    @labs = all_labs.in_country_code(params["country"])
 
     respond_to do |format|
       format.html

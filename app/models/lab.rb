@@ -1,4 +1,7 @@
 class Lab < ActiveRecord::Base
+
+  scope :search, ->(q) { where(name: q) if q.present?}
+  scope :in_country_code, ->(cc) { where(country_code: cc) if cc.present?}
   resourcify
   include Authority::Abilities
   self.authorizer_name = 'LabAuthorizer'
@@ -33,6 +36,16 @@ class Lab < ActiveRecord::Base
 
   def country
     Country[country_code]
+  end
+
+  def self.country_list_for labs
+    c = Hash.new(0)
+    labs.pluck(:country_code).map{ |v| c[v] += 1 }
+    countries = []
+    c.each do |country_code, count|
+      countries.push([Country[country_code].name, country_code, count])
+    end
+    return countries.sort_by!{|k|k.first}
   end
 
   def admins
