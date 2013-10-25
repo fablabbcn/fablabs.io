@@ -3,9 +3,9 @@
   %head
     %title= content_for?(:title) ? "#{yield(:title)}, Fab Foundation" : "Fab Foundation"
     %meta{ name: "viewport", content: "width=device-width" }
-    = javascript_include_tag "http://maps.googleapis.com/maps/api/js?sensor=false&libraries=places"
-    = stylesheet_link_tag    "http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.css"
-    = javascript_include_tag "http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.js"
+    = javascript_include_tag "//maps.googleapis.com/maps/api/js?sensor=false&libraries=places"
+    = stylesheet_link_tag    "//cdn.leafletjs.com/leaflet-0.6.4/leaflet.css"
+    = javascript_include_tag "//cdn.leafletjs.com/leaflet-0.6.4/leaflet.js"
     = stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true
     = javascript_include_tag "application", "data-turbolinks-track" => true
     = javascript_include_tag "//api.filepicker.io/v1/filepicker.js"

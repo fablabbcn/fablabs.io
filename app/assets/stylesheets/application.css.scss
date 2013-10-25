@@ -24,9 +24,15 @@ $navbar-height: 70px;
 
 @import "twitter/bootstrap";
 
+html {
+  position: relative;
+  min-height: 100%;
+}
 body {
+  margin: 0 0 180px; /* bottom = footer height */
   background: #F2F2F2;
 }
+
 
 a:hover {
   text-decoration: none;

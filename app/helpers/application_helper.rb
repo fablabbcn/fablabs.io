@@ -10,7 +10,7 @@ module ApplicationHelper
   end
 
   def cropped_image_path image, dimensions
-    url = Rails.env.production? ? "http://fugu.johnre.es" : "http://fugu.dev"
+    url = Rails.env.production? ? "http://i.fablabs.io" : "http://fugu.dev"
     "#{url}/images/crop/#{dimensions}/#{image.gsub(/https?:\/\//, '')}.jpg"
   end
 

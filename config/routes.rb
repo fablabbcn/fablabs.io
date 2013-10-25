@@ -28,7 +28,7 @@ Fablabs::Application.routes.draw do
   # get 'labs' => 'labs#index'
   # resources :labs, only: [:show, :destroy], path: ''
    #, except: [:show]
-  resources :labs, path: 'l' do
+  resources :labs, path: '' do
     collection do
       get :map
     end

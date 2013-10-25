@@ -1,7 +1,12 @@
+// Sticky footer courtesy of http://mystrd.at/modern-clean-css-sticky-footer/
+
 footer {
+  position: absolute;
+  left: 0;
+  bottom: 0;
   height: 180px;
+  width: 100%;
   background: #222;
-  // border-top: 1px solid #424242;
   margin-top: 40px;
   padding-top: 20px;
   font-size: 1em;

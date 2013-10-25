@@ -8,7 +8,8 @@ gem 'anjlab-bootstrap-rails', github: 'anjlab/bootstrap-rails', require: 'bootst
 gem 'geocoder', github: 'alexreisner/geocoder'
 # Use sqlite3 as the database for Active Record
 gem 'workflow', github: 'geekq/workflow'
-gem 'sqlite3'
+# gem 'sqlite3'
+gem "pg" #for travis
 gem 'simple_form'
 gem 'countries', github: "hexorx/countries"
 gem 'country_select'
@@ -48,7 +49,6 @@ group :test, :development do
   gem 'holder_rails', github: 'NARKOZ/holder_rails'
 end
 group :test do
-  gem "pg" #for travis
   gem "launchy"
   gem "nyan-cat-formatter"
   gem "factory_girl_rails"

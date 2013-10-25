@@ -25,7 +25,10 @@ class Recovery < ActiveRecord::Base
   end
 
   def self.find_by_key key
-    select([:user_id, :key, 'MAX(id)']).group(:user_id){|recovery| where(key: key) }.first
+    select('recoveries.user_id, recoveries.key').
+    where(key: key).
+    from(Recovery.order('id DESC').group(:user_id, :key, :id).limit(1).as('recoveries')).
+    group([:user_id,:id,:key]).last
   end
 
 private

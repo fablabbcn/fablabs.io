@@ -4,5 +4,5 @@
   .col-md-12.box
     = simple_form_for @recovery do |f|
       -# = render "form_errors", resource: @recovery
-      = f.input :email
+      = f.input :email, autofocus: true
       = f.submit 'Reset Password', class: 'btn btn-primary'
