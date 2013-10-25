@@ -1,8 +1,8 @@
 = title "Reset Your Password"
 
 .row
-  .col-md-12.box
+  .col-md-4.col-centered
     = simple_form_for @recovery do |f|
       -# = render "form_errors", resource: @recovery
-      = f.input :email, autofocus: true
+      = f.input :email, autofocus: true, label: 'Your Email Address'
       = f.submit 'Reset Password', class: 'btn btn-primary'

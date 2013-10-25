@@ -1,10 +1,10 @@
 !!!
 %html
   %head
-    %title= content_for?(:title) ? "#{yield(:title)}, Fab Foundation" : "Fab Foundation"
+    %title= content_for?(:title) ? "#{yield(:title)} | Fab Foundation" : "Fab Foundation"
     %meta{ name: "viewport", content: "width=device-width" }
     = javascript_include_tag "//maps.googleapis.com/maps/api/js?sensor=false&libraries=places"
-    = stylesheet_link_tag    "//cdn.leafletjs.com/leaflet-0.6.4/leaflet.css"
+    = stylesheet_link_tag    "//cdn.leafletjs.com/leaflet-0.6.4/leaflet.css", "http://fonts.googleapis.com/css?family=Roboto+Slab:400,700"
     = javascript_include_tag "//cdn.leafletjs.com/leaflet-0.6.4/leaflet.js"
     = stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true
     = javascript_include_tag "application", "data-turbolinks-track" => true
@@ -21,8 +21,11 @@
               %span.icon-bar
               %span.icon-bar
             = link_to root_path, class: 'navbar-brand' do
-              %span.fab Fab
-              %span.foundation Foundation
+              -# %span.fab Fab
+              -# %span.foundation Foundation
+              .fablabs
+                fablabs
+                .io io
           .collapse.navbar-collapse
             = form_tag labs_path, class: 'navbar-form navbar-left', role: 'search', method: 'get' do
               .form-group
@@ -46,8 +49,8 @@
                     -# %li= link_to "Claims", claims_user_path(current_user)
                     %li= link_to "Sign Out", signout_path
               - else
-                %li= link_to "Sign In", signin_path
-                %li= link_to "Sign Up", signup_path
+                %li= link_to "Sign in", signin_path
+                %li= link_to "Sign up", signup_path
 
     .container#main
       - if flash.any?

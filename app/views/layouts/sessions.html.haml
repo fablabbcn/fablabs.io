@@ -1,0 +1,18 @@
+!!!
+%html
+  %head
+    %title= content_for?(:title) ? "#{yield(:title)} | Fab Foundation" : "Fab Foundation"
+    %meta{ name: "viewport", content: "width=device-width" }
+    = stylesheet_link_tag "application", "http://fonts.googleapis.com/css?family=Roboto+Slab:400,700", media: "all", "data-turbolinks-track" => true
+    -# = javascript_include_tag "application", "data-turbolinks-track" => true
+    = csrf_meta_tags
+
+  %body.sessions{ class: body_classes }
+    .fade-bg
+    .container#main
+      - if flash.any?
+        .row
+          .col-md-12
+          - flash.each do |name, msg|
+            = content_tag :div, msg, class: flash_class(name)
+      = yield

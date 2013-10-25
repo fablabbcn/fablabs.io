@@ -1,5 +1,7 @@
 class RecoveriesController < ApplicationController
 
+  layout 'sessions'
+
   def new
     @recovery = Recovery.new
     @recovery.build_user

@@ -24,6 +24,28 @@ $navbar-height: 70px;
 
 @import "twitter/bootstrap";
 
+.fablabs {
+  font-weight: bold;
+  color: #111;
+  font-size: 1.6em;
+  // text-shadow: 1px 1px 1px rgba(0,0,0,0.2);
+  font-family: 'Roboto Slab';
+  text-transform: lowercase;
+  .io {
+    text-transform: uppercase;
+    display: inline;
+    font-size: 0.5em;
+    margin-left: -0.4em;
+    vertical-align: super;
+    font-weight: normal;
+  }
+}
+
+.col-centered{
+    float: none;
+    margin: 0 auto;
+}
+
 html {
   position: relative;
   min-height: 100%;

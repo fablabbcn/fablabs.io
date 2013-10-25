@@ -23,6 +23,8 @@
 #= require twitter/bootstrap
 
 $(document).ready ->
+  $('label.hide').hide()
+
   Holder.run()
   $('.truncate').succinct
     size: 300

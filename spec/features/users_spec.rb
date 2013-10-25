@@ -45,7 +45,7 @@ describe User do
     it "can signout" do
       signin FactoryGirl.create(:user)
       click_link "Sign Out"
-      expect(page).to have_link "Sign In"
+      expect(page).to have_link "Sign in"
     end
 
     it "can edit settings" do

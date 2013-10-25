@@ -1,16 +1,20 @@
 = title "Sign in"
 .row
-  .col-md-12.box
+  .col-md-4.col-centered
+
+    .fablabs
+      %span fablabs
+      %span.io IO
 
     = form_tag sessions_path do
       -# = simple_form_for :signin, { url: sessions_path } do
       = hidden_field_tag :goto, params[:goto]
       .field
-        = label_tag :email
-        = text_field_tag :email, params[:email], placeholder: 'Email', autofocus: params[:email].blank?, autocapitalize: "off", autocorrect: "off"
+        = label_tag :email, nil, class: 'hide'
+        = text_field_tag :email, params[:email], placeholder: 'email', autofocus: params[:email].blank?, autocapitalize: "off", autocorrect: "off"
       .field
-        = label_tag :password
-        = password_field_tag :password, nil, placeholder: 'Password'
+        = label_tag :password, nil, class: 'hide'
+        = password_field_tag :password, nil, placeholder: 'password'
 
       .actions= submit_tag "Sign in", class: 'btn btn-primary'
 
