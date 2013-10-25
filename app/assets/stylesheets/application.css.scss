@@ -13,6 +13,7 @@
  *= require_tree .
  */
 
+$brand-primary: #34649e;
 $navbar-height: 70px;
 // $navbar-inverse-bg: #444;
 // $navbar-inverse-link-color: #DDD;
@@ -24,20 +25,28 @@ $navbar-height: 70px;
 
 @import "twitter/bootstrap";
 
+
+.leaflet-top {
+  z-index: 20 !important;
+}
+
 .fablabs {
   font-weight: bold;
   color: #111;
-  font-size: 1.6em;
+  font-size: 1.3em;
   // text-shadow: 1px 1px 1px rgba(0,0,0,0.2);
   font-family: 'Roboto Slab';
   text-transform: lowercase;
+  .labs {
+    font-weight: normal;
+  }
   .io {
-    text-transform: uppercase;
+    // text-transform: uppercase;
     display: inline;
     font-size: 0.5em;
     margin-left: -0.4em;
     vertical-align: super;
-    font-weight: normal;
+    // font-weight: normal;
   }
 }
 
@@ -51,6 +60,8 @@ html {
   min-height: 100%;
 }
 body {
+  -webkit-text-size-adjust:none;
+  text-size-adjust:none;
   margin: 0 0 180px; /* bottom = footer height */
   background: #F2F2F2;
 }
@@ -68,7 +79,8 @@ a:hover {
 }
 
 header .navbar {
-  z-index: 100000;
+  border: none;
+  z-index: 50;
   .navbar-toggle .icon-bar {
     border: 1px solid #444;
   }
@@ -76,8 +88,10 @@ header .navbar {
     color: #333;
   }
   a.navbar-brand {
-  background: url('http://labs.fabfoundation.org/assets/logo-b87fc9df044d86d6412c0bee21945dfe.png') 7px center no-repeat;
-  padding-left: 37px;
+    padding: 20px 10px;
+
+  background: url('http://labs.fabfoundation.org/assets/logo-b87fc9df044d86d6412c0bee21945dfe.png') 7px 22px no-repeat;
+  padding-left: 35px;
   text-transform: uppercase;
   // color: #FFF;
   .fab {

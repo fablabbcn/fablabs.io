@@ -1,7 +1,7 @@
 !!!
 %html
   %head
-    %title= content_for?(:title) ? "#{yield(:title)} | Fab Foundation" : "Fab Foundation"
+    %title= content_for?(:title) ? "#{yield(:title)} | FabLabs" : "FabLabs"
     %meta{ name: "viewport", content: "width=device-width" }
     = javascript_include_tag "//maps.googleapis.com/maps/api/js?sensor=false&libraries=places"
     = stylesheet_link_tag    "//cdn.leafletjs.com/leaflet-0.6.4/leaflet.css", "http://fonts.googleapis.com/css?family=Roboto+Slab:400,700"
@@ -32,9 +32,9 @@
                 - if params[:country].present?
                   = hidden_field_tag 'country', params[:country]
                 = text_field_tag 'q', params[:q], class: 'form-control', autocomplete: 'off', placeholder: 'Search Labs...', id: 'search-box'
-            %ul.nav.navbar-nav.navbar-left
-              %li{class: ('active' if controller_name == 'labs')}= link_to "Labs", labs_path
-              -# %li{class: ('active' if action_name == 'support')}= link_to "Support", support_path
+            -# %ul.nav.navbar-nav.navbar-left
+            -#   %li{class: ('active' if controller_name == 'labs')}= link_to "Labs", labs_path
+            -#   -# %li{class: ('active' if action_name == 'support')}= link_to "Support", support_path
             %ul.nav.navbar-nav.navbar-right
               - if current_user
                 %li.dropdown

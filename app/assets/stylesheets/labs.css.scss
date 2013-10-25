@@ -39,22 +39,34 @@ li.all {
 }
 
 
-.c-labs.a-index .labs {
-  .lab {
-    // margin-bottom: 10px;
-    padding-bottom: 20px;
-    // border-bottom: 1px solid #CCC;
-    .lab-description {
-      color: #444;
-      font-size: 0.9em;
+.c-labs.a-index {
+
+  h1 {
+    margin: 0 0 1em;
+  }
+  .labs {
+    .media-heading {
+      font-weight: bold;
     }
-    &:last-child {
-      border-bottom: none;
+    .lab {
+      // margin-bottom: 10px;
+      padding-bottom: 20px;
+      // border-bottom: 1px solid #CCC;
+      .lab-description {
+        color: #444;
+        font-size: 0.9em;
+      }
+      &:last-child {
+        border-bottom: none;
+      }
     }
   }
 }
 
 .c-labs.a-show {
+  .big-avatar {
+    margin-right: 10px;
+  }
   .nearby-labs {
     margin-bottom: 10px;
     .nearby-lab-name {
@@ -62,14 +74,14 @@ li.all {
     }
   }
   h1 {
-    margin: 0;
+    margin: 0 0 0.1em;
   }
   a.big-map-link {
     display: block;
     padding-top: 10px;
   }
   .lab-description {
-    margin: 1em 0;
+    margin: 2em 0 0;
   }
   #header-bg {
     height: 310px;

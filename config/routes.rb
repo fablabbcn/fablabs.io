@@ -25,14 +25,17 @@ Fablabs::Application.routes.draw do
 
 
   # resources :labs, path: '', only: [:show]
-  # get 'labs' => 'labs#index'
+
   # resources :labs, only: [:show, :destroy], path: ''
    #, except: [:show]
-  resources :labs, path: '' do
+  get 'labs' => 'labs#index'
+  post 'labs' => 'labs#create'
+  resources :labs, path: '', except: :index do
     collection do
       get :map
     end
   end
+
 
   root to: 'labs#index'
 

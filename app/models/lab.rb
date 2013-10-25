@@ -1,6 +1,8 @@
 class Lab < ActiveRecord::Base
+  include PgSearch
+  pg_search_scope :search_by_name, :against => [:name, :description]
 
-  scope :search, ->(q) { where(name: q) if q.present?}
+  scope :search, ->(q) { search_by_name(q) if q.present?}
   scope :in_country_code, ->(cc) { where(country_code: cc) if cc.present?}
   resourcify
   include Authority::Abilities
@@ -41,7 +43,8 @@ class Lab < ActiveRecord::Base
 
   def self.country_list_for labs
     c = Hash.new(0)
-    labs.pluck(:country_code).map{ |v| c[v] += 1 }
+    # labs.pluck(:country_code).map{ |v| c[v] += 1 }
+    labs.map{ |v| c[v[:country_code]] += 1 }
     countries = []
     c.each do |country_code, count|
       countries.push([Country[country_code].name, country_code, count])

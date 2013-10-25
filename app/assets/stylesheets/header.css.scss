@@ -6,4 +6,8 @@ header {
     height: 30px;
     width: 30px;
   }
+  .nav > li > a:hover {
+    background: none;
+    color: #000;
+  }
 }
