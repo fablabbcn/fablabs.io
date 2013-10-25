@@ -11,7 +11,7 @@ module ApplicationHelper
 
   def cropped_image_path image, dimensions
     url = Rails.env.production? ? "http://i.fablabs.io" : "http://fugu.dev"
-    "#{url}/images/crop/#{dimensions}/#{image.gsub(/https?:\/\//, '')}.jpg"
+    "#{url}/images/crop/#{dimensions}/#{image.gsub(/https?:\/\//, '')}/image.jpg"
   end
 
   def cropped_image_tag image, dimensions, options={}

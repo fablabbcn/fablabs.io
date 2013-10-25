@@ -18,8 +18,9 @@ class User < ActiveRecord::Base
     state :verified
   end
 
-  def avatar
-    avatar_src || ActionController::Base.helpers.asset_path('/assets/default-user-avatar.png')
+  include Avatarable
+  def default_avatar
+    'default-user-avatar.png'
   end
 
   def full_name

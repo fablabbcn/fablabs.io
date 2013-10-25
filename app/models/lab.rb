@@ -21,8 +21,9 @@ class Lab < ActiveRecord::Base
     .reject(&:blank?).join(", ")
   end
 
-  def avatar
-    avatar_src.present? ? avatar_src : ActionController::Base.helpers.asset_path('/assets/default-lab-avatar.png')
+  include Avatarable
+  def default_avatar
+    'default-lab-avatar.png'
   end
 
   def approve
