@@ -16,7 +16,7 @@
       %li.all{class: ('active' if params[:country].blank?)}
         = link_to url_for(params.merge(country: nil)) do
           = I18n.t("labs.index.all_countries", :default => "All Countries")
-          %span.badge.pull-right= @labs.size
+          %span.badge.pull-right= @count
 
       - @countries.each do |country,country_code,count|
         %li{class: ('active' if params[:country] == country_code)}

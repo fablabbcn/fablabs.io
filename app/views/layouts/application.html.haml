@@ -23,9 +23,10 @@
             = link_to root_path, class: 'navbar-brand' do
               -# %span.fab Fab
               -# %span.foundation Foundation
-              .fablabs
-                fablabs
-                .io io
+              -# .fablabs
+              -#   fablabs
+              -#   .io io
+              = image_tag "fablabs-dark.png"
           .collapse.navbar-collapse
             = form_tag labs_path, class: 'navbar-form navbar-left', role: 'search', method: 'get' do
               .form-group
@@ -47,7 +48,7 @@
                     - if current_or_null_user.has_role? :admin
                       %li= link_to "Backstage", backstage_root_path
                     -# %li= link_to "Claims", claims_user_path(current_user)
-                    %li= link_to "Sign Out", signout_path
+                    %li= link_to "Sign out", signout_path
               - else
                 %li= link_to "Sign in", signin_path
                 %li= link_to "Sign up", signup_path

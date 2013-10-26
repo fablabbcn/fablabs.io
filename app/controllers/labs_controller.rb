@@ -9,6 +9,7 @@ class LabsController < ApplicationController
   def index
     all_labs = Lab.search(params[:q]).with_approved_state
     @countries = Lab.country_list_for all_labs
+    @count = all_labs.size
     @labs = all_labs.in_country_code(params["country"])
 
     respond_to do |format|

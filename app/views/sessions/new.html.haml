@@ -2,9 +2,10 @@
 .row
   .col-md-4.col-centered
 
-    .fablabs
-      %span fablabs
-      %span.io IO
+    -# .fablabs
+    -#   %span fablabs
+    -#   %span.io IO
+    = image_tag "fablabs.png", style: 'width: 100%; margin-bottom: 20px;'
 
     = form_tag sessions_path do
       -# = simple_form_for :signin, { url: sessions_path } do

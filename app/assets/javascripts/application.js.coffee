@@ -19,6 +19,7 @@
 #= require jquery.geocomplete
 #= require jquery.succinct
 #= require leaflet.markercluster
+#= require underscore
 #= require_tree .
 #= require twitter/bootstrap
 

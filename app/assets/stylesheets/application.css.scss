@@ -78,6 +78,16 @@ a:hover {
   margin-bottom: 20px;
 }
 
+#search-box{
+  border-radius: 2px;
+
+  &:focus {
+  width: 400px;
+  transition: width 0.2s;
+  // max-width: 100%;
+}
+}
+
 header .navbar {
   border: none;
   z-index: 50;
@@ -88,10 +98,13 @@ header .navbar {
     color: #333;
   }
   a.navbar-brand {
-    padding: 20px 10px;
+    padding: 18px 0 0 10px;
+    img {
+      width: 140px;
+    }
 
-  background: url('http://labs.fabfoundation.org/assets/logo-b87fc9df044d86d6412c0bee21945dfe.png') 7px 22px no-repeat;
-  padding-left: 35px;
+  // background: url('http://labs.fabfoundation.org/assets/logo-b87fc9df044d86d6412c0bee21945dfe.png') 7px 22px no-repeat;
+  // padding-left: 35px;
   text-transform: uppercase;
   // color: #FFF;
   .fab {

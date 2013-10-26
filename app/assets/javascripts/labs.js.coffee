@@ -18,6 +18,7 @@ ready = ->
       popupAnchor:  [0, -20]
     })
     labmap.addLayer(L.marker(location, {icon: icon})).invalidateSize()
+    $(window).resize _.debounce((-> labmap.invalidateSize()),500)
 
   $('#lab_name').change ->
     unless $('#lab_slug').val()
@@ -69,6 +70,7 @@ ready = ->
           window.markers.addLayer(lab.marker)
           window.labs.push(lab)
     map.addLayer(window.markers)
+    $(window).resize _.debounce((-> map.invalidateSize()),1000)
 
 $(document).ready ready
 # $(document).on "page:load", ready
