@@ -28,5 +28,7 @@ module Fablabs
       g.fixture_replacement :factory_girl
     end
 
+    config.url = 'http://fablabs.dev'
+
   end
 end
