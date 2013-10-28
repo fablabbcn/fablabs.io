@@ -4,7 +4,7 @@
   .filter
   #homepage-search
     %p Show me Fab Labs in...
-    = text_field_tag :search, "United Kingdom"
+    = text_field_tag :search, "United Kingdom", autofocus: true
     -# = submit_tag class: 'submit' do
     = link_to "#", class: 'submit' do
       %span.glyphicon.glyphicon-search

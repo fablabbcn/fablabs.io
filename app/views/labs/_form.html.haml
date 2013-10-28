@@ -7,7 +7,7 @@
     = f.input :description, hint: 'A brief overview of the lab', input_html: { rows: 4 }
     = f.input :slug, hint: "This is the 'username' of the lab, it will be in the URL" do
       .input-group
-        %span.input-group-addon{style: 'text-align: right'}= "#{ENV['URL']}/"
+        %span.input-group-addon{style: 'text-align: right'}= "#{Rails.application.config.url}/"
         = f.input_field :slug, class: 'form-control'
 
   %fieldset
@@ -15,8 +15,10 @@
     .row
       .col-md-3= image_tag @lab.avatar, width: 100
       .col-md-9= f.input :avatar_src, input_html: { class: 'fp' }, label: 'Avatar'
-    -# = @lab.header_image
-    = f.input :header_image_src, input_html: { class: 'fp' }, label: 'Header Image'
+    .row
+      - if @lab.header_image_src.present?
+        .col-md-12= image_tag @lab.header_image
+      .col-md-9= f.input :header_image_src, input_html: { class: 'fp' }, label: 'Header Image'
 
   %fieldset
     %legend Lab Location
