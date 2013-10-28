@@ -1,0 +1,48 @@
+%header
+  .navbar.navbar-top{role: "navigation"}
+    .container
+      .navbar-header
+        %button.navbar-toggle{"data-target" => ".navbar-collapse", "data-toggle" => "collapse", type: "button"}
+          %span.icon-bar
+          %span.icon-bar
+          %span.icon-bar
+        = link_to root_path, class: 'navbar-brand' do
+          -# %span.fab Fab
+          -# %span.foundation Foundation
+          -# .fablabs
+          -#   fablabs
+          -#   .io io
+          = image_tag "fablabs.png"
+      .collapse.navbar-collapse
+        = form_tag labs_path, class: 'navbar-form navbar-left', role: 'search', method: 'get' do
+          .form-group
+            - if params[:country].present?
+              = hidden_field_tag 'country', params[:country]
+            = text_field_tag 'q', params[:q], class: 'form-control', autocomplete: 'off', placeholder: 'Search Labs...', id: 'search-box'
+        -# %ul.nav.navbar-nav.navbar-left
+        -#   %li{class: ('active' if controller_name == 'labs')}= link_to "Labs", labs_path
+        -#   -# %li{class: ('active' if action_name == 'support')}= link_to "Support", support_path
+        %ul.nav.navbar-nav.navbar-right
+
+          - if current_user
+            %li.dropdown
+              = link_to "#", class: 'dropdown-toggle', data: { toggle: 'dropdown'} do
+                = cropped_image_tag current_user.avatar, '30x30', class: 'user-avatar'
+                Me
+                %b.caret
+              %ul.dropdown-menu
+                %li= link_to "Settings", settings_path
+                - if current_or_null_user.has_role? :admin
+                  %li= link_to "Backstage", backstage_root_path
+                -# %li= link_to "Claims", claims_user_path(current_user)
+                %li= link_to "Sign out", signout_path
+          - else
+            %li= link_to "Sign in", signin_path
+            %li= link_to "Sign up", signup_path
+
+          %li
+            = link_to choose_locale_path, id: 'locale-icon', class: I18n.locale, data: { toggle: "modal", target: "#myModal" } do
+              = image_tag "locales/#{I18n.locale}.png", width: 24
+
+#myModal.modal.fade{"aria-hidden" => "true", role: "dialog", tabindex: "-1"}
+

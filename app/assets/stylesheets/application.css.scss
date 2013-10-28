@@ -17,55 +17,54 @@ $brand-primary: #34649e;
 $navbar-height: 70px;
 // $navbar-inverse-bg: #444;
 // $navbar-inverse-link-color: #DDD;
-// $navbar-link-color: #111;
+$navbar-link-color: #9D99A1;
 // $dropdown-bg: #222;
 // $dropdown-link-color: #AAA;
 // $navbar-inverse-link-active-color: #FFF;
 // $navbar-inverse-link-active-bg: rgba(0,0,0,0.1);
-
 @import "twitter/bootstrap";
 
-
-.leaflet-top {
-  z-index: 10 !important;
-}
-
-.fablabs {
+h4.modal-title {
+    text-transform: uppercase;
+  font-family: 'Montserrat';
   font-weight: bold;
-  color: #111;
-  font-size: 1.3em;
-  // text-shadow: 1px 1px 1px rgba(0,0,0,0.2);
-  font-family: 'Roboto Slab';
-  text-transform: lowercase;
-  .labs {
-    font-weight: normal;
-  }
-  .io {
-    // text-transform: uppercase;
-    display: inline;
-    font-size: 0.5em;
-    margin-left: -0.4em;
-    vertical-align: super;
-    // font-weight: normal;
-  }
 }
 
-.col-centered{
-    float: none;
-    margin: 0 auto;
+.locale {
+  margin-bottom: 10px;
+  display: block;
+  a {
+    font-weight: bold;
+  }
 }
 
 html {
   position: relative;
   min-height: 100%;
 }
+
 body {
   -webkit-text-size-adjust:none;
   text-size-adjust:none;
-  margin: 0 0 180px; /* bottom = footer height */
+  // margin: 0 0 180px; /* bottom = footer height */
   background: #F2F2F2;
 }
 
+.alert {
+  position: fixed;
+  bottom: 10px;
+  right: 20px;
+  z-index: 500;
+}
+
+.container {
+  max-width: 1100px;
+}
+
+.col-centered{
+  float: none;
+  margin: 0 auto;
+}
 
 a:hover {
   text-decoration: none;
@@ -78,109 +77,11 @@ a:hover {
   margin-bottom: 20px;
 }
 
-#search-box{
-  border-radius: 2px;
-
-  &:focus {
-  width: 400px;
-  transition: width 0.2s;
-  // max-width: 100%;
-}
-}
-
-header .navbar {
-  border: none;
-  z-index: 50;
-  .navbar-toggle .icon-bar {
-    border: 1px solid #444;
-  }
-  a {
-    color: #333;
-  }
-  a.navbar-brand {
-    padding: 18px 0 0 10px;
-    img {
-      width: 140px;
-    }
-
-  // background: url('http://labs.fabfoundation.org/assets/logo-b87fc9df044d86d6412c0bee21945dfe.png') 7px 22px no-repeat;
-  // padding-left: 35px;
-  text-transform: uppercase;
-  // color: #FFF;
-  .fab {
-    font-weight: bold;
-  }
-  .foundation {
-    margin-left: -3px;
-  }
-}
-}
-
-.navbar {
-  border-radius: 0 !important;
-  background: rgba(255,255,255,0.7);
-}
-
-.hint {
-  color: #AAA;
-  font-size: 0.9em;
-  margin-bottom: 1em;
-}
-
-fieldset {
-  border-top: 1px solid #EEE;
-  overflow: hidden;
-  margin-bottom: 20px;
-  padding: 10px;
-  background: #FEFEFE;
-  fieldset {
-    background: #FFF;
-    border: none;
-    legend {
-      font-weight: normal;
-      color: #AAA;
-    }
-  }
-}
-
-
-legend {
-  border: none;
-  width: auto;
-  color: #111;
-  font-weight: bold;
-  text-transform: uppercase;
-  font-size: 1.1em;
-  margin: 0;
-}
-
 h1 {
   margin-top: 0;
   font-weight: bold;
 }
 
-.fp {
-  border: none;
-  box-shadow: none;
-  background: none;
-}
-
-.input {
-  margin-bottom: 1em;
-}
-
-.field_with_errors .error {
-  color: red;
-}
-
-.bs-callout-warning {
-  border-left: 5px solid red;
-  color: red;
-  background: #FAE8E8;
-  padding: 1px 15px;
-  margin-bottom: 1em;
-  h2 {
-    font-weight: bold;
-    font-size: 1.4em;
-  }
+h3 {
+  margin: 0 0 0.5em;
 }

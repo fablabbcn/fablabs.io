@@ -9,9 +9,12 @@ describe Lab do
   end
   it { should belong_to(:creator) }
 
-  it "has country method" do
+  it "has localised country method" do
     lab = FactoryGirl.build_stubbed(:lab, country_code: 'FR')
-    lab.country.name.should eq('France')
+    I18n.locale = 'en'
+    expect(lab.country.name).to eq('France')
+    I18n.locale = 'es'
+    expect(lab.country.name).to eq('Francia')
   end
 
   describe "avatar" do

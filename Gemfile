@@ -51,7 +51,7 @@ group :test, :development do
 end
 group :test do
   gem "launchy"
-  gem "nyan-cat-formatter"
+  # gem "nyan-cat-formatter"
   gem "factory_girl_rails"
   gem "capybara"
   gem "guard-rspec"

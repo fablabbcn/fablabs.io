@@ -4,7 +4,7 @@
     %title= content_for?(:title) ? "#{yield(:title)} | FabLabs" : "FabLabs"
     %meta{ name: "viewport", content: "width=device-width" }
     = javascript_include_tag "//maps.googleapis.com/maps/api/js?sensor=false&libraries=places"
-    = stylesheet_link_tag    "//cdn.leafletjs.com/leaflet-0.6.4/leaflet.css", "http://fonts.googleapis.com/css?family=Roboto+Slab:400,700"
+    = stylesheet_link_tag    "//cdn.leafletjs.com/leaflet-0.6.4/leaflet.css", "http://fonts.googleapis.com/css?family=Montserrat|Roboto+Slab:400,700"
     = javascript_include_tag "//cdn.leafletjs.com/leaflet-0.6.4/leaflet.js"
     = stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true
     = javascript_include_tag "application", "data-turbolinks-track" => true
@@ -12,54 +12,14 @@
     = csrf_meta_tags
 
   %body{ class: body_classes }
-    %header
-      .navbar.navbar-top{role: "navigation"}
-        .container
-          .navbar-header
-            %button.navbar-toggle{"data-target" => ".navbar-collapse", "data-toggle" => "collapse", type: "button"}
-              %span.icon-bar
-              %span.icon-bar
-              %span.icon-bar
-            = link_to root_path, class: 'navbar-brand' do
-              -# %span.fab Fab
-              -# %span.foundation Foundation
-              -# .fablabs
-              -#   fablabs
-              -#   .io io
-              = image_tag "fablabs-dark.png"
-          .collapse.navbar-collapse
-            = form_tag labs_path, class: 'navbar-form navbar-left', role: 'search', method: 'get' do
-              .form-group
-                - if params[:country].present?
-                  = hidden_field_tag 'country', params[:country]
-                = text_field_tag 'q', params[:q], class: 'form-control', autocomplete: 'off', placeholder: 'Search Labs...', id: 'search-box'
-            -# %ul.nav.navbar-nav.navbar-left
-            -#   %li{class: ('active' if controller_name == 'labs')}= link_to "Labs", labs_path
-            -#   -# %li{class: ('active' if action_name == 'support')}= link_to "Support", support_path
-            %ul.nav.navbar-nav.navbar-right
-              - if current_user
-                %li.dropdown
-                  = link_to "#", class: 'dropdown-toggle', data: { toggle: 'dropdown'} do
-                    = cropped_image_tag current_user.avatar, '30x30', class: 'user-avatar'
-                    Me
-                    %b.caret
-                  %ul.dropdown-menu
-                    %li= link_to "Settings", settings_path
-                    - if current_or_null_user.has_role? :admin
-                      %li= link_to "Backstage", backstage_root_path
-                    -# %li= link_to "Claims", claims_user_path(current_user)
-                    %li= link_to "Sign out", signout_path
-              - else
-                %li= link_to "Sign in", signin_path
-                %li= link_to "Sign up", signup_path
-
+    = render "application/header"
     .container#main
       - if flash.any?
         .row
           .col-md-12
           - flash.each do |name, msg|
             = content_tag :div, msg, class: flash_class(name)
-      = yield
+    = yield
 
     %footer
       .container

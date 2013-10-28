@@ -1,6 +1,6 @@
 Fablabs::Application.routes.draw do
 
-  %w(about developers).each do |action|
+  %w(about developers choose_locale).each do |action|
     get action => "static##{action}", as: action
   end
 
@@ -37,6 +37,6 @@ Fablabs::Application.routes.draw do
   end
 
 
-  root to: 'labs#index'
+  root to: 'static#home'
 
 end

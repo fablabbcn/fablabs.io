@@ -7,7 +7,7 @@
     = f.input :description, hint: 'A brief overview of the lab', input_html: { rows: 4 }
     = f.input :slug, hint: "This is the 'username' of the lab, it will be in the URL" do
       .input-group
-        %span.input-group-addon= ENV['URL']
+        %span.input-group-addon{style: 'text-align: right'}= "#{ENV['URL']}/"
         = f.input_field :slug, class: 'form-control'
 
   %fieldset

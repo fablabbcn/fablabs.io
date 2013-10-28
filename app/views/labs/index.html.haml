@@ -1,26 +1,31 @@
 - title "Labs"
+.container
+  .row.row-offcanvas.row-offcanvas-right
+    .col-md-9.box
+      - if params[:q]
+        .alert.alert-dismissable.alert-info
+          -# %button.close{type: "button", data: { dismiss: "alert"}, aria: { hidden: true}} ×
+          = link_to "×", labs_path, class: 'close'
+          #{pluralize @labs.size, "search result"} for
+          %strong= params[:q]
 
-.row
-  .col-md-9.box
-    - if params[:q]
-      %h1 Search results for '#{params[:q]}'
-    .labs
-      = render @labs
-    - if Lab.creatable_by? current_or_null_user
-      = link_to I18n.t("labs.index.add_a_lab", :default => "Add a Lab"), new_lab_path, class: 'btn btn-primary'
+      .labs
+        = render @labs
+      - if Lab.creatable_by? current_or_null_user
+        = link_to I18n.t("labs.index.add_a_lab", :default => "Add a Lab"), new_lab_path, class: 'btn btn-primary'
 
-  .col-md-3
-    = render "header"
+    .col-md-3.sidebar-offcanvas
+      = render "header"
 
-    %ul.nav.nav-pills.nav-stacked
-      %li.all{class: ('active' if params[:country].blank?)}
-        = link_to url_for(params.merge(country: nil)) do
-          = I18n.t("labs.index.all_countries", :default => "All Countries")
-          %span.badge.pull-right= @count
+      %ul.nav.nav-pills.nav-stacked
+        %li.all{class: ('active' if params[:country].blank?)}
+          = link_to url_for(params.merge(country: nil)) do
+            = I18n.t("labs.index.all_countries", :default => "All Countries")
+            %span.badge.pull-right= @count
 
-      - @countries.each do |country,country_code,count|
-        %li{class: ('active' if params[:country] == country_code)}
-          -# %div{class: "flag flag-#{country[1].downcase} pull-left"}
-          = link_to url_for(params.merge(country: country_code)) do
-            = country
-            %span.badge.pull-right= count
+        - @countries.each do |country,country_code,count|
+          %li{class: ('active' if params[:country] == country_code)}
+            -# %div{class: "flag flag-#{country[1].downcase} pull-left"}
+            = link_to url_for(params.merge(country: country_code)) do
+              = country
+              %span.badge.pull-right= count

@@ -1,0 +1,58 @@
+
+.hint {
+  color: #AAA;
+  font-size: 0.9em;
+  margin-bottom: 1em;
+}
+
+fieldset {
+  border-top: 1px solid #EEE;
+  overflow: hidden;
+  margin-bottom: 20px;
+  padding: 10px;
+  background: #FEFEFE;
+  fieldset {
+    background: #FFF;
+    border: none;
+    legend {
+      font-weight: normal;
+      color: #AAA;
+    }
+  }
+}
+
+legend {
+  border: none;
+  width: auto;
+  color: #111;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 1.1em;
+  margin: 0;
+}
+
+.fp {
+  border: none;
+  box-shadow: none;
+  background: none;
+}
+
+.input {
+  margin-bottom: 1em;
+}
+
+.field_with_errors .error {
+  color: red;
+}
+
+.bs-callout-warning {
+  border-left: 5px solid red;
+  color: red;
+  background: #FAE8E8;
+  padding: 1px 15px;
+  margin-bottom: 1em;
+  h2 {
+    font-weight: bold;
+    font-size: 1.4em;
+  }
+}

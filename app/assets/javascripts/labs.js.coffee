@@ -6,6 +6,18 @@ window.showingContacts = false
 
 ready = ->
 
+  # if $('body').hasClass 'a-home'
+  #   map = L.map('homepage-map', { scrollWheelZoom: false, zoomControl: false }).setView([50, 0], 2 )
+  #   L.tileLayer('https://ssl_tiles.cloudmade.com/384aceabcd0942189d0e93cf0e98cd31/90734/256/{z}/{x}/{y}.png').addTo(map)
+  #   $(window).resize _.debounce((-> map.invalidateSize()),500)
+  #   # navigator.geolocation.getCurrentPosition((position)->
+  #   #   map.setView([position.coords.latitude, position.coords.longitude], 13)
+  #   # )
+
+
+  $('[data-toggle=offcanvas]').click ->
+    $('.row-offcanvas').toggleClass('active')
+
   if $('body').hasClass 'c-labs a-show'
     location = [$('#lab-map').data('latitude'), $('#lab-map').data('longitude')]
     labmap = L.map('lab-map', { scrollWheelZoom: false, zoomControl: false, loadingControl: true }).setView(location, 14 )

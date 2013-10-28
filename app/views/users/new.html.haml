@@ -1,12 +1,36 @@
-= title "Sign Up"
-.row
-  .col-md-12.box
-    = simple_form_for @user do |f|
-      = render "form_errors", resource: @user
+.container
+  .row
+    .col-md-12
+      = title "Sign Up"
+  .row
+    .col-md-7.box
+      = simple_form_for @user do |f|
+        = render "form_errors", resource: @user
+        .row
+          .col-md-1
+            = f.label :first_name, "Name"
+          .col-md-4
+            = f.input :first_name, autofocus: true, placeholder: 'First Name', label: false
+          .col-md-4
+            = f.input :last_name, placeholder: 'Last Name', label: false
+        = f.input :email, autocapitalize: "off", autocorrect: "off"
+        .row
+          .col-md-6
+            = f.input :password
+          .col-md-6
+            = f.input :password_confirmation
+        = f.submit 'Sign Up', class: 'btn btn-primary btn-lg'
 
-      = f.input :first_name, autofocus: true
-      = f.input :last_name
-      = f.input :email, autocapitalize: "off", autocorrect: "off"
-      = f.input :password
-      = f.input :password_confirmation
-      = f.submit 'Sign Up', class: 'btn btn-primary'
+    .col-md-4
+      %h4 Joining the Network
+      %p We want all different types of people to engage with the global Fab Lab network
+      %ul
+        %li Students
+        %li Professionals
+        %li Fab Lab Staff
+        %li Hobbyists
+
+      = image_tag "icons/safe.png"
+
+      %h4 What are the benefits?
+      %p Once you join you'll be able to participate in discussions, follow certain labs etc..

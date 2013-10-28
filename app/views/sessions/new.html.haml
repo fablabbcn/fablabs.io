@@ -5,19 +5,23 @@
     -# .fablabs
     -#   %span fablabs
     -#   %span.io IO
-    = image_tag "fablabs.png", style: 'width: 100%; margin-bottom: 20px;'
+    = link_to root_path do
+      = image_tag "fablabs.png", style: 'width: 100%; margin-bottom: 20px;'
 
     = form_tag sessions_path do
       -# = simple_form_for :signin, { url: sessions_path } do
       = hidden_field_tag :goto, params[:goto]
-      .field
-        = label_tag :email, nil, class: 'hide'
-        = text_field_tag :email, params[:email], placeholder: 'email', autofocus: params[:email].blank?, autocapitalize: "off", autocorrect: "off"
-      .field
-        = label_tag :password, nil, class: 'hide'
-        = password_field_tag :password, nil, placeholder: 'password'
+      .row
+        .col-md-12
+          = label_tag :email, nil, class: 'hide'
+          = text_field_tag :email, params[:email], placeholder: 'email', autofocus: params[:email].blank?, autocapitalize: "off", autocorrect: "off"
+      .row
+        .col-xs-9
+          = label_tag :password, nil, class: 'hide'
+          = password_field_tag :password, nil, placeholder: 'password'
+        .col-xs-3.forgot
+          = link_to "Forgot?", new_recovery_path
 
-      .actions= submit_tag "Sign in", class: 'btn btn-primary'
+      .actions= submit_tag "Sign in", class: 'btn btn-primary btn-lg'
 
-      %p= link_to "Forgotten Password?", new_recovery_path
-
+      = link_to "Not yet a member? Sign up", signup_path

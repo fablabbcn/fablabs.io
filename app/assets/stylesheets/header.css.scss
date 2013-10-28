@@ -1,4 +1,36 @@
 header {
+
+
+// .fablabs {
+//   font-weight: bold;
+//   color: #111;
+//   font-size: 1.3em;
+//   // text-shadow: 1px 1px 1px rgba(0,0,0,0.2);
+//   font-family: 'Roboto Slab';
+//   text-transform: lowercase;
+//   .labs {
+//     font-weight: normal;
+//   }
+//   .io {
+//     // text-transform: uppercase;
+//     display: inline;
+//     font-size: 0.5em;
+//     margin-left: -0.4em;
+//     vertical-align: super;
+//     // font-weight: normal;
+//   }
+// }
+
+
+  #search-box{
+    border-radius: 2px;
+
+    &:focus {
+      width: 340px;
+      transition: width 0.2s;
+      // max-width: 100%;
+    }
+  }
   .user-avatar {
     margin-right: 5px;
     margin-top: -10px;
@@ -8,6 +40,47 @@ header {
   }
   .nav > li > a:hover {
     background: none;
-    color: #000;
+    color: #EEE;
+  }
+  .icon-bar {
+    border-color: #999 !important;
+  }
+
+  .navbar {
+    border-radius: 0 !important;
+    background: #3D3544;
+    border: none;
+    z-index: 50;
+
+    .caret {
+      border-top-color: #999 !important;
+      border-bottom-color: #999 !important;
+    }
+    // background: rgba(#F2F2F2, 0.8);
+    .navbar-toggle .icon-bar {
+      border: 1px solid #444;
+    }
+    a {
+      color: #999;
+    }
+    a:hover {
+      color: orange;
+    }
+    a.navbar-brand {
+      padding: 18px 0 0 10px;
+      img {
+        width: 140px;
+      }
+      // background: url('http://labs.fabfoundation.org/assets/logo-b87fc9df044d86d6412c0bee21945dfe.png') 7px 22px no-repeat;
+      // padding-left: 35px;
+      text-transform: uppercase;
+      // color: #FFF;
+      .fab {
+        font-weight: bold;
+      }
+      .foundation {
+        margin-left: -3px;
+      }
+    }
   }
 }

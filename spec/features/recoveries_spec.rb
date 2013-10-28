@@ -5,7 +5,7 @@ describe 'recoveries' do
   it "emails user when requesting password recovery" do
     user = FactoryGirl.create(:user, email: 'john@bitsushi.com')
     visit signin_path
-    click_link "Forgotten Password?"
+    click_link "Forgot"
     fill_in :recovery_email, with: 'john@bitsushi.com'
     click_button 'Reset Password'
     expect(page).to have_content('Recovery instructions should appear in your inbox soon.')
@@ -14,7 +14,7 @@ describe 'recoveries' do
 
   it "alerts user if email does not exist in system" do
     visit signin_path
-    click_link "Forgotten Password?"
+    click_link "Forgot"
     fill_in :recovery_email, with: 'steve@jobs.com'
     click_button 'Reset Password'
     expect(page).to have_content('Sorry, we have no user with that email address')
