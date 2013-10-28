@@ -24,6 +24,15 @@ $navbar-link-color: #9D99A1;
 // $navbar-inverse-link-active-bg: rgba(0,0,0,0.1);
 @import "twitter/bootstrap";
 
+#please-verify {
+  position: relative;
+  z-index: 200;
+  background: yellow;
+  padding: 5px 0;
+  text-align: center;
+  a { font-weight: bold; }
+}
+
 h4.modal-title {
     text-transform: uppercase;
   font-family: 'Montserrat';

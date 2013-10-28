@@ -21,6 +21,8 @@ class CreateUsers < ActiveRecord::Migration
       t.string :my_locale
       t.string :my_timezone
 
+      t.string :email_validation_hash
+
       t.timestamps
 
     end

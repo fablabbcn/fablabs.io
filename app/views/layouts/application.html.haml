@@ -12,6 +12,7 @@
     = csrf_meta_tags
 
   %body{ class: body_classes }
+    = render "application/please_verify" if current_user and current_user.unverified?
     = render "application/header"
     .container#main
       - if flash.any?

@@ -41,13 +41,20 @@ describe Lab do
 
   end
 
-  describe "UNauthenticated user" do
-
+  describe "unauthenticated user" do
     it "cannot create lab" do
       visit new_lab_path
       expect(current_path).to eq(signin_path)
     end
+  end
 
+  describe "unverified user" do
+    it "cannot create lab" do
+      signin FactoryGirl.create(:user)
+      visit new_lab_path
+      expect(page).to have_content("Please verify your email")
+      expect(current_path).to eq(root_path)
+    end
   end
 
   describe "authenticated user" do
