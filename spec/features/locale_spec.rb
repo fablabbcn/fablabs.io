@@ -17,4 +17,20 @@ describe 'locale' do
     expect(page).to have_css('#locale-icon.es')
   end
 
+  it "respects users' locale" do
+    user = FactoryGirl.create(:user, my_locale: 'es')
+    signin user
+    expect(page).to have_css('#locale-icon.es')
+  end
+
+  it "updates user locale" do
+    user = FactoryGirl.create(:user, my_locale: 'es')
+    signin user
+    click_link('locale-icon')
+    click_link 'English'
+    user.reload
+    expect(user.locale).to eq('en')
+    expect(page).to have_css('#locale-icon.en')
+  end
+
 end

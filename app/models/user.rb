@@ -23,6 +23,10 @@ class User < ActiveRecord::Base
     'default-user-avatar.png'
   end
 
+  def locale
+    my_locale || I18n.default_locale
+  end
+
   def full_name
     "#{first_name} #{last_name}"
   end
@@ -39,10 +43,19 @@ class User < ActiveRecord::Base
     recoveries.last.key
   end
 
+  def send_verification_email
+    UserMailer.verification(self).deliver
+  end
+
   before_create :downcase_email
+  before_create :set_email_validation_hash
   after_create :send_welcome_email
 
 private
+
+  def set_email_validation_hash
+    self.email_validation_hash = 12345
+  end
 
   def downcase_email
     self.email.downcase!

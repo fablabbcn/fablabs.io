@@ -83,6 +83,7 @@ ActiveRecord::Schema.define(version: 20131018191113) do
     t.text     "bio"
     t.string   "my_locale"
     t.string   "my_timezone"
+    t.string   "email_validation_hash"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

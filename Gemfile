@@ -8,6 +8,7 @@ gem 'anjlab-bootstrap-rails', github: 'anjlab/bootstrap-rails', require: 'bootst
 gem 'geocoder', github: 'alexreisner/geocoder'
 # Use sqlite3 as the database for Active Record
 gem 'workflow', github: 'geekq/workflow'
+
 # gem 'sqlite3'
 gem "pg_search"
 gem "pg" #for travis

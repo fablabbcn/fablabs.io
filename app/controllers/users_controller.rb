@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  before_filter :require_login, except: [:new, :create]
+  before_filter :require_login, except: [:new, :create, :verify_email]
 
   def new
     @user = User.new
@@ -26,6 +26,24 @@ class UsersController < ApplicationController
       redirect_to root_url, flash: { success: 'Settings updated' }
     else
       render 'edit'
+    end
+  end
+
+  def resend_verification_email
+    @user = current_user
+    @user.send_verification_email
+    render 'sent_verification_email'
+  end
+
+  def verify_email
+    begin
+      @user = User.with_unverified_state.find_by!(email_validation_hash: params[:id])
+      if @user.verify!
+        session[:user_id] = @user.id
+        redirect_to root_path, notice: "Thanks for verifying your email"
+      end
+    rescue ActiveRecord::RecordNotFound
+      render text: "Fail"
     end
   end
 

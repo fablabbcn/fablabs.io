@@ -13,7 +13,7 @@ class LabAuthorizer < ApplicationAuthorizer
   end
 
   def self.creatable_by?(user)
-    user.persisted?
+    user.verified?
   end
 
 end

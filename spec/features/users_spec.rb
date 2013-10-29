@@ -66,4 +66,24 @@ describe User do
 
   end
 
+  it "shows validate message for unvalidated user" do
+    signin FactoryGirl.create(:user)
+    expect(page).to have_content("validate your email address")
+  end
+
+  it "doesn't show validate message for validated user" do
+    user = FactoryGirl.create(:user)
+    user.verify!
+    signin user
+    expect(page).to_not have_content("validate your email address")
+  end
+
+  it "can resend verification email" do
+    user = FactoryGirl.create(:user)
+    signin user
+    click_link "Resend Verification Email"
+    expect(last_email.to).to include(user.email)
+    expect(page).to have_content('sent')
+  end
+
 end

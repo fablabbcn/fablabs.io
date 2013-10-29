@@ -56,4 +56,12 @@ describe User do
     expect(last_email.to).to include(user.email)
   end
 
+  it "has default locale" do
+    expect(FactoryGirl.build_stubbed(:user).locale).to eq(I18n.default_locale)
+  end
+
+  it "has custom locale" do
+    expect(FactoryGirl.build_stubbed(:user, my_locale: 'fr').locale).to eq('fr')
+  end
+
 end

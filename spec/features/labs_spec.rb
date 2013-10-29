@@ -52,8 +52,8 @@ describe Lab do
     it "cannot create lab" do
       signin FactoryGirl.create(:user)
       visit new_lab_path
-      expect(page).to have_content("Please verify your email")
-      expect(current_path).to eq(root_path)
+      expect(page).to have_content("Access Denied")
+      # expect(current_path).to eq(root_path)
     end
   end
 
@@ -62,6 +62,7 @@ describe Lab do
     let(:user) { FactoryGirl.create(:user) }
 
     it "can delete lab" do
+      user.verify!
       user.add_role :admin
       signin user
       lab = FactoryGirl.create(:lab, name: 'A Lab', workflow_state: 'approved')
@@ -71,6 +72,7 @@ describe Lab do
     end
 
     it "can create lab" do
+      user.verify!
       signin user
       visit new_lab_path
       fill_in 'Name', with: 'New Lab'
@@ -82,6 +84,7 @@ describe Lab do
     end
 
     it "requires valid form to create lab" do
+      user.verify!
       signin user
       visit new_lab_path
       click_button 'Add Lab'
@@ -89,6 +92,7 @@ describe Lab do
     end
 
     it "can edit lab" do
+      user.verify!
       lab = FactoryGirl.create(:lab, creator: user)
       lab.approve!
       signin user

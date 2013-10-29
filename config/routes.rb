@@ -1,4 +1,5 @@
 Fablabs::Application.routes.draw do
+  get "verify_email(/:id)", to: "users#verify_email", as: "verify_email"
 
   %w(about developers choose_locale).each do |action|
     get action => "static##{action}", as: action
@@ -12,6 +13,8 @@ Fablabs::Application.routes.draw do
   get "signin" => "sessions#new", :as => "signin"
   get "signup" => "users#new", :as => "signup"
   get "settings" => "users#edit", :as => "settings"
+
+  get "resend_verification_email" => "users#resend_verification_email"
 
   namespace :backstage do
     resources :labs do

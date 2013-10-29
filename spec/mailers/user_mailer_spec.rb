@@ -29,6 +29,14 @@ describe UserMailer do
     mail.body.encoded.should match(root_url)
   end
 
+  it "verify" do
+    mail = UserMailer.verification(user)
+    mail.subject.should eq("Verification")
+    mail.to.should eq([user.email])
+    mail.from.should eq(["notifications@fabfoundationworld.org"])
+    mail.body.encoded.should match(verify_email_url(user.email_validation_hash))
+  end
+
   it "account_recovery_instructions" do
     recovery = FactoryGirl.create(:recovery, user: user, email: user.email)
     mail = UserMailer.account_recovery_instructions(user)
