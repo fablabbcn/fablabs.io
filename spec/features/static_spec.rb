@@ -2,10 +2,23 @@ require 'spec_helper'
 
 describe 'static' do
 
+  it "does not show unverified labs on homepage" do
+    FactoryGirl.create(:lab, name: 'unverified')
+    visit root_path
+    expect(page).to_not have_link('unverified')
+  end
+
+  it "shows verified labs on homepage" do
+    lab = FactoryGirl.create(:lab, name: 'verified')
+    lab.approve!
+    visit root_path
+    expect(page).to have_link('verified')
+  end
+
   describe "unauthenticated users" do
     it "has homepage" do
       visit root_path
-      expect(page).to have_content "Fab Labs near you"
+      expect(page).to have_content "Fab Labs in #{Country[ENV['CURRENT_COUNTRY']]}"
     end
   end
 

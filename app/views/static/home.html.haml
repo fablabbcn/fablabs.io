@@ -4,7 +4,7 @@
   .filter
   #homepage-search
     %p Show me Fab Labs in...
-    = text_field_tag :search, "United Kingdom", autofocus: true
+    = text_field_tag :search, current_country, autofocus: true
     -# = submit_tag class: 'submit' do
     = link_to "#", class: 'submit' do
       %span.glyphicon.glyphicon-search
@@ -13,10 +13,10 @@
   .container
     .row
       .col-md-2
-        %h2 Fab Labs near you...
+        %h2 Fab Labs in #{current_country}...
       .col-md-9.col-xs-10
         .row
-          - Lab.all.limit(3).each do |lab|
+          - @nearby_labs.each do |lab|
             .col-md-4.lab-near-you
               .media
                 = link_to lab, class: 'pull-left' do
@@ -25,10 +25,10 @@
                   = link_to lab, lab
                   .location
                     %span.glyphicon.glyphicon-map-marker
-                    Barcelona, Spain
-                  .distance
-                    %span.glyphicon.glyphicon-road
-                    10km Away
+                    = lab.short_address
+                  -# .distance
+                  -#   %span.glyphicon.glyphicon-road
+                  -#   10km Away
       .col-xs-2.col-md-1
         = link_to labs_path, class: 'more' do
           -# %span.browse-more Browse More

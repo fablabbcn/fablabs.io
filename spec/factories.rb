@@ -24,4 +24,15 @@ FactoryGirl.define do
     ip '8.8.8.8'
   end
 
+  factory :brand do
+    name "Roland"
+    url "http://www.rolanddg.com"
+  end
+
+  factory :tool do
+    name "Modela"
+    brand
+    description "A general purpose milling machine"
+  end
+
 end

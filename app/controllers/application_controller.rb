@@ -28,6 +28,11 @@ private
     # request.remote_ip
   end
 
+  helper_method :current_country
+  def current_country
+    Country[ENV["COUNTRY_CODE"]].name
+  end
+
   def default_url_options(options = {})
     {locale: I18n.locale}
   end

@@ -11,10 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131018191113) do
+ActiveRecord::Schema.define(version: 20131029155005) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "brands", force: true do |t|
+    t.string   "name"
+    t.string   "url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "labs", force: true do |t|
     t.integer  "creator_id"
@@ -66,6 +73,16 @@ ActiveRecord::Schema.define(version: 20131018191113) do
 
   add_index "roles", ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id", using: :btree
   add_index "roles", ["name"], name: "index_roles_on_name", using: :btree
+
+  create_table "tools", force: true do |t|
+    t.string   "name"
+    t.integer  "brand_id"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "tools", ["brand_id"], name: "index_tools_on_brand_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "workflow_state"

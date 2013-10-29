@@ -23,6 +23,10 @@ class Lab < ActiveRecord::Base
     .reject(&:blank?).join(", ")
   end
 
+  def short_address
+    "#{city}, #{country}"
+  end
+
   include Avatarable
   def default_avatar
     'default-lab-avatar.png'

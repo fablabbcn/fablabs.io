@@ -17,6 +17,11 @@ describe Lab do
     expect(lab.country.name).to eq('Francia')
   end
 
+  it "has short_address" do
+    lab = FactoryGirl.build_stubbed(:lab, city: 'London', country_code: 'gb')
+    expect(lab.short_address).to eq("London, #{lab.country}")
+  end
+
   describe "avatar" do
 
     it "has default avatar" do
