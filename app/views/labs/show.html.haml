@@ -3,13 +3,13 @@
 .container
   .row
     .col-md-8.box
+
       %ol.breadcrumb
         %li= link_to Lab.to_s.pluralize, labs_path
         %li
           = link_to labs_path(country: @lab.country_code) do
             %span.flag{class: "flag-#{@lab.country_code.downcase}"}
             = @lab.country.name
-
         %li.active= @lab
 
       .media
@@ -33,8 +33,7 @@
           -#   - @lab.current_state.events.keys.each do |event|
           -#     = button_to "#{event.capitalize} Lab", {controller: 'labs', action: 'verify'}, method: :patch, class: 'btn btn-primary'
 
-      .lab-description= simple_format @lab.description
-      .btn-group
+      .btn-group.lab-actions
 
         - if @lab.updatable_by? current_or_null_user
           = link_to edit_lab_path(@lab), class: 'btn btn-primary' do
@@ -49,6 +48,29 @@
           = link_to @lab, class: 'btn btn-danger', method: 'delete', data: { confirm: "Are you sure?" } do
             %span.glyphicon.glyphicon-remove
             Delete Lab
+
+      .lab-description= simple_format @lab.description
+      %ul.lab-links
+        - @lab.links.each do |link|
+          %li= link_to link.url, link.url
+
+      %h4 Lab Staff
+      .row
+        -# - @lab.admins.each do |admin|
+        - User.all.limit(9).each do |admin|
+          .col-md-4
+            .media
+              = link_to admin, class: 'pull-left' do
+                = cropped_image_tag admin.avatar, 40, class: 'avatar small'
+              .media-body
+                .media-heading= link_to admin, admin
+                Lab Co-ordinator
+
+      - if current_or_null_user.can_apply?(@lab)
+        = link_to new_lab_role_application_path(@lab) do
+          %span.glyphicon.glyphicon-user
+          Apply to become an admin
+
 
       -# %hr/
 
@@ -95,15 +117,7 @@
           %strong #{@lab.country}
           »
 
-      -# %h5 Lab Admins
-      -# %ul
-      -#   - @lab.admins.each do |admin|
-      -#     %li= link_to admin, admin
 
-      -# - if current_or_null_user.can_apply?(@lab)
-      -#   = link_to new_lab_role_application_path(@lab) do
-      -#     %span.glyphicon.glyphicon-user
-      -#     Apply to become an admin
 
       -# %hr/
 

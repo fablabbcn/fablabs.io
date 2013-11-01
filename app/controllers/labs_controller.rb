@@ -20,6 +20,7 @@ class LabsController < ApplicationController
 
   def new
     @lab = current_user.created_labs.build
+    @lab.links.build
     authorize_action_for @lab
   end
 
@@ -48,6 +49,7 @@ class LabsController < ApplicationController
 
   def edit
     @lab = Lab.friendly.find(params[:id])
+    @lab.links.build
     authorize_action_for @lab
   end
 

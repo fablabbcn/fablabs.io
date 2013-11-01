@@ -20,6 +20,7 @@
 #= require jquery.succinct
 #= require leaflet.markercluster
 #= require underscore
+#= require cocoon
 #= require_tree .
 #= require twitter/bootstrap
 

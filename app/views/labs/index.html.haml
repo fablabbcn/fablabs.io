@@ -2,8 +2,19 @@
 .container
   .row.row-offcanvas.row-offcanvas-right
     .col-md-9.box
+
+      %ol.breadcrumb
+        - if params[:country].present?
+          %li= link_to Lab.to_s.pluralize, labs_path
+          %li
+            = link_to labs_path(country: params[:country]) do
+              %span.flag{class: "flag-#{params[:country]}"}
+              = Country[params[:country]]
+        - else
+          %li= Lab.to_s.pluralize
+
       - if params[:q]
-        .alert.alert-dismissable.alert-info
+        .search-results
           -# %button.close{type: "button", data: { dismiss: "alert"}, aria: { hidden: true}} ×
           = link_to "×", labs_path, class: 'close'
           #{pluralize @labs.size, "search result"} for

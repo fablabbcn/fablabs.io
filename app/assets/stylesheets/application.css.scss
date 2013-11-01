@@ -24,6 +24,10 @@ $navbar-link-color: #9D99A1;
 // $navbar-inverse-link-active-bg: rgba(0,0,0,0.1);
 @import "twitter/bootstrap";
 
+.avatar.small {
+  border-radius: 4px;
+}
+
 #please-verify {
   position: relative;
   z-index: 200;

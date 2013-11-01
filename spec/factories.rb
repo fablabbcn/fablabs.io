@@ -2,6 +2,12 @@
 
 FactoryGirl.define do
 
+  factory :link do
+    lab
+    url "http://www.fablabbcn.org/"
+    description "Wordpress Blog"
+  end
+
   factory :featured_image do
     src "http://www.fablabbcn.org/wp-content/uploads/2013/10/012.jpg"
     name "ELEFAB"

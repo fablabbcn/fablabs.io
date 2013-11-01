@@ -1,5 +1,15 @@
 $sea-blue: #98BCDA;
 
+.search-results {
+  margin-bottom: 1em;
+  background: yellow;
+  padding: 10px;
+}
+
+.lab-actions {
+  margin: 10px 0;
+}
+
 #lab-map {
   width: 100%;
   height: 250px;
@@ -21,6 +31,9 @@ $sea-blue: #98BCDA;
 .breadcrumb {
   background: none;
   padding: 0 5px;
+  border-radius: none;
+  border-bottom: 1px solid #EEE;
+  padding-bottom: 5px;
 }
 
 .lab-phone, .lab-email {
@@ -104,7 +117,7 @@ li.all {
     padding-top: 10px;
   }
   .lab-description {
-    margin: 2em 0 0;
+    margin: 1em 0 0;
   }
   #header-bg {
     height: 310px;

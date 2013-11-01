@@ -50,6 +50,13 @@
     = f.input :phone, hint: "A general enquiries phone number for the lab"
     = f.input :email, hint: "A general enquiries email address for the lab"
 
+  %fieldset
+    %legend Links
+    = f.simple_fields_for :links do |link|
+      = render 'link_fields', f: link
+    .links
+      = link_to_add_association 'add link', f, :links
+
   - if @lab.new_record?
     %fieldset
       %legend Anything else?

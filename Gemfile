@@ -1,3 +1,4 @@
+ruby '2.0.0'
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -10,6 +11,7 @@ gem 'geocoder', github: 'alexreisner/geocoder'
 gem 'workflow', github: 'geekq/workflow'
 
 # gem 'sqlite3'
+gem "cocoon", github: 'nathanvda/cocoon'
 gem "pg_search"
 gem "pg" #for travis
 gem 'simple_form'

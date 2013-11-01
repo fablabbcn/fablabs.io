@@ -53,6 +53,12 @@ GIT
       rake (>= 0.8.7)
 
 GIT
+  remote: git://github.com/nathanvda/cocoon.git
+  revision: 420eddaa04aa94998ee9ee3141e4a106642bf828
+  specs:
+    cocoon (1.2.1)
+
+GIT
   remote: git://github.com/norman/friendly_id.git
   revision: 0064ef1dd063043c5414612dae7691a0887b0ae6
   specs:
@@ -284,6 +290,7 @@ DEPENDENCIES
   authority!
   bcrypt-ruby (~> 3.0.0)
   capybara
+  cocoon!
   codeclimate-test-reporter
   coffee-rails (~> 4.0.0)
   countries!
