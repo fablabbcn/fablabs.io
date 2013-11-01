@@ -1,27 +1,27 @@
 class UserMailer < ActionMailer::Base
-  default from: "notifications@fabfoundationworld.org"
+  default from: "FabLabs <notifications@fablabs.io>"
 
   %w(submitted approved).each do |action|
     define_method("lab_#{action}") do |lab|
       @lab = lab
       @user = @lab.creator
-      mail(to: "#{@user} <#{@user.email}>", subject: "#{@lab} #{action}")
+      mail(to: @user.email_string, subject: "#{@lab} #{action}")
     end
   end
 
   def welcome user
     @user = user
-    mail(to: "#{@user} <#{@user.email}>", subject: "Welcome")
+    mail(to: @user.email_string, subject: "[FabLabs.io] Confirmation Instructions")
   end
 
   def verification user
     @user = user
-    mail(to: "#{@user} <#{@user.email}>", subject: "Verification")
+    mail(to: @user.email_string, subject: "[FabLabs.io] Verification")
   end
 
   def account_recovery_instructions user
     @user = user
-    mail(to: "#{@user} <#{@user.email}>", from: "support@fabfoundationworld.org", subject: "Account Recovery Instructions")
+    mail(to: @user.email_string, from: "support@fablabs.io", subject: "Account Recovery Instructions")
   end
 
 end

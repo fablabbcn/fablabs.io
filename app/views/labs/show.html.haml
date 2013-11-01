@@ -35,18 +35,15 @@
 
       .lab-description= simple_format @lab.description
       .btn-group
-        -# - if current_or_null_user.can_claim? @lab
-        -#   = link_to claim_lab_path(@lab), class: 'btn btn-primary' do
-        -#     %span.glyphicon.glyphicon-user
-        -#     Claim Ownership
-        -# = link_to admin_roles_lab_path(@lab), class: 'btn btn-primary' do
-        -#   %span.glyphicon.glyphicon-user
-        -#   Manage Admins
 
         - if @lab.updatable_by? current_or_null_user
           = link_to edit_lab_path(@lab), class: 'btn btn-primary' do
             %span.glyphicon.glyphicon-edit
             Edit Lab
+
+          -# = link_to manage_admins_lab_path(@lab), class: 'btn btn-success' do
+          -#   %span.glyphicon.glyphicon-user
+          -#   Manage Admins
 
         - if @lab.deletable_by? current_or_null_user
           = link_to @lab, class: 'btn btn-danger', method: 'delete', data: { confirm: "Are you sure?" } do
@@ -97,6 +94,16 @@
           Browse all labs in
           %strong #{@lab.country}
           »
+
+      -# %h5 Lab Admins
+      -# %ul
+      -#   - @lab.admins.each do |admin|
+      -#     %li= link_to admin, admin
+
+      -# - if current_or_null_user.can_apply?(@lab)
+      -#   = link_to new_lab_role_application_path(@lab) do
+      -#     %span.glyphicon.glyphicon-user
+      -#     Apply to become an admin
 
       -# %hr/
 

@@ -1,17 +1,19 @@
-= title @lab
+.container
+  .row
+    .col-md-12
+      = title @lab
+      %table.table
+        %tr
+          %th Slug
+          %td= @lab.slug
+        %tr
+          %th Creator
+          %td= link_to @lab.creator, @lab.creator
+        %tr
+          %th Description
+          %td= @lab.description
 
-%table.table
-  %tr
-    %th Slug
-    %td= @lab.slug
-  %tr
-    %th Creator
-    %td= link_to @lab.creator, @lab.creator
-  %tr
-    %th Description
-    %td= @lab.description
+      - @lab.current_state.events.keys.each do |event|
+        = button_to "#{event.capitalize} Lab", {controller: 'labs', action: event}, method: :patch, class: 'btn btn-primary'
 
-- @lab.current_state.events.keys.each do |event|
-  = button_to "#{event.capitalize} Lab", {controller: 'labs', action: event}, method: :patch, class: 'btn btn-primary'
-
--# = link_to "Edit Lab", backstage_edit_lab_path(@lab)
+      -# = link_to "Edit Lab", backstage_edit_lab_path(@lab)

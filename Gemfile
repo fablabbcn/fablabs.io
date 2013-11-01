@@ -52,6 +52,7 @@ group :test, :development do
 end
 group :test do
   gem "launchy"
+  gem "selenium-webdriver"
   # gem "nyan-cat-formatter"
   gem "factory_girl_rails"
   gem "capybara"

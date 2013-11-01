@@ -2,6 +2,13 @@
 
 FactoryGirl.define do
 
+  factory :featured_image do
+    src "http://www.fablabbcn.org/wp-content/uploads/2013/10/012.jpg"
+    name "ELEFAB"
+    description "A one-of-a-kind elephant creature during a kids' workshop "
+    url "http://www.fablabbcn.org/2013/10/elefab-2/"
+  end
+
   factory :lab do
     name "Fab Lab BCN"
     slug "fablabbcn"
@@ -33,6 +40,12 @@ FactoryGirl.define do
     name "Modela"
     brand
     description "A general purpose milling machine"
+  end
+
+  factory :role_application do
+    user
+    lab
+    description "I work here"
   end
 
 end

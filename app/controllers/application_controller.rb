@@ -30,7 +30,7 @@ private
 
   helper_method :current_country
   def current_country
-    Country[ENV["COUNTRY_CODE"]].name
+    Country[ENV["COUNTRY_CODE"]]
   end
 
   def default_url_options(options = {})

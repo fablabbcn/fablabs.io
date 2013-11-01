@@ -11,13 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131029155005) do
+ActiveRecord::Schema.define(version: 20131101172845) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "brands", force: true do |t|
     t.string   "name"
+    t.string   "url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "featured_images", force: true do |t|
+    t.string   "src"
+    t.string   "name"
+    t.string   "description"
     t.string   "url"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -62,6 +71,17 @@ ActiveRecord::Schema.define(version: 20131029155005) do
   end
 
   add_index "recoveries", ["user_id"], name: "index_recoveries_on_user_id", using: :btree
+
+  create_table "role_applications", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "lab_id"
+    t.string   "workflow_state"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "role_applications", ["user_id", "lab_id"], name: "index_role_applications_on_user_id_and_lab_id", using: :btree
 
   create_table "roles", force: true do |t|
     t.string   "name"

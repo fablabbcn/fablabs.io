@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  include Tokenable
+
   rolify
   has_secure_password
   include Authority::UserAbilities
@@ -6,6 +8,8 @@ class User < ActiveRecord::Base
   validates :first_name, :last_name, :email, presence: true
   has_many :created_labs, class_name: 'Lab', foreign_key: 'creator_id'
   has_many :recoveries
+  has_many :role_applications
+  before_create { generate_token(:email_validation_hash) }
   validates_uniqueness_of :email, case_sensitive: false
 
   validates :password, presence: true, length: { minimum: 6 }, if: lambda{ !password.nil? }, on: :update
@@ -47,15 +51,14 @@ class User < ActiveRecord::Base
     UserMailer.verification(self).deliver
   end
 
+  def email_string
+    "#{self} <#{self.email}>"
+  end
+
   before_create :downcase_email
-  before_create :set_email_validation_hash
   after_create :send_welcome_email
 
 private
-
-  def set_email_validation_hash
-    self.email_validation_hash = 12345
-  end
 
   def downcase_email
     self.email.downcase!

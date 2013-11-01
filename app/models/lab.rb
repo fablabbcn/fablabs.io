@@ -1,7 +1,7 @@
 class Lab < ActiveRecord::Base
   include PgSearch
   pg_search_scope :search_by_name, :against => [:name, :description]
-
+  has_many :role_applications
   scope :search, ->(q) { search_by_name(q) if q.present?}
   scope :in_country_code, ->(cc) { where(country_code: cc) if cc.present?}
   resourcify

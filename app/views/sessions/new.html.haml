@@ -1,4 +1,8 @@
 = title "Sign in"
+:css
+  body {
+    background-image: url('#{cropped_image_path("http://www.fablabbcn.org/wp-content/uploads/2013/10/012.jpg", 2000)}');
+  }
 .row
   .col-md-4.col-centered
 
@@ -24,4 +28,4 @@
 
       .actions= submit_tag "Sign in", class: 'btn btn-primary btn-lg'
 
-      = link_to "Not yet a member? Sign up", signup_path
+      = link_to "Not yet a member? <strong>Sign up</strong>".html_safe, signup_path

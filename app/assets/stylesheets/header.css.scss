@@ -1,6 +1,9 @@
 header {
 
-
+.nav .open > a, .nav .open > a:hover, .nav .open > a:focus,
+.nav > li > a:hover, .nav > li > a:focus {
+  background: none !important;
+}
 // .fablabs {
 //   font-weight: bold;
 //   color: #111;
@@ -21,6 +24,10 @@ header {
 //   }
 // }
 
+.navbar-collapse {
+  box-shadow: none !important;
+}
+
 
   #search-box{
     border-radius: 2px;
@@ -39,11 +46,11 @@ header {
     width: 30px;
   }
   .nav > li > a:hover {
-    background: none;
-    color: #EEE;
+    // background: none;
+    color: #999 !important;
   }
   .icon-bar {
-    border-color: #999 !important;
+    // border-color: #999 !important;
   }
 
   .navbar {

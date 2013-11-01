@@ -1,4 +1,6 @@
 Fablabs::Application.routes.draw do
+  resources :featured_images
+
   get "verify_email(/:id)", to: "users#verify_email", as: "verify_email"
 
   %w(about developers choose_locale).each do |action|
@@ -6,6 +8,7 @@ Fablabs::Application.routes.draw do
   end
 
   resources :users, path: 'u'
+
   resources :sessions
   resources :recoveries
 
@@ -34,6 +37,10 @@ Fablabs::Application.routes.draw do
   get 'labs' => 'labs#index'
   post 'labs' => 'labs#create'
   resources :labs, path: '', except: :index do
+    resources :role_applications
+    member do
+      get :manage_admins
+    end
     collection do
       get :map
     end

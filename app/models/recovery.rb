@@ -11,13 +11,15 @@ class Recovery < ActiveRecord::Base
   include ActiveModel::Validations
   validates_with RecoveryUserValidator, on: :create
 
+  include Tokenable
+
   attr_accessor :email
   belongs_to :user
 
   accepts_nested_attributes_for :user
 
   before_create :associate_user
-  before_create :generate_key
+  before_create { generate_token(:key) }
   after_create :email_user
 
   def to_param
@@ -32,12 +34,6 @@ class Recovery < ActiveRecord::Base
   end
 
 private
-
-  def generate_key
-    begin
-      self.key = SecureRandom.urlsafe_base64
-    end while Recovery.exists?(key: self.key)
-  end
 
   def associate_user
     self.user = User.where(email: self.email).first

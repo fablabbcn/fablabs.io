@@ -16,4 +16,10 @@ class LabAuthorizer < ApplicationAuthorizer
     user.verified?
   end
 
+  def applyable_by?(user)
+    !user.created_labs.include?(resource) and
+    !user.role_applications.where(lab: resource).exists? and
+    !user.has_role? :admin
+  end
+
 end

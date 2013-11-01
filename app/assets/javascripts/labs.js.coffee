@@ -15,6 +15,8 @@ ready = ->
   #   # )
 
 
+
+
   $('[data-toggle=offcanvas]').click ->
     $('.row-offcanvas').toggleClass('active')
 
@@ -40,7 +42,7 @@ ready = ->
   $(".c-labs input#geocomplete").geocomplete
     map: "#location-picker-map"
     location: $('#geocomplete').data('latlng')
-    details: ".c-labs .address"
+    details: ".c-labs.a-new .address"
     detailsAttribute: "data-geo"
     markerOptions:
       draggable: true
@@ -71,8 +73,7 @@ ready = ->
       for lab in labs.labs
         if lab.latitude
           icon = L.icon({
-            iconUrl: 'https://labs.fabfoundation.org/assets/map-icon-fab_lab-6f15e0c02e24db66d8eccc86c7a2076d.png'
-            # window.image_path("map-icon-#{lab.kind_string}.png")
+            iconUrl: window.mapIcons['fablab']
             iconSize:     [35, 35]
             iconAnchor:   [17, 33]
             popupAnchor:  [0, -20]

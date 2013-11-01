@@ -61,6 +61,12 @@ class LabsController < ApplicationController
     end
   end
 
+  def manage_admins
+    @lab = Lab.friendly.find(params[:id])
+    @admins = @lab.admins
+    @users = User.all# - User.with_role(:admin) - [current_user]
+  end
+
 private
 
   def lab_params

@@ -19,6 +19,10 @@
             = f.input :password
           .col-md-6
             = f.input :password_confirmation
+        .row
+          .col-md-12
+            = f.input :country_code, as: 'country', priority: [current_country.alpha2.downcase], label: 'Country', iso_codes: true
+
         = f.submit 'Sign Up', class: 'btn btn-primary btn-lg'
 
     .col-md-4

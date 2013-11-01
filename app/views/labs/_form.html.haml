@@ -11,14 +11,14 @@
         = f.input_field :slug, class: 'form-control'
 
   %fieldset
-    %legend Lab Images
+    %legend Lab Image
     .row
-      .col-md-3= image_tag @lab.avatar, width: 100
-      .col-md-9= f.input :avatar_src, input_html: { class: 'fp' }, label: 'Avatar'
-    .row
-      - if @lab.header_image_src.present?
-        .col-md-12= image_tag @lab.header_image
-      .col-md-9= f.input :header_image_src, input_html: { class: 'fp' }, label: 'Header Image'
+      .col-md-3= cropped_image_tag @lab.avatar, 100
+      .col-md-9= f.input :avatar_src, input_html: { class: 'fp' }, label: 'Avatar', hint: "This will be a square image next shown next to the lab name throughout the site"
+    -# .row
+    -#   - if @lab.header_image_src.present?
+    -#     .col-md-12= image_tag @lab.header_image
+    -#   .col-md-9= f.input :header_image_src, input_html: { class: 'fp' }, label: 'Header Image'
 
   %fieldset
     %legend Lab Location
@@ -35,8 +35,9 @@
           .col-md-8
             = f.input :address_1, input_html: { data: {geo: "street_address"}}, label: 'Address', placeholder: 'Address Line 1'
             = f.input :address_2, label: false, placeholder: 'Address Line 2 (Optional)'
-            = f.input :address_3, label: false, placeholder: 'Address Line 3 (Optional)'
             = f.input :city, input_html: { data: {geo: "locality"}}
+            = f.input :county, label: 'State/Province/County'
+
             = f.input :postal_code, input_html: { data: {geo: "postal_code"}}
             = f.input :country_code, as: 'country', label: 'Country', input_html: { data: {geo: "country_short"} }, wrapper_html: { class: 'boo'}, iso_codes: true#, input_html: { class: 'enhanced'}
             = f.input :latitude, as: :hidden, input_html: { data: {geo: "lat"}}
@@ -49,7 +50,7 @@
     = f.input :phone, hint: "A general enquiries phone number for the lab"
     = f.input :email, hint: "A general enquiries email address for the lab"
 
-  - if !@lab.new_record?
+  - if @lab.new_record?
     %fieldset
       %legend Anything else?
       = f.input :application_notes

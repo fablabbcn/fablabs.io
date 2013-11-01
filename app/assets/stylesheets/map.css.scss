@@ -1,3 +1,17 @@
+.a-map .leaflet-popup-pane .leaflet-popup {
+  .leaflet-popup-content-wrapper {
+    box-shadow: none;
+    border-radius: 2px;
+    a {
+      color: #FFF;
+      font-weight: bold;
+    }
+  }
+  .leaflet-popup-tip, .leaflet-popup-content-wrapper {
+    background: rgba(0,0,0,0.8);
+  }
+}
+
 .leaflet-top {
   z-index: 10 !important;
 }

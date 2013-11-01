@@ -9,10 +9,29 @@ describe Lab do
       expect(page).to have_content "Labs"
     end
 
-    it "has map" do
-      visit labs_path
-      click_link "Map"
-      page.should have_title "Map"
+    describe "map" do
+
+      it "has map page" do
+        visit labs_path
+        click_link "Map"
+        expect(page).to have_title("Map")
+        expect(current_url).to include(map_labs_url)
+      end
+
+      pending "shows approved labs", js: true do
+        lab = FactoryGirl.create(:lab)
+        lab.approve!
+        visit labs_path
+        click_link "Map"
+        expect(page).to have_css('.leaflet-marker-icon')
+      end
+
+      pending "doesn't show unapproved labs", js: true do
+        FactoryGirl.create(:lab)
+        visit map_labs_path
+        expect(page).to_not have_css('.leaflet-marker-icon')
+      end
+
     end
 
     it "approved labs are on index page" do
@@ -100,7 +119,38 @@ describe Lab do
       click_link "Edit Lab"
       fill_in "Name", with: 'New Name'
       click_button 'Update Lab'
-      page.should have_content("Lab was successfully updated")
+      expect(page).to have_content("Lab was successfully updated")
+    end
+
+  end
+
+  pending "managing admins" do
+    let(:admin) { FactoryGirl.create(:user) }
+    let(:lab) { FactoryGirl.create(:lab, creator: admin) }
+    let(:user) { FactoryGirl.create(:user) }
+
+    # it "can add an admin" do
+    #   lab.approve!
+    #   signin admin
+    #   visit lab_path(lab)
+    #   click_link "Manage Admins"
+    #   click_button "Update"
+    #   expect(page).to have_content("Admins updated")
+    # end
+
+    it "can apply to become admin" do
+      signin user
+      visit lab_path(lab)
+      click_link "Apply to become an admin"
+      fill_in "Description", with: "I work here"
+      click_button "Submit"
+      expect(page).to have_content("Application submitted")
+    end
+
+    it "admin doesn't need to apply to become admin" do
+      signin admin
+      visit lab_path(lab)
+      expect(page).to_not have_link("Apply to become an admin")
     end
 
   end

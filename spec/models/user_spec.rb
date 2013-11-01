@@ -8,6 +8,7 @@ describe User do
   it { should validate_presence_of(:last_name) }
   it { should have_many(:created_labs) }
   it { should have_many(:recoveries) }
+  it { should have_many(:role_applications) }
 
   it "has initial state" do
     expect(FactoryGirl.build(:user).current_state).to eq('unverified')

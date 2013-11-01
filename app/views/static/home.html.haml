@@ -20,7 +20,7 @@
             .col-md-4.lab-near-you
               .media
                 = link_to lab, class: 'pull-left' do
-                  = image_tag "example-lab.jpg", width: 60
+                  = cropped_image_tag lab.avatar, 60
                 .media-body
                   = link_to lab, lab
                   .location
@@ -30,7 +30,7 @@
                   -#   %span.glyphicon.glyphicon-road
                   -#   10km Away
       .col-xs-2.col-md-1
-        = link_to labs_path, class: 'more' do
+        = link_to labs_path(country: current_country.alpha2.downcase), class: 'more' do
           -# %span.browse-more Browse More
           %span.glyphicon.glyphicon-chevron-right
 

@@ -3,6 +3,7 @@ require 'spec_helper'
 describe Lab do
 
   pending "MOAR TESTS"
+  it { should have_many(:role_applications) }
 
   %w(name description address_1 country_code creator).each do |requirement|
     it { should validate_presence_of(requirement) }

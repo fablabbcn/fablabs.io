@@ -8,7 +8,7 @@ describe AdminMailer do
     mail = AdminMailer.lab_submitted(lab)
     mail.subject.should eq("#{lab} submitted")
     mail.to.should eq(['john@bitsushi.com'])
-    mail.from.should eq(["admin_notifications@fabfoundationworld.org"])
+    mail.from.should eq(["admin_notifications@fablabs.io"])
     mail.body.encoded.should match("#{backstage_lab_url(lab)}")
   end
 

@@ -30,5 +30,17 @@ module Fablabs
 
     config.url = 'http://fablabs.dev'
 
+    config.action_mailer.delivery_method = :smtp
+    config.action_mailer.perform_deliveries = true
+    config.action_mailer.raise_delivery_errors = true
+    config.action_mailer.smtp_settings = {
+      :authentication => ENV['EMAIL_AUTHENTICATION'],
+      :address => ENV['EMAIL_ADDRESS'],
+      :port => ENV['EMAIL_PORT'].to_i,
+      :domain => ENV['EMAIL_DOMAIN'],
+      :user_name => ENV['EMAIL_USERNAME'],
+      :password => ENV['EMAIL_PASSWORD']
+    }
+
   end
 end
