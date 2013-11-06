@@ -20,3 +20,4 @@
 .zeus.sock
 /coverage
 /config/initializers/words.rb
+words.yml
