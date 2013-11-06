@@ -54,8 +54,7 @@ describe Lab do
 
     it "unapproved labs don't have show page" do
       lab = FactoryGirl.create(:lab, name: 'A Lab')
-      visit lab_path(lab)
-      expect(page).to have_content 'Access Denied'
+      expect{visit lab_path(lab)}.to raise_error ActiveRecord::RecordNotFound
     end
 
   end
@@ -98,6 +97,7 @@ describe Lab do
       fill_in 'Description', with: 'An awesome place'
       fill_in 'lab_address_1', with: 'Mars'
       select 'United Kingdom', from: 'Country'
+      fill_in 'Slug', with: 'newlab'
       click_button 'Add Lab'
       expect(page).to have_content "Thanks"
     end

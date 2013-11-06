@@ -6,19 +6,20 @@
     = f.input :name, autofocus: lab.name.blank?
     = f.input :description, hint: 'A brief overview of the lab', input_html: { rows: 4 }
     = f.input :slug, hint: "This is the 'username' of the lab, it will be in the URL" do
-      .input-group
-        %span.input-group-addon{style: 'text-align: right'}= "#{Rails.application.config.url}/"
-        = f.input_field :slug, class: 'form-control'
+      .row.collapse
+        .columns.small-3
+          %span.prefix= "#{Rails.application.config.url}/"
+        .columns.small-9= f.input_field :slug, class: 'form-control'
 
   %fieldset
     %legend Lab Image
     .row
-      .col-md-3= cropped_image_tag @lab.avatar, 100
-      .col-md-9= f.input :avatar_src, input_html: { class: 'fp' }, label: 'Avatar', hint: "This will be a square image next shown next to the lab name throughout the site"
+      .columns.large-3= cropped_image_tag @lab.avatar, 100
+      .columns.large-9= f.input :avatar_src, input_html: { class: 'fp' }, label: 'Avatar', hint: "This will be a square image next shown next to the lab name throughout the site"
     -# .row
     -#   - if @lab.header_image_src.present?
-    -#     .col-md-12= image_tag @lab.header_image
-    -#   .col-md-9= f.input :header_image_src, input_html: { class: 'fp' }, label: 'Header Image'
+    -#     .columns.large-12= image_tag @lab.header_image
+    -#   .columns.large-9= f.input :header_image_src, input_html: { class: 'fp' }, label: 'Header Image'
 
   %fieldset
     %legend Lab Location
@@ -30,9 +31,9 @@
       %fieldset.step-2
         %legend Step 2
         .row
-          .col-md-4#map-holder
+          .columns.large-4#map-holder
             #location-picker-map
-          .col-md-8
+          .columns.large-8
             = f.input :address_1, input_html: { data: {geo: "street_address"}}, label: 'Address', placeholder: 'Address Line 1'
             = f.input :address_2, label: false, placeholder: 'Address Line 2 (Optional)'
             = f.input :city, input_html: { data: {geo: "locality"}}
@@ -52,14 +53,15 @@
 
   %fieldset
     %legend Links
+    %p.hint Any websites for this Fab Lab. It can include blogs, social networks, video/photo sites etc.
     = f.simple_fields_for :links do |link|
       = render 'link_fields', f: link
     .links
-      = link_to_add_association 'add link', f, :links
+      = link_to_add_association 'add link', f, :links, class: 'button small'
 
   - if @lab.new_record?
     %fieldset
       %legend Anything else?
       = f.input :application_notes
 
-  = f.submit (lab.new_record? ? 'Add Lab' : 'Update Lab'), class: 'btn btn-large btn-primary'
+  = f.submit (lab.new_record? ? 'Add Lab' : 'Update Lab'), class: 'button'

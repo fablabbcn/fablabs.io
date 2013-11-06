@@ -21,11 +21,20 @@
 #= require leaflet.markercluster
 #= require underscore
 #= require cocoon
+#= require select2
+#= require foundation
+#= require jquery.autosize
+#= require intlTelInput
 #= require_tree .
-#= require twitter/bootstrap
 
-$(document).ready ->
-
+initEvents = ->
+  $('textarea').autosize({append: "\n"})
+  $(document).foundation()
+  $("select").select2()
   Holder.run()
-  $('.truncate').succinct
-    size: 300
+  # $('.truncate > p').succinct
+  #   size: 200
+
+document.addEventListener "page:load", initEvents
+$(document).ready initEvents
+# jQuery -> initEvents

@@ -6,13 +6,16 @@
     = stylesheet_link_tag "application", "http://fonts.googleapis.com/css?family=Montserrat|Roboto+Slab:400,700", media: "all", "data-turbolinks-track" => true
     = javascript_include_tag "sessions", "data-turbolinks-track" => true
     = csrf_meta_tags
-
+    :css
+      body {
+        background-image: url('#{cropped_image_path("http://www.fablabbcn.org/wp-content/uploads/2013/10/012.jpg", 2000)}');
+      }
   %body.sessions{ class: body_classes }
     .fade-bg
-    .container#main
+    #main
       - if flash.any?
         .row
-          .col-md-12
+          .columns.large-12
           - flash.each do |name, msg|
             = content_tag :div, msg, class: flash_class(name)
       = yield

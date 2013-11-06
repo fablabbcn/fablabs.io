@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  before_filter :require_login, except: [:new, :create, :verify_email]
+  before_filter :require_login, except: [:new, :create, :verify_email, :show]
 
   def new
     @user = User.new
@@ -45,6 +45,10 @@ class UsersController < ApplicationController
     rescue ActiveRecord::RecordNotFound
       render text: "Fail"
     end
+  end
+
+  def show
+    @user = User.find(params[:id])
   end
 
 private

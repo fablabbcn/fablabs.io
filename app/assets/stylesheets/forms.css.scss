@@ -7,7 +7,7 @@
 
 fieldset {
   border-top: 1px solid #EEE;
-  overflow: hidden;
+  // overflow: hidden;
   margin-bottom: 20px;
   padding: 10px;
   background: #FEFEFE;
@@ -41,8 +41,10 @@ legend {
   margin-bottom: 1em;
 }
 
-.field_with_errors .error {
-  color: red;
+.field_with_errors {
+  background: red;
+  color: #FFF;
+  padding: 5px 0;
 }
 
 .bs-callout-warning {
@@ -51,6 +53,9 @@ legend {
   background: #FAE8E8;
   padding: 20px 10px;
   margin-bottom: 1em;
+  ul, li {
+    list-style: none;
+  }
   h2 {
     font-weight: bold;
     font-size: 1.4em;

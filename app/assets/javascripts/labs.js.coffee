@@ -14,7 +14,7 @@ ready = ->
   #   #   map.setView([position.coords.latitude, position.coords.longitude], 13)
   #   # )
 
-
+  $('#map').height($('#map').height() - 45)
 
 
   $('[data-toggle=offcanvas]').click ->
@@ -61,7 +61,7 @@ ready = ->
       removeOutsideVisibleBounds: true
       zoomToBoundsOnClick: true
 
-    map = L.map('map', { scrollWheelZoom: false, zoomControl: false }).setView([50, 0], 2 )
+    map = L.map('map', { scrollWheelZoom: true, zoomControl: false }).setView([50, 0], 2 )
     window.map = map
     new L.Control.Zoom({ position: 'topleft' }).addTo(map)
     L.tileLayer('https://ssl_tiles.cloudmade.com/384aceabcd0942189d0e93cf0e98cd31/90734/256/{z}/{x}/{y}.png').addTo(map)

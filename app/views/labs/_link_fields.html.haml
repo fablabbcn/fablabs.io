@@ -1,3 +1,5 @@
 .nested-fields
-  = f.input :url
-  = link_to_remove_association "remove link", f
+  .row.collapse
+    -# .columns.small-1.large-1= fa_icon "reorder"
+    .columns.small-10.large-11= f.input :url, label: false, placeholder: 'http://www.myfablab.com'
+    .columns.small-2.large-1.close= link_to_remove_association "x", f, class: 'button small alert'

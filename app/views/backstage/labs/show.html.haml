@@ -1,19 +1,56 @@
-.container
-  .row
-    .col-md-12
-      = title @lab
-      %table.table
+.row
+  .columns.large-12
+    = title @lab
+    %table.table
+      %tr
+        %th State
+        %td
+          = @lab.current_state
+          - @lab.current_state.events.keys.each do |event|
+            = button_to "#{event.capitalize} Lab", {controller: 'labs', action: event}, method: :patch, class: 'button small'
+      %tr
+        %th Avatar
+        %td= cropped_image_tag @lab.avatar, 100
+      %tr
+        %th Slug
+        %td= @lab.slug
+      %tr
+        %th Creator
+        %td= link_to @lab.creator, @lab.creator
+      - if @lab.application_notes.present?
         %tr
-          %th Slug
-          %td= @lab.slug
+          %th Application Notes
+          %td= @lab.application_notes
+      %tr
+        %th Description
+        %td= @lab.description
+      - if @lab.links.any?
         %tr
-          %th Creator
-          %td= link_to @lab.creator, @lab.creator
+          %th URLS
+          %td
+            %ul
+              - @lab.links.each do |link|
+                %li= link.url
+      - if @lab.phone.present?
         %tr
-          %th Description
-          %td= @lab.description
+          %th Phone
+          %td= @lab.phone
+      - if @lab.email.present?
+        %tr
+          %th Email
+          %td= @lab.email
+      %tr
+        %th Address
+        %td= @lab.formatted_address
+      - if @lab.address_notes.present?
+        %tr
+          %th Address Notes
+          %td= @lab.address_notes
+      %tr
+        %th Created At
+        %td= @lab.created_at
+      %tr
+        %th Updated At
+        %td= @lab.updated_at
 
-      - @lab.current_state.events.keys.each do |event|
-        = button_to "#{event.capitalize} Lab", {controller: 'labs', action: event}, method: :patch, class: 'btn btn-primary'
-
-      -# = link_to "Edit Lab", backstage_edit_lab_path(@lab)
+    = link_to "Edit Lab", edit_lab_path(@lab), class: 'button'

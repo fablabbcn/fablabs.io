@@ -1,26 +1,44 @@
 class Lab < ActiveRecord::Base
   include PgSearch
   pg_search_scope :search_by_name, :against => [:name, :description]
+  validates_format_of :email, :with => /@/, allow_blank: true
 
   has_many :role_applications
   has_many :links
   accepts_nested_attributes_for :links, reject_if: lambda{ |l| l[:url].blank? }, allow_destroy: true
 
-  scope :search, ->(q) { search_by_name(q) if q.present?}
+  scope :search_for, ->(q) { search_by_name(q) if q.present?}
   scope :in_country_code, ->(cc) { where(country_code: cc) if cc.present?}
   resourcify
   include Authority::Abilities
   self.authorizer_name = 'LabAuthorizer'
 
   belongs_to :creator, class_name: 'User'
-  validates :name, :description, :address_1, :country_code, presence: true
+  validates :name, :description, :address_1, :country_code, :slug, presence: true
   validates_presence_of :creator, on: :create
   validates_uniqueness_of :name, case_sensitive: false
 
+  # validates_exclusion_of :slug, in: $bannedWords, message: "You don't belong here"
+  validate :excluded_login
+  def excluded_login
+    if !slug.blank? and $bannedWords.include?(slug.downcase)
+      errors.add(:slug, "is reserved")
+    end
+  end
+
+  validates :slug, format: {:with => /\A[a-zA-Z]+\z/ }, allow_nil: true, allow_blank: true, length: { minimum: 3 }
+
   after_create :notify_everyone
+  before_save :downcase_email
 
   attr_accessor :geocomplete
   geocoded_by :formatted_address
+
+  def nearby_labs
+    if nearbys(1000)
+      nearbys(1000).with_approved_state.where(country_code: country_code).limit(5)
+    end
+  end
 
   def formatted_address
     [address_1, address_2, address_3, city, postal_code, country]
@@ -111,6 +129,10 @@ private
   def notify_everyone
     UserMailer.lab_submitted(self).deliver
     AdminMailer.lab_submitted(self).deliver
+  end
+
+  def downcase_email
+    self.email = email.downcase if email.present?
   end
 
 end

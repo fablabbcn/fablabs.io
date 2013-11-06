@@ -1,9 +1,53 @@
 $sea-blue: #98BCDA;
 
+ul.side-nav {
+  a {
+    padding: 5px;
+  }
+  li.active a {
+    background: yellow;
+  }
+}
+
+.close {
+  text-align: center;
+}
+
+ul.lab-links {
+  list-style: none;
+  li {
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+  }
+}
+
+.nearby-lab {
+  overflow: hidden;
+  margin-bottom: 0.5em;
+  img {
+    margin-right: 5px;
+  }
+}
+
+.lab-location {
+  color: #999;
+  margin: 0.2em 0 0.5em;
+}
+
+.lab-staff li {
+  overflow: hidden;
+  display: block;
+}
+
 .search-results {
   margin-bottom: 1em;
   background: yellow;
   padding: 10px;
+}
+
+.lab {
+  overflow: hidden;
 }
 
 .lab-actions {
@@ -22,11 +66,11 @@ $sea-blue: #98BCDA;
   @extend .btn;
 }
 
-.c-labs.a-map {
-  .leaflet-top {
-    top: 70px;
-  }
-}
+// .c-labs.a-map {
+//   .leaflet-top {
+//     top: 70px;
+//   }
+// }
 
 .breadcrumb {
   background: none;
@@ -43,11 +87,19 @@ $sea-blue: #98BCDA;
 }
 
 .view-as {
-  text-align: right;
-  margin-bottom: 40px;
+  overflow: hidden;
   position: relative;
-  z-index: 40;
-  pointer-events: none;
+  .a-index & {
+
+    margin-bottom: 40px;
+  }
+  .a-map & {
+    z-index: 20;
+    pointer-events: none;
+  }
+  ul {
+    float: right;
+  }
   a {
     pointer-events: auto;
   }
@@ -70,9 +122,14 @@ li.all {
 
 
 .c-labs.a-index {
-
-  h1 {
-    margin: 0 0 1em;
+  .avatar {
+    width: 100px;
+    height: 100px;
+    margin-right: 10px;
+  }
+  h4 {
+    margin: 0;
+    font-size: 1.2em;
   }
   .labs {
     .media-heading {
@@ -94,13 +151,23 @@ li.all {
 }
 
 .c-labs.a-show {
+  .media-body {
+    clear: both;
+    float: none;
+  }
+  table {
+    width: 100%;
+  }
+  h1 {
+    margin: 0;
+  }
   header .navbar {
     // background: none;//rgba(0,0,0,0.6);
   }
   .sidebar {
     margin-bottom: 2em;
   }
-  .big-avatar {
+  .big.avatar {
     margin-right: 10px;
   }
   .nearby-labs {
@@ -108,9 +175,6 @@ li.all {
     .nearby-lab-name {
       font-weight: bold;
     }
-  }
-  h1 {
-    margin: 0 0 0.1em;
   }
   a.big-map-link {
     display: block;
@@ -142,7 +206,7 @@ input#lab_name {
 
 #map {
   position: absolute;
-  top: 0;
+  top: 45px;
   left: 0;
   width: 100%;
   height: 100%;

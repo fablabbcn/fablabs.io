@@ -1,130 +1,94 @@
 -# = @lab.admin_ids
 #header-bg.hidden-xs{style: "background-image: url('#{@lab.header_image_src}');"}
-.container
-  .row
-    .col-md-8.box
+.row
+  .columns.large-8
 
-      %ol.breadcrumb
-        %li= link_to Lab.to_s.pluralize, labs_path
-        %li
-          = link_to labs_path(country: @lab.country_code) do
-            %span.flag{class: "flag-#{@lab.country_code.downcase}"}
-            = @lab.country.name
-        %li.active= @lab
-
-      .media
-        = link_to @lab, class: 'pull-left' do
-          = cropped_image_tag @lab.avatar, '100x100', class: 'big-avatar'
-          -# = image_tag @lab.avatar, width: 100, class: 'big-avatar'
-        .media-body
-          = title @lab.name
-          .lab-contact-details
-            .lab-address= @lab.formatted_address
-            - if @lab.phone.present?
-              .lab-phone
-                %span.glyphicon.glyphicon-earphone
-                = @lab.phone
-            - if @lab.email.present?
-              .lab-email
-                %span.glyphicon.glyphicon-envelope
-                = mail_to @lab.email, @lab.email
-
-          -# - if current_or_null_user.has_role? :admin
-          -#   - @lab.current_state.events.keys.each do |event|
-          -#     = button_to "#{event.capitalize} Lab", {controller: 'labs', action: 'verify'}, method: :patch, class: 'btn btn-primary'
-
-      .btn-group.lab-actions
-
-        - if @lab.updatable_by? current_or_null_user
-          = link_to edit_lab_path(@lab), class: 'btn btn-primary' do
-            %span.glyphicon.glyphicon-edit
-            Edit Lab
-
-          -# = link_to manage_admins_lab_path(@lab), class: 'btn btn-success' do
-          -#   %span.glyphicon.glyphicon-user
-          -#   Manage Admins
-
-        - if @lab.deletable_by? current_or_null_user
-          = link_to @lab, class: 'btn btn-danger', method: 'delete', data: { confirm: "Are you sure?" } do
-            %span.glyphicon.glyphicon-remove
-            Delete Lab
-
-      .lab-description= simple_format @lab.description
-      %ul.lab-links
-        - @lab.links.each do |link|
-          %li= link_to link.url, link.url
-
-      %h4 Lab Staff
-      .row
-        -# - @lab.admins.each do |admin|
-        - User.all.limit(9).each do |admin|
-          .col-md-4
-            .media
-              = link_to admin, class: 'pull-left' do
-                = cropped_image_tag admin.avatar, 40, class: 'avatar small'
-              .media-body
-                .media-heading= link_to admin, admin
-                Lab Co-ordinator
-
-      - if current_or_null_user.can_apply?(@lab)
-        = link_to new_lab_role_application_path(@lab) do
-          %span.glyphicon.glyphicon-user
-          Apply to become an admin
-
-
-      -# %hr/
-
-      -# %ul.nav.nav-tabs
-      -#   %li.active= link_to "Contacts", "#"
-      -#   %li= link_to t('labs.show.lab_facilities'), "#"
-      -#   %li= link_to "External Links", "#"
-
-      -# %table.table
-      -#   %thead
-      -#     %tr
-      -#       %th Name
-      -#       %th Position
-      -#       %th Email
-      -#       %th Phone
-      -#   %tbody
-      -#     - 5.times do
-      -#       %tr
-      -#         %td= link_to "Tomas Diez", User.first
-      -#         %td Director
-      -#         %td= mail_to "tomas@fablabbcn.org", "tomas@fablabbcn.org"
-      -#         %td 0294280724
-
-    .col-md-4.sidebar
-      #lab-map{ data: { latitude: @lab.latitude, longitude: @lab.longitude }}
-      = link_to "https://maps.google.com", class: 'big-map-link' do
-        %span.glyphicon.glyphicon-fullscreen
-        View full-size map
-
-      %hr/
-
-      - if @nearby_labs and @nearby_labs.any?
-        %h5= t('labs.show.nearby_labs')
-        .nearby-labs
-          - @nearby_labs.each do |lab|
-            .media
-              = link_to lab, class: 'pull-left' do
-                = cropped_image_tag lab.avatar, '40x40'
-              .media-body
-                %h5.media-heading= link_to lab, lab, class: 'nearby-lab-name'
-                = "#{lab.distance.ceil}km away"
+    %ul.breadcrumbs
+      %li= link_to Lab.to_s.pluralize, labs_path
+      %li
         = link_to labs_path(country: @lab.country_code) do
-          Browse all labs in
-          %strong #{@lab.country}
-          »
+          %span.flag{class: "flag-#{@lab.country_code.downcase}"}
+          = @lab.country.name
+      %li.current= link_to @lab, @lab
+
+    .media
+      = link_to @lab, class: 'pull-left' do
+        = cropped_image_tag @lab.avatar, '100x100', class: 'big avatar'
+        -# = image_tag @lab.avatar, width: 100, class: 'big-avatar'
+      .media-body
+        = title @lab.name
+        .lab-contact-details
+          .lab-address= @lab.formatted_address
+          - if @lab.phone.present?
+            .lab-phone
+              %span.glyphicon.glyphicon-earphone
+              = @lab.phone
+          - if @lab.email.present?
+            .lab-email
+              %span.glyphicon.glyphicon-envelope
+              = mail_to @lab.email, @lab.email
+
+        -# - if current_or_null_user.has_role? :admin
+        -#   - @lab.current_state.events.keys.each do |event|
+        -#     = button_to "#{event.capitalize} Lab", {controller: 'labs', action: 'verify'}, method: :patch, class: 'button button-primary'
+
+    = render "action_buttons", lab: @lab
+
+    .lab-description= simple_format @lab.description
+    %ul.lab-links
+      - @lab.links.each do |link|
+        %li= link_to link.url, link.url
+
+    -# %h5 People
+    -# %ul.lab-staff.large-block-grid-3.small-block-grid-1
+    -#   - User.all.limit(6).each do |admin|
+    -#     %li
+    -#       = link_to admin, class: 'pull-left' do
+    -#         = cropped_image_tag admin.avatar, 40, class: 'avatar small'
+    -#       = link_to admin, admin
+    -#       Lab Co-ordinator
+
+    -# %table
+    -#   %thead
+    -#     %tr
+    -#       %th Name
+    -#       %th Position
+    -#       %th Email
+    -#       %th Phone
+    -#   %tbody
+    -#     - @people.each do |user|
+    -#       %tr
+    -#         %td= link_to user, user
+    -#         %td Director
+    -#         %td= mail_to user.email, user.email
+    -#         %td 0294280724
+
+  .columns.large-4.sidebar
+    #lab-map{ data: { latitude: @lab.latitude, longitude: @lab.longitude }}
+
+    - if @nearby_labs and @nearby_labs.any?
+      %h5= t('labs.show.nearby_labs')
+      .nearby-labs
+        - @nearby_labs.each do |lab|
+          .nearby-lab
+            = link_to lab, class: 'pull-left' do
+              = cropped_image_tag lab.avatar, '40x40'
+            .media-body
+              .media-heading= link_to lab, lab, class: 'nearby-lab-name'
+              = "#{lab.distance.ceil}km away"
+      = link_to labs_path(country: @lab.country_code) do
+        Browse all labs in
+        %strong #{@lab.country}
+        »
 
 
 
-      -# %hr/
+    -# %hr/
 
-      -# %h5= t('labs.show.lab_facilities')
-      -# %ul.list-group
-      -#   %li.list-group-item 3D Printing
-      -#   %li.list-group-item Vinyl Cutting
-      -#   %li.list-group-item Large Format CNC
-      -# = link_to "#" do
-      -#   More facilities details »
+    -# %h5= t('labs.show.lab_facilities')
+    -# %ul.list-group
+    -#   %li.list-group-item 3D Printing
+    -#   %li.list-group-item Vinyl Cutting
+    -#   %li.list-group-item Large Format CNC
+    -# = link_to "#" do
+    -#   More facilities details »

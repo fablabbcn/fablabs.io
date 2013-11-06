@@ -1,43 +1,78 @@
-header {
+@import "foundation_and_overrides";
 
-.nav .open > a, .nav .open > a:hover, .nav .open > a:focus,
-.nav > li > a:hover, .nav > li > a:focus {
-  background: none !important;
+#logo {
+   width: 30px;
+   margin-top: 8px;
+   // @media #{$medium} {
+   //    width: 70px;
+   // }
 }
-// .fablabs {
-//   font-weight: bold;
-//   color: #111;
-//   font-size: 1.3em;
-//   // text-shadow: 1px 1px 1px rgba(0,0,0,0.2);
-//   font-family: 'Roboto Slab';
-//   text-transform: lowercase;
-//   .labs {
-//     font-weight: normal;
-//   }
-//   .io {
-//     // text-transform: uppercase;
-//     display: inline;
-//     font-size: 0.5em;
-//     margin-left: -0.4em;
-//     vertical-align: super;
-//     // font-weight: normal;
-//   }
+// body.a-home {
+//   padding-top: 0;
 // }
-
-.navbar-collapse {
-  box-shadow: none !important;
+body {
+  padding-top: 60px;
 }
+header {
+  #locale {
+    display: none;
+  }
+  .form-group {
+    padding: 0 10px;
+  }
+  #locale-icon img {
+    vertical-align: middle;
+  }
 
+  .top-bar {
+    margin: 0;
+  }
 
-  #search-box{
+  // // margin-bottom: 40px;
+  // .a-home & {
+  //   margin-bottom: 0;
+  // }
+
+  .nav .open > a, .nav .open > a:hover, .nav .open > a:focus,
+  .nav > li > a:hover, .nav > li > a:focus {
+    background: none !important;
+  }
+  // .fablabs {
+  //   font-weight: bold;
+  //   color: #111;
+  //   font-size: 1.3em;
+  //   // text-shadow: 1px 1px 1px rgba(0,0,0,0.2);
+  //   font-family: 'Roboto Slab';
+  //   text-transform: lowercase;
+  //   .labs {
+  //     font-weight: normal;
+  //   }
+  //   .io {
+  //     // text-transform: uppercase;
+  //     display: inline;
+  //     font-size: 0.5em;
+  //     margin-left: -0.4em;
+  //     vertical-align: super;
+  //     // font-weight: normal;
+  //   }
+  // }
+
+  .navbar-collapse {
+    box-shadow: none !important;
+  }
+
+  nav.top-bar.expanded #search-box:focus {
+    width: 100%;
+  }
+  #search-box {
     border-radius: 2px;
-
     &:focus {
       width: 340px;
       transition: width 0.2s;
       // max-width: 100%;
     }
   }
+
   .user-avatar {
     margin-right: 5px;
     margin-top: -10px;

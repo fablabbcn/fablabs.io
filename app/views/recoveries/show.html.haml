@@ -1,13 +1,12 @@
-= title "Reset Your Password"
-
 .row
-  .col-md-3.col-centered
-
-    %p= @recovery.user.first_name
+  .columns.large-6.large-centered
+    = title "Reset Your Password"
+    %p
+      Hey #{@recovery.user.first_name}, enter your new password below
 
     = simple_form_for @recovery do |f|
       = render "form_errors", resource: @recovery
       = f.simple_fields_for :user do |u|
         = u.input :password
         = u.input :password_confirmation
-      = f.submit "Reset Password", class: 'btn btn-primary'
+      = f.submit "Reset Password", class: 'button'

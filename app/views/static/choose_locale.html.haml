@@ -7,12 +7,12 @@
 
     .modal-body
       .row
-        .col-md-4
+        .columns.large-4
           .media.locale
             = link_to root_path(locale: 'en'), class: 'pull-left' do
               = image_tag "locales/en.png"
             .media-body= link_to "English", root_path(locale: 'en')
-        .col-md-4
+        .columns.large-4
           .media.locale
             = link_to root_path(locale: 'es'), class: 'pull-left' do
               = image_tag "locales/es.png"
@@ -22,5 +22,5 @@
       %p
         Is your language not listed? You can help us by adding translations on
         = link_to "localeapp", "#"
-      -# %button.btn.btn-default{"data-dismiss" => "modal", type: "button"} Close
-      -# %button.btn.btn-primary{type: "button"} Save changes
+      -# %button.button.button-default{"data-dismiss" => "modal", type: "button"} Close
+      -# %button.button.button-primary{type: "button"} Save changes

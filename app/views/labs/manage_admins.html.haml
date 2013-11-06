@@ -1,11 +1,10 @@
-.container
-  .row
-    .col-md-12= title "Manage Admins for #{@lab}"
-    .col-md-12.box
-      = simple_form_for @lab do |f|
-        .field
-          %label Lab Creator
-          = link_to @lab.creator, @lab.creator
+.row
+  .columns.large-12= title "Manage Admins for #{@lab}"
+  .columns.large-12.box
+    = simple_form_for @lab do |f|
+      .field
+        %label Lab Creator
+        = link_to @lab.creator, @lab.creator
 
-        = f.input :admin_ids, collection: @users, label_method:  :full_name, value_method: :id, input_html: { multiple: true}, selected: @admins.map(&:id), label: "Other Admins"
-        = f.submit "Update", class: 'btn btn-primary btn-lg'
+      = f.input :admin_ids, collection: @users, label_method:  :full_name, value_method: :id, input_html: { multiple: true}, selected: @admins.map(&:id), label: "Other Admins"
+      = f.submit "Update", class: 'button button-primary button-lg'

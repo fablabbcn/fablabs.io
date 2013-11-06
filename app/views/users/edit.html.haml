@@ -1,21 +1,21 @@
-.container
-  .row
-    .col-md-12= title "Settings"
-    .col-md-12.box
-      = simple_form_for @user do |f|
+.row
+  .columns.large-12= title "Edit Your Settings"
+  .columns.large-12
+    = simple_form_for @user do |f|
+      %fieldset
         = render "form_errors", resource: @user
         .row
-          .col-md-1
+          .columns.large-1
             = f.label :first_name, "Name"
-          .col-md-3
+          .columns.large-3
             = f.input :first_name, label: false, placeholder: 'First'
-          .col-md-3
+          .columns.large-3.left
             = f.input :last_name, label: false, placeholder: 'Last'
         = f.input :email
 
-        %fieldset
-          .row
-            .col-md-2= image_tag @user.avatar, width: 100
-            .col-md-10= f.input :avatar_src, input_html: { class: 'fp' }, label: 'Avatar'
+      %fieldset
+        .row
+          .columns.large-2= image_tag @user.avatar, width: 100
+          .columns.large-10= f.input :avatar_src, input_html: { class: 'fp' }, label: 'Avatar'
 
-        = f.submit "Update", class: 'btn btn-primary btn-lg'
+      = f.submit "Update", class: 'button'

@@ -12,8 +12,12 @@
   }
 }
 
-.leaflet-top {
-  z-index: 10 !important;
+// .leaflet-top {
+//   z-index: 10 !important;
+// }
+
+.leaflet-top, .leaflet-bottom {
+  z-index: 30 !important;
 }
 
 .leaflet-cluster-anim .leaflet-marker-icon, .leaflet-cluster-anim .leaflet-marker-shadow {

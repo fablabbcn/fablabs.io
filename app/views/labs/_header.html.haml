@@ -1,11 +1,11 @@
 .view-as
   -# = I18n.t("labs.index.view_as", :default => "View as")
   -# \:
-  .btn-group
-    = link_to labs_path, class: "btn btn-default #{'active' if action_name == 'index'}" do
-      %span.glyphicon.glyphicon-list
-      = I18n.t("labs.index.list", :default => "List")
+  %ul.button-group
+    %li
+      = link_to labs_path, class: "button small #{'secondary' if action_name != 'index'}" do
+        = fa_icon "list", text: I18n.t("labs.index.list", :default => "List")
 
-    = link_to map_labs_path, class: "btn btn-default #{'active' if action_name == 'map'}" do
-      %span.glyphicon.glyphicon-globe
-      = I18n.t("labs.index.map", :default => "Map")
+    %li
+      = link_to map_labs_path, class: "button small #{'secondary' if action_name != 'map'}" do
+        = fa_icon "globe", text: I18n.t("labs.index.map", :default => "Map")

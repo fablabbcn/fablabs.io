@@ -87,4 +87,10 @@ describe User do
     expect(page).to have_content('sent')
   end
 
+  it "has show page" do
+    user = FactoryGirl.create(:user)
+    visit user_path(user)
+    expect(page).to have_css('h1', text: user.full_name)
+  end
+
 end

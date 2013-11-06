@@ -1,26 +1,36 @@
-- title "Home"
+- title "Welcome"
+
 
 #homepage-map
   .filter
   #homepage-search
-    %p Show me Fab Labs in...
-    = text_field_tag :search, current_country, autofocus: true
-    -# = submit_tag class: 'submit' do
-    = link_to "#", class: 'submit' do
-      %span.glyphicon.glyphicon-search
+    - if @country_labs
+      %p Show me Fab Labs in...
+      .row.collapse
+        .columns.small-9.large-10
+          = text_field_tag :search, current_country, style: "width: 100%; max-width: 100%;"
+        .columns.small-3.large-2
+          = link_to "#", class: 'submit' do
+            = fa_icon "search"
+    - else
+      %p Show me Fab Labs
+      = link_to labs_path, class: 'button large' do
+        = fa_icon "globe"
+        Around the World
 
-.near-me.stripe
-  .container
+- if @country_labs
+  .near-me.stripe
     .row
-      .col-md-2
+      .columns.large-2
         %h2 Fab Labs in #{current_country}...
-      .col-md-9.col-xs-10
+      .columns.large-9.small-10
         .row
           - @nearby_labs.each do |lab|
-            .col-md-4.lab-near-you
+            .columns.large-4.lab-near-you.left
               .media
-                = link_to lab, class: 'pull-left' do
-                  = cropped_image_tag lab.avatar, 60
+                .pull-left
+                  = link_to lab do
+                    = cropped_image_tag lab.avatar, 60, class: 'avatar med'
                 .media-body
                   = link_to lab, lab
                   .location
@@ -29,96 +39,94 @@
                   -# .distance
                   -#   %span.glyphicon.glyphicon-road
                   -#   10km Away
-      .col-xs-2.col-md-1
+      .columns.large-1.small-2
         = link_to labs_path(country: current_country.alpha2.downcase), class: 'more' do
-          -# %span.browse-more Browse More
-          %span.glyphicon.glyphicon-chevron-right
+          = fa_icon "chevron-right"
 
 .whats-a-fab-lab.stripe
-  .container
-    .row
-      .col-md-12
-        %h2 I'm new here, what's a Fab Lab?
-        %p Fab labs provide widespread access to modern means for invention. They began as an outreach project from MIT’s Center for Bits and Atoms (CBA), and became into a collaborative and global network. You can find more information about Fab Labs on the #{link_to "Fab Foundation Website", "#"}.
+  .row
+    .columns.large-12
+      %h2 I'm new here, what's a Fab Lab?
+      %p Fab labs provide widespread access to modern means for invention. They began as an outreach project from MIT’s Center for Bits and Atoms (CBA), and became into a collaborative and global network. You can find more information about Fab Labs on the #{link_to "Fab Foundation Website", "#"}.
 
 .whos-it-for.stripe
-  .container
-    .row
-      .col-md-12
-        %h2 So who is fablabs.io for?
-      .col-md-6
-        .media
-          .pull-left= image_tag "home-icons/enthusiast.png"
-          .media-body
-            %p
-              I'm an
-              %strong ENTHUSIAST
-              and I want to learn more about the global Fab Lab Network. Find labs near me. See what is happening in the labs around the world and maybe one day even open my own!
-      .col-md-6
-        .media
-          .pull-left= image_tag "home-icons/manager.png"
-          .media-body
-            %p
-              I'm a
-              %strong FAB LAB MANAGER
-              and I want to add my lab to the network. Then I'll be able to share content to my lab's profile page and interact with fellow users of the site.
-    .row
-      .col-md-12{style: "text-align: center"}
-        = link_to signup_path, class: 'btn btn-primary btn-lg big-signup' do
-          .glyphicon.glyphicon-check
-          Sign up
+  .row
+    .columns.large-12
+      %h2 So who is fablabs.io for?
+    .columns.large-6.case-study
+      .media
+        .pull-left= image_tag "home-icons/enthusiast.png"
+        .media-body
+          %p
+            I'm an
+            %strong ENTHUSIAST
+            and I want to learn more about the global Fab Lab Network. Find labs near me. See what is happening in the labs around the world and maybe one day even open my own!
+
+    .columns.large-6.case-study
+      .media
+        .pull-left= image_tag "home-icons/manager.png"
+        .media-body
+          %p
+            I'm a
+            %strong FAB LAB MANAGER
+            and I want to add my lab to the network. Then I'll be able to share content to my lab's profile page and interact with fellow users of the site.
+
+  .row
+    .columns.large-12{style: "text-align: center"}
+      = link_to signup_path, class: 'button large big-signup' do
+        .glyphicon.glyphicon-check
+        Sign up
 
 
 .stripe.what-can-you-do
-  .container
-    .features
-      .row
-        .col-md-12
-          %h2 And what can I do on the site?
-      .row
+  .features
+    .row
+      .columns.large-12
+        %h2 And what can I do on the site?
+    .row
 
-        .col-md-4
-          .media
-            .pull-left= image_tag "home-icons/profile.png"
-            .media-body
-              %h3 Lab Profiles
-              %p Each lab has its own profile page which can is maintained and updated by its staff
+      .columns.large-4
+        .row
+          .columns.small-4= image_tag "home-icons/profile.png"
+          .columns.small-8
+            %h3 Lab Profiles
+            %p Each lab has its own profile page which can is maintained and updated by its staff
 
-        .col-md-4
-          .media
-            .pull-left= image_tag "home-icons/bookmark.png"
-            .media-body
-              %h3 Favourite Labs
-              %p Bookmark your favourite labs in order to receive updates specific to them in the future
+      .columns.large-4
+        .row
+          .columns.small-4= image_tag "home-icons/bookmark.png"
+          .columns.small-8
+            %h3 Favourite Labs
+            %p Bookmark your favourite labs in order to receive updates specific to them in the future
 
-        .col-md-4
-          .media
-            .pull-left= image_tag "home-icons/map.png"
-            .media-body
-              %h3 World Map
-              %p An interactive map showing the location of all the Fab Labs around the world
+      .columns.large-4
+        .row
+          .columns.small-4= image_tag "home-icons/map.png"
+          .columns.small-8
+            %h3 World Map
+            %p An interactive map showing the location of all the Fab Labs around the world
 
-      .row
-        .col-md-12
-          %h2 What's coming next?
+    .row.coming-next
+      .columns.large-12
+        %h2 What's coming next?
 
-        .col-md-4
-          .media.coming-soon
-            .pull-left= image_tag "home-icons/clock.png"
-            .media-body
-              %h3 Opening Hours
-              %p See at a glance which labs are open now, and when they will be open
+      .columns.large-4
+        .row
+          .columns.small-4= image_tag "home-icons/clock.png"
+          .columns.small-8
+            %h3 Opening Hours
+            %p See at a glance which labs are open now, and when they will be open
 
-        .col-md-4
-          .media.coming-soon
-            .pull-left= image_tag "home-icons/calendar.png"
-            .media-body
-              %h3 Upcoming Events
-              %p A calendar of all upcoming events for the global Fab Lab Network
+      .columns.large-4
+        .row
+          .columns.small-4= image_tag "home-icons/calendar.png"
+          .columns.small-8
+            %h3 Upcoming Events
+            %p A calendar of all upcoming events for the global Fab Lab Network
 
-        .col-md-4
-          .media.coming-soon
-            .pull-left= image_tag "home-icons/discussions.png"
-            .media-body
-              %h3 Discussions
-              %p All users will have a place to discuss both general and lab-specific topics
+      .columns.large-4
+        .row
+          .columns.small-4= image_tag "home-icons/discussions.png"
+          .columns.small-8
+            %h3 Discussions
+            %p All users will have a place to discuss both general and lab-specific topics

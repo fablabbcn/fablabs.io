@@ -6,6 +6,23 @@ describe Lab do
   it { should have_many(:role_applications) }
   it { should have_many(:links) }
 
+  it "cannot use slug with reserved name" do
+    %w(labs users).each do |word|
+      expect{FactoryGirl.create(:lab, slug: word)}.to raise_error(ActiveRecord::RecordInvalid)
+    end
+  end
+
+
+  it "downcases email before creation" do
+    expect(FactoryGirl.create(:lab, email: "UPPER@CASE.com").email).to eq("upper@case.com")
+  end
+
+  it "disallows invalid email" do
+    ['invalid', 'not an email'].each do |email|
+      expect{FactoryGirl.create(:lab, email: email)}.to raise_error(ActiveRecord::RecordInvalid)
+    end
+  end
+
   %w(name description address_1 country_code creator).each do |requirement|
     it { should validate_presence_of(requirement) }
   end

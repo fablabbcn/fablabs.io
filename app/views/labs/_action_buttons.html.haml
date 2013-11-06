@@ -1,0 +1,15 @@
+%ul.button-group.lab-actions
+
+  %li
+    - if lab.updatable_by? current_or_null_user
+      = link_to edit_lab_path(lab), class: 'button small' do
+        = fa_icon "edit", text: "Edit Lab"
+
+      -# = link_to manage_admins_lab_path(lab), class: 'button button-success' do
+      -#   %span.glyphicon.glyphicon-user
+      -#   Manage Admins
+
+  %li
+    - if lab.deletable_by? current_or_null_user
+      = link_to lab, class: 'button alert small', method: 'delete', data: { confirm: "Are you sure?" } do
+        = fa_icon "trash-o", text: "Delete Lab"

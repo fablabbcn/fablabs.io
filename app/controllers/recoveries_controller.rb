@@ -32,7 +32,7 @@ class RecoveriesController < ApplicationController
         render :show
       end
     else
-      flash.now[:error] = "Can't be blank"
+      flash.now[:error] = "Password can't be blank"
       render :show
     end
   end

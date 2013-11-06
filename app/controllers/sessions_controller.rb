@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
       session[:user_id] = user.id
       redirect_to URI.parse(params[:goto]).path, flash: { success: "Signed in!" }, only_path: true
     else
-      flash[:error] = "Invalid email or password"
+      flash.now[:error] = "Invalid email or password"
       render "new"
     end
   end

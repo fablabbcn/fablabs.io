@@ -1,10 +1,6 @@
-= title "Sign in"
-:css
-  body {
-    background-image: url('#{cropped_image_path("http://www.fablabbcn.org/wp-content/uploads/2013/10/012.jpg", 2000)}');
-  }
+- title "Sign in"
 .row
-  .col-md-4.col-centered
+  .columns.large-4.large-centered
 
     -# .fablabs
     -#   %span fablabs
@@ -16,16 +12,16 @@
       -# = simple_form_for :signin, { url: sessions_path } do
       = hidden_field_tag :goto, params[:goto]
       .row
-        .col-md-12
+        .columns.large-12
           = label_tag :email, nil, class: 'hide'
           = text_field_tag :email, params[:email], placeholder: 'email', autofocus: params[:email].blank?, autocapitalize: "off", autocorrect: "off"
       .row
-        .col-xs-9
+        .columns.small-9
           = label_tag :password, nil, class: 'hide'
           = password_field_tag :password, nil, placeholder: 'password'
-        .col-xs-3.forgot
+        .columns.small-3.forgot
           = link_to "Forgot?", new_recovery_path
 
-      .actions= submit_tag "Sign in", class: 'btn btn-primary btn-lg'
+      .actions= submit_tag "Sign in", class: 'button'
 
       = link_to "Not yet a member? <strong>Sign up</strong>".html_safe, signup_path

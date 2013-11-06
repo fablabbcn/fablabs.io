@@ -2,10 +2,10 @@ module ApplicationHelper
 
   def flash_class(level)
     case level
-      when :notice then "alert alert-info"
-      when :success then "alert alert-success"
-      when :error then "alert alert-danger"
-      when :alert then "alert alert-warning"
+      when :notice then "flash alert alert-info"
+      when :success then "flash alert alert-success"
+      when :error then "flash alert alert-danger"
+      when :alert then "flash alert alert-warning"
     end
   end
 

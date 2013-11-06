@@ -13,23 +13,31 @@ GIT
 
 GIT
   remote: git://github.com/alexreisner/geocoder.git
-  revision: b2d000c41559483dcb8e423097998d9ebb4b9bf8
+  revision: 58a1938e21afb5772f22658e8d7afa1f240b93b0
   specs:
     geocoder (1.1.8)
-
-GIT
-  remote: git://github.com/anjlab/bootstrap-rails.git
-  revision: 834e6f2cd82acc30b362c56a7e60bcc9d990015f
-  specs:
-    anjlab-bootstrap-rails (3.0.0.3)
-      railties (>= 3.0)
-      sass (>= 3.2)
 
 GIT
   remote: git://github.com/bmabey/database_cleaner.git
   revision: 6da38c4c1a565bbcc62ed9b84c2574537c6ebae2
   specs:
     database_cleaner (1.2.0)
+
+GIT
+  remote: git://github.com/bokmann/font-awesome-rails.git
+  revision: 25bd7287274897a22dd03d35b9fe7faa9a3b9dbe
+  specs:
+    font-awesome-rails (4.0.1.0)
+      railties (>= 3.2, < 5.0)
+
+GIT
+  remote: git://github.com/ernie/ransack.git
+  revision: 4e228bcc0fbd20371b921ae15422b460323a5a3e
+  specs:
+    ransack (1.0.0)
+      actionpack (>= 3.0)
+      activerecord (>= 3.0)
+      polyamorous (~> 0.6.0)
 
 GIT
   remote: git://github.com/geekq/workflow.git
@@ -60,7 +68,7 @@ GIT
 
 GIT
   remote: git://github.com/norman/friendly_id.git
-  revision: 0064ef1dd063043c5414612dae7691a0887b0ae6
+  revision: 59dbe5e8326af74093e215ec62411e8d6e83d948
   specs:
     friendly_id (5.0.1)
       activerecord (~> 4.0.0)
@@ -109,6 +117,7 @@ GEM
       timers (~> 1.1.0)
     childprocess (0.3.9)
       ffi (~> 1.0, >= 1.0.11)
+    chunky_png (1.2.9)
     codeclimate-test-reporter (0.1.1)
       simplecov (>= 0.7.1, < 1.0.0)
     coderay (1.0.9)
@@ -119,22 +128,29 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.6.3)
+    compass (0.12.2)
+      chunky_png (~> 1.2)
+      fssm (>= 0.2.7)
+      sass (~> 3.1)
+    compass-rails (1.0.3)
+      compass (>= 0.12.2, < 0.14)
     country_select (1.2.0)
     currencies (0.4.2)
     diff-lcs (1.2.4)
     erubis (2.7.0)
     execjs (2.0.2)
-    factory_girl (4.2.0)
+    factory_girl (4.3.0)
       activesupport (>= 3.0.0)
-    factory_girl_rails (4.2.1)
-      factory_girl (~> 4.2.0)
+    factory_girl_rails (4.3.0)
+      factory_girl (~> 4.3.0)
       railties (>= 3.0.0)
-    ffi (1.9.2)
+    ffi (1.9.3)
     figaro (0.7.0)
       bundler (~> 1.0)
       rails (>= 3, < 5)
     formatador (0.2.4)
-    guard (2.2.2)
+    fssm (0.2.10)
+    guard (2.2.3)
       formatador (>= 0.2.4)
       listen (~> 2.1)
       lumberjack (~> 1.0)
@@ -162,6 +178,9 @@ GEM
       railties (>= 3.1.0)
       turbolinks
     json (1.8.1)
+    kaminari (0.14.1)
+      actionpack (>= 3.0.0)
+      activesupport (>= 3.0.0)
     launchy (2.3.0)
       addressable (~> 2.3)
     letter_opener (1.1.2)
@@ -186,6 +205,8 @@ GEM
       activerecord (>= 3.1)
       activesupport (>= 3.1)
       arel
+    polyamorous (0.6.4)
+      activerecord (>= 3.0)
     polyglot (0.3.3)
     pry (0.9.12.2)
       coderay (~> 1.0.5)
@@ -280,24 +301,27 @@ GEM
     websocket (1.0.7)
     xpath (2.0.0)
       nokogiri (~> 1.3)
+    zurb-foundation (4.0.9)
+      sass (>= 3.2.0)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
   active_model_serializers
-  anjlab-bootstrap-rails!
   authority!
   bcrypt-ruby (~> 3.0.0)
   capybara
   cocoon!
   codeclimate-test-reporter
   coffee-rails (~> 4.0.0)
+  compass-rails
   countries!
   country_select
   database_cleaner!
   factory_girl_rails
   figaro
+  font-awesome-rails!
   friendly_id!
   geocoder!
   guard-rspec
@@ -306,12 +330,14 @@ DEPENDENCIES
   jbuilder (~> 1.2)
   jquery-rails
   jquery-turbolinks
+  kaminari
   launchy
   letter_opener
   pg
   pg_search
   quiet_assets
   rails (= 4.0.0)
+  ransack!
   rolify!
   rspec-rails
   sass-rails (~> 4.0.0)
@@ -322,3 +348,4 @@ DEPENDENCIES
   turbolinks
   uglifier (>= 1.3.0)
   workflow!
+  zurb-foundation (~> 4.0.0)

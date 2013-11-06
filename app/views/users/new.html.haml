@@ -1,40 +1,39 @@
-.container
-  .row
-    .col-md-12
-      = title "Sign Up"
-  .row
-    .col-md-7.box
-      = simple_form_for @user do |f|
-        = render "form_errors", resource: @user
-        .row
-          .col-md-1
-            = f.label :first_name, "Name"
-          .col-md-4
-            = f.input :first_name, autofocus: true, placeholder: 'First Name', label: false
-          .col-md-4
-            = f.input :last_name, placeholder: 'Last Name', label: false
-        = f.input :email, autocapitalize: "off", autocorrect: "off"
-        .row
-          .col-md-6
-            = f.input :password
-          .col-md-6
-            = f.input :password_confirmation
-        .row
-          .col-md-12
-            = f.input :country_code, as: 'country', priority: [current_country.alpha2.downcase], label: 'Country', iso_codes: true
+.row
+  .columns.large-12
+    = title "Sign Up"
 
-        = f.submit 'Sign Up', class: 'btn btn-primary btn-lg'
+  .columns.large-7
+    = simple_form_for @user do |f|
+      = render "form_errors", resource: @user
+      .row
+        .columns.large-3.your-name
+          = f.label :first_name, "Your Name"
+        .columns.large-4
+          = f.input :first_name, autofocus: true, placeholder: 'First Name', label: false
+        .columns.large-4.left
+          = f.input :last_name, placeholder: 'Last Name', label: false
+      = f.input :email, autocapitalize: "off", autocorrect: "off"
+      .row
+        .columns.large-6
+          = f.input :password
+        .columns.large-6
+          = f.input :password_confirmation
+      .row
+        .columns.large-12
+          = f.input :country_code, as: 'country', priority: [current_country.alpha2.downcase], label: 'Country', iso_codes: true
 
-    .col-md-4
-      %h4 Joining the Network
-      %p We want all different types of people to engage with the global Fab Lab network
-      %ul
-        %li Students
-        %li Professionals
-        %li Fab Lab Staff
-        %li Hobbyists
+      = f.submit 'Sign Up', class: 'button'
 
-      = image_tag "icons/safe.png"
+  .columns.large-4
+    %h4 Joining the Network
+    %p We want all different types of people to engage with the global Fab Lab network
+    %ul
+      %li Students
+      %li Professionals
+      %li Fab Lab Staff
+      %li Hobbyists
 
-      %h4 What are the benefits?
-      %p Once you join you'll be able to participate in discussions, follow certain labs etc..
+    = image_tag "icons/safe.png"
+
+    %h4 What are the benefits?
+    %p Once you join you'll be able to participate in discussions, follow certain labs etc..

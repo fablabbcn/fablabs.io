@@ -3,9 +3,16 @@ source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0'
+gem 'jquery-turbolinks'
+gem 'ransack', github: "ernie/ransack"
 gem 'authority', github: 'nathanl/authority'
 gem 'rolify', github: 'EppO/rolify'
-gem 'anjlab-bootstrap-rails', github: 'anjlab/bootstrap-rails', require: 'bootstrap-rails'
+gem 'font-awesome-rails', github: 'bokmann/font-awesome-rails'
+gem 'compass-rails' # you need this or you get an err
+gem 'zurb-foundation', '~> 4.0.0'
+# gem 'kaminari_themes', github: 'linojon/kaminari_themes'
+gem 'kaminari'
+# gem 'anjlab-bootstrap-rails', github: 'anjlab/bootstrap-rails', require: 'bootstrap-rails'
 gem 'geocoder', github: 'alexreisner/geocoder'
 # Use sqlite3 as the database for Active Record
 gem 'workflow', github: 'geekq/workflow'
@@ -18,7 +25,6 @@ gem 'simple_form'
 gem 'countries', github: "hexorx/countries"
 gem 'country_select'
 gem 'active_model_serializers'
-gem 'jquery-turbolinks'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 gem 'haml-rails'

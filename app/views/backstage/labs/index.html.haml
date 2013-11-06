@@ -1,22 +1,21 @@
-.container
-  .row
-    .col-md-12
-      = title "Labs"
-      %table.table
-        %thead
-          %tr
-            %th ID
-            %th Name
-            %th Creator
-            %th Slug
-            %th State
-            %th Created at
-        %tbody
-          - @labs.each do |lab|
-            = content_tag_for :tr, lab do
-              %td= lab.id
-              %td= link_to lab, backstage_lab_path(lab)
-              %td= link_to lab.creator, lab.creator
-              %td= lab.slug
-              %td= lab.current_state
-              %td= lab.created_at#l(lab.created_at, format: :short)
+.row
+  .columns.large-12
+    = title "Labs"
+    %table.table
+      %thead
+        %tr
+          %th= sort_link @q, :id
+          %th= sort_link @q, :name
+          %th= sort_link @q, 'creator_first_name'
+          %th= sort_link @q, :slug
+          %th= sort_link @q, :state
+          %th= sort_link @q, :created_at
+      %tbody
+        - @labs.each do |lab|
+          = content_tag_for :tr, lab do
+            %td= lab.id
+            %td= link_to lab, backstage_lab_path(lab)
+            %td= link_to lab.creator, lab.creator
+            %td= lab.slug
+            %td= lab.current_state
+            %td= lab.created_at#l(lab.created_at, format: :short)

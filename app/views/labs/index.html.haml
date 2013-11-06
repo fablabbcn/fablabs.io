@@ -1,42 +1,44 @@
 - title "Labs"
-.container
-  .row.row-offcanvas.row-offcanvas-right
-    .col-md-9.box
 
-      %ol.breadcrumb
-        - if params[:country].present?
-          %li= link_to Lab.to_s.pluralize, labs_path
-          %li
-            = link_to labs_path(country: params[:country]) do
-              %span.flag{class: "flag-#{params[:country]}"}
-              = Country[params[:country]]
-        - else
-          %li= Lab.to_s.pluralize
+.row
+  .columns.large-8
 
-      - if params[:q]
-        .search-results
-          -# %button.close{type: "button", data: { dismiss: "alert"}, aria: { hidden: true}} ×
-          = link_to "×", labs_path, class: 'close'
-          #{pluralize @labs.size, "search result"} for
-          %strong= params[:q]
+    %ul.breadcrumbs
+      %li= link_to Lab.to_s.pluralize, labs_path
+      - if params[:country].present?
+        %li.current
+          = link_to labs_path(country: params[:country]) do
+            %span.flag{class: "flag-#{params[:country]}"}
+            = Country[params[:country]]
+      - else
+        %li.current= link_to "All Countries", labs_path
 
-      .labs
-        = render @labs
-      - if Lab.creatable_by? current_or_null_user
-        = link_to I18n.t("labs.index.add_a_lab", :default => "Add a Lab"), new_lab_path, class: 'btn btn-primary'
+    - if params[:q]
+      .search-results
+        -# %button.close{type: "button", data: { dismiss: "alert"}, aria: { hidden: true}} ×
+        = link_to "×", labs_path, class: 'close'
+        #{pluralize @labs.size, "search result"} for
+        %strong= params[:q]
 
-    .col-md-3.sidebar-offcanvas
-      = render "header"
+    .labs
+      = render @labs
+    - if Lab.creatable_by? current_or_null_user
+      = link_to I18n.t("labs.index.add_a_lab", :default => "Add a Lab"), new_lab_path, class: 'button'
 
-      %ul.nav.nav-pills.nav-stacked
-        %li.all{class: ('active' if params[:country].blank?)}
-          = link_to url_for(params.merge(country: nil)) do
-            = I18n.t("labs.index.all_countries", :default => "All Countries")
-            %span.badge.pull-right= @count
+    = paginate @labs
 
-        - @countries.each do |country,country_code,count|
-          %li{class: ('active' if params[:country] == country_code)}
-            -# %div{class: "flag flag-#{country[1].downcase} pull-left"}
-            = link_to url_for(params.merge(country: country_code)) do
-              = country
-              %span.badge.pull-right= count
+  .columns.large-4.sidebar-offcanvas
+    = render "header"
+
+    %ul.side-nav
+      %li.all{class: ('active' if params[:country].blank?)}
+        = link_to url_for(params.merge(country: nil)) do
+          = I18n.t("labs.index.all_countries", :default => "All Countries")
+          %span.badge.pull-right= @count
+
+      - @countries.each do |country,country_code,count|
+        %li{class: ('active' if params[:country] == country_code)}
+          -# %div{class: "flag flag-#{country[1].downcase} pull-left"}
+          = link_to url_for(params.merge(country: country_code)) do
+            = country
+            %span.badge.pull-right= count

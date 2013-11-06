@@ -2,7 +2,7 @@
 %html
   %head
     %title= content_for?(:title) ? "#{yield(:title)} | FabLabs" : "FabLabs"
-    %meta{ name: "viewport", content: "width=device-width" }
+    %meta{ name: "viewport", content: "width=device-width, initial-scale=1.0, user-scalable=no" }
     = render 'application/map_icons'
     = javascript_include_tag "//maps.googleapis.com/maps/api/js?sensor=false&libraries=places"
     = stylesheet_link_tag    "//cdn.leafletjs.com/leaflet-0.6.4/leaflet.css", "http://fonts.googleapis.com/css?family=Montserrat|Roboto+Slab:400,700"
@@ -10,27 +10,31 @@
     = stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true
     = javascript_include_tag "application", "data-turbolinks-track" => true
     = javascript_include_tag "//api.filepicker.io/v1/filepicker.js"
+    = javascript_include_tag "vendor/custom.modernizr"
     = csrf_meta_tags
 
+    -# :css
+    -#   body.a-home {
+    -#     background: center center fixed url('#{cropped_image_path("http://www.fablabbcn.org/wp-content/uploads/2013/10/012.jpg", 2000)}');
+    -#     background-size: cover;
+    -#   }
+
   %body{ class: body_classes }
+    - if flash.any?
+      - flash.each do |name, msg|
+        = content_tag :div, msg, class: flash_class(name)
     = render "application/please_verify" if current_user and current_user.unverified?
     = render "application/header"
-    .container#main
-      - if flash.any?
-        .row
-          .col-md-12
-          - flash.each do |name, msg|
-            = content_tag :div, msg, class: flash_class(name)
-    = yield
+    #main
+      = yield
 
     %footer
-      .container
-        .row
-          .col-xs-3.col-md-2
-            = image_tag "footer-logo.png"
-          .col-xs-9.col-md-10
-            %ul
-              %li= link_to "Labs List", labs_path
-              %li= link_to "World Map", map_labs_path
-              %li= link_to "About", about_path
-              %li= link_to "The Fab Foundation", "http://www.fabfoundation.org"
+      .row
+        .columns.small-2
+          = image_tag "footer-logo.png"
+        .columns.small-10
+          %ul
+            %li= link_to "Labs List", labs_path
+            %li= link_to "World Map", map_labs_path
+            %li= link_to "About", about_path
+            %li= link_to "The Fab Foundation", "http://www.fabfoundation.org"

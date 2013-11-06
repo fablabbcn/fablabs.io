@@ -7,10 +7,10 @@ class LabsController < ApplicationController
   end
 
   def index
-    all_labs = Lab.search(params[:q]).with_approved_state
+    all_labs = Lab.search_for(params[:q]).with_approved_state
     @countries = Lab.country_list_for all_labs
     @count = all_labs.size
-    @labs = all_labs.in_country_code(params["country"])
+    @labs = all_labs.in_country_code(params["country"]).page(params['page'])
 
     respond_to do |format|
       format.html
@@ -35,8 +35,9 @@ class LabsController < ApplicationController
   end
 
   def show
-    @lab = Lab.friendly.find(params[:id])
-    @nearby_labs = @lab.nearbys(500)
+    @lab = Lab.with_approved_state.friendly.find(params[:id])
+    @people = [@lab.creator]
+    @nearby_labs = @lab.nearby_labs
     authorize_action_for @lab
   end
 

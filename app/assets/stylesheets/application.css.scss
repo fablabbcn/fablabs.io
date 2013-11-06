@@ -10,21 +10,42 @@
  *
  *= require_self
  *= require Control.Loading.css
+ *= require select2
+ *= require intlTelInput
  *= require_tree .
  */
 
-$brand-primary: #34649e;
-$navbar-height: 70px;
-// $navbar-inverse-bg: #444;
-// $navbar-inverse-link-color: #DDD;
-$navbar-link-color: #9D99A1;
-// $dropdown-bg: #222;
-// $dropdown-link-color: #AAA;
-// $navbar-inverse-link-active-color: #FFF;
-// $navbar-inverse-link-active-bg: rgba(0,0,0,0.1);
-@import "twitter/bootstrap";
+@import "foundation_and_overrides";
+@import "font-awesome";
 
-.avatar.small {
+// #lab_phone {
+//   padding-left: 40px;
+// }
+
+.avatar {
+  &.med {
+    width: 60px;
+    height: 60px;
+  }
+  &.big {
+    width: 100px;
+    height: 100px;
+  }
+}
+
+.input input {
+  margin-bottom: 0;
+}
+
+.select2-container {
+  display: block !important;
+}
+
+.lab-contact-details {
+  line-height: 1.2em;
+}
+
+.avatar {
   border-radius: 4px;
 }
 
@@ -61,13 +82,6 @@ body {
   text-size-adjust:none;
   // margin: 0 0 180px; /* bottom = footer height */
   background: #F2F2F2;
-}
-
-.alert {
-  position: fixed;
-  bottom: 10px;
-  right: 20px;
-  z-index: 500;
 }
 
 .container {

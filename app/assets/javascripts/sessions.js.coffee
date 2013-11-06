@@ -2,6 +2,7 @@
 #= require jquery.turbolinks
 #= require jquery_ujs
 #= require turbolinks
+#= require alerts
 
-$(document).ready ->
-  $(".alert").hide().delay(100).fadeIn('fast').delay(3000).fadeOut('slow')
+jQuery ->
+  $('.flash').hide().fadeIn('fast').delay(2000).fadeOut('fast')

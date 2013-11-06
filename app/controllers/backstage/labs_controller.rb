@@ -1,7 +1,10 @@
 class Backstage::LabsController < Backstage::BackstageController
 
   def index
-    @labs = Lab.order(id: :desc)
+    @q = Lab.search(params[:q])
+    @q.sorts = 'id desc' if @q.sorts.empty?
+    @labs = @q.result#(distinct: true)
+    # @labs = Lab.order(id: :desc)
   end
 
   def show
