@@ -6,7 +6,7 @@ describe Lab do
   it { should have_many(:role_applications) }
   it { should have_many(:links) }
   it { should have_many(:facilities) }
-  it { should have_many(:tools).through(:facilities) }
+  # it { should have_many(:tools).through(:facilities) }
 
   it "cannot use slug with reserved name" do
     %w(labs users).each do |word|
@@ -83,6 +83,15 @@ describe Lab do
     expect(lab.creator).to_not have_role(:admin, lab)
     lab.approve!
     expect(lab.creator).to have_role(:admin, lab)
+  end
+
+  it "has many tools/facilities" do
+    lab = FactoryGirl.create(:lab)
+    tool = FactoryGirl.create(:tool)
+    lab.tools << tool
+    expect(lab.tools).to include(tool)
+    expect(lab.facilities).to include(tool.facilities.first)
+    expect(tool.labs).to include(lab)
   end
 
 end

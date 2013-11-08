@@ -25,13 +25,14 @@ ActiveRecord::Schema.define(version: 20131108084351) do
 
   create_table "facilities", force: true do |t|
     t.integer  "lab_id"
-    t.integer  "tool_id"
+    t.integer  "thing_id"
+    t.string   "thing_type"
     t.text     "notes"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "facilities", ["lab_id", "tool_id"], name: "index_facilities_on_lab_id_and_tool_id", unique: true, using: :btree
+  add_index "facilities", ["lab_id", "thing_type", "thing_id"], name: "index_facilities_on_lab_id_and_thing_type_and_thing_id", unique: true, using: :btree
 
   create_table "featured_images", force: true do |t|
     t.string   "src"
