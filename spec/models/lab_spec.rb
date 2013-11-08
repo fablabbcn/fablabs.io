@@ -5,6 +5,8 @@ describe Lab do
   pending "MOAR TESTS"
   it { should have_many(:role_applications) }
   it { should have_many(:links) }
+  it { should have_many(:facilities) }
+  it { should have_many(:tools).through(:facilities) }
 
   it "cannot use slug with reserved name" do
     %w(labs users).each do |word|

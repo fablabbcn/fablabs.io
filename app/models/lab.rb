@@ -5,6 +5,8 @@ class Lab < ActiveRecord::Base
 
   has_many :role_applications
   has_many :links
+  has_many :facilities
+  has_many :tools, through: :facilities
   accepts_nested_attributes_for :links, reject_if: lambda{ |l| l[:url].blank? }, allow_destroy: true
 
   scope :search_for, ->(q) { search_by_name(q) if q.present?}

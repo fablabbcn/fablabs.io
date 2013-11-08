@@ -2,6 +2,13 @@
 
 FactoryGirl.define do
 
+
+  factory :facility do
+    lab
+    tool
+    notes "cool tool"
+  end
+
   factory :link do
     lab
     url "http://www.fablabbcn.org/"
