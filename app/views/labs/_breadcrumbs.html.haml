@@ -1,0 +1,7 @@
+%ul.breadcrumbs
+  %li= link_to Lab.to_s.pluralize, labs_path
+  %li
+    = link_to labs_path(country: lab.country_code) do
+      %span.flag{class: "flag-#{lab.country_code.downcase}"}
+      = lab.country.name
+  %li.current= link_to lab, lab

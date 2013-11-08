@@ -1,0 +1,23 @@
+-# %h5 People
+-# %ul.lab-staff.large-block-grid-3.small-block-grid-1
+-#   - User.all.limit(6).each do |admin|
+-#     %li
+-#       = link_to admin, class: 'pull-left' do
+-#         = cropped_image_tag admin.avatar, 40, class: 'avatar small'
+-#       = link_to admin, admin
+-#       Lab Co-ordinator
+
+-# %table
+-#   %thead
+-#     %tr
+-#       %th Name
+-#       %th Position
+-#       %th Email
+-#       %th Phone
+-#   %tbody
+-#     - @people.each do |user|
+-#       %tr
+-#         %td= link_to user, user
+-#         %td Director
+-#         %td= mail_to user.email, user.email
+-#         %td 0294280724
