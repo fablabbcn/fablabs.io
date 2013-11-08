@@ -3,7 +3,7 @@
 
   %fieldset
     %legend Basic Details
-    = f.input :name, autofocus: lab.name.blank?
+    = f.input :name, autofocus: lab.name.blank?, label: 'Fab Lab Name'
     = f.input :description, hint: 'A brief overview of the lab', input_html: { rows: 4 }
     = f.input :slug, hint: "This is the 'username' of the lab, it will be in the URL" do
       .row.collapse

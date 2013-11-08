@@ -44,7 +44,6 @@ ActiveRecord::Schema.define(version: 20131101174845) do
     t.string   "email"
     t.string   "address_1"
     t.string   "address_2"
-    t.string   "address_3"
     t.string   "city"
     t.string   "county"
     t.string   "postal_code"
@@ -131,6 +130,7 @@ ActiveRecord::Schema.define(version: 20131101174845) do
     t.text     "bio"
     t.string   "my_locale"
     t.string   "my_timezone"
+    t.boolean  "use_metric",            default: true
     t.string   "email_validation_hash"
     t.datetime "created_at"
     t.datetime "updated_at"

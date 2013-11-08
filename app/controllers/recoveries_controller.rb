@@ -11,10 +11,13 @@ class RecoveriesController < ApplicationController
     @recovery = Recovery.new recovery_params
     @recovery.ip = request.remote_ip
     if @recovery.save
-      render :check_inbox
+      redirect_to check_inbox_recoveries_url
     else
       render :new
     end
+  end
+
+  def check_inbox
   end
 
   def show

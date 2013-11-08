@@ -18,4 +18,7 @@
           .columns.large-2= image_tag @user.avatar, width: 100
           .columns.large-10= f.input :avatar_src, input_html: { class: 'fp' }, label: 'Avatar'
 
+      %fieldset
+        = f.input :use_metric, :collection => [[true, 'Metric - cm/m/km'], [false, 'Imperial - in/ft/mi']], :label_method => :last, :value_method => :first, :as => :radio_buttons, :label => "Preferred units"
+
       = f.submit "Update", class: 'button'

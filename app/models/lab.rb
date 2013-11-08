@@ -41,7 +41,7 @@ class Lab < ActiveRecord::Base
   end
 
   def formatted_address
-    [address_1, address_2, address_3, city, postal_code, country]
+    [address_1, address_2, city, county, postal_code, country]
     .reject(&:blank?).join(", ")
   end
 

@@ -10,7 +10,11 @@ Fablabs::Application.routes.draw do
   resources :users, path: 'u'
 
   resources :sessions
-  resources :recoveries
+  resources :recoveries do
+    collection do
+      get :check_inbox
+    end
+  end
 
   get "signout" => "sessions#destroy", :as => "signout"
   get "signin" => "sessions#new", :as => "signin"

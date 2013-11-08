@@ -96,6 +96,7 @@ describe Lab do
       fill_in 'Name', with: 'New Lab'
       fill_in 'Description', with: 'An awesome place'
       fill_in 'lab_address_1', with: 'Mars'
+      fill_in 'lab_links_attributes_0_url', with: 'http://www.newlab.com'
       select 'United Kingdom', from: 'Country'
       fill_in 'Slug', with: 'newlab'
       click_button 'Add Lab'
