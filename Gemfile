@@ -57,12 +57,12 @@ end
 group :test, :development do
   gem "rspec-rails"
   gem 'holder_rails', github: 'NARKOZ/holder_rails'
+  gem "factory_girl_rails"
 end
 group :test do
   gem "launchy"
   gem "selenium-webdriver"
   # gem "nyan-cat-formatter"
-  gem "factory_girl_rails"
   gem "capybara"
   gem "guard-rspec"
   gem "shoulda-matchers"

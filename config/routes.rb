@@ -8,6 +8,7 @@ Fablabs::Application.routes.draw do
   end
 
   resources :users, path: 'u'
+  resources :tools
 
   resources :sessions
   resources :recoveries do
