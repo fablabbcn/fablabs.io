@@ -2,3 +2,49 @@
   .columns.large-12
     = render "backstage/header"
     = title @user
+    %table.table
+      %tbody
+        %tr
+          %th URL
+          %td= link_to user_url(@user), @user
+        %tr
+          %th State
+          %td= @user.current_state
+        %tr
+          %th Avatar
+          %td= @user.avatar
+        %tr
+          %th Email
+          %td= @user.email
+        -# %tr
+        -#   %th Address
+        -#   %td= @user.address
+        -# %tr
+        -#   %th Country
+        -#   %td= @user.country
+        %tr
+          %th URL
+          %td= @user.url
+        %tr
+          %th DOB
+          %td= @user.dob
+        %tr
+          %th Bio
+          %td= simple_format @user.bio
+        %tr
+          %th Locale
+          %td= @user.locale
+        %tr
+          %th Use Metric?
+          %td= @user.use_metric
+        -# %tr
+        -#   %th Timezone
+        -#   %td= @user.timezone
+        %tr
+          %th Joined
+          %td= @user.created_at
+        %tr
+          %th Updated
+          %td= @user.updated_at
+
+    = link_to "Edit User", edit_user_path(@user), class: 'button'
