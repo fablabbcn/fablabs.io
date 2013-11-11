@@ -24,11 +24,11 @@
         %ul.right
           - if current_user
             %li.has-dropdown
-              = link_to "#", class: 'dropdown-toggle', data: { toggle: 'dropdown'} do
+              = link_to current_user, class: 'dropdown-toggle', data: { toggle: 'dropdown'} do
                 = cropped_image_tag current_user.avatar, '30x30', class: 'user-avatar'
                 = current_user.first_name
                 - if current_or_null_user.has_role? :admin
-                  %span.gem-count= Lab.with_unverified_state.size
+                  = gem_count_tag Lab.with_unverified_state.size
                 %b.caret
               %ul.dropdown
                 %li
@@ -39,7 +39,7 @@
                     = link_to backstage_root_path do
                       = fa_icon "gamepad"
                       Backstage
-                      %span.gem-count= Lab.with_unverified_state.size
+                      = gem_count_tag Lab.with_unverified_state.size
                 %li
                   = link_to signout_path do
                     = fa_icon "sign-out", text: "Sign out"

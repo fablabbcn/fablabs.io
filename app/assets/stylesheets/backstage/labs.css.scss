@@ -5,4 +5,7 @@
   table {
     width: 100%;
   }
+  tr.unverified td {
+    background: pink;
+  }
 }

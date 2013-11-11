@@ -1,5 +1,9 @@
 module ApplicationHelper
 
+  def gem_count_tag(count)
+    content_tag(:span, count, class: 'gem-count') if count > 0
+  end
+
   def backstage?
     controller.class.parent == Backstage
   end

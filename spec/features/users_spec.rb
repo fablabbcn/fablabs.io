@@ -84,7 +84,7 @@ describe User do
     signin user
     click_link "Resend Verification Email"
     expect(last_email.to).to include(user.email)
-    expect(page).to have_content('sent')
+    expect(page).to have_content('Thanks')
   end
 
   it "has show page" do
