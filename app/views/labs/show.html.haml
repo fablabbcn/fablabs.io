@@ -10,6 +10,7 @@
         %li= link_to link.url, link.url
 
     = render "people", people: @people
+    = render "discussions", lab: @lab
 
   .columns.large-4.sidebar
     = render "minimap", lab: @lab
