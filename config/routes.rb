@@ -1,4 +1,6 @@
 Fablabs::Application.routes.draw do
+  resources :discussions
+
   resources :featured_images
 
   get "verify_email(/:id)", to: "users#verify_email", as: "verify_email"

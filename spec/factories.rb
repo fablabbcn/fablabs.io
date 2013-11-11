@@ -2,6 +2,13 @@
 
 FactoryGirl.define do
 
+  factory :discussion do
+    title "MyString"
+    body "MyText"
+    association :discussable, factory: :lab
+    creator
+    workflow_state "MyString"
+  end
 
   factory :facility do
     lab

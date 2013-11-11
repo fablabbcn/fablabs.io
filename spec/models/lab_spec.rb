@@ -6,6 +6,7 @@ describe Lab do
   it { should have_many(:role_applications) }
   it { should have_many(:links) }
   it { should have_many(:facilities) }
+  pending { should have_many(:discussions) }
   # it { should have_many(:tools).through(:facilities) }
 
   it "cannot use slug with reserved name" do
