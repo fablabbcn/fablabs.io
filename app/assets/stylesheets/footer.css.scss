@@ -1,20 +1,22 @@
 // Sticky footer courtesy of http://mystrd.at/modern-clean-css-sticky-footer/
 
 footer {
-  display: none;
+  // display: none;
   position: absolute;
   left: 0;
   bottom: 0;
   height: 180px;
   width: 100%;
-  background: #222;
+  background: #FFF;
   margin-top: 40px;
   padding-top: 20px;
-  font-size: 1em;
+  font-size: 0.8em;
   line-height: 1.8em;
+  border-top: 1px solid #DDD;
 
   img {
     max-width: 100%;
+    visibility: hidden;
   }
 
   body.c-labs.a-map & { display: none; }
@@ -23,7 +25,7 @@ footer {
     list-style: none;
     margin: 0;
     a {
-      color: #444;
+      color: #999;
     }
     a:hover {
       color: #AAA;
