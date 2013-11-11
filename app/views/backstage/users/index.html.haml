@@ -1,0 +1,21 @@
+.row
+  .columns.large-12
+    = render "backstage/header"
+    = title "Users"
+    %table.table
+      %thead
+        %tr
+          %th= sort_link @q, :id
+          %th
+            Name
+            (#{sort_link @q, :first_name, "First"})
+            (#{sort_link @q, :last_name, "Last"})
+          %th= sort_link @q, :email
+          %th= sort_link @q, :created_at, "Joined"
+      %tbody
+        - @users.each do |user|
+          %tr
+            %td= user.id
+            %td= link_to user, backstage_user_path(user)
+            %td= user.email
+            %td= user.created_at

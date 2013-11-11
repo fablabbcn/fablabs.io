@@ -25,6 +25,7 @@ Fablabs::Application.routes.draw do
   get "resend_verification_email" => "users#resend_verification_email"
 
   namespace :backstage do
+    resources :users
     resources :labs do
       member do
         patch :approve
