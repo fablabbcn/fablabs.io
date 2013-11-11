@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   rolify
   has_secure_password
   include Authority::UserAbilities
-  validates_format_of :email, :with => /@/
+  validates_format_of :email, :with => /\A(.+)@(.+)\z/
   validates :first_name, :last_name, :email, presence: true
   has_many :created_labs, class_name: 'Lab', foreign_key: 'creator_id'
   has_many :recoveries

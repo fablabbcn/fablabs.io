@@ -20,10 +20,10 @@
     -#   }
 
   %body{ class: body_classes }
+    = render "application/please_verify" if current_user and current_user.unverified?
     - if flash.any?
       - flash.each do |name, msg|
         = content_tag :div, msg, class: flash_class(name)
-    = render "application/please_verify" if current_user and current_user.unverified?
     = render "application/header"
     #main
       = yield

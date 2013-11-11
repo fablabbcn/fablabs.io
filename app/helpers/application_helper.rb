@@ -1,5 +1,9 @@
 module ApplicationHelper
 
+  def backstage?
+    controller.class.parent == Backstage
+  end
+
   def flash_class(level)
     case level
       when :notice then "flash alert alert-info"
@@ -27,7 +31,7 @@ module ApplicationHelper
   end
 
   def body_classes
-    "c-#{controller_name} a-#{action_name}"
+    "c-#{controller_name} a-#{action_name} #{'backstage' if backstage?}"
   end
 
 end

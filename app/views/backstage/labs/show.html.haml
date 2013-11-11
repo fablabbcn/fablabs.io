@@ -31,7 +31,7 @@
           %td
             %ul
               - @lab.links.each do |link|
-                %li= link.url
+                %li= link_to link.url, link.url
       - if @lab.phone.present?
         %tr
           %th Phone

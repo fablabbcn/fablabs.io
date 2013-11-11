@@ -5,11 +5,11 @@ class LabAuthorizer < ApplicationAuthorizer
   end
 
   def updatable_by?(user)
-    user.has_role? :admin, resource
+    user.verified? and user.has_role?(:admin, resource)
   end
 
   def deletable_by?(user)
-    user.has_role? :admin
+    user.verified? and user.has_role?(:admin)
   end
 
   def self.creatable_by?(user)
@@ -17,6 +17,7 @@ class LabAuthorizer < ApplicationAuthorizer
   end
 
   def applyable_by?(user)
+    user.verified? and
     !user.created_labs.include?(resource) and
     !user.role_applications.where(lab: resource).exists? and
     !user.has_role? :admin

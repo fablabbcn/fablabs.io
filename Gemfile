@@ -16,7 +16,7 @@ gem 'kaminari'
 gem 'geocoder', github: 'alexreisner/geocoder'
 # Use sqlite3 as the database for Active Record
 gem 'workflow', github: 'geekq/workflow'
-
+gem 'bourbon'
 # gem 'sqlite3'
 gem "cocoon", github: 'nathanvda/cocoon'
 gem "pg_search"

@@ -1,7 +1,7 @@
 class Lab < ActiveRecord::Base
   include PgSearch
   pg_search_scope :search_by_name, :against => [:name, :description]
-  validates_format_of :email, :with => /@/, allow_blank: true
+  validates_format_of :email, :with => /\A(.+)@(.+)\z/, allow_blank: true
 
   has_many :role_applications
   has_many :links

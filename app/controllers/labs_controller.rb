@@ -73,7 +73,27 @@ class LabsController < ApplicationController
 private
 
   def lab_params
-    params.require(:lab).permit!
+    params.require(:lab).permit(
+      :name,
+      :description,
+      :slug,
+      :avatar_src,
+      :address_1,
+      :address_2,
+      :city,
+      :county,
+      :postal_code,
+      :country_code,
+      :latitude,
+      :longitude,
+      :zoom,
+      :address_notes,
+      :phone,
+      :email,
+      :application_notes,
+      links_attributes: [ :url ]
+
+    )
   end
 
 end

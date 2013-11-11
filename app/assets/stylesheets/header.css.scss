@@ -1,3 +1,4 @@
+@import "bourbon";
 @import "foundation_and_overrides";
 
 #logo {
@@ -68,7 +69,8 @@ header {
     border-radius: 2px;
     &:focus {
       width: 340px;
-      transition: width 0.2s;
+      @include transition (width 0.2s ease-out);
+      // transition: width 0.2s;
       // max-width: 100%;
     }
   }
