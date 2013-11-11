@@ -14,7 +14,7 @@ ready = ->
   #   #   map.setView([position.coords.latitude, position.coords.longitude], 13)
   #   # )
 
-  $('#map').height($('#map').height() - 45)
+  $('#map').height($('#map').height() - $('header').height())
 
 
   $('[data-toggle=offcanvas]').click ->

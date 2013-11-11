@@ -1,9 +1,11 @@
 @import "bourbon";
 @import "foundation_and_overrides";
 
+
+
 #logo {
    width: 30px;
-   margin-top: 8px;
+   margin-top: 14px;
    // @media #{$medium} {
    //    width: 70px;
    // }
@@ -11,10 +13,18 @@
 // body.a-home {
 //   padding-top: 0;
 // }
-body {
-  padding-top: 60px;
-}
+// body {
+//   padding-top: 60px;
+// }
+
 header {
+
+  margin-bottom: 20px;
+
+  .top-bar-section .dropdown li a {
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
   #locale {
     display: none;
   }
@@ -68,7 +78,7 @@ header {
   #search-box {
     border-radius: 2px;
     &:focus {
-      width: 340px;
+      width: 240px;
       @include transition (width 0.2s ease-out);
       // transition: width 0.2s;
       // max-width: 100%;
