@@ -1,4 +1,5 @@
 Fablabs::Application.routes.draw do
+
   resources :discussions
 
   resources :featured_images
@@ -46,6 +47,7 @@ Fablabs::Application.routes.draw do
   post 'labs' => 'labs#create'
   resources :labs, path: '', except: :index do
     resources :role_applications
+    resources :employees
     member do
       get :manage_admins
     end

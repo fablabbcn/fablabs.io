@@ -1,17 +1,17 @@
-#header-bg.hidden-xs{style: "background-image: url('#{@lab.header_image_src}');"}
+-# #header-bg.hidden-xs{style: "background-image: url('#{@lab.header_image_src}');"}
 .row
-  .columns.large-8
+  .columns.large-12
     = render "breadcrumbs", lab: @lab
     = render "bio", lab: @lab
+
+  .columns.large-8
     = render "action_buttons", lab: @lab
     .lab-description= simple_format @lab.description
     %ul.lab-links
       - @lab.links.each do |link|
         %li= link_to link.url, link.url
 
-    = image_tag "example-lab.jpg"
-
-    = render "people", people: @people
+    = render "people", lab: @lab
     = render "discussions", lab: @lab
 
   .columns.large-4.sidebar

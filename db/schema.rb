@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131111230000) do
+ActiveRecord::Schema.define(version: 20131112145346) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,6 +36,23 @@ ActiveRecord::Schema.define(version: 20131111230000) do
 
   add_index "discussions", ["creator_id"], name: "index_discussions_on_creator_id", using: :btree
   add_index "discussions", ["discussable_id", "discussable_type"], name: "index_discussions_on_discussable_id_and_discussable_type", using: :btree
+
+  create_table "employees", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "lab_id"
+    t.integer  "ordinal"
+    t.string   "job_title"
+    t.text     "description"
+    t.date     "started_on"
+    t.date     "finished_on"
+    t.string   "workflow_state"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "employees", ["lab_id"], name: "index_employees_on_lab_id", using: :btree
+  add_index "employees", ["ordinal"], name: "index_employees_on_ordinal", using: :btree
+  add_index "employees", ["user_id"], name: "index_employees_on_user_id", using: :btree
 
   create_table "facilities", force: true do |t|
     t.integer  "lab_id"

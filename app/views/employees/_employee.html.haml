@@ -1,0 +1,8 @@
+- 10.times do
+  = content_tag_for :div, employee, class: 'media' do
+    .pull-left
+      = holder_tag 60
+    .media-body
+      = link_to employee.user, employee.user
+      .job-title= employee.job_title
+      .description= Faker::Lorem.sentence #employee.description

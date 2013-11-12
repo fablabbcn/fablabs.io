@@ -1,0 +1,9 @@
+.row
+  .columns.large-12
+    = title "Employee Application"
+    = simple_form_for [@lab,@employee] do |f|
+      = render "form_errors", resource: @employee
+      -# = f.association :user
+      = f.input :job_title
+      = f.input :description
+      = f.submit "Send Application", class: 'button'

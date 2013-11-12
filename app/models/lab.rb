@@ -5,6 +5,7 @@ class Lab < ActiveRecord::Base
 
   has_many :role_applications
   has_many :links
+  has_many :employees
 
   has_many :facilities
   has_many :tools, through: :facilities, source: :thing, source_type: 'Tool'

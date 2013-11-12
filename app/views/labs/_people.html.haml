@@ -1,3 +1,8 @@
+%h5 Employees
+= render lab.employees
+
+= link_to "I work here", new_lab_employee_path(@lab), class: 'button'
+
 -# %h5 People
 -# %ul.lab-staff.large-block-grid-3.small-block-grid-1
 -#   - User.all.limit(6).each do |admin|

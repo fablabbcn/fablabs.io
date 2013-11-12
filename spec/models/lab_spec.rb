@@ -14,7 +14,7 @@ describe Lab do
       expect{FactoryGirl.create(:lab, slug: word)}.to raise_error(ActiveRecord::RecordInvalid)
     end
   end
-
+  it { should have_many(:employees) }
 
   it "downcases email before creation" do
     expect(FactoryGirl.create(:lab, email: "UPPER@CASE.com").email).to eq("upper@case.com")

@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
   has_many :created_labs, class_name: 'Lab', foreign_key: 'creator_id'
   has_many :recoveries
   has_many :role_applications
+  has_many :employees
   before_create { generate_token(:email_validation_hash) }
   validates_uniqueness_of :email, case_sensitive: false
   validates :password, presence: true, length: { minimum: 6 }, if: lambda{ !password.nil? }, on: :update

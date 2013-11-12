@@ -2,6 +2,15 @@
 
 FactoryGirl.define do
 
+  factory :employee do
+    user
+    lab
+    job_title "Manager"
+    description "Manages the Lab"
+    started_on "2013-10-04"
+    finished_on "2013-11-12"
+  end
+
   factory :discussion do
     title "MyString"
     body "MyText"
