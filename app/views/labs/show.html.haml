@@ -9,6 +9,8 @@
       - @lab.links.each do |link|
         %li= link_to link.url, link.url
 
+    = image_tag "example-lab.jpg"
+
     = render "people", people: @people
     = render "discussions", lab: @lab
 

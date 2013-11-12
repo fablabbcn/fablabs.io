@@ -10,20 +10,19 @@
    //    width: 70px;
    // }
 }
-// body.a-home {
-//   padding-top: 0;
-// }
-// body {
-//   padding-top: 60px;
-// }
-
 header {
 
+  body.a-home & {
+    margin-bottom: 0;
+  }
   margin-bottom: 20px;
 
   .top-bar-section .dropdown li a {
     padding-top: 12px;
     padding-bottom: 12px;
+  }
+  .top-bar input {
+    padding: 20px 10px;
   }
   #locale {
     display: none;

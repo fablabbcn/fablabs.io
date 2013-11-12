@@ -37,7 +37,7 @@ class LabsController < ApplicationController
   def show
     @lab = Lab.with_approved_state.friendly.find(params[:id])
     @people = [@lab.creator]
-    @nearby_labs = @lab.nearby_labs
+    @nearby_labs = @lab.nearby_labs false
     authorize_action_for @lab
   end
 

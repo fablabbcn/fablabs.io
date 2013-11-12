@@ -1,53 +1,52 @@
-.contain-to-grid
-  %header
-    %nav.top-bar
-      %ul.title-area
-        %li.name
-          %h1
-            = link_to root_path do
-              = image_tag "circle-logo.png", id: 'logo'
-        %li.toggle-topbar.menu-icon
-          = link_to "#" do
-            %span Menu
-
-      %section.top-bar-section
-        %ul.left
-          -# %li.divider
-          -# %li{class: ('active' if controller_name == 'labs')}= link_to "Labs", labs_path
-          -# %li{class: ('active' if controller_name == 'support')}= link_to "Support", support_path
-          -# %li.divider
-          %li.has-form
-            = form_tag labs_path, class: 'navbar-form navbar-left', role: 'search', method: 'get' do
-              - if params[:country].present?
-                = hidden_field_tag 'country', params[:country]
-              = text_field_tag 'q', params[:q], class: 'form-control', autocomplete: 'off', placeholder: 'Search Labs...', id: 'search-box'
-        %ul.right
-          - if current_user
-            %li.has-dropdown
-              = link_to current_user, class: 'dropdown-toggle', data: { toggle: 'dropdown'} do
-                = cropped_image_tag current_user.avatar, '30x30', class: 'user-avatar'
-                = current_user.first_name
-                - if current_or_null_user.has_role? :admin
-                  = gem_count_tag Lab.with_unverified_state.size
-                %b.caret
-              %ul.dropdown
-                %li
-                  = link_to settings_path do
-                    = fa_icon "cog", text: "Settings"
-                - if current_or_null_user.has_role? :admin
-                  %li
-                    = link_to backstage_root_path do
-                      = fa_icon "gamepad"
-                      Backstage
-                      = gem_count_tag Lab.with_unverified_state.size
-                %li
-                  = link_to signout_path do
-                    = fa_icon "sign-out", text: "Sign out"
-          - else
-            %li= link_to "Sign in", signin_path
-            %li= link_to "Sign up", signup_path
-          %li#locale
-            = link_to choose_locale_path, id: 'locale-icon', class: I18n.locale, data: { reveal_id: "myModal", reveal_ajax: "true" } do
-              = image_tag "locales/#{I18n.locale}.png", width: 24
-
 #myModal.reveal-modal
+%header.contain-to-grid
+  %nav.top-bar
+    %ul.title-area
+      %li.name
+        %h1
+          = link_to root_path do
+            = image_tag "circle-logo.png", id: 'logo'
+      %li.toggle-topbar.menu-icon
+        = link_to "#" do
+          %span Menu
+
+    %section.top-bar-section
+      %ul.left
+        -# %li.divider
+        %li{class: ('active' if controller_name == 'labs')}= link_to "Labs", labs_path
+        %li{class: ('active' if controller_name == 'tools')}= link_to "Tools", tools_path
+        %li{class: ('active' if controller_name == 'support')}= link_to "Support", 'support_path'
+        -# %li.divider
+        %li.has-form
+          = form_tag labs_path, class: 'navbar-form navbar-left', role: 'search', method: 'get' do
+            - if params[:country].present?
+              = hidden_field_tag 'country', params[:country]
+            = text_field_tag 'q', params[:q], class: 'form-control', autocomplete: 'off', placeholder: 'Search Labs...', id: 'search-box'
+      %ul.right
+        - if current_user
+          %li.has-dropdown
+            = link_to current_user, class: 'dropdown-toggle', data: { toggle: 'dropdown'} do
+              = cropped_image_tag current_user.avatar, '30x30', class: 'user-avatar'
+              Me
+              - if current_or_null_user.has_role? :admin
+                = gem_count_tag Lab.with_unverified_state.size
+              %b.caret
+            %ul.dropdown
+              %li
+                = link_to settings_path do
+                  = fa_icon "cog", text: "Settings"
+              - if current_or_null_user.has_role? :admin
+                %li
+                  = link_to backstage_root_path do
+                    = fa_icon "gamepad"
+                    Backstage
+                    = gem_count_tag Lab.with_unverified_state.size
+              %li
+                = link_to signout_path do
+                  = fa_icon "sign-out", text: "Sign out"
+        - else
+          %li= link_to "Sign in", signin_path
+          %li= link_to "Sign up", signup_path
+        %li#locale
+          = link_to choose_locale_path, id: 'locale-icon', class: I18n.locale, data: { reveal_id: "myModal", reveal_ajax: "true" } do
+            = image_tag "locales/#{I18n.locale}.png", width: 24

@@ -1,9 +1,10 @@
+@import "foundation_and_overrides";
 #homepage-map {
   .leaflet-map-pane { pointer-events: none; }
   width: 100%;
   margin-top: -15px;
   // height: 220px;
-  background: #111;
+  background: $topbar-bg;
   padding: 20px 0;
   // border-bottom: 1px solid #AAA;
   // position: relative;

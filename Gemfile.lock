@@ -148,6 +148,7 @@ GEM
     factory_girl_rails (4.3.0)
       factory_girl (~> 4.3.0)
       railties (>= 3.0.0)
+    ffaker (1.20.0)
     ffi (1.9.3)
     figaro (0.7.0)
       bundler (~> 1.0)
@@ -328,6 +329,7 @@ DEPENDENCIES
   country_select
   database_cleaner!
   factory_girl_rails
+  ffaker
   figaro
   font-awesome-rails!
   friendly_id!

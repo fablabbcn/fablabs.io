@@ -1,5 +1,13 @@
 .row
+  .columns.large-12
+    .media
+      .pull-left= holder_tag 100
+      .media-body= title @user
+
+
+.row
   .columns.large-4
-    = title @user
+    %h4 Biography
+    = simple_format Faker::Lorem.paragraph
     .joined-on
       Joined #{@user.created_at}

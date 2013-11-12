@@ -1,11 +1,13 @@
 $sea-blue: #98BCDA;
 
 ul.side-nav {
+  border: 1px solid #CCC;
   a {
     padding: 5px;
   }
   li.active a {
-    background: yellow;
+    font-weight: bold;
+    // background: yellow;
   }
 }
 
