@@ -54,7 +54,9 @@ describe Lab do
 
     it "unapproved labs don't have show page" do
       lab = FactoryGirl.create(:lab, name: 'A Lab')
-      expect{visit lab_path(lab)}.to raise_error ActiveRecord::RecordNotFound
+      # expect{visit lab_path(lab)}.to raise_error ActiveRecord::RecordNotFound
+      visit lab_path(lab)
+      expect(page).to have_content("not found")
     end
 
   end

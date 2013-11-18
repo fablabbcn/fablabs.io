@@ -12,6 +12,7 @@ gem 'compass-rails' # you need this or you get an err
 gem 'zurb-foundation', '~> 4.0.0'
 # gem 'kaminari_themes', github: 'linojon/kaminari_themes'
 gem 'kaminari'
+gem 'ancestry', github: 'stefankroes/ancestry'
 # gem 'anjlab-bootstrap-rails', github: 'anjlab/bootstrap-rails', require: 'bootstrap-rails'
 gem 'geocoder', github: 'alexreisner/geocoder'
 # Use sqlite3 as the database for Active Record

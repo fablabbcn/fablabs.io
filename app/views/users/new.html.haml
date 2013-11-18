@@ -2,7 +2,7 @@
   .columns.large-12
     = title "Sign Up"
 
-  .columns.large-7
+  .columns.large-7.left
     = simple_form_for @user do |f|
       = render "form_errors", resource: @user
       .row
@@ -24,16 +24,17 @@
 
       = f.submit 'Sign Up', class: 'button'
 
-  .columns.large-4
-    %h4 Joining the Network
-    %p We want all different types of people to engage with the global Fab Lab network
-    %ul
-      %li Students
-      %li Professionals
-      %li Fab Lab Staff
-      %li Hobbyists
+  -# .columns.large-4
+  -#   %h4 Joining the Network
+  -#   %p We want all different types of people to engage with the global Fab Lab network
+  -#   %ul
+  -#     %li Students
+  -#     %li Professionals
+  -#     %li Fab Lab Staff
+  -#     %li Hobbyists
 
-    = image_tag "icons/safe.png"
+  -#   = image_tag "icons/safe.png"
 
-    %h4 What are the benefits?
-    %p Once you join you'll be able to participate in discussions, follow certain labs etc..
+  -#   %h4 What are the benefits?
+  -#   %p Once you join you'll be able to participate in discussions, follow certain labs etc..
+  -#

@@ -2,12 +2,27 @@
   .columns.large-12
     = render "backstage/header"
     = title "Labs"
+
+    .panel
+      = search_form_for [:backstage, @q], builder: SimpleForm::FormBuilder do |f|
+        = f.input :name_or_city_cont, label: "Name"
+        .row
+          .columns.large-4
+            = f.input :country_code_eq, as: 'country', label: 'Country', iso_codes: true
+          .columns.large-4
+            = f.input :workflow_state_eq, collection: Lab.workflow_spec.state_names, label: "State"
+          .columns.large-3
+            = f.submit "Filter", class: 'button expand'
+
     %table.table
       %thead
         %tr
           %th= sort_link @q, :id
           %th= sort_link @q, :name
-          %th= sort_link @q, 'creator_first_name'
+          %th
+            Creator Name
+            = sort_link @q, 'creator_first_name', 'First'
+            = sort_link @q, 'creator_last_name', 'Last'
           %th= sort_link @q, :slug
           %th= sort_link @q, :state
           %th= sort_link @q, :created_at

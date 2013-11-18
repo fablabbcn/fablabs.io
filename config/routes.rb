@@ -48,6 +48,7 @@ Fablabs::Application.routes.draw do
   resources :labs, path: '', except: :index do
     resources :role_applications
     resources :employees
+    resources :discussions
     member do
       get :manage_admins
     end

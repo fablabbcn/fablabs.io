@@ -11,8 +11,8 @@
       - @lab.links.each do |link|
         %li= link_to link.url, link.url
 
-    = render "people", lab: @lab
-    = render "discussions", lab: @lab
+    = render "employees", lab: @lab
+    -# = render "discussions", lab: @lab
 
   .columns.large-4.sidebar
     = render "minimap", lab: @lab

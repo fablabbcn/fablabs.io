@@ -10,6 +10,7 @@ describe User do
   it { should have_many(:recoveries) }
   it { should have_many(:role_applications) }
   it { should have_many(:employees) }
+  it { should have_many(:comments) }
 
   it "has initial state" do
     expect(FactoryGirl.build(:user).current_state).to eq('unverified')

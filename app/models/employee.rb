@@ -4,6 +4,9 @@ class Employee < ActiveRecord::Base
   validates_presence_of :user, :lab
   validates_uniqueness_of :user_id, scope: :lab_id
 
+  include Authority::Abilities
+  self.authorizer_name = 'EmployeeAuthorizer'
+
   include Workflow
   workflow do
     state :unverified do

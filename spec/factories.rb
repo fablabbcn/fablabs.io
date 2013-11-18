@@ -2,6 +2,13 @@
 
 FactoryGirl.define do
 
+  factory :comment do
+    author
+    ancestry "MyString"
+    commentable
+    body "MyText"
+  end
+
   factory :employee do
     user
     lab
@@ -47,7 +54,7 @@ FactoryGirl.define do
     creator
   end
 
-  factory :user, aliases: [:creator] do
+  factory :user, aliases: [:creator, :author] do
     first_name "John"
     last_name "Rees"
     sequence(:email) {|n| "john#{n}@bitsushi.com"}
@@ -65,7 +72,7 @@ FactoryGirl.define do
     url "http://www.rolanddg.com"
   end
 
-  factory :tool do
+  factory :tool, aliases: [:commentable] do
     name "Modela"
     brand
     description "A general purpose milling machine"

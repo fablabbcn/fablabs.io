@@ -2,4 +2,14 @@
   table {
     width: 100%;
   }
+
+  &.c-labs.a-show {
+    form {
+      &, input {
+        float: right;
+        margin: 0;
+      }
+    }
+  }
 }
+

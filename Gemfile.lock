@@ -73,6 +73,13 @@ GIT
     friendly_id (5.0.1)
       activerecord (~> 4.0.0)
 
+GIT
+  remote: git://github.com/stefankroes/ancestry.git
+  revision: 1fb1c1d5d0f3f419162119bd8093fd49dca2e097
+  specs:
+    ancestry (2.0.0)
+      activerecord (>= 3.0.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -317,6 +324,7 @@ PLATFORMS
 
 DEPENDENCIES
   active_model_serializers
+  ancestry!
   authority!
   bcrypt-ruby (~> 3.0.0)
   bourbon

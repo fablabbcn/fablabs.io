@@ -1,5 +1,6 @@
 require 'spec_helper'
 
 describe Discussion do
-  pending { should belong_to(:discussable) }
+  it { should belong_to(:discussable) }
+  it { should belong_to(:creator) }
 end

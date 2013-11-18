@@ -1,5 +1,15 @@
 $sea-blue: #98BCDA;
 
+ul.nearby-labs {
+  list-style: none;
+  li {
+    margin-bottom: 10px;
+    img {
+      width: 60px;
+    }
+  }
+}
+
 ul.side-nav {
   border: 1px solid #CCC;
   a {

@@ -31,9 +31,9 @@
       %fieldset.step-2
         %legend Step 2
         .row
-          .columns.large-4#map-holder
+          .columns.large-6#map-holder
             #location-picker-map
-          .columns.large-8
+          .columns.large-6
             = f.input :address_1, input_html: { data: {geo: "street_address"}}, label: 'Address', placeholder: 'Address Line 1'
             = f.input :address_2, label: false, placeholder: 'Address Line 2 (Optional)'
             = f.input :city, input_html: { data: {geo: "locality"}}

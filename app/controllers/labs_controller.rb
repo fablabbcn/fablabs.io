@@ -35,7 +35,11 @@ class LabsController < ApplicationController
   end
 
   def show
-    @lab = Lab.with_approved_state.friendly.find(params[:id])
+    begin
+      @lab = Lab.with_approved_state.friendly.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      return redirect_to root_path, notice: "Lab not found"
+    end
     # @people = [@lab.creator]
     @nearby_labs = @lab.nearby_labs false
     authorize_action_for @lab

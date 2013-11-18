@@ -2,6 +2,21 @@
   .columns.large-12
     = render "backstage/header"
     = title "Users"
+
+    .panel
+      = search_form_for [:backstage, @q], builder: SimpleForm::FormBuilder do |f|
+        .row
+          .columns.large-6= f.input :first_name_cont, label: "First Name"
+          .columns.large-6= f.input :email_cont
+
+        .row
+          .columns.large-4
+            = f.input :country_code_eq, as: 'country', label: 'Country', iso_codes: true
+          .columns.large-4
+            = f.input :workflow_state_eq, collection: User.workflow_spec.state_names, label: "State"
+          .columns.large-3
+            = f.submit "Filter", class: 'button expand'
+
     %table.table
       %thead
         %tr

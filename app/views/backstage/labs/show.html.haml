@@ -48,6 +48,14 @@
           %th Address Notes
           %td= @lab.address_notes
       %tr
+        %th Employees
+        %td
+          %ul
+            - @lab.employees.each do |employee|
+              = content_tag_for :li, employee do
+                = link_to employee.user, employee.user
+                = employee.job_title
+      %tr
         %th Created At
         %td= @lab.created_at
       %tr

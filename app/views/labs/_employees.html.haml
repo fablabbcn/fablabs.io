@@ -1,7 +1,5 @@
 %h5 Employees
-= render lab.employees
-
-= link_to "I work here", new_lab_employee_path(@lab), class: 'button'
+= render lab.employees.with_approved_state
 
 -# %h5 People
 -# %ul.lab-staff.large-block-grid-3.small-block-grid-1

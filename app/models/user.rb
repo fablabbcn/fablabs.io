@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   validates_format_of :email, :with => /\A(.+)@(.+)\z/
   validates :first_name, :last_name, :email, presence: true
   has_many :created_labs, class_name: 'Lab', foreign_key: 'creator_id'
+  has_many :comments, foreign_key: 'author_id'
   has_many :recoveries
   has_many :role_applications
   has_many :employees
@@ -25,6 +26,10 @@ class User < ActiveRecord::Base
   include Avatarable
   def default_avatar
     'default-user-avatar.png'
+  end
+
+  def employed_by? lab
+    Employee.where(lab: lab, user: self).exists?
   end
 
   def locale
@@ -53,6 +58,10 @@ class User < ActiveRecord::Base
 
   def email_string
     "#{self} <#{self.email}>"
+  end
+
+  def self.admin_emails
+    User.with_role(:admin).exists? ? User.with_role(:admin).map(&:email) : ['john@bitsushi.com']
   end
 
   before_create :downcase_email
