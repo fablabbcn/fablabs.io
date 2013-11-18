@@ -1,7 +1,19 @@
 .row
   .columns.large-12
+    = @tool.brand
     = title @tool
+
+    - @tool.tags.each do |tag|
+      = link_to tag, tools_path(tag: tag)
+
+    = simple_format @tool.description
     -# = link_to @tool.brand, @tool.brand
     %ul
       - @tool.labs.each do |lab|
         %li= link_to lab, lab
+
+    %h4 Discussions
+    = render @tool.discussions
+    = link_to "Start a new Discussion", new_tool_discussion_path(@tool)
+
+= link_to "Edit", edit_tool_path(@tool)

@@ -11,6 +11,7 @@
       - @lab.links.each do |link|
         %li= link_to link.url, link.url
 
+    = link_to "Lab Tools", tools_path
     = render "employees", lab: @lab
     -# = render "discussions", lab: @lab
 

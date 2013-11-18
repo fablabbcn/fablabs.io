@@ -5,7 +5,6 @@ class CreateComments < ActiveRecord::Migration
       t.string :ancestry
       t.references :commentable, polymorphic: true, index: true
       t.text :body
-
       t.timestamps
     end
     add_index :comments, :ancestry

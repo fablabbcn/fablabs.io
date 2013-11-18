@@ -1,0 +1,10 @@
+.row
+  .columns.large-12
+    = title @discussion
+    %p by #{link_to @discussion.creator, @discussion.creator} on #{@discussion.created_at}
+
+    = simple_format @discussion.body
+
+    = simple_form_for @comment do |f|
+      = f.input :body
+      = f.submit

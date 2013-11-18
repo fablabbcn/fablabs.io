@@ -10,6 +10,7 @@ gem 'rolify', github: 'EppO/rolify'
 gem 'font-awesome-rails', github: 'bokmann/font-awesome-rails'
 gem 'compass-rails' # you need this or you get an err
 gem 'zurb-foundation', '~> 4.0.0'
+gem 'acts-as-taggable-on'
 # gem 'kaminari_themes', github: 'linojon/kaminari_themes'
 gem 'kaminari'
 gem 'ancestry', github: 'stefankroes/ancestry'

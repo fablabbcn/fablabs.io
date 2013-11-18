@@ -11,8 +11,12 @@ Fablabs::Application.routes.draw do
   end
 
   resources :users, path: 'u'
-  resources :tools
+  resources :tools do
+    resources :discussions
+  end
+  resources :brands
 
+  resources :comments, only: [:create]
   resources :sessions
   resources :recoveries do
     collection do

@@ -1,0 +1,7 @@
+= simple_form_for tool do |f|
+  = f.association :brand, hint: "#{link_to 'Add new brand', new_brand_path}"
+
+  = f.input :name
+  = f.input :description
+  = f.input :tag_list
+  = f.submit

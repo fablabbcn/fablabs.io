@@ -17,4 +17,32 @@ describe Tool do
     expect(page).to have_css('h1', text: tool.name)
   end
 
+  it "can create tool" do
+    user = FactoryGirl.create(:user)
+    lab = FactoryGirl.create(:lab, creator: user)
+    user.verify!
+    lab.approve!
+    signin user
+    visit lab_path(lab)
+    click_link("Lab Tools")
+    click_link("New Tool")
+    # fill_in "Brand", with: "Makerbot Industries"
+    fill_in "Name", with: "Replicator 2"
+    fill_in "Description", with: "3D Printer"
+    # check "3D Printing"
+    click_button "Create Tool"
+    expect(page).to have_css("h1", text: "Replicator 2")
+  end
+
+  it "can edit tool" do
+    user = FactoryGirl.create(:user)
+    user.verify!
+    signin user
+    visit tool_path(tool)
+    click_link "Edit"
+    fill_in "Name", with: "SHOP BOT"
+    click_button "Update Tool"
+    expect(page).to have_css("h1", text: "SHOP BOT")
+  end
+
 end

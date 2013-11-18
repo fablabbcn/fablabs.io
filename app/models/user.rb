@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   validates :first_name, :last_name, :email, presence: true
   has_many :created_labs, class_name: 'Lab', foreign_key: 'creator_id'
   has_many :comments, foreign_key: 'author_id'
+  has_many :discussions, foreign_key: 'creator_id'
   has_many :recoveries
   has_many :role_applications
   has_many :employees
