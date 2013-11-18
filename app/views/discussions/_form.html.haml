@@ -1,4 +1,4 @@
-= simple_form_for discussion do |f|
+= simple_form_for [discussable,discussion] do |f|
   = render "form_errors", resource: discussion
   = f.input :title
   = f.input :body

@@ -1,17 +1,16 @@
 class DiscussionsController < ApplicationController
 
-  def index
-    @discussions = Lab.friendly.find(params[:lab_id]).discussions
-  end
+  before_filter :load_discussable
 
   def new
-    @discussion = Discussion.new
+    @discussion = @discussable.discussions.new
   end
 
   def create
-    @discussion = current_user.discussions.build discussion_params
+    @discussion = @discussable.discussions.build discussion_params
+    @discussion.creator = current_user
     if @discussion.save
-      redirect_to polymorphic_url([@discussion.discussable, @discussion]), notice: "Discussion Created"
+      redirect_to @discussable, notice: "Discussion Created"
     else
       render :new
     end
@@ -26,6 +25,11 @@ private
 
   def discussion_params
     params.require(:discussion).permit!
+  end
+
+  def load_discussable
+    resource, id = request.path.split('/')[1, 2]
+    @discussable = resource.singularize.classify.constantize.find(id)
   end
 
 end

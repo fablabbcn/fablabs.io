@@ -6,4 +6,5 @@ describe Discussion do
   it { should validate_presence_of(:creator) }
   it { should validate_presence_of(:title) }
   it { should validate_presence_of(:body) }
+  it { should validate_presence_of(:discussable) }
 end
