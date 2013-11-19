@@ -24,7 +24,7 @@ describe Tool do
     lab.approve!
     signin user
     visit lab_path(lab)
-    click_link("Lab Tools")
+    click_link("edit-tools")
     click_link("New Tool")
     # fill_in "Brand", with: "Makerbot Industries"
     fill_in "Name", with: "Replicator 2"

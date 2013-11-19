@@ -1,8 +1,7 @@
 - title "Labs"
 
-.row
+.row.top
   .columns.large-8
-
     %ul.breadcrumbs
       %li= link_to Lab.to_s.pluralize, labs_path
       - if params[:country].present?
@@ -12,6 +11,14 @@
             = Country[params[:country]]
       - else
         %li.current= link_to "All Countries", labs_path
+  .columns.large-4
+    = render "header"
+
+.row
+  .columns.large-8.content
+
+    -# - if Lab.creatable_by? current_or_null_user
+    -#   = link_to I18n.t("labs.index.add_a_lab", :default => "Add a Lab"), new_lab_path, class: 'button right small'
 
     - if params[:q]
       .search-results
@@ -22,23 +29,24 @@
 
     .labs
       = render @labs
-    - if Lab.creatable_by? current_or_null_user
-      = link_to I18n.t("labs.index.add_a_lab", :default => "Add a Lab"), new_lab_path, class: 'button'
 
     = paginate @labs
 
   .columns.large-4.sidebar-offcanvas
-    = render "header"
 
+
+    .heading
+      Filter by
+      %strong Country
     %ul.side-nav
       %li.all{class: ('active' if params[:country].blank?)}
         = link_to url_for(params.merge(country: nil)) do
           = I18n.t("labs.index.all_countries", :default => "All Countries")
-          %span.badge.pull-right= @count
+          %span.count.right= @count
 
       - @countries.each do |country,country_code,count|
         %li{class: ('active' if params[:country] == country_code)}
           -# %div{class: "flag flag-#{country[1].downcase} pull-left"}
           = link_to url_for(params.merge(country: country_code)) do
             = country
-            %span.badge.pull-right= count
+            %span.count.right= count

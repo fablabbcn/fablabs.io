@@ -1,0 +1,5 @@
+- if links.any?
+  .heading External Links
+  %ul.lab-links
+    - links.each do |link|
+      %li= link_to link.url, link.url

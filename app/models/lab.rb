@@ -61,7 +61,8 @@ class Lab < ActiveRecord::Base
 
   include Avatarable
   def default_avatar
-    'default-lab-avatar.png'
+    'http://i.imgur.com/iymHWkm.png'
+    # 'default-lab-avatar.png'
   end
 
   def approve

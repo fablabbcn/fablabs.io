@@ -62,6 +62,7 @@ Fablabs::Application.routes.draw do
   end
 
 
-  root to: 'static#home'
+  # root to: 'static#home'
+  root to: 'labs#index'
 
 end

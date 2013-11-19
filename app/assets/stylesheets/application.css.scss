@@ -17,10 +17,40 @@
 
 @import "foundation_and_overrides";
 @import "font-awesome";
-
+h1 {
+  font-size: 1.5em !important;
+  line-height: 1.2 !important;
+}
+.breadcrumbs a {
+  font-weight: bold;
+}
+body {
+  text-rendering: optimizeLegibility;
+  padding-bottom: 50px;
+}
+.count {
+  color: #CCC !important;
+}
+h1 {
+  font-weight: bold;
+  margin-top: 0;
+  font-weight: bold;
+}
 // #lab_phone {
 //   padding-left: 40px;
 // }
+
+.heading {
+  font-weight: bold;
+  border-bottom: 1px solid #CCC;
+  padding-bottom: 5px;
+  margin: 20px 0 10px;
+  a {
+    font-weight: normal;
+    float: right;
+    font-size: 0.9em;
+  }
+}
 
 .avatar {
   &.med {
@@ -28,8 +58,8 @@
     height: 60px;
   }
   &.big {
-    width: 100px;
-    height: 100px;
+    width: 140px;
+    height: 140px;
   }
 }
 
@@ -103,11 +133,6 @@ a:hover {
   padding-bottom: 20px;
   background: #FFF;
   margin-bottom: 20px;
-}
-
-h1 {
-  margin-top: 0;
-  font-weight: bold;
 }
 
 h3 {

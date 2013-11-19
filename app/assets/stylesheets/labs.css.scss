@@ -1,22 +1,51 @@
+@import "foundation_and_overrides";
+
 $sea-blue: #98BCDA;
+
+.content {
+  border-right: 1px solid #CCC;
+}
+.main {
+  padding-top: 20px;
+}
+.bio {
+  text-align: center;
+  @media #{$small} {
+    padding-top: 20px;
+  }
+}
+.lab {
+  background: white;
+  border-radius: 4px;
+  // border-top: 1px solid #EEE;
+  // border-left: 1px solid #EEE;
+  // border-bottom: 1px solid #DDD;
+  // border-right: 1px solid #DDD;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.top {
+  margin-bottom: 0;
+}
 
 ul.nearby-labs {
   list-style: none;
   li {
     margin-bottom: 10px;
     img {
-      width: 60px;
+      width: 40px;
     }
   }
 }
 
 ul.side-nav {
-  border: 1px solid #CCC;
+  padding: 0;
   a {
-    padding: 5px;
+    // padding: 5px;
   }
   li.active a {
-    font-weight: bold;
+    // font-weight: bold;
     // background: yellow;
   }
 }
@@ -34,17 +63,24 @@ ul.lab-links {
   }
 }
 
+.tool {
+  padding: 5px;
+  background: white;
+  display: inline-block;
+  margin-bottom: 5px;
+  width: 150px;
+  max-width: 100%;
+  img {
+    width: 100%;
+  }
+}
+
 .nearby-lab {
   overflow: hidden;
   margin-bottom: 0.5em;
   img {
     margin-right: 5px;
   }
-}
-
-.lab-location {
-  color: #999;
-  margin: 0.2em 0 0.5em;
 }
 
 .lab-staff li {
@@ -63,14 +99,17 @@ ul.lab-links {
 }
 
 .lab-actions {
-  margin: 10px 0;
+  li {
+    display: block;
+    clear: both;
+  }
 }
 
 #lab-map {
   width: 100%;
-  height: 250px;
+  height: 300px;
   background: $sea-blue;
-  border: 4px solid #FFF;
+  // border: 1px solid #CCC;
   // border-radius: 4px;
 }
 
@@ -101,10 +140,6 @@ ul.lab-links {
 .view-as {
   overflow: hidden;
   position: relative;
-  .a-index & {
-
-    margin-bottom: 40px;
-  }
   .a-map & {
     z-index: 20;
     pointer-events: none;
@@ -139,21 +174,25 @@ li.all {
     height: 100px;
     margin-right: 10px;
   }
-  h4 {
-    margin: 0;
-    font-size: 1.2em;
-  }
   .labs {
     .media-heading {
       font-weight: bold;
     }
     .lab {
-      // margin-bottom: 10px;
-      padding-bottom: 20px;
-      // border-bottom: 1px solid #CCC;
+      .lab-location {
+        color: #999;
+        margin-bottom: 0.3em;
+        font-size: 0.9em;
+      }
+      a.name {
+        font-weight: bold;
+        display: block;
+        margin-bottom: 0.3em;
+      }
+
       .lab-description {
         color: #444;
-        font-size: 0.9em;
+        margin-bottom: 0;
       }
       &:last-child {
         border-bottom: none;
@@ -162,7 +201,19 @@ li.all {
   }
 }
 
+a.all-labs {
+  color: #444;
+}
+
 .c-labs.a-show {
+  .stripe {
+    background: #FFF;
+    border-bottom: 1px solid #EEE;
+    margin-top: -20px;
+  }
+  .header {
+    margin-bottom: 10px;
+  }
   ul.discussions {
     list-style: none;
   }
@@ -181,6 +232,7 @@ li.all {
   }
   .sidebar {
     margin-bottom: 2em;
+    font-size: 0.9em;
   }
   .big.avatar {
     margin-right: 10px;
@@ -210,9 +262,6 @@ li.all {
   }
 }
 
-
-
-
 input#lab_name {
   font-size: 1.5em;
   height: auto;
@@ -228,7 +277,6 @@ input#lab_name {
   background: #8DCFF4;
 }
 
-
 #location-picker-map {
   width: 95%;
   height: 280px;
@@ -242,4 +290,31 @@ input#lab_name {
 
 #geocomplete {
   color: #CCC;
+}
+.tool-name {
+  clear: both;
+  // font-weight: bold;
+  font-size: 0.9em;
+}
+.person-name {
+  font-weight: bold;
+  display: block;
+}
+.person-email {
+  color: #999;
+}
+.big-picture {
+  // border-radius: 4px;
+  border: 4px solid #FFF;
+  width: 100%;
+}
+.lab-contact-details {
+  margin-bottom: 1em;
+}
+.distance {
+  color: #999;
+  // font-size: 0.9em;
+}
+.person-details {
+  font-size: 0.9em;
 }

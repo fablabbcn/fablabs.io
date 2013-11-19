@@ -1,26 +1,15 @@
-%h5 Employees
-= render lab.employees.with_approved_state
+.heading
+  = fa_icon "users", text: "People"
+  = link_to "edit", lab_employees_path(lab), id: "edit-employees"
 
--# %h5 People
--# %ul.lab-staff.large-block-grid-3.small-block-grid-1
--#   - User.all.limit(6).each do |admin|
--#     %li
--#       = link_to admin, class: 'pull-left' do
--#         = cropped_image_tag admin.avatar, 40, class: 'avatar small'
--#       = link_to admin, admin
--#       Lab Co-ordinator
-
--# %table
--#   %thead
--#     %tr
--#       %th Name
--#       %th Position
--#       %th Email
--#       %th Phone
--#   %tbody
--#     - @people.each do |user|
--#       %tr
--#         %td= link_to user, user
--#         %td Director
--#         %td= mail_to user.email, user.email
--#         %td 0294280724
+  %ul.large-block-grid-2
+    - lab.employees.with_approved_state.each do |employee|
+      %li.person
+        .media
+          .pull-left
+            = cropped_image_tag "http://i.imgur.com/HOCqqqg.jpg", 60
+          .media-body
+            = link_to employee.user, employee.user, class: 'person-name'
+            .person-details
+              .person-role= employee.job_title
+              = link_to employee.user.email, employee.user.email, class: 'person-email'

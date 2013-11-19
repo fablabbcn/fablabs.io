@@ -1,21 +1,29 @@
 -# #header-bg.hidden-xs{style: "background-image: url('#{@lab.header_image_src}');"}
-.row
-  .columns.large-12
-    = render "breadcrumbs", lab: @lab
-    = render "bio", lab: @lab
+.stripe
+  .row
+    .columns.large-12
+      = render "breadcrumbs", lab: @lab
+  .row.header
+    .columns.large-4.bio
+      = render "bio", lab: @lab
+    .columns.large-8
+      = render "minimap", lab: @lab
 
-  .columns.large-8
-    = render "action_buttons", lab: @lab
+.row.main
+  .columns.large-8.content
+
     .lab-description= simple_format @lab.description
-    %ul.lab-links
-      - @lab.links.each do |link|
-        %li= link_to link.url, link.url
 
-    = link_to "Lab Tools", tools_path
+    - if @lab.header_image_src.present?
+      = image_tag @lab.header_image_src, class: 'big-picture'
+
+
     = render "employees", lab: @lab
+    = render "tools", lab: @lab
     -# = render "discussions", lab: @lab
 
   .columns.large-4.sidebar
-    = render "minimap", lab: @lab
+    = render "action_buttons", lab: @lab
+    = render "links", links: @lab.links
     = render "nearby", lab: @lab, nearby_labs: @nearby_labs
-    = render "facilities", lab: @lab
+    -# = render "facilities", lab: @lab

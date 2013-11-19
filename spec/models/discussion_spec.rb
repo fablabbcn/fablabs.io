@@ -7,4 +7,8 @@ describe Discussion do
   it { should validate_presence_of(:title) }
   it { should validate_presence_of(:body) }
   it { should validate_presence_of(:discussable) }
+
+  # it "has initial state" do
+  #   expect(FactoryGirl.build(:discussion).current_state).to eq('open')
+  # end
 end

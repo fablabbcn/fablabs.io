@@ -10,7 +10,7 @@ class LabsController < ApplicationController
     all_labs = Lab.search_for(params[:q]).with_approved_state
     @countries = Lab.country_list_for all_labs
     @count = all_labs.size
-    @labs = all_labs.order('name ASC').in_country_code(params["country"]).page(params['page'])
+    @labs = all_labs.order('name ASC').in_country_code(params["country"]).page(params['page']).per(2)
 
     respond_to do |format|
       format.html
@@ -82,6 +82,7 @@ private
       :description,
       :slug,
       :avatar_src,
+      :header_image_src,
       :address_1,
       :address_2,
       :city,

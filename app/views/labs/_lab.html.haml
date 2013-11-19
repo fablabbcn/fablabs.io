@@ -3,8 +3,8 @@
     = link_to lab do
       = cropped_image_tag lab.avatar, '100x100', class: 'big avatar'
   .media-body
-    %h4= link_to lab, lab
+    = link_to lab, lab, class: 'name'
     .lab-location
       = fa_icon "map-marker"
       = lab.short_address
-    .lab-description.truncate= simple_format lab.description
+    %p.lab-description.truncate= lab.description

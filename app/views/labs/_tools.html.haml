@@ -1,0 +1,15 @@
+.heading
+  Facilities
+  = link_to "edit", tools_path, id: 'edit-tools'
+%dl.sub-nav
+  %dd.active= link_to "All", "#"
+  %dd= link_to "3D Printing", "#"
+  %dd= link_to "CNC", "#"
+  %dd= link_to "Electronics Production", "#"
+
+%ul.large-block-grid-4.small-block-grid-2
+  - 10.times do
+    %li
+      .tool
+        = cropped_image_tag "http://i.imgur.com/HOCqqqg.jpg", 150
+        .tool-name Shopbot

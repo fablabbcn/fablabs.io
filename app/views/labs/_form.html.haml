@@ -12,14 +12,16 @@
         .columns.small-9= f.input_field :slug, class: 'form-control'
 
   %fieldset
-    %legend Lab Image
+    %legend Lab Images
+
     .row
       .columns.large-3= cropped_image_tag @lab.avatar, 100
       .columns.large-9= f.input :avatar_src, input_html: { class: 'fp' }, label: 'Avatar', hint: "This will be a square image next shown next to the lab name throughout the site"
-    -# .row
-    -#   - if @lab.header_image_src.present?
-    -#     .columns.large-12= image_tag @lab.header_image
-    -#   .columns.large-9= f.input :header_image_src, input_html: { class: 'fp' }, label: 'Header Image'
+
+    .row
+      - if @lab.header_image_src.present?
+        .columns.large-12= image_tag @lab.header_image
+      .columns.large-9= f.input :header_image_src, input_html: { class: 'fp' }, label: 'Header Image'
 
   %fieldset
     %legend Lab Location

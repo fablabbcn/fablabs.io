@@ -1,14 +1,19 @@
 - if nearby_labs and nearby_labs.any?
-  %h5= t('labs.show.nearby_labs')
+  .heading= t('labs.show.nearby_labs')
   %ul.nearby-labs
     - nearby_labs.each do |lab|
       %li.nearby-lab
         = link_to lab, class: 'pull-left' do
-          = cropped_image_tag lab.avatar, '40x40'
+          = cropped_image_tag lab.avatar, 30
         .media-body
           .media-heading= link_to lab, lab, class: 'nearby-lab-name'
-          = "#{lab.distance.ceil}km away"
-  = link_to labs_path(country: lab.country_code) do
-    Browse all labs in
-    %strong #{lab.country}
-    »
+          .distance= "#{lab.distance.ceil}km away"
+
+    %li
+      .pull-left
+        -# = image_tag "all/#{lab.country_code}/24.png", style: 'margin: 0 auto 20px; display: block'
+      .media-body
+        = link_to labs_path(country: lab.country_code), class: 'all-labs' do
+          All labs in
+          %strong #{lab.country}
+          »

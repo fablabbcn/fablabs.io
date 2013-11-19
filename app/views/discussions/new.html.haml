@@ -1,4 +1,8 @@
 .row
-  .columns.large-12
-    = title "Start a new Discussion"
+  = title "Start a new Discussion"
+  .columns.large-2
+    = holder_tag 100
+    -# = cropped_image_tag current_user.avatar, 100
+  .columns.large-10
+
     = render "form", discussion: @discussion, discussable: @discussable

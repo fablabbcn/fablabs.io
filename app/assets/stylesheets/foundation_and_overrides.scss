@@ -12,12 +12,12 @@
 //
 
 // This is the default html and body font-size for the base em value.
-// $em-base: 16px;
+$em-base: 14px;
 
 // We use these to control various global styles
-$body-bg: #F8F8F8;
+$body-bg: #f6f6f6;
 $body-font-color: #444;
-// $body-font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+$body-font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
 // $body-font-weight: normal;
 // $body-font-style: normal;
 
@@ -28,14 +28,14 @@ $body-font-color: #444;
 // $text-direction: ltr;
 
 // We use these as default colors throughout
-$primary-color: #143D63;
+$primary-color: #4083A9;
 // $secondary-color: #e9e9e9;
 // $alert-color: #c60f13;
 // $success-color: #5da423;
 
 // We use these to make sure border radius matches unless we want it different.
-// $global-radius: 3px;
-// $global-rounded: 1000px;
+$global-radius: 2px;
+$global-rounded: 2px;
 
 // We use these to control inset shadow shiny edges and depressions.
 // $shiny-edge-size: 0 1px 0;
@@ -65,7 +65,7 @@ $primary-color: #143D63;
 // Grid Variables
 //
 
-// $row-width: 62.5em;
+$row-width: 61em;
 // $column-gutter: 1.875em;
 // $total-columns: 12;
 
@@ -86,7 +86,7 @@ $primary-color: #143D63;
 
 // We use these to control header font styles
 // $header-font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
-$header-font-weight: normal;
+$header-font-weight: bold;
 // $header-font-style: normal;
 // $header-font-color: #222;
 // $header-line-height: 1.4;
@@ -95,7 +95,7 @@ $header-font-weight: normal;
 // $header-text-rendering: optimizeLegibility;
 
 // We use these to control header font sizes
-// $h1-font-size: emCalc(44px);
+$h1-font-size: emCalc(20px);
 // $h2-font-size: emCalc(37px);
 // $h3-font-size: emCalc(27px);
 // $h4-font-size: emCalc(23px);
@@ -117,7 +117,7 @@ $header-font-weight: normal;
 // $paragraph-font-family: inherit;
 // $paragraph-font-weight: normal;
 // $paragraph-font-size: 1em;
-// $paragraph-line-height: 1.6;
+$paragraph-line-height: 1.3;
 // $paragraph-margin-bottom: emCalc(20px);
 // $paragraph-aside-font-size: emCalc(14px);
 // $paragraph-aside-line-height: 1.35;
@@ -383,8 +383,8 @@ $button-border-width: 0;//1px;
 $crumb-bg: none;//lighten($secondary-color, 5%);
 
 // We use these to set the padding around the breadcrumbs.
-$crumb-padding: 0;//emCalc(6px) emCalc(14px) emCalc(9px);
-// $crumb-side-padding: emCalc(12px);
+$crumb-padding: emCalc(6px) emCalc(14px) emCalc(0px);
+$crumb-side-padding: emCalc(4px);
 
 // We use these to control border styles.
 // $crumb-function-factor: 10%;
@@ -403,7 +403,7 @@ $crumb-link-decor: none;
 
 // We use these to control the slash between breadcrumbs
 // $crumb-slash-color: #aaa;
-// $crumb-slash: "/";
+$crumb-slash: "/";
 
 //
 // Clearing Variables
@@ -844,16 +844,16 @@ $crumb-link-decor: none;
 // $sub-nav-list-padding-top: emCalc(4px);
 
 // We use this to control the definition
-// $sub-nav-font-size: emCalc(14px);
+$sub-nav-font-size: emCalc(12px);
 // $sub-nav-font-color: #999;
 // $sub-nav-font-weight: normal;
 // $sub-nav-text-decoration: none;
-// $sub-nav-border-radius: 1000px;
+$sub-nav-border-radius: 4px;
 
 // We use these to control the active item styles
-// $sub-nav-active-font-weight: bold;
-// $sub-nav-active-bg: $primary-color;
-// $sub-nav-active-color: #fff;
+$sub-nav-active-font-weight: bold;
+$sub-nav-active-bg: none;
+$sub-nav-active-color: #444;
 // $sub-nav-active-padding: emCalc(3px) emCalc(9px);
 // $sub-nav-active-cursor: default;
 
@@ -982,9 +982,9 @@ $topbar-height: 60px;
 // $topbar-title-font-size: emCalc(17px);
 
 // Set the link colors and styles for top-level nav
-// $topbar-link-color: #fff;
+$topbar-link-color: #eee;
 $topbar-link-weight: normal;
-// $topbar-link-font-size: emCalc(13px);
+$topbar-link-font-size: emCalc(14px);
 
 // Style the top bar dropdown elements
 // $topbar-dropdown-bg: #333;

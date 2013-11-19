@@ -1,20 +1,19 @@
-.media
-  = link_to lab, class: 'pull-left' do
-    = cropped_image_tag lab.avatar, '100x100', class: 'big avatar'
-    -# = image_tag lab.avatar, width: 100, class: 'big-avatar'
-  .media-body
-    = title lab.name
-    .lab-contact-details
-      .lab-address= lab.formatted_address
-      - if lab.phone.present?
-        .lab-phone
-          %span.glyphicon.glyphicon-earphone
-          = lab.phone
-      - if lab.email.present?
-        .lab-email
-          %span.glyphicon.glyphicon-envelope
-          = mail_to lab.email, lab.email
+= link_to lab do
+  = cropped_image_tag lab.avatar, 150, class: 'big avatar'
+  -# = image_tag lab.avatar, width: 100, class: 'big-avatar'
 
-    -# - if current_or_null_user.has_role? :admin
-    -#   - lab.current_state.events.keys.each do |event|
-    -#     = button_to "#{event.capitalize} Lab", {controller: 'labs', action: 'verify'}, method: :patch, class: 'button button-primary'
+= title lab.name
+.lab-contact-details
+  .lab-address= lab.formatted_address
+  - if lab.phone.present?
+    .lab-phone
+      %span.glyphicon.glyphicon-earphone
+      = lab.phone
+  - if lab.email.present?
+    .lab-email
+      %span.glyphicon.glyphicon-envelope
+      = mail_to lab.email, lab.email
+
+  -# - if current_or_null_user.has_role? :admin
+  -#   - lab.current_state.events.keys.each do |event|
+  -#     = button_to "#{event.capitalize} Lab", {controller: 'labs', action: 'verify'}, method: :patch, class: 'button button-primary'
