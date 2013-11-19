@@ -4,7 +4,9 @@
   %fieldset
     %legend Basic Details
     = f.input :name, autofocus: lab.name.blank?, label: 'Fab Lab Name'
-    = f.input :description, hint: 'A brief overview of the lab', input_html: { rows: 4 }
+
+    = f.input :description, hint: 'A brief overview of the lab. <span id="description-count"></span> characters available.', input_html: { rows: 4, data: { limit: 250, counter: '#description-count'} }
+
     = f.input :slug, hint: "This is the 'username' of the lab, it will be in the URL" do
       .row.collapse
         .columns.small-3

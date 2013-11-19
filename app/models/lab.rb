@@ -1,31 +1,40 @@
 class Lab < ActiveRecord::Base
+
+  include Authority::Abilities
+  resourcify
+  self.authorizer_name = 'LabAuthorizer'
+
   include PgSearch
   pg_search_scope :search_by_name, :against => [:name, :description]
-  validates_format_of :email, :with => /\A(.+)@(.+)\z/, allow_blank: true
+
+  include Avatarable
+
+  extend FriendlyId
+  friendly_id :slug_candidates, use: :slugged
+
+  include Workflow
+  workflow do
+    state :unverified do
+      event :approve, transitions_to: :approved
+      # event :reject, transitions_to: :rejected
+    end
+    state :approved
+    state :rejected
+  end
 
   has_many :role_applications
   has_many :links
   has_many :employees
   has_many :discussions, as: :discussable
-
   has_many :facilities
   has_many :tools, through: :facilities, source: :thing, source_type: 'Tool'
-
-  accepts_nested_attributes_for :links, reject_if: lambda{ |l| l[:url].blank? }, allow_destroy: true
-
-  scope :search_for, ->(q) { search_by_name(q) if q.present?}
-  scope :in_country_code, ->(cc) { where(country_code: cc) if cc.present?}
-  resourcify
-  include Authority::Abilities
-  self.authorizer_name = 'LabAuthorizer'
-
   belongs_to :creator, class_name: 'User'
+
+  validates :slug, format: {:with => /\A[a-zA-Z0-9]+\z/ }, allow_nil: true, allow_blank: true, length: { minimum: 3 }
+  validates_format_of :email, :with => /\A(.+)@(.+)\z/, allow_blank: true
   validates :name, :description, :address_1, :country_code, :slug, presence: true
   validates_presence_of :creator, on: :create
-  validates_uniqueness_of :name, case_sensitive: false
-  validates_uniqueness_of :slug, case_sensitive: false
-
-  # validates_exclusion_of :slug, in: $bannedWords, message: "You don't belong here"
+  validates_uniqueness_of :name, :slug, case_sensitive: false
   validate :excluded_login
   def excluded_login
     if !slug.blank? and $bannedWords.include?(slug.downcase)
@@ -33,10 +42,14 @@ class Lab < ActiveRecord::Base
     end
   end
 
-  validates :slug, format: {:with => /\A[a-zA-Z0-9]+\z/ }, allow_nil: true, allow_blank: true, length: { minimum: 3 }
+  accepts_nested_attributes_for :links, reject_if: lambda{ |l| l[:url].blank? }, allow_destroy: true
+
+  scope :search_for, ->(q) { search_by_name(q) if q.present?}
+  scope :in_country_code, ->(cc) { where(country_code: cc) if cc.present?}
 
   after_create :notify_everyone
   before_save :downcase_email
+  after_save :save_roles
 
   attr_accessor :geocomplete
   geocoded_by :formatted_address
@@ -51,15 +64,6 @@ class Lab < ActiveRecord::Base
     end
   end
 
-  # def self.to_csv(options = {})
-  #   CSV.generate(options) do |csv|
-  #     csv << first.serializable_hash.keys
-  #     all.each do |product|
-  #       csv << product.attributes.values_at(*first.serializable_hash.keys)
-  #     end
-  #   end
-  # end
-
   def formatted_address
     [address_1, address_2, city, county, postal_code, country]
     .reject(&:blank?).join(", ")
@@ -69,7 +73,6 @@ class Lab < ActiveRecord::Base
     "#{city}, #{country}"
   end
 
-  include Avatarable
   def default_avatar
     'http://i.imgur.com/iymHWkm.png'
     # 'default-lab-avatar.png'
@@ -111,7 +114,6 @@ class Lab < ActiveRecord::Base
     @admin_ids = user_ids
   end
 
-  after_save :save_roles
   def save_roles
     if @admin_ids
       @admin_ids.reject!(&:blank?)
@@ -125,19 +127,6 @@ class Lab < ActiveRecord::Base
       end
     end
   end
-
-  include Workflow
-  workflow do
-    state :unverified do
-      event :approve, transitions_to: :approved
-      # event :reject, transitions_to: :rejected
-    end
-    state :approved
-    state :rejected
-  end
-
-  extend FriendlyId
-  friendly_id :slug_candidates, use: :slugged
 
   def slug_candidates
     [

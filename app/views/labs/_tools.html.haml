@@ -1,11 +1,12 @@
 .heading
   Facilities
-  = link_to "edit", tools_path, id: 'edit-tools'
-%dl.sub-nav
-  %dd.active= link_to "All", "#"
-  %dd= link_to "3D Printing", "#"
-  %dd= link_to "CNC", "#"
-  %dd= link_to "Electronics Production", "#"
+  = link_to "edit", tools_path, id: 'edit-tools' if current_or_null_user.can_update?(lab)
+
+-# %dl.sub-nav
+-#   %dd.active= link_to "All", "#"
+-#   %dd= link_to "3D Printing", "#"
+-#   %dd= link_to "CNC", "#"
+-#   %dd= link_to "Electronics Production", "#"
 
 %ul.large-block-grid-4.small-block-grid-2
   - 10.times do

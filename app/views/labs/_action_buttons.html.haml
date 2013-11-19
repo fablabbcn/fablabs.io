@@ -5,24 +5,3 @@
         You work here
       - else
         = link_to "I work here", new_lab_employee_path(@lab), class: ' small'
-
-
-
-  - if lab.updatable_by? current_or_null_user
-
-    %li
-      = link_to edit_lab_path(lab), class: ' small' do
-        = fa_icon "edit", text: "Edit Lab"
-
-    -# %li
-    -#   = link_to lab_employees_path(lab), class: ' small' do
-    -#     = fa_icon "users", text: "Employees"
-
-    -# = link_to manage_admins_lab_path(lab), class: 'button button-success' do
-    -#   %span.glyphicon.glyphicon-user
-    -#   Manage Admins
-
-  %li
-    - if lab.deletable_by? current_or_null_user
-      = link_to lab, class: ' alert small', method: 'delete', data: { confirm: "Are you sure?" } do
-        = fa_icon "trash-o", text: "Delete Lab"

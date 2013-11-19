@@ -15,6 +15,7 @@
 #= require jquery_ujs
 #= require turbolinks
 #= require holder
+#= require jquery.limit-1.2
 #= require Control.Loading.js
 #= require jquery.geocomplete
 #= require jquery.succinct
@@ -31,6 +32,10 @@ initEvents = ->
   $('textarea').autosize({append: "\n"})
   $(document).foundation()
   $("select").select2()
+
+  $('*[data-limit]').each ->
+    $(this).limit parseInt($(this).data('limit')), $(this).data('counter')
+
   Holder.run()
   # $('.truncate > p').succinct
   #   size: 200

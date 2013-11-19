@@ -1,6 +1,6 @@
 .heading
   = fa_icon "users", text: "People"
-  = link_to "edit", lab_employees_path(lab), id: "edit-employees"
+  = link_to "edit", lab_employees_path(lab), id: "edit-employees" if current_or_null_user.can_update?(lab)
 
   %ul.large-block-grid-2
     - lab.employees.with_approved_state.each do |employee|
@@ -13,3 +13,8 @@
             .person-details
               .person-role= employee.job_title
               = link_to employee.user.email, employee.user.email, class: 'person-email'
+- if current_user
+  - if current_user.employed_by? @lab
+    You work here
+  - else
+    = link_to "I work here", new_lab_employee_path(@lab), class: ' small'
