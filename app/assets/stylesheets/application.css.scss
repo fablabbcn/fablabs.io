@@ -17,6 +17,13 @@
 
 @import "foundation_and_overrides";
 @import "font-awesome";
+
+.top-bar-section li a {
+  &,&:hover {
+    background: $topbar-bg !important;
+  }
+}
+
 h1 {
   font-size: 1.5em !important;
   line-height: 1.2 !important;

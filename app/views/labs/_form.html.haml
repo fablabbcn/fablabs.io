@@ -20,7 +20,7 @@
 
     .row
       - if @lab.header_image_src.present?
-        .columns.large-12= image_tag @lab.header_image
+        .columns.large-12= image_tag @lab.header_image_src
       .columns.large-9= f.input :header_image_src, input_html: { class: 'fp' }, label: 'Header Image'
 
   %fieldset
