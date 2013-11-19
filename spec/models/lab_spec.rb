@@ -8,7 +8,7 @@ describe Lab do
   it { should have_many(:facilities) }
   it { should have_many(:discussions) }
   # it { should have_many(:tools).through(:facilities) }
-
+  pending "validates uniqueness of slug"
   it "cannot use slug with reserved name" do
     %w(labs users).each do |word|
       expect{FactoryGirl.create(:lab, slug: word)}.to raise_error(ActiveRecord::RecordInvalid)

@@ -23,6 +23,7 @@ class Lab < ActiveRecord::Base
   validates :name, :description, :address_1, :country_code, :slug, presence: true
   validates_presence_of :creator, on: :create
   validates_uniqueness_of :name, case_sensitive: false
+  validates_uniqueness_of :slug, case_sensitive: false
 
   # validates_exclusion_of :slug, in: $bannedWords, message: "You don't belong here"
   validate :excluded_login
@@ -32,7 +33,7 @@ class Lab < ActiveRecord::Base
     end
   end
 
-  validates :slug, format: {:with => /\A[a-zA-Z]+\z/ }, allow_nil: true, allow_blank: true, length: { minimum: 3 }
+  validates :slug, format: {:with => /\A[a-zA-Z0-9]+\z/ }, allow_nil: true, allow_blank: true, length: { minimum: 3 }
 
   after_create :notify_everyone
   before_save :downcase_email
@@ -49,6 +50,15 @@ class Lab < ActiveRecord::Base
       return labs
     end
   end
+
+  # def self.to_csv(options = {})
+  #   CSV.generate(options) do |csv|
+  #     csv << first.serializable_hash.keys
+  #     all.each do |product|
+  #       csv << product.attributes.values_at(*first.serializable_hash.keys)
+  #     end
+  #   end
+  # end
 
   def formatted_address
     [address_1, address_2, city, county, postal_code, country]

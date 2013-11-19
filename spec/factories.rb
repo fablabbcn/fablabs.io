@@ -46,10 +46,10 @@ FactoryGirl.define do
   end
 
   factory :lab do
-    name "Fab Lab BCN"
-    slug "fablabbcn"
-    description "A cool lab in Barcelona"
-    address_1 "Carrer de Pujades, 102"
+    sequence(:name) { |n| "Fab Lab #{n}" }
+    sequence(:slug) { |n| "fablab#{n}" }
+    description { Faker::Lorem.sentence }
+    address_1 { Faker::Address.street_address }
     country_code "es"
     creator
   end

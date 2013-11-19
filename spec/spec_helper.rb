@@ -17,6 +17,10 @@ Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 # If you are not using ActiveRecord, you can remove this line.
 ActiveRecord::Migration.check_pending! if defined?(ActiveRecord::Migration)
 
+RspecApiDocumentation.configure do |config|
+  config.format = :json
+end
+
 RSpec.configure do |config|
   # ## Mock Framework
   #
@@ -52,6 +56,7 @@ RSpec.configure do |config|
     config.filter_run focus: true
     config.run_all_when_everything_filtered = true
     config.filter_run_excluding :slow unless ENV["SLOW_SPECS"]
+    config.filter_run_excluding :ignore
     config.before(:all) { DeferredGarbageCollection.start }
     config.after(:all) { DeferredGarbageCollection.reconsider }
 

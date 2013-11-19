@@ -62,13 +62,13 @@ Fablabs::Application.routes.draw do
   end
 
 
-  # root to: 'static#home'
-  root to: 'labs#index'
 
   constraints subdomain: 'api' do
+    mount Apitome::Engine => "/"
     api versions: 1, module: "api/v1" do
       resources :labs, only: [:index]
     end
   end
-
+  # root to: 'static#home'
+  root to: 'labs#index'
 end

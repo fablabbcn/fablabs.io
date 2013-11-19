@@ -10,11 +10,12 @@ class LabsController < ApplicationController
     all_labs = Lab.search_for(params[:q]).with_approved_state
     @countries = Lab.country_list_for all_labs
     @count = all_labs.size
-    @labs = all_labs.order('name ASC').in_country_code(params["country"]).page(params['page']).per(2)
+    @labs = all_labs.order('name ASC').in_country_code(params["country"]).page(params['page'])
 
     respond_to do |format|
       format.html
       format.json { render json: @labs }
+      # format.csv { send_data @labs.to_csv }
     end
   end
 

@@ -1,0 +1,14 @@
+{
+  "resources": [
+    {
+      "name": "Labs",
+      "examples": [
+        {
+          "description": "Listing labs",
+          "link": "labs/listing_labs.json",
+          "groups": "all"
+        }
+      ]
+    }
+  ]
+}
