@@ -8,8 +8,8 @@ class LabSerializer < ActiveModel::Serializer
     lab_url(object)
   end
 
-  def cache_key
-    [object, current_user]
-  end
+  # def cache_key
+  #   [object, current_user]
+  # end
 
 end

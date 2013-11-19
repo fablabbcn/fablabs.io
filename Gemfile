@@ -2,6 +2,7 @@ ruby '2.0.0'
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
+gem 'rocket_pants', '~> 1.0'
 gem 'rails', '4.0.0'
 gem 'jquery-turbolinks'
 gem 'ransack', github: "ernie/ransack"
