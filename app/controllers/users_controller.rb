@@ -7,6 +7,8 @@ class UsersController < ApplicationController
   end
 
   def create
+    return render text: "Please go back and ensure that the 'ignore' field is EMPTY." if params[:name].present?
+
     @user = User.new user_params
     if @user.save
       session[:user_id] = @user.id

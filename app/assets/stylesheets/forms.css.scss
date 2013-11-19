@@ -42,8 +42,9 @@ legend {
 }
 
 .field_with_errors {
-  background: red;
-  color: #FFF;
+  border-bottom: 1px solid red;
+  color: red;
+  background: #FAE8E8;
   padding: 5px 0;
 }
 

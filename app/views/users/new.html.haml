@@ -2,39 +2,46 @@
   .columns.large-12
     = title "Sign Up"
 
-  .columns.large-7.left
+  .columns.large-12.left
     = simple_form_for @user do |f|
       = render "form_errors", resource: @user
-      .row
-        .columns.large-3.your-name
-          = f.label :first_name, "Your Name"
-        .columns.large-4
-          = f.input :first_name, autofocus: true, placeholder: 'First Name', label: false
-        .columns.large-4.left
-          = f.input :last_name, placeholder: 'Last Name', label: false
-      = f.input :email, autocapitalize: "off", autocorrect: "off"
-      .row
-        .columns.large-6
-          = f.input :password
-        .columns.large-6
-          = f.input :password_confirmation
-      .row
-        .columns.large-12
-          = f.input :country_code, as: 'country', priority: [current_country.alpha2.downcase], label: 'Country', iso_codes: true
+      %fieldset
+        .row
+          .columns.large-3.your-name
+            = f.label :first_name, "Your Name"
+          .columns.large-4
+            = f.input :first_name, autofocus: true, placeholder: 'First Name', label: false
+          .columns.large-4.left
+            = f.input :last_name, placeholder: 'Last Name', label: false
 
-      = f.submit 'Sign Up', class: 'button'
+        = f.input :email, autocapitalize: "off", autocorrect: "off"
+        .row
+          .columns.large-6
+            = f.input :password
+          .columns.large-6
+            = f.input :password_confirmation
+        .row
+          .columns.large-12
+            = f.input :country_code, as: 'country', priority: [current_country.alpha2.downcase], label: 'Country', iso_codes: true
 
-  -# .columns.large-4
-  -#   %h4 Joining the Network
-  -#   %p We want all different types of people to engage with the global Fab Lab network
-  -#   %ul
-  -#     %li Students
-  -#     %li Professionals
-  -#     %li Fab Lab Staff
-  -#     %li Hobbyists
+        #honeypot
+          %p You have now completed the form. The following field is a #{link_to "honeypot", "http://en.wikipedia.org/wiki/Honeypot_(computing)"} to prevent bots. Please ignore it and submit the form. Apologies for the inconvenience.
+          = label_tag 'name', 'IGNORE'
+          = text_field_tag 'name', nil, alt: "This field is to prevent bots. Please leave it blank.", placeholder: "LEAVE BLANK TO PROVE YOU ARE HUMAN"
 
-  -#   = image_tag "icons/safe.png"
+        = f.submit 'Sign Up', class: 'button'
 
-  -#   %h4 What are the benefits?
-  -#   %p Once you join you'll be able to participate in discussions, follow certain labs etc..
-  -#
+    -# .columns.large-4
+    -#   %h4 Joining the Network
+    -#   %p We want all different types of people to engage with the global Fab Lab network
+    -#   %ul
+    -#     %li Students
+    -#     %li Professionals
+    -#     %li Fab Lab Staff
+    -#     %li Hobbyists
+
+    -#   = image_tag "icons/safe.png"
+
+    -#   %h4 What are the benefits?
+    -#   %p Once you join you'll be able to participate in discussions, follow certain labs etc..
+    -#

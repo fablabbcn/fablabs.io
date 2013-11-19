@@ -41,7 +41,7 @@ class Lab < ActiveRecord::Base
   attr_accessor :geocomplete
   geocoded_by :formatted_address
 
-  def nearby_labs same_country = true, max_distance = 100000
+  def nearby_labs same_country = true, max_distance = 1000
     if nearbys(max_distance)
       labs = nearbys(max_distance).with_approved_state.limit(5)
       if same_country
