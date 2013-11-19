@@ -6,7 +6,7 @@ Fablabs::Application.routes.draw do
 
   get "verify_email(/:id)", to: "users#verify_email", as: "verify_email"
 
-  %w(about developers choose_locale).each do |action|
+  %w(about choose_locale).each do |action|
     get action => "static##{action}", as: action
   end
 
