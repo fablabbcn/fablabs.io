@@ -2,7 +2,16 @@
   .columns.large-12
     = title "Employees at #{@lab}"
     %table
+      %thead
+        %tr
+          %th Name
+          %th State
+          %th Date Applied
       - @lab.employees.each do |employee|
         %tr
-          %td= employee.user
-          %td= employee.current_state
+          %td= link_to employee.user, employee.user
+          %td
+            = employee.current_state
+            - employee.current_state.events.keys.each do |event|
+              = button_to event.capitalize, {controller: 'employees', action: event}.reject{:lab_id}, method: :patch, class: 'button small'
+          %td= employee.created_at

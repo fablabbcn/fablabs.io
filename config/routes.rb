@@ -42,6 +42,11 @@ Fablabs::Application.routes.draw do
     root to: 'labs#index'
   end
 
+  resources :employees do
+    member do
+      patch :approve
+    end
+  end
 
   # resources :labs, path: '', only: [:show]
 

@@ -24,6 +24,9 @@ class EmployeesController < ApplicationController
     @employees = @lab.employees
   end
 
+  def approve
+  end
+
 private
 
   def employee_params
