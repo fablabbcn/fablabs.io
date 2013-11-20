@@ -23,7 +23,7 @@ class Lab < ActiveRecord::Base
   end
 
   has_many :role_applications
-  has_many :links
+  has_many :links, as: :linkable
   has_many :employees
   has_many :discussions, as: :discussable
   has_many :facilities

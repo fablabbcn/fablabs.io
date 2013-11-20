@@ -9,6 +9,7 @@ class CreateEmployees < ActiveRecord::Migration
       t.date :started_on
       t.date :finished_on
       t.string :workflow_state
+      t.references :creator, index: true
       t.timestamps
     end
     add_index :employees, :ordinal

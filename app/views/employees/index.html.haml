@@ -13,5 +13,6 @@
           %td
             = employee.current_state
             - employee.current_state.events.keys.each do |event|
-              = button_to event.capitalize, {controller: 'employees', action: event}.reject{:lab_id}, method: :patch, class: 'button small'
+              = button_to event.capitalize, {controller: 'employees', action: event, id: employee}.reject{:lab_id}, method: :patch, class: 'button small'
+
           %td= employee.created_at

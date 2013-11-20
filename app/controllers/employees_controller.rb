@@ -25,6 +25,7 @@ class EmployeesController < ApplicationController
   end
 
   def approve
+    render text: "APPROVED"
   end
 
 private

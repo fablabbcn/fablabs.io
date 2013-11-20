@@ -7,6 +7,7 @@ class CreateTools < ActiveRecord::Migration
       t.text :description
       t.string :workflow_state
       t.string :ancestry
+      t.references :creator, index: true
 
       t.timestamps
     end

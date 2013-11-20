@@ -19,9 +19,13 @@ ActiveRecord::Schema.define(version: 20131118155518) do
   create_table "brands", force: true do |t|
     t.string   "name"
     t.string   "url"
+    t.string   "workflow_state"
+    t.integer  "creator_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "brands", ["creator_id"], name: "index_brands_on_creator_id", using: :btree
 
   create_table "comments", force: true do |t|
     t.integer  "author_id"
@@ -73,10 +77,12 @@ ActiveRecord::Schema.define(version: 20131118155518) do
     t.integer  "thing_id"
     t.string   "thing_type"
     t.text     "notes"
+    t.integer  "creator_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
+  add_index "facilities", ["creator_id"], name: "index_facilities_on_creator_id", using: :btree
   add_index "facilities", ["lab_id", "thing_type", "thing_id"], name: "index_facilities_on_lab_id_and_thing_type_and_thing_id", unique: true, using: :btree
 
   create_table "featured_images", force: true do |t|
@@ -84,9 +90,13 @@ ActiveRecord::Schema.define(version: 20131118155518) do
     t.string   "name"
     t.string   "description"
     t.string   "url"
+    t.string   "workflow_state"
+    t.integer  "creator_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "featured_images", ["creator_id"], name: "index_featured_images_on_creator_id", using: :btree
 
   create_table "labs", force: true do |t|
     t.integer  "creator_id"
@@ -118,20 +128,25 @@ ActiveRecord::Schema.define(version: 20131118155518) do
   add_index "labs", ["creator_id"], name: "index_labs_on_creator_id", using: :btree
 
   create_table "links", force: true do |t|
-    t.integer  "lab_id"
+    t.integer  "linkable_id"
+    t.string   "linkable_type"
     t.integer  "ordinal"
     t.string   "url"
     t.string   "description"
+    t.string   "workflow_state"
+    t.integer  "creator_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "links", ["lab_id", "ordinal"], name: "index_links_on_lab_id_and_ordinal", using: :btree
+  add_index "links", ["creator_id"], name: "index_links_on_creator_id", using: :btree
+  add_index "links", ["linkable_id", "linkable_type", "ordinal"], name: "index_links_on_linkable_id_and_linkable_type_and_ordinal", using: :btree
 
   create_table "recoveries", force: true do |t|
     t.integer  "user_id"
     t.string   "key"
     t.string   "ip"
+    t.string   "workflow_state"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -181,11 +196,15 @@ ActiveRecord::Schema.define(version: 20131118155518) do
     t.string   "name"
     t.integer  "brand_id"
     t.text     "description"
+    t.string   "workflow_state"
+    t.string   "ancestry"
+    t.integer  "creator_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "tools", ["brand_id"], name: "index_tools_on_brand_id", using: :btree
+  add_index "tools", ["creator_id"], name: "index_tools_on_creator_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "workflow_state"

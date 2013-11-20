@@ -4,6 +4,7 @@ class CreateRecoveries < ActiveRecord::Migration
       t.references :user, index: true
       t.string :key
       t.string :ip
+      t.string :workflow_state
 
       t.timestamps
     end

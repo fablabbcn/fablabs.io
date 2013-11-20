@@ -7,7 +7,7 @@
 
     = f.input :description, hint: 'A brief overview of the lab. <span id="description-count"></span> characters available.', input_html: { rows: 4, data: { limit: 250, counter: '#description-count'} }
 
-    = f.input :slug, hint: "This is the 'username' of the lab, it will be in the URL" do
+    = f.input :slug, hint: "This is the unique 'username' of the lab, it will be in the URL" do
       .row.collapse
         .columns.small-3
           %span.prefix= "#{Rails.application.config.url}/"
@@ -19,11 +19,11 @@
     .row
       .columns.large-3= cropped_image_tag @lab.avatar, 100
       .columns.large-9= f.input :avatar_src, input_html: { class: 'fp' }, label: 'Avatar', hint: "This will be a square image next shown next to the lab name throughout the site"
-
+    %hr/
     .row
       - if @lab.header_image_src.present?
-        .columns.large-12= image_tag @lab.header_image_src
-      .columns.large-9= f.input :header_image_src, input_html: { class: 'fp' }, label: 'Header Image'
+        .columns.large-3= cropped_image_tag @lab.header_image_src, 100
+      .columns.large-9= f.input :header_image_src, input_html: { class: 'fp' }, label: 'Header Image', hint: "A single (large) photo of your lab. You will be able to add more photos soon."
 
   %fieldset
     %legend Lab Location

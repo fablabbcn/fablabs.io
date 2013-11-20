@@ -5,6 +5,7 @@
     %title= content_for?(:title) ? "#{yield(:title)} | FabLabs" : "FabLabs"
     %meta{ name: "viewport", content: "width=device-width, initial-scale=1.0, user-scalable=no" }
     = render 'application/map_icons'
+    %link{type: "text/plain", rel: "author", href: "/humans.txt"}
     = javascript_include_tag "//maps.googleapis.com/maps/api/js?sensor=false&libraries=places"
     = stylesheet_link_tag    "//cdn.leafletjs.com/leaflet-0.6.4/leaflet.css", "http://fonts.googleapis.com/css?family=Montserrat|Roboto+Slab:400,700"
     = javascript_include_tag "//cdn.leafletjs.com/leaflet-0.6.4/leaflet.js"

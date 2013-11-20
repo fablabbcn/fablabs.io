@@ -33,7 +33,7 @@ FactoryGirl.define do
   end
 
   factory :link do
-    lab
+    linkable
     url "http://www.fablabbcn.org/"
     description "Wordpress Blog"
   end
@@ -45,7 +45,7 @@ FactoryGirl.define do
     url "http://www.fablabbcn.org/2013/10/elefab-2/"
   end
 
-  factory :lab do
+  factory :lab, aliases: [:linkable] do
     sequence(:name) { |n| "Fab Lab #{n}" }
     sequence(:slug) { |n| "fablab#{n}" }
     description { Faker::Lorem.sentence }

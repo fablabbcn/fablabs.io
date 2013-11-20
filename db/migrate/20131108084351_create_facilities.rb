@@ -4,7 +4,7 @@ class CreateFacilities < ActiveRecord::Migration
       t.references :lab
       t.references :thing, polymorphic: true
       t.text :notes
-
+      t.references :creator, index: true
       t.timestamps
     end
     add_index :facilities, [:lab_id, :thing_type, :thing_id], unique: true

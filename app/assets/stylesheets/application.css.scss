@@ -18,6 +18,17 @@
 @import "foundation_and_overrides";
 @import "font-awesome";
 
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  margin: 0 0 $footer-height;
+  -webkit-text-size-adjust:none;
+  text-size-adjust:none;
+  text-rendering: optimizeLegibility;
+}
+
 .top-bar-section li a {
   &,&:hover {
     background: $topbar-bg !important;
@@ -38,10 +49,7 @@ h1 {
 .breadcrumbs a {
   font-weight: bold;
 }
-body {
-  text-rendering: optimizeLegibility;
-  padding-bottom: 50px;
-}
+
 .count {
   color: #CCC !important;
 }
@@ -118,18 +126,6 @@ h4.modal-title {
   a {
     font-weight: bold;
   }
-}
-
-html {
-  position: relative;
-  min-height: 100%;
-}
-
-body {
-  -webkit-text-size-adjust:none;
-  text-size-adjust:none;
-  // margin: 0 0 180px; /* bottom = footer height */
-  // background: #CCC;
 }
 
 .container {
