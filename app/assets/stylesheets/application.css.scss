@@ -17,6 +17,7 @@
  */
 
 @import "foundation_and_overrides";
+@import "foundation";
 @import "font-awesome";
 
 html {
@@ -29,6 +30,7 @@ body {
   -webkit-text-size-adjust:none;
   text-size-adjust:none;
   text-rendering: optimizeLegibility;
+  position: static;
 }
 
 .top-bar-section li a {
