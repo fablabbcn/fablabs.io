@@ -81,7 +81,7 @@ end
 gem 'bcrypt-ruby', '~> 3.0.0'
 
 gem 'foreman'
-gem 'puma'
+gem 'unicorn'
 
 # Use unicorn as the app server
 # gem 'unicorn'
