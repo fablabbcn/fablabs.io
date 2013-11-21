@@ -68,7 +68,8 @@ class User < ActiveRecord::Base
   end
 
   def self.admin_emails
-    User.with_role(:admin).exists? ? User.with_role(:admin).map(&:email) : ['john@bitsushi.com']
+    # User.with_role(:admin).exists? ? User.with_role(:admin).map(&:email) :
+    ['john@bitsushi.com']
   end
 
 private

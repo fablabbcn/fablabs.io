@@ -64,10 +64,12 @@ ActiveRecord::Schema.define(version: 20131118155518) do
     t.date     "started_on"
     t.date     "finished_on"
     t.string   "workflow_state"
+    t.integer  "creator_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
+  add_index "employees", ["creator_id"], name: "index_employees_on_creator_id", using: :btree
   add_index "employees", ["lab_id"], name: "index_employees_on_lab_id", using: :btree
   add_index "employees", ["ordinal"], name: "index_employees_on_ordinal", using: :btree
   add_index "employees", ["user_id"], name: "index_employees_on_user_id", using: :btree

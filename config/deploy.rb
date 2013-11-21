@@ -3,7 +3,7 @@ require "puma/capistrano"
 
 role :app, "tesla.fablabs.io"
 role :web, "tesla.fablabs.io"
-# role :db, "sagan.fablabs.io", primary: true
+role :db, "tesla.fablabs.io", primary: true
 
 set :application, "fablabs"
 set :user, "deployer"
