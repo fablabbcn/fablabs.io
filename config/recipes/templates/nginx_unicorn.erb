@@ -3,8 +3,15 @@ upstream unicorn {
 }
 
 server {
-  listen 80 default deferred;
-  # server_name example.com;
+  listen       80;
+  server_name  fablabs.io;
+  return 301 $scheme://www.fablabs.io$request_uri;
+}
+
+server {
+  listen 80; # default deferred
+  server_name www.fablabs.io;
+
   root <%= current_path %>/public;
 
   if (-f $document_root/system/maintenance.html) {

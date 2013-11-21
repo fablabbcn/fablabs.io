@@ -9,6 +9,9 @@ class StaticController < ApplicationController
   def about
   end
 
+  def api
+  end
+
   def choose_locale
     render :choose_locale, layout: !request.xhr?
     # if request.xhr?

@@ -94,7 +94,8 @@ describe Lab do
     it "can create lab" do
       user.verify!
       signin user
-      visit new_lab_path
+      visit labs_path
+      click_link "Add a Lab"
       fill_in 'Name', with: 'New Lab'
       fill_in 'Description', with: 'An awesome place'
       fill_in 'lab_address_1', with: 'Mars'

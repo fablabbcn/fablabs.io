@@ -16,7 +16,8 @@ footer {
 
   img {
     max-width: 100%;
-    visibility: hidden;
+    display: none;
+    // visibility: hidden;
   }
 
   body.c-labs.a-map & { display: none; }

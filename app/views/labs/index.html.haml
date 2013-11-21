@@ -17,9 +17,6 @@
 .row
   .columns.large-8.content
 
-    -# - if Lab.creatable_by? current_or_null_user
-    -#   = link_to I18n.t("labs.index.add_a_lab", :default => "Add a Lab"), new_lab_path, class: 'button right small'
-
     - if params[:q]
       .search-results
         -# %button.close{type: "button", data: { dismiss: "alert"}, aria: { hidden: true}} ×
@@ -27,14 +24,13 @@
         #{pluralize @labs.size, "search result"} for
         %strong= params[:q]
 
-    .labs
-      = render @labs
-
+    .labs= render @labs
     = paginate @labs
 
+    - if Lab.creatable_by? current_or_null_user
+      = link_to I18n.t("labs.index.add_a_lab", default: "Add a Lab"), new_lab_path, class: 'button small'
+
   .columns.large-4.sidebar-offcanvas
-
-
     .heading
       Filter by
       %strong Country

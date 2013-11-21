@@ -60,7 +60,7 @@ class User < ActiveRecord::Base
   end
 
   def send_verification_email
-    UserMailer.verification(self).deliver
+    UserMailer.verification(self).deliver if unverified?
   end
 
   def email_string

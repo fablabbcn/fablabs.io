@@ -70,6 +70,7 @@ Fablabs::Application.routes.draw do
 
   constraints subdomain: 'api' do
     # mount Apitome::Engine => "/"
+    get '/' => 'static#api'
     api versions: 1, module: "api/v1" do
       resources :labs, only: [:index]
     end
