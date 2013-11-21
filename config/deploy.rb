@@ -2,17 +2,12 @@ require "bundler/capistrano"
 
 set :recipes, "config/recipes"
 
-load "#{recipes}/base"
-load "#{recipes}/figaro"
-load "#{recipes}/blacklist"
-load "#{recipes}/nginx"
-load "#{recipes}/unicorn"
-# load "config/recipes/postgresql"
-load "#{recipes}/nodejs"
-load "#{recipes}/rbenv"
-load "#{recipes}/security"
-load "#{recipes}/check"
-# load "config/recipes/monit"
+# postgresql
+# monit
+
+%w(base logs figaro blacklist nginx logs unicorn nodejs rbenv security check).each do |r|
+  load "#{recipes}/#{r}"
+end
 
 server "tesla.fablabs.io", :web, :app, :db, primary: true
 # server "sagan.fablabs.io", :db
