@@ -59,10 +59,9 @@ group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
 end
-
+gem 'holder_rails', github: 'NARKOZ/holder_rails'
 group :test, :development do
   gem "rspec-rails"
-  gem 'holder_rails', github: 'NARKOZ/holder_rails'
   gem "factory_girl_rails"
 end
 group :test do
