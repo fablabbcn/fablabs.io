@@ -3,7 +3,7 @@
   %head
     %title= content_for?(:title) ? "#{yield(:title)} | FabLabs" : "FabLabs"
     %meta{ name: "viewport", content: "width=device-width" }
-    = stylesheet_link_tag "application", "http://fonts.googleapis.com/css?family=Montserrat|Roboto+Slab:400,700", media: "all", "data-turbolinks-track" => true
+    = stylesheet_link_tag "application", "://fonts.googleapis.com/css?family=Montserrat", media: "all", "data-turbolinks-track" => true
     = javascript_include_tag "sessions", "data-turbolinks-track" => true
     = csrf_meta_tags
     :css
