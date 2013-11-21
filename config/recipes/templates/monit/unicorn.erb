@@ -10,6 +10,6 @@ check process <%= application %>_unicorn with pidfile <%= unicorn_pid %>
     if mem > 200.0 MB for 1 cycles then restart
     if cpu > 50% for 3 cycles then restart
     if 5 restarts within 5 cycles then timeout
-    alert ryan@railscasts.com only on { pid }
+    alert john@bitsushi.com only on { pid }
     if changed pid 2 times within 60 cycles then alert
 <% end %>

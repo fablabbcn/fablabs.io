@@ -38,12 +38,4 @@ server {
   client_max_body_size 4G;
   keepalive_timeout 10;
 
-  if (-f $document_root/system/maintenance.html) {
-    return 503;
-  }
-  error_page 503 @maintenance;
-  location @maintenance {
-    rewrite  ^(.*)$  /system/maintenance.html last;
-    break;
-  }
 }

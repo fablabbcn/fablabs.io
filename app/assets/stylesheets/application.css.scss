@@ -12,6 +12,7 @@
  *= require Control.Loading.css
  *= require select2
  *= require intlTelInput
+ *= require leaflet
  *= require_tree .
  */
 
@@ -22,6 +23,7 @@ html {
   position: relative;
   min-height: 100%;
 }
+
 body {
   margin: 0 0 $footer-height;
   -webkit-text-size-adjust:none;

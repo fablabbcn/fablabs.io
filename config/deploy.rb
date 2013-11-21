@@ -4,6 +4,7 @@ set :recipes, "config/recipes"
 
 load "#{recipes}/base"
 load "#{recipes}/figaro"
+load "#{recipes}/blacklist"
 load "#{recipes}/nginx"
 load "#{recipes}/unicorn"
 # load "config/recipes/postgresql"
@@ -28,7 +29,6 @@ set :branch, "master"
 set :default_environment, {
   'PATH' => "$HOME/.rbenv/shims:$HOME/.rbenv/bin:$PATH"
 }
-
 
 default_run_options[:pty] = true
 ssh_options[:forward_agent] = true
