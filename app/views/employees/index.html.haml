@@ -1,23 +1,26 @@
+- title "Employees at #{@lab}"
 .row
-  .columns.large-12= title "Employees at #{@lab}"
+  .columns.large-12
+    = render "labs/breadcrumbs", lab: @lab
 .row
   .columns.large-6
     %h4 Approved Employees
-    = render @lab.employees
+    = render @lab.employees.with_approved_state
 
   .columns.large-6
     %h4 Unverified Employees
-    %table
-      %thead
-        %tr
-          %th Name
-          %th Date Applied
-      - @lab.employees.each do |employee|
-        %tr
-          %td= link_to employee.user, employee.user
-          %td
-            = employee.current_state
-            - employee.current_state.events.keys.each do |event|
-              = button_to event.capitalize, {controller: 'employees', action: event, id: employee.id }, method: :patch, class: 'button small'
+    = render @lab.employees.with_unverified_state
+    -# %table
+    -#   %thead
+    -#     %tr
+    -#       %th Name
+    -#       %th Date Applied
+    -#   - @lab.employees.each do |employee|
+    -#     %tr
+    -#       %td= link_to employee.user, employee.user
+    -#       %td
+    -#         = employee.current_state
+    -#         - employee.current_state.events.keys.each do |event|
+    -#           = button_to event.capitalize, {controller: 'employees', action: event, id: employee.id }, method: :patch, class: 'button small'
 
-          %td= employee.created_at
+    -#       %td= employee.created_at

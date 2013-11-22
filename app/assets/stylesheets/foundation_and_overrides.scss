@@ -256,7 +256,7 @@ $paragraph-line-height: 1.3;
 // $button-font-align: center;
 
 // We use these to control various hover effects.
-// $button-function-factor: 10%;
+$button-function-factor: 5%;
 
 // We use these to control button border styles.
 $button-border-width: 0;//1px;
@@ -383,7 +383,7 @@ $button-border-width: 0;//1px;
 $crumb-bg: none;//lighten($secondary-color, 5%);
 
 // We use these to set the padding around the breadcrumbs.
-$crumb-padding: emCalc(6px) emCalc(14px) emCalc(0px);
+$crumb-padding: emCalc(6px) emCalc(14px) emCalc(0px) 0;
 $crumb-side-padding: emCalc(4px);
 
 // We use these to control border styles.

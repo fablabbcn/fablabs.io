@@ -4,7 +4,7 @@
     - nearby_labs.each do |lab|
       %li.nearby-lab
         = link_to lab, class: 'pull-left' do
-          = cropped_image_tag lab.avatar, 30
+          = cropped_image_tag lab.avatar, 30, class: 'avatar small'
         .media-body
           .media-heading= link_to lab, lab, class: 'nearby-lab-name'
           .distance= "#{lab.distance.ceil}km away"

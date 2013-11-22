@@ -20,12 +20,16 @@
 @import "foundation";
 @import "font-awesome";
 
+.button[type=submit] {
+  background: #53934E;
+}
+
 html {
   position: relative;
   min-height: 100%;
 }
 
-h1,h2,h3,h4,h5,h6 {
+h1,h2,h3,h4,h5,h6,legend {
   text-shadow: 1px 1px 1px #FFF;
 }
 

@@ -28,7 +28,9 @@
     = paginate @labs
 
     - if Lab.creatable_by? current_or_null_user
-      = link_to I18n.t("labs.index.add_a_lab", default: "Add a Lab"), new_lab_path, class: 'button small'
+
+      = link_to new_lab_path, class: 'button small' do
+        = fa_icon "plus", text: I18n.t("labs.index.add_a_lab", default: "Add a Lab")
 
   .columns.large-4.sidebar-offcanvas
     .heading
