@@ -6,11 +6,16 @@ footer {
   bottom: 0;
   height: $footer-height;
   width: 100%;
-  background: #FFF;
-  padding-top: 20px;
-  font-size: 0.8em;
-  line-height: 2em;
-  border-top: 1px solid #DDD;
+  // background: #FFF;
+  a { font-size: 0.8em; }
+  // line-height: 2em;
+  .split {
+    width: 100%;
+    border-top: 1px solid #CCC;
+    box-shadow: 0 -1px 0 #EAEAEA;
+    margin-bottom: 20px;
+  }
+  text-shadow: 1px 1px 1px #FFF;
 
   img {
     max-width: 100%;
@@ -30,4 +35,8 @@ footer {
       color: #AAA;
     }
   }
+  #footer-twitter-icon {
+    font-size: 30px;
+  }
+
 }

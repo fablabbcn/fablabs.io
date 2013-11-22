@@ -1,26 +1,21 @@
 class LabAuthorizer < ApplicationAuthorizer
 
-  def readable_by?(user)
-    resource.approved? || user.has_role?(:admin, resource)
-  end
-
   def updatable_by?(user)
-    user.verified? and user.has_role?(:admin, resource)
+    resource.approved? and user.verified? and user.employed_by?(resource)
+    # and user.has_role?(:admin, resource)
   end
 
   def deletable_by?(user)
-    user.verified? and user.has_role?(:admin)
+    false
+    # user.verified? and user.has_role?(:admin)
+  end
+
+  def readable_by?(user)
+    resource.approved?
   end
 
   def self.creatable_by?(user)
     user.verified?
-  end
-
-  def applyable_by?(user)
-    user.verified? and
-    !user.created_labs.include?(resource) and
-    !user.role_applications.where(lab: resource).exists? and
-    !user.has_role? :admin
   end
 
 end

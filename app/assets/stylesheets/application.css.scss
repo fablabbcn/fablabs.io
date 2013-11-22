@@ -25,6 +25,10 @@ html {
   min-height: 100%;
 }
 
+h1,h2,h3,h4,h5,h6 {
+  text-shadow: 1px 1px 1px #FFF;
+}
+
 body {
   margin: 0 0 ($footer-height + 20px);
   -webkit-text-size-adjust:none;
@@ -159,7 +163,9 @@ h3 {
 .gem-count {
   // font-size: 0.7em;
   // font-weight: bold;
-  background: red;
+  background: #E84E61;
+  border-radius: 4px;
   padding: 2px 5px;
   // border-radius: 5px;
 }
+

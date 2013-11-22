@@ -5,7 +5,9 @@
   table {
     width: 100%;
   }
-  tr.unverified td {
-    background: pink;
+  tr.approved td {
+    a {
+      color: #53934E;
+    }
   }
 }

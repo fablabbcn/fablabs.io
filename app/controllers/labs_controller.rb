@@ -2,6 +2,8 @@ class LabsController < ApplicationController
 
   before_filter :require_login, except: [:index, :map, :show]
 
+  # authorize_actions_for Lab, actions: { map: :read, manage_admins: :update}
+
   def map
     @labs = Lab.with_approved_state
   end
@@ -76,6 +78,7 @@ class LabsController < ApplicationController
 
   def manage_admins
     @lab = Lab.friendly.find(params[:id])
+    authorize_action_for @lab
     @admins = @lab.admins
     @users = User.all# - User.with_role(:admin) - [current_user]
   end

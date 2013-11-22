@@ -25,9 +25,12 @@
 
     %footer
       .row
-        .columns.small-2
+        .columns.large-12
+          .split
+      .row
+        .columns.large-2
           = image_tag "footer-logo.png"
-        .columns.small-10
+        .columns.large-5.left
           %ul
             %li= link_to "Labs List", labs_path
             %li= link_to "World Map", map_labs_path
