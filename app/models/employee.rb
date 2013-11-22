@@ -1,7 +1,7 @@
 class Employee < ActiveRecord::Base
   belongs_to :user
   belongs_to :lab
-  validates_presence_of :user, :lab
+  validates_presence_of :user, :lab, :job_title
   validates_uniqueness_of :user_id, scope: :lab_id
 
   include Authority::Abilities

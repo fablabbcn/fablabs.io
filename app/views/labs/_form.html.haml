@@ -55,6 +55,13 @@
     = f.input :phone, hint: "A general enquiries phone number for the lab"
     = f.input :email, hint: "A general enquiries email address for the lab"
 
+  - if @lab.new_record?
+    %fieldset
+      %legend Your Role
+      = f.simple_fields_for :employees do |e|
+        = e.input :job_title
+        = e.input :description
+
   %fieldset
     %legend Links
     %p.hint Any websites for this Fab Lab. It can include blogs, social networks, video/photo sites etc.

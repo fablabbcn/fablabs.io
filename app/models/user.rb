@@ -22,13 +22,17 @@ class User < ActiveRecord::Base
 
   before_create { generate_token(:email_validation_hash) }
   before_create :downcase_email
+  before_update :check_if_email_changed
   after_create :send_welcome_email
 
   workflow do
     state :unverified do
       event :verify, transitions_to: :verified
+      event :unverify, transitions_to: :unverified
     end
-    state :verified
+    state :verified do
+      event :unverify, transitions_to: :unverified
+    end
   end
 
   def default_avatar
@@ -59,8 +63,13 @@ class User < ActiveRecord::Base
     recoveries.last.key
   end
 
+  def unverify
+    generate_token(:email_validation_hash)
+    send_verification_email
+  end
+
   def send_verification_email
-    UserMailer.verification(self).deliver if unverified?
+    UserMailer.verification(self).deliver# if unverified?
   end
 
   def email_string
@@ -80,6 +89,10 @@ private
 
   def send_welcome_email
     UserMailer.welcome(self).deliver
+  end
+
+  def check_if_email_changed
+    unverify! if email_changed?
   end
 
 end

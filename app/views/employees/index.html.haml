@@ -1,11 +1,16 @@
 .row
-  .columns.large-12
-    = title "Employees at #{@lab}"
+  .columns.large-12= title "Employees at #{@lab}"
+.row
+  .columns.large-6
+    %h4 Approved Employees
+    = render @lab.employees
+
+  .columns.large-6
+    %h4 Unverified Employees
     %table
       %thead
         %tr
           %th Name
-          %th State
           %th Date Applied
       - @lab.employees.each do |employee|
         %tr

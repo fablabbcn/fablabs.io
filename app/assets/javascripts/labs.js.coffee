@@ -50,8 +50,9 @@ ready = ->
     $("input#lab_latitude").val latLng.lat()
     $("input#lab_longitude").val latLng.lng()
   .bind "geocode:result", (event, result) ->
-    # $('.step-2').css(opacity: 1)
     $('.c-labs.a-new #lab_address_1').focus()
+    $(".c-labs.a-new input#lab_latitude").val result.geometry.location.ob
+    $(".c-labs.a-new input#lab_longitude").val result.geometry.location.pb
 
 
   if $('body').hasClass 'c-labs a-map'

@@ -21,16 +21,20 @@ class LabsController < ApplicationController
 
   def new
     @lab = current_user.created_labs.build
+    @lab.employees.build
     @lab.links.build
     authorize_action_for @lab
   end
 
   def create
     @lab = current_user.created_labs.build lab_params
+    @lab.employees.first.assign_attributes(user: current_user, lab: @lab)
     authorize_action_for @lab
     if @lab.save
       redirect_to labs_path, notice: "Thanks for adding your lab. We shall review your application and be in touch."
     else
+      # @lab.employees.build if @lab.employees.empty?
+      @lab.links.build
       render :new
     end
   end
@@ -65,6 +69,7 @@ class LabsController < ApplicationController
     if @lab.update_attributes lab_params
       redirect_to lab_url(@lab), notice: "Lab was successfully updated"
     else
+      @lab.links.build
       render :edit
     end
   end
@@ -79,6 +84,7 @@ private
 
   def lab_params
     params.require(:lab).permit(
+      :geocomplete,
       :name,
       :description,
       :slug,
@@ -97,8 +103,8 @@ private
       :phone,
       :email,
       :application_notes,
-      links_attributes: [ :id, :link_id, :url, '_destroy' ]
-
+      links_attributes: [ :id, :link_id, :url, '_destroy' ],
+      employees_attributes: [ :id, :job_title, :description ]
     )
   end
 

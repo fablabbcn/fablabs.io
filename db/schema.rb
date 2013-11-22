@@ -215,6 +215,7 @@ ActiveRecord::Schema.define(version: 20131118155518) do
     t.string   "email"
     t.string   "password_digest"
     t.string   "avatar_src"
+    t.string   "phone"
     t.string   "city"
     t.string   "country_code"
     t.float    "latitude"

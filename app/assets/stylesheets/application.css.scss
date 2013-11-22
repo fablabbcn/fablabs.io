@@ -26,7 +26,7 @@ html {
 }
 
 body {
-  margin: 0 0 $footer-height;
+  margin: 0 0 ($footer-height + 20px);
   -webkit-text-size-adjust:none;
   text-size-adjust:none;
   text-rendering: optimizeLegibility;

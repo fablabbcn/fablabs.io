@@ -18,14 +18,11 @@
 #= require jquery.limit-1.2
 #= require Control.Loading.js
 #= require jquery.geocomplete
-#= require jquery.succinct
 #= require leaflet.markercluster
-#= require underscore
 #= require cocoon
 #= require select2
 #= require foundation
 #= require jquery.autosize
-#= require intlTelInput
 #= require_tree .
 
 initEvents = ->

@@ -30,9 +30,10 @@ class Lab < ActiveRecord::Base
   has_many :tools, through: :facilities, source: :thing, source_type: 'Tool'
   belongs_to :creator, class_name: 'User'
 
+  # validates :employees, presence: true, on: :create
   validates :slug, format: {:with => /\A[a-zA-Z0-9]+\z/ }, allow_nil: true, allow_blank: true, length: { minimum: 3 }
   validates_format_of :email, :with => /\A(.+)@(.+)\z/, allow_blank: true
-  validates :name, :description, :address_1, :country_code, :slug, presence: true
+  validates :name, :description, :address_1, :country_code, :slug, :county, presence: true
   validates_presence_of :creator, on: :create
   validates_uniqueness_of :name, :slug, case_sensitive: false
   validate :excluded_login
@@ -43,12 +44,14 @@ class Lab < ActiveRecord::Base
   end
 
   accepts_nested_attributes_for :links, reject_if: lambda{ |l| l[:url].blank? }, allow_destroy: true
+  accepts_nested_attributes_for :employees
 
   scope :search_for, ->(q) { search_by_name(q) if q.present?}
   scope :in_country_code, ->(cc) { where(country_code: cc) if cc.present?}
 
   after_create :notify_everyone
   before_save :downcase_email
+  before_save :truncate_description
   after_save :save_roles
 
   attr_accessor :geocomplete
@@ -70,7 +73,7 @@ class Lab < ActiveRecord::Base
   end
 
   def short_address
-    "#{city}, #{country}"
+    [city, country].reject(&:blank?).join(", ")
   end
 
   def default_avatar
@@ -79,6 +82,7 @@ class Lab < ActiveRecord::Base
   end
 
   def approve
+    employees.update_all(workflow_state: :approved)
     UserMailer.lab_approved(self).deliver
     creator.add_role :admin, self
   end
@@ -143,6 +147,10 @@ private
 
   def downcase_email
     self.email = email.downcase if email.present?
+  end
+
+  def truncate_description
+    self.description = description[0..250].gsub(/\s+/, ' ').gsub(/\n/," ").strip if description_changed?
   end
 
 end

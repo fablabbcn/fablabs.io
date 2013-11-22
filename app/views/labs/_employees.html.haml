@@ -2,19 +2,19 @@
   = fa_icon "users", text: "People"
   = link_to "edit", lab_employees_path(lab), id: "edit-employees" if current_or_null_user.can_update?(lab)
 
-  %ul.large-block-grid-2
-    - lab.employees.with_approved_state.each do |employee|
-      %li.person
-        .media
-          .pull-left
-            = cropped_image_tag "http://i.imgur.com/HOCqqqg.jpg", 60
-          .media-body
-            = link_to employee.user, employee.user, class: 'person-name'
-            .person-details
-              .person-role= employee.job_title
-              = link_to employee.user.email, employee.user.email, class: 'person-email'
-- if current_user
-  - if current_user.employed_by? @lab
-    You work here
-  - else
-    = link_to "I work here", new_lab_employee_path(@lab), class: ' small'
+%ul.large-block-grid-2
+  - lab.employees.with_approved_state.each do |employee|
+    %li.person
+      .media
+        .pull-left
+          = cropped_image_tag "http://i.imgur.com/HOCqqqg.jpg", 60
+        .media-body
+          = link_to employee.user, employee.user, class: 'person-name'
+          .person-details
+            .person-role= employee.job_title
+            = mail_to employee.user.email, employee.user.email, class: 'person-email'
+  %li.person
+    - if current_user and !current_user.employed_by? @lab
+      = link_to "I work here", new_lab_employee_path(@lab), class: 'button small'
+
+

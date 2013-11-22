@@ -45,7 +45,7 @@ class UsersController < ApplicationController
         redirect_to root_path, notice: "Thanks for verifying your email"
       end
     rescue ActiveRecord::RecordNotFound
-      render text: "Fail"
+      redirect_to root_path
     end
   end
 

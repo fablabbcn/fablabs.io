@@ -97,12 +97,16 @@ describe Lab do
       visit labs_path
       click_link "Add a Lab"
       fill_in 'Name', with: 'New Lab'
-      fill_in 'Description', with: 'An awesome place'
+      fill_in 'lab_description', with: 'An awesome place'
       fill_in 'lab_address_1', with: 'Mars'
       fill_in 'lab_links_attributes_0_url', with: 'http://www.newlab.com'
+      fill_in 'lab_employees_attributes_0_job_title', with: 'Spaceman'
+      fill_in 'lab_employees_attributes_0_description', with: 'I explore the surface'
+      fill_in 'County', with: 'County'
       select 'United Kingdom', from: 'Country'
       fill_in 'Slug', with: 'newlab'
       click_button 'Add Lab'
+
       expect(page).to have_content "Thanks"
     end
 

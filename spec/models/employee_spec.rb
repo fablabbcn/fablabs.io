@@ -5,6 +5,7 @@ describe Employee do
   it { should belong_to(:lab) }
   it { should validate_presence_of(:user) }
   it { should validate_presence_of(:lab) }
+  it { should validate_presence_of(:job_title) }
   it { should validate_uniqueness_of(:user_id).scoped_to(:lab_id) }
 
   pending "orders by ordinal, name ASC" do

@@ -14,12 +14,6 @@
     = javascript_include_tag "vendor/custom.modernizr"
     = csrf_meta_tags
 
-    -# :css
-    -#   body.a-home {
-    -#     background: center center fixed url('#{cropped_image_path("http://www.fablabbcn.org/wp-content/uploads/2013/10/012.jpg", 2000)}');
-    -#     background-size: cover;
-    -#   }
-
   %body{ class: body_classes }
     = render "application/please_verify" if current_user and current_user.unverified?
     - if flash.any?
