@@ -25,7 +25,12 @@ class EmployeesController < ApplicationController
   end
 
   def approve
-    render text: "APPROVED"
+    @employee = Employee.find(params[:id])
+    if @employee.approve!
+      redirect_to lab_employees_url(@employee.lab), notice: 'Employee approved'
+    else
+      redirect_to lab_employees_url(@employee.lab), notice: 'Failed'
+    end
   end
 
 private

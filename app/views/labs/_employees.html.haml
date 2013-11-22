@@ -16,5 +16,3 @@
   %li.person
     - if current_user and !current_user.employed_by? @lab
       = link_to "I work here", new_lab_employee_path(@lab), class: 'button small'
-
-

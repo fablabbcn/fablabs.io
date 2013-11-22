@@ -8,7 +8,7 @@
     .columns.large-4.bio
       = render "bio", lab: @lab
     .columns.large-8
-      = render "minimap", lab: @lab
+      = render "minimap", lab: @lab if @lab.longitude
 
 .row.main
   .columns.large-8.content

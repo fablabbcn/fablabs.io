@@ -62,4 +62,5 @@
         %th Updated At
         %td= @lab.updated_at
 
-    = link_to "Edit Lab", edit_lab_path(@lab), class: 'button'
+    = link_to edit_lab_path(@lab), class: 'button' do
+      = fa_icon "edit", text: "Edit Lab"

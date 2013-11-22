@@ -17,4 +17,6 @@
   -# - if current_or_null_user.has_role? :admin
   -#   - lab.current_state.events.keys.each do |event|
   -#     = button_to "#{event.capitalize} Lab", {controller: 'labs', action: 'verify'}, method: :patch, class: 'button button-primary'
-= link_to "Edit Lab", edit_lab_path(@lab), class: 'button small' if current_or_null_user.can_update?(@lab)
+- if current_or_null_user.can_update?(@lab)
+  = link_to edit_lab_path(@lab), class: 'button small' do
+    = fa_icon "edit", text: "Edit Lab"
