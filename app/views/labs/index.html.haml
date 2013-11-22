@@ -17,12 +17,12 @@
 .row
   .columns.large-8.content
 
-    - if params[:q]
+    - if params[:query]
       .search-results
         -# %button.close{type: "button", data: { dismiss: "alert"}, aria: { hidden: true}} ×
-        = link_to "×", labs_path, class: 'close'
+        = link_to "×", labs_path, class: 'close right'
         #{pluralize @labs.size, "search result"} for
-        %strong= params[:q]
+        %strong= params[:query]
 
     .labs= render @labs
     = paginate @labs

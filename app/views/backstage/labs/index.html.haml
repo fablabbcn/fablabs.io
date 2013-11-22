@@ -14,6 +14,8 @@
           .columns.large-3
             = f.submit "Filter", class: 'button expand'
 
+    = paginate @labs
+
     %table.table
       %thead
         %tr
@@ -37,3 +39,5 @@
 
             %td= lab.current_state
             -# %td= lab.created_at#l(lab.created_at, format: :short)
+
+    = paginate @labs

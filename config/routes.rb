@@ -36,7 +36,7 @@ Fablabs::Application.routes.draw do
     resources :labs do
       member do
         patch :approve
-        # patch :reject
+        patch :reject
       end
     end
     root to: 'labs#index'

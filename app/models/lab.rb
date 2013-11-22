@@ -16,7 +16,7 @@ class Lab < ActiveRecord::Base
   workflow do
     state :unverified do
       event :approve, transitions_to: :approved
-      # event :reject, transitions_to: :rejected
+      event :reject, transitions_to: :rejected
     end
     state :approved
     state :rejected
@@ -84,7 +84,11 @@ class Lab < ActiveRecord::Base
   def approve
     employees.update_all(workflow_state: :approved)
     UserMailer.lab_approved(self).deliver
-    creator.add_role :admin, self
+    # creator.add_role :admin, self
+  end
+
+  def reject
+    UserMailer.lab_rejected(self).deliver
   end
 
   def to_s

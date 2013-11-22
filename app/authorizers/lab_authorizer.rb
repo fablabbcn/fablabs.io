@@ -1,8 +1,7 @@
 class LabAuthorizer < ApplicationAuthorizer
 
   def updatable_by?(user)
-    resource.approved? and user.verified? and user.employed_by?(resource)
-    # and user.has_role?(:admin, resource)
+    user.has_role?(:admin, resource) or (resource.approved? and user.verified? and user.employed_by?(resource))
   end
 
   def deletable_by?(user)

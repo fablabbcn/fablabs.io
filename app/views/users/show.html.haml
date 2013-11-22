@@ -1,13 +1,14 @@
 .row
   .columns.large-12
     .media
-      .pull-left= image_tag @user.avatar
-      .media-body= title @user
-
-
-.row
-  .columns.large-4
-    %h4 Biography
-    = simple_format Faker::Lorem.paragraph
-    .joined-on
-      Joined #{@user.created_at}
+      .pull-left= image_tag @user.avatar, class: 'avatar big'
+      .media-body
+        .row
+          .columns.large-4.text-right.right
+            - if current_user and current_user == @user
+              = link_to edit_user_path(@user), class: 'button tiny' do
+                = fa_icon "edit", text: "Edit Profile"
+          .columns.large-8= title @user
+        = simple_format Faker::Lorem.paragraph
+        .joined-on
+          Joined #{@user.created_at}

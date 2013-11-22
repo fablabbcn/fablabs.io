@@ -1,7 +1,7 @@
 class UserMailer < ActionMailer::Base
   default from: "FabLabs <notifications@fablabs.io>"
 
-  %w(submitted approved).each do |action|
+  %w(submitted approved rejected).each do |action|
     define_method("lab_#{action}") do |lab|
       @lab = lab
       @user = @lab.creator

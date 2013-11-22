@@ -29,8 +29,10 @@ html {
   min-height: 100%;
 }
 
-h1,h2,h3,h4,h5,h6,legend {
-  text-shadow: 1px 1px 1px #FFF;
+#main {
+  h1,h2,h3,h4,h5,h6,legend {
+    text-shadow: 1px 1px 1px #FFF;
+  }
 }
 
 body {
@@ -87,6 +89,10 @@ h1 {
 }
 
 .avatar {
+  &.tiny {
+    width: 30px;
+    height: 30px;
+  }
   &.med {
     width: 60px;
     height: 60px;
@@ -173,3 +179,6 @@ h3 {
   // border-radius: 5px;
 }
 
+.panel {
+  background: #EBEBEB;
+}

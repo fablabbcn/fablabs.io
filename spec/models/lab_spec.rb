@@ -79,7 +79,13 @@ describe Lab do
     expect(last_email.to).to include(lab.creator.email)
   end
 
-  it "makes creator admin after approval" do
+  it "emails creator on rejection" do
+    lab = FactoryGirl.create(:lab)
+    lab.reject!
+    expect(last_email.to).to include(lab.creator.email)
+  end
+
+  pending "makes creator admin after approval" do
     lab = FactoryGirl.create(:lab)
     expect(lab.creator).to_not have_role(:admin, lab)
     lab.approve!

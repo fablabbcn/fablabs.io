@@ -69,7 +69,7 @@
     = f.simple_fields_for :links do |link|
       = render 'link_fields', f: link
     .links
-      = link_to_add_association 'add link', f, :links, class: 'button small'
+      = link_to_add_association 'add link', f, :links, class: 'button tiny'
 
   - if @lab.new_record?
     %fieldset

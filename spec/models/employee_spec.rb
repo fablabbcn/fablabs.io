@@ -17,4 +17,12 @@ describe Employee do
     expect(Employee.all.map{ |e| e.user.first_name }).to eq(%w(lion zebra aardvark))
   end
 
+  pending "emails lab employees on create" do
+    creator = FactoryGirl.create(:user)
+    lab = FactoryGirl.create(:lab, creator: creator)
+    lab.approve!
+    employee = FactoryGirl.create(:employee, lab: lab)
+    expect(last_email.to).to include(creator.email)
+  end
+
 end

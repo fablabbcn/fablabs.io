@@ -21,6 +21,21 @@ describe UserMailer do
     mail.body.encoded.should match(lab_url(lab))
   end
 
+  pending "employee_applied notification" do
+    mail = UserMailer.employee_applied(lab,employee)
+    mail.subject.should eq("#{employee} applied as employee at #{lab}")
+    # mail.to.should eq(lab.employees.)
+    mail.from.should eq(["notifications@fablabs.io"])
+    mail.body.encoded.should match(lab_url(lab))
+  end
+
+  it "lab_rejected notification" do
+    mail = UserMailer.lab_rejected(lab)
+    mail.subject.should eq("#{lab} rejected")
+    mail.to.should eq([lab.creator.email])
+    mail.from.should eq(["notifications@fablabs.io"])
+  end
+
   it "welcome" do
     mail = UserMailer.welcome(user)
     mail.subject.should include("Confirmation Instructions")

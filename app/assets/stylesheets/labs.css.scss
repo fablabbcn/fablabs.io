@@ -90,7 +90,7 @@ ul.lab-links {
 
 .search-results {
   margin-bottom: 1em;
-  background: yellow;
+  background: lighten(yellow, 40%);
   padding: 10px;
 }
 
@@ -169,9 +169,9 @@ li.all {
 
 
 .c-labs.a-index {
-  .avatar {
-    width: 100px;
-    height: 100px;
+  #main .avatar {
+    // width: 100px;
+    // height: 100px;
     margin-right: 10px;
   }
   .labs {
@@ -193,6 +193,7 @@ li.all {
       .lab-description {
         color: #444;
         margin-bottom: 0;
+        font-size: 0.9em;
       }
       &:last-child {
         border-bottom: none;

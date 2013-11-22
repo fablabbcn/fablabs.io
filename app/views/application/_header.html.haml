@@ -21,12 +21,12 @@
           = form_tag labs_path, class: 'navbar-form navbar-left', role: 'search', method: 'get' do
             - if params[:country].present?
               = hidden_field_tag 'country', params[:country]
-            = text_field_tag 'q', params[:q], class: 'form-control', autocomplete: 'off', placeholder: 'Search Labs...', id: 'search-box'
+            = text_field_tag 'query', params[:query], class: 'form-control', autocomplete: 'off', placeholder: 'Search Labs...', id: 'search-box'
       %ul.right
         - if current_user
           %li.has-dropdown
             = link_to current_user, class: 'dropdown-toggle', data: { toggle: 'dropdown'} do
-              = cropped_image_tag current_user.avatar, '30x30', class: 'user-avatar'
+              = image_tag current_user.avatar, class: 'avatar tiny'
               Me
               - if current_or_null_user.has_role? :admin
                 = gem_count_tag Lab.with_unverified_state.size

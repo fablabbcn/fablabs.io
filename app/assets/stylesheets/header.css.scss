@@ -12,6 +12,10 @@
 }
 header {
 
+  ul {
+    background: none !important;
+  }
+
   body.a-home & {
     margin-bottom: 0;
   }
@@ -84,12 +88,10 @@ header {
     }
   }
 
-  .user-avatar {
+  .avatar {
     margin-right: 5px;
     margin-top: -10px;
     margin-bottom: -10px;
-    height: 30px;
-    width: 30px;
   }
   .nav > li > a:hover {
     // background: none;
