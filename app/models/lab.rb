@@ -38,7 +38,7 @@ class Lab < ActiveRecord::Base
   validates_uniqueness_of :name, :slug, case_sensitive: false
   validate :excluded_login
   def excluded_login
-    if !slug.blank? and $bannedWords.include?(slug.downcase)
+    if !slug.blank? and Fablabs::Application.config.banned_words.include?(slug.downcase)
       errors.add(:slug, "is reserved")
     end
   end
