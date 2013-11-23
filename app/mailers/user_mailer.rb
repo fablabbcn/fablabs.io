@@ -9,6 +9,18 @@ class UserMailer < ActionMailer::Base
     end
   end
 
+  def role_added role, user
+    @user = user
+    @role = role
+    mail(to: @user.email_string, subject: "Role Added")
+  end
+
+  def role_removed role, user
+    @user = user
+    @role = role
+    mail(to: @user.email_string, subject: "Role Removed")
+  end
+
   def welcome user
     @user = user
     mail(to: @user.email_string, subject: "[FabLabs.io] Confirmation Instructions")

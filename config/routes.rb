@@ -58,6 +58,11 @@ Fablabs::Application.routes.draw do
     resources :role_applications
     resources :employees
     resources :discussions
+    resources :admins do
+      collection do
+        delete '/' => 'admins#destroy'
+      end
+    end
     member do
       get :manage_admins
     end

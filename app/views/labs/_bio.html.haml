@@ -18,5 +18,16 @@
   -#   - lab.current_state.events.keys.each do |event|
   -#     = button_to "#{event.capitalize} Lab", {controller: 'labs', action: 'verify'}, method: :patch, class: 'button button-primary'
 - if current_or_null_user.can_update?(@lab)
-  = link_to edit_lab_path(@lab), class: 'button small' do
-    = fa_icon "edit", text: "Edit Lab"
+  = link_to "#", data: { dropdown: 'drop' }, class: 'button dropdown small' do
+    = fa_icon "edit", text: "Manage Lab"
+  %br/
+  %ul#drop.f-dropdown{data: 'dropdown-content'}
+    %li
+      = link_to edit_lab_path(@lab) do
+        = fa_icon "edit", text: "Edit Lab Details"
+    %li
+      = link_to lab_employees_path(@lab) do
+        = fa_icon "group", text: "Edit Employee List"
+    %li
+      = link_to lab_admins_path(@lab) do
+        = fa_icon "flash", text: "Manage Admins"

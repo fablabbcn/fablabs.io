@@ -1,6 +1,6 @@
 = content_tag_for :div, employee, class: 'media' do
   .pull-left
-    = image_tag employee.user.avatar, width: 50
+    = image_tag employee.user.avatar, class: 'avatar med'
   .media-body
     = link_to employee.user, employee.user
     .job-title= employee.job_title

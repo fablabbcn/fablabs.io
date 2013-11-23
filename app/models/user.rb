@@ -5,7 +5,16 @@ class User < ActiveRecord::Base
   include Authority::UserAbilities
   include Workflow
 
-  rolify
+  rolify :after_add => :after_add_method, :after_remove => :after_remove_method
+
+  def after_add_method(role)
+    UserMailer.role_added(role, self).deliver
+  end
+
+  def after_remove_method(role)
+    UserMailer.role_removed(role, self).deliver
+  end
+
   has_secure_password
 
   has_many :created_labs, class_name: 'Lab', foreign_key: 'creator_id'

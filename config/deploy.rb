@@ -1,6 +1,7 @@
 # load Rails for env vars
 require File.expand_path('../application', __FILE__)
 require "bundler/capistrano"
+# require 'capistrano/maintenance'
 
 set :recipes, "config/recipes"
 # postgresql
@@ -9,10 +10,10 @@ set :recipes, "config/recipes"
   load "#{recipes}/#{r}"
 end
 
-server "tesla.fablabs.io", :web, :app, :db, primary: true
+server "146.185.179.183", :web, :app, :db, primary: true
 # server "sagan.fablabs.io", :db
 
-set :port, ENV['SSH_PORT']
+set :port, 22#ENV['SSH_PORT']
 set :application, "fablabs"
 set :user, ENV['DEPLOY_USER']
 set :deploy_to, "/home/#{user}/apps/#{application}"

@@ -20,6 +20,7 @@
 #= require jquery.geocomplete
 #= require leaflet.markercluster
 #= require cocoon
+#= require underscore
 #= require select2
 #= require foundation
 #= require jquery.autosize

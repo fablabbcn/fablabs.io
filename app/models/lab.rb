@@ -84,7 +84,7 @@ class Lab < ActiveRecord::Base
   def approve
     employees.update_all(workflow_state: :approved)
     UserMailer.lab_approved(self).deliver
-    # creator.add_role :admin, self
+    creator.add_role :admin, self
   end
 
   def reject

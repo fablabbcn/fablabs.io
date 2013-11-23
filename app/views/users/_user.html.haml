@@ -1,1 +1,7 @@
-_user.html.haml
+= content_tag_for :div, user do
+  = link_to user, user
+  - if defined?(admin)
+    - if admin
+      = button_to 'remove admin', {user_id: user.id}, method: :delete
+    - else
+      = button_to 'make admin', {user_id: user.id}

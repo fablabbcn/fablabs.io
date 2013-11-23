@@ -9,9 +9,9 @@
 
     = f.input :slug, hint: "This is the unique 'username' of the lab, it will be in the URL" do
       .row.collapse
-        .columns.small-3
+        .columns.large-3
           %span.prefix= "#{Rails.application.config.url}/"
-        .columns.small-9= f.input_field :slug, class: 'form-control'
+        .columns.large-9= f.input_field :slug, class: 'form-control'
 
   %fieldset
     %legend Lab Images

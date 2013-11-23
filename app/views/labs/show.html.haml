@@ -24,6 +24,7 @@
     -# = render "discussions", lab: @lab
 
   .columns.large-4.sidebar
-    = render "links", links: @lab.links
+
     = render "nearby", lab: @lab, nearby_labs: @nearby_labs
+    = render "links", links: @lab.links
     -# = render "facilities", lab: @lab

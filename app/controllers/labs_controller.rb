@@ -48,7 +48,7 @@ class LabsController < ApplicationController
       return redirect_to root_path, notice: "Lab not found"
     end
     # @people = [@lab.creator]
-    @nearby_labs = @lab.nearby_labs true
+    @nearby_labs = @lab.nearby_labs(false, 10000000).limit(5)
     authorize_action_for @lab
   end
 
@@ -82,7 +82,6 @@ class LabsController < ApplicationController
     @admins = @lab.admins
     @users = User.all# - User.with_role(:admin) - [current_user]
   end
-
 private
 
   def lab_params

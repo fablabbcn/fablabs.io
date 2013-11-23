@@ -1,0 +1,19 @@
+- title "Manage Admins"
+.row
+  .columns.large-12
+    = render "labs/breadcrumbs", lab: @lab
+.row
+  .columns.large-12
+
+    %h4 Uneditable Admins
+    = render @admins
+
+    %h4 Admins
+    = render @lab_admins, admin: true
+
+    %h4 Users
+    = form_tag request.path do
+      .row.collapse
+        .columns.large-10= select_tag :user_id, options_for_select(@potential_lab_admins.map{|a| [a.first_name, a.id]})
+        .columns.large-2= submit_tag "Make Admin"
+

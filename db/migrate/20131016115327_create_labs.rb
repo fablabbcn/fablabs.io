@@ -27,6 +27,9 @@ class CreateLabs < ActiveRecord::Migration
       t.integer    :zoom
       t.text       :address_notes
 
+      t.boolean    :active, default: true
+      # launched on date, various granularity YEAR, YEAR + MONTH, YEAR + MONTH + DAY
+
       t.text       :application_notes
 
       t.timestamps
