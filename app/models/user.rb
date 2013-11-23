@@ -5,15 +5,15 @@ class User < ActiveRecord::Base
   include Authority::UserAbilities
   include Workflow
 
-  rolify :after_add => :after_add_method, :after_remove => :after_remove_method
+  rolify# :after_add => :after_add_method, :after_remove => :after_remove_method
 
-  def after_add_method(role)
-    UserMailer.role_added(role, self).deliver
-  end
+  # def after_add_method(role)
+  #   UserMailer.role_added(role, self).deliver
+  # end
 
-  def after_remove_method(role)
-    UserMailer.role_removed(role, self).deliver
-  end
+  # def after_remove_method(role)
+  #   UserMailer.role_removed(role, self).deliver
+  # end
 
   has_secure_password
 
@@ -25,14 +25,20 @@ class User < ActiveRecord::Base
   has_many :employees
 
   validates_format_of :email, :with => /\A(.+)@(.+)\z/
-  validates :first_name, :last_name, :email, presence: true
-  validates_uniqueness_of :email, case_sensitive: false
+  validates :username, format: { :with => /\A[a-zA-Z0-9]+\z/ }, length: { minimum: 4, maximum: 20 }
+
+  validates :first_name, :last_name, :email, :username, presence: true
+  validates_uniqueness_of :email, :username, case_sensitive: false
   validates :password, presence: true, length: { minimum: 6 }, if: lambda{ !password.nil? }, on: :update
+  validate :excluded_login
+  def excluded_login
+    if !username.blank? and Fablabs::Application.config.banned_words.include?(username.downcase)
+      errors.add(:username, "is reserved")
+    end
+  end
 
   before_create { generate_token(:email_validation_hash) }
   before_create :downcase_email
-  before_update :check_if_email_changed
-  after_create :send_welcome_email
 
   workflow do
     state :unverified do
@@ -74,11 +80,6 @@ class User < ActiveRecord::Base
 
   def unverify
     generate_token(:email_validation_hash)
-    send_verification_email
-  end
-
-  def send_verification_email
-    UserMailer.verification(self).deliver# if unverified?
   end
 
   def email_string
@@ -94,14 +95,6 @@ private
 
   def downcase_email
     self.email.downcase!
-  end
-
-  def send_welcome_email
-    UserMailer.welcome(self).deliver
-  end
-
-  def check_if_email_changed
-    unverify! if email_changed?
   end
 
 end

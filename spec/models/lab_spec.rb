@@ -67,24 +67,6 @@ describe Lab do
     expect(FactoryGirl.build(:lab)).to be_unverified
   end
 
-  it "emails creator and admins on create" do
-    lab = FactoryGirl.create(:lab)
-    emails = ActionMailer::Base.deliveries.map(&:to).flatten
-    expect(emails - [lab.creator.email, 'john@bitsushi.com']).to be_empty
-  end
-
-  it "emails creator on approval" do
-    lab = FactoryGirl.create(:lab)
-    lab.approve!
-    expect(last_email.to).to include(lab.creator.email)
-  end
-
-  it "emails creator on rejection" do
-    lab = FactoryGirl.create(:lab)
-    lab.reject!
-    expect(last_email.to).to include(lab.creator.email)
-  end
-
   pending "makes creator admin after approval" do
     lab = FactoryGirl.create(:lab)
     expect(lab.creator).to_not have_role(:admin, lab)

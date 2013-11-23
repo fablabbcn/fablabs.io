@@ -11,6 +11,7 @@ class UsersController < ApplicationController
 
     @user = User.new user_params
     if @user.save
+      UserMailer.welcome(@user).deliver
       session[:user_id] = @user.id
       redirect_to root_path, flash: { success: "Thanks for signing up. Please check your email to complete your registration." }
     else
@@ -25,6 +26,10 @@ class UsersController < ApplicationController
   def update
     @user = current_user
     if @user.update_attributes user_params
+      if @user.email_changed?
+        @user.unverify!
+        UserMailer.verification(@user).deliver
+      end
       redirect_to root_url, flash: { success: 'Settings updated' }
     else
       render 'edit'
@@ -33,7 +38,7 @@ class UsersController < ApplicationController
 
   def resend_verification_email
     @user = current_user
-    @user.send_verification_email
+    UserMailer.verification(@user).deliver
     render 'sent_verification_email'
   end
 
@@ -56,7 +61,17 @@ class UsersController < ApplicationController
 private
 
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :country_code, :avatar_src, :use_metric)
+    params.require(:user).permit(
+      :username,
+      :first_name,
+      :last_name,
+      :email,
+      :password,
+      :password_confirmation,
+      :country_code,
+      :avatar_src,
+      :use_metric
+    )
   end
 
 end

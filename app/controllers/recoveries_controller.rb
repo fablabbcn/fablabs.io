@@ -2,6 +2,8 @@ class RecoveriesController < ApplicationController
 
   layout 'sessions'
 
+  def check_inbox; end
+
   def new
     @recovery = Recovery.new
     @recovery.build_user
@@ -11,13 +13,11 @@ class RecoveriesController < ApplicationController
     @recovery = Recovery.new recovery_params
     @recovery.ip = request.remote_ip
     if @recovery.save
+      UserMailer.account_recovery_instructions(@recovery.user).deliver
       redirect_to check_inbox_recoveries_url
     else
       render :new
     end
-  end
-
-  def check_inbox
   end
 
   def show

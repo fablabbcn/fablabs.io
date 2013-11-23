@@ -108,6 +108,8 @@ describe Lab do
       click_button 'Add Lab'
 
       expect(page).to have_content "Thanks"
+      emails = ActionMailer::Base.deliveries.map(&:to).flatten
+      expect(emails).to eq([user.email, 'john@bitsushi.com'])
     end
 
     it "requires valid form to create lab" do

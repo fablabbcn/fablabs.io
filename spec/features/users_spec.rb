@@ -14,6 +14,7 @@ describe User do
 
     it "can signup" do
       visit signup_path
+      fill_in 'Username', with: 'john'
       fill_in 'user_first_name', with: 'John'
       fill_in 'user_last_name', with: 'Rees'
       fill_in 'Email', with: 'new@user.com'

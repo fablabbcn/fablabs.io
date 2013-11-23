@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
   end
 
   def create
-    user = User.find_by email: params[:email]
+    user = User.where('email = :eu or username = :eu', eu: params[:email_or_username]).first
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
       redirect_to URI.parse(params[:goto]).path, flash: { success: "Signed in!" }, only_path: true

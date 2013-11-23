@@ -2,6 +2,8 @@ require 'spec_helper'
 
 describe 'recoveries' do
 
+  pending "can reset with username"
+
   it "emails user when requesting password recovery" do
     user = FactoryGirl.create(:user, email: 'john@bitsushi.com')
     visit signin_path
@@ -24,7 +26,7 @@ describe 'recoveries' do
     expect{visit recovery_url('invalidkey')}.to raise_error(ActiveRecord::RecordNotFound)
   end
 
-  it "can cannot use empty password" do
+  it "cannot use empty password" do
     user = FactoryGirl.create(:user)
     recovery = FactoryGirl.create(:recovery, user: user, email: user.email)
     visit recovery_url(user.recovery_key)

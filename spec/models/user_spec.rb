@@ -12,8 +12,24 @@ describe User do
   it { should have_many(:employees) }
   it { should have_many(:comments) }
 
+  it "is valid" do
+    expect(FactoryGirl.build(:user)).to be_valid
+  end
+
   it "has initial state" do
     expect(FactoryGirl.build(:user).current_state).to eq('unverified')
+  end
+
+  it "cannot use username with reserved name" do
+    %w(labs users).each do |u|
+      expect{FactoryGirl.create(:user, username: u)}.to raise_error(ActiveRecord::RecordInvalid)
+    end
+  end
+
+  it "only allows alphanumerics in username" do
+    %w(wrong-username not_allowed).each do |u|
+      expect{FactoryGirl.create(:user, username: u)}.to raise_error(ActiveRecord::RecordInvalid)
+    end
   end
 
   describe "avatar" do
@@ -44,6 +60,11 @@ describe User do
     expect(user.to_s).to eq("Homer Simpson")
   end
 
+  it "validates uniqueness of username" do
+    FactoryGirl.create(:user, username: 'john')
+    expect{FactoryGirl.create(:user, username: 'john')}.to raise_error(ActiveRecord::RecordInvalid)
+  end
+
   it "validates uniqueness of email " do
     # http://stackoverflow.com/questions/17635189
     FactoryGirl.create(:user, email: 'john@bitsushi.com')
@@ -52,11 +73,6 @@ describe User do
 
   it "is unverified" do
     expect(FactoryGirl.build(:user)).to be_unverified
-  end
-
-  it "sends welcome email" do
-    user = FactoryGirl.create(:user)
-    expect(last_email.to).to include(user.email)
   end
 
   it "has default locale" do

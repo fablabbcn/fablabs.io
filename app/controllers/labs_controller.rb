@@ -33,6 +33,8 @@ class LabsController < ApplicationController
     @lab.employees.first.assign_attributes(user: current_user, lab: @lab)
     authorize_action_for @lab
     if @lab.save
+      UserMailer.lab_submitted(@lab).deliver
+      AdminMailer.lab_submitted(@lab).deliver
       redirect_to labs_path, notice: "Thanks for adding your lab. We shall review your application and be in touch."
     else
       # @lab.employees.build if @lab.employees.empty?
@@ -48,7 +50,8 @@ class LabsController < ApplicationController
       return redirect_to root_path, notice: "Lab not found"
     end
     # @people = [@lab.creator]
-    @nearby_labs = @lab.nearby_labs(false, 10000000).limit(5)
+    @nearby_labs = @lab.nearby_labs(false, 10000000)
+    @nearby_labs = @nearby_labs.limit(5) if @nearby_labs
     authorize_action_for @lab
   end
 

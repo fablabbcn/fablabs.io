@@ -20,7 +20,6 @@ class Recovery < ActiveRecord::Base
 
   before_create :associate_user
   before_create { generate_token(:key) }
-  after_create :email_user
 
   def to_param
     key
@@ -37,10 +36,6 @@ private
 
   def associate_user
     self.user = User.where(email: self.email).first
-  end
-
-  def email_user
-    UserMailer.account_recovery_instructions(user).deliver
   end
 
 end

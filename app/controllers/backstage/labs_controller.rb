@@ -15,9 +15,11 @@ class Backstage::LabsController < Backstage::BackstageController
 
   %w(approve reject).each do |verb|
     define_method(verb) do
+      verbed = "#{verb}ed".gsub('ee', 'e')
       @lab = Lab.friendly.find(params[:id])
       if @lab.send("#{verb}!")
-        redirect_to backstage_labs_path, notice: "Lab #{verb}ed".gsub('ee', 'e')
+        UserMailer.send("lab_#{verbed}", @lab).deliver
+        redirect_to backstage_labs_path, notice: "Lab #{verbed}"
       else
         redirect_to backstage_lab_path(@lab), notice: "Could not #{verb} lab"
       end

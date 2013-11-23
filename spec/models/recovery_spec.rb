@@ -17,11 +17,6 @@ describe Recovery do
     expect(FactoryGirl.create(:recovery, email: FactoryGirl.create(:user).email).key).to be_present
   end
 
-  it "emails user after create" do
-    recovery = FactoryGirl.create(:recovery, email: FactoryGirl.create(:user).email)
-    expect(last_email.to).to include(recovery.user.email)
-  end
-
   it "uses key as to_param" do
     recovery = FactoryGirl.build(:recovery)
     expect(recovery.to_param).to eq(recovery.key)

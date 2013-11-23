@@ -49,7 +49,6 @@ class Lab < ActiveRecord::Base
   scope :search_for, ->(q) { search_by_name(q) if q.present?}
   scope :in_country_code, ->(cc) { where(country_code: cc) if cc.present?}
 
-  after_create :notify_everyone
   before_save :downcase_email
   before_save :truncate_description
   after_save :save_roles
@@ -83,12 +82,7 @@ class Lab < ActiveRecord::Base
 
   def approve
     employees.update_all(workflow_state: :approved)
-    UserMailer.lab_approved(self).deliver
     creator.add_role :admin, self
-  end
-
-  def reject
-    UserMailer.lab_rejected(self).deliver
   end
 
   def to_s
@@ -143,11 +137,6 @@ class Lab < ActiveRecord::Base
   end
 
 private
-
-  def notify_everyone
-    UserMailer.lab_submitted(self).deliver
-    AdminMailer.lab_submitted(self).deliver
-  end
 
   def downcase_email
     self.email = email.downcase if email.present?

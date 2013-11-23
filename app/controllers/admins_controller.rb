@@ -18,15 +18,23 @@ class AdminsController < ApplicationController
   def create
     @lab = Lab.friendly.find(params[:lab_id])
     user = User.find(params[:user_id])
-    user.add_role :admin, @lab
-    redirect_to lab_admins_path(@lab), notice: "Admin added"
+    if role = user.add_role(:admin, @lab)
+      UserMailer.role_added(role, user).deliver
+      redirect_to lab_admins_path(@lab), notice: "Admin added"
+    else
+      redirect_to lab_admins_path(@lab), notice: "Admin could not be added"
+    end
   end
 
   def destroy
     @lab = Lab.friendly.find(params[:lab_id])
     user = User.find(params[:user_id])
-    user.remove_role :admin, @lab
-    redirect_to lab_admins_path(@lab), notice: "Admin removed"
+    if role = user.remove_role(:admin, @lab)
+      # UserMailer.role_added(role, user).deliver
+      redirect_to lab_admins_path(@lab), notice: "Admin removed"
+    else
+      redirect_to lab_admins_path(@lab), notice: "Admin could not be removed"
+    end
   end
 
 private

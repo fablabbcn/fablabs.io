@@ -13,8 +13,8 @@
       = hidden_field_tag :goto, params[:goto]
       .row
         .columns.large-12
-          = label_tag :email, nil, class: 'hide'
-          = text_field_tag :email, params[:email], placeholder: 'email', autofocus: params[:email].blank?, autocapitalize: "off", autocorrect: "off"
+          = label_tag :email_or_username, "Email or Username", class: 'hide'
+          = text_field_tag :email_or_username, params[:email_or_username], placeholder: 'Email or Username', autofocus: params[:email_or_username].blank?, autocapitalize: "off", autocorrect: "off"
       .row
         .columns.small-9
           = label_tag :password, nil, class: 'hide'
