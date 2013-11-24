@@ -6,7 +6,7 @@ require "bundler/capistrano"
 set :recipes, "config/recipes"
 # postgresql
 # monit
-%w(base logs figaro blacklist nginx logs unicorn nodejs rbenv security check).each do |r|
+%w(base logs figaro blacklist redis nginx logs unicorn nodejs rbenv security check).each do |r|
   load "#{recipes}/#{r}"
 end
 
