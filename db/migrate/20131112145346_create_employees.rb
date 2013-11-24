@@ -5,6 +5,8 @@ class CreateEmployees < ActiveRecord::Migration
       t.references :lab, index: true
       t.integer :ordinal
       t.string :job_title
+      t.string :email
+      t.string :phone
       t.text :description
       t.date :started_on
       t.date :finished_on

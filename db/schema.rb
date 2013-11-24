@@ -60,6 +60,8 @@ ActiveRecord::Schema.define(version: 20131118155518) do
     t.integer  "lab_id"
     t.integer  "ordinal"
     t.string   "job_title"
+    t.string   "email"
+    t.string   "phone"
     t.text     "description"
     t.date     "started_on"
     t.date     "finished_on"

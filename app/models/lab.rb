@@ -66,6 +66,10 @@ class Lab < ActiveRecord::Base
     end
   end
 
+  def planned?
+    !active
+  end
+
   def formatted_address
     [address_1, address_2, city, county, postal_code, country]
     .reject(&:blank?).join(", ")

@@ -11,9 +11,9 @@
 # about supported directives.
 #
 #= require jquery
-#= require jquery.turbolinks
+
 #= require jquery_ujs
-#= require turbolinks
+
 #= require holder
 #= require jquery.limit-1.2
 #= require Control.Loading.js

@@ -4,8 +4,8 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rocket_pants', '~> 1.0'
 gem 'sidekiq'
-gem 'rails', '4.0.0'
-gem 'jquery-turbolinks'
+gem 'rails', '4.0.1'
+# gem 'jquery-turbolinks'
 gem 'ransack', github: "ernie/ransack"
 gem 'authority', github: 'nathanl/authority'
 gem 'rolify', github: 'EppO/rolify'
@@ -79,7 +79,7 @@ group :development do
 end
 
 # Use ActiveModel has_secure_password
-gem 'bcrypt-ruby', '~> 3.0.0'
+gem 'bcrypt-ruby'
 
 gem 'foreman'
 gem 'unicorn'

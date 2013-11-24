@@ -1,6 +1,6 @@
 language: ruby
 rvm:
-  - 2.0.0-p353
+  - 2.0.0
 env:
   matrix:
     - DB=postgresql
