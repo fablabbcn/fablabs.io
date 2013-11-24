@@ -7,7 +7,7 @@ class Employee < ActiveRecord::Base
   include Authority::Abilities
   self.authorizer_name = 'EmployeeAuthorizer'
 
-  scope :active, -> { includes(:user).with_approved_state.order('LOWER(users.last_name) ASC') }
+  scope :active, -> { includes(:user).with_approved_state.order('LOWER(users.last_name) ASC').references(:user) }
 
   include Workflow
   workflow do

@@ -8,6 +8,24 @@ describe Employee do
   it { should validate_presence_of(:job_title) }
   it { should validate_uniqueness_of(:user_id).scoped_to(:lab_id) }
 
+  it "is valid" do
+    expect(FactoryGirl.create(:employee)).to be_valid
+  end
+
+  it "has initial state" do
+    expect(FactoryGirl.build(:employee)).to be_unverified
+  end
+
+  it "has initial state" do
+    employee = FactoryGirl.create(:employee)
+    employee.approve!
+    expect(employee).to be_approved
+  end
+
+  pending "has active scope" do
+    includes(:user).with_approved_state.order('LOWER(users.last_name) ASC').references(:user)
+  end
+
   pending "orders by ordinal, name ASC" do
     order = [2,1,1]
     %w(aardvark zebra lion).each do |name|
@@ -15,14 +33,6 @@ describe Employee do
       FactoryGirl.create(:employee, user: user, ordinal: order.unshift)
     end
     expect(Employee.all.map{ |e| e.user.first_name }).to eq(%w(lion zebra aardvark))
-  end
-
-  pending "emails lab employees on create" do
-    creator = FactoryGirl.create(:user)
-    lab = FactoryGirl.create(:lab, creator: creator)
-    lab.approve!
-    employee = FactoryGirl.create(:employee, lab: lab)
-    expect(last_email.to).to include(creator.email)
   end
 
 end

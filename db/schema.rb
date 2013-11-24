@@ -122,7 +122,9 @@ ActiveRecord::Schema.define(version: 20131118155518) do
     t.float    "longitude"
     t.integer  "zoom"
     t.text     "address_notes"
+    t.boolean  "active",            default: true
     t.text     "application_notes"
+    t.text     "tools_list"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -105,7 +105,9 @@ class Lab < ActiveRecord::Base
   end
 
   def admins
-    User.with_role(:admin, self) - User.with_role(:admin)
+    a = User.with_role(:admin, self) - User.with_role(:admin)
+    a = User.with_role(:admin) if a.empty?
+    return a
   end
 
   def admin_ids

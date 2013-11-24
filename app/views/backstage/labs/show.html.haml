@@ -11,7 +11,12 @@
             = button_to "#{event.capitalize} Lab", {controller: 'labs', action: event}, method: :patch, class: 'button small'
       %tr
         %th Avatar
-        %td= cropped_image_tag @lab.avatar, 100
+        %td= image_tag @lab.avatar, class: 'avatar med'
+
+      - if @lab.header_image_src.present?
+        %tr
+          %th Header
+          %td= image_tag @lab.header_image_src, class: 'avatar med'
       %tr
         %th Slug
         %td= @lab.slug
@@ -39,7 +44,7 @@
       - if @lab.email.present?
         %tr
           %th Email
-          %td= @lab.email
+          %td= mail_to @lab.email, @lab.email
       %tr
         %th Address
         %td= @lab.formatted_address

@@ -12,8 +12,10 @@
           .columns.large-3.left
             = f.input :last_name, label: false, placeholder: 'Last'
 
+        = f.input :username
         = f.input :email
         = f.input :phone
+        = f.input :country_code, as: 'country', priority: [current_country.alpha2.downcase], label: 'Country', iso_codes: true
 
       %fieldset
         .row

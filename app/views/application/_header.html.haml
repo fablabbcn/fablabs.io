@@ -30,7 +30,7 @@
               Me
               - if current_or_null_user.has_role? :admin
                 = gem_count_tag Lab.with_unverified_state.size
-              %b.caret
+
             %ul.dropdown
               %li
                 = link_to settings_path do

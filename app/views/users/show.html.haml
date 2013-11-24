@@ -8,7 +8,17 @@
             - if current_user and current_user == @user
               = link_to edit_user_path(@user), class: 'button tiny' do
                 = fa_icon "edit", text: "Edit Profile"
-          .columns.large-8= title @user
+          .columns.large-8.left= title @user
         = simple_format Faker::Lorem.paragraph
         .joined-on
           Joined #{@user.created_at}
+
+.row
+  .columns.large-12
+    - if @user.employees.any?
+      %h4 Works at
+      - @user.employees.each do |employee|
+        = content_tag_for :div, employee do
+          = link_to employee.lab, employee.lab
+          \-
+          = employee.job_title

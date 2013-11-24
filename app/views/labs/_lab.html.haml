@@ -1,7 +1,7 @@
 = content_tag_for :div, lab, class: 'media' do
   .img.pull-left
     = link_to lab do
-      = cropped_image_tag lab.avatar, 100, class: 'med avatar'
+      = image_tag lab.avatar, class: 'med avatar'
   .media-body
     = link_to lab, lab, class: 'name'
     .lab-location

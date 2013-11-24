@@ -5,22 +5,8 @@
 .row
   .columns.large-6
     %h4 Approved Employees
-    = render @lab.employees.with_approved_state
+    = render @lab.employees.active
 
   .columns.large-6
     %h4 Unverified Employees
     = render @lab.employees.with_unverified_state
-    -# %table
-    -#   %thead
-    -#     %tr
-    -#       %th Name
-    -#       %th Date Applied
-    -#   - @lab.employees.each do |employee|
-    -#     %tr
-    -#       %td= link_to employee.user, employee.user
-    -#       %td
-    -#         = employee.current_state
-    -#         - employee.current_state.events.keys.each do |event|
-    -#           = button_to event.capitalize, {controller: 'employees', action: event, id: employee.id }, method: :patch, class: 'button small'
-
-    -#       %td= employee.created_at

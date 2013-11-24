@@ -23,6 +23,7 @@
 #= require underscore
 #= require select2
 #= require foundation
+#= require placeholders
 #= require jquery.autosize
 #= require_tree .
 
