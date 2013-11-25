@@ -1,6 +1,5 @@
 #= require jquery
 #= require jquery_ujs
+#= require messenger
+#= require messenger-theme-flat
 #= require alerts
-
-jQuery ->
-  $('.flash').hide().fadeIn('fast').delay(2000).fadeOut('fast')

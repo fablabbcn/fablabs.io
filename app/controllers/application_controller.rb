@@ -39,20 +39,21 @@ private
 
   helper_method :current_or_null_user
   def current_or_null_user
-    if current_user == nil
-      User.new
-    else
-      current_user
-    end
+    current_user || User.new
+    # if current_user == nil
+    #   User.new
+    # else
+    #   current_user
+    # end
   end
 
   helper_method :current_user
   def current_user
     begin
-      @current_user ||= User.find(session[:user_id]) if session[:user_id]
+      @current_user ||= User.find(cookies[:user_id]) if cookies[:user_id]
     rescue ActiveRecord::RecordNotFound
       # Log out user if their id don't exist
-      session[:user_id] = nil
+      cookies.delete(:user_id)
     end
   end
 

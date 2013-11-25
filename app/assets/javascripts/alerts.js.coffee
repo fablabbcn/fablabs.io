@@ -1,2 +1,10 @@
-# $(document).ready ->
-#   $(".alert").hide().delay(100).fadeIn('fast').delay(3000).fadeOut('slow')
+Messenger.options = {
+  extraClasses: 'messenger-fixed messenger-on-bottom messenger-on-right',
+  theme: 'flat'
+}
+
+jQuery ->
+  $('.flash').hide().each ->
+    Messenger().post
+      message: $(this).text()
+      type: 'error'
