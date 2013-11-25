@@ -11,7 +11,8 @@
    // }
 }
 header {
-
+  position: relative;
+  z-index: 40;
   ul {
     background: none !important;
   }
