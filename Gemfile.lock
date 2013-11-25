@@ -13,7 +13,7 @@ GIT
 
 GIT
   remote: git://github.com/alexreisner/geocoder.git
-  revision: dede7e4b9edc1585a54384a79ebc9f280a620e4f
+  revision: f373568a7efe189e8964bff881ece05970db3ca5
   specs:
     geocoder (1.1.8)
 
@@ -83,27 +83,27 @@ GIT
 GEM
   remote: https://rubygems.org/
   specs:
-    actionmailer (4.0.1)
-      actionpack (= 4.0.1)
-      mail (~> 2.5.4)
-    actionpack (4.0.1)
-      activesupport (= 4.0.1)
+    actionmailer (4.0.0)
+      actionpack (= 4.0.0)
+      mail (~> 2.5.3)
+    actionpack (4.0.0)
+      activesupport (= 4.0.0)
       builder (~> 3.1.0)
       erubis (~> 2.7.0)
       rack (~> 1.5.2)
       rack-test (~> 0.6.2)
     active_model_serializers (0.8.1)
       activemodel (>= 3.0)
-    activemodel (4.0.1)
-      activesupport (= 4.0.1)
+    activemodel (4.0.0)
+      activesupport (= 4.0.0)
       builder (~> 3.1.0)
-    activerecord (4.0.1)
-      activemodel (= 4.0.1)
+    activerecord (4.0.0)
+      activemodel (= 4.0.0)
       activerecord-deprecated_finders (~> 1.0.2)
-      activesupport (= 4.0.1)
+      activesupport (= 4.0.0)
       arel (~> 4.0.0)
     activerecord-deprecated_finders (1.0.3)
-    activesupport (4.0.1)
+    activesupport (4.0.0)
       i18n (~> 0.6, >= 0.6.4)
       minitest (~> 4.2)
       multi_json (~> 1.3)
@@ -157,7 +157,6 @@ GEM
     currencies (0.4.2)
     diff-lcs (1.2.5)
     docile (1.1.0)
-    dotenv (0.9.0)
     erubis (2.7.0)
     execjs (2.0.2)
     factory_girl (4.3.0)
@@ -170,9 +169,6 @@ GEM
     figaro (0.7.0)
       bundler (~> 1.0)
       rails (>= 3, < 5)
-    foreman (0.63.0)
-      dotenv (>= 0.7)
-      thor (>= 0.13.6)
     formatador (0.2.4)
     guard (2.2.4)
       formatador (>= 0.2.4)
@@ -221,7 +217,7 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     method_source (0.8.2)
-    mime-types (1.25)
+    mime-types (1.25.1)
     mini_portile (0.5.2)
     minitest (4.7.5)
     moneta (0.7.20)
@@ -255,17 +251,17 @@ GEM
     rack (1.5.2)
     rack-test (0.6.2)
       rack (>= 1.0)
-    rails (4.0.1)
-      actionmailer (= 4.0.1)
-      actionpack (= 4.0.1)
-      activerecord (= 4.0.1)
-      activesupport (= 4.0.1)
+    rails (4.0.0)
+      actionmailer (= 4.0.0)
+      actionpack (= 4.0.0)
+      activerecord (= 4.0.0)
+      activesupport (= 4.0.0)
       bundler (>= 1.3.0, < 2.0)
-      railties (= 4.0.1)
+      railties (= 4.0.0)
       sprockets-rails (~> 2.0.0)
-    railties (4.0.1)
-      actionpack (= 4.0.1)
-      activesupport (= 4.0.1)
+    railties (4.0.0)
+      actionpack (= 4.0.0)
+      activesupport (= 4.0.0)
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
     raindrops (0.12.0)
@@ -324,7 +320,7 @@ GEM
       websocket (~> 1.0.4)
     shoulda-matchers (2.4.0)
       activesupport (>= 3.0.0)
-    sidekiq (2.16.1)
+    sidekiq (2.17.0)
       celluloid (>= 0.15.2)
       connection_pool (>= 1.0.0)
       json
@@ -400,7 +396,6 @@ DEPENDENCIES
   ffaker
   figaro
   font-awesome-rails!
-  foreman
   friendly_id!
   geocoder!
   guard-rspec
@@ -415,7 +410,7 @@ DEPENDENCIES
   pg
   pg_search
   quiet_assets
-  rails (= 4.0.1)
+  rails (= 4.0.0)
   ransack!
   rocket_pants (~> 1.0)
   rolify!

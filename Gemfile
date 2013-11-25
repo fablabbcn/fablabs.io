@@ -5,7 +5,7 @@ source 'https://rubygems.org'
 gem 'msgpack'
 gem 'rocket_pants', '~> 1.0'
 gem 'sidekiq'
-gem 'rails', '4.0.1'
+gem 'rails', '4.0.0'
 gem 'timezone'
 gem 'bitmask_attributes'
 # gem 'jquery-turbolinks'
@@ -84,7 +84,7 @@ end
 # Use ActiveModel has_secure_password
 gem 'bcrypt-ruby'
 
-gem 'foreman'
+# gem 'foreman'
 gem 'unicorn'
 
 # Use unicorn as the app server
