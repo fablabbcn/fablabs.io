@@ -167,14 +167,16 @@
 
     .case-studies {
       background: #FFF;
-      padding: 20px 10px;
+      padding: 20px 10px 0;
       border-radius: 4px;
-      margin-bottom: 10px;
+      margin-bottom: 20px !important;
     }
     .case-study {
       font-size: 1.1em;
       line-height: 1.6em;
+      margin: 0;
     }
+
 
 
 
@@ -198,6 +200,9 @@
 
 
   .features {
+    .row > div {
+      margin-bottom: 10px;
+    }
     .media {
       margin-bottom: 2em;
     }

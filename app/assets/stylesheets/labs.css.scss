@@ -111,9 +111,6 @@ ul.lab-links {
   // border-radius: 4px;
 }
 
-.fp button {
-  @extend .btn;
-}
 
 // .c-labs.a-map {
 //   .leaflet-top {
@@ -215,6 +212,7 @@ a.all-labs {
     background: #FFF;
     border-bottom: 1px solid #EEE;
     margin-top: -20px;
+    padding-top: 20px;
     // position: relative;
   }
   .header {
