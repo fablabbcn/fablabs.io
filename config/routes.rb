@@ -11,7 +11,7 @@ Fablabs::Application.routes.draw do
       get action => "static##{action}", as: action
     end
 
-    resources :users, path: 'u'
+    resources :users, path: 'people'
     resources :tools do
       resources :discussions
     end
@@ -73,7 +73,7 @@ Fablabs::Application.routes.draw do
     end
 
     # root to: 'static#home'
-    root to: 'labs#index'
+    root to: 'static#home'
 
   end
 

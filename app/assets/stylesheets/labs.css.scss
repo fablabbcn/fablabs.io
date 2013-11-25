@@ -129,6 +129,11 @@ ul.lab-links {
   padding-bottom: 5px;
 }
 
+.button-group {
+  a.list { border-radius: 4px 0 0 4px; }
+  a.map { border-radius: 0 4px 4px 0; }
+}
+
 .lab-phone, .lab-email {
   &, span, a {
     color: #AAA;

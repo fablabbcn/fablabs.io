@@ -5,6 +5,14 @@ class User < ActiveRecord::Base
   include Authority::UserAbilities
   include Workflow
 
+  # extend FriendlyId
+  # friendly_id :username, use: :slugged
+  # def slug_candidates
+  #   [
+  #     :username
+  #   ]
+  # end
+
   rolify# :after_add => :after_add_method, :after_remove => :after_remove_method
 
   # def after_add_method(role)
