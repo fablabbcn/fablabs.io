@@ -16,7 +16,7 @@ header {
     background: none !important;
   }
 
-  body.a-home & {
+  body.a-home &, body.c-labs.a-map & {
     margin-bottom: 0;
   }
   margin-bottom: 20px;

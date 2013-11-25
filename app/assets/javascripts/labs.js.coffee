@@ -14,9 +14,6 @@ ready = ->
   #   #   map.setView([position.coords.latitude, position.coords.longitude], 13)
   #   # )
 
-  $('#map').height($('#map').height() - $('header').height())
-
-
   $('[data-toggle=offcanvas]').click ->
     $('.row-offcanvas').toggleClass('active')
 
@@ -84,7 +81,11 @@ ready = ->
           window.markers.addLayer(lab.marker)
           window.labs.push(lab)
     map.addLayer(window.markers)
-    $(window).resize _.debounce((-> map.invalidateSize()),1000)
+
+    windowHeight = ->
+      $('#map').css('top', $('#main').offset().top).height($(window).height() - $('#main').offset().top)
+      map.invalidateSize()
+    $(window).resize _.debounce(windowHeight,100)
 
 $(document).ready ready
 # $(document).on "page:load", ready
