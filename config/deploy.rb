@@ -4,17 +4,16 @@ require "bundler/capistrano"
 # require 'capistrano/maintenance'
 
 set :recipes, "config/recipes"
-# postgresql
-# monit
-%w(base logs figaro blacklist varnish nginx logs unicorn nodejs rbenv security check).each do |r|
+# monit varnish
+%w(base postgresql logs figaro blacklist nginx logs unicorn nodejs rbenv security check).each do |r|
   load "#{recipes}/#{r}"
 end
 
-server "146.185.179.183", :web, :app, :db, primary: true
+server ENV['APP_SERVER'], :web, :app, :db, primary: true
 # 146.185.179.183
 # server "sagan.fablabs.io", :db
 
-set :port, ENV['SSH_PORT']
+set :port, 22#ENV['SSH_PORT']
 set :application, "fablabs"
 set :user, ENV['DEPLOY_USER']
 set :deploy_to, "/home/#{user}/apps/#{application}"

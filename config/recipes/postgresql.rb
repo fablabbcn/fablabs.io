@@ -1,7 +1,7 @@
 set_default(:postgresql_version, 9.2)
-set_default(:postgresql_user) { application }
-set_default(:postgresql_password) { Capistrano::CLI.password_prompt "PostgreSQL Password: " }
-set_default(:postgresql_database) { "#{application}_production" }
+set_default(:postgresql_user) { ENV['DB_USERNAME'] }
+set_default(:postgresql_password) { ENV['DB_PASSWORD'] }
+set_default(:postgresql_database) { ENV['DB_NAME'] }
 set_default(:postgresql_pid) { "/var/run/postgresql/#{postgresql_version}-main.pid" }
 
 namespace :postgresql do
