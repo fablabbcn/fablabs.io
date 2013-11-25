@@ -43,7 +43,7 @@ class RecoveriesController < ApplicationController
 private
 
   def recovery_params
-    params.require(:recovery).permit(:email, user_attributes: [:password, :password_confirmation])
+    params.require(:recovery).permit(:email_or_username, user_attributes: [:password, :password_confirmation])
   end
 
 end

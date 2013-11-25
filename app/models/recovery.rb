@@ -1,7 +1,7 @@
 class RecoveryUserValidator < ActiveModel::Validator
   def validate(record)
-    unless User.where(email: record.email).exists?
-      record.errors[:email] << 'Sorry, we have no user with that email address'
+    unless User.where('email = :eu or username = :eu', eu: record.email_or_username).exists?
+      record.errors[:email_or_username] << "Sorry, we can't find a user with that username or email address"
     end
   end
 end
@@ -13,7 +13,7 @@ class Recovery < ActiveRecord::Base
 
   include Tokenable
 
-  attr_accessor :email
+  attr_accessor :email_or_username
   belongs_to :user
 
   accepts_nested_attributes_for :user
@@ -35,7 +35,7 @@ class Recovery < ActiveRecord::Base
 private
 
   def associate_user
-    self.user = User.where(email: self.email).first
+    self.user = User.where('email = :eu or username = :eu', eu: email_or_username).first
   end
 
 end

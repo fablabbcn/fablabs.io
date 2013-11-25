@@ -10,6 +10,7 @@ class StaticController < ApplicationController
   end
 
   def api
+    render :api, layout: false
   end
 
   def choose_locale

@@ -10,11 +10,11 @@ describe Recovery do
 
   it "associates user" do
     user = FactoryGirl.create(:user)
-    expect( FactoryGirl.create(:recovery, email: user.email).user ).to eq(user)
+    expect( FactoryGirl.create(:recovery, email_or_username: [user.email, user.username].sample).user ).to eq(user)
   end
 
   it "generates key on creation" do
-    expect(FactoryGirl.create(:recovery, email: FactoryGirl.create(:user).email).key).to be_present
+    expect(FactoryGirl.create(:recovery, email_or_username: FactoryGirl.create(:user).email ).key).to be_present
   end
 
   it "uses key as to_param" do

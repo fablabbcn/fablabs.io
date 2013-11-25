@@ -3,6 +3,6 @@
     = title "Reset Your Password"
     = simple_form_for @recovery do |f|
       -# = render "form_errors", resource: @recovery
-      %p Enter your password below and we'll send you instructions to reset your password.
-      = f.input :email, autofocus: true, label: 'Your Email Address'
+      %p Enter your email or username below and we'll email you instructions to reset your password.
+      = f.input :email_or_username, autofocus: true, label: 'Your Email or Username'
       = f.submit 'Reset Password', class: 'button'

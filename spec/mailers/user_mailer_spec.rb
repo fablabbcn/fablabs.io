@@ -53,7 +53,7 @@ describe UserMailer do
   end
 
   it "account_recovery_instructions" do
-    recovery = FactoryGirl.create(:recovery, user: user, email: user.email)
+    recovery = FactoryGirl.create(:recovery, user: user, email_or_username: [user.email, user.username].sample)
     mail = UserMailer.account_recovery_instructions(user)
     mail.subject.should eq("Account Recovery Instructions")
     mail.to.should eq([user.email])
