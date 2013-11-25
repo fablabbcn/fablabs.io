@@ -2,6 +2,7 @@ ruby '2.0.0'
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
+gem 'msgpack'
 gem 'rocket_pants', '~> 1.0'
 gem 'sidekiq'
 gem 'rails', '4.0.1'

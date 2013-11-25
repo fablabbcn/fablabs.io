@@ -6,5 +6,5 @@
     = link_to lab, lab, class: 'name'
     .lab-location
       = fa_icon "map-marker"
-      = lab.short_address
+      = lab.short_address(!params[:country])
     %p.lab-description.truncate= lab.description

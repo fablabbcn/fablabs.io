@@ -1,11 +1,85 @@
 require 'csv'
 
-namespace :import do
-  task :labs => :environment do
-    CSV.foreach('labs.csv', :headers => false) do |row|
-      # MyModel.create!(row.to_hash)
-      p row
-      Lab.create(name: row[1], creator: User.first, description: row[5], address_1: row[10], country_code: row[15], slug: row[2])
+def slugify slug
+  slug.downcase.gsub(/[^a-z0-9]+/i,'')
+end
+
+namespace :csv do
+  namespace :import do
+
+    task :users => :environment do
+      User.delete_all
+      counter = 0
+      p "Have you disabled has_secure_password?"
+      CSV.foreach('csv/users.csv', :headers => true) do |r|
+        # MyModel.create!(row.to_hash)
+        begin
+          user = User.create!({
+            id: r['id'],
+            first_name: r['first_name'],
+            last_name: r['last_name'],
+            username: slugify("#{r['first_name']}#{r['last_name']}"),
+            email: r['email'],
+            password_digest: r['password_digest'],
+            phone: r['phone'],
+            city: r['city'],
+            country_code: r['country_code'],
+            url: r['url'],
+            dob: r['dob'],
+            avatar_src: r['avatar'],
+            bio: r['bio']
+          })
+        rescue ActiveRecord::RecordInvalid
+          p "Error #{counter+=1} - #{r['email']}"
+        end
+      end
     end
+
+    task :labs => :environment do
+      Lab.delete_all
+      counter = 0
+      CSV.foreach('csv/labs.csv', :headers => true) do |r|
+        begin
+          lab = Lab.create!({
+            id: r['id'],
+            name: r['name'],
+            slug: slugify(r['slug']),
+
+            workflow_state: 'approved',
+            # FIND DIFFERENT STATES
+            # workflow_state: r['state'],
+            # active: r['kind']
+            # urls: r['urls'].each { |url| links.build(url: url) }
+            # time_zone
+
+            # kind
+            # ancestry: r['ancestry'],
+            description: r['description'],
+            phone: r['phone'],
+            email: r['email'],
+            tools_list: r['facilities'],
+            address_1: r['street_address_1'],
+            address_2: r['street_address_2'],
+            county: r['street_address_3'],
+            city: r['city'],
+            postal_code: r['postal_code'],
+            country_code: r['country_code'],
+            latitude: r['latitude'],
+            longitude: r['longitude'],
+            address_notes: r['address_notes'],
+            application_notes: r['application_notes'],
+            header_image_src: r['avatar_src'],
+            creator_id: r['creator_id'] || User.where(email: 'john@bitsushi.com').first.id
+            # created_at: r['created_at']
+          })
+          # lab.reverse_geocode
+          # sleep(1)
+        rescue ActiveRecord::RecordInvalid => e
+          p "Error #{counter+=1} - #{r['name']}"
+          p e
+        end
+      end
+    end
+
   end
 end

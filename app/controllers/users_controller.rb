@@ -25,10 +25,11 @@ class UsersController < ApplicationController
 
   def update
     @user = current_user
+    email_changed = (@user.email != user_params[:email])
     if @user.update_attributes user_params
-      if @user.email_changed?
-        @user.unverify!
+      if email_changed
         UserMailer.verification(@user).deliver
+        @user.unverify!
       end
       redirect_to root_url, flash: { success: 'Settings updated' }
     else
@@ -66,6 +67,7 @@ private
       :first_name,
       :last_name,
       :email,
+      :phone,
       :password,
       :password_confirmation,
       :country_code,

@@ -1,12 +1,13 @@
 class CreateLabs < ActiveRecord::Migration
   def change
     create_table :labs do |t|
-
-      t.references :creator, index: true
-      t.string     :workflow_state
       t.string     :name
       t.string     :slug, index: true
       t.text       :description
+
+      t.string     :ancestry, index: true
+      t.references :creator, index: true
+      t.string     :workflow_state
 
       t.string     :avatar_src
       t.string     :header_image_src
@@ -26,6 +27,7 @@ class CreateLabs < ActiveRecord::Migration
       t.float      :longitude
       t.integer    :zoom
       t.text       :address_notes
+      t.text       :reverse_geocoded_address
 
       t.boolean    :active, default: true
       # launched on date, various granularity YEAR, YEAR + MONTH, YEAR + MONTH + DAY

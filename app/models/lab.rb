@@ -33,8 +33,10 @@ class Lab < ActiveRecord::Base
   # validates :employees, presence: true, on: :create
   validates :slug, format: {:with => /\A[a-zA-Z0-9]+\z/ }, allow_nil: true, allow_blank: true, length: { minimum: 3 }
   validates_format_of :email, :with => /\A(.+)@(.+)\z/, allow_blank: true
-  validates :name, :description, :address_1, :country_code, :slug, :county, presence: true
+
+  validates :name, :country_code, :slug, presence: true #:address_1, description
   validates_presence_of :creator, on: :create
+
   validates_uniqueness_of :name, :slug, case_sensitive: false
   validate :excluded_login
   def excluded_login
@@ -54,7 +56,18 @@ class Lab < ActiveRecord::Base
   after_save :save_roles
 
   attr_accessor :geocomplete
+
   geocoded_by :formatted_address
+  reverse_geocoded_by :latitude, :longitude do |lab,results|
+    if geo = results.first
+      lab.city ||= geo.city
+      lab.county ||= geo.state
+      lab.postal_code ||= geo.postal_code
+      lab.country_code ||= geo.country_code
+      lab.reverse_geocoded_address = Marshal.dump([geo.address,geo])
+      lab.save
+    end
+  end
 
   def nearby_labs same_country = true, max_distance = 1000
     if nearbys(max_distance)
@@ -71,12 +84,12 @@ class Lab < ActiveRecord::Base
   end
 
   def formatted_address
-    [address_1, address_2, city, county, postal_code, country]
-    .reject(&:blank?).join(", ")
+    [address_1, address_2, city, county, postal_code, country].compact.join(", ")
+    # .reject(&:blank?)
   end
 
-  def short_address
-    [city, country].reject(&:blank?).join(", ")
+  def short_address include_country = true
+    [city, county, (country if include_country)].compact.join(", ")
   end
 
   def default_avatar

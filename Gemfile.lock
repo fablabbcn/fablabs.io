@@ -223,6 +223,7 @@ GEM
     mini_portile (0.5.2)
     minitest (4.7.5)
     moneta (0.7.20)
+    msgpack (0.5.7)
     multi_json (1.8.2)
     multi_xml (0.5.5)
     mustache (0.99.5)
@@ -406,6 +407,7 @@ DEPENDENCIES
   kaminari
   launchy
   letter_opener
+  msgpack
   pg
   pg_search
   quiet_assets

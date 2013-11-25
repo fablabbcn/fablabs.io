@@ -23,7 +23,7 @@ class User < ActiveRecord::Base
   #   UserMailer.role_removed(role, self).deliver
   # end
 
-  has_secure_password
+  # has_secure_password
 
   has_many :created_labs, class_name: 'Lab', foreign_key: 'creator_id'
   has_many :comments, foreign_key: 'author_id'
