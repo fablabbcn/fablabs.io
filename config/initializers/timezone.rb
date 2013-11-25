@@ -1,3 +1,3 @@
 Timezone::Configure.begin do |c|
-  c.username = 'fablabs'#ENV['GEONAMES_USERNAME']
+  c.username = ENV['GEONAMES_USERNAME']
 end

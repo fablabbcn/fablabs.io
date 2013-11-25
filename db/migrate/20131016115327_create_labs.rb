@@ -32,7 +32,7 @@ class CreateLabs < ActiveRecord::Migration
       t.text       :address_notes
       t.text       :reverse_geocoded_address
 
-      t.boolean    :active, default: true
+      t.integer    :kind
       # launched on date, various granularity YEAR, YEAR + MONTH, YEAR + MONTH + DAY
 
       t.text       :application_notes

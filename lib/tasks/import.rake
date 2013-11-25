@@ -61,7 +61,6 @@ namespace :csv do
             workflow_state: get_state(r['state']),
             # active: r['kind'],
             urls: r['urls'].lines.map(&:chomp).each { |url| links.build(url: url) },
-            # time_zone
 
             # kind
             ancestry: r['ancestry'],

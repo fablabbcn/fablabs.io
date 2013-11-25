@@ -17,7 +17,7 @@ ready = ->
   $('[data-toggle=offcanvas]').click ->
     $('.row-offcanvas').toggleClass('active')
 
-  if $('body').hasClass 'c-labs a-show'
+  if $('body').hasClass('c-labs a-show') and $('#lab-map').length > 0
     location = [$('#lab-map').data('latitude'), $('#lab-map').data('longitude')]
     labmap = L.map('lab-map', { scrollWheelZoom: false, zoomControl: false, loadingControl: true }).setView(location, 14 )
     new L.Control.Zoom({ position: 'topright' }).addTo(labmap)

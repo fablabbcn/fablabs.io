@@ -22,9 +22,9 @@
 en:
   hello: "Hello world"
   capabilities:
-    threedprinting: "3D Printing"
-    cncmilling: "CNC Milling"
+    threed_printing: "3D Printing"
+    cnc_milling: "CNC Milling"
     laser: "Laser Engraving"
-    circuitproduction: "Circuit Production"
-    precisionmilling: "Precision Milling"
-    vinylcutting: "Vinyl Cutting"
+    circuit_production: "Circuit Production"
+    precision_milling: "Precision Milling"
+    vinyl_cutting: "Vinyl Cutting"

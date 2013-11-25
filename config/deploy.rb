@@ -6,11 +6,11 @@ require "bundler/capistrano"
 set :recipes, "config/recipes"
 # postgresql
 # monit
-%w(base logs figaro blacklist redis nginx logs unicorn nodejs rbenv security check).each do |r|
+%w(base logs figaro blacklist varnish nginx logs unicorn nodejs rbenv security check).each do |r|
   load "#{recipes}/#{r}"
 end
 
-server "tesla.fablabs.io", :web, :app, :db, primary: true
+server "146.185.179.183", :web, :app, :db, primary: true
 # 146.185.179.183
 # server "sagan.fablabs.io", :db
 

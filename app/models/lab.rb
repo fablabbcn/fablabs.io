@@ -31,7 +31,8 @@ class Lab < ActiveRecord::Base
   belongs_to :creator, class_name: 'User'
   before_save :get_time_zone unless Rails.env.test?
 
-  Capabilities = %w(threedprinting cncmilling circuitproduction laser precisionmilling vinylcutting)
+  Kinds = %w(planned mini_fab_lab fab_lab supernode)
+  Capabilities = %w(threed_printing cnc_milling circuit_production laser precision_milling vinyl_cutting)
   bitmask :capabilities, as: Capabilities
   # acts_as_taggable_on :facilities
 
@@ -92,8 +93,8 @@ class Lab < ActiveRecord::Base
     end
   end
 
-  def planned?
-    !active
+  def active?
+    kind > 0
   end
 
   def formatted_address
@@ -171,7 +172,12 @@ class Lab < ActiveRecord::Base
 private
 
   def get_time_zone
-    self.time_zone = (Timezone::Zone.new :latlon => [latitude, longitude]).zone
+    if latitude_changed? or longitude_changed?
+      begin
+        self.time_zone = (Timezone::Zone.new :latlon => [latitude, longitude]).zone
+      rescue Timezone::Error::NilZone
+      end
+    end
   end
 
   def downcase_email
