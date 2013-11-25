@@ -13,6 +13,8 @@
  *= require select2
  *= require intlTelInput
  *= require leaflet
+ *= require messenger
+ *= require messenger-theme-flat
  *= require_tree .
  */
 
@@ -125,8 +127,8 @@ h1 {
 
 #please-verify {
   width: 100%;
-  background: #FB8B00;
-  padding: 20px 40px;
+  background: #FFAB4A;
+  padding: 10px;
   position: relative;
   z-index: 20;
   text-align: center;

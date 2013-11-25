@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
 
   include Tokenable
-  include Avatarable
+  # include Avatarable
   include Authority::UserAbilities
   include Workflow
 
@@ -50,8 +50,14 @@ class User < ActiveRecord::Base
     end
   end
 
-  def default_avatar
-    'default-user-avatar.png'
+  def avatar
+    if avatar_src.present?
+      avatar_src
+    else
+      default_url = "http://www.fablabs.io/default-user-avatar.png"
+      gravatar_id = Digest::MD5.hexdigest(email.downcase)
+      "//gravatar.com/avatar/#{gravatar_id}.png?s=150&d=#{CGI.escape(default_url)}"
+    end
   end
 
   def employed_by? lab

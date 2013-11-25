@@ -48,7 +48,7 @@ describe Lab do
 
     it "has default avatar" do
       user = FactoryGirl.build_stubbed(:user)
-      user.avatar.should include('default-user-avatar.png')
+      user.avatar.should include('default-user-avatar')
     end
 
     it "has custom avatar" do

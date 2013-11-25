@@ -22,9 +22,12 @@
 #= require cocoon
 #= require underscore
 #= require select2
+#= require messenger
+#= require messenger-theme-flat
 #= require foundation
 #= require placeholders
 #= require jquery.autosize
+#= require alerts
 #= require_tree .
 
 initEvents = ->
