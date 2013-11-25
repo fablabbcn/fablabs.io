@@ -5,6 +5,10 @@
   .media-body
     = link_to lab, lab, class: 'name'
     .lab-location
-      = fa_icon "map-marker"
-      = lab.short_address(!params[:country])
+      - if lab.short_address(!params[:country]).present?
+        = fa_icon "map-marker", text: lab.short_address(!params[:country])
+      - if lab.email.present?
+        = fa_icon "envelope-o", text: lab.email
+      - if lab.phone.present?
+        = fa_icon "phone", text: lab.phone
     %p.lab-description.truncate= lab.description

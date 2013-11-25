@@ -1,8 +1,8 @@
 class LabSerializer < ActiveModel::Serializer
 
-  cached
+  # cached
 
-  attributes :id, :name, :url, :latitude, :longitude, :country_code
+  attributes :id, :name, :url, :formatted_address, :latitude, :longitude, :country_code, :phone, :email
 
   def url
     lab_url(object)

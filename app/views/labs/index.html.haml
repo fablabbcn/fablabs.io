@@ -16,8 +16,13 @@
 
 .row
   .columns.large-8.content
+    .row
+      .columns.large-12
+        %dl.sub-nav.right.order-by
+          %dt Order by:
+          %dd= select_tag :order, ['name','name']
 
-    - if params[:query]
+    - if params[:query].present?
       .search-results
         -# %button.close{type: "button", data: { dismiss: "alert"}, aria: { hidden: true}} ×
         = link_to "×", labs_path, class: 'close right'
@@ -26,11 +31,6 @@
 
     .labs= render @labs
     = paginate @labs
-
-    - if Lab.creatable_by? current_or_null_user
-
-      = link_to new_lab_path, class: 'button small' do
-        = fa_icon "plus", text: I18n.t("labs.index.add_a_lab", default: "Add a Lab")
 
   .columns.large-4.sidebar-offcanvas
     .heading
@@ -48,3 +48,21 @@
           = link_to url_for(params.merge(country: country_code, page: nil)) do
             = country
             %span.count.right= count
+
+    .heading
+      %strong Download
+      the Fab Labs list
+    %dl.sub-nav
+      %dt Format:
+      %dd{}= link_to "JSON", "//api.fablabs.dev/1/labs", class: 'button tiny'
+    .hint CSV and XLSX (Excel) coming soon.
+
+    .heading
+      %strong Expand
+      the Network
+    - if current_user
+      = link_to new_lab_path, class: "button tiny success" do
+        = fa_icon "plus", text: I18n.t("labs.index.add_a_lab", default: "Add a Lab")
+    - else
+      = link_to new_lab_path, class: "button tiny success disabled has-tip", data: { tooltip: true }, title: "You need to be signed in to add a Lab" do
+        = fa_icon "plus", text: I18n.t("labs.index.add_a_lab", default: "Add a Lab")

@@ -9,10 +9,10 @@ class LabsController < ApplicationController
   end
 
   def index
-    all_labs = Lab.search_for(params[:query]).with_approved_state
+    all_labs = Lab.select('labs.country_code').search_for(params[:query]).with_approved_state
     @countries = Lab.country_list_for all_labs
     @count = all_labs.size
-    @labs = all_labs.order('LOWER(name) ASC').in_country_code(params["country"]).page(params['page'])
+    @labs = all_labs.except(:select).order('LOWER(name) ASC').in_country_code(params["country"]).page(params['page'])
 
     respond_to do |format|
       format.html
@@ -50,7 +50,7 @@ class LabsController < ApplicationController
       return redirect_to root_path, notice: "Lab not found"
     end
     # @people = [@lab.creator]
-    @nearby_labs = @lab.nearby_labs(false, 10000000)
+    @nearby_labs = @lab.nearby_labs(false, 1000)
     @nearby_labs = @nearby_labs.limit(5) if @nearby_labs
     authorize_action_for @lab
   end
@@ -109,6 +109,7 @@ private
       :phone,
       :email,
       :application_notes,
+      capabilities: [ ],
       links_attributes: [ :id, :link_id, :url, '_destroy' ],
       employees_attributes: [ :id, :job_title, :description ]
     )

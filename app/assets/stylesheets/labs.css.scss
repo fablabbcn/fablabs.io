@@ -39,11 +39,13 @@ ul.nearby-labs {
 ul.side-nav {
   padding: 0;
   a {
-    // padding: 5px;
+    padding: 0 5px;
   }
   li.active a {
     // font-weight: bold;
-    // background: yellow;
+    background: #FFF;
+    // border-top: 1px solid #F0586D;
+    // border-bottom: 1px solid #F0586D;
   }
 }
 
@@ -328,4 +330,21 @@ input#lab_name {
 }
 .countries-filter {
   font-size: 0.8em;
+}
+.sidebar-offcanvas {
+  .heading {
+    font-weight: normal;
+  }
+}
+.sidebar-offcanvas .sub-nav {
+  margin-bottom: 0;
+  a.button {
+    color: #FFF;
+  }
+}
+.order-by {
+  margin: 0;
+}
+ul.capabilities {
+  margin-left: 20px;
 }

@@ -14,7 +14,6 @@ class CreateUsers < ActiveRecord::Migration
       t.string :phone
       t.string :city
       t.string :country_code
-
       t.float  :latitude
       t.float  :longitude
 
@@ -22,11 +21,11 @@ class CreateUsers < ActiveRecord::Migration
       t.date :dob
       t.text :bio
 
-      t.string :my_locale
-      t.string :my_timezone
+      t.string :locale
+      t.string :time_zone
 
       t.boolean :use_metric, default: true
-      t.string :email_validation_hash
+      t.string  :email_validation_hash
 
       t.timestamps
 

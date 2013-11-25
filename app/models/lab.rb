@@ -29,13 +29,22 @@ class Lab < ActiveRecord::Base
   has_many :facilities
   has_many :tools, through: :facilities, source: :thing, source_type: 'Tool'
   belongs_to :creator, class_name: 'User'
+  before_save :get_time_zone unless Rails.env.test?
+
+  Capabilities = %w(threedprinting cncmilling circuitproduction laser precisionmilling vinylcutting)
+  bitmask :capabilities, as: Capabilities
+  # acts_as_taggable_on :facilities
+
+  def self.facilities_for_select
+    Facilities.map{|f| ["facilities.#{f}", f]}
+  end
 
   # validates :employees, presence: true, on: :create
   validates :slug, format: {:with => /\A[a-zA-Z0-9]+\z/ }, allow_nil: true, allow_blank: true, length: { minimum: 3 }
   validates_format_of :email, :with => /\A(.+)@(.+)\z/, allow_blank: true
 
   validates :name, :country_code, :slug, presence: true #:address_1, description
-  validates_presence_of :creator, on: :create
+  # validates_presence_of :creator, on: :create
 
   validates_uniqueness_of :name, :slug, case_sensitive: false
   validate :excluded_login
@@ -56,6 +65,10 @@ class Lab < ActiveRecord::Base
   after_save :save_roles
 
   attr_accessor :geocomplete
+
+  def needs_admin?
+    creator.blank?
+  end
 
   geocoded_by :formatted_address
   reverse_geocoded_by :latitude, :longitude do |lab,results|
@@ -84,12 +97,12 @@ class Lab < ActiveRecord::Base
   end
 
   def formatted_address
-    [address_1, address_2, city, county, postal_code, country].compact.join(", ")
-    # .reject(&:blank?)
+    [address_1, address_2, city, county, postal_code, country].reject(&:blank?).join(", ")
+    #
   end
 
   def short_address include_country = true
-    [city, county, (country if include_country)].compact.join(", ")
+    [city, county, (country if include_country)].reject(&:blank?).join(", ")
   end
 
   def default_avatar
@@ -156,6 +169,10 @@ class Lab < ActiveRecord::Base
   end
 
 private
+
+  def get_time_zone
+    self.time_zone = (Timezone::Zone.new :latlon => [latitude, longitude]).zone
+  end
 
   def downcase_email
     self.email = email.downcase if email.present?

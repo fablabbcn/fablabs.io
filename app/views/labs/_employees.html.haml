@@ -14,5 +14,7 @@
             .person-role= employee.job_title
             = mail_to employee.user.email, employee.user.email, class: 'person-email'
   %li.person
-    - if current_user and !current_user.employed_by? @lab
-      = link_to "I work here", new_lab_employee_path(@lab), class: 'button small'
+    - if current_user and current_user.can_create? @lab.employees.build
+      = link_to new_lab_employee_path(@lab), class: 'button tiny success' do
+        = fa_icon "check-square"
+        I work here

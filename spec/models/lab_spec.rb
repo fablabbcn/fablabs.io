@@ -26,7 +26,7 @@ describe Lab do
     end
   end
 
-  %w(name description address_1 country_code creator).each do |requirement|
+  %w(name country_code).each do |requirement|
     it { should validate_presence_of(requirement) }
   end
   it { should belong_to(:creator) }
@@ -41,7 +41,7 @@ describe Lab do
 
   it "has short_address" do
     lab = FactoryGirl.build_stubbed(:lab, city: 'London', country_code: 'gb')
-    expect(lab.short_address).to eq("London, #{lab.country}")
+    expect(lab.short_address).to eq("London, County, #{lab.country}")
   end
 
   describe "avatar" do

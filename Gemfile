@@ -6,6 +6,8 @@ gem 'msgpack'
 gem 'rocket_pants', '~> 1.0'
 gem 'sidekiq'
 gem 'rails', '4.0.1'
+gem 'timezone'
+gem 'bitmask_attributes'
 # gem 'jquery-turbolinks'
 gem 'ransack', github: "ernie/ransack"
 gem 'authority', github: 'nathanl/authority'

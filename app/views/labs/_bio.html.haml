@@ -14,6 +14,11 @@
       %span.glyphicon.glyphicon-envelope
       = mail_to lab.email, lab.email
 
+- if @lab.needs_admin?
+  = link_to "#", class: 'button success small' do
+    = fa_icon "bullhorn"
+    I should manage this lab
+
   -# - if current_or_null_user.has_role? :admin
   -#   - lab.current_state.events.keys.each do |event|
   -#     = button_to "#{event.capitalize} Lab", {controller: 'labs', action: 'verify'}, method: :patch, class: 'button button-primary'

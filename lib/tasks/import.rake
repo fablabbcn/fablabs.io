@@ -4,6 +4,17 @@ def slugify slug
   slug.downcase.gsub(/[^a-z0-9]+/i,'')
 end
 
+def get_state state
+  case state
+    when "new"
+      "unverified"
+    when "approved"
+      "approved"
+    else
+      raise "state not found"
+  end
+end
+
 namespace :csv do
   namespace :import do
 
@@ -47,13 +58,13 @@ namespace :csv do
 
             workflow_state: 'approved',
             # FIND DIFFERENT STATES
-            # workflow_state: r['state'],
-            # active: r['kind']
-            # urls: r['urls'].each { |url| links.build(url: url) }
+            workflow_state: get_state(r['state']),
+            # active: r['kind'],
+            urls: r['urls'].lines.map(&:chomp).each { |url| links.build(url: url) },
             # time_zone
 
             # kind
-            # ancestry: r['ancestry'],
+            ancestry: r['ancestry'],
             description: r['description'],
             phone: r['phone'],
             email: r['email'],
@@ -69,7 +80,7 @@ namespace :csv do
             address_notes: r['address_notes'],
             application_notes: r['application_notes'],
             header_image_src: r['avatar_src'],
-            creator_id: r['creator_id'] || User.where(email: 'john@bitsushi.com').first.id
+            creator_id: r['creator_id']
             # created_at: r['created_at']
           })
           # lab.reverse_geocode

@@ -21,3 +21,10 @@
 
 en:
   hello: "Hello world"
+  capabilities:
+    threedprinting: "3D Printing"
+    cncmilling: "CNC Milling"
+    laser: "Laser Engraving"
+    circuitproduction: "Circuit Production"
+    precisionmilling: "Precision Milling"
+    vinylcutting: "Vinyl Cutting"

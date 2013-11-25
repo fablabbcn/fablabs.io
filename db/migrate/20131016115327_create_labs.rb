@@ -9,6 +9,9 @@ class CreateLabs < ActiveRecord::Migration
       t.references :creator, index: true
       t.string     :workflow_state
 
+      t.integer    :capabilities
+      t.string     :time_zone
+
       t.string     :avatar_src
       t.string     :header_image_src
 

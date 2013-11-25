@@ -72,7 +72,9 @@ private
       :password_confirmation,
       :country_code,
       :avatar_src,
-      :use_metric
+      :use_metric,
+      :bio,
+      :url
     )
   end
 

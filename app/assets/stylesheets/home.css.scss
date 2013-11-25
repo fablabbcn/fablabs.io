@@ -1,4 +1,5 @@
 @import "foundation_and_overrides";
+
 .a-home {
 
   #homepage-map {
@@ -54,9 +55,12 @@
     color: #AAA;
     img {
       filter: gray; /* IE6-9 */
+      filter: grayscale(100%);
       -webkit-filter: grayscale(100%);
+      -moz-filter: grayscale(100%);
+      -o-filter: grayscale(100%);
+      -ms-filter: grayscale(100%);
     }
-
   }
 
   #homepage-search {
@@ -128,8 +132,13 @@
     // font-weight: bold;
   }
 
-  .near-me {
-    background: #bae1e5;
+  #main .near-me {
+    background: #7D7496;
+    h2 {
+      font-size: 1em;
+      color: #111;
+      text-shadow: 1px 1px 1px lighten(#7D7496, 20%)
+    }
 
     .more {
       text-align: center;
@@ -144,6 +153,7 @@
     }
 
     .lab-near-you {
+      font-size: 0.8em;
       margin-bottom: 10px;
       a {
         font-weight: bold;
@@ -186,17 +196,6 @@
     .navbar {
       margin: 0;
     }
-
-  .media {
-    &, .media-body {
-      zoom: 1;
-      overflow: hidden;
-    }
-    .pull-left {
-      float: left !important;
-      margin-right: 10px;
-    }
-  }
 
 
   .features {

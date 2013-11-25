@@ -1,0 +1,7 @@
+- if capabilities.any?
+  .heading
+    Lab
+    %strong Capabilities
+  %ul.capabilities
+    - capabilities.each do |capability|
+      %li= t("capabilities.#{capability}")
