@@ -83,27 +83,27 @@ GIT
 GEM
   remote: https://rubygems.org/
   specs:
-    actionmailer (4.0.0)
-      actionpack (= 4.0.0)
-      mail (~> 2.5.3)
-    actionpack (4.0.0)
-      activesupport (= 4.0.0)
+    actionmailer (4.0.1)
+      actionpack (= 4.0.1)
+      mail (~> 2.5.4)
+    actionpack (4.0.1)
+      activesupport (= 4.0.1)
       builder (~> 3.1.0)
       erubis (~> 2.7.0)
       rack (~> 1.5.2)
       rack-test (~> 0.6.2)
     active_model_serializers (0.8.1)
       activemodel (>= 3.0)
-    activemodel (4.0.0)
-      activesupport (= 4.0.0)
+    activemodel (4.0.1)
+      activesupport (= 4.0.1)
       builder (~> 3.1.0)
-    activerecord (4.0.0)
-      activemodel (= 4.0.0)
+    activerecord (4.0.1)
+      activemodel (= 4.0.1)
       activerecord-deprecated_finders (~> 1.0.2)
-      activesupport (= 4.0.0)
+      activesupport (= 4.0.1)
       arel (~> 4.0.0)
     activerecord-deprecated_finders (1.0.3)
-    activesupport (4.0.0)
+    activesupport (4.0.1)
       i18n (~> 0.6, >= 0.6.4)
       minitest (~> 4.2)
       multi_json (~> 1.3)
@@ -140,6 +140,7 @@ GEM
       timers (~> 1.1.0)
     childprocess (0.3.9)
       ffi (~> 1.0, >= 1.0.11)
+    chunky_png (1.2.9)
     codeclimate-test-reporter (0.2.0)
       simplecov (>= 0.7.1, < 1.0.0)
     coderay (1.1.0)
@@ -150,10 +151,13 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.6.3)
-    connection_pool (1.1.0)
+    compass (0.12.2)
+      chunky_png (~> 1.2)
+      fssm (>= 0.2.7)
+      sass (~> 3.1)
+    compass-rails (1.0.3)
+      compass (>= 0.12.2, < 0.14)
     country_select (1.2.0)
-    crack (0.4.1)
-      safe_yaml (~> 0.9.0)
     currencies (0.4.2)
     diff-lcs (1.2.5)
     docile (1.1.0)
@@ -170,6 +174,7 @@ GEM
       bundler (~> 1.0)
       rails (>= 3, < 5)
     formatador (0.2.4)
+    fssm (0.2.10)
     guard (2.2.4)
       formatador (>= 0.2.4)
       listen (~> 2.1)
@@ -221,10 +226,8 @@ GEM
     mini_portile (0.5.2)
     minitest (4.7.5)
     moneta (0.7.20)
-    msgpack (0.5.7)
     multi_json (1.8.2)
     multi_xml (0.5.5)
-    mustache (0.99.5)
     net-scp (1.1.2)
       net-ssh (>= 2.6.5)
     net-sftp (2.1.2)
@@ -251,17 +254,17 @@ GEM
     rack (1.5.2)
     rack-test (0.6.2)
       rack (>= 1.0)
-    rails (4.0.0)
-      actionmailer (= 4.0.0)
-      actionpack (= 4.0.0)
-      activerecord (= 4.0.0)
-      activesupport (= 4.0.0)
+    rails (4.0.1)
+      actionmailer (= 4.0.1)
+      actionpack (= 4.0.1)
+      activerecord (= 4.0.1)
+      activesupport (= 4.0.1)
       bundler (>= 1.3.0, < 2.0)
-      railties (= 4.0.0)
+      railties (= 4.0.1)
       sprockets-rails (~> 2.0.0)
-    railties (4.0.0)
-      actionpack (= 4.0.0)
-      activesupport (= 4.0.0)
+    railties (4.0.1)
+      actionpack (= 4.0.1)
+      activesupport (= 4.0.1)
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
     raindrops (0.12.0)
@@ -271,9 +274,6 @@ GEM
       ffi (>= 0.5.0)
     rdoc (3.12.2)
       json (~> 1.4)
-    redis (3.0.6)
-    redis-namespace (1.3.2)
-      redis (~> 3.0.4)
     rocket_pants (1.9.1)
       actionpack (>= 3.0, < 5.0)
       api_smith
@@ -296,15 +296,7 @@ GEM
       rspec-core (~> 2.14.0)
       rspec-expectations (~> 2.14.0)
       rspec-mocks (~> 2.14.0)
-    rspec_api_documentation (2.0.0)
-      activesupport (>= 3.0.0)
-      i18n (>= 0.1.0)
-      json (>= 1.4.6)
-      mustache (>= 0.99.4)
-      rspec (>= 2.14.0)
-      webmock (>= 1.7.0)
     rubyzip (1.0.0)
-    safe_yaml (0.9.7)
     sass (3.2.12)
     sass-rails (4.0.1)
       railties (>= 4.0.0, < 5.0)
@@ -320,12 +312,6 @@ GEM
       websocket (~> 1.0.4)
     shoulda-matchers (2.4.0)
       activesupport (>= 3.0.0)
-    sidekiq (2.17.0)
-      celluloid (>= 0.15.2)
-      connection_pool (>= 1.0.0)
-      json
-      redis (>= 3.0.4)
-      redis-namespace (>= 1.3.1)
     simple_form (3.0.0)
       actionpack (>= 4.0.0, < 4.1)
       activemodel (>= 4.0.0, < 4.1)
@@ -353,8 +339,6 @@ GEM
     treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
-    turbolinks (1.3.1)
-      coffee-rails
     tzinfo (0.3.38)
     uglifier (2.3.1)
       execjs (>= 0.3.0)
@@ -363,9 +347,6 @@ GEM
       kgio (~> 2.6)
       rack
       raindrops (~> 0.7)
-    webmock (1.16.0)
-      addressable (>= 2.2.7)
-      crack (>= 0.3.2)
     websocket (1.0.7)
     will_paginate (3.0.5)
     xpath (2.0.0)
@@ -389,6 +370,7 @@ DEPENDENCIES
   cocoon!
   codeclimate-test-reporter
   coffee-rails (~> 4.0.0)
+  compass-rails
   countries!
   country_select
   database_cleaner!
@@ -406,24 +388,20 @@ DEPENDENCIES
   kaminari
   launchy
   letter_opener
-  msgpack
   pg
   pg_search
   quiet_assets
-  rails (= 4.0.0)
+  rails (= 4.0.1)
   ransack!
   rocket_pants (~> 1.0)
   rolify!
   rspec-rails
-  rspec_api_documentation
   sass-rails (~> 4.0.0)
   sdoc
   selenium-webdriver
   shoulda-matchers
-  sidekiq
   simple_form
   timezone
-  turbolinks
   uglifier (>= 1.3.0)
   unicorn
   workflow!
