@@ -44,7 +44,7 @@
 
       - @countries.each do |country,country_code,count|
         %li{class: ('active' if params[:country] == country_code)}
-          -# %div{class: "flag flag-#{country[1].downcase} pull-left"}
+          -# %div{class: "flag flag-#{country[1]} pull-left"}
           = link_to url_for(params.merge(country: country_code, page: nil)) do
             = country
             %span.count.right= count

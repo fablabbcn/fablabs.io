@@ -1,6 +1,5 @@
 - title "Welcome"
 
-
 #homepage-map
   .filter
   #homepage-search
@@ -14,9 +13,11 @@
             = fa_icon "search"
     - else
       %p Show me Fab Labs
-      = link_to labs_path, class: 'button large' do
+      = link_to labs_path, class: 'button ' do
         = fa_icon "globe"
         Around the World
+        -# {country: current_country.alpha2.downcase}
+        -# in #{current_country}
 
 - if @country_labs
   .near-me.stripe
@@ -47,7 +48,7 @@
   .row
     .columns.large-12
       %h2 I'm new here, what's a Fab Lab?
-      %p Fab labs provide widespread access to modern means for invention. They began as an outreach project from MIT’s Center for Bits and Atoms (CBA), and became into a collaborative and global network. You can find more information about Fab Labs on the #{link_to "Fab Foundation Website", "#"}.
+      %p Fab labs provide widespread access to modern means for invention. They began as an outreach project from MIT’s Center for Bits and Atoms (CBA), and became into a collaborative and global network. You can find more information about Fab Labs on the #{link_to "Fab Foundation Website", "http://www.fabfoundation.org"}.
 
 .whos-it-for.stripe
   .row
@@ -76,7 +77,7 @@
 
   .row
     .columns.large-12{style: "text-align: center"}
-      = link_to signup_path, class: 'button large big-signup success' do
+      = link_to signup_path, class: 'button big-signup success' do
         .glyphicon.glyphicon-check
         Sign up
 

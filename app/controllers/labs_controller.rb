@@ -9,6 +9,9 @@ class LabsController < ApplicationController
   end
 
   def index
+    if params[:country]
+      params["country"].downcase!
+    end
     all_labs = Lab.search_for(params[:query]).with_approved_state
     @countries = Lab.country_list_for all_labs
     @count = all_labs.size
