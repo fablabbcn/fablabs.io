@@ -31,7 +31,7 @@ $body-font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
 $primary-color: #0275BC;//#0099FF;
 // $secondary-color: #e9e9e9;
 // $alert-color: #c60f13;
-// $success-color: #5da423;
+$success-color: #7ACD96;
 
 // We use these to make sure border radius matches unless we want it different.
 $global-radius: 2px;
@@ -968,7 +968,7 @@ $tooltip-font-size: emCalc(11px);
 //
 
 // Background color for the top bar
-$topbar-bg: #1C242B;
+$topbar-bg: #7ACD96;//#1C242B;
 
 // Height and margin
 $topbar-height: 60px;
@@ -982,7 +982,7 @@ $topbar-height: 60px;
 // $topbar-title-font-size: emCalc(17px);
 
 // Set the link colors and styles for top-level nav
-$topbar-link-color: #eee;
+$topbar-link-color: #fefefe;
 $topbar-link-weight: normal;
 $topbar-link-font-size: emCalc(14px);
 

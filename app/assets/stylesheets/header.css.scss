@@ -11,6 +11,7 @@
    // }
 }
 header {
+  font-family: Ubuntu;
   position: relative;
   z-index: 40;
   ul {
@@ -26,9 +27,7 @@ header {
     padding-top: 12px;
     padding-bottom: 12px;
   }
-  .top-bar input {
-    padding: 20px 10px;
-  }
+
   #locale {
     display: none;
   }
@@ -80,7 +79,9 @@ header {
     width: 100%;
   }
   #search-box {
-    border-radius: 2px;
+    padding: 20px 10px;
+    border: none;
+    border-radius: 4px;
     &:focus {
       width: 240px;
       @include transition (width 0.2s ease-out);

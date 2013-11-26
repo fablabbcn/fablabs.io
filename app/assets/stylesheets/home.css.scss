@@ -8,7 +8,7 @@
     margin-top: -15px;
     // height: 220px;
     background: $topbar-bg;
-    padding: 20px 0;
+    padding: 20px 0 0;
     // border-bottom: 1px solid #AAA;
     // position: relative;
   }
@@ -82,7 +82,7 @@
     p {
       font-size: 1.4em;
       // color: #3D3544;
-      color: #555;
+      color: #FFF;
       margin: 0;
     }
     .submit {
@@ -120,16 +120,6 @@
       color: #AAA;
       font-weight: normal;
     }
-  }
-  a.big-signup {
-    // padding: 15px 30px;
-    // margin: 10px auto 0;
-    // font-size: 2em;
-    background: darken(#bfe9cb, 30%);
-    // border: none;
-    // text-transform: uppercase;
-    // font-family: 'Montserrat';
-    // font-weight: bold;
   }
 
   #main .near-me {
