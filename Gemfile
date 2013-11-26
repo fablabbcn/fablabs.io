@@ -1,6 +1,6 @@
-ruby '2.0.0'
 source 'https://rubygems.org'
-
+# gem 'rubysl'
+# gem 'racc'
 gem 'rocket_pants', '~> 1.0'
 gem 'sidekiq'
 gem 'rails', '4.0.1'
