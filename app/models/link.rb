@@ -5,8 +5,11 @@ class Link < ActiveRecord::Base
   validates_uniqueness_of :url, scope: [:linkable_id, :linkable_type]
   validates_format_of :url, with: URI::regexp(%w(http https))
   before_validation :add_http
+
+  scope :twitter_urls, -> { where("url ~* 'twitter'").map(&:url) }
+
 private
   def add_http
-    self.url = "http://#{url}" unless url.match(/^http/)
+    self.url = "http://#{url}" if url.present? and !url.match(/^http/)
   end
 end

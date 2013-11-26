@@ -72,16 +72,16 @@ class User < ActiveRecord::Base
     Employee.where(lab: lab, user: self).exists?
   end
 
-  # def locale
-  #   locale || I18n.default_locale
-  # end
-
   def full_name
     "#{first_name} #{last_name}"
   end
 
   def to_s
     full_name
+  end
+
+  def default_locale
+    locale || I18n.default_locale
   end
 
   def admin?

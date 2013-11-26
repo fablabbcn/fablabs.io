@@ -71,7 +71,6 @@ FactoryGirl.define do
 
   factory :brand do
     name "Roland"
-    url "http://www.rolanddg.com"
   end
 
   factory :tool, aliases: [:commentable] do

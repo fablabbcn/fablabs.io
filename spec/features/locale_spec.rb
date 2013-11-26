@@ -18,13 +18,13 @@ describe 'locale' do
   end
 
   it "respects users' locale" do
-    user = FactoryGirl.create(:user, my_locale: 'es')
+    user = FactoryGirl.create(:user, locale: 'es')
     signin user
     expect(page).to have_css('#locale-icon.es')
   end
 
   it "updates user locale" do
-    user = FactoryGirl.create(:user, my_locale: 'es')
+    user = FactoryGirl.create(:user, locale: 'es')
     signin user
     click_link('locale-icon')
     click_link 'English'

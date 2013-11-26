@@ -183,7 +183,9 @@ li.all {
     }
     .lab {
       .lab-location {
-        color: #999;
+        &, a {
+          color: #999;
+        }
         margin-bottom: 0.3em;
         font-size: 0.9em;
       }

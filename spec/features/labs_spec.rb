@@ -124,8 +124,8 @@ describe Lab do
       user.verify!
       lab = FactoryGirl.create(:lab, creator: user)
       lab.approve!
-      employee = FactoryGirl.create(:employee, user: user, lab: lab)
-      employee.approve!
+      # employee = FactoryGirl.create(:employee, user: user, lab: lab)
+      # employee.approve!
       signin user
       visit lab_path(lab)
       click_link "Edit Lab"
