@@ -5,7 +5,7 @@ class Lab < ActiveRecord::Base
   self.authorizer_name = 'LabAuthorizer'
 
   include PgSearch
-  pg_search_scope :search_by_name, :against => [:name, :description]
+  pg_search_scope :search_by_name, :against => [:name, :description, :reverse_geocoded_address]
 
   include Avatarable
 

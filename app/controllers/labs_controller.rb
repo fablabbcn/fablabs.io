@@ -9,10 +9,10 @@ class LabsController < ApplicationController
   end
 
   def index
-    all_labs = Lab.select('labs.country_code').search_for(params[:query]).with_approved_state
+    all_labs = Lab.search_for(params[:query]).with_approved_state
     @countries = Lab.country_list_for all_labs
     @count = all_labs.size
-    @labs = all_labs.except(:select).order('LOWER(name) ASC').in_country_code(params["country"]).page(params['page']).per(params['per'])
+    @labs = all_labs.order('LOWER(name) ASC').in_country_code(params["country"]).page(params['page']).per(params['per'])
 
     respond_to do |format|
       format.html
