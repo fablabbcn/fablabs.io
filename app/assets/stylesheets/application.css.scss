@@ -25,7 +25,9 @@
 .button[type=submit] {
   background: $success-color;
 }
-
+p {
+  font-family: 'Open Sans';
+}
 html {
   position: relative;
   min-height: 100%;
