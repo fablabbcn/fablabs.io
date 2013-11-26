@@ -23,7 +23,7 @@ ready = ->
     new L.Control.Zoom({ position: 'topright' }).addTo(labmap)
     L.tileLayer('https://ssl_tiles.cloudmade.com/d8b794cdcd1e4e37bd83addfd40b7c68/110755/256/{z}/{x}/{y}.png', {}).addTo(labmap)
     icon = L.icon({
-      iconUrl: 'http://labs.fabfoundation.org/assets/map-icon-fab_lab-6f15e0c02e24db66d8eccc86c7a2076d.png'
+      iconUrl: '//i.imgur.com/bKe7MW2.png'
       iconSize:     [35, 35]
       iconAnchor:   [17, 33]
       popupAnchor:  [0, -20]
