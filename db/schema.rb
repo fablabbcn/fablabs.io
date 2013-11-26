@@ -11,14 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131125195635) do
+ActiveRecord::Schema.define(version: 20131126022623) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "brands", force: true do |t|
     t.string   "name"
-    t.string   "url"
+    t.text     "description"
     t.string   "workflow_state"
     t.integer  "creator_id"
     t.datetime "created_at"
@@ -103,11 +103,14 @@ ActiveRecord::Schema.define(version: 20131125195635) do
   add_index "featured_images", ["creator_id"], name: "index_featured_images_on_creator_id", using: :btree
 
   create_table "labs", force: true do |t|
-    t.integer  "creator_id"
-    t.string   "workflow_state"
     t.string   "name"
     t.string   "slug"
     t.text     "description"
+    t.string   "ancestry"
+    t.integer  "creator_id"
+    t.string   "workflow_state"
+    t.integer  "capabilities"
+    t.string   "time_zone"
     t.string   "avatar_src"
     t.string   "header_image_src"
     t.string   "phone"
@@ -125,13 +128,12 @@ ActiveRecord::Schema.define(version: 20131125195635) do
     t.integer  "zoom"
     t.text     "address_notes"
     t.text     "reverse_geocoded_address"
-    t.boolean  "active",                   default: true
+    t.integer  "kind"
     t.text     "application_notes"
     t.text     "tools_list"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "capabilities"
-    t.string   "time_zone"
+    t.string   "blurb"
   end
 
   add_index "labs", ["creator_id"], name: "index_labs_on_creator_id", using: :btree
@@ -231,8 +233,8 @@ ActiveRecord::Schema.define(version: 20131125195635) do
     t.string   "url"
     t.date     "dob"
     t.text     "bio"
-    t.string   "my_locale"
-    t.string   "my_timezone"
+    t.string   "locale"
+    t.string   "time_zone"
     t.boolean  "use_metric",            default: true
     t.string   "email_validation_hash"
     t.datetime "created_at"

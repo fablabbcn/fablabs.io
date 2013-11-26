@@ -38,18 +38,21 @@ namespace :csv do
             url: r['url'],
             dob: r['dob'],
             avatar_src: r['avatar'],
-            bio: r['bio']
+            bio: r['bio'],
+            created_at: DateTime.parse(r['created_at'])
           })
-        rescue ActiveRecord::RecordInvalid
-          p "Error #{counter+=1} - #{r['email']}"
+        rescue ActiveRecord::RecordInvalid => e
+          p "Error #{counter+=1} - ##{r['id']} #{r['email']}"
+          p e
         end
       end
     end
 
     task :labs => :environment do
       Lab.delete_all
+      Link.delete_all
       counter = 0
-      CSV.foreach('csv/labs.csv', :headers => true) do |r|
+      CSV.foreach('csv/labs2.csv', :headers => true) do |r|
         begin
           lab = Lab.create!({
             id: r['id'],
@@ -59,12 +62,10 @@ namespace :csv do
             workflow_state: 'approved',
             # FIND DIFFERENT STATES
             workflow_state: get_state(r['state']),
-            # active: r['kind'],
-            urls: r['urls'].lines.map(&:chomp).each { |url| links.build(url: url) },
-
-            # kind
+            kind: r['kind'],
             ancestry: r['ancestry'],
             description: r['description'],
+            blurb: r['description'],
             phone: r['phone'],
             email: r['email'],
             tools_list: r['facilities'],
@@ -79,9 +80,16 @@ namespace :csv do
             address_notes: r['address_notes'],
             application_notes: r['application_notes'],
             header_image_src: r['avatar_src'],
-            creator_id: r['creator_id']
-            # created_at: r['created_at']
+            creator_id: r['creator_id'],
+            created_at: DateTime.parse(r['created_at'])
           })
+
+          if r['urls'].present?
+            lab.links.delete_all
+            r['urls'].lines.map(&:chomp).each do |url|
+              lab.links.create!(url: url)
+            end
+          end
           # lab.reverse_geocode
           # sleep(1)
         rescue ActiveRecord::RecordInvalid => e

@@ -16,7 +16,7 @@ private
   def set_locale
     if current_user
       if params[:locale].present? and params[:locale] != current_user.locale
-        current_user.update_attribute(:my_locale, params[:locale])
+        current_user.update_attribute(:locale, params[:locale])
       end
       I18n.locale = current_user.locale
     else

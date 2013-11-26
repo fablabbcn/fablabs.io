@@ -4,4 +4,9 @@ class Link < ActiveRecord::Base
   validates_presence_of :url
   validates_uniqueness_of :url, scope: [:linkable_id, :linkable_type]
   validates_format_of :url, with: URI::regexp(%w(http https))
+  before_validation :add_http
+private
+  def add_http
+    self.url = "http://#{url}" unless url.match(/^http/)
+  end
 end

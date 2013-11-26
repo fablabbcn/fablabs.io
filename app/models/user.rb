@@ -33,7 +33,7 @@ class User < ActiveRecord::Base
   has_many :employees
 
   validates_format_of :email, :with => /\A(.+)@(.+)\z/
-  validates :username, format: { :with => /\A[a-zA-Z0-9]+\z/ }, length: { minimum: 4, maximum: 20 }
+  validates :username, format: { :with => /\A[a-zA-Z0-9]+\z/ }, length: { minimum: 4, maximum: 30 }
 
   validates :first_name, :last_name, :email, :username, presence: true
   validates_uniqueness_of :email, :username, case_sensitive: false
@@ -72,9 +72,9 @@ class User < ActiveRecord::Base
     Employee.where(lab: lab, user: self).exists?
   end
 
-  def locale
-    my_locale || I18n.default_locale
-  end
+  # def locale
+  #   locale || I18n.default_locale
+  # end
 
   def full_name
     "#{first_name} #{last_name}"

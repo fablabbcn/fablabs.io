@@ -29,7 +29,6 @@ class Lab < ActiveRecord::Base
   has_many :facilities
   has_many :tools, through: :facilities, source: :thing, source_type: 'Tool'
   belongs_to :creator, class_name: 'User'
-  before_save :get_time_zone unless Rails.env.test?
 
   Kinds = %w(planned mini_fab_lab fab_lab supernode)
   Capabilities = %w(threed_printing cnc_milling circuit_production laser precision_milling vinyl_cutting)
@@ -62,7 +61,8 @@ class Lab < ActiveRecord::Base
   scope :in_country_code, ->(cc) { where(country_code: cc) if cc.present?}
 
   before_save :downcase_email
-  before_save :truncate_description
+  before_save :truncate_blurb
+  before_save :get_time_zone unless Rails.env.test?
   after_save :save_roles
 
   attr_accessor :geocomplete
@@ -184,8 +184,8 @@ private
     self.email = email.downcase if email.present?
   end
 
-  def truncate_description
-    self.description = description[0..250].gsub(/\s+/, ' ').gsub(/\n/," ").strip if description_changed?
+  def truncate_blurb
+    self.blurb = blurb[0..250].gsub(/\s+/, ' ').gsub(/\n/," ").strip if blurb_changed?
   end
 
 end

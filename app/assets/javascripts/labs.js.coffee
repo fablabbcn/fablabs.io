@@ -67,7 +67,7 @@ ready = ->
       map.setView([position.coords.latitude, position.coords.longitude], 4)
     )
 
-    $.get "/labs.json", (labs) ->
+    $.get "/labs.json?per=1000", (labs) ->
       for lab in labs.labs
         if lab.latitude
           icon = L.icon({
