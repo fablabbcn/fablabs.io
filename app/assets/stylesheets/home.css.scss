@@ -133,6 +133,7 @@
   }
 
   #main .near-me {
+    display: none;
     background: #7D7496;
     h2 {
       font-size: 1em;
@@ -190,9 +191,9 @@
 
 
 
-    .has-form{
-      display: none;
-    }
+    // .has-form{
+    //   display: none;
+    // }
     .navbar {
       margin: 0;
     }
