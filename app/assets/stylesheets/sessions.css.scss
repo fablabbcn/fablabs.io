@@ -1,3 +1,5 @@
+@import "foundation_and_overrides";
+
 .your-name {
   line-height: 2em;
 }
@@ -50,7 +52,7 @@ body.sessions {
   .button {
     padding: 15px 30px;
     font-size: 2em;
-    background: darken(#bfe9cb, 30%);
+    background: $success-color;
     border: none;
   }
 
