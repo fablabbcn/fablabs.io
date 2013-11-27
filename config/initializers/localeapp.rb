@@ -1,5 +1,7 @@
-require 'localeapp/rails'
+unless Rails.env.production?
+  require 'localeapp/rails'
 
-Localeapp.configure do |config|
-  config.api_key = ENV['LOCALEAPP_KEY']
+  Localeapp.configure do |config|
+    config.api_key = ENV['LOCALEAPP_KEY']
+  end
 end
