@@ -39,7 +39,7 @@
     %ul.side-nav.countries-filter
       %li.all{class: ('active' if params[:country].blank?)}
         = link_to url_for(params.merge(country: nil, page: nil)) do
-          = I18n.t("labs.index.all_countries", :default => "All Countries")
+          = t("labs.index.all_countries")
           %span.count.right= @count
 
       - @countries.each do |country,country_code,count|
@@ -62,7 +62,7 @@
       the Network
     - if current_user
       = link_to new_lab_path, class: "button tiny success" do
-        = fa_icon "plus", text: I18n.t("labs.index.add_a_lab", default: "Add a Lab")
+        = fa_icon "plus", text: t("labs.index.add_a_lab")
     - else
       = link_to new_lab_path, class: "button tiny success disabled has-tip", data: { tooltip: true }, title: "You need to be signed in to add a Lab" do
-        = fa_icon "plus", text: I18n.t("labs.index.add_a_lab", default: "Add a Lab")
+        = fa_icon "plus", text: t("labs.index.add_a_lab")

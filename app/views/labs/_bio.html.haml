@@ -24,15 +24,15 @@
   -#     = button_to "#{event.capitalize} Lab", {controller: 'labs', action: 'verify'}, method: :patch, class: 'button button-primary'
 - if current_or_null_user.can_update?(@lab)
   = link_to "#", data: { dropdown: 'drop' }, class: 'button dropdown small' do
-    = fa_icon "edit", text: "Manage Lab"
+    = fa_icon "edit", text: t('labs.show.manage_lab')
   %br/
   %ul#drop.f-dropdown{data: 'dropdown-content'}
     %li
       = link_to edit_lab_path(@lab) do
-        = fa_icon "edit", text: "Edit Lab Details"
+        = fa_icon "edit", text: t('labs.show.edit_lab_details')
     %li
       = link_to lab_employees_path(@lab) do
-        = fa_icon "group", text: "Edit Employee List"
+        = fa_icon "group", text: t('labs.show.edit_employee_list')
     %li
       = link_to lab_admins_path(@lab) do
-        = fa_icon "flash", text: "Manage Admins"
+        = fa_icon "flash", text: t('labs.show.manage_admins')

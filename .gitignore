@@ -22,3 +22,4 @@
 /config/initializers/words.rb
 words.yml
 /csv
+.localeapp

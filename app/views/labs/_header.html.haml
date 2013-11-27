@@ -4,7 +4,7 @@
   %ul.button-group
     %li
       = link_to labs_path, class: "list button small #{'secondary' if action_name != 'index'}" do
-        = fa_icon "list", text: I18n.t("labs.index.list", :default => "List")
+        = fa_icon "list", text: t("labs.index.list")
     %li
       = link_to map_labs_path, class: "map button small #{'secondary' if action_name != 'map'}" do
-        = fa_icon "globe", text: I18n.t("labs.index.map", :default => "Map")
+        = fa_icon "globe", text: t("labs.index.map")
