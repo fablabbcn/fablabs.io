@@ -336,6 +336,8 @@ GEM
       simplecov-html (~> 0.8.0)
     simplecov-html (0.8.0)
     slop (3.4.7)
+    sort_alphabetical (1.0.0)
+      unicode_utils (>= 1.0.0)
     sprockets (2.10.1)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -358,6 +360,7 @@ GEM
     uglifier (2.3.1)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
+    unicode_utils (1.4.0)
     unicorn (4.7.0)
       kgio (~> 2.6)
       rack
@@ -418,6 +421,7 @@ DEPENDENCIES
   selenium-webdriver
   shoulda-matchers
   simple_form
+  sort_alphabetical
   timezone
   uglifier (>= 1.3.0)
   unicorn

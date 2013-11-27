@@ -21,6 +21,7 @@ module Fablabs
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
 
     config.i18n.default_locale = :en
+    # config.i18n.fallbacks = false
 
     config.generators do |g|
       g.view_specs false

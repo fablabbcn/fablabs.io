@@ -1,11 +1,14 @@
 source 'https://rubygems.org'
+
 # gem 'rubysl'
 # gem 'racc'
+gem 'sort_alphabetical'
 gem 'rocket_pants', '~> 1.0'
 # gem 'sidekiq'
 gem 'rails', '4.0.1'
 gem 'timezone'
 gem 'bitmask_attributes'
+gem 'localeapp', github: 'Locale/localeapp'
 # gem 'jquery-turbolinks'
 gem 'ransack', github: "ernie/ransack"
 gem 'authority', github: 'nathanl/authority'
@@ -57,8 +60,9 @@ group :doc do
   gem 'sdoc', require: false
 end
 gem 'holder_rails', github: 'NARKOZ/holder_rails'
+
 group :test, :development do
-  gem 'localeapp', github: 'Locale/localeapp'
+
   gem "rspec-rails"
   gem "factory_girl_rails"
 end

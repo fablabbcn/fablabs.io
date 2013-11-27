@@ -1,6 +1,6 @@
 Fablabs::Application.routes.draw do
 
-  constraints subdomain: 'www' do
+  # constraints subdomain: 'www' do
     resources :discussions
 
     resources :featured_images
@@ -75,7 +75,7 @@ Fablabs::Application.routes.draw do
     # root to: 'static#home'
     root to: 'static#home'
 
-  end
+  # end
 
 
   constraints subdomain: 'api' do

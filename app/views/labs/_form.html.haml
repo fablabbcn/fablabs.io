@@ -73,7 +73,7 @@
 
   %fieldset
     %legend Capabilities
-    = f.input :capabilities, as: 'check_boxes', inline_label: true, item_wrapper_class: 'checkbox_container', label: false, collection: Lab::Capabilities.map{|f| [ t("capabilities.#{f}"), f]}, checked: f.object.capabilities
+    = f.input :capabilities, as: 'check_boxes', inline_label: true, item_wrapper_class: 'checkbox_container', label: false, collection: Lab::Capabilities.map{|f| [ I18n.t("capabilities.#{f}"), f]}, checked: f.object.capabilities
 
   - if @lab.new_record?
     %fieldset

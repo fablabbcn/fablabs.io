@@ -1,2 +1,77 @@
 en:
-  hello: world
+  labs:
+    index:
+      add_a_lab: Add a Lab
+      all_countries: All Countries
+      list: List
+      map: Map
+    show:
+      edit_employee_list: Edit Employee List
+      edit_lab_details: Edit Lab Details
+      manage_admins: Manage Admins
+      manage_lab: Manage Lab
+      nearby_labs: Nearby Labs
+  home:
+    around_the_world: Around the World
+  capabilities:
+    circuit_production: Circuit Production
+    cnc_milling: CNC Milling
+    laser: Laser Engraving
+    precision_milling: Precision Milling
+    three_d_printing: 3D Printing
+    vinyl_cutting: Vinyl Cutting
+  activerecord:
+    attributes:
+      lab:
+        description: Description
+        geocomplete: Geocomplete
+        slug: Slug
+        address_notes: Address notes
+        city: City
+        email: Email
+        phone: Phone
+        postal_code: Postal code
+  simple_form:
+    hints:
+      lab:
+        edit:
+          geocomplete: 
+          name: 
+          address_1: 
+          address_2: 
+          capabilities: 
+          city: 
+          country_code: 
+          county: 
+          postal_code: 
+        links:
+          edit:
+            url: 
+    labels:
+      lab:
+        edit:
+          description: 
+          geocomplete: 
+          slug: 
+          address_notes: 
+          city: 
+          email: 
+          phone: 
+          postal_code: 
+    placeholders:
+      lab:
+        edit:
+          avatar_src: 
+          description: 
+          geocomplete: 
+          header_image_src: 
+          name: 
+          slug: 
+          address_notes: 
+          city: 
+          county: 
+          email: 
+          phone: 
+          postal_code: 
+    required:
+      html: <abbr title="required">*</abbr>

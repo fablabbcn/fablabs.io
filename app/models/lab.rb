@@ -31,7 +31,7 @@ class Lab < ActiveRecord::Base
   belongs_to :creator, class_name: 'User'
 
   Kinds = %w(planned mini_fab_lab fab_lab supernode)
-  Capabilities = %w(threed_printing cnc_milling circuit_production laser precision_milling vinyl_cutting)
+  Capabilities = %w(three_d_printing cnc_milling circuit_production laser precision_milling vinyl_cutting)
   bitmask :capabilities, as: Capabilities
   # acts_as_taggable_on :facilities
 
@@ -132,7 +132,7 @@ class Lab < ActiveRecord::Base
     c.each do |country_code, count|
       countries.push([Country[country_code].name, country_code, count])
     end
-    return countries.sort_by!{|k|k.first}
+    return countries.sort_alphabetical_by(&:first)
   end
 
   def admins

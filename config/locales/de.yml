@@ -1,0 +1,75 @@
+de:
+  capabilities:
+    circuit_production: Elektronik
+    cnc_milling: CNC Fräse
+    laser: Lasercutter
+    precision_milling: 
+    three_d_printing: 3D Drucker
+    vinyl_cutting: Schneidplotter
+  home:
+    around_the_world: 
+  labs:
+    index:
+      add_a_lab: 
+      all_countries: 
+      list: Verzeichnis
+      map: Karte
+    show:
+      edit_employee_list: 
+      edit_lab_details: 
+      manage_admins: 
+      manage_lab: 
+      nearby_labs: 
+  activerecord:
+    attributes:
+      lab:
+        description: 
+        geocomplete: 
+        slug: 
+        address_notes: 
+        city: 
+        email: 
+        phone: 
+        postal_code: 
+  simple_form:
+    hints:
+      lab:
+        edit:
+          geocomplete: 
+          name: 
+          capabilities: 
+          city: 
+          country_code: 
+          county: 
+          postal_code: 
+        links:
+          edit:
+            url: 
+    labels:
+      lab:
+        edit:
+          description: 
+          geocomplete: 
+          slug: 
+          address_notes: 
+          city: 
+          email: 
+          phone: 
+          postal_code: 
+    placeholders:
+      lab:
+        edit:
+          avatar_src: 
+          description: 
+          geocomplete: 
+          header_image_src: 
+          name: 
+          slug: 
+          address_notes: 
+          city: 
+          county: 
+          email: 
+          phone: 
+          postal_code: 
+    required:
+      html: 
