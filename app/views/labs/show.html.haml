@@ -16,8 +16,7 @@
     .lab-description= simple_format @lab.description
 
     - if @lab.header_image_src.present?
-      = image_tag @lab.header_image_src, class: 'big-picture'
-
+      = image_tag hocho(@lab.header_image_src, "o=r&d=800"), class: 'big-picture'
 
     = render "employees", lab: @lab
     -# = render "tools", lab: @lab

@@ -107,7 +107,7 @@ class Lab < ActiveRecord::Base
   end
 
   def default_avatar
-    '//i.imgur.com/iymHWkm.png'
+    'https://i.imgur.com/iymHWkm.png'
     # 'default-lab-avatar.png'
   end
 
