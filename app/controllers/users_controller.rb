@@ -11,7 +11,7 @@ class UsersController < ApplicationController
 
     @user = User.new user_params
     if @user.save
-      UserMailer.delay.welcome(@user.id)
+      UserMailer.welcome(@user.id).deliver
       cookies.permanent[:user_id] = @user.id
       redirect_to root_path, flash: { success: "Thanks for signing up. Please check your email to complete your registration." }
     else
