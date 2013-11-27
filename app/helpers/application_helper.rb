@@ -11,7 +11,7 @@ module ApplicationHelper
   end
 
   def hocho(img, options)
-    url = "//hocho.herokuapp.com"
+    url = "https://hocho.fablabs.io"
     options = options.unpack('H*').first
     img = img.unpack('H*').first
     sig = Digest::SHA1.hexdigest("#{options}#{img}#{ENV['HOCHO_SALT']}")
