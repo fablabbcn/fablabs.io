@@ -33,6 +33,19 @@ class EmployeesController < ApplicationController
     end
   end
 
+  def destroy
+    @lab = Lab.friendly.find params[:lab_id]
+    @employee = @lab.employees.find(params[:id])
+    @employee.delete
+    redirect_to lab_employees_url(@employee.lab), notice: 'Employee removed'
+  end
+
+  def edit
+    @lab = Lab.friendly.find params[:lab_id]
+    @employee = @lab.employees.find(params[:id])
+    authorize_action_for @employee
+  end
+
 private
 
   def employee_params

@@ -6,5 +6,9 @@
     .job-title= employee.job_title
     .description= Faker::Lorem.sentence #employee.description
     = employee.current_state
+
+    = link_to "Edit", edit_employee_path(employee), class: 'button tiny'
+    = link_to "Remove", employee, method: :delete, class: 'button tiny alert'
+
     - employee.current_state.events.keys.each do |event|
       = button_to event.capitalize, {controller: 'employees', action: event, id: employee.id }, method: :patch, class: 'button tiny'

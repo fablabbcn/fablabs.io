@@ -1,0 +1,6 @@
+= simple_form_for [lab,employee] do |f|
+  = render "form_errors", resource: employee
+  -# = f.association :user
+  = f.input :job_title, input_html: { placeholder: "e.g. Fab Lab Manager" }
+  = f.input :description
+  = f.submit "Send Application", class: 'button'
