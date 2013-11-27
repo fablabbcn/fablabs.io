@@ -10,6 +10,7 @@ Fablabs::Application.configure do
 
   config.banned_words = YAML.load_file("#{Rails.root}/config/words.yml").map(&:values).flatten
 
+# config.action_controller.asset_host = "https://assets.fablabs.io"
   # Do not eager load code on boot.
   config.eager_load = false
 

@@ -6,9 +6,9 @@
     %meta{ name: "viewport", content: "width=device-width, initial-scale=1.0, user-scalable=no" }
     = render 'application/map_icons'
     %link{type: "text/plain", rel: "author", href: "/humans.txt"}
-    = javascript_include_tag "//maps.googleapis.com/maps/api/js?sensor=false&libraries=places", "//cdnjs.cloudflare.com/ajax/libs/leaflet/0.6.4/leaflet.js", "//api.filepicker.io/v1/filepicker.js"
     = stylesheet_link_tag "//fonts.googleapis.com/css?family=Open+Sans:400|Montserrat"
     = stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true
+    = javascript_include_tag "//maps.googleapis.com/maps/api/js?sensor=false&libraries=places", "//cdnjs.cloudflare.com/ajax/libs/leaflet/0.6.4/leaflet.js", "//api.filepicker.io/v1/filepicker.js"
     = javascript_include_tag "application", "data-turbolinks-track" => true
     = javascript_include_tag "vendor/custom.modernizr"
     = csrf_meta_tags
