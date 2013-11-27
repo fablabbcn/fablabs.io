@@ -9,7 +9,9 @@ class Link < ActiveRecord::Base
   scope :twitter_urls, -> { where("url ~* 'twitter'").map(&:url) }
 
 private
+
   def add_http
     self.url = "http://#{url}" if url.present? and !url.match(/^http/)
   end
+
 end

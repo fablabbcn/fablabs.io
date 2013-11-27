@@ -1,3 +1,5 @@
+require 'digest/sha1'
+
 module ApplicationHelper
 
   def gem_count_tag(count)
@@ -6,6 +8,14 @@ module ApplicationHelper
 
   def backstage?
     controller.class.parent == Backstage
+  end
+
+  def hocho(img, options)
+    url = "//hocho.herokuapp.com"
+    options = options.unpack('H*').first
+    img = img.unpack('H*').first
+    sig = Digest::SHA1.hexdigest("#{options}#{img}#{ENV['HOCHO_SALT']}")
+    [url, options, img, sig].join('/')
   end
 
   def flash_class(level)

@@ -1,7 +1,7 @@
 = content_tag_for :div, lab, class: 'media' do
   .img.pull-left
     = link_to lab do
-      = image_tag lab.avatar, class: 'med avatar'
+      = image_tag hocho(lab.avatar, "o=t&q=80&d=100x100&f=png"), class: 'med avatar'
   .media-body
     = link_to lab, lab, class: 'name'
     .lab-location
