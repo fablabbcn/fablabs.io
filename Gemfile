@@ -54,6 +54,7 @@ gem 'jbuilder', '~> 1.2'
 gem 'figaro'
 gem 'friendly_id', github: 'norman/friendly_id'
 gem 'ffaker'
+gem 'doorkeeper', '~> 0.7.0'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.

@@ -1,5 +1,6 @@
 Fablabs::Application.routes.draw do
 
+  use_doorkeeper
   resources :admin_applications
 
   # constraints subdomain: 'www' do

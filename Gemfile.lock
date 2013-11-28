@@ -175,6 +175,9 @@ GEM
     descendants_tracker (0.0.3)
     diff-lcs (1.2.5)
     docile (1.1.1)
+    doorkeeper (0.7.3)
+      jquery-rails (>= 2.0.2)
+      railties (>= 3.1)
     equalizer (0.0.7)
     erubis (2.7.0)
     execjs (2.0.2)
@@ -416,6 +419,7 @@ DEPENDENCIES
   countries!
   country_select
   database_cleaner!
+  doorkeeper (~> 0.7.0)
   factory_girl_rails
   ffaker
   figaro
