@@ -28,6 +28,7 @@
 #= require placeholders
 #= require jquery.autosize
 #= require alerts
+#= require jquery.taggd.js
 #= require_tree .
 
 initEvents = ->

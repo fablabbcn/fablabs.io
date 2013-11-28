@@ -203,12 +203,8 @@
       width: 120px;
     }
     h1,h2,h3,h4,h5,h6 {
-      text-shadow: 1px 1px 1px #333 !important;
+      text-shadow: -1px -1px 1px #1b1b1b !important;
     }
-  }
-
-  footer * {
-    border: none;
   }
 
 }

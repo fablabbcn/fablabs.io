@@ -1,6 +1,6 @@
 - title "Welcome"
 
-#homepage-map
+#homepage-map{style: "background-size: cover; background-position: top center; background-image: url(http://i.imgur.com/o8UWC7g.jpg);"}
   .filter
   #homepage-search
     - if false#@country_labs
@@ -45,10 +45,13 @@
           = fa_icon "chevron-right"
 
 .whats-a-fab-lab.stripe
+  -#{style: "background-size: cover; background-position: center center; background-image: url(http://i.imgur.com/e9Avfcp.jpg); height: 400px"}
   .row
     .columns.large-12
       %h2 I'm new here, what's a Fab Lab?
       %p Fab labs provide widespread access to modern means for invention. They began as an outreach project from MIT’s Center for Bits and Atoms (CBA), and became into a collaborative and global network. You can find more information about Fab Labs on the #{link_to "Fab Foundation Website", "http://www.fabfoundation.org"}.
+
+= image_tag "http://i.imgur.com/KzGUuUm.jpg", style: "width: 100%", id: "frostis-lab"
 
 .whos-it-for.stripe
   .row
@@ -64,7 +67,7 @@
               %p
                 I'm an
                 %strong ENTHUSIAST
-                and I want to learn more about the global Fab Lab Network. Find labs near me. See what is happening in the labs around the world and maybe one day even open my own!
+                and I want to participate with the global Fab Lab Network. Find labs near me, see what's happening in the labs around the world and maybe one day open my own!
 
         .columns.large-6.case-study
           .media
@@ -73,7 +76,7 @@
               %p
                 I'm a
                 %strong FAB LAB MANAGER
-                and I want to add my lab to the network. Then I'll be able to share content to my lab's profile page and interact with fellow users of the site.
+                and I want to add my lab to the network. Then I'll be able to share information and knowledge from my lab and interact with fellow users of the site.
 
   .row
     .columns.large-12{style: "text-align: center"}

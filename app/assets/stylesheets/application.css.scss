@@ -11,6 +11,7 @@
  *= require_self
  *= require Control.Loading.css
  *= require select2
+ *= require taggd
  *= require intlTelInput
  *= require leaflet
  *= require messenger
@@ -41,6 +42,17 @@ html {
 
 body {
   margin: 0 0 ($footer-height + 20px);
+  &.a-home {
+    margin-bottom: $footer-height;
+    footer {
+      background: #222222;
+      text-shadow: 1px 1px 1px #333;
+      .split {
+        border-top: 1px solid #353535;
+        box-shadow: 0 -1px 0 #151515;
+      }
+    }
+  }
   -webkit-text-size-adjust:none;
   text-size-adjust:none;
   text-rendering: optimizeLegibility;
