@@ -2,6 +2,12 @@
 
 FactoryGirl.define do
 
+  factory :admin_application do
+    applicant
+    lab
+    notes "MyText"
+  end
+
   factory :comment do
     author
     ancestry "MyString"
@@ -55,7 +61,7 @@ FactoryGirl.define do
     creator
   end
 
-  factory :user, aliases: [:creator, :author] do
+  factory :user, aliases: [:creator, :author, :applicant] do
     sequence(:username) {|n| "user#{n}"}
     first_name "John"
     last_name "Rees"

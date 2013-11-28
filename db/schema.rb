@@ -11,10 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131126022623) do
+ActiveRecord::Schema.define(version: 20131127224532) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "admin_applications", force: true do |t|
+    t.integer  "applicant_id"
+    t.integer  "lab_id"
+    t.text     "notes"
+    t.string   "workflow_state"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "admin_applications", ["applicant_id", "lab_id"], name: "index_admin_applications_on_applicant_id_and_lab_id", using: :btree
 
   create_table "brands", force: true do |t|
     t.string   "name"
@@ -134,9 +145,11 @@ ActiveRecord::Schema.define(version: 20131126022623) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "blurb"
+    t.integer  "referee_id"
   end
 
   add_index "labs", ["creator_id"], name: "index_labs_on_creator_id", using: :btree
+  add_index "labs", ["referee_id"], name: "index_labs_on_referee_id", using: :btree
 
   create_table "links", force: true do |t|
     t.integer  "linkable_id"

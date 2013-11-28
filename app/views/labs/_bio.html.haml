@@ -15,7 +15,7 @@
       = mail_to lab.email, lab.email
 
 - if @lab.needs_admin?
-  = link_to "#", class: 'button success small' do
+  = link_to new_lab_admin_path(@lab), class: 'button success small' do
     = fa_icon "bullhorn"
     I should manage this lab
 
@@ -24,15 +24,15 @@
   -#     = button_to "#{event.capitalize} Lab", {controller: 'labs', action: 'verify'}, method: :patch, class: 'button button-primary'
 - if current_or_null_user.can_update?(@lab)
   = link_to "#", data: { dropdown: 'drop' }, class: 'button dropdown small' do
-    = fa_icon "edit", text: t('labs.show.manage_lab')
+    = fa_icon "edit", text: t('views.labs.show.manage_lab', default: "Manage Labs")
   %br/
   %ul#drop.f-dropdown{data: 'dropdown-content'}
     %li
       = link_to edit_lab_path(@lab) do
-        = fa_icon "edit", text: t('labs.show.edit_lab_details')
+        = fa_icon "edit", text: t('views.labs.show.edit_lab_details', default: "Edit Lab Details")
     %li
       = link_to lab_employees_path(@lab) do
-        = fa_icon "group", text: t('labs.show.edit_employee_list')
+        = fa_icon "group", text: t('views.labs.show.edit_employee_list', default: "Edit Employee List")
     %li
       = link_to lab_admins_path(@lab) do
-        = fa_icon "flash", text: t('labs.show.manage_admins')
+        = fa_icon "flash", text: t('views.labs.show.manage_admins', default: "Manage Admins")

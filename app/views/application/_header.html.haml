@@ -21,7 +21,7 @@
           = form_tag labs_path, class: 'navbar-form navbar-left', role: 'search', method: 'get' do
             - if params[:country].present?
               = hidden_field_tag 'country', params[:country]
-            = text_field_tag 'query', params[:query], class: 'form-control', autocomplete: 'off', placeholder: 'Search Labs...', id: 'search-box'
+            = text_field_tag 'query', params[:query], class: 'form-control', autocomplete: 'off', placeholder: t("views.header.search_labs", default: "Search Labs..."), id: 'search-box'
       %ul.right
         - if current_user
           %li.has-dropdown
@@ -34,19 +34,19 @@
             %ul.dropdown
               %li
                 = link_to settings_path do
-                  = fa_icon "cog", text: "Settings"
+                  = fa_icon "cog", text: t("views.header.settings", default: "Settings")
               - if current_or_null_user.has_role? :admin
                 %li
                   = link_to backstage_root_path do
                     = fa_icon "gamepad"
-                    Backstage
+                    = t("views.header.backstage", default: "Backstage")
                     = gem_count_tag Lab.with_unverified_state.size
               %li
                 = link_to signout_path do
-                  = fa_icon "sign-out", text: "Sign out"
+                  = fa_icon "sign-out", text: t("views.header.sign_out", default: "Sign out")
         - else
-          %li= link_to "Sign in", signin_path
-          %li.last= link_to "Sign up", signup_path
+          %li= link_to t("views.header.sign_in", default: "Sign in"), signin_path
+          %li.last= link_to t("views.header.sign_up", default: "Sign up"), signup_path
         %li#locale
           = link_to choose_locale_path, id: 'locale-icon', class: I18n.locale, data: { reveal_id: "myModal", reveal_ajax: "true" } do
             = image_tag "locales/#{I18n.locale}.png", width: 24

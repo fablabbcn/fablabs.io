@@ -2,6 +2,7 @@
   = render 'form_errors', resource: lab
 
   %fieldset
+
     %legend Basic Details
     = f.input :name, autofocus: lab.name.blank?, label: 'Fab Lab Name'
 
@@ -12,6 +13,9 @@
         .columns.large-3
           %span.prefix= "#{Rails.application.config.url}/"
         .columns.large-9= f.input_field :slug, class: 'form-control'
+
+  %fieldset
+    = f.association :referee, collection: Lab.with_approved_state.order('name ASC'), hint: "An existing lab must be able to verify your application"
 
   %fieldset
     %legend Lab Images

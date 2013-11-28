@@ -6,6 +6,7 @@ describe User do
   it { should validate_presence_of(:password) }
   it { should validate_presence_of(:first_name) }
   it { should validate_presence_of(:last_name) }
+  it { should belong_to(:admin_applications) }
   it { should have_many(:created_labs) }
   it { should have_many(:recoveries) }
   it { should have_many(:role_applications) }

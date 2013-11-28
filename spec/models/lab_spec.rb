@@ -7,6 +7,9 @@ describe Lab do
   it { should have_many(:links) }
   it { should have_many(:facilities) }
   it { should have_many(:discussions) }
+  it { should validate_presence_of(:referee) }
+  it { should belong_to(:referee) }
+  it { should have_many(:referred_labs) }
   # it { should have_many(:tools).through(:facilities) }
   pending "validates uniqueness of slug"
   it "cannot use slug with reserved name" do

@@ -1,5 +1,7 @@
 Fablabs::Application.routes.draw do
 
+  resources :admin_applications
+
   # constraints subdomain: 'www' do
     resources :discussions
 
@@ -56,6 +58,7 @@ Fablabs::Application.routes.draw do
     get 'labs' => 'labs#index'
     post 'labs' => 'labs#create'
     resources :labs, path: '', except: :index do
+      resources :admin_applications
       resources :role_applications
       resources :employees
       resources :discussions

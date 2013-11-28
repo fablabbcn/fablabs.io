@@ -6,20 +6,6 @@ de:
     precision_milling: 
     three_d_printing: 3D Drucker
     vinyl_cutting: Schneidplotter
-  home:
-    around_the_world: 
-  labs:
-    index:
-      add_a_lab: 
-      all_countries: 
-      list: Verzeichnis
-      map: Karte
-    show:
-      edit_employee_list: 
-      edit_lab_details: 
-      manage_admins: 
-      manage_lab: 
-      nearby_labs: 
   activerecord:
     attributes:
       lab:
@@ -31,6 +17,22 @@ de:
         email: 
         phone: 
         postal_code: 
+        referee: 
+        application_notes: 
+        tools_list: 
+      admin_application:
+        lab: 
+      employee:
+        description: 
+        job_title: 
+      user:
+        bio: 
+        email: 
+        phone: 
+        url: 
+        username: 
+    models:
+      admin_application: 
   simple_form:
     hints:
       lab:
@@ -45,6 +47,43 @@ de:
         links:
           edit:
             url: 
+          new:
+            url: 
+        new:
+          name: 
+          referee: 
+          address_1: 
+          address_2: 
+          application_notes: 
+          capabilities: 
+          city: 
+          country_code: 
+          county: 
+          geocomplete: 
+          postal_code: 
+          tools_list: 
+        employees:
+          new:
+            description: 
+            job_title: 
+      admin_application:
+        new:
+          lab: 
+      user:
+        edit:
+          bio: 
+          country_code: 
+          email: 
+          first_name: 
+          last_name: 
+          phone: 
+          url: 
+          username: 
+      q:
+        index:
+          country_code_eq: 
+          name_or_city_cont: 
+          workflow_state_eq: 
     labels:
       lab:
         edit:
@@ -56,6 +95,33 @@ de:
           email: 
           phone: 
           postal_code: 
+          referee: 
+        new:
+          description: 
+          referee: 
+          slug: 
+          address_notes: 
+          application_notes: 
+          city: 
+          email: 
+          geocomplete: 
+          phone: 
+          postal_code: 
+          tools_list: 
+        employees:
+          new:
+            description: 
+            job_title: 
+      admin_application:
+        new:
+          lab: 
+      user:
+        edit:
+          bio: 
+          email: 
+          phone: 
+          url: 
+          username: 
     placeholders:
       lab:
         edit:
@@ -71,5 +137,67 @@ de:
           email: 
           phone: 
           postal_code: 
+        new:
+          avatar_src: 
+          description: 
+          name: 
+          slug: 
+          address_notes: 
+          application_notes: 
+          city: 
+          county: 
+          email: 
+          geocomplete: 
+          phone: 
+          postal_code: 
+          tools_list: 
+        employees:
+          new:
+            description: 
+            job_title: 
+      user:
+        edit:
+          avatar_src: 
+          bio: 
+          email: 
+          phone: 
+          url: 
+          username: 
+      q:
+        index:
+          name_or_city_cont: 
     required:
       html: 
+    options:
+      q:
+        index:
+          workflow_state_eq: 
+  views:
+    header:
+      backstage: 
+      search_labs: 
+      settings: 
+      sign_in: 
+      sign_out: 
+      sign_up: 
+    home:
+      around_the_world: 
+    labs:
+      index:
+        add_a_lab: 
+        all_countries: 
+        list: 
+        map: 
+      show:
+        edit_employee_list: 
+        edit_lab_details: 
+        manage_admins: 
+        manage_lab: 
+        nearby_labs: 
+  ransack:
+    attributes:
+      lab:
+        id: 
+        name: 
+        slug: 
+        state: 
