@@ -6,6 +6,7 @@ stdout_path "<%= unicorn_log %>"
 listen "/tmp/unicorn.<%= application %>.sock"
 worker_processes <%= unicorn_workers %>
 timeout 15
+rails_env = ENV['RAILS_ENV'] || 'production'
 
 preload_app true
 
