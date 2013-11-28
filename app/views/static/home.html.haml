@@ -44,14 +44,15 @@
         = link_to labs_path(country: current_country.alpha2.downcase), class: 'more' do
           = fa_icon "chevron-right"
 
+
+
+= image_tag "http://i.imgur.com/KzGUuUm.jpg", style: "width: 100%", id: "frostis-lab"
 .whats-a-fab-lab.stripe
   -#{style: "background-size: cover; background-position: center center; background-image: url(http://i.imgur.com/e9Avfcp.jpg); height: 400px"}
   .row
     .columns.large-12
       %h2 I'm new here, what's a Fab Lab?
       %p Fab labs provide widespread access to modern means for invention. They began as an outreach project from MIT’s Center for Bits and Atoms (CBA), and became into a collaborative and global network. You can find more information about Fab Labs on the #{link_to "Fab Foundation Website", "http://www.fabfoundation.org"}.
-
-= image_tag "http://i.imgur.com/KzGUuUm.jpg", style: "width: 100%", id: "frostis-lab"
 
 .whos-it-for.stripe
   .row
