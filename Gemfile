@@ -61,8 +61,11 @@ group :doc do
 end
 gem 'holder_rails', github: 'NARKOZ/holder_rails'
 
-group :test, :development do
+group :development do
   gem 'localeapp', github: 'Locale/localeapp'
+end
+
+group :test, :development do
   gem "rspec-rails"
   gem "factory_girl_rails"
 end

@@ -95,7 +95,8 @@ describe Lab do
       user.verify!
       signin user
       visit labs_path
-      click_link "Add a Lab"
+      click_link "Add a lab"
+      choose "Fab Lab"
       fill_in 'Name', with: 'New Lab'
       fill_in 'lab_description', with: 'An awesome place'
       fill_in 'lab_address_1', with: 'Mars'
@@ -106,7 +107,6 @@ describe Lab do
       select 'United Kingdom', from: 'Country'
       fill_in 'Slug', with: 'newlab'
       click_button 'Add Lab'
-
       expect(page).to have_content "Thanks"
       emails = ActionMailer::Base.deliveries.map(&:to).flatten
       expect(emails).to eq([user.email, 'john@bitsushi.com'])

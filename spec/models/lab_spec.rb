@@ -7,11 +7,16 @@ describe Lab do
   it { should have_many(:links) }
   it { should have_many(:facilities) }
   it { should have_many(:discussions) }
-  it { should validate_presence_of(:referee) }
+  pending { should validate_presence_of(:referee) }
   it { should belong_to(:referee) }
   it { should have_many(:referred_labs) }
   # it { should have_many(:tools).through(:facilities) }
   pending "validates uniqueness of slug"
+
+  it "is valid" do
+    expect(FactoryGirl.create(:lab)).to be_valid
+  end
+
   it "cannot use slug with reserved name" do
     %w(labs users).each do |word|
       expect{FactoryGirl.create(:lab, slug: word)}.to raise_error(ActiveRecord::RecordInvalid)

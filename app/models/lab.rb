@@ -32,7 +32,7 @@ class Lab < ActiveRecord::Base
   has_many :tools, through: :facilities, source: :thing, source_type: 'Tool'
   belongs_to :creator, class_name: 'User'
   belongs_to :referee, class_name: 'Lab'
-  has_many :referred_labs, foreign_key: 'referee_id'
+  has_many :referred_labs, foreign_key: 'referee_id', class_name: 'Lab'
 
   Kinds = %w(planned_fab_lab mini_fab_lab fab_lab)
   Capabilities = %w(three_d_printing cnc_milling circuit_production laser precision_milling vinyl_cutting)
@@ -48,7 +48,7 @@ class Lab < ActiveRecord::Base
   validates_format_of :email, :with => /\A(.+)@(.+)\z/, allow_blank: true
 
   validates_presence_of :kind
-  validates_presence_of :referee, on: :create
+  # validates_presence_of :referee, on: :create
   validates :name, :country_code, :slug, presence: true #:address_1, description
   # validates_presence_of :creator, on: :create
 

@@ -58,6 +58,8 @@ FactoryGirl.define do
     address_1 { Faker::Address.street_address }
     county "County"
     country_code "es"
+    kind 1
+    # referee
     creator
   end
 
