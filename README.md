@@ -1,11 +1,3 @@
-# johnrees/fablabs
+# FabLabs
 
-A ruby translation project managed on [Locale](http://www.localeapp.com/) that's open to all!
-
-## Contributing to johnrees/fablabs
-
-- Edit the translations directly on the [johnrees/fablabs](http://www.localeapp.com/projects/public?search=johnrees/fablabs) project on Locale.
-- **That's it!**
-- The maintainer will then pull translations from the Locale project and push to Github.
-
-Happy translating!
+[![Code Climate](https://codeclimate.com/github/johnrees/fablabs.png)](https://codeclimate.com/github/johnrees/fablabs) [![Build Status](https://travis-ci.org/johnrees/fablabs.png)](https://travis-ci.org/johnrees/fablabs) [![Dependency Status](https://gemnasium.com/johnrees/fablabs.png)](https://gemnasium.com/johnrees/fablabs)
