@@ -86,6 +86,8 @@ en:
           country_code_eq: 
           name_or_city_cont: 
           workflow_state_eq: 
+          email_cont: 
+          first_name_cont: 
     labels:
       lab:
         edit:
@@ -124,6 +126,9 @@ en:
           phone: 
           url: 
           username: 
+      q:
+        index:
+          email_cont: 
     placeholders:
       lab:
         edit:
@@ -169,6 +174,8 @@ en:
       q:
         index:
           name_or_city_cont: 
+          email_cont: 
+          first_name_cont: 
     required:
       html: <abbr title="required">*</abbr>
     options:
@@ -204,3 +211,6 @@ en:
         name: '%{attributes}'
         slug: '%{attributes}'
         state: '%{attributes}'
+      user:
+        email: '%{attributes}'
+        id: '%{attributes}'

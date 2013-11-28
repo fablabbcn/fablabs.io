@@ -84,6 +84,8 @@ de:
           country_code_eq: 
           name_or_city_cont: 
           workflow_state_eq: 
+          email_cont: 
+          first_name_cont: 
     labels:
       lab:
         edit:
@@ -122,6 +124,9 @@ de:
           phone: 
           url: 
           username: 
+      q:
+        index:
+          email_cont: 
     placeholders:
       lab:
         edit:
@@ -166,6 +171,8 @@ de:
       q:
         index:
           name_or_city_cont: 
+          email_cont: 
+          first_name_cont: 
     required:
       html: 
     options:
@@ -196,8 +203,6 @@ de:
         nearby_labs: 
   ransack:
     attributes:
-      lab:
+      user:
+        email: 
         id: 
-        name: 
-        slug: 
-        state: 

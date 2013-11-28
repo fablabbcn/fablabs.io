@@ -1,4 +1,4 @@
-if !Rails.env.production?
+if Rails.env.development?
   require 'localeapp/rails'
 
   Localeapp.configure do |config|

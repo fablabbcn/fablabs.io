@@ -20,12 +20,12 @@
     %table.table
       %thead
         %tr
-          %th= sort_link @q, :id
+          %th= sort_link @q, :id, 'ID'
           %th
             Name
             (#{sort_link @q, :first_name, "First"})
             (#{sort_link @q, :last_name, "Last"})
-          %th= sort_link @q, :email
+          %th= sort_link @q, :email, 'Email'
           %th= sort_link @q, :created_at, "Joined"
       %tbody
         - @users.each do |user|

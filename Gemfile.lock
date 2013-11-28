@@ -44,7 +44,7 @@ GIT
 
 GIT
   remote: git://github.com/ernie/ransack.git
-  revision: 465d38b12bc1c232b90fcee1f85f661b14706a40
+  revision: 98948773e48c7f33fc17aa22ce161ee88fdebf36
   specs:
     ransack (1.1.0)
       actionpack (>= 3.0)
@@ -74,7 +74,7 @@ GIT
 
 GIT
   remote: git://github.com/nathanvda/cocoon.git
-  revision: ae1543d63af2d5f6669d192982b9a5d2a0de774e
+  revision: db75e11f4729505d233d896fd8a1f25d4fe98ff4
   specs:
     cocoon (1.2.3)
 
@@ -135,6 +135,7 @@ GEM
     bourbon (3.1.8)
       sass (>= 3.2.0)
       thor
+    buftok (0.2.0)
     builder (3.1.4)
     capistrano (2.15.5)
       highline
@@ -171,8 +172,10 @@ GEM
       compass (>= 0.12.2, < 0.14)
     country_select (1.2.0)
     currencies (0.4.2)
+    descendants_tracker (0.0.3)
     diff-lcs (1.2.5)
     docile (1.1.1)
+    equalizer (0.0.7)
     erubis (2.7.0)
     execjs (2.0.2)
     factory_girl (4.3.0)
@@ -180,6 +183,8 @@ GEM
     factory_girl_rails (4.3.0)
       factory_girl (~> 4.3.0)
       railties (>= 3.0.0)
+    faraday (0.8.8)
+      multipart-post (~> 1.2.0)
     ffaker (1.22.1)
     ffi (1.9.3)
     figaro (0.7.0)
@@ -199,14 +204,17 @@ GEM
       rspec (~> 2.14)
     haml (4.0.4)
       tilt
-    haml-rails (0.4)
-      actionpack (>= 3.1, < 4.1)
-      activesupport (>= 3.1, < 4.1)
-      haml (>= 3.1, < 4.1)
-      railties (>= 3.1, < 4.1)
+    haml-rails (0.5.1)
+      actionpack (~> 4.0.0)
+      activesupport (~> 4.0.0)
+      haml (>= 3.1, < 5.0)
+      railties (~> 4.0.0)
     hashie (2.0.5)
     highline (1.6.20)
     hike (1.2.3)
+    http (0.5.0)
+      http_parser.rb
+    http_parser.rb (0.5.3)
     httparty (0.12.0)
       json (~> 1.8)
       multi_xml (>= 0.5.2)
@@ -234,6 +242,8 @@ GEM
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
+    memoizable (0.2.0)
+      thread_safe (~> 0.1.3)
     method_source (0.8.2)
     mime-types (1.25.1)
     mini_portile (0.5.2)
@@ -241,6 +251,7 @@ GEM
     moneta (0.7.20)
     multi_json (1.8.2)
     multi_xml (0.5.5)
+    multipart-post (1.2.0)
     net-scp (1.1.2)
       net-ssh (>= 2.6.5)
     net-sftp (2.1.2)
@@ -330,6 +341,7 @@ GEM
     simple_form (3.0.0)
       actionpack (>= 4.0.0, < 4.1)
       activemodel (>= 4.0.0, < 4.1)
+    simple_oauth (0.2.0)
     simplecov (0.8.2)
       docile (~> 1.1.0)
       multi_json
@@ -356,6 +368,17 @@ GEM
     treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
+    twitter (5.0.1)
+      addressable (~> 2.3)
+      buftok (~> 0.2.0)
+      descendants_tracker (~> 0.0.1)
+      equalizer (~> 0.0.7)
+      faraday (>= 0.8, < 0.10)
+      http (~> 0.5.0)
+      http_parser.rb (~> 0.5.0)
+      json (~> 1.8)
+      memoizable (~> 0.2.0)
+      simple_oauth (~> 0.2.0)
     tzinfo (0.3.38)
     uglifier (2.3.1)
       execjs (>= 0.3.0)
@@ -423,6 +446,7 @@ DEPENDENCIES
   simple_form
   sort_alphabetical
   timezone
+  twitter
   uglifier (>= 1.3.0)
   unicorn
   workflow!

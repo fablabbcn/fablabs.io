@@ -19,16 +19,16 @@
     %table.table
       %thead
         %tr
-          %th= sort_link @q, :id
-          %th= sort_link @q, :name
-          %th= sort_link @q, :slug
+          %th= sort_link @q, :id, 'ID'
+          %th= sort_link @q, :name, 'Name'
+          %th= sort_link @q, :slug, 'Slug'
           %th Country
           %th
             Creator
             = sort_link @q, 'creator_first_name', 'First'
             = sort_link @q, 'creator_last_name', 'Last'
 
-          %th= sort_link @q, :state
+          %th= sort_link @q, :state, 'State'
           -# %th= sort_link @q, :created_at
       %tbody
         - @labs.each do |lab|
