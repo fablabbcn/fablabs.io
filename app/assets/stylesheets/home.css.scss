@@ -1,5 +1,25 @@
 @import "foundation_and_overrides";
 
+#frostis-lab {
+  position: relative;
+  img {
+    // visibility: hidden;
+    width: 100%;
+  }
+}
+
+.note {
+  width: 20px;
+  height: 20px;
+  background: rgba(#E84E61, 0.9);
+  border-radius: 99999px;
+
+  @media #{$small} {
+    width: 30px;
+    height: 30px;
+  }
+}
+
 .a-home {
 
   #homepage-map {
