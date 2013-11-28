@@ -2,6 +2,7 @@ class Lab < ActiveRecord::Base
 
   include Authority::Abilities
   resourcify
+  has_ancestry
   self.authorizer_name = 'LabAuthorizer'
 
   include PgSearch
@@ -33,7 +34,7 @@ class Lab < ActiveRecord::Base
   belongs_to :referee, class_name: 'Lab'
   has_many :referred_labs, foreign_key: 'referee_id'
 
-  Kinds = %w(planned mini_fab_lab fab_lab supernode)
+  Kinds = %w(planned_fab_lab mini_fab_lab fab_lab)
   Capabilities = %w(three_d_printing cnc_milling circuit_production laser precision_milling vinyl_cutting)
   bitmask :capabilities, as: Capabilities
   # acts_as_taggable_on :facilities
@@ -46,6 +47,7 @@ class Lab < ActiveRecord::Base
   validates :slug, format: {:with => /\A[a-zA-Z0-9]+\z/ }, allow_nil: true, allow_blank: true, length: { minimum: 3 }
   validates_format_of :email, :with => /\A(.+)@(.+)\z/, allow_blank: true
 
+  validates_presence_of :kind
   validates_presence_of :referee, on: :create
   validates :name, :country_code, :slug, presence: true #:address_1, description
   # validates_presence_of :creator, on: :create

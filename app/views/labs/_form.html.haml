@@ -3,8 +3,12 @@
 
   - if lab.new_record?
     %fieldset
-      %legend Important
-      = f.association :referee, collection: Lab.with_approved_state.order('name ASC'), hint: "An existing lab must be able to verify your application", label: "Referee Lab"
+      %legend Important Information
+      = f.association :referee, collection: Lab.with_approved_state.order('name ASC'), hint: "An existing lab MUST be able to verify your application", label: "Referee Lab"
+
+      = f.input :parent_id, label: "Parent (Supernode) Lab", as: 'select', collection: Lab.with_approved_state.order('name ASC'), hint: "Is this lab connected with a Supernode? If so, which lab?", input_html: { class: 'enhanced' }
+
+      = f.input :kind, collection: Lab::Kinds.each_with_index.map{|m, index| [m.humanize.titleize, index]}, as: 'radio_buttons', item_wrapper_class: 'checkbox_container'
 
   %fieldset
 
@@ -32,22 +36,23 @@
       .columns.large-3
         - if @lab.header_image_src.present?
           = image_tag @lab.header_image_src, class: 'avatar big'
-      .columns.large-9= f.input :header_image_src, input_html: { class: 'fp' }, label: 'Header Image', hint: "A single (large) photo of your lab. You will be able to add more photos soon."
+      .columns.large-9= f.input :header_image_src, input_html: { class: 'fp' }, label: 'Photo', hint: "A single (large) photo of your lab. You will be able to add more photos soon."
 
   %fieldset
     %legend Lab Location
     .address
       %fieldset
         %legend Step 1
-        %p Enter the lab's address in the textbox below. Then drag the map marker to pinpoint its exact position.
-        = f.input :geocomplete, input_html: { id: 'geocomplete', data: { latlng: "#{@lab.latitude}, #{@lab.longitude}"} }
+        %p.hint Enter the lab's address in the textbox below. Then drag the map marker to pinpoint its exact position.
+        = f.input :geocomplete, input_html: { id: 'geocomplete', data: { latlng: "#{@lab.latitude}, #{@lab.longitude}"} }, label: false
       %fieldset.step-2
         %legend Step 2
+        %p.hint Edit the details in the address fields below.
         .row
           .columns.large-6#map-holder
             #location-picker-map
           .columns.large-6
-            = f.input :address_1, input_html: { data: {geo: "street_address"}}, label: 'Address', placeholder: 'Address Line 1'
+            = f.input :address_1, input_html: { data: {geo: "street_address"}}, label: 'Lab Address', placeholder: 'Address Line 1'
             = f.input :address_2, label: false, placeholder: 'Address Line 2 (Optional)'
             = f.input :city, input_html: { data: {geo: "locality"}}
             = f.input :county, label: 'State/Province/County'
@@ -57,19 +62,21 @@
             = f.input :latitude, as: :hidden, input_html: { data: {geo: "lat"}}
             = f.input :longitude, as: :hidden, input_html: { data: {geo: "lng"}}
             = f.input :zoom, as: :hidden
-        = f.input :address_notes, hint: 'Any details that might be useful for someone trying to find the lab. For example, "Come through the red door".'
+        %hr/
+        = f.input :address_notes, hint: 'Any details that might be useful for someone trying to find the lab. For example, "Go up the stairs and through the red door".'
 
   %fieldset
     %legend Lab Contact Details
-    = f.input :phone, hint: "A general enquiries phone number for the lab"
-    = f.input :email, hint: "A general enquiries email address for the lab"
+    = f.input :phone, hint: "A general enquiries phone number for the lab", label: "Lab Phone Number"
+    = f.input :email, hint: "A general enquiries email address for the lab", label: "Lab Email Address"
 
   - if @lab.new_record?
     %fieldset
       %legend Your Role
+      %p.hint What is your association with this lab?
       = f.simple_fields_for :employees do |e|
-        = e.input :job_title
-        = e.input :description
+        = e.input :job_title, placeholder: "e.g. Lab Manager"
+        = e.input :description, placeholder: "e.g. Coordinates Workshops and Events"
 
   %fieldset
     %legend Links
@@ -77,11 +84,13 @@
     = f.simple_fields_for :links do |link|
       = render 'link_fields', f: link
     .links
-      = link_to_add_association 'add link', f, :links, class: 'button tiny'
+      = link_to_add_association f, :links, class: 'button tiny' do
+        = fa_icon "plus"
+        Add another link
 
   %fieldset
     %legend Capabilities
-    = f.input :capabilities, as: 'check_boxes', inline_label: true, item_wrapper_class: 'checkbox_container', label: false, collection: Lab::Capabilities.map{|f| [ I18n.t("capabilities.#{f}"), f]}, checked: f.object.capabilities
+    = f.input :capabilities, as: 'check_boxes', inline_label: true, item_wrapper_class: 'checkbox_container', label: false, collection: Lab::Capabilities.map{|f| [ I18n.t("capabilities.#{f}"), f]}, checked: f.object.capabilities, hint: "Check all of the boxes that apply to this lab"
 
     = f.input :tools_list, hint: "We are adding a directory of Fab Lab tools to this website, please list any machines that you have.", input_html: { style: "height: 8em" }, placeholder: "e.g. Makerbot Industries - Makerbot 2"
 

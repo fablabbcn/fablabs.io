@@ -1,5 +1,13 @@
-
+.checkbox_container {
+  display: inline-block;
+  padding: 10px;
+}
+textarea {
+  margin-bottom: 0;
+}
 .hint {
+  padding: 2px;
+  display: block;
   color: #AAA;
   font-size: 0.9em;
   margin-bottom: 1em;

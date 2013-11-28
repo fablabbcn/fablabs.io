@@ -92,6 +92,8 @@ private
 
   def lab_params
     params.require(:lab).permit(
+      :kind,
+      :parent_id,
       :referee_id,
       :tools_list,
       :geocomplete,
