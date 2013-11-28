@@ -1,6 +1,6 @@
 - title "Welcome"
 
-#homepage-map{style: "background-size: cover; background-position: top center; background-image: url(http://i.imgur.com/WXrpbgp.jpg);"}
+#homepage-map{style: "background-size: cover; background-position: top center; background-image: url(https://i.imgur.com/WXrpbgp.jpg);"}
   .filter
   #homepage-search
     - if false#@country_labs
@@ -46,6 +46,14 @@
 
 
 #frostis-lab= image_tag "https://i.imgur.com/KFS2V4n.jpg", id: "img"
+.credit{style: 'background: #FFF'}
+  .row
+    .columns.large-12.text-right
+      .photo-from
+        Photo from
+        = link_to "Fab Lab Vestmannaeyjar", "/vestmannaeyjar"\
+        ,
+        = link_to "Iceland", "/labs?country=is"
 .whats-a-fab-lab.stripe
   -#{style: "background-size: cover; background-position: center center; background-image: url(http://i.imgur.com/e9Avfcp.jpg); height: 400px"}
   .row

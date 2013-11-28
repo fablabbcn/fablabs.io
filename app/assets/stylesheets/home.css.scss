@@ -1,6 +1,28 @@
 @import "foundation_and_overrides";
 
+@-webkit-keyframes pulsate {
+    0% {-webkit-transform: scale(1, 1); opacity: 0.8;}
+    50% {-webkit-transform: scale(1.1, 1.1); opacity: 1;}
+    100% {-webkit-transform: scale(1, 1); opacity: 0.8;}
+}
+
+.credit .photo-from {
+  margin-top: 5px;
+  font-size: 0.8em;
+  font-style: italic;
+  color: #AAA;
+  // a {
+  //   color: #AAA;
+  // }
+}
+
 #frostis-lab {
+  &:hover {
+    .note {
+      -webkit-animation: pulsate 2s ease-out;
+      -webkit-animation-iteration-count: infinite;
+    }
+  }
   position: relative;
   img {
     // visibility: hidden;
@@ -9,6 +31,7 @@
 }
 
 .note {
+  opacity: 0.8;
   width: 20px;
   height: 20px;
   background: rgba(#E84E61, 0.9);

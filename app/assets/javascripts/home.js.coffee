@@ -38,5 +38,5 @@ jQuery ->
     relY = parseInt((e.pageY - parentOffset.top) / $(this).height() * 100)
 
   for item in data
-    $('#frostis-lab').append("<span data-tooltip class='note has-tip' title='#{item.title}' style='position: absolute; top: #{item.y}%; left: #{item.x}%'>")
+    $('#frostis-lab').append("<span data-tooltip class='note has-tip tip-top' title='#{item.title}' style='position: absolute; top: #{item.y}%; left: #{item.x}%'>")
 
