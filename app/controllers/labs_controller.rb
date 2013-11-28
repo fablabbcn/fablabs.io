@@ -92,9 +92,11 @@ private
 
   def lab_params
     params.require(:lab).permit(
+      :referee_id,
       :tools_list,
       :geocomplete,
       :name,
+      :blurb,
       :description,
       :slug,
       :avatar_src,

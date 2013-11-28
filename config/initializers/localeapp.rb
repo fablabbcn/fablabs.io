@@ -3,7 +3,7 @@ if Rails.env.development?
 
   Localeapp.configure do |config|
     config.api_key = ENV['LOCALEAPP_KEY']
-    # config.reloading_environments = []
-    # config.polling_environments = []
+    config.reloading_environments = []
+    config.polling_environments = []
   end
 end

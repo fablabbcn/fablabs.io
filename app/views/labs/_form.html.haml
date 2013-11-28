@@ -1,21 +1,25 @@
 = simple_form_for lab, html: { class: 'form-horizontal' } do |f|
   = render 'form_errors', resource: lab
 
+  - if lab.new_record?
+    %fieldset
+      %legend Important
+      = f.association :referee, collection: Lab.with_approved_state.order('name ASC'), hint: "An existing lab must be able to verify your application", label: "Referee Lab"
+
   %fieldset
 
     %legend Basic Details
-    = f.input :name, autofocus: lab.name.blank?, label: 'Fab Lab Name'
+    = f.input :name, label: 'Fab Lab Name'
 
-    = f.input :description, hint: 'A brief overview of the lab. <span id="description-count"></span> characters available.', input_html: { rows: 4, data: { limit: 250, counter: '#description-count'} }
+    = f.input :blurb, as: 'text', hint: 'A very brief overview of the lab, maybe include what it specializes in. <span id="description-count"></span> characters available.', input_html: { rows: 3, data: { limit: 200, counter: '#description-count'} }
+
+    = f.input :description, hint: 'An in-depth description of the lab', input_html: { style: 'height: 8em' }
 
     = f.input :slug, hint: "This is the unique 'username' of the lab, it will be in the URL" do
       .row.collapse
         .columns.large-3
           %span.prefix= "#{Rails.application.config.url}/"
         .columns.large-9= f.input_field :slug, class: 'form-control'
-
-  %fieldset
-    = f.association :referee, collection: Lab.with_approved_state.order('name ASC'), hint: "An existing lab must be able to verify your application"
 
   %fieldset
     %legend Lab Images
@@ -79,10 +83,11 @@
     %legend Capabilities
     = f.input :capabilities, as: 'check_boxes', inline_label: true, item_wrapper_class: 'checkbox_container', label: false, collection: Lab::Capabilities.map{|f| [ I18n.t("capabilities.#{f}"), f]}, checked: f.object.capabilities
 
+    = f.input :tools_list, hint: "We are adding a directory of Fab Lab tools to this website, please list any machines that you have.", input_html: { style: "height: 8em" }, placeholder: "e.g. Makerbot Industries - Makerbot 2"
+
   - if @lab.new_record?
     %fieldset
       %legend Anything else?
       = f.input :application_notes
-      = f.input :tools_list
 
   = f.submit (lab.new_record? ? 'Add Lab' : 'Update Lab'), class: 'button'
