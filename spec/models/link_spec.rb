@@ -19,8 +19,27 @@ describe Link do
     expect{FactoryGirl.create(:link, url: 'facebook.com', linkable: lab)}.to raise_error
   end
 
-  pending "doesn't allow invald URL" do
-    expect{FactoryGirl.create(:link, url: 'wrong')}.to raise_error(ActiveRecord::RecordInvalid)
+  it "adds http when necessary" do
+    %w(facebook.com 0.0.0.0).each do |url|
+      expect(FactoryGirl.create(:link, url: url).url).to eq("http://#{url}")
+    end
+  end
+
+  describe "social scopes" do
+
+    it "has .twitter_urls" do
+      FactoryGirl.create(:link, url: 'http://www.twitter.com/john_rees')
+      FactoryGirl.create(:link, url: 'http://www.twitter.com/#/gem')
+      FactoryGirl.create(:link, url: 'http://facebook.com/twitter')
+      FactoryGirl.create(:link, url: 'http://twitter.com/fablabsio')
+
+      expect(Link.twitter_urls).to eq([
+        'http://www.twitter.com/john_rees',
+        'http://www.twitter.com/#/gem',
+        'http://twitter.com/fablabsio'
+      ])
+    end
+
   end
 
 end

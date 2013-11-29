@@ -1,17 +1,18 @@
 class Lab < ActiveRecord::Base
 
   include Authority::Abilities
+  self.authorizer_name = 'LabAuthorizer'
   resourcify
   has_ancestry
-  self.authorizer_name = 'LabAuthorizer'
 
   include PgSearch
   pg_search_scope :search_by_name, :against => [:name, :description, :reverse_geocoded_address]
 
-  include Avatarable
-
   extend FriendlyId
   friendly_id :slug_candidates, use: :slugged
+  def slug_candidates
+    [:name]
+  end
 
   include Workflow
   workflow do
@@ -23,42 +24,35 @@ class Lab < ActiveRecord::Base
     state :rejected
   end
 
-  has_many :role_applications
-  has_many :links, as: :linkable
-  has_many :employees
   has_many :admin_applications
   has_many :discussions, as: :discussable
+  has_many :employees
+  has_many :links, as: :linkable
+  has_many :referred_labs, foreign_key: 'referee_id', class_name: 'Lab'
+  has_many :role_applications
   has_many :facilities
   has_many :tools, through: :facilities, source: :thing, source_type: 'Tool'
+
   belongs_to :creator, class_name: 'User'
   belongs_to :referee, class_name: 'Lab'
-  has_many :referred_labs, foreign_key: 'referee_id', class_name: 'Lab'
 
-  Kinds = %w(planned_fab_lab mini_fab_lab fab_lab)
-  Capabilities = %w(three_d_printing cnc_milling circuit_production laser precision_milling vinyl_cutting)
-  bitmask :capabilities, as: Capabilities
-  # acts_as_taggable_on :facilities
+  validates_presence_of :name, :country_code, :slug, :kind, :address_1, :creator
 
-  def self.facilities_for_select
-    Facilities.map{|f| ["facilities.#{f}", f]}
-  end
-
-  # validates :employees, presence: true, on: :create
   validates :slug, format: {:with => /\A[a-zA-Z0-9]+\z/ }, allow_nil: true, allow_blank: true, length: { minimum: 3 }
   validates_format_of :email, :with => /\A(.+)@(.+)\z/, allow_blank: true
-
-  validates_presence_of :kind
-  # validates_presence_of :referee, on: :create
-  validates :name, :country_code, :slug, presence: true #:address_1, description
-  # validates_presence_of :creator, on: :create
-
   validates_uniqueness_of :name, :slug, case_sensitive: false
-  validate :excluded_login
-  def excluded_login
+  validate :excluded_slug
+  def excluded_slug
     if !slug.blank? and Fablabs::Application.config.banned_words.include?(slug.downcase)
       errors.add(:slug, "is reserved")
     end
   end
+
+  Kinds = %w(planned_fab_lab mini_fab_lab fab_lab)
+  Capabilities = %w(three_d_printing cnc_milling circuit_production laser precision_milling vinyl_cutting)
+  bitmask :capabilities, as: Capabilities
+
+#   # validates :employees, presence: true, on: :create
 
   accepts_nested_attributes_for :links, reject_if: lambda{ |l| l[:url].blank? }, allow_destroy: true
   accepts_nested_attributes_for :employees
@@ -74,7 +68,7 @@ class Lab < ActiveRecord::Base
   attr_accessor :geocomplete
 
   def needs_admin?
-    creator.blank?
+    !User.with_role(:admin, self).exists?
   end
 
   geocoded_by :formatted_address
@@ -91,7 +85,7 @@ class Lab < ActiveRecord::Base
 
   def nearby_labs same_country = true, max_distance = 1000
     if nearbys(max_distance)
-      labs = nearbys(max_distance).with_approved_state.limit(5)
+      labs = nearbys(max_distance).limit(5)
       if same_country
         labs = labs.where(country_code: country_code)
       end
@@ -112,9 +106,12 @@ class Lab < ActiveRecord::Base
     [city, county, (country if include_country)].reject(&:blank?).join(", ")
   end
 
-  def default_avatar
-    'https://i.imgur.com/iymHWkm.png'
-    # 'default-lab-avatar.png'
+  def avatar
+    if avatar_src.present?
+      avatar_src
+    else
+      'https://i.imgur.com/iymHWkm.png'
+    end
   end
 
   def approve
@@ -132,7 +129,6 @@ class Lab < ActiveRecord::Base
 
   def self.country_list_for labs
     c = Hash.new(0)
-    # labs.pluck(:country_code).map{ |v| c[v] += 1 }
     labs.map{ |v| c[v[:country_code]] += 1 }
     countries = []
     c.each do |country_code, count|
@@ -169,12 +165,6 @@ class Lab < ActiveRecord::Base
     end
   end
 
-  def slug_candidates
-    [
-      :name
-    ]
-  end
-
 private
 
   def get_time_zone
@@ -191,7 +181,7 @@ private
   end
 
   def truncate_blurb
-    self.blurb = blurb[0..250].gsub(/\s+/, ' ').gsub(/\n/," ").strip if blurb_changed?
+    self.blurb = blurb[0...250].gsub(/\s+/, ' ').gsub(/\n/," ").strip if blurb_changed?
   end
 
 end

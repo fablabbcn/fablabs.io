@@ -1,13 +1,13 @@
 class Employee < ActiveRecord::Base
+  include Authority::Abilities
+  self.authorizer_name = 'EmployeeAuthorizer'
+
   belongs_to :user
   belongs_to :lab
   validates_presence_of :user, :lab, :job_title
   validates_uniqueness_of :user_id, scope: :lab_id
 
   after_create :auto_approve_for_admins
-
-  include Authority::Abilities
-  self.authorizer_name = 'EmployeeAuthorizer'
 
   scope :active, -> { includes(:user).with_approved_state.order('LOWER(users.last_name) ASC').references(:user) }
 

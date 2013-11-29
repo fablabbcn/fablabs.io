@@ -1,28 +1,12 @@
 class User < ActiveRecord::Base
 
+  # TODO: friendly_id
+
   include Tokenable
-  # include Avatarable
   include Authority::UserAbilities
   include Workflow
 
-  # extend FriendlyId
-  # friendly_id :username, use: :slugged
-  # def slug_candidates
-  #   [
-  #     :username
-  #   ]
-  # end
-
-  rolify# :after_add => :after_add_method, :after_remove => :after_remove_method
-
-  # def after_add_method(role)
-  #   UserMailer.role_added(role, self).deliver
-  # end
-
-  # def after_remove_method(role)
-  #   UserMailer.role_removed(role, self).deliver
-  # end
-
+  rolify
   has_secure_password
 
   has_many :created_labs, class_name: 'Lab', foreign_key: 'creator_id'
@@ -69,7 +53,7 @@ class User < ActiveRecord::Base
   end
 
   def employed_by? lab
-    Employee.where(lab: lab, user: self).exists?
+    Employee.with_approved_state.where(lab: lab, user: self).exists?
   end
 
   def full_name
@@ -89,7 +73,7 @@ class User < ActiveRecord::Base
   end
 
   def recovery_key
-    recoveries.last.key
+    recoveries.last.key if recoveries.any?
   end
 
   def unverify
@@ -101,8 +85,7 @@ class User < ActiveRecord::Base
   end
 
   def self.admin_emails
-    # User.with_role(:admin).exists? ? User.with_role(:admin).map(&:email) :
-    ['john@bitsushi.com']
+    User.with_role(:admin).map(&:email)
   end
 
 private

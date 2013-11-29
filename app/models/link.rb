@@ -6,7 +6,7 @@ class Link < ActiveRecord::Base
   validates_format_of :url, with: URI::regexp(%w(http https))
   before_validation :add_http
 
-  scope :twitter_urls, -> { where("url ~* 'twitter'").map(&:url) }
+  scope :twitter_urls, -> { where("url ~* 'twitter.com/'").map(&:url) }
 
 private
 

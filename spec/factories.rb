@@ -10,7 +10,6 @@ FactoryGirl.define do
 
   factory :comment do
     author
-    ancestry "MyString"
     commentable
     body "MyText"
   end

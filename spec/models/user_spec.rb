@@ -2,57 +2,123 @@ require 'spec_helper'
 
 describe User do
 
-  it { should validate_presence_of(:email) }
+  let(:user) { FactoryGirl.create(:user) }
+
+  it { should have_many(:created_labs) }
+  it { should have_many(:comments) }
+  it { should have_many(:discussions) }
+  it { should have_many(:recoveries) }
+  it { should have_many(:role_applications) }
+  it { should have_many(:employees) }
+
   it { should validate_presence_of(:password) }
   it { should validate_presence_of(:first_name) }
   it { should validate_presence_of(:last_name) }
   # it { should belong_to(:admin_applications) }
-  it { should have_many(:created_labs) }
-  it { should have_many(:recoveries) }
-  it { should have_many(:role_applications) }
-  it { should have_many(:employees) }
-  it { should have_many(:comments) }
 
   it "is valid" do
     expect(FactoryGirl.build(:user)).to be_valid
   end
 
-  it "has initial state" do
-    expect(FactoryGirl.build(:user).current_state).to eq('unverified')
-  end
+  describe "states" do
 
-  it "cannot use username with reserved name" do
-    %w(labs users).each do |u|
-      expect{FactoryGirl.create(:user, username: u)}.to raise_error(ActiveRecord::RecordInvalid)
+    it "has initial state" do
+      expect(user).to be_unverified
+    end
+
+    it "can be verified" do
+      user.verify!
+      expect(user).to be_verified
+    end
+
+    it "can be unverified" do
+      user.verify!
+      user.unverify!
+      expect(user).to be_unverified
     end
   end
 
-  it "only allows alphanumerics in username" do
-    %w(wrong-username not_allowed).each do |u|
-      expect{FactoryGirl.create(:user, username: u)}.to raise_error(ActiveRecord::RecordInvalid)
+  describe "email" do
+    it { should validate_presence_of(:email) }
+
+    it "generates email_validation_hash" do
+      expect(FactoryGirl.create(:user).email_validation_hash).to be_present
+    end
+
+    it "validates uniqueness of email " do
+      # http://stackoverflow.com/questions/17635189
+      FactoryGirl.create(:user, email: 'john@bitsushi.com')
+      expect{FactoryGirl.create(:user, email: 'JOHN@bitsushi.com')}.to raise_error(ActiveRecord::RecordInvalid)
+    end
+
+    it "should downcase email before creation" do
+      expect(FactoryGirl.create(:user, email: "UPPER@CASE.com").email).to eq("upper@case.com")
+    end
+
+    it "generates new email_validation_hash when unverified" do
+      user.verify!
+      hash = user.email_validation_hash
+      user.unverify!
+      hash2 = user.email_validation_hash
+      expect(hash).to_not eq(hash2)
+    end
+
+    it "has email_string" do
+      user = FactoryGirl.build(:user, first_name: "Bill", last_name: "Gates", email: "bill@microsoft.com")
+      expect(user.email_string).to eq('Bill Gates <bill@microsoft.com>')
+    end
+
+    it "has admin_emails" do
+      superadmin = FactoryGirl.create(:user, email: "superadmin@gmail.com")
+      labadmin = FactoryGirl.create(:user, email: "admin@gmail.com")
+      user = FactoryGirl.create(:user, email: "user@gmail.com")
+      superadmin.add_role :admin
+      labadmin.add_role :admin, FactoryGirl.create(:lab)
+      expect(User.admin_emails).to eq([superadmin.email])
+    end
+
+  end
+
+  describe "username" do
+    it "cannot use username with reserved name" do
+      %w(api labs users).each do |u|
+        expect{FactoryGirl.create(:user, username: u)}.to raise_error(ActiveRecord::RecordInvalid)
+      end
+    end
+
+    it "only allows alphanumerics in username" do
+      %w(wrong-username not_allowed).each do |u|
+        expect{FactoryGirl.create(:user, username: u)}.to raise_error(ActiveRecord::RecordInvalid)
+      end
+    end
+
+    it "validates uniqueness of username" do
+      FactoryGirl.create(:user, username: 'john')
+      expect{FactoryGirl.create(:user, username: 'john')}.to raise_error(ActiveRecord::RecordInvalid)
     end
   end
 
   describe "avatar" do
-
     it "has default avatar" do
       user = FactoryGirl.build_stubbed(:user)
-      user.avatar.should include('default-user-avatar')
+      expect(user.avatar).to include('gravatar')
+      expect(user.avatar).to include('default-user-avatar')
     end
 
     it "has custom avatar" do
       user = FactoryGirl.build_stubbed(:user, avatar_src: 'http://i.imgur.com/XYBgt.gif')
-      user.avatar.should eq('http://i.imgur.com/XYBgt.gif')
+      expect(user.avatar).to eq('http://i.imgur.com/XYBgt.gif')
+    end
+  end
+
+  describe "locale" do
+    it "has default locale" do
+      expect(FactoryGirl.build_stubbed(:user).default_locale).to eq(I18n.default_locale)
     end
 
-  end
-
-  it "should not be admin" do
-    expect(FactoryGirl.build_stubbed(:user)).to_not be_admin
-  end
-
-  it "should downcase email before creation" do
-    expect(FactoryGirl.create(:user, email: "UPPER@CASE.com").email).to eq("upper@case.com")
+    it "has custom locale" do
+      expect(FactoryGirl.build_stubbed(:user, locale: 'fr').default_locale).to eq('fr')
+    end
   end
 
   it "has full_name" do
@@ -61,27 +127,46 @@ describe User do
     expect(user.to_s).to eq("Homer Simpson")
   end
 
-  it "validates uniqueness of username" do
-    FactoryGirl.create(:user, username: 'john')
-    expect{FactoryGirl.create(:user, username: 'john')}.to raise_error(ActiveRecord::RecordInvalid)
+  describe ".employed_by?" do
+
+    let(:lab) { FactoryGirl.create(:lab)}
+
+    it "includes approved employed users" do
+      employee = FactoryGirl.create(:employee, user: user, lab: lab)
+      employee.approve!
+      expect(user).to be_employed_by(lab)
+    end
+
+    it "doesn't include unverified employed users" do
+      employee = FactoryGirl.create(:employee, user: user, lab: lab)
+      expect(user).to_not be_employed_by(lab)
+    end
+
   end
 
-  it "validates uniqueness of email " do
-    # http://stackoverflow.com/questions/17635189
-    FactoryGirl.create(:user, email: 'john@bitsushi.com')
-    expect{FactoryGirl.create(:user, email: 'JOHN@bitsushi.com')}.to raise_error(ActiveRecord::RecordInvalid)
+  describe ".admin?" do
+    it "is not admin" do
+      expect(FactoryGirl.build_stubbed(:user)).to_not have_role(:admin)
+      expect(user).to_not be_admin
+    end
+
+    it "can be made admin" do
+      user.add_role :admin
+      expect(user).to be_admin
+    end
+
+    it "is only admin if global admin" do
+      user.add_role :admin, FactoryGirl.create(:lab)
+      expect(user).to_not be_admin
+    end
   end
 
-  it "is unverified" do
-    expect(FactoryGirl.build(:user)).to be_unverified
-  end
-
-  it "has default locale" do
-    expect(FactoryGirl.build_stubbed(:user).default_locale).to eq(I18n.default_locale)
-  end
-
-  it "has custom locale" do
-    expect(FactoryGirl.build_stubbed(:user, locale: 'fr').locale).to eq('fr')
+  it "has recovery_key" do
+    expect(user.recovery_key).to be_blank
+    recovery1 = FactoryGirl.create(:recovery, email_or_username: user.email)
+    expect(user.recovery_key).to eq(recovery1.key)
+    recovery2 = FactoryGirl.create(:recovery, email_or_username: user.email)
+    expect(user.recovery_key).to eq(recovery2.key)
   end
 
 end

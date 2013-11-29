@@ -3,6 +3,7 @@ require 'spec_helper'
 describe Employee do
   it { should belong_to(:user) }
   it { should belong_to(:lab) }
+
   it { should validate_presence_of(:user) }
   it { should validate_presence_of(:lab) }
   it { should validate_presence_of(:job_title) }
@@ -12,27 +13,41 @@ describe Employee do
     expect(FactoryGirl.create(:employee)).to be_valid
   end
 
-  it "has initial state" do
-    expect(FactoryGirl.build(:employee)).to be_unverified
-  end
-
-  it "has initial state" do
-    employee = FactoryGirl.create(:employee)
-    employee.approve!
-    expect(employee).to be_approved
-  end
-
-  pending "has active scope" do
-    includes(:user).with_approved_state.order('LOWER(users.last_name) ASC').references(:user)
-  end
-
-  pending "orders by ordinal, name ASC" do
-    order = [2,1,1]
-    %w(aardvark zebra lion).each do |name|
-      user = FactoryGirl.create(:user, first_name: name)
-      FactoryGirl.create(:employee, user: user, ordinal: order.unshift)
+  describe "states" do
+    it "is initially unverified" do
+      lab = FactoryGirl.create(:lab)
+      employee = FactoryGirl.create(:employee, lab: lab)
+      expect(employee).to be_unverified
     end
-    expect(Employee.all.map{ |e| e.user.first_name }).to eq(%w(lion zebra aardvark))
+
+    it "can be approved" do
+      employee = FactoryGirl.create(:employee)
+      employee.approve!
+      expect(employee).to be_approved
+    end
+
+    it "auto approves lab admins" do
+      user = FactoryGirl.create(:user)
+      lab = FactoryGirl.create(:lab)
+      user.add_role :admin, lab
+      employee = FactoryGirl.create(:employee, lab: lab, user: user)
+      expect(employee).to be_approved
+    end
+  end
+
+  describe ".active" do
+    let(:lab) { FactoryGirl.create(:lab) }
+
+    it "returns approved employees" do
+      employee = FactoryGirl.create(:employee, lab: lab)
+      expect(lab.employees.active).to_not include(employee)
+    end
+
+    it "ignores unverified employees" do
+      employee = FactoryGirl.create(:employee, lab: lab)
+      employee.approve!
+      expect(lab.employees.active).to include(employee)
+    end
   end
 
 end
