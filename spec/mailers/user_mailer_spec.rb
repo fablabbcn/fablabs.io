@@ -44,7 +44,7 @@ describe UserMailer do
     mail.body.encoded.should match(root_url)
   end
 
-  it "verify" do
+  it "verification" do
     mail = UserMailer.verification(user)
     mail.subject.should include("Verification")
     mail.to.should eq([user.email])

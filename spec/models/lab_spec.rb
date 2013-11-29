@@ -171,14 +171,20 @@ describe Lab do
 
     describe "country" do
       it "has .country" do
+        I18n.locale = 'en'
         expect(FactoryGirl.build_stubbed(:lab, country_code: 'es').country.to_s).to eq('Spain')
+        I18n.locale = I18n.default_locale
       end
 
       it "has .country_list_for labs" do
-        FactoryGirl.create(:lab, country_code: 'es')
+        FactoryGirl.create(:lab, country_code: 'eg')
         FactoryGirl.create(:lab, country_code: 'fr')
         FactoryGirl.create(:lab, country_code: 'fr')
-        expect(Lab.country_list_for Lab.all).to eq([['France', 'fr', 2], ['Spain', 'es', 1]])
+        I18n.locale = 'en'
+        expect(Lab.country_list_for Lab.all).to eq([['Egypt', 'eg', 1], ['France', 'fr', 2]])
+        I18n.locale = 'de'
+        expect(Lab.country_list_for Lab.all).to eq([['Ägypten', 'eg', 1], ['Frankreich', 'fr', 2]])
+        I18n.locale = I18n.default_locale
       end
 
       it "has localised country method" do
