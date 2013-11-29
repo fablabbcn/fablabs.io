@@ -50,10 +50,12 @@ private
   helper_method :current_user
   def current_user
     begin
-      @current_user ||= User.find(cookies[:user_id]) if cookies[:user_id]
+      # @current_user ||= User.find(cookies[:user_id]) if cookies[:user_id]
+      @current_user ||= User.find(session[:user_id]) if session[:user_id]
     rescue ActiveRecord::RecordNotFound
       # Log out user if their id don't exist
-      cookies.delete(:user_id)
+      # cookies.delete(:user_id)
+      session.delete(:user_id)
     end
   end
 

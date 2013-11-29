@@ -12,7 +12,8 @@ class UsersController < ApplicationController
     @user = User.new user_params
     if @user.save
       UserMailer.welcome(@user.id).deliver
-      cookies.permanent[:user_id] = @user.id
+      # cookies.permanent[:user_id] = { value: @user.id, domain: '.fablabs.dev' }
+      session[:user_id] = @user.id
       redirect_to root_path, flash: { success: "Thanks for signing up. Please check your email to complete your registration." }
     else
       render 'new'
@@ -47,7 +48,8 @@ class UsersController < ApplicationController
     begin
       @user = User.with_unverified_state.find_by!(email_validation_hash: params[:id])
       if @user.verify!
-        cookies.permanent[:user_id] = @user.id
+        # cookies.permanent[:user_id] = { value: @user.id, domain: '.fablabs.dev' }
+        session[:user_id] = @user.id
         redirect_to root_path, notice: "Thanks for verifying your email"
       end
     rescue ActiveRecord::RecordNotFound

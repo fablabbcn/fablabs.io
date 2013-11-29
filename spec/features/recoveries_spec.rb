@@ -44,7 +44,6 @@ describe 'recoveries' do
     fill_in 'Password confirmation', with: 'newpassword'
     click_button 'Reset Password'
     expect(page).to have_content('Password reset')
-    save_and_open_page
     expect(page).to have_link('Sign out')
   end
 

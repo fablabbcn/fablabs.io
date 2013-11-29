@@ -1,9 +1,9 @@
 @import "foundation_and_overrides";
 
 @-webkit-keyframes pulsate {
-    0% {-webkit-transform: scale(1, 1); opacity: 0.8;}
-    50% {-webkit-transform: scale(1.1, 1.1); opacity: 1;}
-    100% {-webkit-transform: scale(1, 1); opacity: 0.8;}
+    0% {-webkit-transform: scale(1, 1); opacity: 0.5;}
+    50% {-webkit-transform: scale(1, 1); opacity: 0.8;}
+    100% {-webkit-transform: scale(1, 1); opacity: 0.5;}
 }
 
 .credit .photo-from {
@@ -31,10 +31,10 @@
 }
 
 .note {
-  opacity: 0.8;
+  opacity: 0.5;
   width: 20px;
   height: 20px;
-  background: rgba(#E84E61, 0.9);
+  background: rgba(#E84E61, 1);
   border-radius: 99999px;
 
   @media #{$small} {

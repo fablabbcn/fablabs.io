@@ -29,7 +29,8 @@ class RecoveriesController < ApplicationController
     user_params = recovery_params[:user_attributes].slice(:password, :password_confirmation)
     if @recovery.user and user_params[:password].present?
       if @recovery.user.update_attributes user_params
-        cookies.permanent[:user_id] = @recovery.user.id
+        # cookies.permanent[:user_id] = { data: @recovery.user.id, domain: '.fablabs.dev' }
+        session[:user_id] = @recovery.user.id
         redirect_to root_path, flash: { success: 'Password reset' }
       else
         render :show

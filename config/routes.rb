@@ -1,8 +1,5 @@
 Fablabs::Application.routes.draw do
 
-  use_doorkeeper
-  resources :admin_applications
-
   # constraints subdomain: 'www' do
     resources :discussions
 
@@ -77,17 +74,17 @@ Fablabs::Application.routes.draw do
     end
 
     # root to: 'static#home'
-    root to: 'static#home'
-
-  # end
 
 
   constraints subdomain: 'api' do
-    # mount Apitome::Engine => "/"
-    get '/' => 'static#api'
+    use_doorkeeper
+    # get '/' => 'static#api'
     api versions: 1, module: "api/v1" do
+      get 'me' => 'users#show'
       resources :labs, only: [:index]
     end
   end
+  # end
+  root to: 'static#home'
 
 end

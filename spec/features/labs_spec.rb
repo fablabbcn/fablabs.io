@@ -69,7 +69,7 @@ describe Lab do
   end
 
   describe "unverified user" do
-    it "cannot create lab" do
+    pending "cannot create lab" do
       signin FactoryGirl.create(:user)
       visit new_lab_path
       expect(page).to have_content("Access Denied")
@@ -92,6 +92,9 @@ describe Lab do
     end
 
     it "can create lab" do
+      admin = FactoryGirl.create(:user)
+      admin.add_role :admin
+
       user.verify!
       signin user
       visit labs_path
@@ -109,7 +112,7 @@ describe Lab do
       click_button 'Add Lab'
       expect(page).to have_content "Thanks"
       emails = ActionMailer::Base.deliveries.map(&:to).flatten
-      expect(emails).to eq([user.email, 'john@bitsushi.com'])
+      expect(emails).to eq([user.email, admin.email])
     end
 
     it "requires valid form to create lab" do

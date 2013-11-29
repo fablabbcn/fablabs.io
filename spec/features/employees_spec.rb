@@ -28,9 +28,9 @@ describe Employee do
   it "can apply to be recognised as an employee" do
     lab = FactoryGirl.create(:lab)
     user = FactoryGirl.create(:user)
-    signin user
     user.verify!
     lab.approve!
+    signin user
     visit lab_url(lab)
     click_link "I work here"
     fill_in "Job title", with: "King"

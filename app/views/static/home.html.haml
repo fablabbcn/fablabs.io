@@ -45,8 +45,15 @@
           = fa_icon "chevron-right"
 
 
+.whats-a-fab-lab.stripe
+  -#{style: "background-size: cover; background-position: center center; background-image: url(http://i.imgur.com/e9Avfcp.jpg); height: 400px"}
+  .row
+    .columns.large-12
+      %h2 I'm new here, what's a Fab Lab?
+      %p Fab labs provide widespread access to modern means for invention. They began as an outreach project from MIT’s Center for Bits and Atoms (CBA), and became into a collaborative and global network. You can find more information about Fab Labs on the #{link_to "Fab Foundation Website", "http://www.fabfoundation.org"}. The annotated photo below illustrates the facilities of a typical Fab Lab.
+
 #frostis-lab= image_tag "https://i.imgur.com/KFS2V4n.jpg", id: "img"
-.credit{style: 'background: #FFF'}
+.credit{style: 'background: #F0F0F0'}
   .row
     .columns.large-12.text-right
       .photo-from
@@ -54,12 +61,6 @@
         = link_to "Fab Lab Vestmannaeyjar", "/vestmannaeyjar"\
         ,
         = link_to "Iceland", "/labs?country=is"
-.whats-a-fab-lab.stripe
-  -#{style: "background-size: cover; background-position: center center; background-image: url(http://i.imgur.com/e9Avfcp.jpg); height: 400px"}
-  .row
-    .columns.large-12
-      %h2 I'm new here, what's a Fab Lab?
-      %p Fab labs provide widespread access to modern means for invention. They began as an outreach project from MIT’s Center for Bits and Atoms (CBA), and became into a collaborative and global network. You can find more information about Fab Labs on the #{link_to "Fab Foundation Website", "http://www.fabfoundation.org"}.
 
 .whos-it-for.stripe
   .row
