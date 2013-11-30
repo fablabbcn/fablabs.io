@@ -22,10 +22,12 @@ class UsersController < ApplicationController
 
   def edit
     @user = current_user
+    authorize_action_for @user
   end
 
   def update
     @user = current_user
+    authorize_action_for @user
     email_changed = (@user.email != user_params[:email])
     if @user.update_attributes user_params
       if email_changed

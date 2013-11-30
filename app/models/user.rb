@@ -4,6 +4,9 @@ class User < ActiveRecord::Base
 
   include Tokenable
   include Authority::UserAbilities
+  include Authority::Abilities
+  self.authorizer_name = 'UserAuthorizer'
+
   include Workflow
 
   rolify
@@ -54,6 +57,10 @@ class User < ActiveRecord::Base
 
   def employed_by? lab
     Employee.with_approved_state.where(lab: lab, user: self).exists?
+  end
+
+  def applied_to? lab
+    Employee.where(lab: lab, user: self).exists?
   end
 
   def full_name

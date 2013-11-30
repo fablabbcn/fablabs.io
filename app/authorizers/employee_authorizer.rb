@@ -1,7 +1,9 @@
 class EmployeeAuthorizer < ApplicationAuthorizer
 
   def creatable_by?(user)
-    resource.lab.approved? && user.verified? && !user.employed_by?(resource.lab)
+    resource.lab.approved? and
+      user.verified? and
+      !user.applied_to?(resource.lab)
   end
 
 end

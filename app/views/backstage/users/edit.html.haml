@@ -1,2 +1,13 @@
-%h1 Backstage::Users#edit
-%p Find me in app/views/backstage/users/edit.html.haml
+.row
+  .columns.large-12
+    = title "Edit User #{@user}"
+    = simple_form_for [:backstage, @user] do |f|
+      = f.input :first_name
+      = f.input :last_name
+      = f.input :email
+      = f.input :url
+      = f.input :dob
+      = f.input :bio
+      = f.input :locale
+      = f.input :use_metric
+      = f.submit

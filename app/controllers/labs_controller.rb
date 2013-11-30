@@ -88,6 +88,7 @@ class LabsController < ApplicationController
     @admins = @lab.admins
     @users = User.all# - User.with_role(:admin) - [current_user]
   end
+
 private
 
   def lab_params

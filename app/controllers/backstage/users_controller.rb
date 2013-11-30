@@ -10,5 +10,7 @@ class Backstage::UsersController < Backstage::BackstageController
   end
 
   def edit
+    @user = User.find(params[:id])
   end
+
 end

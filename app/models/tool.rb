@@ -1,4 +1,8 @@
 class Tool < ActiveRecord::Base
+
+  include Authority::Abilities
+  self.authorizer_name = 'ToolAuthorizer'
+
   belongs_to :brand
   validates_presence_of :name
   has_many :discussions, as: :discussable

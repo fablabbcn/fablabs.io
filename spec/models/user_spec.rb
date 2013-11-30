@@ -3,6 +3,7 @@ require 'spec_helper'
 describe User do
 
   let(:user) { FactoryGirl.create(:user) }
+  let(:lab) { FactoryGirl.create(:lab)}
 
   it { should have_many(:created_labs) }
   it { should have_many(:comments) }
@@ -127,9 +128,13 @@ describe User do
     expect(user.to_s).to eq("Homer Simpson")
   end
 
-  describe ".employed_by?" do
+  it "has .applied_to?" do
+    expect(user.applied_to? lab).to be_false
+    employee = FactoryGirl.create(:employee, user: user, lab: lab)
+    expect(user.applied_to? lab).to be_true
+  end
 
-    let(:lab) { FactoryGirl.create(:lab)}
+  describe ".employed_by?" do
 
     it "includes approved employed users" do
       employee = FactoryGirl.create(:employee, user: user, lab: lab)
