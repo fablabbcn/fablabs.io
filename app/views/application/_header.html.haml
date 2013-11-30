@@ -47,6 +47,7 @@
         - else
           %li= link_to t("views.header.sign_in", default: "Sign in"), signin_path
           %li.last= link_to t("views.header.sign_up", default: "Sign up"), signup_path
-        %li#locale
-          = link_to choose_locale_path, id: 'locale-icon', class: I18n.locale, data: { reveal_id: "myModal", reveal_ajax: "true" } do
-            = image_tag "locales/#{I18n.locale}.png", width: 24
+
+        -# %li#locale
+        -#   = link_to choose_locale_path, id: 'locale-icon', class: I18n.locale, data: { reveal_id: "myModal", reveal_ajax: "true" } do
+        -#     = image_tag "locales/#{I18n.locale}.png", width: 24

@@ -12,7 +12,6 @@
 #
 #= require jquery
 #= require jquery_ujs
-#= require holder
 #= require jquery.limit-1.2
 #= require Control.Loading.js
 #= require jquery.geocomplete
@@ -36,7 +35,6 @@ initEvents = ->
   $('*[data-limit]').each ->
     $(this).limit parseInt($(this).data('limit')), $(this).data('counter')
 
-  Holder.run()
   # $('.truncate > p').succinct
   #   size: 200
 

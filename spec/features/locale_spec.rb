@@ -2,13 +2,13 @@ require 'spec_helper'
 
 describe 'locale' do
 
-  it "has default locale" do
+  pending "has default locale" do
     I18n.locale = I18n.default_locale
     visit root_path
     expect(page).to have_css('#locale-icon.en')
   end
 
-  it "can change locale" do
+  pending "can change locale" do
     visit root_path
     click_link('locale-icon')
     expect(page).to have_content('Choose Your Language')
@@ -17,13 +17,13 @@ describe 'locale' do
     expect(page).to have_css('#locale-icon.es')
   end
 
-  it "respects users' locale" do
+  pending "respects users' locale" do
     user = FactoryGirl.create(:user, locale: 'es')
     signin user
     expect(page).to have_css('#locale-icon.es')
   end
 
-  it "updates user locale" do
+  pending "updates user locale" do
     user = FactoryGirl.create(:user, locale: 'es')
     signin user
     click_link('locale-icon')

@@ -17,13 +17,6 @@ GIT
       ya2yaml
 
 GIT
-  remote: git://github.com/NARKOZ/holder_rails.git
-  revision: 0b9972672339a9d32b8c8272d752d271663df4bf
-  specs:
-    holder_rails (2.2.0)
-      railties (>= 3.1.0)
-
-GIT
   remote: git://github.com/alexreisner/geocoder.git
   revision: 860bc2f7733a7103d93b2b596d44a82aa1db7367
   specs:
@@ -428,7 +421,6 @@ DEPENDENCIES
   geocoder!
   guard-rspec
   haml-rails
-  holder_rails!
   jbuilder (~> 1.2)
   jquery-rails
   kaminari
