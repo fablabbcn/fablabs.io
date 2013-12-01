@@ -6,20 +6,14 @@ describe UserMailer do
   let(:user) { FactoryGirl.create(:user) }
   let(:employee) { FactoryGirl.create(:employee, user: user, lab: lab) }
 
-  it "lab_submitted notification" do
-    mail = UserMailer.lab_submitted(lab)
-    expect(mail.subject).to eq("#{lab} submitted")
-    expect(mail.to).to eq([lab.creator.email])
-    expect(mail.from).to eq(["notifications@fablabs.io"])
-    expect(mail.body.encoded).to match("#{@lab} was submitted")
-  end
-
-  it "lab_approved notification" do
-    mail = UserMailer.lab_approved(lab)
-    expect(mail.subject).to eq("#{lab} approved")
-    expect(mail.to).to eq([lab.creator.email])
-    expect(mail.from).to eq(["notifications@fablabs.io"])
-    expect(mail.body.encoded).to match(lab_url(lab))
+  %w(submitted approved rejected removed).each do |action|
+    it "lab_#{action} notification" do
+      mail = UserMailer.send("lab_#{action}", lab)
+      expect(mail.subject).to eq("#{lab} #{action}")
+      expect(mail.to).to eq([lab.creator.email])
+      expect(mail.from).to eq(["notifications@fablabs.io"])
+      expect(mail.body.encoded).to match("#{@lab} was #{action}")
+    end
   end
 
   it "employee_approved notification" do
@@ -36,13 +30,6 @@ describe UserMailer do
     # mail.to.should eq(lab.employees.)
     expect(mail.from).to eq(["notifications@fablabs.io"])
     expect(mail.body.encoded).to match(lab_url(lab))
-  end
-
-  it "lab_rejected notification" do
-    mail = UserMailer.lab_rejected(lab)
-    expect(mail.subject).to eq("#{lab} rejected")
-    expect(mail.to).to eq([lab.creator.email])
-    expect(mail.from).to eq(["notifications@fablabs.io"])
   end
 
   it "welcome" do

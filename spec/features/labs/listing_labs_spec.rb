@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe "Listing labs" do
 
-  let!(:lab) { FactoryGirl.create(:lab) }
+  let!(:lab) { FactoryGirl.create(:lab, name: "Fab Lab BCN") }
 
   it "approved labs are on index page" do
     lab.approve!

@@ -38,6 +38,7 @@ Fablabs::Application.routes.draw do
         member do
           patch :approve
           patch :reject
+          patch :remove
         end
       end
       root to: 'labs#index'
@@ -86,6 +87,6 @@ Fablabs::Application.routes.draw do
   end
   # end
 
-  root to: 'labs#index'
+  root to: 'static#home'
 
 end

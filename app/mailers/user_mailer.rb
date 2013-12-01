@@ -1,25 +1,14 @@
 class UserMailer < ActionMailer::Base
   default from: "FabLabs <notifications@fablabs.io>"
 
-  %w(submitted approved rejected).each do |action|
+  # why doesn't this work??
+  %w(submitted approved rejected removed).each do |action|
     define_method("lab_#{action}") do |lab|
       @lab = lab
       @user = @lab.creator
       mail(to: @user.email_string, subject: "#{@lab} #{action}")
     end
   end
-
-  # def role_added role, user
-  #   @user = user
-  #   @role = role
-  #   mail(to: @user.email_string, subject: "Role Added")
-  # end
-
-  # def role_removed role, user
-  #   @user = user
-  #   @role = role
-  #   mail(to: @user.email_string, subject: "Role Removed")
-  # end
 
   def employee_approved employee
     @employee = employee

@@ -1,0 +1,33 @@
+.row
+  .columns.large-12
+    = title "Editing #{@lab}"
+    = simple_form_for [:backstage, @lab] do |f|
+      = render "form_errors", resource: @lab
+      = f.input :kind
+      -# = f.association :parent
+      = f.association :referee
+      = f.input :tools_list
+      = f.input :name
+      = f.input :blurb
+      = f.input :description
+      = f.input :slug
+      = f.input :avatar_src
+      = f.input :header_image_src
+      = f.input :address_1
+      = f.input :address_2
+      = f.input :city
+      = f.input :county
+      = f.input :postal_code
+      = f.input :country_code, as: 'country', label: 'Country', iso_codes: true
+      = f.input :latitude
+      = f.input :longitude
+      = f.input :zoom
+      = f.input :address_notes
+      = f.input :phone
+      = f.input :email
+      = f.input :application_notes
+      -# = f.input capabilities: [ ]
+      -# = f.input links_attributes: [ :id, :link_id, :url, '_destroy' ]
+      -# = f.input employees_attributes: [ :id, :job_title, :description
+
+      = f.submit

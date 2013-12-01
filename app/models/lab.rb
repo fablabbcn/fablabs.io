@@ -20,8 +20,11 @@ class Lab < ActiveRecord::Base
       event :approve, transitions_to: :approved
       event :reject, transitions_to: :rejected
     end
-    state :approved
+    state :approved do
+      event :remove, transitions_to: :removed
+    end
     state :rejected
+    state :removed
   end
 
   has_many :admin_applications

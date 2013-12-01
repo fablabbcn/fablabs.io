@@ -12,15 +12,15 @@ feature "Editing a lab" do
   scenario "as a user" do
     sign_in
     visit edit_backstage_lab_path(lab)
-    expect(page.status_code).to eq(403)
+    expect(current_path).to eq(labs_path)
   end
 
   scenario "as an admin" do
-    lab.reload!
+    lab.reload
     sign_in_admin
     visit backstage_labs_path
     click_link "iaac"
-    click_button "Edit Lab"
+    click_link "Edit Lab"
     fill_in "Name", with: "Valldaura"
     click_button "Update Lab"
     expect(page).to have_content("Lab updated")

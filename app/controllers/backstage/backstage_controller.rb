@@ -4,7 +4,13 @@ class Backstage::BackstageController < ApplicationController
 private
 
   def require_admin
-    redirect_to root_url unless current_or_null_user.admin?
+    if current_user
+      unless current_user.has_role? :admin
+        return redirect_to root_url, notice: "Not authorized"
+      end
+    else
+      return redirect_to signin_url
+    end
   end
 
 end

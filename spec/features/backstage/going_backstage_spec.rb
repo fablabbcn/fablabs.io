@@ -10,7 +10,8 @@ feature "Going backstage" do
   scenario "as a user" do
     sign_in
     visit backstage_root_path
-    expect(page.status_code).to eq(403)
+    expect(current_path).to eq(labs_path)
+    expect(page).to have_content("Not authorized")
   end
 
   scenario "as an admin" do

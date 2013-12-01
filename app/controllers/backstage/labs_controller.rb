@@ -20,7 +20,7 @@ class Backstage::LabsController < Backstage::BackstageController
   def update
     @lab = Lab.friendly.find(params[:id])
     if @lab.update_attributes lab_params
-      redirect_to backstage_labs_path, notice: "Lab Updated"
+      redirect_to backstage_labs_path, notice: "Lab updated"
     else
       render :edit
     end
