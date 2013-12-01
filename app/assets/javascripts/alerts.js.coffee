@@ -1,5 +1,5 @@
 window.testFunk = ->
-  alert(1)
+  alert(2)
 
 Messenger.options = {
   extraClasses: 'messenger-fixed messenger-on-bottom messenger-on-right',

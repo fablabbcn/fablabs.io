@@ -21,6 +21,11 @@ class UserMailer < ActionMailer::Base
   #   mail(to: @user.email_string, subject: "Role Removed")
   # end
 
+  def employee_approved employee
+    @employee = employee
+    mail(to: employee.user.email_string, subject: "employee")
+  end
+
   def welcome user_id
     @user = User.find(user_id)
     mail(to: @user.email_string, subject: "[FabLabs.io] Confirmation Instructions")

@@ -75,6 +75,9 @@ describe Lab do
       expect(page).to have_title "Labs"
     end
 
+    it "can apply to be admin" do
+    end
+
   end
 
   describe :users do

@@ -68,7 +68,7 @@ class Lab < ActiveRecord::Base
   attr_accessor :geocomplete
 
   def needs_admin?
-    !User.with_role(:admin, self).exists?
+    !direct_admins.any?
   end
 
   geocoded_by :formatted_address
@@ -137,8 +137,12 @@ class Lab < ActiveRecord::Base
     return countries.sort_alphabetical_by(&:first)
   end
 
+  def direct_admins
+    User.with_role(:admin, self) - User.with_role(:admin)
+  end
+
   def admins
-    a = User.with_role(:admin, self) - User.with_role(:admin)
+    a = direct_admins
     a = User.with_role(:admin) if a.empty?
     return a
   end

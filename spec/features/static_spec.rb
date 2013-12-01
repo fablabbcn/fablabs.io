@@ -31,20 +31,12 @@ describe 'static' do
     end
   end
 
-  pending "unauthenticated users" do
+  describe :unauthenticated do
     it "has homepage" do
       lab = FactoryGirl.create(:lab, name: 'verified', country_code: ENV['COUNTRY_CODE'])
       lab.approve!
       visit root_path
       expect(page).to have_content "Fab Labs in #{Country[ENV['COUNTRY_CODE']]}"
-    end
-  end
-
-  pending "authenticated users" do
-    it "redirects to labs index as homepage" do
-      signin FactoryGirl.create(:user)
-      visit root_path
-      expect(current_url).to include(labs_url)
     end
   end
 

@@ -27,6 +27,7 @@ class EmployeesController < ApplicationController
   def approve
     @employee = Employee.find(params[:id])
     if @employee.approve!
+      UserMailer.employee_approved(@employee).deliver
       redirect_to lab_employees_url(@employee.lab), notice: 'Employee approved'
     else
       redirect_to lab_employees_url(@employee.lab), notice: 'Failed'

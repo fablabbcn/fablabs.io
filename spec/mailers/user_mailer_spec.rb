@@ -4,6 +4,7 @@ describe UserMailer do
 
   let(:lab) { FactoryGirl.create(:lab) }
   let(:user) { FactoryGirl.create(:user) }
+  let(:employee) { FactoryGirl.create(:employee, user: user, lab: lab) }
 
   it "lab_submitted notification" do
     mail = UserMailer.lab_submitted(lab)
@@ -19,6 +20,14 @@ describe UserMailer do
     mail.to.should eq([lab.creator.email])
     mail.from.should eq(["notifications@fablabs.io"])
     mail.body.encoded.should match(lab_url(lab))
+  end
+
+  it "employee_approved notification" do
+    mail = UserMailer.employee_approved(employee)
+    mail.subject.should eq("employee")
+    mail.to.should eq([employee.user.email])
+    mail.from.should eq(["notifications@fablabs.io"])
+    mail.body.encoded.should match(lab_url(employee.lab))
   end
 
   pending "employee_applied notification" do

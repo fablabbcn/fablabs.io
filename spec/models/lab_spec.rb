@@ -295,4 +295,6 @@ describe Lab do
     expect(tool.labs).to include(lab)
   end
 
+  it "has .direct_admins"
+
 end

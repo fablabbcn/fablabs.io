@@ -82,6 +82,8 @@ describe Employee do
       expect(current_path).to include(lab_path(lab))
       expect(page).to have_content("Nuclear Safety Inspector")
       expect(page).to have_link("Homer Simpson")
+
+      expect(last_email.to).to include(user.email)
     end
 
     it "can remove employee"
