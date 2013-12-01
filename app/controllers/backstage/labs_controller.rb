@@ -13,7 +13,20 @@ class Backstage::LabsController < Backstage::BackstageController
     @lab = Lab.friendly.find(params[:id])
   end
 
-  %w(approve reject).each do |verb|
+  def edit
+    @lab = Lab.friendly.find(params[:id])
+  end
+
+  def update
+    @lab = Lab.friendly.find(params[:id])
+    if @lab.update_attributes lab_params
+      redirect_to backstage_labs_path, notice: "Lab Updated"
+    else
+      render :edit
+    end
+  end
+
+  %w(approve reject remove).each do |verb|
     define_method(verb) do
       verbed = "#{verb}ed".gsub('ee', 'e')
       @lab = Lab.friendly.find(params[:id])
@@ -24,6 +37,12 @@ class Backstage::LabsController < Backstage::BackstageController
         redirect_to backstage_lab_path(@lab), notice: "Could not #{verb} lab"
       end
     end
+  end
+
+private
+
+  def lab_params
+    params.require(:lab).permit!
   end
 
 end
