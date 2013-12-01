@@ -4,7 +4,7 @@ describe Brand do
 
   let(:brand) { FactoryGirl.create(:brand, name: 'Makerbot Industries') }
 
-  describe :unauthenticated do
+  context 'when not logged in' do
     it "cannot create brand" do
       visit new_brand_path
       expect(page.status_code).to eq(403)
@@ -12,7 +12,7 @@ describe Brand do
 
   end
 
-  describe :user do
+  context 'when logged in' do
     it "cannot create brand" do
       user = FactoryGirl.create(:user)
       user.verify!
@@ -23,7 +23,7 @@ describe Brand do
 
   end
 
-  describe :admin do
+  context 'when admin' do
     it "can create brand" do
       user = FactoryGirl.create(:user)
       user.verify!

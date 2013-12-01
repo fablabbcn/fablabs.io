@@ -31,7 +31,7 @@ describe 'static' do
     end
   end
 
-  describe :unauthenticated do
+  context :unauthenticated do
     it "has homepage" do
       lab = FactoryGirl.create(:lab, name: 'verified', country_code: 'gb')
       lab.approve!
@@ -40,7 +40,7 @@ describe 'static' do
     end
   end
 
-  describe "all users" do
+  context :users do
     it "has about page" do
       visit about_path
       expect(page).to have_title("About")
