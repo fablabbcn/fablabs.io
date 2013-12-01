@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe User do
 
-  describe "UNauthenticated user" do
+  describe :unauthenticated do
 
     it "requires valid credentials to login" do
       visit signin_path
@@ -33,7 +33,7 @@ describe User do
 
   end
 
-  describe "authenticated user" do
+  describe :user do
 
     it "admin can see backstage link" do
       user = FactoryGirl.create(:user)
@@ -66,6 +66,9 @@ describe User do
       expect(page).to have_css ".errors"
     end
 
+  end
+
+  describe :admin do
   end
 
   it "shows validate message for unvalidated user" do

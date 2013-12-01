@@ -2,13 +2,13 @@ require 'spec_helper'
 
 describe 'recoveries' do
 
-  pending "can reset with username"
+  pending "unverified users"
 
   it "emails user when requesting password recovery" do
-    user = FactoryGirl.create(:user, email: 'john@bitsushi.com')
+    user = FactoryGirl.create(:user, email: 'john@bitsushi.com', username: 'johnrees')
     visit signin_path
     click_link "Forgot"
-    fill_in :recovery_email_or_username, with: 'john@bitsushi.com'
+    fill_in :recovery_email_or_username, with: [user.email, user.username].sample
     click_button 'Reset Password'
     expect(page).to have_content('Recovery instructions should appear in your inbox soon.')
     expect(last_email.to).to include('john@bitsushi.com')

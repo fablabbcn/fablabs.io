@@ -1,0 +1,3 @@
+class DiscussionAuthorizer < ApplicationAuthorizer
+
+end

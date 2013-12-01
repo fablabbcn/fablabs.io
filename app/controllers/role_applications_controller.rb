@@ -21,7 +21,10 @@ class RoleApplicationsController < ApplicationController
 private
 
   def role_application_params
-    params.require(:role_application).permit!
+    params.require(:role_application).permit(
+      :lab_id,
+      :description
+    )
   end
 
 end

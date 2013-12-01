@@ -4,8 +4,12 @@ class ToolAuthorizer < ApplicationAuthorizer
     user.has_role? :admin
   end
 
+  def self.updatable_by?(user)
+    user.has_role? :admin
+  end
+
   def self.readable_by?(user)
-    true
+    user.has_role? :admin
   end
 
 end

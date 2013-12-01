@@ -4,18 +4,24 @@ describe Tool do
 
   let(:tool) { FactoryGirl.create(:tool, name: 'Shopbot') }
 
-  describe "unauthorized user" do
-    it "has index" do
-      tool.reload
+  describe :unauthenticated do
+    it "has no index" do
       visit tools_path
-      expect(page).to have_title('Tools')
-      expect(page).to have_link('Shopbot')
+      expect(page.status_code).to eq(403)
     end
 
-    it "has show page" do
-      visit tool_path(tool)
-      expect(page).to have_title(tool.name)
-      expect(page).to have_css('h1', text: tool.name)
+  end
+
+  describe :user do
+    before(:each) do
+      @user = FactoryGirl.create(:user)
+      @user.verify!
+      signin @user
+    end
+
+    it "has no index" do
+      visit tools_path
+      expect(page.status_code).to eq(403)
     end
 
     it "cannot create tool" do
@@ -34,12 +40,27 @@ describe Tool do
 
   end
 
-  describe "admin" do
+  describe :admin do
+    before(:each) do
+      @admin = FactoryGirl.create(:user)
+      @admin.add_role :admin
+      signin @admin
+    end
+
+    it "has index" do
+      tool.reload
+      visit tools_path
+      expect(page).to have_title('Tools')
+      expect(page).to have_link('Shopbot')
+    end
+
+    it "has show page" do
+      visit tool_path(tool)
+      expect(page).to have_title(tool.name)
+      expect(page).to have_css('h1', text: tool.name)
+    end
+
     it "can create tool" do
-      user = FactoryGirl.create(:user)
-      user.verify!
-      user.add_role :admin
-      signin user
       visit tools_path
       click_link "New Tool"
       fill_in "Name", with: "Replicator 2"
@@ -48,16 +69,14 @@ describe Tool do
       expect(page).to have_css("h1", text: "Replicator 2")
     end
 
-    pending "can edit tool" do
-      user = FactoryGirl.create(:user)
-      user.verify!
-      signin user
+    it "can edit tool" do
       visit tool_path(tool)
       click_link "Edit"
       fill_in "Name", with: "SHOP BOT"
       click_button "Update Tool"
       expect(page).to have_css("h1", text: "SHOP BOT")
     end
+
   end
 
 end

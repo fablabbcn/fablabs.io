@@ -1,7 +1,7 @@
 Fablabs::Application.routes.draw do
 
   # constraints subdomain: 'www' do
-    resources :discussions
+    # resources :discussions
 
     resources :featured_images
 
@@ -13,7 +13,7 @@ Fablabs::Application.routes.draw do
 
     resources :users
     resources :tools do
-      resources :discussions
+      # resources :discussions
     end
     resources :brands
 
@@ -59,7 +59,7 @@ Fablabs::Application.routes.draw do
       resources :admin_applications
       resources :role_applications
       resources :employees
-      resources :discussions
+      # resources :discussions
       resources :admins do
         collection do
           delete '/' => 'admins#destroy'

@@ -2,6 +2,7 @@ class ToolsController < ApplicationController
 
   def index
     @tools = Tool.all
+    authorize_action_for @tools
   end
 
   def show
@@ -47,7 +48,12 @@ class ToolsController < ApplicationController
 private
 
   def tool_params
-    params.require(:tool).permit!
+    params.require(:tool).permit(
+      :name,
+      :brand_id,
+      :description,
+      :parent_id
+    )
   end
 
 end

@@ -12,8 +12,8 @@
       - @tool.labs.each do |lab|
         %li= link_to lab, lab
 
-    %h4 Discussions
-    = render @tool.discussions
-    = link_to "Start a new Discussion", new_tool_discussion_path(@tool)
+    -# %h4 Discussions
+    -# = render @tool.discussions
+    -# = link_to "Start a new Discussion", new_tool_discussion_path(@tool)
 
 = link_to "Edit", edit_tool_path(@tool)
