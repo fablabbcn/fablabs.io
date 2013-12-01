@@ -11,13 +11,13 @@ describe 'static' do
     end
 
     it "does not show unverified labs" do
-      FactoryGirl.create(:lab, name: 'unverified', country_code: ENV['COUNTRY_CODE'])
+      FactoryGirl.create(:lab, name: 'unverified')
       visit root_path
       expect(page).to_not have_link('unverified')
     end
 
     it "shows verified labs" do
-      lab = FactoryGirl.create(:lab, name: 'verified', country_code: ENV['COUNTRY_CODE'])
+      lab = FactoryGirl.create(:lab, name: 'verified')
       lab.approve!
       visit root_path
       expect(page).to have_link('verified')
@@ -33,10 +33,10 @@ describe 'static' do
 
   describe :unauthenticated do
     it "has homepage" do
-      lab = FactoryGirl.create(:lab, name: 'verified', country_code: ENV['COUNTRY_CODE'])
+      lab = FactoryGirl.create(:lab, name: 'verified', country_code: 'gb')
       lab.approve!
       visit root_path
-      expect(page).to have_content "Fab Labs in #{Country[ENV['COUNTRY_CODE']]}"
+      expect(page).to have_content "Fab Labs in #{Country['gb']}"
     end
   end
 
