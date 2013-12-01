@@ -2,7 +2,14 @@ require 'spec_helper'
 
 describe User do
 
+  let(:user) { FactoryGirl.create(:user) }
+
   describe :unauthenticated do
+
+    it "has show page" do
+      visit user_path(user)
+      expect(page).to have_css('h1', text: user.full_name)
+    end
 
     it "requires valid credentials to login" do
       visit signin_path
@@ -35,23 +42,14 @@ describe User do
 
   describe :user do
 
-    it "admin can see backstage link" do
-      user = FactoryGirl.create(:user)
-      signin user
-      expect(page).to_not have_link('Backstage')
-      user.add_role :admin
-      visit root_path
-      expect(page).to have_link('Backstage')
-    end
-
     it "can signout" do
-      signin FactoryGirl.create(:user)
+      signin user
       click_link "Sign out"
       expect(page).to have_link "Sign in"
     end
 
     it "can edit settings" do
-      signin FactoryGirl.create(:user)
+      signin user
       click_link "Settings"
       fill_in "Email", with: "fred@flintstone.com"
       click_button "Update"
@@ -59,42 +57,43 @@ describe User do
     end
 
     it "needs valid data to update settings" do
-      signin FactoryGirl.create(:user)
+      signin user
       click_link "Settings"
       fill_in "Email", with: ""
       click_button "Update"
       expect(page).to have_css ".errors"
     end
 
+    it "shows validate message for unvalidated user" do
+      signin user
+      expect(page).to have_content("validate your email address")
+    end
+
+    it "doesn't show validate message for validated user" do
+      user.verify!
+      signin user
+      expect(page).to_not have_content("validate your email address")
+    end
+
+    it "can resend verification email" do
+      signin user
+      click_link "Resend Verification Email"
+      expect(last_email.to).to include(user.email)
+      expect(page).to have_content('Thanks')
+    end
+
   end
 
   describe :admin do
-  end
 
-  it "shows validate message for unvalidated user" do
-    signin FactoryGirl.create(:user)
-    expect(page).to have_content("validate your email address")
-  end
+    it "can see backstage link" do
+      signin user
+      expect(page).to_not have_link('Backstage')
+      user.add_role :admin
+      visit root_path
+      expect(page).to have_link('Backstage')
+    end
 
-  it "doesn't show validate message for validated user" do
-    user = FactoryGirl.create(:user)
-    user.verify!
-    signin user
-    expect(page).to_not have_content("validate your email address")
-  end
-
-  it "can resend verification email" do
-    user = FactoryGirl.create(:user)
-    signin user
-    click_link "Resend Verification Email"
-    expect(last_email.to).to include(user.email)
-    expect(page).to have_content('Thanks')
-  end
-
-  it "has show page" do
-    user = FactoryGirl.create(:user)
-    visit user_path(user)
-    expect(page).to have_css('h1', text: user.full_name)
   end
 
 end

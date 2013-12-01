@@ -1,13 +1,10 @@
 require 'spec_helper'
 
 describe Lab do
+  let(:lab) { FactoryGirl.create(:lab, name: "Fab Lab BCN")}
+  let(:user) { FactoryGirl.create(:user)}
 
-  describe "all users" do
-
-    it "index is homepage" do
-      visit root_path
-      expect(page).to have_content "Labs"
-    end
+  describe :unauthenticated do
 
     describe "map" do
 
@@ -34,67 +31,73 @@ describe Lab do
 
     end
 
-    it "approved labs are on index page" do
-      FactoryGirl.create(:lab, name: 'A Lab', workflow_state: 'approved')
-      visit labs_path
-      expect(page).to have_link "A Lab"
+    describe :index do
+      it "approved labs are on index page" do
+        lab.approve!
+        visit labs_path
+        expect(page).to have_link "Fab Lab BCN"
+      end
+
+      it "unapproved labs are not on the index page" do
+        lab.reload
+        visit labs_path
+        expect(page).to_not have_link "A Lab"
+      end
+
     end
 
-    it "unapproved labs are not on the index page" do
-      FactoryGirl.create(:lab, name: 'A Lab')
-      visit labs_path
-      expect(page).to_not have_link "A Lab"
+    describe :show do
+      it "approved labs have show page" do
+        lab = FactoryGirl.create(:lab, name: 'A Lab', workflow_state: 'approved')
+        visit lab_path(lab)
+        expect(page).to have_title 'A Lab'
+      end
+
+      it "unapproved labs don't have show page" do
+        lab = FactoryGirl.create(:lab, name: 'A Lab')
+        # expect{visit lab_path(lab)}.to raise_error ActiveRecord::RecordNotFound
+        visit lab_path(lab)
+        expect(page).to have_content("not found")
+      end
+
     end
 
-    it "approved labs have show page" do
-      lab = FactoryGirl.create(:lab, name: 'A Lab', workflow_state: 'approved')
-      visit lab_path(lab)
-      expect(page).to have_title 'A Lab'
-    end
-
-    it "unapproved labs don't have show page" do
-      lab = FactoryGirl.create(:lab, name: 'A Lab')
-      # expect{visit lab_path(lab)}.to raise_error ActiveRecord::RecordNotFound
-      visit lab_path(lab)
-      expect(page).to have_content("not found")
-    end
-
-  end
-
-  describe "unauthenticated user" do
     it "cannot create lab" do
       visit new_lab_path
       expect(current_path).to eq(signin_path)
     end
+
   end
 
-  describe "unverified user" do
-    pending "cannot create lab" do
-      signin FactoryGirl.create(:user)
-      visit new_lab_path
-      expect(page).to have_content("Access Denied")
-      # expect(current_path).to eq(root_path)
+  describe "user" do
+    it "index is homepage" do
+      visit root_path
+      expect(page).to have_title "Labs"
     end
+
   end
 
-  describe "authenticated user" do
+  describe :users do
 
-    let(:user) { FactoryGirl.create(:user) }
+    # pending "can delete lab" do
+    #   user.verify!
+    #   user.add_role :admin
+    #   signin user
+    #   lab = FactoryGirl.create(:lab, name: 'A Lab', workflow_state: 'approved')
+    #   visit lab_path(lab)
+    #   click_link "Delete Lab"
+    #   expect(page).to have_content "deleted"
+    # end
 
-    pending "can delete lab" do
-      user.verify!
-      user.add_role :admin
+    it "must be verified to create lab" do
       signin user
-      lab = FactoryGirl.create(:lab, name: 'A Lab', workflow_state: 'approved')
-      visit lab_path(lab)
-      click_link "Delete Lab"
-      expect(page).to have_content "deleted"
+      visit new_lab_path
+      expect(page.status_code).to eq(403)
     end
 
     it "can create lab" do
       admin = FactoryGirl.create(:user)
       admin.add_role :admin
-
       user.verify!
       signin user
       visit labs_path
@@ -124,14 +127,13 @@ describe Lab do
     end
 
     it "can edit lab" do
-      user.verify!
       lab = FactoryGirl.create(:lab, creator: user)
       lab.approve!
-      # employee = FactoryGirl.create(:employee, user: user, lab: lab)
-      # employee.approve!
+      user.add_role :admin, lab
+      user.verify!
       signin user
       visit lab_path(lab)
-      click_link "Edit Lab"
+      click_link "Edit Lab Details"
       fill_in "Name", with: 'New Name'
       click_button 'Update Lab'
       expect(page).to have_content("Lab was successfully updated")
@@ -139,35 +141,35 @@ describe Lab do
 
   end
 
-  pending "managing admins" do
-    let(:admin) { FactoryGirl.create(:user) }
-    let(:lab) { FactoryGirl.create(:lab, creator: admin) }
-    let(:user) { FactoryGirl.create(:user) }
+  # pending "managing admins" do
+  #   let(:admin) { FactoryGirl.create(:user) }
+  #   let(:lab) { FactoryGirl.create(:lab, creator: admin) }
+  #   let(:user) { FactoryGirl.create(:user) }
 
-    # it "can add an admin" do
-    #   lab.approve!
-    #   signin admin
-    #   visit lab_path(lab)
-    #   click_link "Manage Admins"
-    #   click_button "Update"
-    #   expect(page).to have_content("Admins updated")
-    # end
+  #   # it "can add an admin" do
+  #   #   lab.approve!
+  #   #   signin admin
+  #   #   visit lab_path(lab)
+  #   #   click_link "Manage Admins"
+  #   #   click_button "Update"
+  #   #   expect(page).to have_content("Admins updated")
+  #   # end
 
-    it "can apply to become admin" do
-      signin user
-      visit lab_path(lab)
-      click_link "Apply to become an admin"
-      fill_in "Description", with: "I work here"
-      click_button "Submit"
-      expect(page).to have_content("Application submitted")
-    end
+  #   it "can apply to become admin" do
+  #     signin user
+  #     visit lab_path(lab)
+  #     click_link "Apply to become an admin"
+  #     fill_in "Description", with: "I work here"
+  #     click_button "Submit"
+  #     expect(page).to have_content("Application submitted")
+  #   end
 
-    it "admin doesn't need to apply to become admin" do
-      signin admin
-      visit lab_path(lab)
-      expect(page).to_not have_link("Apply to become an admin")
-    end
+  #   it "admin doesn't need to apply to become admin" do
+  #     signin admin
+  #     visit lab_path(lab)
+  #     expect(page).to_not have_link("Apply to become an admin")
+  #   end
 
-  end
+  # end
 
 end
