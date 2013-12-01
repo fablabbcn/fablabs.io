@@ -276,12 +276,12 @@ describe Lab do
 
     it "has default avatar" do
       lab = FactoryGirl.build_stubbed(:lab)
-      lab.avatar.should include('iymHWkm.png')
+      expect(lab.avatar).to include('iymHWkm.png')
     end
 
     it "has custom avatar" do
       lab = FactoryGirl.build_stubbed(:lab, avatar_src: 'http://i.imgur.com/XYBgt.gif')
-      lab.avatar.should include('http://i.imgur.com/XYBgt.gif')
+      expect(lab.avatar).to include('http://i.imgur.com/XYBgt.gif')
     end
 
   end

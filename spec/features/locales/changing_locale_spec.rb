@@ -1,14 +1,8 @@
 require 'spec_helper'
 
-describe 'locale' do
+feature "Changing locale" do
 
-  pending "has default locale" do
-    I18n.locale = I18n.default_locale
-    visit root_path
-    expect(page).to have_css('#locale-icon.en')
-  end
-
-  pending "can change locale" do
+  pending "as a visitor" do
     visit root_path
     click_link('locale-icon')
     expect(page).to have_content('Choose Your Language')
@@ -17,15 +11,9 @@ describe 'locale' do
     expect(page).to have_css('#locale-icon.es')
   end
 
-  pending "respects users' locale" do
+  pending "as a user" do
     user = FactoryGirl.create(:user, locale: 'es')
-    signin user
-    expect(page).to have_css('#locale-icon.es')
-  end
-
-  pending "updates user locale" do
-    user = FactoryGirl.create(:user, locale: 'es')
-    signin user
+    sign_in user
     click_link('locale-icon')
     click_link 'English'
     user.reload

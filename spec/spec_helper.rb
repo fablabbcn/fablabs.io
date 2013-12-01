@@ -19,6 +19,8 @@ Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 ActiveRecord::Migration.check_pending! if defined?(ActiveRecord::Migration)
 
 RSpec.configure do |config|
+
+  config.include Features::SessionHelpers, type: :feature
   # Capybara.app_host = "fablabs.dev"
   # ## Mock Framework
   #
@@ -54,21 +56,13 @@ RSpec.configure do |config|
   config.include Capybara::DSL
 
   # http://railscasts.com/episodes/413-fast-tests
-    config.treat_symbols_as_metadata_keys_with_true_values = true
-    config.filter_run focus: true
-    config.run_all_when_everything_filtered = true
-    config.filter_run_excluding :slow unless ENV["SLOW_SPECS"]
-    config.filter_run_excluding :ignore
-    config.before(:all) { DeferredGarbageCollection.start }
-    config.after(:all) { DeferredGarbageCollection.reconsider }
-
-  def signin(user)
-    visit signin_path
-    fill_in "Email or Username", with: [user.email,user.username].sample
-    fill_in "Password", with: "password"
-    click_button "Sign in"
-    # page.driver.post(sessions_url, { username: user.username, password: user.password})
-  end
+  config.treat_symbols_as_metadata_keys_with_true_values = true
+  config.filter_run focus: true
+  config.run_all_when_everything_filtered = true
+  config.filter_run_excluding :slow unless ENV["SLOW_SPECS"]
+  config.filter_run_excluding :ignore
+  config.before(:all) { DeferredGarbageCollection.start }
+  config.after(:all) { DeferredGarbageCollection.reconsider }
 
   config.use_transactional_fixtures = true
 

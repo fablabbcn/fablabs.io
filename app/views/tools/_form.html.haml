@@ -1,4 +1,5 @@
 = simple_form_for tool do |f|
+  = render "form_errors", resource: tool
   = f.association :brand, hint: "#{link_to 'Add new brand', new_brand_path}"
 
   = f.input :name

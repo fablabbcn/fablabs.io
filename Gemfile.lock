@@ -146,7 +146,6 @@ GEM
       timers (~> 1.1.0)
     childprocess (0.3.9)
       ffi (~> 1.0, >= 1.0.11)
-    chunky_png (1.2.9)
     codeclimate-test-reporter (0.2.0)
       simplecov (>= 0.7.1, < 1.0.0)
     coderay (1.1.0)
@@ -157,12 +156,6 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.6.3)
-    compass (0.12.2)
-      chunky_png (~> 1.2)
-      fssm (>= 0.2.7)
-      sass (~> 3.1)
-    compass-rails (1.0.3)
-      compass (>= 0.12.2, < 0.14)
     country_select (1.2.0)
     currencies (0.4.2)
     descendants_tracker (0.0.3)
@@ -187,7 +180,6 @@ GEM
       bundler (~> 1.0)
       rails (>= 3, < 5)
     formatador (0.2.4)
-    fssm (0.2.10)
     gli (2.8.1)
     guard (2.2.4)
       formatador (>= 0.2.4)
@@ -408,7 +400,6 @@ DEPENDENCIES
   cocoon!
   codeclimate-test-reporter
   coffee-rails (~> 4.0.0)
-  compass-rails
   countries!
   country_select
   database_cleaner!
