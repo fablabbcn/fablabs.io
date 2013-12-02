@@ -26,7 +26,7 @@ feature "Editing an employee" do
   end
 
   scenario "as lab admin" do
-    sign_in_admin
+    sign_in_superadmin
     visit edit_employee_path(employee)
     fill_in "Job title", with: "Jester"
     click_button "Update"
@@ -34,7 +34,7 @@ feature "Editing an employee" do
   end
 
   scenario "as lab admin with invalid data" do
-    sign_in_admin
+    sign_in_superadmin
     visit edit_employee_path(employee)
     fill_in "Job title", with: ""
     click_button "Update"

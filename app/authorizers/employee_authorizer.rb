@@ -7,7 +7,7 @@ class EmployeeAuthorizer < ApplicationAuthorizer
   end
 
   def updatable_by?(user)
-    user.has_role?(:admin) or (resource.lab.approved? and
+    user.has_role?(:superadmin) or (resource.lab.approved? and
       user.verified? and
       user.applied_to?(resource.lab))
   end

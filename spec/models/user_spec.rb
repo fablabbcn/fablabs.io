@@ -149,20 +149,20 @@ describe User do
 
   end
 
-  describe ".admin?" do
-    it "is not admin" do
-      expect(FactoryGirl.build_stubbed(:user)).to_not have_role(:admin)
-      expect(user).to_not be_admin
+  describe ".superadmin?" do
+    it "is not superadmin" do
+      expect(FactoryGirl.build_stubbed(:user)).to_not have_role(:superadmin)
+      expect(user).to_not be_superadmin
     end
 
-    it "can be made admin" do
-      user.add_role :admin
-      expect(user).to be_admin
+    it "can be made superadmin" do
+      user.add_role :superadmin
+      expect(user).to be_superadmin
     end
 
-    it "is only admin if global admin" do
-      user.add_role :admin, FactoryGirl.create(:lab)
-      expect(user).to_not be_admin
+    it "is only superadmin if global admin" do
+      user.add_role :superadmin, FactoryGirl.create(:lab)
+      expect(user).to_not be_superadmin
     end
   end
 

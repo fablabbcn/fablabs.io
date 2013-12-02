@@ -3,7 +3,7 @@ require 'spec_helper'
 feature "Removing a lab" do
 
   scenario "as an admin" do
-    sign_in_admin
+    sign_in_superadmin
     lab = FactoryGirl.create(:lab)
     lab.approve!
     visit backstage_lab_path(lab)

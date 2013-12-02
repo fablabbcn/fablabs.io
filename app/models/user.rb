@@ -75,8 +75,8 @@ class User < ActiveRecord::Base
     locale || I18n.default_locale
   end
 
-  def admin?
-    has_role? :admin
+  def superadmin?
+    has_role? :superadmin
   end
 
   def recovery_key

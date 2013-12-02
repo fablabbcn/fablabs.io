@@ -16,7 +16,7 @@ feature "Listing tools" do
   end
 
   scenario "as an admin" do
-    sign_in_admin
+    sign_in_superadmin
     tool.reload
     visit tools_path
     expect(page).to have_title('Tools')

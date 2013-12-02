@@ -17,7 +17,7 @@ feature "Editing a user" do
 
   scenario "as an admin" do
     user.reload
-    sign_in_admin
+    sign_in_superadmin
     visit backstage_users_path
     click_link "Eric Cartman"
     click_link "Edit User"
@@ -29,7 +29,7 @@ feature "Editing a user" do
   end
 
   scenario "as an admin with invalid details" do
-    sign_in_admin
+    sign_in_superadmin
     visit edit_backstage_user_path(user)
     fill_in "First name", with: ""
     click_button "Update User"

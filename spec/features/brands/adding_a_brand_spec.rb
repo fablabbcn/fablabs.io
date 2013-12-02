@@ -14,7 +14,7 @@ feature "Adding a brand" do
   end
 
   scenario "as an admin" do
-    sign_in_admin
+    sign_in_superadmin
     visit new_brand_path
     fill_in "Name", with: "Roland"
     click_button "Create Brand"

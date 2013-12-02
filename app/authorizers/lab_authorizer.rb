@@ -1,7 +1,7 @@
 class LabAuthorizer < ApplicationAuthorizer
 
   def updatable_by?(user)
-    user.has_role?(:admin) or
+    user.has_role?(:superadmin) or
       (resource.approved? and user.verified? and user.has_role?(:admin, resource))
   end
 
@@ -14,7 +14,7 @@ class LabAuthorizer < ApplicationAuthorizer
   end
 
   def self.deletable_by?(user)
-    user.has_role?(:admin)
+    user.has_role?(:superadmin)
   end
 
 end

@@ -8,12 +8,12 @@ feature "Managing employees" do
 
   scenario "unverified lab" do
     lab.remove!
-    sign_in_admin
+    sign_in_superadmin
     expect{visit lab_employees_path(lab)}.to raise_error ActiveRecord::RecordNotFound
   end
 
   scenario "as an admin" do
-    sign_in_admin
+    sign_in_superadmin
     employee.reload
     visit lab_path(lab)
     expect(page).to_not have_link("Homer Simpson")

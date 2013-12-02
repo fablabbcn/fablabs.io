@@ -19,7 +19,7 @@
 -#     = fa_icon "bullhorn"
 -#     I should manage this lab
 
-  -# - if current_or_null_user.has_role? :admin
+  -# - if current_or_null_user.has_role? :superadmin
   -#   - lab.current_state.events.keys.each do |event|
   -#     = button_to "#{event.capitalize} Lab", {controller: 'labs', action: 'verify'}, method: :patch, class: 'button button-primary'
 - if current_or_null_user.can_update?(@lab)

@@ -15,7 +15,7 @@ feature "Going backstage" do
   end
 
   scenario "as an admin" do
-    sign_in_admin
+    sign_in_superadmin
     visit backstage_root_path
     expect(page.title).to match('Labs')
   end

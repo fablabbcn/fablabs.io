@@ -21,10 +21,16 @@ module Features
       click_button "Sign in"
     end
 
-    def sign_in_admin
+    def sign_in_admin_for resource
       admin = FactoryGirl.create(:user)
-      admin.add_role :admin
+      admin.add_role :admin, resource
       sign_in admin
+    end
+
+    def sign_in_superadmin
+      superadmin = FactoryGirl.create(:user)
+      superadmin.add_role :superadmin
+      sign_in superadmin
     end
 
   end

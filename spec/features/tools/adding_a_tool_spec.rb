@@ -22,7 +22,7 @@ feature "Adding a tool" do
   end
 
   scenario "as an admin" do
-    sign_in_admin
+    sign_in_superadmin
     visit tools_path
     click_link "New Tool"
     fill_in "Name", with: "Replicator 2"

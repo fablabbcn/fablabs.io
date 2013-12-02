@@ -17,7 +17,7 @@ feature "Listing labs" do
 
   scenario "as an admin" do
     lab.reload
-    sign_in_admin
+    sign_in_superadmin
     visit backstage_labs_path
     expect(page.title).to match("Labs")
     expect(page).to have_link("iaac")

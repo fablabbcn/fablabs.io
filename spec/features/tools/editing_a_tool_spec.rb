@@ -9,7 +9,7 @@ feature "Editing a tool" do
   scenario "as a user"
 
   scenario "as an admin" do
-    sign_in_admin
+    sign_in_superadmin
     visit tool_path(tool)
     click_link "Edit"
     fill_in "Name", with: "SHOP BOT"
@@ -18,7 +18,7 @@ feature "Editing a tool" do
   end
 
   scenario "as an admin with invalid data" do
-    sign_in_admin
+    sign_in_superadmin
     visit edit_tool_path(tool)
     fill_in "Name", with: ""
     click_button "Update Tool"

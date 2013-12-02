@@ -5,7 +5,7 @@ private
 
   def require_admin
     if current_user
-      unless current_user.has_role? :admin
+      unless current_user.has_role? :superadmin
         return redirect_to root_url, notice: "Not authorized"
       end
     else

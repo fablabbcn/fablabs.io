@@ -17,7 +17,7 @@ feature "Editing a lab" do
 
   scenario "as an admin" do
     lab.reload
-    sign_in_admin
+    sign_in_superadmin
     visit backstage_labs_path
     click_link "iaac"
     click_link "Edit Lab"
@@ -28,7 +28,7 @@ feature "Editing a lab" do
   end
 
   scenario "as an admin with invalid details" do
-    sign_in_admin
+    sign_in_superadmin
     visit edit_backstage_lab_path(lab)
     fill_in "Name", with: ""
     click_button "Update Lab"

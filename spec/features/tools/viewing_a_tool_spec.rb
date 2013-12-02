@@ -16,7 +16,7 @@ feature "Viewing a tool" do
   end
 
   scenario "as an admin" do
-    sign_in_admin
+    sign_in_superadmin
     visit tool_path(tool)
     expect(page).to have_title(tool.name)
     expect(page).to have_css('h1', text: tool.name)
