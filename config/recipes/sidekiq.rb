@@ -9,13 +9,13 @@ namespace :sidekiq do
   task :setup, roles: :app do
     run "mkdir -p #{shared_path}/config"
     # template "sidekiq.rb.erb", sidekiq_config
-    %w(sidekiq workers).each do |n|
+    %w(sidekiq).each do |n|
       file = "#{n}_init"
-      template "#{file}.erb", "/tmp/#{file}"
-      run "chmod +x /tmp/#{file}"
-      run "#{sudo} mv /tmp/#{file} /etc/init.d/#{file}"
-      run "#{sudo} update-rc.d -f #{file} remove"
-      run "#{sudo} update-rc.d -f #{file} defaults"
+      template "#{n}_init.erb", "/tmp/#{n}"
+      run "chmod +x /tmp/#{n}"
+      run "#{sudo} mv /tmp/#{n} /etc/init.d/#{n}"
+      run "#{sudo} update-rc.d -f #{n} remove"
+      run "#{sudo} update-rc.d -f #{n} defaults"
     end
   end
   after "deploy:setup", "sidekiq:setup"
