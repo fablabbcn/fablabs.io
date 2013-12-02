@@ -1,12 +1,13 @@
 # load Rails for env vars
 require File.expand_path('../application', __FILE__)
 require "bundler/capistrano"
+require "sidekiq/capistrano"
 # require 'capistrano/maintenance'
 
 set :rails_env, "production"
 set :recipes, "config/recipes"
 # monit varnish redis
-%w(base postgresql logs figaro blacklist nginx logs unicorn nodejs rbenv security check).each do |r|
+%w(base postgresql sidekiq redis logs figaro blacklist nginx logs unicorn nodejs rbenv security check).each do |r|
   load "#{recipes}/#{r}"
 end
 

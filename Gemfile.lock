@@ -37,7 +37,7 @@ GIT
 
 GIT
   remote: git://github.com/ernie/ransack.git
-  revision: 98948773e48c7f33fc17aa22ce161ee88fdebf36
+  revision: ad5cd7a8b03ee95bd0f8baceb9d61401c4f1eb51
   specs:
     ransack (1.1.0)
       actionpack (>= 3.0)
@@ -156,12 +156,13 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.6.3)
+    connection_pool (1.2.0)
     country_select (1.2.0)
     currencies (0.4.2)
     descendants_tracker (0.0.3)
     diff-lcs (1.2.5)
     docile (1.1.1)
-    doorkeeper (0.7.3)
+    doorkeeper (0.7.4)
       jquery-rails (>= 2.0.2)
       railties (>= 3.1)
     equalizer (0.0.7)
@@ -218,7 +219,7 @@ GEM
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
     kgio (2.8.1)
-    launchy (2.4.1)
+    launchy (2.4.2)
       addressable (~> 2.3)
     letter_opener (1.1.2)
       launchy (~> 2.2)
@@ -289,6 +290,9 @@ GEM
       ffi (>= 0.5.0)
     rdoc (3.12.2)
       json (~> 1.4)
+    redis (3.0.6)
+    redis-namespace (1.3.2)
+      redis (~> 3.0.4)
     rest-client (1.6.7)
       mime-types (>= 1.16)
     rocket_pants (1.9.1)
@@ -329,7 +333,13 @@ GEM
       websocket (~> 1.0.4)
     shoulda-matchers (2.4.0)
       activesupport (>= 3.0.0)
-    simple_form (3.0.0)
+    sidekiq (2.17.0)
+      celluloid (>= 0.15.2)
+      connection_pool (>= 1.0.0)
+      json
+      redis (>= 3.0.4)
+      redis-namespace (>= 1.3.1)
+    simple_form (3.0.1)
       actionpack (>= 4.0.0, < 4.1)
       activemodel (>= 4.0.0, < 4.1)
     simple_oauth (0.2.0)
@@ -359,7 +369,7 @@ GEM
     treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
-    twitter (5.1.0)
+    twitter (5.1.1)
       addressable (~> 2.3)
       buftok (~> 0.2.0)
       descendants_tracker (~> 0.0.1)
@@ -371,7 +381,7 @@ GEM
       memoizable (~> 0.2.0)
       simple_oauth (~> 0.2.0)
     tzinfo (0.3.38)
-    uglifier (2.3.1)
+    uglifier (2.3.2)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
     unicode_utils (1.4.0)
@@ -434,7 +444,9 @@ DEPENDENCIES
   sdoc
   selenium-webdriver
   shoulda-matchers
+  sidekiq
   simple_form
+  simplecov
   sort_alphabetical
   timezone
   twitter

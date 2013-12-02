@@ -2,11 +2,12 @@ source 'https://rubygems.org'
 
 # gem 'rubysl'
 # gem 'racc'
+gem 'simplecov', :require => false, :group => :test
 gem 'paper_trail', '>= 3.0.0.rc2'
 gem 'sort_alphabetical'
 gem 'rocket_pants', '~> 1.0'
 gem 'twitter'
-# gem 'sidekiq'
+gem 'sidekiq'
 gem 'rails', '4.0.1'
 gem 'timezone'
 gem 'bitmask_attributes'
