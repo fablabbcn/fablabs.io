@@ -23,7 +23,7 @@
             = f.input :password_confirmation
         -# .row
         -#   .columns.large-12
-        -#     = f.input :country_code, as: 'country', priority: [current_country.alpha2.downcase], label: 'Country', iso_codes: true
+        -# = f.input :country_code, as: 'string', value: [current_country.alpha2.downcase], label: 'Country', iso_codes: true
 
         #honeypot
           %p You have now completed the form. The following field is a #{link_to "honeypot", "http://en.wikipedia.org/wiki/Honeypot_(computing)"} to prevent bots. Please ignore it and submit the form. Apologies for the inconvenience.
