@@ -23,7 +23,7 @@
       %fieldset
         .row
           .columns.large-3= image_tag hocho(@user.avatar, "o=t&q=80&d=200x200&f=png"), class: 'avatar big'
-          .columns.large-9= f.input :avatar_src, input_html: { class: 'fp' }, label: 'Avatar', hint: "You can upload an avatar, otherwise we'll try and use your #{link_to 'gravatar', 'http://gravatar.com'}"
+          .columns.large-9= f.input :avatar_src, input_html: { class: 'fp', data: { fp_store_location: 'S3', fp_store_path: "users/#{current_user.id}/avatars/", fp_store_container: ENV['S3_BUCKET'] } }, label: 'Avatar', hint: "You can upload an avatar, otherwise we'll try and use your #{link_to 'gravatar', 'http://gravatar.com'}"
 
       %fieldset
         = f.input :use_metric, :collection => [[true, 'Metric - cm/m/km'], [false, 'Imperial - in/ft/mi']], :label_method => :last, :value_method => :first, :as => :radio_buttons, :label => "Preferred units", :hint => "This doesn't update measurements on the site yet, but will do soon"

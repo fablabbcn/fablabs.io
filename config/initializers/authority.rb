@@ -63,4 +63,8 @@ Authority.configure do |config|
   # config.logger = Logger.new('log/authority.log')  # Use this file
   # config.logger = Logger.new('/dev/null')          # Don't log at all (on a Unix system)
 
+  if Rails.env.test?
+    config.logger = Logger.new('/dev/null')
+  end
+
 end

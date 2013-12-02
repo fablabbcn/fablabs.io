@@ -15,6 +15,7 @@ ActiveRecord::Schema.define(version: 20131128154919) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "uuid-ossp"
 
   create_table "admin_applications", force: true do |t|
     t.integer  "applicant_id"
