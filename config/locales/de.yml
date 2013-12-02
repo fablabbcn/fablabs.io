@@ -38,6 +38,8 @@ de:
       employee:
         description: 
         job_title: 
+        email: 
+        phone: 
       user:
         bio: 
         email: 
@@ -153,9 +155,13 @@ de:
         edit:
           description: 
           job_title: 
+          email: 
+          phone: 
         new:
           description: 
           job_title: 
+          email: 
+          phone: 
       recovery:
         new:
           email_or_username: 
@@ -243,6 +249,8 @@ de:
         edit:
           description: 
           job_title: 
+          email: 
+          phone: 
         new:
           description: 
           job_title: 
@@ -329,8 +337,12 @@ de:
       employee:
         edit:
           description: 
+          email: 
+          phone: 
         new:
           description: 
+          phone: 
+          email: 
       recovery:
         new:
           email_or_username: 

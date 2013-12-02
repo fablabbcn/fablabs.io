@@ -12,7 +12,10 @@
           = link_to employee.user, employee.user, class: 'person-name'
           .person-details
             .person-role= employee.job_title
-            = mail_to employee.user.email, employee.user.email, class: 'person-email'
+            - if employee.email.present?
+              .email= mail_to employee.email, employee.email, class: 'person-email'
+            - if employee.phone.present?
+              .phone= employee.phone
   %li.person
 
     - if current_user

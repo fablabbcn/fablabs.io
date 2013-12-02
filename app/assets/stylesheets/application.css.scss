@@ -22,6 +22,17 @@
 @import "foundation_and_overrides";
 @import "foundation";
 @import "font-awesome";
+table.table {
+  font-size: 0.8em;
+  width: 100%;
+  td {
+    vertical-align: top;
+  }
+  form, form div {
+    display: inline;
+    margin: 0;
+  }
+}
 
 .button[type=submit] {
   background: $success-color;
