@@ -6,6 +6,12 @@ feature "Managing employees" do
   given(:user) { FactoryGirl.create(:user, first_name: "Homer", last_name: "Simpson") }
   given(:employee) { FactoryGirl.create(:employee, user: user, lab: lab, job_title: "Nuclear Safety Inspector") }
 
+  scenario "unverified lab" do
+    lab.remove!
+    sign_in_admin
+    expect{visit lab_employees_path(lab)}.to raise_error ActiveRecord::RecordNotFound
+  end
+
   scenario "as an admin" do
     sign_in_admin
     employee.reload

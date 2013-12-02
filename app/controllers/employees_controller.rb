@@ -3,13 +3,13 @@ class EmployeesController < ApplicationController
   before_filter :require_login
 
   def new
-    @lab = Lab.friendly.find params[:lab_id]
+    @lab = Lab.with_approved_state.friendly.find params[:lab_id]
     @employee = @lab.employees.build
     authorize_action_for @employee
   end
 
   def create
-    @lab = Lab.friendly.find params[:lab_id]
+    @lab = Lab.with_approved_state.friendly.find params[:lab_id]
     @employee = @lab.employees.new employee_params.merge({user: current_user})
     authorize_action_for @employee
     if @employee.save
@@ -20,7 +20,7 @@ class EmployeesController < ApplicationController
   end
 
   def index
-    @lab = Lab.friendly.find params[:lab_id]
+    @lab = Lab.with_approved_state.friendly.find params[:lab_id]
     @employees = @lab.employees
   end
 

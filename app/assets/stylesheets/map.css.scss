@@ -25,6 +25,7 @@
 .leaflet-cluster-anim .leaflet-marker-icon, .leaflet-cluster-anim .leaflet-marker-shadow {
   @include transition (transform 0.2s ease-out, opacity 0.2s ease-in);
 }
+
 .marker-cluster-small {
   background-color: rgba(181, 226, 140, 0.6);
   }
