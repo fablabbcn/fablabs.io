@@ -4,7 +4,11 @@ Fablabs::Application.routes.draw do
   require "admin_constraint"
   mount Sidekiq::Web, at: '/sidekiq', constraints: AdminConstraint.new
 
-  # constraints subdomain: 'www' do
+  get "signout" => "sessions#destroy", :as => "signout"
+  get "signin" => "sessions#new", :as => "signin"
+  resources :sessions
+
+  constraints subdomain: 'www' do
     # resources :discussions
 
     resources :featured_images
@@ -22,15 +26,13 @@ Fablabs::Application.routes.draw do
     resources :brands
 
     resources :comments, only: [:create]
-    resources :sessions
+
     resources :recoveries do
       collection do
         get :check_inbox
       end
     end
 
-    get "signout" => "sessions#destroy", :as => "signout"
-    get "signin" => "sessions#new", :as => "signin"
     get "signup" => "users#new", :as => "signup"
     get "settings" => "users#edit", :as => "settings"
 
@@ -78,19 +80,17 @@ Fablabs::Application.routes.draw do
       end
     end
 
-    # root to: 'static#home'
+    root to: 'static#home'
 
+  end
 
   constraints subdomain: 'api' do
     use_doorkeeper
-    # get '/' => 'static#api'
+    get '/' => 'static#api'
     api versions: 1, module: "api/v1" do
       get 'me' => 'users#show'
       resources :labs, only: [:index]
     end
   end
-  # end
-
-  root to: 'static#home'
 
 end
