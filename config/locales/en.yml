@@ -20,6 +20,19 @@ en:
         referee: Referee
         application_notes: Application notes
         tools_list: Tools list
+        address_1: Address 1
+        address_2: Address 2
+        avatar_src: Avatar src
+        blurb: Blurb
+        country_code: Country code
+        county: County
+        creator: Creator
+        header_image_src: Header image src
+        kind: Kind
+        latitude: Latitude
+        longitude: Longitude
+        name: Name
+        zoom: Zoom
       admin_application:
         lab: Lab
       employee:
@@ -31,8 +44,30 @@ en:
         phone: Phone
         url: Url
         username: Username
+        dob: Dob
+        first_name: First name
+        last_name: Last name
+        locale: Locale
+        password: Password
+        password_confirmation: Password confirmation
+        use_metric: Use metric
+        uuid: Uuid
+      application:
+        name: Name
+        redirect_uri: Redirect uri
+      lab/employees:
+        job_title: 
+      tool:
+        brand: Brand
+        description: Description
+        name: Name
+        tag_list: Tag list
     models:
       admin_application: Admin application
+      employee: 
+      lab: Lab
+      tool: Tool
+      user: User
   simple_form:
     hints:
       lab:
@@ -46,6 +81,21 @@ en:
           country_code: 
           county: 
           postal_code: 
+          address_notes: 
+          application_notes: 
+          avatar_src: 
+          blurb: 
+          description: 
+          email: 
+          header_image_src: 
+          kind: 
+          latitude: 
+          longitude: 
+          phone: 
+          referee: 
+          slug: 
+          tools_list: 
+          zoom: 
         links:
           edit:
             url: 
@@ -64,6 +114,7 @@ en:
           geocomplete: 
           postal_code: 
           tools_list: 
+          kind: 
         employees:
           new:
             description: 
@@ -81,6 +132,18 @@ en:
           phone: 
           url: 
           username: 
+          dob: 
+          locale: 
+          use_metric: 
+        new:
+          country_code: 
+          email: 
+          first_name: 
+          last_name: 
+          password: 
+          password_confirmation: 
+          username: 
+          uuid: 
       q:
         index:
           country_code_eq: 
@@ -88,6 +151,28 @@ en:
           workflow_state_eq: 
           email_cont: 
           first_name_cont: 
+      employee:
+        edit:
+          description: 
+          job_title: 
+        new:
+          description: 
+          job_title: 
+      recovery:
+        new:
+          email_or_username: 
+        user:
+          edit:
+            password: 
+            password_confirmation: 
+          show:
+            password: 
+            password_confirmation: 
+      tool:
+        new:
+          description: 
+          name: 
+          tag_list: 
     labels:
       lab:
         edit:
@@ -100,6 +185,20 @@ en:
           phone: 
           postal_code: 
           referee: 
+          address_1: 
+          address_2: 
+          application_notes: 
+          avatar_src: 
+          blurb: 
+          country_code: 
+          county: 
+          header_image_src: 
+          kind: 
+          latitude: 
+          longitude: 
+          name: 
+          tools_list: 
+          zoom: 
         new:
           description: 
           referee: 
@@ -112,6 +211,8 @@ en:
           phone: 
           postal_code: 
           tools_list: 
+          blurb: 
+          kind: 
         employees:
           new:
             description: 
@@ -126,9 +227,41 @@ en:
           phone: 
           url: 
           username: 
+          dob: 
+          first_name: 
+          last_name: 
+          locale: 
+          use_metric: 
+        new:
+          email: 
+          password: 
+          password_confirmation: 
+          username: 
+          uuid: 
       q:
         index:
           email_cont: 
+      employee:
+        edit:
+          description: 
+          job_title: 
+        new:
+          description: 
+          job_title: 
+      recovery:
+        user:
+          edit:
+            password: 
+            password_confirmation: 
+          show:
+            password: 
+            password_confirmation: 
+      tool:
+        new:
+          brand: 
+          description: 
+          name: 
+          tag_list: 
     placeholders:
       lab:
         edit:
@@ -144,6 +277,15 @@ en:
           email: 
           phone: 
           postal_code: 
+          address_1: 
+          address_2: 
+          application_notes: 
+          blurb: 
+          kind: 
+          latitude: 
+          longitude: 
+          tools_list: 
+          zoom: 
         new:
           avatar_src: 
           description: 
@@ -159,6 +301,8 @@ en:
           phone: 
           postal_code: 
           tools_list: 
+          blurb: 
+          kind: 
         employees:
           new:
             description: 
@@ -171,11 +315,40 @@ en:
           phone: 
           url: 
           username: 
+          first_name: 
+          last_name: 
+          locale: 
+        new:
+          email: 
+          password: 
+          password_confirmation: 
+          username: 
+          uuid: 
       q:
         index:
           name_or_city_cont: 
           email_cont: 
           first_name_cont: 
+      employee:
+        edit:
+          description: 
+        new:
+          description: 
+      recovery:
+        new:
+          email_or_username: 
+        user:
+          edit:
+            password: 
+            password_confirmation: 
+          show:
+            password: 
+            password_confirmation: 
+      tool:
+        new:
+          description: 
+          name: 
+          tag_list: 
     required:
       html: <abbr title="required">*</abbr>
     options:
@@ -202,8 +375,8 @@ en:
         edit_employee_list: Edit Employee List
         edit_lab_details: Edit Lab Details
         manage_admins: Manage Admins
-        manage_lab: Manage Labs
-        nearby_labs: 
+        manage_lab: Manage Lab
+        nearby_labs: Nearby Labs
   ransack:
     attributes:
       lab:
@@ -214,3 +387,8 @@ en:
       user:
         email: '%{attributes}'
         id: '%{attributes}'
+  helpers:
+    label:
+      application:
+        name: 
+        redirect_uri: 

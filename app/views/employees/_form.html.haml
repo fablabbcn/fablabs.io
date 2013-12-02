@@ -2,7 +2,7 @@
   = render "form_errors", resource: employee
   -# = f.association :user
   = f.input :job_title, input_html: { placeholder: "e.g. Fab Lab Manager" }
-  = f.input :description
+  = f.input :description, as: 'string', label: 'Job description/responsibilities'
 
   -# = f.input :is_public
   -# = f.input :is_admin

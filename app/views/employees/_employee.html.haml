@@ -4,7 +4,7 @@
   .media-body
     = link_to employee.user, employee.user
     .job-title= employee.job_title
-    .description= Faker::Lorem.sentence #employee.description
+    .description= employee.description
     = employee.current_state
 
     = link_to "Edit", edit_employee_path(employee), class: 'button tiny'

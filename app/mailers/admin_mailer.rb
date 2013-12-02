@@ -15,7 +15,7 @@ class AdminMailer < ActionMailer::Base
       @employee = Employee.find(employee_id)
       @employee.lab.admins.compact.uniq.each do |admin|
         @admin = admin
-        mail(to: admin.email_string, subject: "##{ENV["EMAIL_SUBJECT_PREFIX"]}#{@employee.lab} Employee Application")
+        mail(to: admin.email_string, subject: "#{ENV["EMAIL_SUBJECT_PREFIX"]}#{@employee.lab} Employee Application")
       end
     rescue ActiveRecord::RecordNotFound
     end

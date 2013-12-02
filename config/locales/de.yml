@@ -20,6 +20,19 @@ de:
         referee: 
         application_notes: 
         tools_list: 
+        address_1: 
+        address_2: 
+        avatar_src: 
+        blurb: 
+        country_code: 
+        county: 
+        creator: 
+        header_image_src: 
+        kind: 
+        latitude: 
+        longitude: 
+        name: 
+        zoom: 
       admin_application:
         lab: 
       employee:
@@ -31,8 +44,30 @@ de:
         phone: 
         url: 
         username: 
+        dob: 
+        first_name: 
+        last_name: 
+        locale: 
+        password: 
+        password_confirmation: 
+        use_metric: 
+        uuid: 
+      application:
+        name: 
+        redirect_uri: 
+      lab/employees:
+        job_title: 
+      tool:
+        brand: 
+        description: 
+        name: 
+        tag_list: 
     models:
       admin_application: 
+      employee: 
+      lab: 
+      tool: 
+      user: 
   simple_form:
     hints:
       lab:
@@ -44,6 +79,21 @@ de:
           country_code: 
           county: 
           postal_code: 
+          address_notes: 
+          application_notes: 
+          avatar_src: 
+          blurb: 
+          description: 
+          email: 
+          header_image_src: 
+          kind: 
+          latitude: 
+          longitude: 
+          phone: 
+          referee: 
+          slug: 
+          tools_list: 
+          zoom: 
         links:
           edit:
             url: 
@@ -62,6 +112,7 @@ de:
           geocomplete: 
           postal_code: 
           tools_list: 
+          kind: 
         employees:
           new:
             description: 
@@ -79,6 +130,18 @@ de:
           phone: 
           url: 
           username: 
+          dob: 
+          locale: 
+          use_metric: 
+        new:
+          country_code: 
+          email: 
+          first_name: 
+          last_name: 
+          password: 
+          password_confirmation: 
+          username: 
+          uuid: 
       q:
         index:
           country_code_eq: 
@@ -86,6 +149,28 @@ de:
           workflow_state_eq: 
           email_cont: 
           first_name_cont: 
+      employee:
+        edit:
+          description: 
+          job_title: 
+        new:
+          description: 
+          job_title: 
+      recovery:
+        new:
+          email_or_username: 
+        user:
+          edit:
+            password: 
+            password_confirmation: 
+          show:
+            password: 
+            password_confirmation: 
+      tool:
+        new:
+          description: 
+          name: 
+          tag_list: 
     labels:
       lab:
         edit:
@@ -98,6 +183,20 @@ de:
           phone: 
           postal_code: 
           referee: 
+          address_1: 
+          address_2: 
+          application_notes: 
+          avatar_src: 
+          blurb: 
+          country_code: 
+          county: 
+          header_image_src: 
+          kind: 
+          latitude: 
+          longitude: 
+          name: 
+          tools_list: 
+          zoom: 
         new:
           description: 
           referee: 
@@ -110,6 +209,8 @@ de:
           phone: 
           postal_code: 
           tools_list: 
+          blurb: 
+          kind: 
         employees:
           new:
             description: 
@@ -124,9 +225,41 @@ de:
           phone: 
           url: 
           username: 
+          dob: 
+          first_name: 
+          last_name: 
+          locale: 
+          use_metric: 
+        new:
+          email: 
+          password: 
+          password_confirmation: 
+          username: 
+          uuid: 
       q:
         index:
           email_cont: 
+      employee:
+        edit:
+          description: 
+          job_title: 
+        new:
+          description: 
+          job_title: 
+      recovery:
+        user:
+          edit:
+            password: 
+            password_confirmation: 
+          show:
+            password: 
+            password_confirmation: 
+      tool:
+        new:
+          brand: 
+          description: 
+          name: 
+          tag_list: 
     placeholders:
       lab:
         edit:
@@ -142,6 +275,15 @@ de:
           email: 
           phone: 
           postal_code: 
+          address_1: 
+          address_2: 
+          application_notes: 
+          blurb: 
+          kind: 
+          latitude: 
+          longitude: 
+          tools_list: 
+          zoom: 
         new:
           avatar_src: 
           description: 
@@ -156,6 +298,8 @@ de:
           phone: 
           postal_code: 
           tools_list: 
+          blurb: 
+          kind: 
         employees:
           new:
             description: 
@@ -168,11 +312,40 @@ de:
           phone: 
           url: 
           username: 
+          first_name: 
+          last_name: 
+          locale: 
+        new:
+          email: 
+          password: 
+          password_confirmation: 
+          username: 
+          uuid: 
       q:
         index:
           name_or_city_cont: 
           email_cont: 
           first_name_cont: 
+      employee:
+        edit:
+          description: 
+        new:
+          description: 
+      recovery:
+        new:
+          email_or_username: 
+        user:
+          edit:
+            password: 
+            password_confirmation: 
+          show:
+            password: 
+            password_confirmation: 
+      tool:
+        new:
+          description: 
+          name: 
+          tag_list: 
     required:
       html: 
     options:
@@ -206,3 +379,8 @@ de:
       user:
         email: 
         id: 
+  helpers:
+    label:
+      application:
+        name: 
+        redirect_uri: 

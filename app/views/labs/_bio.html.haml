@@ -24,7 +24,7 @@
   -#     = button_to "#{event.capitalize} Lab", {controller: 'labs', action: 'verify'}, method: :patch, class: 'button button-primary'
 - if current_or_null_user.can_update?(@lab)
   = link_to "#", data: { dropdown: 'drop' }, class: 'button dropdown small' do
-    = fa_icon "edit", text: t('views.labs.show.manage_lab', default: "Manage Labs")
+    = fa_icon "edit", text: t('views.labs.show.manage_lab', default: "Manage Lab")
   %br/
   %ul#drop.f-dropdown{data: 'dropdown-content'}
     %li

@@ -24,7 +24,7 @@ class EmployeesController < ApplicationController
     @employee = Employee.find params[:id]
     authorize_action_for @employee
     if @employee.update_attributes employee_params
-      redirect_to lab_url(@employee.lab), notice: "Employee updated"
+      redirect_to lab_employees_url(@employee.lab), notice: "Employee updated"
     else
       render :edit
     end
