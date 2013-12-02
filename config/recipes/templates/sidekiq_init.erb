@@ -15,7 +15,7 @@ APP="fablabs"
 AS_USER="<%= sidekiq_user %>"
 APP_DIR="<%= current_path %>"
 
-# APP_CONFIG=""
+APP_CONFIG="<%= sidekiq_config %>"
 LOG_FILE="<%= sidekiq_log %>"
 LOCK_FILE="<%= sidekiq_lock %>"
 PID_FILE="<%= sidekiq_pid %>"
@@ -24,7 +24,7 @@ SIDEKIQ="sidekiq"
 APP_ENV="production"
 BUNDLE="bundle"
 
-START_CMD="$BUNDLE exec $SIDEKIQ -e $APP_ENV -P $PID_FILE"
+START_CMD="$BUNDLE exec $SIDEKIQ -C $APP_CONFIG -e $APP_ENV -P $PID_FILE -i 0"
 CMD="cd ${APP_DIR}; ${START_CMD} >> ${LOG_FILE} 2>&1 &"
 
 RETVAL=0

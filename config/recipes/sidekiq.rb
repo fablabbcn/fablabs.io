@@ -1,6 +1,7 @@
 set_default(:sidekiq_user) { user }
 set_default(:sidekiq_lock) { "#{current_path}/tmp/sidekiq-lock" }
 set_default(:sidekiq_pid) { "#{current_path}/tmp/pids/sidekiq.pid" }
+set_default(:sidekiq_config) { "#{current_path}/config/sidekiq.yml" }
 set_default(:sidekiq_log) { "#{shared_path}/log/sidekiq.log" }
 set_default(:sidekiq_workers, 2)
 
