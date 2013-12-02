@@ -93,18 +93,30 @@ describe Lab do
   end
 
   describe "states" do
+
     it "is unverified" do
       expect(FactoryGirl.build(:lab)).to be_unverified
+    end
+
+    it "can be removed" do
+      lab.approve!
+      lab.remove!
+      expect(lab).to be_removed
+      expect(Lab.with_removed_state).to include(lab)
+      expect(Lab.with_approved_state).to_not include(lab)
     end
 
     it "can be approved" do
       lab.approve!
       expect(lab).to be_approved
+      expect(Lab.with_approved_state).to include(lab)
     end
 
     it "can be rejected" do
       lab.reject!
       expect(lab).to be_rejected
+      expect(Lab.with_rejected_state).to include(lab)
+      expect(Lab.with_approved_state).to_not include(lab)
     end
 
     it "adds employees and makes creator admin when approved" do
