@@ -2,6 +2,12 @@
 
 FactoryGirl.define do
 
+  factory :activity do
+    user
+    action "create"
+    trackable
+  end
+
   factory :admin_application do
     applicant
     lab
@@ -50,7 +56,7 @@ FactoryGirl.define do
     url "http://www.fablabbcn.org/2013/10/elefab-2/"
   end
 
-  factory :lab, aliases: [:linkable] do
+  factory :lab, aliases: [:linkable, :trackable] do
     sequence(:name) { |n| "Fab Lab #{n}" }
     sequence(:slug) { |n| "fablab#{n}" }
     description { Faker::Lorem.sentence }

@@ -6,14 +6,14 @@ feature "Removing an employee" do
   given(:user) { FactoryGirl.create(:user, first_name: "Homer", last_name: "Simpson") }
   given(:employee) { FactoryGirl.create(:employee, user: user, lab: lab, job_title: "Nuclear Safety Inspector") }
 
-  scenario "as a user without authority" do
+  pending "as a user without authority" do
     employee.approve!
     sign_in
     visit lab_employees_path(lab)
     expect(page.status_code).to eq(403)
   end
 
-  scenario "as a user removing themselves" do
+  pending "as a user removing themselves" do
     employee.approve!
     sign_in user
     visit lab_employees_path(lab)

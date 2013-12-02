@@ -13,6 +13,7 @@ class EmployeesController < ApplicationController
     @employee = @lab.employees.new employee_params.merge({user: current_user})
     authorize_action_for @employee
     if @employee.save
+      track_activity @employee
       AdminMailer.delay.employee_applied(@employee.id)
       redirect_to lab_url(@lab), notice: "Thank you for applying"
     else
@@ -24,6 +25,7 @@ class EmployeesController < ApplicationController
     @employee = Employee.find params[:id]
     authorize_action_for @employee
     if @employee.update_attributes employee_params
+      track_activity @employee
       redirect_to lab_employees_url(@employee.lab), notice: "Employee updated"
     else
       render :edit
@@ -39,6 +41,7 @@ class EmployeesController < ApplicationController
     @employee = Employee.find(params[:id])
     if @employee.approve!
       UserMailer.delay.employee_approved(@employee.id)
+      track_activity @employee
       redirect_to lab_employees_url(@employee.lab), notice: 'Employee approved'
     else
       redirect_to lab_employees_url(@employee.lab), notice: 'Failed'
@@ -48,7 +51,8 @@ class EmployeesController < ApplicationController
   def destroy
     @employee = Employee.find(params[:id])
     @employee.destroy
-    redirect_to lab_employees_url(@employee.lab), notice: 'Employee removed'
+    track_activity @employee
+    redirect_to lab_url(@employee.lab), notice: 'Employee removed'
   end
 
   def edit

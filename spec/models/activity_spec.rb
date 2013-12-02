@@ -1,5 +1,20 @@
 require 'spec_helper'
 
 describe Activity do
-  pending "add some examples to (or delete) #{__FILE__}"
+
+  it { should belong_to(:user) }
+  it { should belong_to(:trackable) }
+
+  it "has default_scope" do
+    a = FactoryGirl.create(:activity)
+    b = FactoryGirl.create(:activity)
+    expect(Activity.all).to eq([b,a])
+  end
+
+  it "has .actioned" do
+    expect(FactoryGirl.build_stubbed(:activity, action: 'create').actioned).to eq('created')
+    expect(FactoryGirl.build_stubbed(:activity, action: 'updated').actioned).to eq('updated')
+    expect(FactoryGirl.build_stubbed(:activity, action: 'destroy').actioned).to eq('destroyed')
+  end
+
 end

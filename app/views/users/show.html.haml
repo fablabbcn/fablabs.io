@@ -14,7 +14,7 @@
           Joined #{@user.created_at.to_date.to_formatted_s(:long)}
 
 .row
-  .columns.large-4
+  .columns.large-6
     - if @user.employees.any?
       %h4 Works at
       - @user.employees.each do |employee|
@@ -23,5 +23,5 @@
           \-
           = employee.job_title
 
-  .columns.large-8
+  .columns.large-6
     %ul= render @user.activities
