@@ -13,7 +13,7 @@ class RecoveriesController < ApplicationController
     @recovery = Recovery.new recovery_params
     @recovery.ip = request.remote_ip
     if @recovery.save
-      UserMailer.account_recovery_instructions(@recovery.user).deliver
+      UserMailer.delay.account_recovery_instructions(@recovery.user.id)
       redirect_to check_inbox_recoveries_url
     else
       render :new

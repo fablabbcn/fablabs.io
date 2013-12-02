@@ -31,7 +31,7 @@ class Backstage::LabsController < Backstage::BackstageController
       verbed = "#{verb}ed".gsub('ee', 'e')
       @lab = Lab.friendly.find(params[:id])
       if @lab.send("#{verb}!")
-        UserMailer.send("lab_#{verbed}", @lab).deliver
+        UserMailer.delay.send("lab_#{verbed}", @lab.id)
         redirect_to backstage_labs_path, notice: "Lab #{verbed}"
       else
         redirect_to backstage_lab_path(@lab), notice: "Could not #{verb} lab"

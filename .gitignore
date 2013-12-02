@@ -23,3 +23,5 @@
 words.yml
 /csv
 .localeapp
+*.rdb
+

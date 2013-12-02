@@ -1,4 +1,4 @@
-# require 'sidekiq/testing/inline'
+require 'sidekiq/testing/inline'
 
 Fablabs::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb.

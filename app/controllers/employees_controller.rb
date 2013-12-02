@@ -13,7 +13,7 @@ class EmployeesController < ApplicationController
     @employee = @lab.employees.new employee_params.merge({user: current_user})
     authorize_action_for @employee
     if @employee.save
-      AdminMailer.employee_applied(@employee).deliver
+      AdminMailer.delay.employee_applied(@employee.id)
       redirect_to lab_url(@lab), notice: "Thank you for applying"
     else
       render :new
@@ -38,7 +38,7 @@ class EmployeesController < ApplicationController
   def approve
     @employee = Employee.find(params[:id])
     if @employee.approve!
-      UserMailer.employee_approved(@employee).deliver
+      UserMailer.delay.employee_approved(@employee.id)
       redirect_to lab_employees_url(@employee.lab), notice: 'Employee approved'
     else
       redirect_to lab_employees_url(@employee.lab), notice: 'Failed'

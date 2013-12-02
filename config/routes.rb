@@ -1,5 +1,9 @@
 Fablabs::Application.routes.draw do
 
+  require 'sidekiq/web'
+  require "admin_constraint"
+  mount Sidekiq::Web, at: '/sidekiq', constraints: AdminConstraint.new
+
   # constraints subdomain: 'www' do
     # resources :discussions
 

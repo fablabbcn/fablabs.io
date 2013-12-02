@@ -12,7 +12,7 @@ describe AdminMailer do
   end
 
   it "lab_submitted notification" do
-    mail = AdminMailer.lab_submitted(lab)
+    mail = AdminMailer.lab_submitted(lab.id)
     expect(mail.subject).to match("#{lab} submitted")
     expect(mail.to).to eq(['john@bitsushi.com'])
     expect(mail.from).to eq(["admin_notifications@fablabs.io"])
@@ -20,7 +20,7 @@ describe AdminMailer do
   end
 
   it "employee_applied notification" do
-    mail = AdminMailer.employee_applied(employee)
+    mail = AdminMailer.employee_applied(employee.id)
     expect(mail.subject).to match("#{lab} Employee Application")
     expect(mail.to).to eq(lab.admins.map(&:email))
     expect(mail.from).to eq(["admin_notifications@fablabs.io"])

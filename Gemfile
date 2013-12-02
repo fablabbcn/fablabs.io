@@ -7,6 +7,7 @@ gem 'paper_trail', '>= 3.0.0.rc2'
 gem 'sort_alphabetical'
 gem 'rocket_pants', '~> 1.0'
 gem 'twitter'
+gem 'sinatra', '>= 1.3.0', :require => nil
 gem 'sidekiq'
 gem 'rails', '4.0.1'
 gem 'timezone'
