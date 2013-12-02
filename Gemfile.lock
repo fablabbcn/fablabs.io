@@ -241,6 +241,8 @@ GEM
     multi_json (1.8.2)
     multi_xml (0.5.5)
     multipart-post (1.2.0)
+    nest (1.1.2)
+      redis
     net-scp (1.1.2)
       net-ssh (>= 2.6.5)
     net-sftp (2.1.2)
@@ -437,6 +439,7 @@ DEPENDENCIES
   launchy
   letter_opener
   localeapp!
+  nest
   paper_trail (>= 3.0.0.rc2)
   pg
   pg_search

@@ -35,7 +35,6 @@ feature "Applying to be an employee" do
   scenario "as a superadmin" do
     sign_in_superadmin
     visit lab_url(lab)
-    save_and_open_page
     expect(page).to have_link("I work here")
   end
 

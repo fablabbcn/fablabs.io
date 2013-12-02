@@ -14,7 +14,7 @@
           Joined #{@user.created_at.to_date.to_formatted_s(:long)}
 
 .row
-  .columns.large-12
+  .columns.large-4
     - if @user.employees.any?
       %h4 Works at
       - @user.employees.each do |employee|
@@ -22,3 +22,6 @@
           = link_to employee.lab, employee.lab
           \-
           = employee.job_title
+
+  .columns.large-8
+    %ul= render @user.activities

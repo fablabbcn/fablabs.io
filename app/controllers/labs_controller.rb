@@ -75,6 +75,7 @@ class LabsController < ApplicationController
     @lab = Lab.friendly.find(params[:id])
     authorize_action_for @lab
     if @lab.update_attributes lab_params
+      track_activity @lab
       redirect_to lab_url(@lab), notice: "Lab was successfully updated"
     else
       @lab.links.build

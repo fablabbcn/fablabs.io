@@ -10,7 +10,7 @@ Fablabs::Application.routes.draw do
 
   constraints subdomain: 'www' do
     # resources :discussions
-
+    get "activity" => "activities#index", :as => "activity"
     resources :featured_images
 
     get "verify_email(/:id)", to: "users#verify_email", as: "verify_email"

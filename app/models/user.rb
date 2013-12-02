@@ -18,6 +18,7 @@ class User < ActiveRecord::Base
   has_many :recoveries
   has_many :role_applications
   has_many :employees
+  has_many :activities
 
   validates_format_of :email, :with => /\A(.+)@(.+)\z/
   validates :username, format: { :with => /\A[a-zA-Z0-9]+\z/ }, length: { minimum: 4, maximum: 30 }

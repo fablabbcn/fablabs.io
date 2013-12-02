@@ -9,6 +9,7 @@ gem 'rocket_pants', '~> 1.0'
 gem 'twitter'
 gem 'sinatra', '>= 1.3.0', :require => nil
 gem 'sidekiq'
+gem 'nest'
 gem 'rails', '4.0.1'
 gem 'timezone'
 gem 'bitmask_attributes'
