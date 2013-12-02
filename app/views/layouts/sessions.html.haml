@@ -3,13 +3,15 @@
   %head
     %title= content_for?(:title) ? "#{yield(:title)} | FabLabs" : "FabLabs"
     %meta{ name: "viewport", content: "width=device-width" }
-    = stylesheet_link_tag "//fonts.googleapis.com/css?family=Montserrat"
+    = stylesheet_link_tag "//fonts.googleapis.com/css?family=Open+Sans:400|Montserrat"
     = stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true
     = javascript_include_tag "sessions", "data-turbolinks-track" => true
     = csrf_meta_tags
+    %link{rel: "canonical", href: "#{request.url.split('?').first}"}
+
     :css
       body {
-        background-image: url('#{image_path("//i.imgur.com/KNJwy2W.jpg")}');
+        background-image: url('#{image_path("//i.imgur.com/myy9Pdq.jpg")}');
       }
   %body.sessions{ class: body_classes }
     .fade-bg

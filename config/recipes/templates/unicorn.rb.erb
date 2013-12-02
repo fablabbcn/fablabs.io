@@ -10,6 +10,10 @@ rails_env = ENV['RAILS_ENV'] || 'production'
 
 preload_app true
 
+before_exec do |server|
+  ENV['BUNDLE_GEMFILE'] = "<%= current_path %>/Gemfile"
+end
+
 before_fork do |server, worker|
   # Disconnect since the database connection will not carry over
   if defined? ActiveRecord::Base
