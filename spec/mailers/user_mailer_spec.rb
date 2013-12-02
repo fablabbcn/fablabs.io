@@ -12,7 +12,11 @@ describe UserMailer do
       expect(mail.subject).to match("#{lab} #{action.capitalize}")
       expect(mail.to).to eq([lab.creator.email])
       expect(mail.from).to eq(["notifications@fablabs.io"])
-      expect(mail.body.encoded).to match("#{@lab} was #{action}")
+      if action == "submitted"
+        expect(mail.body.encoded).to match("submitting #{@lab}")
+      else
+        expect(mail.body.encoded).to match("#{@lab} was #{action}")
+      end
     end
   end
 
@@ -22,14 +26,6 @@ describe UserMailer do
     expect(mail.to).to eq([employee.user.email])
     expect(mail.from).to eq(["notifications@fablabs.io"])
     expect(mail.body.encoded).to match(lab_url(employee.lab))
-  end
-
-  pending "employee_applied notification" do
-    mail = UserMailer.employee_applied(lab,employee)
-    expect(mail.subject).to eq("#{employee} applied as employee at #{lab}")
-    # mail.to.should eq(lab.employees.)
-    expect(mail.from).to eq(["notifications@fablabs.io"])
-    expect(mail.body.encoded).to match(lab_url(lab))
   end
 
   it "welcome" do

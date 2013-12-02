@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 # gem 'rubysl'
 # gem 'racc'
-
+gem 'paper_trail', '>= 3.0.0.rc2'
 gem 'sort_alphabetical'
 gem 'rocket_pants', '~> 1.0'
 gem 'twitter'

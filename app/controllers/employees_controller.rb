@@ -13,9 +13,20 @@ class EmployeesController < ApplicationController
     @employee = @lab.employees.new employee_params.merge({user: current_user})
     authorize_action_for @employee
     if @employee.save
+      AdminMailer.employee_applied(@employee).deliver
       redirect_to lab_url(@lab), notice: "Thank you for applying"
     else
       render :new
+    end
+  end
+
+  def update
+    @employee = Employee.find params[:id]
+    authorize_action_for @employee
+    if @employee.update_attributes employee_params
+      redirect_to lab_url(@employee.lab), notice: "Employee updated"
+    else
+      render :edit
     end
   end
 
@@ -36,7 +47,7 @@ class EmployeesController < ApplicationController
 
   def destroy
     @employee = Employee.find(params[:id])
-    @employee.delete
+    @employee.destroy
     redirect_to lab_employees_url(@employee.lab), notice: 'Employee removed'
   end
 

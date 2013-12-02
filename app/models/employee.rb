@@ -8,6 +8,7 @@ class Employee < ActiveRecord::Base
   validates_uniqueness_of :user_id, scope: :lab_id
 
   after_create :auto_approve_for_admins
+  before_destroy { user.revoke :admin, lab }
 
   scope :active, -> { includes(:user).with_approved_state.order('LOWER(users.last_name) ASC').references(:user) }
 
@@ -17,6 +18,10 @@ class Employee < ActiveRecord::Base
       event :approve, transitions_to: :approved
     end
     state :approved
+  end
+
+  def approve
+    user.add_role :admin, lab
   end
 
 private

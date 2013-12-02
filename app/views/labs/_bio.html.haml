@@ -14,10 +14,10 @@
       %span.glyphicon.glyphicon-envelope
       = mail_to lab.email, lab.email
 
-- if @lab.needs_admin?
-  = link_to new_lab_admin_path(@lab), class: 'button success small' do
-    = fa_icon "bullhorn"
-    I should manage this lab
+-# - if @lab.needs_admin?
+-#   = link_to new_lab_admin_path(@lab), class: 'button success small' do
+-#     = fa_icon "bullhorn"
+-#     I should manage this lab
 
   -# - if current_or_null_user.has_role? :admin
   -#   - lab.current_state.events.keys.each do |event|

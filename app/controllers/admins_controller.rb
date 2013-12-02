@@ -2,7 +2,7 @@ class AdminsController < ApplicationController
 
   before_filter :require_login
 
-  authorize_actions_for :parent_resource, all_actions: :update
+  # authorize_actions_for :parent_resource, all_actions: :update
 
   def index
     @lab = Lab.friendly.find(params[:lab_id])

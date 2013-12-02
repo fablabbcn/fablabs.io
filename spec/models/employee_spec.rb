@@ -21,8 +21,11 @@ describe Employee do
     end
 
     it "can be approved" do
-      employee = FactoryGirl.create(:employee)
+      lab = FactoryGirl.create(:lab)
+      employee = FactoryGirl.create(:employee, lab: lab)
+      expect(employee.user).to_not have_role(:admin, lab)
       employee.approve!
+      expect(employee.user).to have_role(:admin, lab)
       expect(employee).to be_approved
     end
 
@@ -33,6 +36,15 @@ describe Employee do
       employee = FactoryGirl.create(:employee, lab: lab, user: user)
       expect(employee).to be_approved
     end
+  end
+
+  it "can be deleted" do
+    lab = FactoryGirl.create(:lab)
+    employee = FactoryGirl.create(:employee, lab: lab)
+    employee.approve!
+    expect(employee.user).to have_role(:admin, lab)
+    employee.destroy
+    expect(employee.user).to_not have_role(:admin, lab)
   end
 
   describe ".active" do

@@ -1,5 +1,24 @@
 @import "foundation_and_overrides";
 
+#full-logo {
+  width: 70%;
+  margin: 0 auto 10px;
+}
+
+.bg-info {
+  position: absolute;
+  bottom: 4px;
+  left: 4px;
+  color: #CCC;
+  padding: 4px 8px;
+  background: rgba(#000, 0.4);
+  font-size: 0.7em;
+  a {
+    color: #EEE;
+    font-style: italic;
+  }
+}
+
 .your-name {
   line-height: 2em;
 }
@@ -34,13 +53,10 @@ button, .button {
   }
 }
 
-html, body {
-  // height: 100%;
-}
-
 input[type=submit].button { -webkit-appearance: none; }
 
 body.sessions {
+  margin: 0 0 20px 0;
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;

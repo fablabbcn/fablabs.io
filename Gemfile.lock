@@ -249,6 +249,9 @@ GEM
       net-ssh (>= 2.6.5)
     nokogiri (1.6.0)
       mini_portile (~> 0.5.0)
+    paper_trail (3.0.0.rc2)
+      activerecord (>= 3.0, < 5.0)
+      activesupport (>= 3.0, < 5.0)
     pg (0.17.0)
     pg_search (0.7.2)
       activerecord (>= 3.1)
@@ -418,6 +421,7 @@ DEPENDENCIES
   launchy
   letter_opener
   localeapp!
+  paper_trail (>= 3.0.0.rc2)
   pg
   pg_search
   quiet_assets

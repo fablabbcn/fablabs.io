@@ -5,8 +5,11 @@
     -# .fablabs
     -#   %span fablabs
     -#   %span.io IO
-    = link_to root_path do
-      = image_tag "fablabs.png", style: 'width: 100%; margin-bottom: 20px;'
+
+    .row
+      .columns.large-12.text-center
+        = link_to root_path do
+          = image_tag "fablabs.png", id: 'full-logo'
 
     = form_tag sessions_path do
       -# = simple_form_for :signin, { url: sessions_path } do

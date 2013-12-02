@@ -18,6 +18,9 @@ feature "Applying to be an employee" do
   end
 
   scenario "as a verified user" do
+    admin = FactoryGirl.create(:user)
+    admin.add_role :admin
+
     user.verify!
     sign_in user
     visit lab_url(lab)
@@ -26,7 +29,7 @@ feature "Applying to be an employee" do
     fill_in "Description", with: "I sit on a throne"
     click_button "Send Application"
     expect(page).to have_content("Thank you for applying")
-    # expect(last_email.to).to include(lab.admin.email)
+    expect(last_email.to).to include(lab.admins.last.email)
   end
 
   scenario "as an admin"

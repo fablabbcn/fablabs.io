@@ -3,4 +3,10 @@
   -# = f.association :user
   = f.input :job_title, input_html: { placeholder: "e.g. Fab Lab Manager" }
   = f.input :description
-  = f.submit "Send Application", class: 'button'
+
+  -# = f.input :is_public
+  -# = f.input :is_admin
+  -# = f.input :public_email
+  -# = f.input :public_phone
+
+  = f.submit (f.object.new_record? ? "Send Application" : "Update"), class: 'button'
