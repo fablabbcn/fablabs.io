@@ -19,9 +19,9 @@
               = hidden_field_tag 'country', params[:country]
             = text_field_tag 'query', params[:query], class: 'form-control', autocomplete: 'off', placeholder: t("views.header.search_labs", default: "Search Labs..."), id: 'search-box'
         %li{class: ('active' if controller_name == 'labs')}= link_to "Labs", labs_path, class: 'top-link'
-        %li{class: ('active' if controller_name == 'tools')}= link_to "Tools", tools_path, class: 'top-link'
+        %li{class: ('active' if controller_name == 'machines')}= link_to "Machines", machines_path, class: 'top-link'
         %li{class: ('active' if controller_name == 'activity')}= link_to "Activity", activity_path, class: 'top-link'
-        -# %li{class: ('active' if controller_name == 'tools')}= link_to "Tools", tools_path
+        -# %li{class: ('active' if controller_name == 'machines')}= link_to "Machines", machines_path
         -# %li{class: ('active' if controller_name == 'support')}= link_to "Support", 'support_path'
         -# %li.divider
 

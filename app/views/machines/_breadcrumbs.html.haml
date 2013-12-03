@@ -1,0 +1,5 @@
+%ul.breadcrumbs
+  %li= link_to Machine.to_s.pluralize, machines_path
+  - if @machine
+    %li= link_to @machine.brand, machines_path
+    %li.current= link_to @machine, @machine

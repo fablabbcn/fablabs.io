@@ -1,0 +1,9 @@
+.row
+  .columns.large-12
+    = render "breadcrumbs"
+    - title "Machines"
+
+    %ul.large-block-grid-5.small-block-grid-2= render @machines
+
+    - if current_or_null_user.can_create?(Machine)
+      = link_to "New Machine", new_machine_path

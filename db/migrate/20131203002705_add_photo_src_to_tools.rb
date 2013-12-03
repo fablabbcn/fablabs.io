@@ -1,5 +1,5 @@
-class AddPhotoSrcToTools < ActiveRecord::Migration
+class AddPhotoSrcToMachines < ActiveRecord::Migration
   def change
-    add_column :tools, :photo_src, :string
+    add_column :machines, :photo_src, :string
   end
 end

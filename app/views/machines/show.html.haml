@@ -1,0 +1,36 @@
+.row
+  .columns.large-12
+    = render "breadcrumbs"
+.row
+  .columns.large-12
+    = @machine.brand
+    = title @machine
+
+    - @machine.tags.each do |tag|
+      = link_to tag, machines_path(tag: tag)
+
+    = simple_format(@machine.description.html_safe)
+    -# = link_to @machine.brand, @machine.brand
+    %ul
+      - @machine.labs.each do |lab|
+        %li= link_to lab, lab
+
+.row
+  .columns.large-8
+    = image_tag @machine.photo_src
+
+  .columns.large-4
+    %h6 Versions
+    %ul
+      - @machine.ancestors.each do |ancestor|
+        %li= link_to ancestor, ancestor
+      %li= @machine
+      - @machine.descendants.each do |decendant|
+        %li= link_to decendant, decendant
+
+    -# %h4 Discussions
+    -# = render @machine.discussions
+    -# = link_to "Start a new Discussion", new_machine_discussion_path(@machine)
+
+- if current_or_null_user.can_update?(@machine)
+  = link_to "Edit", edit_machine_path(@machine)

@@ -1,6 +1,6 @@
 class CreateTools < ActiveRecord::Migration
   def change
-    create_table :tools do |t|
+    create_table :machines do |t|
 
       t.string :name
       t.references :brand, index: true

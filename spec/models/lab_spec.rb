@@ -11,7 +11,7 @@ describe Lab do
   it { should have_many(:referred_labs) }
   it { should have_many(:role_applications) }
   it { should have_many(:facilities) }
-  it { should have_many(:tools).through(:facilities) }
+  it { should have_many(:machines).through(:facilities) }
 
   it { should belong_to(:creator) }
   it { should belong_to(:referee) }
@@ -298,13 +298,13 @@ describe Lab do
 
   end
 
-  it "has many tools/facilities" do
+  it "has many machines/facilities" do
     lab = FactoryGirl.create(:lab)
-    tool = FactoryGirl.create(:tool)
-    lab.tools << tool
-    expect(lab.tools).to include(tool)
-    expect(lab.facilities).to include(tool.facilities.first)
-    expect(tool.labs).to include(lab)
+    machine = FactoryGirl.create(:machine)
+    lab.machines << machine
+    expect(lab.machines).to include(machine)
+    expect(lab.facilities).to include(machine.facilities.first)
+    expect(machine.labs).to include(lab)
   end
 
   it "has .direct_admins"

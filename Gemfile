@@ -11,6 +11,7 @@ gem 'sinatra', '>= 1.3.0', :require => nil
 gem 'sidekiq'
 gem 'nest'
 gem 'rails', '4.0.1'
+gem 'inherited_resources'
 gem 'timezone'
 gem 'bitmask_attributes'
 # gem 'jquery-turbolinks'

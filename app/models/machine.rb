@@ -1,0 +1,1 @@
+class Machine < Thing; end

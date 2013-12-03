@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131203002705) do
+ActiveRecord::Schema.define(version: 20131203111749) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -267,7 +267,7 @@ ActiveRecord::Schema.define(version: 20131203002705) do
     t.string "name"
   end
 
-  create_table "tools", force: true do |t|
+  create_table "things", force: true do |t|
     t.string   "name"
     t.integer  "brand_id"
     t.text     "description"
@@ -277,10 +277,13 @@ ActiveRecord::Schema.define(version: 20131203002705) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "photo_src"
+    t.string   "type"
+    t.boolean  "inventory_item", default: false
   end
 
-  add_index "tools", ["brand_id"], name: "index_tools_on_brand_id", using: :btree
-  add_index "tools", ["creator_id"], name: "index_tools_on_creator_id", using: :btree
+  add_index "things", ["brand_id"], name: "index_things_on_brand_id", using: :btree
+  add_index "things", ["creator_id"], name: "index_things_on_creator_id", using: :btree
+  add_index "things", ["id", "type", "inventory_item"], name: "index_things_on_id_and_type_and_inventory_item", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "workflow_state"

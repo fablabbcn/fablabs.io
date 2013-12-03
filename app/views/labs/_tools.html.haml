@@ -1,6 +1,6 @@
 .heading
   Facilities
-  = link_to "edit", tools_path, id: 'edit-tools' if current_or_null_user.can_update?(lab)
+  = link_to "edit", machines_path, id: 'edit-machines' if current_or_null_user.can_update?(lab)
 
 -# %dl.sub-nav
 -#   %dd.active= link_to "All", "#"
@@ -10,6 +10,6 @@
 
 %ul.large-block-grid-4.small-block-grid-2
   %li
-    .tool
+    .machine
       = image_tag "//i.imgur.com/HOCqqqg.jpg", class 'avatar big'
-      .tool-name Shopbot
+      .machine-name Shopbot

@@ -8,7 +8,7 @@ class BrandsController < ApplicationController
     @brand = Brand.new(brand_params)
     authorize_action_for @brand
     if @brand.save
-      redirect_to new_tool_url, notice: "Brand Created"
+      redirect_to new_machine_url, notice: "Brand Created"
     else
       render :new
     end

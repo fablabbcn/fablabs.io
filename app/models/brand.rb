@@ -1,7 +1,7 @@
 class Brand < ActiveRecord::Base
 
   include Authority::Abilities
-  self.authorizer_name = 'ToolAuthorizer'
+  self.authorizer_name = 'MachineAuthorizer'
 
   validates_presence_of :name
 

@@ -1,33 +1,33 @@
 require 'spec_helper'
 
-feature "Adding a tool" do
+feature "Adding a machine" do
 
-  given(:tool) { FactoryGirl.create(:tool, name: 'Shopbot') }
+  given(:machine) { FactoryGirl.create(:machine, name: 'Shopbot') }
 
   scenario "as a visitor" do
-    visit tools_path
-    expect(page).to_not have_link("New Tool")
-    visit new_tool_path
+    visit machines_path
+    expect(page).to_not have_link("New Machine")
+    visit new_machine_path
     expect(page.status_code).to eq(403)
   end
 
   %w(unverified verified).each do |state|
     scenario "as a #{state} user" do
       sign_in FactoryGirl.create(:user, workflow_state: state)
-      visit tools_path
-      expect(page).to_not have_link("New Tool")
-      visit new_tool_path
+      visit machines_path
+      expect(page).to_not have_link("New Machine")
+      visit new_machine_path
       expect(page.status_code).to eq(403)
     end
   end
 
   scenario "as an admin" do
     sign_in_superadmin
-    visit tools_path
-    click_link "New Tool"
+    visit machines_path
+    click_link "New Machine"
     fill_in "Name", with: "Replicator 2"
     fill_in "Description", with: "3D Printer"
-    click_button "Create Tool"
+    click_button "Create Machine"
     expect(page).to have_css("h1", text: "Replicator 2")
   end
 

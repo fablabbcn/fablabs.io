@@ -97,7 +97,7 @@ private
       :kind,
       :parent_id,
       :referee_id,
-      :tools_list,
+      :machines_list,
       :geocomplete,
       :name,
       :blurb,

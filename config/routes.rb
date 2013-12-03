@@ -20,9 +20,13 @@ Fablabs::Application.routes.draw do
     end
 
     resources :users
-    resources :tools do
-      # resources :discussions
+
+    %w(books machines).each do |thing|
+      resources thing do
+        # resources :discussions
+      end
     end
+
     resources :brands
 
     resources :comments, only: [:create]

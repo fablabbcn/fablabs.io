@@ -39,8 +39,8 @@ FactoryGirl.define do
 
   factory :facility do
     lab
-    tool
-    notes "cool tool"
+    machine
+    notes "cool machine"
   end
 
   factory :link do
@@ -86,7 +86,7 @@ FactoryGirl.define do
     name "Roland"
   end
 
-  factory :tool, aliases: [:commentable] do
+  factory :machine, aliases: [:commentable] do
     name "Modela"
     brand
     description "A general purpose milling machine"

@@ -2,11 +2,11 @@ require 'spec_helper'
 
 feature "Starting a discussion" do
 
-  given(:tool) { FactoryGirl.create(:tool) }
+  given(:machine) { FactoryGirl.create(:machine) }
 
   pending "as a user" do
     sign_in
-    visit tool_path(tool)
+    visit machine_path(machine)
     click_link "Start a new Discussion"
     fill_in "Title", with: "Should I get this?"
     fill_in "Body", with: "I dunno?"
