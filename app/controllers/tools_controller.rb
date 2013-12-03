@@ -52,7 +52,8 @@ private
       :name,
       :brand_id,
       :description,
-      :parent_id
+      :parent_id,
+      :photo_src
     )
   end
 

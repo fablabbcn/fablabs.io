@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131202213750) do
+ActiveRecord::Schema.define(version: 20131203002705) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -276,6 +276,7 @@ ActiveRecord::Schema.define(version: 20131202213750) do
     t.integer  "creator_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "photo_src"
   end
 
   add_index "tools", ["brand_id"], name: "index_tools_on_brand_id", using: :btree

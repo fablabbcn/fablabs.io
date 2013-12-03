@@ -12,6 +12,19 @@
       - @tool.labs.each do |lab|
         %li= link_to lab, lab
 
+.row
+  .columns.large-8
+    = image_tag @tool.photo_src
+
+  .columns.large-4
+    %h6 Versions
+    %ul
+      - @tool.ancestors.each do |ancestor|
+        %li= link_to ancestor, ancestor
+      %li= @tool
+      - @tool.descendants.each do |decendant|
+        %li= link_to decendant, decendant
+
     -# %h4 Discussions
     -# = render @tool.discussions
     -# = link_to "Start a new Discussion", new_tool_discussion_path(@tool)
