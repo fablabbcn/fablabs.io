@@ -1,7 +1,7 @@
 class ToolsController < ApplicationController
 
   def index
-    @tools = Tool.all
+    @tools = Tool.order('name ASC')
     authorize_action_for @tools
   end
 
