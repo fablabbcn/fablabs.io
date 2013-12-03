@@ -3,9 +3,7 @@
     = render "breadcrumbs"
     - title "Tools"
 
-    %ul.large-block-grid-5.small-block-grid-2
-      - 10.times do
-        = render @tools
+    %ul.large-block-grid-5.small-block-grid-2= render @tools
 
     - if current_or_null_user.can_create?(Tool)
       = link_to "New Tool", new_tool_path
