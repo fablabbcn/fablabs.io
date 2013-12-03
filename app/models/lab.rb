@@ -34,7 +34,7 @@ class Lab < ActiveRecord::Base
   has_many :referred_labs, foreign_key: 'referee_id', class_name: 'Lab'
   has_many :role_applications
   has_many :facilities
-  has_many :machines, through: :facilities, source: :thing, source_type: 'Machine'
+  has_many :machines, through: :facilities, source: :thing
 
   belongs_to :creator, class_name: 'User'
   belongs_to :referee, class_name: 'Lab'

@@ -11,16 +11,18 @@
 
     = simple_format(@machine.description.html_safe)
     -# = link_to @machine.brand, @machine.brand
-    %ul
-      - @machine.labs.each do |lab|
-        %li= link_to lab, lab
 
 .row
   .columns.large-8
     = image_tag @machine.photo_src
 
   .columns.large-4
-    %h6 Versions
+    .heading Operating at
+    %ul
+      - @machine.labs.with_approved_state.each do |lab|
+        %li= link_to lab, lab
+
+    .heading Versions
     %ul
       - @machine.ancestors.each do |ancestor|
         %li= link_to ancestor, ancestor

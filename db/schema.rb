@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131203111749) do
+ActiveRecord::Schema.define(version: 20131203131433) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -102,7 +102,6 @@ ActiveRecord::Schema.define(version: 20131203111749) do
   create_table "facilities", force: true do |t|
     t.integer  "lab_id"
     t.integer  "thing_id"
-    t.string   "thing_type"
     t.text     "notes"
     t.integer  "creator_id"
     t.datetime "created_at"
@@ -110,7 +109,7 @@ ActiveRecord::Schema.define(version: 20131203111749) do
   end
 
   add_index "facilities", ["creator_id"], name: "index_facilities_on_creator_id", using: :btree
-  add_index "facilities", ["lab_id", "thing_type", "thing_id"], name: "index_facilities_on_lab_id_and_thing_type_and_thing_id", unique: true, using: :btree
+  add_index "facilities", ["lab_id", "thing_id"], name: "index_facilities_on_lab_id_and_thing_id", unique: true, using: :btree
 
   create_table "featured_images", force: true do |t|
     t.string   "src"
