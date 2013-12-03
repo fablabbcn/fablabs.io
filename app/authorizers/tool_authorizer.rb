@@ -9,7 +9,7 @@ class ToolAuthorizer < ApplicationAuthorizer
   end
 
   def self.readable_by?(user)
-    user.has_role? :superadmin
+    true
   end
 
 end

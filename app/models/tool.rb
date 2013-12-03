@@ -11,6 +11,10 @@ class Tool < ActiveRecord::Base
 
   acts_as_taggable
 
+  def to_param
+    "#{id}-#{brand.name}-#{name}".parameterize
+  end
+
   def to_s
     name
   end

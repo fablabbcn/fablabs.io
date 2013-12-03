@@ -6,7 +6,7 @@
     - @tool.tags.each do |tag|
       = link_to tag, tools_path(tag: tag)
 
-    = simple_format @tool.description
+    = simple_format(@tool.description.html_safe)
     -# = link_to @tool.brand, @tool.brand
     %ul
       - @tool.labs.each do |lab|
@@ -16,4 +16,5 @@
     -# = render @tool.discussions
     -# = link_to "Start a new Discussion", new_tool_discussion_path(@tool)
 
-= link_to "Edit", edit_tool_path(@tool)
+- if current_or_null_user.can_update?(@tool)
+  = link_to "Edit", edit_tool_path(@tool)

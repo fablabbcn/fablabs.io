@@ -1,10 +1,9 @@
 .row
   .columns.large-12
     = render "breadcrumbs"
-    = title "Tools"
-    %table
-      - @tools.each do |tool|
-        %tr
-          %th= link_to tool, tool
+    - title "Tools"
 
-    = link_to "New Tool", new_tool_path
+    = render @tools
+
+    - if current_or_null_user.can_create?(Tool)
+      = link_to "New Tool", new_tool_path
