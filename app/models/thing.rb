@@ -19,4 +19,16 @@ class Thing < ActiveRecord::Base
   def to_s
     name
   end
+
+  def self.arrange_as_array(options={}, hash=nil)
+    hash ||= arrange(options)
+
+    arr = []
+    hash.each do |node, children|
+      arr << node
+      arr += arrange_as_array(options, children) unless children.nil?
+    end
+    arr
+  end
+
 end

@@ -31,8 +31,8 @@
           %li= link_to lab, lab
 
     .heading Revisions
-    %ul
-      - @machine.root.subtree.reverse.each do |node|
+    %ol
+      - @machine.root.subtree.arrange_as_array.flatten.each do |node|
         %li= (node == @machine) ? node : link_to(node, node)
 
     -# %h4 Discussions
