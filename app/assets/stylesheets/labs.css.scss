@@ -63,20 +63,6 @@ ul.lab-links {
   }
 }
 
-.tool {
-  border-radius: 4px;
-  padding: 5px;
-  background: white;
-  position: relative;
-  // display: inline-block;
-  // margin-bottom: 5px;
-  // width: 150px;
-  // max-width: 100%;
-  img {
-    width: 100%;
-  }
-}
-
 .nearby-lab {
   overflow: hidden;
   margin-bottom: 0.5em;
@@ -304,11 +290,7 @@ input#lab_name {
 #geocomplete {
   color: #CCC;
 }
-.tool-name {
-  clear: both;
-  // font-weight: bold;
-  font-size: 0.9em;
-}
+
 .person-name {
   font-weight: bold;
   display: block;

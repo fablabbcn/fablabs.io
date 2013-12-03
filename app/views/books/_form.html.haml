@@ -1,0 +1,10 @@
+= simple_form_for book do |f|
+  = render "form_errors", resource: book
+  = f.input :parent_id
+  = f.input :photo_src, input_html: { class: 'fp', data: { fp_store_location: 'S3', fp_store_path: 'books/covers/', fp_store_container: ENV['S3_BUCKET'] } }, label: 'Photo'
+  = f.input :name
+  = f.input :description
+  = f.input :tag_list
+  = f.input :inventory_item
+
+  = f.submit

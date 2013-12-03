@@ -16,11 +16,12 @@ module InheritedResourcesWithAuthority
   def resource_with_authority
     resource_without_authority
     authorize_action_for(get_resource_ivar)
+    get_resource_ivar
   end
 
   def build_resource_with_authority
     build_resource_without_authority
-    authorize_action_for(get_resource_ivar)
+    get_resource_ivar
   end
 
   def update_resource_with_authority(object, attributes)

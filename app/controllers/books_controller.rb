@@ -1,3 +1,5 @@
-class BooksController < ApplicationController
-  include InheritedResourcesWithAuthority
+class BooksController < ThingsController
+
+  defaults :resource_class => Book
+
 end

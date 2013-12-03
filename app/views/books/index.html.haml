@@ -1,2 +1,5 @@
-- @books.all do |book|
-  = link_to book, book
+.row
+  .columns.large-12
+    - @books.each do |book|
+      = content_tag_for :div, book do
+        = link_to book, book

@@ -1,1 +1,5 @@
-class Machine < Thing; end
+class Machine < Thing
+  def to_param
+    "#{id}-#{brand}-#{name}".parameterize
+  end
+end
