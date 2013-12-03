@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 # gem 'rubysl'
 # gem 'racc'
+gem "airbrake"
 gem 'simplecov', :require => false, :group => :test
 gem 'paper_trail', '>= 3.0.0.rc2'
 gem 'sort_alphabetical'
