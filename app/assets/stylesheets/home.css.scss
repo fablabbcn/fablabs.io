@@ -19,6 +19,7 @@
 #frostis-lab {
   &:hover {
     .note {
+      border: none;
       -webkit-animation: pulsate 2s ease-out;
       -webkit-animation-iteration-count: infinite;
     }
@@ -31,15 +32,20 @@
 }
 
 .note {
-  opacity: 0.5;
-  width: 20px;
-  height: 20px;
-  background: rgba(#E84E61, 1);
-  border-radius: 99999px;
-
-  @media #{$small} {
-    width: 30px;
-    height: 30px;
+  outline: none;
+  border: none;
+    opacity: 0.5;
+  .dot {
+    display: block;
+    margin: 5px;
+    width: 20px;
+    height: 20px;
+    background: rgba(#E84E61, 1);
+    border-radius: 99999px;
+    @media #{$small} {
+      width: 30px;
+      height: 30px;
+    }
   }
 }
 
