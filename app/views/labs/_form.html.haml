@@ -15,7 +15,7 @@
     %legend Basic Details
     = f.input :name, label: 'Fab Lab Name'
 
-    = f.input :blurb, as: 'text', hint: 'A very brief overview of the lab, maybe include what it specializes in. <span id="description-count"></span> characters available.', input_html: { rows: 3, data: { limit: 200, counter: '#description-count'} }
+    = f.input :blurb, as: 'text', hint: 'A very brief overview of the lab, maybe include what it specializes in. <span id="description-count"></span> characters available.'.html_safe, input_html: { rows: 3, data: { limit: 200, counter: '#description-count'} }
 
     = f.input :description, hint: 'An in-depth description of the lab', input_html: { style: 'height: 8em' }
 
@@ -92,7 +92,7 @@
     %legend Capabilities
     = f.input :capabilities, as: 'check_boxes', inline_label: true, item_wrapper_class: 'checkbox_container', label: false, collection: Lab::Capabilities.map{|f| [ I18n.t("capabilities.#{f}"), f]}, checked: f.object.capabilities, hint: "Check all of the boxes that apply to this lab"
 
-    = f.input :machines_list, hint: "We are adding a directory of Fab Lab machines to this website, please list any machines that you have.", input_html: { style: "height: 8em" }, placeholder: "e.g. Makerbot Industries - Makerbot 2"
+    = f.input :tools_list, hint: "We are currently adding a directory of Fab Lab machines to this website, please list any machines that you have.", input_html: { style: "height: 8em" }, placeholder: "e.g. Makerbot Industries - Makerbot 2"
 
   - if @lab.new_record?
     %fieldset

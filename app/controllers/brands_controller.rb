@@ -1,4 +1,5 @@
 class BrandsController < ApplicationController
+
   def new
     @brand = Brand.new
     authorize_action_for @brand
@@ -22,4 +23,5 @@ private
       :description
     )
   end
+
 end
