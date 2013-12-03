@@ -11,6 +11,7 @@ module ApplicationHelper
   end
 
   def hocho(img, options)
+    return if img.blank?
     url = "https://hocho.fablabs.io"
     options = options.unpack('H*').first
     img = img.unpack('H*').first

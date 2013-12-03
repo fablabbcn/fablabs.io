@@ -6,13 +6,13 @@ feature "Viewing a machine" do
 
   scenario "as a visitor" do
     visit machine_path(machine)
-    expect(page.status_code).to eq(403)
+    expect(page).to have_title(machine)
   end
 
   scenario "as a user" do
     sign_in
     visit machine_path(machine)
-    expect(page.status_code).to eq(403)
+    expect(page).to have_title(machine)
   end
 
   scenario "as an admin" do

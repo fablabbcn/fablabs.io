@@ -3,6 +3,9 @@
     = render "breadcrumbs"
     - title "Machines"
 
+    .panel
+      %p We are currently in the process of adding content to this page to create a directory alongside the Fab Lab list. Soon you will be able to add new machines, edit existing ones, assign them to Fab Labs and start discussions about them.
+
     %ul.large-block-grid-5.small-block-grid-2= render @machines
 
     - if current_or_null_user.can_create?(Machine)

@@ -4,9 +4,22 @@ feature "Editing a machine" do
 
   let(:machine) { FactoryGirl.create(:machine) }
 
-  scenario "as a visitor"
+  scenario "as a visitor" do
+    visit machine_path(machine)
+    expect(page).to_not have_link("Edit Machine")
+    visit edit_machine_path(machine)
+    expect(page.status_code).to eq(403)
+  end
 
-  scenario "as a user"
+  %w(unverified verified).each do |state|
+    scenario "as a #{state} user" do
+      sign_in FactoryGirl.create(:user, workflow_state: state)
+      visit machine_path(machine)
+      expect(page).to_not have_link("Edit Machine")
+      visit edit_machine_path(machine)
+      expect(page.status_code).to eq(403)
+    end
+  end
 
   scenario "as an admin" do
     sign_in_superadmin

@@ -5,8 +5,7 @@ feature "Adding a machine" do
   given(:machine) { FactoryGirl.create(:machine, name: 'Shopbot') }
 
   scenario "as a visitor" do
-    visit machines_path
-    expect(page).to_not have_link("New Machine")
+    machine.reload
     visit new_machine_path
     expect(page.status_code).to eq(403)
   end

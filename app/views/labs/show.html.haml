@@ -19,7 +19,7 @@
       = image_tag hocho(@lab.header_image_src, "o=r&d=800"), class: 'big-picture'
 
     = render "employees", lab: @lab
-    = render "machines", lab: @lab
+    = render("machines", lab: @lab) if @lab.machines.any?
     -# = render "discussions", lab: @lab
 
   .columns.large-4.sidebar
