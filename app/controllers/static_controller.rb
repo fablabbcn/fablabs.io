@@ -10,7 +10,7 @@ class StaticController < ApplicationController
   end
 
   def country_guess
-    render text: (current_country ? "I think you are in #{Country[current_country]}" : "I don't know where you are")
+    render text: (current_country ? "I think you are in #{current_country}" : "I don't know where you are")
   end
 
   def api
