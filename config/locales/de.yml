@@ -508,6 +508,7 @@ de:
         nearby_labs: 
         i_work_here: 
         people: 
+        applied: 
   ransack:
     attributes:
       user:

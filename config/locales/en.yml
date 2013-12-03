@@ -494,7 +494,7 @@ en:
       sign_in: Sign in
       sign_out: Sign out
       sign_up: Sign up
-      machines: Machinees
+      machines: Machines
     home:
       around_the_world: Around the world
     labs:
@@ -511,6 +511,7 @@ en:
         nearby_labs: Nearby Labs
         i_work_here: I work here
         people: People
+        applied: 
   ransack:
     attributes:
       lab:
