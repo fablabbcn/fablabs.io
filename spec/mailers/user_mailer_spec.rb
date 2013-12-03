@@ -9,7 +9,7 @@ describe UserMailer do
   %w(submitted approved rejected removed).each do |action|
     it "lab_#{action} notification" do
       mail = UserMailer.send("lab_#{action}", lab.id)
-      expect(mail.subject).to match("#{lab} #{action.capitalize}")
+      expect(mail.subject).to eq("[#{lab.name}] #{action.capitalize}")
       expect(mail.to).to eq([lab.creator.email])
       expect(mail.from).to eq(["notifications@fablabs.io"])
       if action == "submitted"

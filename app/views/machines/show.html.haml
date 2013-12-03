@@ -17,6 +17,10 @@
     = image_tag @machine.photo_src
 
   .columns.large-4
+
+    - if @machine.inventory_item?
+      Inventory Item
+
     .heading Operating at
     %ul
       - @machine.labs.with_approved_state.each do |lab|

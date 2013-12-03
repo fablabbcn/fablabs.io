@@ -10,7 +10,7 @@ class UserMailer < ActionMailer::Base
         users = (@lab.direct_admins + [@lab.creator]).compact.uniq
         users.each do |user|
           @user = user
-          mail(to: @user.email_string, subject: "#{ENV["EMAIL_SUBJECT_PREFIX"]}#{@lab} #{action.capitalize}")
+          mail(to: @user.email_string, subject: "[#{@lab}] #{action.capitalize}")
         end
       rescue ActiveRecord::RecordNotFound
       end
@@ -21,7 +21,7 @@ class UserMailer < ActionMailer::Base
     begin
       @employee = Employee.find(employee_id)
       @user = @employee.user
-      mail(to: @user.email_string, subject: "#{ENV["EMAIL_SUBJECT_PREFIX"]}Employee Application Approval")
+      mail(to: @user.email_string, subject: "[#{@employee.lab}] Employee Application Approval")
     rescue ActiveRecord::RecordNotFound
     end
   end
@@ -29,7 +29,7 @@ class UserMailer < ActionMailer::Base
   def welcome user_id
     begin
       @user = User.find(user_id)
-      mail(to: @user.email_string, subject: "#{ENV["EMAIL_SUBJECT_PREFIX"]}Confirmation Instructions")
+      mail(to: @user.email_string, subject: "Account Confirmation Instructions")
     rescue ActiveRecord::RecordNotFound
     end
   end
@@ -37,7 +37,7 @@ class UserMailer < ActionMailer::Base
   def verification user_id
     begin
       @user = User.find(user_id)
-      mail(to: @user.email_string, from: "FabLabs.io <support@fablabs.io>", subject: "#{ENV["EMAIL_SUBJECT_PREFIX"]}Verification")
+      mail(to: @user.email_string, from: "FabLabs.io <support@fablabs.io>", subject: "Email Verification Instructions")
     rescue ActiveRecord::RecordNotFound
     end
   end
@@ -45,7 +45,7 @@ class UserMailer < ActionMailer::Base
   def account_recovery_instructions user_id
     begin
       @user = User.find(user_id)
-      mail(to: @user.email_string, from: "FabLabs.io <support@fablabs.io>", subject: "#{ENV["EMAIL_SUBJECT_PREFIX"]}Account Recovery Instructions")
+      mail(to: @user.email_string, from: "FabLabs.io <support@fablabs.io>", subject: "Account Recovery Instructions")
     rescue ActiveRecord::RecordNotFound
     end
   end
