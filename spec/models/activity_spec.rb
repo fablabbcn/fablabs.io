@@ -2,7 +2,8 @@ require 'spec_helper'
 
 describe Activity do
 
-  it { should belong_to(:user) }
+  it { should belong_to(:creator) }
+  it { should belong_to(:actor) }
   it { should belong_to(:trackable) }
 
   it "has default_scope" do

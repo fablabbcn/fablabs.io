@@ -1,6 +1,6 @@
 - if employee.present?
   = content_tag_for :li, activity do
-    = link_to activity.user, activity.user, class: 'user'
+    = link_to activity.actor, activity.actor, class: 'user'
     was added as #{employee.job_title} at
     = link_to employee.lab, employee.lab
     %i #{time_ago_in_words(activity.created_at)} ago

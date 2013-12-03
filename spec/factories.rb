@@ -3,7 +3,8 @@
 FactoryGirl.define do
 
   factory :activity do
-    user
+    actor
+    creator
     action "create"
     trackable
   end
@@ -68,7 +69,7 @@ FactoryGirl.define do
     creator
   end
 
-  factory :user, aliases: [:creator, :author, :applicant] do
+  factory :user, aliases: [:creator, :author, :applicant, :actor] do
     sequence(:username) {|n| "user#{n}"}
     first_name "John"
     last_name "Rees"
