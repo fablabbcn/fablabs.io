@@ -6,6 +6,11 @@
     = @machine.brand
     = title @machine
 
+    - if @machine.inventory_item?
+      = link_to "http://fab.cba.mit.edu/about/fab/inv.html", class: "button tiny", data: { tooltip: true }, title: "This is included in the Official Fab Lab hardware specification" do
+        = fa_icon "tag"
+        Fab Lab Inventory Item
+
     - @machine.tags.each do |tag|
       = link_to tag, machines_path(tag: tag)
 
@@ -18,21 +23,17 @@
 
   .columns.large-4
 
-    - if @machine.inventory_item?
-      Inventory Item
 
-    .heading Operating at
-    %ul
-      - @machine.labs.with_approved_state.each do |lab|
-        %li= link_to lab, lab
+    - if @machine.labs.any?
+      .heading Operating at
+      %ul
+        - @machine.labs.with_approved_state.each do |lab|
+          %li= link_to lab, lab
 
-    .heading Versions
+    .heading Revisions
     %ul
-      - @machine.ancestors.each do |ancestor|
-        %li= link_to ancestor, ancestor
-      %li= @machine
-      - @machine.descendants.each do |decendant|
-        %li= link_to decendant, decendant
+      - @machine.root.subtree.reverse.each do |node|
+        %li= (node == @machine) ? node : link_to(node, node)
 
     -# %h4 Discussions
     -# = render @machine.discussions
