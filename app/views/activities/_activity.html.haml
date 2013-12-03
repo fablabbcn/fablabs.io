@@ -1,5 +1,1 @@
-= content_tag_for :li, activity do
-  = link_to activity.user, activity.user, class: 'user'
-  -# = activity.trackable_type.underscore
-  = render "activities/#{activity.trackable_type.underscore}/#{activity.action}", activity.trackable_type.underscore.to_sym => activity.trackable, :activity => activity
-
+= render "activities/#{activity.trackable_type.underscore}/#{activity.action}", activity.trackable_type.underscore.to_sym => activity.trackable, :activity => activity
