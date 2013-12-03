@@ -1,5 +1,5 @@
 .heading
-  = fa_icon "users", text: "People"
+  = fa_icon "users", text: t("views.labs.show.people", default: "People")
   = link_to "edit", lab_employees_path(lab), id: "edit-employees" if current_or_null_user.can_update?(lab)
 
 %ul.large-block-grid-2
@@ -19,15 +19,15 @@
   %li.person
 
     - if current_user
-      - if current_user.can_create? @lab.employees.build
-        = link_to new_lab_employee_path(@lab), class: 'button tiny success' do
-          = fa_icon "check-square"
-          I work here
-      - elsif current_user.applied_to?(@lab) and !current_user.employed_by?(@lab)
+      - if current_user.applied_to?(@lab) and !current_user.employed_by?(@lab)
         = link_to new_lab_employee_path(@lab), class: 'button tiny disabled secondary' do
           = fa_icon "check-square"
-          Applied
-    -# - else
-    -#   = link_to new_lab_employee_path(@lab), class: 'button tiny' do
-    -#     = fa_icon "check-square"
-    -#     I work here
+          = t("views.labs.show.applied", default: "Applied")
+      - elsif current_user.can_create? @lab.employees.build
+        = link_to new_lab_employee_path(@lab), class: 'button tiny success' do
+          = fa_icon "check-square"
+          = t("views.labs.show.i_work_here", default: "I work here")
+    - else
+      = link_to new_lab_employee_path(@lab), class: 'button tiny' do
+        = fa_icon "check-square"
+        = t("views.labs.show.i_work_here", default: "I work here")

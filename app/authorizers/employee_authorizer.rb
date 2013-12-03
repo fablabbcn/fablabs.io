@@ -6,14 +6,11 @@ class EmployeeAuthorizer < ApplicationAuthorizer
 
   def creatable_by?(user)
     user.has_role?(:superadmin) or
-    (resource.lab.approved? and
-      user.verified? and
-      !user.applied_to?(resource.lab))
+    (resource.lab.approved?)
   end
 
   def updatable_by?(user)
     user.has_role?(:superadmin) or (resource.lab.approved? and
-      user.verified? and
       user.applied_to?(resource.lab))
   end
 

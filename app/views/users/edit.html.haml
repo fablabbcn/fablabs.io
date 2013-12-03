@@ -15,7 +15,7 @@
         = f.input :username
         = f.input :email
         = f.input :phone
-        = f.input :country_code, as: 'country', priority: [current_country.alpha2.downcase], label: 'Country', iso_codes: true
+        = f.input :country_code, as: 'country', priority: ([current_country.alpha2.downcase] if current_country), label: 'Country', iso_codes: true
 
         = f.input :bio
         = f.input :url

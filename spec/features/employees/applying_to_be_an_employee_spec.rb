@@ -8,13 +8,13 @@ feature "Applying to be an employee" do
 
   scenario "as visitor" do
     visit lab_url(lab)
-    expect(page).to_not have_link("I work here")
+    expect(page).to have_link("I work here")
   end
 
   scenario "as unverified user" do
     sign_in
     visit lab_url(lab)
-    expect(page).to_not have_link("I work here")
+    expect(page).to have_link("I work here")
   end
 
   scenario "as a verified user" do

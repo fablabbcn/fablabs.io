@@ -33,6 +33,7 @@ en:
         longitude: Longitude
         name: Name
         zoom: Zoom
+        machines_list: Machines list
       admin_application:
         lab: Lab
       employee:
@@ -40,6 +41,7 @@ en:
         job_title: Job title
         email: Email
         phone: Phone
+        user_id: 
       user:
         bio: Bio
         email: Email
@@ -58,18 +60,37 @@ en:
         name: Name
         redirect_uri: Redirect uri
       lab/employees:
-        job_title: 
+        job_title: Employees job title
       tool:
         brand: Brand
         description: Description
         name: Name
         tag_list: Tag list
+        parent_id: Parent
+      book:
+        description: Description
+        inventory_item: Inventory item
+        name: Name
+        parent_id: Parent
+        tag_list: Tag list
+      brand:
+        name: Name
+      machine:
+        brand: Brand
+        description: Description
+        inventory_item: Inventory item
+        name: Name
+        parent_id: Parent
+        tag_list: Tag list
     models:
       admin_application: Admin application
-      employee: 
+      employee: Employee
       lab: Lab
       tool: Tool
       user: User
+      book: Book
+      brand: Brand
+      machine: Machine
   simple_form:
     hints:
       lab:
@@ -179,6 +200,40 @@ en:
           description: 
           name: 
           tag_list: 
+          parent_id: 
+          photo_src: 
+        edit:
+          description: 
+          name: 
+          parent_id: 
+          photo_src: 
+          tag_list: 
+      book:
+        new:
+          description: 
+          inventory_item: 
+          name: 
+          parent_id: 
+          photo_src: 
+          tag_list: 
+      brand:
+        new:
+          name: 
+      machine:
+        edit:
+          description: 
+          inventory_item: 
+          name: 
+          parent_id: 
+          photo_src: 
+          tag_list: 
+        new:
+          description: 
+          inventory_item: 
+          name: 
+          parent_id: 
+          photo_src: 
+          tag_list: 
     labels:
       lab:
         edit:
@@ -205,6 +260,7 @@ en:
           name: 
           tools_list: 
           zoom: 
+          machines_list: 
         new:
           description: 
           referee: 
@@ -269,6 +325,38 @@ en:
           brand: 
           description: 
           name: 
+          tag_list: 
+          parent_id: 
+        edit:
+          brand: 
+          description: 
+          name: 
+          parent_id: 
+          tag_list: 
+      book:
+        new:
+          description: 
+          inventory_item: 
+          name: 
+          parent_id: 
+          tag_list: 
+      brand:
+        new:
+          name: 
+      machine:
+        edit:
+          brand: 
+          description: 
+          inventory_item: 
+          name: 
+          parent_id: 
+          tag_list: 
+        new:
+          brand: 
+          description: 
+          inventory_item: 
+          name: 
+          parent_id: 
           tag_list: 
     placeholders:
       lab:
@@ -361,6 +449,37 @@ en:
           description: 
           name: 
           tag_list: 
+          parent_id: 
+          photo_src: 
+        edit:
+          description: 
+          name: 
+          parent_id: 
+          photo_src: 
+          tag_list: 
+      book:
+        new:
+          description: 
+          name: 
+          parent_id: 
+          photo_src: 
+          tag_list: 
+      brand:
+        new:
+          name: 
+      machine:
+        edit:
+          description: 
+          name: 
+          parent_id: 
+          photo_src: 
+          tag_list: 
+        new:
+          description: 
+          name: 
+          parent_id: 
+          photo_src: 
+          tag_list: 
     required:
       html: <abbr title="required">*</abbr>
     options:
@@ -370,11 +489,12 @@ en:
   views:
     header:
       backstage: Backstage
-      search_labs: Search Labs
+      search_labs: Search Labs...
       settings: Settings
       sign_in: Sign in
       sign_out: Sign out
       sign_up: Sign up
+      machines: Machinees
     home:
       around_the_world: Around the world
     labs:
@@ -389,6 +509,8 @@ en:
         manage_admins: Manage Admins
         manage_lab: Manage Lab
         nearby_labs: Nearby Labs
+        i_work_here: I work here
+        people: People
   ransack:
     attributes:
       lab:
@@ -404,3 +526,4 @@ en:
       application:
         name: 
         redirect_uri: 
+  Machines: 

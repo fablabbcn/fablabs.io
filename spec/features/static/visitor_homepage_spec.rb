@@ -6,7 +6,7 @@ describe "Visitor homepage" do
     lab = FactoryGirl.create(:lab, name: 'verified', country_code: 'gb')
     lab.approve!
     visit root_path
-    expect(page).to have_content "Fab Labs in #{Country['gb']}"
+    expect(page).to have_content "Show me Fab Labs"
   end
 
   pending "shows around the world button if country has no labs" do

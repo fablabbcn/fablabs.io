@@ -3,46 +3,46 @@
 #homepage-map{style: "background-size: cover; background-position: top center; background-image: url(https://i.imgur.com/WXrpbgp.jpg);"}
   .filter
   #homepage-search
-    - if false#@country_labs
-      %p Show me Fab Labs in...
-      .row.collapse
-        .columns.small-9.large-10
-          = text_field_tag :search, current_country, style: "width: 100%; max-width: 100%;"
-        .columns.small-3.large-2
-          = link_to "#", class: 'submit' do
-            = fa_icon "search"
-    - else
-      %p Show me Fab Labs
-      = link_to labs_path, class: 'button ' do
-        = fa_icon "globe"
-        = t("views.home.around_the_world", default: "Around the World")
-        -# {country: current_country.alpha2.downcase}
-        -# in #{current_country}
+    -# - if false#@country_labs
+    -#   %p Show me Fab Labs in...
+    -#   .row.collapse
+    -#     .columns.small-9.large-10
+    -#       = text_field_tag :search, current_country, style: "width: 100%; max-width: 100%;"
+    -#     .columns.small-3.large-2
+    -#       = link_to "#", class: 'submit' do
+    -#         = fa_icon "search"
+    -# - else
+    %p Show me Fab Labs
+    = link_to labs_path, class: 'button ' do
+      = fa_icon "globe"
+      = t("views.home.around_the_world", default: "Around the World")
+      -# {country: current_country.alpha2.downcase}
+      -# in #{current_country}
 
-- if @country_labs
-  .near-me.stripe
-    .row
-      .columns.large-2
-        %h2 Fab Labs in #{current_country}...
-      .columns.large-9.small-10
-        .row
-          - @nearby_labs.each do |lab|
-            .columns.large-4.lab-near-you.left
-              .media
-                .pull-left
-                  = link_to lab do
-                    = image_tag lab.avatar, class: 'avatar small'
-                .media-body
-                  = link_to lab, lab
-                  .location
-                    %span.glyphicon.glyphicon-map-marker
-                    = lab.short_address
-                  -# .distance
-                  -#   %span.glyphicon.glyphicon-road
-                  -#   10km Away
-      .columns.large-1.small-2
-        = link_to labs_path(country: current_country.alpha2.downcase), class: 'more' do
-          = fa_icon "chevron-right"
+-# - if @country_labs
+-#   .near-me.stripe
+-#     .row
+-#       .columns.large-2
+-#         %h2 Fab Labs in #{current_country}...
+-#       .columns.large-9.small-10
+-#         .row
+-#           - @nearby_labs.each do |lab|
+-#             .columns.large-4.lab-near-you.left
+-#               .media
+-#                 .pull-left
+-#                   = link_to lab do
+-#                     = image_tag lab.avatar, class: 'avatar small'
+-#                 .media-body
+-#                   = link_to lab, lab
+-#                   .location
+-#                     %span.glyphicon.glyphicon-map-marker
+-#                     = lab.short_address
+-#                   -# .distance
+-#                   -#   %span.glyphicon.glyphicon-road
+-#                   -#   10km Away
+-#       .columns.large-1.small-2
+-#         = link_to labs_path(country: current_country.alpha2.downcase), class: 'more' do
+-#           = fa_icon "chevron-right"
 
 
 .whats-a-fab-lab.stripe

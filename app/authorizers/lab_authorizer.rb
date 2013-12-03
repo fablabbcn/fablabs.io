@@ -2,7 +2,7 @@ class LabAuthorizer < ApplicationAuthorizer
 
   def updatable_by?(user)
     user.has_role?(:superadmin) or
-      (resource.approved? and user.verified? and user.has_role?(:admin, resource))
+      (resource.approved? and user.has_role?(:admin, resource))
   end
 
   def readable_by?(user)
@@ -10,7 +10,7 @@ class LabAuthorizer < ApplicationAuthorizer
   end
 
   def self.creatable_by?(user)
-    user.verified?
+    true
   end
 
   def self.deletable_by?(user)

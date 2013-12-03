@@ -4,8 +4,12 @@ class EmployeesController < ApplicationController
 
   def new
     @lab = Lab.with_approved_state.friendly.find params[:lab_id]
-    @employee = @lab.employees.build
-    authorize_action_for @employee
+    if current_user.applied_to?(@lab)
+      redirect_to lab_url(@lab), notice: "You've already applied to work here"
+    else
+      @employee = @lab.employees.build
+      authorize_action_for @employee
+    end
   end
 
   def create

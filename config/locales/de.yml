@@ -33,6 +33,7 @@ de:
         longitude: 
         name: 
         zoom: 
+        machines_list: 
       admin_application:
         lab: 
       employee:
@@ -40,6 +41,7 @@ de:
         job_title: 
         email: 
         phone: 
+        user_id: 
       user:
         bio: 
         email: 
@@ -64,12 +66,31 @@ de:
         description: 
         name: 
         tag_list: 
+        parent_id: 
+      book:
+        description: 
+        inventory_item: 
+        name: 
+        parent_id: 
+        tag_list: 
+      brand:
+        name: 
+      machine:
+        brand: 
+        description: 
+        inventory_item: 
+        name: 
+        parent_id: 
+        tag_list: 
     models:
       admin_application: 
       employee: 
       lab: 
       tool: 
       user: 
+      book: 
+      brand: 
+      machine: 
   simple_form:
     hints:
       lab:
@@ -177,6 +198,40 @@ de:
           description: 
           name: 
           tag_list: 
+          parent_id: 
+          photo_src: 
+        edit:
+          description: 
+          name: 
+          parent_id: 
+          photo_src: 
+          tag_list: 
+      book:
+        new:
+          description: 
+          inventory_item: 
+          name: 
+          parent_id: 
+          photo_src: 
+          tag_list: 
+      brand:
+        new:
+          name: 
+      machine:
+        edit:
+          description: 
+          inventory_item: 
+          name: 
+          parent_id: 
+          photo_src: 
+          tag_list: 
+        new:
+          description: 
+          inventory_item: 
+          name: 
+          parent_id: 
+          photo_src: 
+          tag_list: 
     labels:
       lab:
         edit:
@@ -203,6 +258,7 @@ de:
           name: 
           tools_list: 
           zoom: 
+          machines_list: 
         new:
           description: 
           referee: 
@@ -267,6 +323,38 @@ de:
           brand: 
           description: 
           name: 
+          tag_list: 
+          parent_id: 
+        edit:
+          brand: 
+          description: 
+          name: 
+          parent_id: 
+          tag_list: 
+      book:
+        new:
+          description: 
+          inventory_item: 
+          name: 
+          parent_id: 
+          tag_list: 
+      brand:
+        new:
+          name: 
+      machine:
+        edit:
+          brand: 
+          description: 
+          inventory_item: 
+          name: 
+          parent_id: 
+          tag_list: 
+        new:
+          brand: 
+          description: 
+          inventory_item: 
+          name: 
+          parent_id: 
           tag_list: 
     placeholders:
       lab:
@@ -358,6 +446,37 @@ de:
           description: 
           name: 
           tag_list: 
+          parent_id: 
+          photo_src: 
+        edit:
+          description: 
+          name: 
+          parent_id: 
+          photo_src: 
+          tag_list: 
+      book:
+        new:
+          description: 
+          name: 
+          parent_id: 
+          photo_src: 
+          tag_list: 
+      brand:
+        new:
+          name: 
+      machine:
+        edit:
+          description: 
+          name: 
+          parent_id: 
+          photo_src: 
+          tag_list: 
+        new:
+          description: 
+          name: 
+          parent_id: 
+          photo_src: 
+          tag_list: 
     required:
       html: 
     options:
@@ -367,11 +486,12 @@ de:
   views:
     header:
       backstage: 
-      search_labs: 
+      search_labs: Suche...
       settings: 
       sign_in: 
       sign_out: 
       sign_up: 
+      machines: Maschinen
     home:
       around_the_world: 
     labs:
@@ -386,6 +506,8 @@ de:
         manage_admins: 
         manage_lab: 
         nearby_labs: 
+        i_work_here: 
+        people: 
   ransack:
     attributes:
       user:
@@ -396,3 +518,4 @@ de:
       application:
         name: 
         redirect_uri: 
+  Machines: 
