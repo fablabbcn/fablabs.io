@@ -143,7 +143,7 @@ class Lab < ActiveRecord::Base
   end
 
   def direct_admins
-    User.with_role(:admin, self) - User.with_role(:superadmin)
+    User.with_role(:admin, self)# - User.with_role(:superadmin)
   end
 
   def admins
