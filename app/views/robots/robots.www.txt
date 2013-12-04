@@ -1,0 +1,22 @@
+User-Agent: *
+
+Disallow: /harming/humans
+Disallow: /ignoring/human/orders
+Disallow: /harm/to/self
+
+Disallow: /backstage
+Disallow: /check_inbox
+Disallow: /choose_locale
+Disallow: /country_guess
+Disallow: /oauth
+Disallow: /resend_verification_email
+Disallow: /settings
+Disallow: /sidekiq
+Disallow: /signin
+Disallow: /signout
+Disallow: /verify_email
+
+User-agent: bingbot
+Crawl-delay: 5
+User-agent: msnbot
+Crawl-delay: 5

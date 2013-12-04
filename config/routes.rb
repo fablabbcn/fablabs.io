@@ -6,6 +6,8 @@ Fablabs::Application.routes.draw do
 
   get "signout" => "sessions#destroy", :as => "signout"
   get "signin" => "sessions#new", :as => "signin"
+  get '/robots.txt' => 'robots#robots', :format => :txt
+
   resources :sessions
 
   constraints subdomain: 'www' do
