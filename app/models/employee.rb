@@ -10,7 +10,7 @@ class Employee < ActiveRecord::Base
   after_create :auto_approve_for_admins
   before_destroy { user.revoke :admin, lab }
 
-  scope :active, -> { includes(:user).with_approved_state.order('LOWER(users.last_name) ASC').references(:user) }
+  scope :active, -> { includes(:user).with_approved_state.references(:user) }
 
   include Workflow
   workflow do
