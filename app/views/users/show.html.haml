@@ -15,7 +15,7 @@
 
 .row
   .columns.large-6
-    - if @user.employees.any?
+    - if @user.employees.with_approved_state.any?
       %h4 Works at
       - @user.employees.with_approved_state.each do |employee|
         = content_tag_for :div, employee do
