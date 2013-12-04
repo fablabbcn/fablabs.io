@@ -24,4 +24,4 @@ words.yml
 /csv
 .localeapp
 *.rdb
-
+rails_best_practices_output.html
