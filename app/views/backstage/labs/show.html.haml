@@ -10,6 +10,9 @@
           - @lab.current_state.events.keys.each do |event|
             = button_to "#{event.capitalize} Lab", {controller: 'labs', action: event}, method: :patch, class: 'button small'
       %tr
+        %th Referee
+        %td= @lab.referee
+      %tr
         %th Avatar
         %td= image_tag @lab.avatar, class: 'avatar med'
 
