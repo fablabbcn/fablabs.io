@@ -3,7 +3,7 @@
   = link_to "edit", lab_employees_path(lab), id: "edit-employees" if current_or_null_user.can_update?(lab)
 
 %ul.large-block-grid-2
-  - lab.employees.active.each do |employee|
+  - lab.employees.active.order('employees.id ASC').each do |employee|
     %li.person
       .media
         .pull-left
