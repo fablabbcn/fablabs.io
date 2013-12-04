@@ -3,5 +3,11 @@ li.activity {
   list-style: none;
   padding: 5px;
   background: #FFF;
+  overflow: hidden;
   margin-bottom: 2px;
+  i {
+    color: #AAA;
+    float: right;
+    font-size: 0.8em;
+  }
 }
