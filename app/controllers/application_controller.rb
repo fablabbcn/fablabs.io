@@ -60,7 +60,7 @@ private
   end
 
   def track_activity(trackable, actor = current_user, action = params[:action])
-    current_user.created_activities.create! action: action, trackable: trackable, actor: actor
+    current_user.created_activities.create action: action, trackable: trackable, actor: actor
   end
 
 end
