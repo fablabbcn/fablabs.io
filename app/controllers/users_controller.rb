@@ -14,6 +14,7 @@ class UsersController < ApplicationController
       UserMailer.delay.welcome(@user.id)
       # cookies.permanent[:user_id] = { value: @user.id, domain: '.fablabs.dev' }
       session[:user_id] = @user.id
+      track_activity @user
       redirect_to root_path, flash: { success: "Thanks for signing up. Please check your email to complete your registration." }
     else
       render 'new'
