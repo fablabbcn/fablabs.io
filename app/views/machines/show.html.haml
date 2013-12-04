@@ -19,7 +19,8 @@
 
 .row
   .columns.large-8
-    = image_tag @machine.photo_src
+    -# = image_tag @machine.photo_src
+    = image_tag hocho(@machine.photo_src, "o=r&q=80&d=800x800>")
 
   .columns.large-4
 
