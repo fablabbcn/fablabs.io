@@ -12,7 +12,7 @@ module ApplicationHelper
 
   def hocho(img, options)
     return if img.blank?
-    url = "https://hocho.fablabs.io"
+    url = "http://146.185.177.189:9292"
     options = options.unpack('H*').first
     img = img.unpack('H*').first
     sig = Digest::SHA1.hexdigest("#{options}#{img}#{ENV['HOCHO_SALT']}")
