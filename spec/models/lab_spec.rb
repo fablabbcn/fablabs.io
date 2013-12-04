@@ -235,7 +235,7 @@ describe Lab do
     before(:each) do
       @superadmin = FactoryGirl.create(:user)
       @user = FactoryGirl.create(:user)
-      @superadmin.add_role :admin
+      @superadmin.add_role :superadmin
     end
 
     it "has needs_admin?" do
@@ -243,7 +243,7 @@ describe Lab do
       lab.approve!
       User.with_role(:admin, lab).delete_all
       expect(lab.needs_admin?).to be_true
-      expect(@superadmin).to have_role(:admin)
+      expect(@superadmin).to have_role(:superadmin)
       @user.add_role :admin, lab
       expect(lab.needs_admin?).to be_false
     end

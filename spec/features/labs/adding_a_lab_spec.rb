@@ -26,7 +26,7 @@ feature "Adding a lab" do
 
     scenario "as a user with valid details" do
       admin = FactoryGirl.create(:user)
-      admin.add_role :admin
+      admin.add_role :superadmin
       choose "Fab Lab"
       fill_in 'Name', with: 'New Lab'
       fill_in 'lab_description', with: 'An awesome place'

@@ -13,7 +13,7 @@ describe Role do
 
   it "allows :admin" do
     user = FactoryGirl.create(:user)
-    user.add_role :admin
+    user.add_role :superadmin
     expect(user.roles).to_not be_empty
     expect(Role.all).to_not be_empty
   end

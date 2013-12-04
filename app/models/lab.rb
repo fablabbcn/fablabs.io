@@ -143,17 +143,17 @@ class Lab < ActiveRecord::Base
   end
 
   def direct_admins
-    User.with_role(:admin, self) - User.with_role(:admin)
+    User.with_role(:admin, self) - User.with_role(:superadmin)
   end
 
   def admins
     a = direct_admins
-    a = User.with_role(:admin) if a.empty?
+    a = User.with_role(:superadmin) if a.empty?
     return a
   end
 
   def admin_ids
-    @admin_ids ||= (User.with_role(:admin, self) - User.with_role(:admin)).map(&:id)
+    @admin_ids ||= (User.with_role(:admin, self) - User.with_role(:superadmin)).map(&:id)
   end
 
   def admin_ids=(user_ids)

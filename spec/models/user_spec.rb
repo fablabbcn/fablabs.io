@@ -73,7 +73,7 @@ describe User do
       superadmin = FactoryGirl.create(:user, email: "superadmin@gmail.com")
       labadmin = FactoryGirl.create(:user, email: "admin@gmail.com")
       user = FactoryGirl.create(:user, email: "user@gmail.com")
-      superadmin.add_role :admin
+      superadmin.add_role :superadmin
       labadmin.add_role :admin, FactoryGirl.create(:lab)
       expect(User.admin_emails).to eq([superadmin.email])
     end

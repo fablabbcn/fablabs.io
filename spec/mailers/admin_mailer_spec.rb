@@ -8,7 +8,7 @@ describe AdminMailer do
   let(:admin) { FactoryGirl.create(:user, email: 'john@bitsushi.com') }
 
   before(:each) do
-    admin.add_role :admin
+    admin.add_role :superadmin
   end
 
   it "lab_submitted notification" do

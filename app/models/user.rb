@@ -95,7 +95,7 @@ class User < ActiveRecord::Base
   end
 
   def self.admin_emails
-    User.with_role(:admin).map(&:email)
+    User.with_role(:superadmin).map(&:email)
   end
 
 private

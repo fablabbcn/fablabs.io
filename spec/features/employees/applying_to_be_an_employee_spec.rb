@@ -19,7 +19,7 @@ feature "Applying to be an employee" do
 
   scenario "as a verified user" do
     admin = FactoryGirl.create(:user)
-    admin.add_role :admin
+    admin.add_role :superadmin
 
     user.verify!
     sign_in user
