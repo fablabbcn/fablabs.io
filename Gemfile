@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 # gem 'rubysl'
 # gem 'racc'
 # gem "dalli"
+gem "rack-cache"
 gem "airbrake"
 gem 'simplecov', :require => false, :group => :test
 gem 'paper_trail', '>= 3.0.0.rc2'
