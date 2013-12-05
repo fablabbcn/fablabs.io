@@ -17,7 +17,7 @@ module ApplicationHelper
         return image_tag hocho(icon, "o=t&q=80&d=16x16"), width: 16, height: 16
       end
     end
-    content_tag :div, "", style: "width: 16px; height: 16px; display: inline-block;"
+    fa_icon "link"
   end
 
   def hocho(img, options)
