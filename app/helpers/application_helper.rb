@@ -11,10 +11,10 @@ module ApplicationHelper
   end
 
   def favicon url
-    icon = URI::join(url, 'favicon.ico').to_s
+    domain = URI.parse(url).host
     ['facebook.com','twitter.com','youtube.com','picasaweb.google.com','flickr.com','pinterest.com','github.com','vimeo.com', 'fablabbcn.org'].each do |s|
-      if icon.match(/\/\/(www\.)?#{s}\/favicon\.ico/)
-        return image_tag hocho(icon, "o=t&q=80&d=16x16"), width: 16, height: 16
+      if domain.match(/(www\.)?#{s}/)
+        return image_tag hocho("http://#{domain}/favicon.ico", "o=t&q=80&d=16x16"), width: 16, height: 16
       end
     end
     fa_icon "link"
