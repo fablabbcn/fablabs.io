@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 # gem 'rubysl'
 # gem 'racc'
 # gem "dalli"
+gem 'newrelic_rpm'
 gem 'sitemap_generator'
 gem "rack-cache"
 gem "airbrake"
