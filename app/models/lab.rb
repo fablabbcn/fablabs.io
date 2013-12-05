@@ -88,7 +88,7 @@ class Lab < ActiveRecord::Base
 
   def nearby_labs same_country = true, max_distance = 1000
     if nearbys(max_distance)
-      labs = nearbys(max_distance).limit(5)
+      labs = nearbys(max_distance).limit(5).with_approved_state
       if same_country
         labs = labs.where(country_code: country_code)
       end

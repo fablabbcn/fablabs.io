@@ -216,6 +216,8 @@ describe Lab do
       liverpool = FactoryGirl.create(:lab, city: 'liverpool', latitude: 53.409532, longitude: -2.983575, country_code: 'gb')
       london = FactoryGirl.create(:lab, city: 'london', latitude: 51.498485, longitude: -0.116158, country_code: 'gb')
       amsterdam = FactoryGirl.create(:lab, city: 'amsterdam', latitude: 52.382306, longitude: 4.821396, country_code: 'nl')
+
+      Lab.update_all("workflow_state = 'approved'")
     end
 
     it "has nearby in same country" do
