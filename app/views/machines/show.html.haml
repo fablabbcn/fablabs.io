@@ -7,7 +7,7 @@
   .row
     .columns.large-12
       = @machine.brand
-      = title @machine
+      %h1= @machine
 
       - if @machine.inventory_item?
         = link_to "http://fab.cba.mit.edu/about/fab/inv.html", class: "button tiny", data: { tooltip: true }, title: "This is included in the Official Fab Lab hardware specification" do

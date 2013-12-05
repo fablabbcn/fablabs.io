@@ -1,22 +1,20 @@
-- cache ["bio-v1", lab] do
+= link_to lab do
+  = image_tag hocho(lab.avatar, "o=t&q=80&d=300x300&"), class: 'big avatar', itemprop: "logo"
 
-  = link_to lab do
-    = image_tag hocho(lab.avatar, "o=t&q=80&d=300x300&"), class: 'big avatar', itemprop: "logo"
+= title
 
-  = title lab.name
+%span.microdata{itemprop: "url"}= lab_url(lab, { locale: nil })
 
-  %span.microdata{itemprop: "url"}= lab_url(lab, { locale: nil })
-
-  .lab-contact-details
-    .lab-address{itemprop: "address"}= lab.formatted_address
-    - if lab.phone.present?
-      .lab-phone
-        %span.glyphicon.glyphicon-earphone
-        %span{itemprop: "telephone"}= lab.phone
-    - if lab.email.present?
-      .lab-email
-        %span.glyphicon.glyphicon-envelope
-        %span{itemprop: "email"}= mail_to lab.email, lab.email
+.lab-contact-details
+  .lab-address{itemprop: "address"}= lab.formatted_address
+  - if lab.phone.present?
+    .lab-phone
+      %span.glyphicon.glyphicon-earphone
+      %span{itemprop: "telephone"}= lab.phone
+  - if lab.email.present?
+    .lab-email
+      %span.glyphicon.glyphicon-envelope
+      %span{itemprop: "email"}= mail_to lab.email, lab.email
 
 - if current_or_null_user.can_update?(@lab)
   = link_to "#", data: { dropdown: 'drop' }, class: 'button dropdown small' do
