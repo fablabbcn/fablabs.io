@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 # gem 'rubysl'
 # gem 'racc'
-gem "dalli"
+# gem "dalli"
 gem "rack-cache"
 gem "airbrake"
 gem 'simplecov', :require => false, :group => :test

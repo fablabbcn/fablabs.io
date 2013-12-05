@@ -162,7 +162,6 @@ GEM
     connection_pool (1.2.0)
     country_select (1.2.0)
     currencies (0.4.2)
-    dalli (2.6.4)
     descendants_tracker (0.0.3)
     diff-lcs (1.2.5)
     docile (1.1.1)
@@ -438,7 +437,6 @@ DEPENDENCIES
   coffee-rails (~> 4.0.0)
   countries!
   country_select
-  dalli
   database_cleaner!
   doorkeeper (~> 0.7.0)
   factory_girl_rails

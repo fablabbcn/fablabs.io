@@ -14,6 +14,7 @@ namespace :monit do
     postgresql
     unicorn
     redis
+    memcached
     sidekiq
 
     syntax
@@ -26,6 +27,7 @@ namespace :monit do
   task(:unicorn, roles: :app) { monit_config "unicorn" }
   task(:redis, roles: :app) { monit_config "redis" }
   task(:sidekiq, roles: :app) { monit_config "sidekiq" }
+  task(:memcached, roles: :app) { monit_config "memcached" }
 
   %w[start stop restart syntax reload].each do |command|
     desc "Run Monit #{command} script"
