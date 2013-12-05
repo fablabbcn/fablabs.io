@@ -1,5 +1,7 @@
 User-Agent: *
 
+Sitemap: https://www.fablabs.io/sitemap.xml.gz
+
 Disallow: /harming/humans
 Disallow: /ignoring/human/orders
 Disallow: /harm/to/self

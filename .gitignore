@@ -25,3 +25,4 @@ words.yml
 .localeapp
 *.rdb
 rails_best_practices_output.html
+sitemap.x*
