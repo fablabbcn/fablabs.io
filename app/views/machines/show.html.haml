@@ -1,5 +1,4 @@
-- cache ["v1-machine#{@machine.id}", Machine.last_updated_at] do
-
+- cache ["v2-machine#{@machine.id}", Machine.last_updated_at] do
   .row
     .columns.large-12
       = render "breadcrumbs"
@@ -42,7 +41,7 @@
       -# = render @machine.discussions
       -# = link_to "Start a new Discussion", new_machine_discussion_path(@machine)
 
-  .row
-    .columns.large-12
-      - if current_or_null_user.can_update?(@machine)
-        = link_to "Edit", edit_machine_path(@machine), class: 'button'
+.row
+  .columns.large-12
+    - if current_or_null_user.can_update?(@machine)
+      = link_to "Edit", edit_machine_path(@machine), class: 'button'
