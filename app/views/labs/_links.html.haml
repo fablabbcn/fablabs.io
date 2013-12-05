@@ -2,4 +2,7 @@
   .heading External Links
   %ul.lab-links
     - links.each do |link|
-      %li= link_to link.url, link.url
+      %li.lab-link
+        = link_to link.url do
+          = favicon link.url
+          = link.url

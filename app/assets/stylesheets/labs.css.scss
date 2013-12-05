@@ -2,6 +2,13 @@
 
 $sea-blue: #98BCDA;
 
+li.lab-link {
+  a {
+    display: block;
+    line-height: 20px;
+  }
+}
+
 .content {
   border-right: 1px solid #CCC;
 }

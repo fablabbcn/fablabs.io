@@ -10,6 +10,16 @@ module ApplicationHelper
     controller.class.parent == Backstage
   end
 
+  def favicon url
+    icon = URI::join(url, 'favicon.ico').to_s
+    ['facebook.com','twitter.com','youtube.com','picasaweb.google.com','flickr.com','pinterest.com','github.com','vimeo.com', 'fablabbcn.org'].each do |s|
+      if icon.match(/\/\/(www\.)?#{s}\/favicon\.ico/)
+        return image_tag hocho(icon, "o=t&q=80&d=16x16"), width: 16, height: 16
+      end
+    end
+    content_tag :div, "", style: "width: 16px; height: 16px; display: inline-block;"
+  end
+
   def hocho(img, options)
     return if img.blank?
     url = "https://davinci.fablabs.io"
