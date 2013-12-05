@@ -1,15 +1,18 @@
-- cache ["v1", lab] do
-  = content_tag_for :div, lab, class: 'media' do
+- cache ["v2", lab] do
+  = content_tag_for :div, lab, class: 'media', itemscope: true, itemtype: "http://data-vocabulary.org/Organization" do
     .img.pull-left
       = link_to lab do
-        = image_tag hocho(lab.avatar, "o=t&q=80&d=100x100&"), class: 'med avatar'
+        = image_tag hocho(lab.avatar, "o=t&q=80&d=100x100&"), class: 'med avatar', itemprop: "logo"
     .media-body
-      = link_to lab, lab, class: 'name'
+      = link_to lab, lab, class: 'name', itemprop: "name"
       .lab-location
         - if lab.short_address(!params[:country]).present?
-          = fa_icon "map-marker", text: lab.short_address(!params[:country])
+          = fa_icon "map-marker"
+          %span.short_address{itemprop: "addressLocality"}= lab.short_address(!params[:country])
         - if lab.email.present?
-          = fa_icon "envelope-o", text: mail_to(lab.email, lab.email)
+          = fa_icon "envelope-o"
+          %span.email= mail_to(lab.email, lab.email)
         - if lab.phone.present?
-          = fa_icon "phone", text: lab.phone
-      %p.lab-blurb.truncate= lab.blurb
+          = fa_icon "phone"
+          %span.telephone{itemprop: "telephone"}= lab.phone
+      %p.lab-blurb.truncate{itemprop: "description"}= lab.blurb

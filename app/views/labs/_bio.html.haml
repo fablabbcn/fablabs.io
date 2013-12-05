@@ -1,27 +1,19 @@
 = link_to lab do
-  = image_tag hocho(lab.avatar, "o=t&q=80&d=300x300&"), class: 'big avatar'
+  = image_tag hocho(lab.avatar, "o=t&q=80&d=300x300&"), class: 'big avatar', itemprop: "logo"
   -# = image_tag lab.avatar, width: 100, class: 'big-avatar'
 
 = title lab.name
 .lab-contact-details
-  .lab-address= lab.formatted_address
+  .lab-address{itemprop: "address"}= lab.formatted_address
   - if lab.phone.present?
     .lab-phone
       %span.glyphicon.glyphicon-earphone
-      = lab.phone
+      %span{itemprop: "telephone"}= lab.phone
   - if lab.email.present?
     .lab-email
       %span.glyphicon.glyphicon-envelope
-      = mail_to lab.email, lab.email
+      %span{itemprop: "email"}= mail_to lab.email, lab.email
 
--# - if @lab.needs_admin?
--#   = link_to new_lab_admin_path(@lab), class: 'button success small' do
--#     = fa_icon "bullhorn"
--#     I should manage this lab
-
-  -# - if current_or_null_user.has_role? :superadmin
-  -#   - lab.current_state.events.keys.each do |event|
-  -#     = button_to "#{event.capitalize} Lab", {controller: 'labs', action: 'verify'}, method: :patch, class: 'button button-primary'
 - if current_or_null_user.can_update?(@lab)
   = link_to "#", data: { dropdown: 'drop' }, class: 'button dropdown small' do
     = fa_icon "edit", text: t('views.labs.show.manage_lab', default: "Manage Lab")
