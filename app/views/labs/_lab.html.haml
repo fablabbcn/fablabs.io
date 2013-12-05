@@ -1,4 +1,4 @@
-- cache ["v1.2", lab] do
+- cache ["v1.3", lab] do
   = content_tag_for :div, lab, class: 'media', itemscope: true, itemtype: "http://data-vocabulary.org/Organization" do
     .img.pull-left
       = link_to lab do
@@ -11,7 +11,7 @@
         - if lab.short_address(!params[:country]).present?
           = fa_icon "map-marker"
           %span.short_address{itemprop: "addressLocality"}= lab.short_address(!params[:country])
-          %span.country{itemprop: "country"}= lab.country_code
+          %span.microdata.country{itemprop: "country"}= lab.country_code
         - if lab.email.present?
           = fa_icon "envelope-o"
           %span.email= mail_to(lab.email, lab.email)
