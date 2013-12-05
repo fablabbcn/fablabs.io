@@ -12,15 +12,28 @@ namespace :monit do
 
     nginx
     postgresql
-    unicorn
-    redis
     memcached
+
+    unicorn
     sidekiq
 
+    redis
     syntax
     reload
   end
   after "deploy:setup", "monit:setup"
+
+  %w(monitor unmonitor).each do |verb|
+    desc "#{verb} monit"
+    task verb.to_sym do
+      run "#{sudo} /usr/bin/monit #{verb} unicorn_fablabs"
+      3.times.map{|n| run "#{sudo} /usr/bin/monit #{verb} unicorn_fablabs_worker_#{n}"}
+      run "#{sudo} /usr/bin/monit #{verb} sidekiq"
+    end
+  end
+
+  after "deploy:update_code", "monit:unmonitor"
+  after "deploy:cleanup", "monit:monitor"
 
   task(:nginx, roles: :web) { monit_config "nginx" }
   task(:postgresql, roles: :db) { monit_config "postgresql" }
