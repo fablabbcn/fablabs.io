@@ -17,4 +17,9 @@ SitemapGenerator::Sitemap.create do
     Lab.with_approved_state.find_each do |lab|
       add lab_path(lab, { locale: nil }), :lastmod => lab.updated_at
     end
+
+    add machines_path, :priority => 0.6, :changefreq => 'daily'
+    Machine.find_each do |machine|
+      add machine_path(machine, { locale: nil }), :lastmod => machine.updated_at
+    end
 end
