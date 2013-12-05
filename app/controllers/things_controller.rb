@@ -1,5 +1,5 @@
 class ThingsController < ApplicationController
-    include InheritedResourcesWithAuthority
+  include InheritedResourcesWithAuthority
 
   def build_resource_params
     [params.fetch(resource_class.name.parameterize.to_sym, {}).permit(

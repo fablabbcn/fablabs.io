@@ -1,32 +1,31 @@
--# #header-bg.hidden-xs{style: "background-image: url('#{@lab.header_image_src}');"}
 %div{itemscope: true, itemtype: "http://data-vocabulary.org/Organization"}
   .stripe
-    .row
-      .columns.large-12
-        = render "breadcrumbs", lab: @lab
+
+    - cache ["bread-v1", @lab] do
+      .row
+        .columns.large-12
+          = render "breadcrumbs", lab: @lab
+
     .row.header
-      .columns.large-4.bio
-        = render "bio", lab: @lab
-      .columns.large-8
-        = render "minimap", lab: @lab if @lab.longitude
+      .columns.large-4.bio= render "bio", lab: @lab
+      .columns.large-8= render "minimap", lab: @lab if @lab.longitude
 
   .row.main
     .columns.large-8.content
+      - cache ["desc-v1", @lab] do
+        .lab-description{itemprop: "description"}= simple_format @lab.description
+        - if @lab.header_image_src.present?
+          = image_tag hocho(@lab.header_image_src, "o=r&d=800"), class: 'big-picture', itemprop: "image"
 
-      .lab-description{itemprop: "description"}= simple_format @lab.description
+      = render("employees", lab: @lab)
 
-      - if @lab.header_image_src.present?
-        = image_tag hocho(@lab.header_image_src, "o=r&d=800"), class: 'big-picture', itemprop: "image"
-
-      = render "employees", lab: @lab
-
-      = render("machines", lab: @lab) if @lab.machines.any?
-      -# = render "discussions", lab: @lab
+      - cache ["machines-v1", @lab] do
+        = render("machines", lab: @lab)
 
     .columns.large-4.sidebar
 
-      = render "nearby", lab: @lab, nearby_labs: @nearby_labs
-      = render "links", links: @lab.links
-      = render "capabilities", capabilities: @lab.capabilities
-
-      -# = render "facilities", lab: @lab
+      - cache ["near#{@lab.id}-v1", Lab.last_updated_at] do
+        = render "nearby", lab: @lab, nearby_labs: @nearby_labs
+        - cache ["side-v1", @lab] do
+          = render "links", links: @lab.links
+          = render "capabilities", capabilities: @lab.capabilities

@@ -1,20 +1,22 @@
-= link_to lab do
-  = image_tag hocho(lab.avatar, "o=t&q=80&d=300x300&"), class: 'big avatar', itemprop: "logo"
-  -# = image_tag lab.avatar, width: 100, class: 'big-avatar'
+- cache ["bio-v1", lab] do
 
-= title lab.name
-%span.microdata{itemprop: "url"}= lab_url(lab, { locale: nil })
+  = link_to lab do
+    = image_tag hocho(lab.avatar, "o=t&q=80&d=300x300&"), class: 'big avatar', itemprop: "logo"
 
-.lab-contact-details
-  .lab-address{itemprop: "address"}= lab.formatted_address
-  - if lab.phone.present?
-    .lab-phone
-      %span.glyphicon.glyphicon-earphone
-      %span{itemprop: "telephone"}= lab.phone
-  - if lab.email.present?
-    .lab-email
-      %span.glyphicon.glyphicon-envelope
-      %span{itemprop: "email"}= mail_to lab.email, lab.email
+  = title lab.name
+
+  %span.microdata{itemprop: "url"}= lab_url(lab, { locale: nil })
+
+  .lab-contact-details
+    .lab-address{itemprop: "address"}= lab.formatted_address
+    - if lab.phone.present?
+      .lab-phone
+        %span.glyphicon.glyphicon-earphone
+        %span{itemprop: "telephone"}= lab.phone
+    - if lab.email.present?
+      .lab-email
+        %span.glyphicon.glyphicon-envelope
+        %span{itemprop: "email"}= mail_to lab.email, lab.email
 
 - if current_or_null_user.can_update?(@lab)
   = link_to "#", data: { dropdown: 'drop' }, class: 'button dropdown small' do
@@ -27,6 +29,3 @@
     %li
       = link_to lab_employees_path(@lab) do
         = fa_icon "group", text: t('views.labs.show.edit_employee_list', default: "Edit Employee List")
-    -# %li
-    -#   = link_to lab_admins_path(@lab) do
-    -#     = fa_icon "flash", text: t('views.labs.show.manage_admins', default: "Manage Admins")

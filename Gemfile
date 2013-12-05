@@ -3,6 +3,8 @@ source 'https://rubygems.org'
 # gem 'rubysl'
 # gem 'racc'
 # gem "dalli"
+gem 'slim'
+gem 'redis-rails'
 gem 'newrelic_rpm'
 gem 'sitemap_generator'
 gem "rack-cache"

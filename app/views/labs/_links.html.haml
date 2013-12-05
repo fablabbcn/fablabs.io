@@ -2,7 +2,8 @@
   .heading External Links
   %ul.lab-links
     - links.each do |link|
-      %li.lab-link
-        = link_to link.url do
-          = favicon link.url
-          %span.url{itemprop: "sameAs"}= link.url
+      - cache ["v1", link] do
+        %li.lab-link
+          = link_to link.url do
+            = favicon link.url
+            %span.url{itemprop: "sameAs"}= link.url

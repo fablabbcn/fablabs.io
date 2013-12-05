@@ -1,5 +1,5 @@
 class Link < ActiveRecord::Base
-  belongs_to :linkable, polymorphic: true
+  belongs_to :linkable, polymorphic: true, touch: true
   # validates_presence_of :lab
   validates_presence_of :url
   validates_uniqueness_of :url, scope: [:linkable_id, :linkable_type]

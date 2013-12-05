@@ -1,44 +1,48 @@
-.row
-  .columns.large-12
-    = render "breadcrumbs"
-.row
-  .columns.large-12
-    = @machine.brand
-    = title @machine
+- cache ["v1-machine#{@machine.id}", Machine.last_updated_at] do
 
-    - if @machine.inventory_item?
-      = link_to "http://fab.cba.mit.edu/about/fab/inv.html", class: "button tiny", data: { tooltip: true }, title: "This is included in the Official Fab Lab hardware specification" do
-        = fa_icon "tag"
-        Fab Lab Inventory Item
+  .row
+    .columns.large-12
+      = render "breadcrumbs"
+  .row
+    .columns.large-12
+      = @machine.brand
+      = title @machine
 
-    - @machine.tags.each do |tag|
-      = link_to tag, machines_path(tag: tag)
+      - if @machine.inventory_item?
+        = link_to "http://fab.cba.mit.edu/about/fab/inv.html", class: "button tiny", data: { tooltip: true }, title: "This is included in the Official Fab Lab hardware specification" do
+          = fa_icon "tag"
+          Fab Lab Inventory Item
 
-    = simple_format(@machine.description)
-    -# = link_to @machine.brand, @machine.brand
+      - @machine.tags.each do |tag|
+        = link_to tag, machines_path(tag: tag)
 
-.row
-  .columns.large-8
-    -# = image_tag @machine.photo_src
-    = image_tag hocho(@machine.photo_src, "o=r&q=80&d=800x800>")
+      = simple_format(@machine.description)
+      -# = link_to @machine.brand, @machine.brand
 
-  .columns.large-4
+  .row
+    .columns.large-8
+      -# = image_tag @machine.photo_src
+      = image_tag hocho(@machine.photo_src, "o=r&q=80&d=800x800>")
+
+    .columns.large-4
 
 
-    - if @machine.labs.any?
-      .heading Operating at
-      %ul
-        - @machine.labs.with_approved_state.each do |lab|
-          %li= link_to lab, lab
+      - if @machine.labs.any?
+        .heading Operating at
+        %ul
+          - @machine.labs.with_approved_state.each do |lab|
+            %li= link_to lab, lab
 
-    .heading Revisions
-    %ol
-      - @machine.root.subtree.arrange_as_array.flatten.each do |node|
-        %li= (node == @machine) ? node : link_to(node, node)
+      .heading Revisions
+      %ol
+        - @machine.root.subtree.arrange_as_array.flatten.each do |node|
+          %li= (node == @machine) ? node : link_to(node, node)
 
-    -# %h4 Discussions
-    -# = render @machine.discussions
-    -# = link_to "Start a new Discussion", new_machine_discussion_path(@machine)
+      -# %h4 Discussions
+      -# = render @machine.discussions
+      -# = link_to "Start a new Discussion", new_machine_discussion_path(@machine)
 
-- if current_or_null_user.can_update?(@machine)
-  = link_to "Edit", edit_machine_path(@machine)
+  .row
+    .columns.large-12
+      - if current_or_null_user.can_update?(@machine)
+        = link_to "Edit", edit_machine_path(@machine), class: 'button'

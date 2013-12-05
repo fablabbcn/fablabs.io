@@ -1,5 +1,5 @@
 class Lab < ActiveRecord::Base
-
+  include RocketPants::Cacheable
   include Authority::Abilities
   self.authorizer_name = 'LabAuthorizer'
   resourcify
@@ -172,6 +172,10 @@ class Lab < ActiveRecord::Base
         user.add_role :admin, self
       end
     end
+  end
+
+  def self.last_updated_at
+    self.select(:updated_at).order('updated_at DESC').first
   end
 
 private

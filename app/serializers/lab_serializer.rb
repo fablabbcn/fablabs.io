@@ -1,6 +1,6 @@
 class LabSerializer < ActiveModel::Serializer
 
-  # cached
+  cached
 
   attributes :id,
       :name,
@@ -39,8 +39,9 @@ class LabSerializer < ActiveModel::Serializer
     lab_url(object)
   end
 
-  # def cache_key
-  #   [object, scope]
-  # end
+  def cache_key
+    object
+    # [object, scope]
+  end
 
 end
