@@ -14,7 +14,7 @@ SitemapGenerator::Sitemap.create do
   #           :lastmod => Time.now, :host => default_host
 
     add labs_path, :priority => 0.7, :changefreq => 'daily'
-    Lab.find_each do |lab|
+    Lab.with_approved_state.find_each do |lab|
       add lab_path(lab, { locale: nil }), :lastmod => lab.updated_at
     end
 end
