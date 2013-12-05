@@ -1,14 +1,15 @@
-= content_tag_for :div, lab, class: 'media' do
-  .img.pull-left
-    = link_to lab do
-      = image_tag hocho(lab.avatar, "o=t&q=80&d=100x100&"), class: 'med avatar'
-  .media-body
-    = link_to lab, lab, class: 'name'
-    .lab-location
-      - if lab.short_address(!params[:country]).present?
-        = fa_icon "map-marker", text: lab.short_address(!params[:country])
-      - if lab.email.present?
-        = fa_icon "envelope-o", text: mail_to(lab.email, lab.email)
-      - if lab.phone.present?
-        = fa_icon "phone", text: lab.phone
-    %p.lab-blurb.truncate= lab.blurb
+- cache ["v1", lab] do
+  = content_tag_for :div, lab, class: 'media' do
+    .img.pull-left
+      = link_to lab do
+        = image_tag hocho(lab.avatar, "o=t&q=80&d=100x100&"), class: 'med avatar'
+    .media-body
+      = link_to lab, lab, class: 'name'
+      .lab-location
+        - if lab.short_address(!params[:country]).present?
+          = fa_icon "map-marker", text: lab.short_address(!params[:country])
+        - if lab.email.present?
+          = fa_icon "envelope-o", text: mail_to(lab.email, lab.email)
+        - if lab.phone.present?
+          = fa_icon "phone", text: lab.phone
+      %p.lab-blurb.truncate= lab.blurb

@@ -2,8 +2,8 @@ class Employee < ActiveRecord::Base
   include Authority::Abilities
   self.authorizer_name = 'EmployeeAuthorizer'
 
-  belongs_to :user
-  belongs_to :lab
+  belongs_to :user, touch: true
+  belongs_to :lab, touch: true
   validates_presence_of :user, :lab, :job_title
   validates_uniqueness_of :user_id, scope: :lab_id
 
