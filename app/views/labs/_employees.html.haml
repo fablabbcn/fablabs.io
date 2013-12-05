@@ -15,7 +15,7 @@
           .person-details
             .person-role{itemprop: "jobTitle"}= employee.job_title
             - if employee.email.present?
-              .email= mail_to employee.email, class: 'person-email'
+              .email= mail_to employee.email, employee.email
             - if employee.phone.present?
               .phone{itemprop: "telephone"}= employee.phone
   %li.person
