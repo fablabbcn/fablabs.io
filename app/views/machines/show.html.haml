@@ -14,7 +14,7 @@
     - @machine.tags.each do |tag|
       = link_to tag, machines_path(tag: tag)
 
-    = simple_format(@machine.description.html_safe)
+    = simple_format(@machine.description)
     -# = link_to @machine.brand, @machine.brand
 
 .row

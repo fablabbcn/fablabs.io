@@ -53,7 +53,7 @@ class LabsController < ApplicationController
       return redirect_to root_path, notice: "Lab not found"
     end
     # @people = [@lab.creator]
-    @nearby_labs = @lab.nearby_labs(false, 1000)
+    @nearby_labs = @lab.with_approved_state.nearby_labs(false, 1000)
     @nearby_labs = @nearby_labs.limit(5) if @nearby_labs
     authorize_action_for @lab
   end
