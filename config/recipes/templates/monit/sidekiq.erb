@@ -1,5 +1,5 @@
 check process sidekiq with pidfile <%= sidekiq_pid %>
   start program = "/etc/init.d/sidekiq start"
   stop program = "/etc/init.d/sidekiq stop"
-  # if totalmem is greater than 700 MB for 2 cycles then restart
+  if totalmem is greater than 700 MB for 2 cycles then restart
   if 5 restarts within 5 cycles then timeout
