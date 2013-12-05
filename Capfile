@@ -1,3 +1,4 @@
+Dir['vendor/plugins/*/recipes/*.rb'].each { |plugin| load(plugin) }
 load 'deploy'
 # Uncomment if you are using Rails' asset pipeline
 load 'deploy/assets'

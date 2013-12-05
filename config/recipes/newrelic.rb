@@ -1,3 +1,5 @@
+require 'new_relic/recipes'
+
 namespace :newrelic do
   desc "Install newrelic server monitor"
   task :install, roles: :app do
@@ -9,3 +11,8 @@ namespace :newrelic do
     run "#{sudo} /etc/init.d/newrelic-sysmond start"
   end
 end
+
+after "deploy", "newrelic:notice_deployment"
+after "deploy:update", "newrelic:notice_deployment"
+after "deploy:migrations", "newrelic:notice_deployment"
+after "deploy:cold", "newrelic:notice_deployment"
