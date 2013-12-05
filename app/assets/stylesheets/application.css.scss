@@ -33,7 +33,9 @@ table.table {
     margin: 0;
   }
 }
-
+.microdata {
+  display: none;
+}
 .button[type=submit] {
   background: $success-color;
 }

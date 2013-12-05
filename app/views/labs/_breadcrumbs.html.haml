@@ -4,4 +4,6 @@
     = link_to labs_path(country: lab.country_code) do
       %span.flag{class: "flag-#{lab.country_code.downcase}"}
       = lab.country.name
-  %li{class: ("current" if action_name == "show")}= link_to lab, lab
+      %span.microdata{itemprop: "country"}= lab.country_code
+  %li{class: ("current" if action_name == "show")}
+    = link_to lab, lab

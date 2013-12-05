@@ -3,6 +3,8 @@
   -# = image_tag lab.avatar, width: 100, class: 'big-avatar'
 
 = title lab.name
+%span.microdata{itemprop: "url"}= lab_url(lab, { locale: nil })
+
 .lab-contact-details
   .lab-address{itemprop: "address"}= lab.formatted_address
   - if lab.phone.present?
