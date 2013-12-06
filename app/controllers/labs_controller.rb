@@ -54,7 +54,7 @@ class LabsController < ApplicationController
     end
     # @people = [@lab.creator]
     @employees = @lab.employees.includes(:user).active.order('employees.id ASC')
-    @machines = @lab.machines.includes(:thing)
+    @machines = @lab.machines
     @nearby_labs = @lab.nearby_labs(false, 1000)
     @nearby_labs = @nearby_labs.limit(5) if @nearby_labs
     authorize_action_for @lab
