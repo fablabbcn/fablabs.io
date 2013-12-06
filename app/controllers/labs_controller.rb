@@ -48,7 +48,7 @@ class LabsController < ApplicationController
 
   def show
     begin
-      @lab = Lab.includes(:employees, facilities: :things).with_approved_state.friendly.find(params[:id])
+      @lab = Lab.with_approved_state.friendly.find(params[:id])
     rescue ActiveRecord::RecordNotFound
       return redirect_to root_path, notice: "Lab not found"
     end
