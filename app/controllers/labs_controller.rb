@@ -48,11 +48,13 @@ class LabsController < ApplicationController
 
   def show
     begin
-      @lab = Lab.with_approved_state.friendly.find(params[:id])
+      @lab = Lab.includes(:employees, facilities: :things).with_approved_state.friendly.find(params[:id])
     rescue ActiveRecord::RecordNotFound
       return redirect_to root_path, notice: "Lab not found"
     end
     # @people = [@lab.creator]
+    @employees = @lab.employees.includes(:user).active.order('employees.id ASC')
+    @machines = @lab.machines.includes(:thing)
     @nearby_labs = @lab.nearby_labs(false, 1000)
     @nearby_labs = @nearby_labs.limit(5) if @nearby_labs
     authorize_action_for @lab

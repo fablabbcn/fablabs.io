@@ -4,23 +4,22 @@
     = link_to "edit", lab_employees_path(lab), id: "edit-employees"
 
 %ul.large-block-grid-2
-  - cache ["employees-v2", @lab] do
-    - lab.employees.active.order('employees.id ASC').each do |employee|
-      - cache ["v1", employee] do
-        %li.person{itemscope: true, itemtype: "http://data-vocabulary.org/Person"}
-          .media
-            .pull-left
-              = image_tag hocho(employee.user.avatar, "o=t&q=80&d=90x90"), class: 'avatar med'
-            .media-body
-              = link_to employee.user, class: 'person-name' do
-                %span.first_name{itemprop: "givenName"}= employee.user.first_name
-                %span.last_name{itemprop: "familyName"}= employee.user.last_name
-              .person-details
-                .person-role{itemprop: "jobTitle"}= employee.job_title
-                - if employee.email.present?
-                  .email= mail_to employee.email, employee.email
-                - if employee.phone.present?
-                  .phone{itemprop: "telephone"}= employee.phone
+  - employees.each do |employee|
+    - cache ["v1", employee] do
+      %li.person{itemscope: true, itemtype: "http://data-vocabulary.org/Person"}
+        .media
+          .pull-left
+            = image_tag hocho(employee.user.avatar, "o=t&q=80&d=90x90"), class: 'avatar med'
+          .media-body
+            = link_to employee.user, class: 'person-name' do
+              %span.first_name{itemprop: "givenName"}= employee.user.first_name
+              %span.last_name{itemprop: "familyName"}= employee.user.last_name
+            .person-details
+              .person-role{itemprop: "jobTitle"}= employee.job_title
+              - if employee.email.present?
+                .email= mail_to employee.email, employee.email
+              - if employee.phone.present?
+                .phone{itemprop: "telephone"}= employee.phone
 
   %li.person
     - if current_user

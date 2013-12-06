@@ -1,10 +1,8 @@
 %div{itemscope: true, itemtype: "http://data-vocabulary.org/Organization"}
   .stripe
-
-    - cache ["bread-v1", @lab] do
-      .row
-        .columns.large-12
-          = render "breadcrumbs", lab: @lab
+    .row
+      .columns.large-12
+        = render "breadcrumbs", lab: @lab
 
     .row.header
       .columns.large-4.bio= render "bio", lab: @lab
@@ -12,20 +10,16 @@
 
   .row.main
     .columns.large-8.content
-      - cache ["desc-v1", @lab] do
-        .lab-description{itemprop: "description"}= simple_format @lab.description
-        - if @lab.header_image_src.present?
-          = image_tag hocho(@lab.header_image_src, "o=r&d=800"), class: 'big-picture', itemprop: "image"
-
-      = render("employees", lab: @lab)
-
-      - cache ["machines-v1", @lab] do
-        = render("machines", lab: @lab)
+      .lab-description{itemprop: "description"}= simple_format @lab.description
+      - if @lab.header_image_src.present?
+        = image_tag hocho(@lab.header_image_src, "o=r&d=800"), class: 'big-picture', itemprop: "image"
+      = render("employees", lab: @lab, employees: @employees)
+      - if @machines.length > 0
+        = render("machines", lab: @lab, machines: @machines)
 
     .columns.large-4.sidebar
-
-      - cache ["near#{@lab.id}-v1", Lab.last_updated_at] do
-        = render "nearby", lab: @lab, nearby_labs: @nearby_labs
-        - cache ["side-v1", @lab] do
-          = render "links", links: @lab.links
+      = render "nearby", lab: @lab, nearby_labs: @nearby_labs
+      - cache ["side-v2", @lab] do
+        = render "links", links: @lab.links
+        - if @lab.capabilities.length > 0
           = render "capabilities", capabilities: @lab.capabilities
