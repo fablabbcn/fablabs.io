@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131203165652) do
+ActiveRecord::Schema.define(version: 20131206182044) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -163,6 +163,7 @@ ActiveRecord::Schema.define(version: 20131203165652) do
 
   add_index "labs", ["creator_id"], name: "index_labs_on_creator_id", using: :btree
   add_index "labs", ["referee_id"], name: "index_labs_on_referee_id", using: :btree
+  add_index "labs", ["slug"], name: "index_labs_on_slug", unique: true, using: :btree
 
   create_table "links", force: true do |t|
     t.integer  "linkable_id"
