@@ -8,6 +8,15 @@ class Lab < ActiveRecord::Base
   include PgSearch
   pg_search_scope :search_by_name, :against => [:name, :description, :reverse_geocoded_address]
 
+  def self.to_csv(options = {})
+    CSV.generate(options) do |csv|
+      csv << column_names
+      all.each do |lab|
+        csv << lab.attributes.values_at(*column_names)
+      end
+    end
+  end
+
   extend FriendlyId
   friendly_id :slug_candidates, use: :slugged
   def slug_candidates
