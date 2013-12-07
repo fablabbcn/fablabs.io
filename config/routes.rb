@@ -93,10 +93,23 @@ Fablabs::Application.routes.draw do
   constraints subdomain: 'api' do
     use_doorkeeper
     get '/' => 'static#api'
-    api versions: 1, module: "api/v1" do
-      get 'me' => 'users#show'
-      resources :labs, only: [:index]
+    namespace :api, path: '' do
+      namespace :v0 do
+        get 'me' => 'users#me'
+        resources :labs do
+          get :map, on: :collection
+        end
+      end
     end
   end
+
+  # constraints subdomain: 'api' do
+  #   use_doorkeeper
+  #   get '/' => 'static#api'
+  #   api versions: 1, module: "api/v1" do
+  #     get 'me' => 'users#show'
+  #     resources :labs, only: [:index]
+  #   end
+  # end
 
 end
