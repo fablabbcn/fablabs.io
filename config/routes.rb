@@ -1,6 +1,4 @@
 Fablabs::Application.routes.draw do
-
-  use_doorkeeper
   require 'sidekiq/web'
   require "admin_constraint"
   mount Sidekiq::Web, at: '/sidekiq', constraints: AdminConstraint.new

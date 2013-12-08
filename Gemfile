@@ -5,7 +5,7 @@ source 'https://rubygems.org'
 # gem "dalli"
 gem 'slim'
 gem 'redis-rails'
-gem 'newrelic_rpm'
+# gem 'newrelic_rpm'
 gem 'sitemap_generator'
 gem "rack-cache"
 gem "airbrake"
@@ -15,38 +15,38 @@ gem 'sort_alphabetical'
 gem 'rocket_pants', '~> 1.0'
 gem 'twitter'
 gem 'sinatra', '>= 1.3.0', :require => nil
-gem 'sidekiq'
+gem 'sidekiq', '1.2.1'
 gem 'nest'
 gem 'rails', '4.0.1'
 gem 'inherited_resources'
 gem 'timezone'
 gem 'bitmask_attributes'
 # gem 'jquery-turbolinks'
-gem 'ransack', github: "ernie/ransack"
-gem 'authority', github: 'nathanl/authority'
-gem 'rolify', github: 'EppO/rolify'
-gem 'font-awesome-rails', github: 'bokmann/font-awesome-rails'
+gem 'ransack'#, github: "ernie/ransack"
+gem 'authority'#, github: 'nathanl/authority'
+gem 'rolify'#, github: 'EppO/rolify'
+gem 'font-awesome-rails'#, github: 'bokmann/font-awesome-rails'
 # gem 'compass-rails' # you need this or you get an err
 gem 'zurb-foundation', '~> 4.0.0'
 gem 'acts-as-taggable-on'
 gem 'kaminari'
-gem 'ancestry', github: 'stefankroes/ancestry'
-gem 'geocoder', github: 'alexreisner/geocoder'
+gem 'ancestry'#, github: 'stefankroes/ancestry'
+gem 'geocoder'#, github: 'alexreisner/geocoder'
 gem 'workflow', github: 'geekq/workflow'
 gem 'bourbon'
-gem "cocoon", github: 'nathanvda/cocoon'
+gem "cocoon"#, github: 'nathanvda/cocoon'
 gem "pg_search"
 gem "pg"
 gem 'simple_form'
-gem 'countries', github: "hexorx/countries"
+gem 'countries'#, github: "hexorx/countries"
 gem 'country_select'
 gem 'active_model_serializers'
 
 gem 'sass-rails', '~> 4.0.0'
-gem 'haml-rails'
+gem 'haml-rails', '0.5.1'
 gem 'uglifier', '>= 1.3.0'
 
-gem 'database_cleaner', github: 'bmabey/database_cleaner'
+gem 'database_cleaner'#, github: 'bmabey/database_cleaner'
 gem 'letter_opener'
 gem 'coffee-rails', '~> 4.0.0'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
@@ -64,7 +64,7 @@ gem 'jquery-rails'
 gem 'jbuilder', '~> 1.2'
 
 gem 'figaro'
-gem 'friendly_id', github: 'norman/friendly_id'
+gem 'friendly_id'#, github: 'norman/friendly_id'
 gem 'ffaker'
 gem 'doorkeeper', '~> 0.7.0'
 
@@ -86,7 +86,7 @@ group :test do
   gem "selenium-webdriver"
   # gem "nyan-cat-formatter"
   gem "capybara"
-  gem "guard-rspec"
+  gem "guard-rspec", '3.1.0'
   gem "shoulda-matchers"
   gem "codeclimate-test-reporter", require: nil
 end
