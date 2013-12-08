@@ -1,5 +1,6 @@
 Fablabs::Application.routes.draw do
 
+  use_doorkeeper
   require 'sidekiq/web'
   require "admin_constraint"
   mount Sidekiq::Web, at: '/sidekiq', constraints: AdminConstraint.new
@@ -91,9 +92,9 @@ Fablabs::Application.routes.draw do
   end
 
   constraints subdomain: 'api' do
-    use_doorkeeper
+    # use_doorkeeper
     get '/' => 'static#api'
-    namespace :api, path: '' do
+    namespace :api, path: '', defaults: { format: 'json' } do
       namespace :v0 do
         get 'me' => 'users#me'
         resources :labs do

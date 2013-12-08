@@ -11,7 +11,8 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:password])
       # cookies.permanent[:user_id] = { value: user.id, domain: '.fablabs.dev' }
       session[:user_id] = user.id
-      redirect_to URI.parse(params[:goto]).path, flash: { success: "Signed in!" }, only_path: true
+      # redirect_to URI.parse(params[:goto]).path, flash: { success: "Signed in!" }, only_path: true
+      redirect_to params[:goto], flash: { success: "Signed in!" }
     else
       flash.now[:error] = "Invalid email or password"
       render "new"

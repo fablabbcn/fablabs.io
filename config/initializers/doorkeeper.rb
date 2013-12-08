@@ -51,18 +51,18 @@ Doorkeeper.configure do
   # Check out the wiki for more information on customization
   # access_token_methods :from_bearer_authorization, :from_access_token_param, :from_bearer_param
 
-  # Change the test redirect uri for client apps
-  # When clients register with the following redirect uri, they won't be redirected to any server and the authorization code will be displayed within the provider
-  # The value can be any string. Use nil to disable this feature. When disabled, clients must provide a valid URL
-  # (Similar behaviour: https://developers.google.com/accounts/docs/OAuth2InstalledApp#choosingredirecturi)
-  #
-  test_redirect_uri nil#'urn:ietf:wg:oauth:2.0:oob'
+  # # Change the test redirect uri for client apps
+  # # When clients register with the following redirect uri, they won't be redirected to any server and the authorization code will be displayed within the provider
+  # # The value can be any string. Use nil to disable this feature. When disabled, clients must provide a valid URL
+  # # (Similar behaviour: https://developers.google.com/accounts/docs/OAuth2InstalledApp#choosingredirecturi)
+  # #
+  # test_redirect_uri nil#'urn:ietf:wg:oauth:2.0:oob'
 
-  # Under some circumstances you might want to have applications auto-approved,
-  # so that the user skips the authorization step.
-  # For example if dealing with trusted a application.
-  skip_authorization do |resource_owner, client|
-    true
-    # client.superapp? or resource_owner.admin?
-  end
+  # # Under some circumstances you might want to have applications auto-approved,
+  # # so that the user skips the authorization step.
+  # # For example if dealing with trusted a application.
+  # skip_authorization do |resource_owner, client|
+  #   true
+  #   # client.superapp? or resource_owner.admin?
+  # end
 end

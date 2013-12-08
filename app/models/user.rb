@@ -54,7 +54,7 @@ class User < ActiveRecord::Base
     else
       default_url = "https://www.fablabs.io/default-user-avatar.png"
       gravatar_id = Digest::MD5.hexdigest(email.downcase)
-      "https://gravatar.com/avatar/1#{gravatar_id}.png?s=150&d=#{CGI.escape(default_url)}"
+      "https://gravatar.com/avatar/#{gravatar_id}.png?s=150&d=#{CGI.escape(default_url)}"
     end
   end
 

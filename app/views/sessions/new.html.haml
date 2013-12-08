@@ -13,7 +13,7 @@
 
     = form_tag sessions_path do
       -# = simple_form_for :signin, { url: sessions_path } do
-      = hidden_field_tag :goto, params[:goto]
+      = hidden_field_tag :goto, params[:goto].html_safe
       .row
         .columns.large-12
           = label_tag :email_or_username, "Email or Username", class: 'hide'
