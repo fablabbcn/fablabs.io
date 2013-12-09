@@ -15,7 +15,12 @@ class UsersController < ApplicationController
       # cookies.permanent[:user_id] = { value: @user.id, domain: '.fablabs.dev' }
       session[:user_id] = @user.id
       track_activity @user
-      redirect_to root_path, flash: { success: "Thanks for signing up. Please check your email to complete your registration." }
+
+      if params[:goto]
+        redirect_to params[:goto], flash: { success: "Signed in!" }
+      else
+        redirect_to root_path, flash: { success: "Thanks for signing up. Please check your email to complete your registration." }
+      end
     else
       render 'new'
     end

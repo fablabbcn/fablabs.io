@@ -65,7 +65,7 @@ FactoryGirl.define do
     county "County"
     country_code "es"
     kind 1
-    # referee
+    referee_id 1
     creator
   end
 

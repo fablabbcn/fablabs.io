@@ -27,4 +27,4 @@
 
       .actions= submit_tag "Sign in", class: 'button'
 
-      = link_to "Not yet a member? <strong>Sign up</strong>".html_safe, signup_path
+      = link_to "Not yet a member? <strong>Sign up</strong>".html_safe, signup_url(subdomain: 'www', goto: params[:goto])

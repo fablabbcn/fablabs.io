@@ -21,13 +21,14 @@
 
 data = [
   {x: 27, y: 28, title: 'Large Format Machining', body: ''}
-  {x: 63, y: 39, title: 'Lasercutter', body: ''}
-  {x: 9, y: 46, title: 'Electronics', body: ''}
-  {x: 44, y: 78, title: 'Computing', body: ''}
+  {x: 39, y: 34, title: 'Molding and Casting', body: ''}
+  {x: 63, y: 39, title: 'Laser Cutting & Engraving', body: ''}
+  {x: 9, y: 46, title: 'Electronics Production', body: ''}
+  {x: 44, y: 78, title: 'Programming and Design', body: ''}
   {x: 66, y: 77, title: '3D Scanning and Printing', body: ''}
   {x: 77, y: 37, title: 'Video Conferencing', body: ''}
-  {x: 89, y: 65, title: 'Vinyl Cutter', body: ''}
-  {x: 88, y: 84, title: 'Precision Machining', body: ''}
+  {x: 89, y: 60, title: 'Vinyl Cutting', body: ''}
+  {x: 88, y: 84, title: 'Precision Milling', body: ''}
 ]
 
 jQuery ->
