@@ -48,7 +48,8 @@ class Lab < ActiveRecord::Base
   belongs_to :creator, class_name: 'User'
   belongs_to :referee, class_name: 'Lab'
 
-  validates_presence_of :name, :country_code, :slug, :kind, :address_1#, :creator
+  validates_presence_of :name, :country_code, :slug#, :creator
+  validates_presence_of :address_1, :kind, on: :create
 
   validates :slug, format: {:with => /\A[a-zA-Z0-9]+\z/ }, allow_nil: true, allow_blank: true, length: { minimum: 3 }
   validates_format_of :email, :with => /\A(.+)@(.+)\z/, allow_blank: true

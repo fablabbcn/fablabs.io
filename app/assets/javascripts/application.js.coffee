@@ -28,6 +28,7 @@
 #= require_tree .
 
 initEvents = ->
+
   $('textarea').autosize({append: "\n"})
   $(document).foundation()
   $("select").select2()
@@ -35,8 +36,6 @@ initEvents = ->
   $('*[data-limit]').each ->
     $(this).limit parseInt($(this).data('limit')), $(this).data('counter')
 
-  # $('.truncate > p').succinct
-  #   size: 200
 
 document.addEventListener "page:load", initEvents
 $(document).ready initEvents
