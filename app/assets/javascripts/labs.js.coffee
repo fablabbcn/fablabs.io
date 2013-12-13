@@ -50,9 +50,8 @@ ready = ->
     $("input#lab_longitude").val latLng.lng()
   .bind "geocode:result", (event, result) ->
     $('.c-labs.a-new #lab_address_1').focus()
-    $(".c-labs.a-new input#lab_latitude").val result.geometry.location.ob
-    $(".c-labs.a-new input#lab_longitude").val result.geometry.location.pb
-
+    $("input#lab_latitude").val result.geometry.location.lat()
+    $("input#lab_longitude").val result.geometry.location.lng()
 
   if $('body').hasClass 'c-labs a-map'
 
@@ -79,7 +78,7 @@ ready = ->
 
     $.get "/labs.json?per=1000", (labs) ->
       for lab in labs.labs
-        if lab.latitude
+        if lab.latitude and lab.longitude
           icon = L.icon({
             iconUrl: window.mapIcons['fablab']
             iconSize:     [35, 35]
