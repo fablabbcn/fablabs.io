@@ -2,6 +2,7 @@
 require File.expand_path('../application', __FILE__)
 require "bundler/capistrano"
 require "sidekiq/capistrano"
+require "whenever/capistrano"
 # require 'capistrano/maintenance'
 
 set :rails_env, "production"

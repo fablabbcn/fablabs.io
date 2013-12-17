@@ -120,6 +120,7 @@ private
       :phone,
       :email,
       :application_notes,
+      :tools_list,
       capabilities: [ ],
       links_attributes: [ :id, :link_id, :url, '_destroy' ],
       employees_attributes: [ :id, :job_title, :description ]
