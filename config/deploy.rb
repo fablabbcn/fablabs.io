@@ -2,6 +2,7 @@
 require File.expand_path('../application', __FILE__)
 require "bundler/capistrano"
 require "sidekiq/capistrano"
+set :whenever_command, "bundle exec whenever"
 require "whenever/capistrano"
 # require 'capistrano/maintenance'
 
