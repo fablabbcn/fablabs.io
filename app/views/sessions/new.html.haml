@@ -23,7 +23,7 @@
           = label_tag :password, nil, class: 'hide'
           = password_field_tag :password, nil, placeholder: 'Password'
         .columns.small-3.forgot
-          = link_to "Forgot?", new_recovery_path
+          = link_to "Forgot?", new_recovery_url(subdomain: 'www')
 
       .actions= submit_tag "Sign in", class: 'button'
 
