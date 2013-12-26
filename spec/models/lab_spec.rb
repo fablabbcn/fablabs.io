@@ -8,6 +8,7 @@ describe Lab do
   it { should have_many(:discussions) }
   it { should have_many(:employees) }
   it { should have_many(:links) }
+  it { should have_many(:events) }
   it { should have_many(:referred_labs) }
   it { should have_many(:role_applications) }
   it { should have_many(:facilities) }

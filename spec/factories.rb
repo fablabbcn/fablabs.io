@@ -2,6 +2,16 @@
 
 FactoryGirl.define do
 
+  factory :event do
+    # type ""
+    sequence(:name) { |n| "Event #{n}" }
+    description "An Open Day"
+    lab
+    creator
+    starts_at { Time.zone.now + 1.day }
+    ends_at { Time.zone.now + 1.day + 2.hours }
+  end
+
   factory :activity do
     actor
     creator

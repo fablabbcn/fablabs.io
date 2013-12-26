@@ -1,4 +1,6 @@
 Fablabs::Application.routes.draw do
+  resources :events
+
   use_doorkeeper
   require 'sidekiq/web'
   require "admin_constraint"

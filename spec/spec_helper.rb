@@ -23,6 +23,8 @@ ActiveRecord::Migration.check_pending! if defined?(ActiveRecord::Migration)
 
 RSpec.configure do |config|
 
+  Zonebie.set_random_timezone
+
   config.include Features::SessionHelpers, type: :feature
   # Capybara.app_host = "fablabs.dev"
   # ## Mock Framework

@@ -41,8 +41,9 @@ gem "pg"
 gem 'simple_form'
 gem 'countries', github: "hexorx/countries"
 gem 'country_select'
+gem 'momentjs-rails'
 gem 'active_model_serializers'
-
+gem 'stamp'
 gem 'sass-rails', '~> 4.0.0'
 gem 'haml-rails'
 gem 'uglifier', '>= 1.3.0'
@@ -83,6 +84,7 @@ group :test, :development do
   gem "factory_girl_rails"
 end
 group :test do
+  gem 'zonebie'
   gem "launchy"
   gem "selenium-webdriver"
   # gem "nyan-cat-formatter"

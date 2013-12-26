@@ -1,0 +1,12 @@
+.row
+  .columns.large-12
+    = title "New Event"
+    = simple_form_for @event do |f|
+      = render 'form_errors', resource: @event
+      = f.input :name
+      = f.input :description
+      = f.input :starts_at#, as: 'date'
+      -# = f.input :starts_at, as: 'time'
+      = f.input :ends_at
+      = f.association :lab
+      = f.submit

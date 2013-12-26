@@ -1,0 +1,18 @@
+.row
+  .columns.large-12
+    = title "Events"
+
+    .panel
+      %p This is a beta feature, and is only visible to superadmins.
+
+    %ul
+      - @events.each do |day, events|
+        %li
+          = day.stamp('wednesday, 12th November 2012')
+          %ul
+            - events.each do |event|
+              %li
+                = event.all_day? ? "All Day" : event.starts_at.stamp('15:30')
+                = link_to event, event
+                \-
+                = link_to event.lab, event.lab

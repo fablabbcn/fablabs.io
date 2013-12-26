@@ -233,6 +233,8 @@ GEM
     mime-types (1.25.1)
     mini_portile (0.5.2)
     minitest (4.7.5)
+    momentjs-rails (2.4.0)
+      railties (>= 3.1)
     moneta (0.7.20)
     multi_json (1.8.2)
     multi_xml (0.5.5)
@@ -390,6 +392,7 @@ GEM
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (~> 2.8)
+    stamp (0.5.0)
     temple (0.6.7)
     thor (0.18.1)
     thread_safe (0.1.3)
@@ -426,6 +429,7 @@ GEM
     will_paginate (3.0.5)
     xpath (2.0.0)
       nokogiri (~> 1.3)
+    zonebie (0.5.1)
     zurb-foundation (4.0.9)
       sass (>= 3.2.0)
 
@@ -464,6 +468,7 @@ DEPENDENCIES
   kaminari
   launchy
   letter_opener
+  momentjs-rails
   nest
   newrelic_rpm
   paper_trail (>= 3.0.0.rc2)
@@ -488,10 +493,12 @@ DEPENDENCIES
   sitemap_generator
   slim
   sort_alphabetical
+  stamp
   timezone
   twitter
   uglifier (>= 1.3.0)
   unicorn
   whenever
   workflow!
+  zonebie
   zurb-foundation (~> 4.0.0)

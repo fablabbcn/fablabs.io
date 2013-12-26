@@ -37,6 +37,7 @@ class Lab < ActiveRecord::Base
   end
 
   has_many :admin_applications
+  has_many :events
   has_many :discussions, as: :discussable
   has_many :employees
   has_many :links, as: :linkable

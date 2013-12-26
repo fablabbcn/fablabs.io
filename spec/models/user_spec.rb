@@ -5,6 +5,7 @@ describe User do
   let(:user) { FactoryGirl.create(:user) }
   let(:lab) { FactoryGirl.create(:lab)}
 
+  it { should have_many(:created_events) }
   it { should have_many(:created_labs) }
   it { should have_many(:comments) }
   it { should have_many(:discussions) }

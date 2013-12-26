@@ -25,6 +25,7 @@
 #= require placeholders
 #= require jquery.autosize
 #= require alerts
+#= require moment
 #= require_tree .
 
 initEvents = ->

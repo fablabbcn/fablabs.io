@@ -1,0 +1,11 @@
+.heading
+  = fa_icon "calendar", text: t("views.labs.show.upcoming_events", default: "Upcoming Events")
+  -# - if current_or_null_user.can_update?(lab)
+  -#   = link_to "edit", lab_employees_path(lab), id: "edit-employees"
+
+%ul
+  - events.each do |event|
+    %li
+      = link_to event, event
+      \-
+      = event.starts_at.stamp('Wed, 20th November')
