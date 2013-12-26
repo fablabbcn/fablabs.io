@@ -19,6 +19,7 @@ class EventsController < ApplicationController
     @event = Event.new(event_params)
     authorize_action_for @event
     if @event.save
+      track_activity @event, current_user
       redirect_to event_url(@event), notice: "Event Created"
     else
       render :new
