@@ -6,7 +6,20 @@ window.showingContacts = false
 
 osmAttrib = 'Map data © <a href="http://www.openstreetmap.org" target="_blank">OpenStreetMap</a> contributors'
 
+down = false
+
 ready = ->
+
+  $(document).mousedown ->
+    down = true
+  .mouseup ->
+    down = false
+
+  $('.opening-hours td').mouseover ->
+    $(this).toggleClass 'active' if (down)
+  .click ->
+    $(this).toggleClass 'active'
+
 
   # if $('body').hasClass 'a-home'
   #   map = L.map('homepage-map', { scrollWheelZoom: false, zoomControl: false }).setView([50, 0], 2 )
@@ -15,6 +28,7 @@ ready = ->
   #   # navigator.geolocation.getCurrentPosition((position)->
   #   #   map.setView([position.coords.latitude, position.coords.longitude], 13)
   #   # )
+
 
   $('[data-toggle=offcanvas]').click ->
     $('.row-offcanvas').toggleClass('active')

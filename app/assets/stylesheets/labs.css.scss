@@ -9,6 +9,29 @@ li.lab-link {
   }
 }
 
+.opening-hours {
+  display: none;
+}
+.opening-hours table {
+  width: 100%;
+  border: 0;
+  td {
+    border: 1px solid #CCC;
+    height: 20px;
+  }
+  th {
+    width: 30px;
+  }
+  td.active {
+    background: red;
+  }
+  *, & {
+    padding: 0;
+    margin: 0;
+    table-collapse: collapse;
+  }
+}
+
 .content {
   border-right: 1px solid #CCC;
 }
