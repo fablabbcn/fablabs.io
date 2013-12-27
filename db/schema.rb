@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131226125839) do
+ActiveRecord::Schema.define(version: 20131226194738) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -233,6 +233,21 @@ ActiveRecord::Schema.define(version: 20131226125839) do
   end
 
   add_index "oauth_applications", ["uid"], name: "index_oauth_applications_on_uid", unique: true, using: :btree
+
+  create_table "pages", force: true do |t|
+    t.integer  "pageable_id"
+    t.string   "pageable_type"
+    t.string   "ancestry"
+    t.string   "name"
+    t.string   "slug"
+    t.text     "body"
+    t.integer  "creator_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "pages", ["creator_id"], name: "index_pages_on_creator_id", using: :btree
+  add_index "pages", ["pageable_id", "pageable_type"], name: "index_pages_on_pageable_id_and_pageable_type", using: :btree
 
   create_table "recoveries", force: true do |t|
     t.integer  "user_id"

@@ -2,6 +2,13 @@
 
 FactoryGirl.define do
 
+  factory :page do
+    pageable
+    name { "Tutorial #{1}" }
+    body "this is a tutorial"
+    creator
+  end
+
   factory :event do
     # type ""
     sequence(:name) { |n| "Event #{n}" }
@@ -97,7 +104,7 @@ FactoryGirl.define do
     name "Roland"
   end
 
-  factory :machine, aliases: [:commentable] do
+  factory :machine, aliases: [:commentable, :pageable] do
     name "Modela"
     brand
     description "A general purpose milling machine"
