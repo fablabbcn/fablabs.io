@@ -150,6 +150,8 @@ GEM
     connection_pool (0.9.3)
     country_select (1.2.0)
     currencies (0.4.2)
+    date_time_attribute (0.0.5)
+      activesupport (>= 3.0.0)
     descendants_tracker (0.0.3)
     diff-lcs (1.2.5)
     docile (1.1.1)
@@ -453,6 +455,7 @@ DEPENDENCIES
   countries!
   country_select
   database_cleaner!
+  date_time_attribute
   doorkeeper (~> 0.7.0)
   factory_girl_rails
   ffaker

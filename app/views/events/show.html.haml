@@ -1,4 +1,7 @@
 .row
   .columns.large-12
-    = title @event
+    = render "breadcrumbs", event: @event
+    - title @event
+    - if @event.starts_at
+      = @event.starts_at.stamp("at 15:00 on Wednesday, 3rd October 2020")
     = simple_format @event.description

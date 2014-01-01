@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 # gem 'rubysl'
 # gem 'racc'
 # gem "dalli"
+gem 'date_time_attribute'
 gem 'whenever', :require => false
 gem 'slim'
 gem 'redis-rails'

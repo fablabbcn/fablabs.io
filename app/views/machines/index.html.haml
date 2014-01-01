@@ -3,7 +3,8 @@
     .columns.large-12
       = render "breadcrumbs"
       - title "Machines"
-
+  .row
+    .columns.large-9
       .panel
         %p We are currently in the process of adding content to this page to create a directory alongside the Fab Lab list. Soon you will be able to add new machines, edit existing ones, assign them to Fab Labs and start discussions about them.
 
@@ -11,3 +12,7 @@
 
       - if current_or_null_user.can_create?(Machine)
         = link_to "New Machine", new_machine_path
+    .columns.large-3
+      -# %ul
+      -#   - Machine.new.tag_list.each do |tag|
+      -#     %li= tag
