@@ -1,9 +1,17 @@
 !!!
-%html
+%html{xmlns: "http://www.w3.org/1999/xhtml", "xmlns:fb" => "http://www.facebook.com/2008/fbml", "xmlns:og" => "http://ogp.me/ns#"}
   %head
-    / Full source code here: https://github.com/johnrees/fablabs
-    %title= content_for?(:title) ? "#{yield(:title)} | FabLabs" : "FabLabs"
+    %title= content_for?(:title) ? "#{yield(:title)} | FabLabs" : "FabLabs.io - The Fab Lab Network"
     %meta{ name: "viewport", content: "width=device-width, initial-scale=1.0, user-scalable=no" }
+    %meta{content: "FabLabs.io", property: "og:title"}/
+    %meta{content: "website", property: "og:type"}/
+    %meta{content: "https://www.fablabs.io", property: "og:url"}/
+    %meta{content: "https://i.imgur.com/3Ikadkn.png", property: "og:image"}/
+    %meta{content: "FabLabs.io - The Fab Lab Network", property: "og:site_name"}/
+    %meta{content: "1349222175", property: "fb:admins"}/
+    %meta{content: "A platform for connecting Fab Labs and their users from around the world.", property: "og:description"}/
+    %meta{content: "admin@fablabs.io", property: "og:email"}/
+
     = render 'application/map_icons'
     %link{rel: "canonical", href: "#{request.url.split('?').first}"}
     = stylesheet_link_tag "//fonts.googleapis.com/css?family=Open+Sans:400|Montserrat"

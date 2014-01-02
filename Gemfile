@@ -77,6 +77,7 @@ group :doc do
 end
 
 group :development do
+  gem 'bullet', github: 'flyerhzm/bullet'
   # gem 'localeapp', github: 'Locale/localeapp'
 end
 
