@@ -78,19 +78,19 @@
         = e.input :job_title, placeholder: "e.g. Lab Manager"
         = e.input :description, placeholder: "e.g. Coordinates Workshops and Events"
 
-  %fieldset.opening-hours
-    %legend Opening Hours
-    %table{cellspacing: 0}
-      %tr
-        %td
-        - (0..48).each do |quart|
-          %td
-            .rotate= Time.at(quart* 30 * 60).utc.strftime("%H:%M")
-      - [1,2,3,4,5,6,0].each do |day|
-        %tr
-          %th= Date::DAYNAMES[day][0..1]
-          - (0..48).each do |quart|
-            %td
+  -# %fieldset.opening-hours
+  -#   %legend Opening Hours
+  -#   %table{cellspacing: 0}
+  -#     %tr
+  -#       %td
+  -#       - (0..48).each do |quart|
+  -#         %td
+  -#           .rotate= Time.at(quart* 30 * 60).utc.strftime("%H:%M")
+  -#     - [1,2,3,4,5,6,0].each do |day|
+  -#       %tr
+  -#         %th= Date::DAYNAMES[day][0..1]
+  -#         - (0..48).each do |quart|
+  -#           %td
 
   %fieldset
     %legend Links
