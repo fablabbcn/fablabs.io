@@ -5,7 +5,7 @@
     .panel
       %h5 Important
       %p We are in the process of curating the list of Fab Labs. To avoid duplicates please first check the list below to ensure that your lab is not already in our database
-      = select_tag :lab, options_for_select(Lab.order('name ASC').select(:name)), class: 'enhanced', include_blank: true
+      = select_tag :lab, options_for_select(Lab.order('name ASC').select(:name, :city, :county, :country_code).map{|l| "#{l} - #{l.short_address}"}), class: 'enhanced', include_blank: true
 
     %hr/
 
