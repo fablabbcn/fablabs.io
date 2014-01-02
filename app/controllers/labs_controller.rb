@@ -1,6 +1,6 @@
 class LabsController < ApplicationController
 
-  before_filter :require_login, except: [:index, :map, :show]
+  before_filter :require_login, except: [:index, :map, :show, :mapdata]
 
   # authorize_actions_for Lab, actions: { map: :read, manage_admins: :update}
 
