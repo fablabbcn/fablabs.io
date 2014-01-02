@@ -1,3 +1,7 @@
+- content_for(:meta) do
+  %meta{content: hocho(@lab.avatar, "o=t&q=80&d=300x300&"), property: "og:image"}/
+  %meta{content: @lab.description, property: "og:description"}/
+
 %div{itemscope: true, itemtype: "http://data-vocabulary.org/Organization"}
   .stripe
     .row
