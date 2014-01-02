@@ -20,6 +20,8 @@ class User < ActiveRecord::Base
   has_many :role_applications
   has_many :employees
 
+  has_many :academics
+
   has_many :created_activities, foreign_key: 'creator_id', class_name: 'Activity'
   has_many :activities, foreign_key: 'actor_id'
 

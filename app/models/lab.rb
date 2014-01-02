@@ -36,6 +36,7 @@ class Lab < ActiveRecord::Base
     state :removed
   end
 
+  has_many :academics
   has_many :admin_applications
   has_many :events
   has_many :discussions, as: :discussable

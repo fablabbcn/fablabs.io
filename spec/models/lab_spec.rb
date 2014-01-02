@@ -4,6 +4,7 @@ describe Lab do
 
   let(:lab) { FactoryGirl.create(:lab) }
 
+  it { should have_many(:academics) }
   it { should have_many(:admin_applications) }
   it { should have_many(:discussions) }
   it { should have_many(:employees) }
