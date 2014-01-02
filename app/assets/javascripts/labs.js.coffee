@@ -10,6 +10,9 @@ down = false
 
 ready = ->
 
+  $('#check-labs').change ->
+    alert("We already have '#{$(this).val()}' lab in our database, if it is not yet visible on the site it will be soon")
+
   $(document).mousedown ->
     down = true
   .mouseup ->
