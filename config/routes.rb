@@ -76,6 +76,7 @@ Fablabs::Application.routes.draw do
       resources :admin_applications
       resources :role_applications
       resources :employees
+      get 'mapdata', on: :collection
       # resources :discussions
       resources :admins do
         collection do

@@ -8,11 +8,16 @@ class LabsController < ApplicationController
     @labs = Lab.with_approved_state
   end
 
+  def mapdata
+    @labs = Lab.with_approved_state.select(:id, :name, :slug, :latitude, :longitude)
+    render json: @labs, each_serializer: MapSerializer
+  end
+
   def index
     if params[:country]
       params["country"].downcase!
     end
-    all_labs = Lab.search_for(params[:query]).with_approved_state
+    all_labs = Lab.includes(:links).search_for(params[:query]).with_approved_state
     @countries = Lab.country_list_for all_labs
     @count = all_labs.size
     @labs = all_labs.order('LOWER(name) ASC').in_country_code(params["country"]).page(params['page']).per(params['per'])

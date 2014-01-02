@@ -2,7 +2,13 @@ class MapSerializer < ActiveModel::Serializer
 
   attributes :id,
       :name,
+      :slug,
       :latitude,
-      :longitude
+      :longitude,
+      :url
+
+  def url
+    lab_url(object)
+  end
 
 end
