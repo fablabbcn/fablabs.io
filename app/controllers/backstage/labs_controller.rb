@@ -1,7 +1,7 @@
 class Backstage::LabsController < Backstage::BackstageController
 
   def index
-    @q = Lab.search(params[:q])
+    @q = Lab.includes(:creator).search(params[:q])
     @q.workflow_state_eq = 'unverified' unless params[:q]
     @q.sorts = 'id desc' if @q.sorts.empty?
     @labs = @q.result.page(params[:page]).per(params[:per])

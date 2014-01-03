@@ -1,7 +1,8 @@
 jQuery ->
   PrivatePub.subscribe "/chat_messages/new", (data, channel) ->
     console.log data
-    $('#chat').append("<li><a href='/users/#{data.author.id}'>#{data.author.name}</a> - #{data.chat_message.content}")
+    name = if (window.me == data.author.id) then "You" else data.author.name;
+    $('#chat').append("<li class='#{name}'><a href='/users/#{data.author.id}'>#{name}</a> - #{data.chat_message.content}")
     $('#chat-window').scrollTop($('#chat').height());
     $('#chat-message').focus().val("")
 

@@ -1,3 +1,5 @@
+:javascript
+  window.me = #{current_user.id}
 = subscribe_to "/chat_messages/new"
 .row
   .columns.large-12
@@ -7,8 +9,8 @@
 
     = form_for ChatMessage.new, remote: true do |f|
       .row
-        .columns.large-8
+        .columns.small-8
           = f.text_field :content, autofocus: true, id: 'chat-message'
-        .columns.large-4
+        .columns.small-4
           = f.submit "Send", class: 'button small', id: 'send-chat-message'
 

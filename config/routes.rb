@@ -27,8 +27,8 @@ Fablabs::Application.routes.draw do
     end
 
     resources :users
-    # resources :chat_messages
-    # get 'chat' => 'chat_messages#index', as: 'chat'
+    resources :chat_messages
+    get 'chat' => 'chat_messages#index', as: 'chat'
 
     %w(books machines).each do |thing|
       resources thing do
@@ -53,6 +53,7 @@ Fablabs::Application.routes.draw do
 
     namespace :backstage do
       resources :users
+      resources :employees, only: :index
       resources :labs do
         member do
           patch :approve

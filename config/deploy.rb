@@ -35,10 +35,10 @@ default_run_options[:pty] = true
 ssh_options[:forward_agent] = true
 set :maintenance_template_path, File.expand_path("../recipes/templates/maintenance.html.erb", __FILE__)
 
-after "deploy", "refresh_sitemaps"
-task :refresh_sitemaps do
-  run "cd #{latest_release} && RAILS_ENV=#{rails_env} bundle exec rake sitemap:refresh"
-end
+# after "deploy", "refresh_sitemaps"
+# task :refresh_sitemaps do
+#   run "cd #{latest_release} && RAILS_ENV=#{rails_env} bundle exec rake sitemap:refresh"
+# end
 
 after "deploy", "deploy:cleanup" # keep only the last 5 releases
 

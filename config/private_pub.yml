@@ -1,10 +1,10 @@
 development:
-  server: "http://wozniak.fablabs.io:9292/faye"
+  server: "http://localhost:9292/faye"
   secret_token: "secret"
 test:
   server: "http://localhost:9292/faye"
   secret_token: "secret"
 production:
-  server: "http://wozniak.fablabs.io:9292/faye"
+  server: "http://localhost:9292/faye"
   secret_token: "dc0db06b7b4051e0d97c154cd943966188dabf11135183b78f28e7c82ef930ed"
   signature_expiration: 3600 # one hour

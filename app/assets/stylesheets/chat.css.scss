@@ -1,10 +1,13 @@
 #chat-window {
   background: #FFF;
-  height: 200px;
+  height: 400px;
   display: block;
   padding: 20px;
   overflow-y: scroll;
   border-radius: 4px;
+  li.You {
+    background: #EEE;
+  }
   ul, li {
     display: block;
     margin: 0;
