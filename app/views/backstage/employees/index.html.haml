@@ -13,9 +13,10 @@
           %th Applied
       %tbody
         - @employees.each do |employee|
-          = content_tag_for :tr, employee, {class: employee.current_state} do
-            %td= employee.id
-            %td= link_to employee.user.full_name, lab_employees_url(employee.lab)
-            %td= employee.job_title
-            %td= employee.lab
-            %td= employee.created_at.stamp("13:48, 22 Nov")
+          - if employee.user.present?
+            = content_tag_for :tr, employee, {class: employee.current_state} do
+              %td= employee.id
+              %td= link_to employee.user.full_name, lab_employees_url(employee.lab)
+              %td= employee.job_title
+              %td= employee.lab
+              %td= employee.created_at.stamp("13:48, 22 Nov")
