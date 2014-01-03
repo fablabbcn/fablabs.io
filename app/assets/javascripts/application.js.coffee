@@ -16,6 +16,7 @@
 #= require Control.Loading.js
 #= require jquery.geocomplete
 #= require leaflet.markercluster
+#= require private_pub
 #= require cocoon
 #= require underscore
 #= require select2

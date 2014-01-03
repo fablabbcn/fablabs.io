@@ -14,6 +14,7 @@ Fablabs::Application.routes.draw do
 
   resources :sessions
 
+
   constraints subdomain: 'www' do
     # resources :discussions
     get "activity" => "activities#index", :as => "activity"
@@ -26,6 +27,8 @@ Fablabs::Application.routes.draw do
     end
 
     resources :users
+    resources :chat_messages
+    get 'chat' => 'chat_messages#index', as: 'chat'
 
     %w(books machines).each do |thing|
       resources thing do

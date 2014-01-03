@@ -1,0 +1,14 @@
+#chat-window {
+  background: #FFF;
+  height: 200px;
+  display: block;
+  padding: 20px;
+  overflow-y: scroll;
+  border-radius: 4px;
+  ul, li {
+    display: block;
+    margin: 0;
+    list-style: none;
+    padding: 0;
+  }
+}

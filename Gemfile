@@ -3,6 +3,9 @@ source 'https://rubygems.org'
 # gem 'rubysl'
 # gem 'racc'
 # gem "dalli"
+gem 'private_pub'
+gem 'thin'
+
 gem 'date_time_attribute'
 gem 'whenever', :require => false
 gem 'slim'
