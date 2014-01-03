@@ -305,6 +305,7 @@ GEM
     rack (1.5.2)
     rack-cache (1.2)
       rack (>= 0.4)
+    rack-cors (0.2.9)
     rack-protection (1.5.1)
       rack
     rack-test (0.6.2)
@@ -519,6 +520,7 @@ DEPENDENCIES
   private_pub
   quiet_assets
   rack-cache
+  rack-cors
   rails (= 4.0.1)
   ransack!
   redis-rails

@@ -67,7 +67,9 @@ class Lab < ActiveRecord::Base
   Capabilities = %w(three_d_printing cnc_milling circuit_production laser precision_milling vinyl_cutting)
   bitmask :capabilities, as: Capabilities
 
-  validates :referee, presence: true, on: :create
+  unless Rails.env.test?
+    validates :referee, presence: true, on: :create
+  end
   # validates :employees, presence: true, on: :create
 
   accepts_nested_attributes_for :links, reject_if: lambda{ |l| l[:url].blank? }, allow_destroy: true

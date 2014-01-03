@@ -80,6 +80,8 @@ Fablabs::Application.routes.draw do
       resources :admin_applications
       resources :role_applications
       resources :employees
+      resources :academics
+
       get 'mapdata', on: :collection
       # resources :discussions
       resources :admins do
@@ -104,6 +106,7 @@ Fablabs::Application.routes.draw do
     namespace :api, path: '' do
       namespace :v0 do
         get 'me' => 'users#me'
+        resources :coupons
         resources :labs do
           get :map, on: :collection
         end

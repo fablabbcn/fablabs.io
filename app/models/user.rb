@@ -19,6 +19,7 @@ class User < ActiveRecord::Base
   has_many :recoveries
   has_many :role_applications
   has_many :employees
+  has_one :coupon
 
   has_many :academics
 

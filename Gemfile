@@ -5,6 +5,7 @@ source 'https://rubygems.org'
 # gem "dalli"
 gem 'private_pub'
 gem 'thin'
+gem 'rack-cors', :require => 'rack/cors'
 
 gem 'date_time_attribute'
 gem 'whenever', :require => false

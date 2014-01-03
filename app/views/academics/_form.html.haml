@@ -1,0 +1,4 @@
+= simple_form_for [lab,academic] do |f|
+  = render "form_errors", resource: academic
+  = f.input :started_in, as: 'select', collection: (2009..2014)
+  = f.submit class: 'button'

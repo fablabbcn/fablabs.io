@@ -2,6 +2,19 @@
 
 FactoryGirl.define do
 
+  factory :coupon do
+    user
+    description "Fab 10 Discount Code"
+    value 300
+  end
+
+  factory :academic do
+    user
+    lab
+    started_in 2012
+    approver
+  end
+
   factory :page do
     pageable
     name { "Tutorial #{1}" }
@@ -86,7 +99,7 @@ FactoryGirl.define do
     creator
   end
 
-  factory :user, aliases: [:creator, :author, :applicant, :actor] do
+  factory :user, aliases: [:creator, :author, :applicant, :actor, :approver] do
     sequence(:username) {|n| "user#{n}"}
     first_name "John"
     last_name "Rees"
