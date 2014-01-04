@@ -7,19 +7,21 @@
           %th English
           %th
             = select_tag :locale, options_for_select([ ['English', 'en'], ['Deutsch', 'de'], ['Español', 'es'], ['Français', 'fr'], ['Italiano', 'it'], ['日本語', 'ja'], ['Nederlands', 'nl'] ], selected: params[:translation_locale]), id: 'locale-select'
-            .debug= @translations.keys.inspect
-      - @translations.keys.each do |key|
-        - if key =~ /^en\./
-          %tr
-            %th= text_area_tag :value, @translations[key].gsub(/"/,''), disabled: true
-            %td
-              = form_tag translations_path, remote: true do
-                = hidden_field_tag :locale, params[:translation_locale]
-                = hidden_field_tag :key, key.gsub(/^en\./, '')
-                .debug
-                  = key
-                  = @translations[key]
-                  = @translations[key.gsub(/en/, params[:translation_locale])]
-                  = (@translations[key.gsub(/en/, params[:translation_locale])] || "" ).gsub(/"/,'')
-                = text_area_tag :value, (@translations[key.gsub(/en/, params[:translation_locale])] || "" ).gsub(/"/,''), placeholder: @translations[key].gsub(/"/,'') + " -  (#{key})"
+            .debug= @translations.keys('en.*').to_yaml
+      - @translations.keys('en.*').each do |key|
+        %tr
+          %th= text_area_tag :value, @translations[key].gsub(/"/,''), disabled: true
+          %td
+            = form_tag translations_path, remote: true do
+              = hidden_field_tag :locale, params[:translation_locale]
+              = hidden_field_tag :key, key.gsub(/^en\./, '')
+              .debug
+                = key
+                = @translations[key]
+
+                = key.gsub(/en/, params[:translation_locale])
+                = @translations[key.gsub(/en/, params[:translation_locale])]
+                = (@translations[key.gsub(/en/, params[:translation_locale])] || "" ).gsub(/"/,'')
+
+              = text_area_tag :value, (@translations[key.gsub(/en/, params[:translation_locale])] || "" ).gsub(/"/,''), placeholder: @translations[key].gsub(/"/,'') + " -  (#{key})"
 
