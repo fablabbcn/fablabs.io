@@ -12,7 +12,7 @@
   .row
     .columns.large-12
       %h2= t("views.home.whats_a_fab_lab")
-      %p= t("views.home.fab_labs_description", fab_foundation: (link_to "Fab Foundation", "http://www.fabfoundation.org") )
+      %p= t("views.home.fab_labs_description", fab_foundation: (link_to "Fab Foundation", "http://www.fabfoundation.org") ).html_safe
 
 #frostis-lab= image_tag "https://i.imgur.com/KFS2V4n.jpg", id: "img"
 .credit{style: 'background: #F0F0F0'}
