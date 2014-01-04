@@ -9,7 +9,7 @@
             %span.flag{class: "flag-#{params[:country]}"}
             = Country[params[:country]]
       - else
-        %li.current= link_to "All Countries", labs_path
+        %li.current= link_to t("views.labs.index.all_countries"), labs_path
   .columns.large-4
     = render "header"
 
