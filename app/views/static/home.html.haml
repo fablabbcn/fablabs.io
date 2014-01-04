@@ -1,9 +1,9 @@
 - title t("views.home.welcome")
 
-#homepage-map{style: "background-size: cover; background-position: top center; background-image: url(https://i.imgur.com/WXrpbgp.jpg);"}
+#homepage-map
   .filter
   #homepage-search
-    %p Show me Fab Labs
+    %p= t("views.home.show_me_fab_labs")
     = link_to labs_path, class: 'button ' do
       = fa_icon "globe"
       = t("views.home.around_the_world")
