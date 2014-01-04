@@ -1,7 +1,7 @@
 class TranslationsController < ApplicationController
 
   before_filter :require_login
-  before_filter { return redirect_to root_path unless current_user.has_role?(:superadmin) }
+  before_filter { return redirect_to root_path unless current_user.has_role?(:translator) }
 
   def index
     params[:translation_locale] ||= "en"
