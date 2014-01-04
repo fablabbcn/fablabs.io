@@ -1,0 +1,27 @@
+.row
+  .columns.large-12
+    %h1 Translations
+    %table.translations
+      %thead
+        %tr
+          %th English
+          %th
+            = select_tag :locale, options_for_select([ ['English', 'en'], ['Deutsch', 'de'], ['Español', 'es'], ['Français', 'fr'], ['Italiano', 'it'], ['日本語', 'ja'], ['Nederlands', 'nl'] ], selected: params[:translation_locale]), id: 'locale-select'
+            .debug= @translations.keys('en.*').to_yaml
+      - @translations.keys('en.*').each do |key|
+        %tr
+          %th= text_area_tag :value, @translations[key].gsub(/"/,''), disabled: true
+          %td
+            = form_tag translations_path, remote: true do
+              = hidden_field_tag :locale, params[:translation_locale]
+              = hidden_field_tag :key, key.sub(/^en\./, '')
+              .debug
+                = key
+                = @translations[key]
+
+                = key.sub(/^en/, params[:translation_locale])
+                = @translations[key.sub(/^en/, params[:translation_locale])]
+                = (@translations[key.sub(/^en/, params[:translation_locale])] || "" ).gsub(/"/,'')
+
+              = text_area_tag :value, (@translations[key.sub(/^en/, params[:translation_locale])] || "" ).gsub(/"/,''), placeholder: @translations[key].gsub(/"/,'') + " -  (#{key})"
+

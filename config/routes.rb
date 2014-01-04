@@ -1,6 +1,5 @@
 Fablabs::Application.routes.draw do
   resources :pages
-
   use_doorkeeper
   require 'sidekiq/web'
   require "admin_constraint"
@@ -17,6 +16,9 @@ Fablabs::Application.routes.draw do
     # resources :discussions
     get "activity" => "activities#index", :as => "activity"
     resources :featured_images
+
+    resources :translations
+    # resources :events
 
     get "verify_email(/:id)", to: "users#verify_email", as: "verify_email"
 

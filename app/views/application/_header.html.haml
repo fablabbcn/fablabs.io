@@ -17,11 +17,11 @@
           = form_tag labs_path, class: 'navbar-form navbar-left', role: 'search', method: 'get' do
             - if params[:country].present?
               = hidden_field_tag 'country', params[:country]
-            = text_field_tag 'query', params[:query], class: 'form-control', autocomplete: 'off', placeholder: t("views.header.search_labs", default: "Search Labs..."), id: 'search-box'
-        %li{class: ('active' if controller_name == 'labs')}= link_to "Labs", labs_path, class: 'top-link'
+            = text_field_tag 'query', params[:query], class: 'form-control', autocomplete: 'off', placeholder: t("views.header.search_labs"), id: 'search-box'
+        %li{class: ('active' if controller_name == 'labs')}= link_to t("views.header.labs"), labs_path, class: 'top-link'
         - if current_or_null_user.can_read?(Event)
-          %li{class: ('active' if controller_name == 'events')}= link_to "Events", events_path, class: 'top-link'
-        %li{class: ('active' if controller_name == 'machines')}= link_to t("views.header.machines", default: "Machines"), machines_path, class: 'top-link'
+          %li{class: ('active' if controller_name == 'events')}= link_to t("views.header.events"), events_path, class: 'top-link'
+        %li{class: ('active' if controller_name == 'machines')}= link_to t("views.header.machines"), machines_path, class: 'top-link'
 
         -# %li{class: ('active' if controller_name == 'activity')}= link_to "Activity", activity_path, class: 'top-link'
         -# %li{class: ('active' if controller_name == 'machines')}= link_to "Machines", machines_path
@@ -33,14 +33,14 @@
           %li.has-dropdown
             = link_to current_user, class: 'dropdown-toggle', data: { toggle: 'dropdown'} do
               = image_tag hocho(current_user.avatar, "o=t&q=80&d=90x90"), class: 'avatar tiny'
-              Me
+              = t("views.header.me")
               - if current_or_null_user.has_role? :superadmin
                 = gem_count_tag Lab.with_unverified_state.size
 
             %ul.dropdown
               %li
                 = link_to settings_path do
-                  = fa_icon "cog", text: t("views.header.settings", default: "Settings")
+                  = fa_icon "cog", text: t("views.header.settings")
               - if current_or_null_user.has_role? :superadmin
                 %li
                   = link_to backstage_root_path do
@@ -51,8 +51,8 @@
                 = link_to signout_path do
                   = fa_icon "sign-out", text: t("views.header.sign_out", default: "Sign out")
         - else
-          %li= link_to t("views.header.sign_in", default: "Sign in"), signin_path
-          %li.last= link_to t("views.header.sign_up", default: "Sign up"), signup_path
+          %li= link_to t("views.header.sign_in"), signin_path
+          %li.last= link_to t("views.header.sign_up"), signup_path
 
         -# %li#locale
         -#   = link_to choose_locale_path, id: 'locale-icon', class: I18n.locale, data: { reveal_id: "myModal", reveal_ajax: "true" } do

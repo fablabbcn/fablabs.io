@@ -329,6 +329,9 @@ input#lab_name {
 }
 
 #location-picker-map {
+  img {
+    max-width: none;
+  }
   width: 95%;
   height: 280px;
   display: block;

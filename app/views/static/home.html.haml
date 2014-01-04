@@ -1,56 +1,18 @@
-- title "Welcome"
+- title t("views.home.welcome")
 
-#homepage-map{style: "background-size: cover; background-position: top center; background-image: url(https://i.imgur.com/WXrpbgp.jpg);"}
+#homepage-map
   .filter
   #homepage-search
-    -# - if false#@country_labs
-    -#   %p Show me Fab Labs in...
-    -#   .row.collapse
-    -#     .columns.small-9.large-10
-    -#       = text_field_tag :search, current_country, style: "width: 100%; max-width: 100%;"
-    -#     .columns.small-3.large-2
-    -#       = link_to "#", class: 'submit' do
-    -#         = fa_icon "search"
-    -# - else
-    %p Show me Fab Labs
+    %p= t("views.home.show_me_fab_labs")
     = link_to labs_path, class: 'button ' do
       = fa_icon "globe"
-      = t("views.home.around_the_world", default: "Around the World")
-      -# {country: current_country.alpha2.downcase}
-      -# in #{current_country}
-
--# - if @country_labs
--#   .near-me.stripe
--#     .row
--#       .columns.large-2
--#         %h2 Fab Labs in #{current_country}...
--#       .columns.large-9.small-10
--#         .row
--#           - @nearby_labs.each do |lab|
--#             .columns.large-4.lab-near-you.left
--#               .media
--#                 .pull-left
--#                   = link_to lab do
--#                     = image_tag lab.avatar, class: 'avatar small'
--#                 .media-body
--#                   = link_to lab, lab
--#                   .location
--#                     %span.glyphicon.glyphicon-map-marker
--#                     = lab.short_address
--#                   -# .distance
--#                   -#   %span.glyphicon.glyphicon-road
--#                   -#   10km Away
--#       .columns.large-1.small-2
--#         = link_to labs_path(country: current_country.alpha2.downcase), class: 'more' do
--#           = fa_icon "chevron-right"
-
+      = t("views.home.around_the_world")
 
 .whats-a-fab-lab.stripe
-  -#{style: "background-size: cover; background-position: center center; background-image: url(http://i.imgur.com/e9Avfcp.jpg); height: 400px"}
   .row
     .columns.large-12
-      %h2 I'm new here, what's a Fab Lab?
-      %p Fab labs provide widespread access to modern means for invention. They began as an outreach project from MIT’s Center for Bits and Atoms (CBA), and became into a collaborative and global network. You can find more information about Fab Labs on the #{link_to "Fab Foundation Website", "http://www.fabfoundation.org"}. The annotated photo below illustrates the facilities of a typical Fab Lab.
+      %h2= t("views.home.whats_a_fab_lab")
+      %p= t("views.home.fab_labs_description", fab_foundation: (link_to "Fab Foundation", "http://www.fabfoundation.org") ).html_safe
 
 #frostis-lab= image_tag "https://i.imgur.com/KFS2V4n.jpg", id: "img"
 .credit{style: 'background: #F0F0F0'}
@@ -65,7 +27,7 @@
 .whos-it-for.stripe
   .row
     .columns.large-12
-      %h2 So who is fablabs.io for?
+      %h2= t("views.home.who_is_it_for")
 
     .columns.large-12
       .row.collapse.case-studies
@@ -98,55 +60,55 @@
   .features
     .row
       .columns.large-12
-        %h2 And what can I do on the site?
+        %h2= t("views.home.what_can_i_do")
     .row
 
       .columns.large-4
         .row
           .columns.small-3.large-4= image_tag "home-icons/profile.png"
           .columns.small-9.large-8
-            %h3 Lab Profiles
+            %h3= t("views.home.lab_profiles")
             %p Each lab has its own profile page which can be maintained and updated by its staff
 
       .columns.large-4
         .row
           .columns.small-3.large-4= image_tag "home-icons/map.png"
           .columns.small-9.large-8
-            %h3 World Map
+            %h3= t("views.home.world_map")
             %p An interactive map showing the location of all the Fab Labs around the world
 
       .columns.large-4
         .row
           .columns.small-3.large-4= image_tag "home-icons/machines.png"
           .columns.small-9.large-8
-            %h3 Machines
+            %h3= t("views.home.machines")
             %p A growing directory/wiki of all of the tools used and recommended by Fab Labs
 
 
 
     .row.coming-next
       .columns.large-12
-        %h2 What's coming next?
+        %h2= t("views.home.whats_coming_next")
 
       .columns.large-4
         .row
           .columns.small-3.large-4= image_tag "home-icons/clock.png"
           .columns.small-9.large-8
-            %h3 Opening Hours
+            %h3= t("views.home.features.opening_hours")
             %p See at a glance when labs will be open and available for use
 
       .columns.large-4
         .row
           .columns.small-3.large-4= image_tag "home-icons/calendar.png"
           .columns.small-9.large-8
-            %h3 Events
+            %h3= t("views.home.features.events")
             %p A calendar of all upcoming events within the global Fab Lab Network
 
       .columns.large-4
         .row
           .columns.small-3.large-4= image_tag "home-icons/discussions.png"
           .columns.small-9.large-8
-            %h3 Discussions
+            %h3= t("views.home.features.discussions")
             %p You will have a places to discuss general, lab-specific and tool-specific topics
 
     .row.coming-next
@@ -154,27 +116,25 @@
         .row
           .columns.small-3.large-4= image_tag "home-icons/api.png"
           .columns.small-9.large-8
-            %h3 Developer API
+            %h3= t("views.home.features.developer_api")
             %p A REST-based API that can be used to fetch and change data on the platform
 
       .columns.large-4
         .row
           .columns.small-3.large-4= image_tag "home-icons/localisation.png"
           .columns.small-9.large-8
-            %h3 Localisation
+            %h3= t("views.home.features.localisation")
             %p We want the platform to be translated and localised for everyone. More details to follow
       .columns.large-4
         .row
           .columns.small-3.large-4= image_tag "home-icons/activity.png"
           .columns.small-9.large-8
-            %h3 Activity Feeds
+            %h3= t("views.home.features.activity_feeds")
             %p See what you've missed while you were away, and what's happening right now
-
-
 
     .row
       .columns.large-12
-        %h2 And beyond that?
+        %h2= t("views.home.beyond_that")
         .row
           .columns.small-3.large-1= image_tag "home-icons/help.png"
           .columns.small-9.large-11

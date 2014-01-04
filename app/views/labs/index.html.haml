@@ -9,12 +9,12 @@
             %span.flag{class: "flag-#{params[:country]}"}
             = Country[params[:country]]
       - else
-        %li.current= link_to "All Countries", labs_path
+        %li.current= link_to t("views.labs.index.all_countries"), labs_path
   .columns.large-4
     = render "header"
 
 .row
-  - cache ["v1-labsindex-#{Digest::MD5.hexdigest([params.to_s].to_s)}", Lab.last_updated_at] do
+  - cache ["v1-labsindex-#{I18n.locale}-#{Digest::MD5.hexdigest([params.to_s].to_s)}", Lab.last_updated_at] do
     .columns.large-8.content
       .row
         .columns.large-12
@@ -33,7 +33,7 @@
       = paginate @labs
 
   .columns.large-4.sidebar-offcanvas
-    - cache ["v1-countries-#{Digest::MD5.hexdigest([params.to_s].to_s)}", Lab.last_updated_at] do
+    - cache ["v1-countries-#{I18n.locale}-#{Digest::MD5.hexdigest([params.to_s].to_s)}", Lab.last_updated_at] do
       .heading
         Filter by
         %strong Country

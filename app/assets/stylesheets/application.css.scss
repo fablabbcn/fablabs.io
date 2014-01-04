@@ -35,6 +35,23 @@ table.table {
     margin: 0;
   }
 }
+
+body.development .translation_missing{
+  color: red;
+
+  &:before{
+   content: "T: ";
+   color: red;
+ }
+}
+
+footer a.active {
+  color: #0275BC;
+  body.a-home & {
+    color: #FFF;
+  }
+}
+
 .microdata {
   display: none;
 }
