@@ -15,10 +15,5 @@
               = form_tag translations_path, remote: true do
                 = hidden_field_tag :locale, params[:translation_locale]
                 = hidden_field_tag :key, key.gsub(/^en\./, '')
-                = text_area_tag :value, (I18n.backend.store[key.gsub(/en/, params[:translation_locale])] || "" ).gsub(/"/,''), placeholder: @translations[key].gsub(/"/,'')
+                = text_area_tag :value, (@translations[key.gsub(/en/, params[:translation_locale])] || "" ).gsub(/"/,''), placeholder: @translations[key].gsub(/"/,'')
 
-    -# = form_tag translations_path do
-    -#   = hidden_field_tag :locale, 'en'
-    -#   = text_field_tag :key
-    -#   = text_field_tag :value
-    -#   = submit_tag

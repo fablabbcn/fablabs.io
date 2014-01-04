@@ -5,12 +5,15 @@ class TranslationsController < ApplicationController
 
   def index
     params[:translation_locale] ||= "en"
-    @translations = I18n.backend.store
+    @translations = TRANSLATION_STORE
   end
 
   def create
     I18n.backend.store_translations(params[:locale], {params[:key] => params[:value]}, :escape => false)
-    redirect_to translations_url, :notice => "Added translations"
+    redirect_to new_translation_url, :notice => "Added translations"
+  end
+
+  def new
   end
 
 end

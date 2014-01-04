@@ -21,7 +21,7 @@ feature "Adding a lab" do
       user.verify!
       sign_in user
       visit labs_path
-      click_link "Add a lab"
+      click_link "Add a Lab"
     end
 
     scenario "as a user with valid details" do

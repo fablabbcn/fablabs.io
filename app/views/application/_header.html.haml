@@ -33,7 +33,7 @@
           %li.has-dropdown
             = link_to current_user, class: 'dropdown-toggle', data: { toggle: 'dropdown'} do
               = image_tag hocho(current_user.avatar, "o=t&q=80&d=90x90"), class: 'avatar tiny'
-              Me
+              = t("views.header.me")
               - if current_or_null_user.has_role? :superadmin
                 = gem_count_tag Lab.with_unverified_state.size
 
@@ -45,7 +45,7 @@
                 %li
                   = link_to backstage_root_path do
                     = fa_icon "gamepad"
-                    = t("views.header.backstage")
+                    = t("views.header.backstage", default: "Backstage")
                     = gem_count_tag Lab.with_unverified_state.size
               %li
                 = link_to signout_path do
