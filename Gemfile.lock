@@ -228,6 +228,7 @@ GEM
     hike (1.2.3)
     http (0.5.0)
       http_parser.rb
+    http_accept_language (2.0.0)
     http_parser.rb (0.5.3)
     httparty (0.12.0)
       json (~> 1.8)
@@ -505,6 +506,7 @@ DEPENDENCIES
   geocoder!
   guard-rspec
   haml-rails
+  http_accept_language
   inherited_resources
   jbuilder (~> 1.2)
   jquery-rails

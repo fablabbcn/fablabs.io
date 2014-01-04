@@ -39,11 +39,20 @@
       .row
         .columns.large-2
           = image_tag "footer-logo.png"
-        .columns.large-5.left
+        .columns.large-5.left.small-6
           %ul
             %li= link_to "Labs List", labs_path
             %li= link_to "World Map", map_labs_path
             %li= link_to "About", about_path
             %li= link_to "The Fab Foundation", "http://www.fabfoundation.org"
+        .columns.large-4.small-6
+          %ul.locales
+            %li= locale_link_to "Deutsch", "de"
+            %li= locale_link_to "English", "en"
+            %li= locale_link_to "Español", "es"
+            %li= locale_link_to "Français", "fr"
+            %li= locale_link_to "Nederlands", "nl"
+            %li= locale_link_to "Italiano", "it"
+            %li= locale_link_to "日本語", "ja"
 
     = render "application/footer_scripts"

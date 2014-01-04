@@ -33,6 +33,14 @@ table.table {
     margin: 0;
   }
 }
+
+footer a.active {
+  color: #0275BC;
+  body.a-home & {
+    color: #FFF;
+  }
+}
+
 .microdata {
   display: none;
 }

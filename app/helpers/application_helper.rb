@@ -2,6 +2,10 @@ require 'digest/sha1'
 
 module ApplicationHelper
 
+  def locale_link_to language, code
+    link_to language, {locale: code}, class: ('active' if I18n.locale.to_s == code)
+  end
+
   def gem_count_tag(count)
     content_tag(:span, count, class: 'gem-count') if count > 0
   end

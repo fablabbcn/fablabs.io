@@ -20,18 +20,17 @@ private
   end
 
   def set_locale
-    if current_user
-      if params[:locale].present? and params[:locale] != current_user.locale
-        current_user.update_attribute(:locale, params[:locale])
+    begin
+      if params[:locale].present?
+        I18n.locale = cookies[:locale] = params[:locale]
+      elsif cookies[:locale].present?
+        I18n.locale = cookies[:locale]
+      else
+        I18n.locale = http_accept_language.compatible_language_from(I18n.available_locales)
       end
-      I18n.locale = current_user.locale
-    else
-      I18n.locale = params[:locale] if params[:locale].present?
+    rescue I18n::InvalidLocale
+      I18n.locale = I18n.default_locale
     end
-    # current_user.locale
-    # request.subdomain
-    # request.env["HTTP_ACCEPT_LANGUAGE"]
-    # request.remote_ip
   end
 
   helper_method :current_country
@@ -39,9 +38,9 @@ private
     Country[(Rails.env.test? ? 'GB' : request.env["HTTP_CF_IPCOUNTRY"] || ENV["COUNTRY_CODE"])]
   end
 
-  def default_url_options(options = {})
-    {locale: I18n.locale}
-  end
+  # def default_url_options(options = {})
+  #   {locale: I18n.locale}
+  # end
 
   helper_method :current_or_null_user
   def current_or_null_user

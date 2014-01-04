@@ -6,6 +6,7 @@ source 'https://rubygems.org'
 gem 'private_pub'
 gem 'thin'
 gem 'rack-cors', :require => 'rack/cors'
+gem 'http_accept_language'
 
 gem 'date_time_attribute'
 gem 'whenever', :require => false
