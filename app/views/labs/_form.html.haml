@@ -106,8 +106,7 @@
     %legend Capabilities
     = f.input :capabilities, as: 'check_boxes', inline_label: true, item_wrapper_class: 'checkbox_container', label: false, collection: Lab::Capabilities.map{|f| [ I18n.t("capabilities.#{f}"), f]}, checked: f.object.capabilities, hint: "Check all of the boxes that apply to this lab"
 
-    = f.association :machines, collection: Machine.includes(:brand).map{|m| ["#{m.brand} - #{m.name}", m.id]}, hint: "We are doing a lot of work with the list of machines. Soon you will be able to add your own machines to the directory, but until then maybe you have some in our list?"
-
+    -# = f.association :machines, collection: Machine.includes(:brand).map{|m| ["#{m.brand} - #{m.name}", m.id]}, hint: "We are doing a lot of work with the list of machines. Soon you will be able to add your own machines to the directory, but until then maybe you have some in our list?"
 
     = f.input :tools_list, hint: "Please list any other machines that you have so that we can add them to the directory.", input_html: { style: "height: 8em" }, placeholder: "e.g. Makerbot Industries - Makerbot 2"
 

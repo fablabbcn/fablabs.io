@@ -1,8 +1,6 @@
 Fablabs::Application.routes.draw do
   resources :pages
 
-  resources :events
-
   use_doorkeeper
   require 'sidekiq/web'
   require "admin_constraint"
@@ -70,6 +68,8 @@ Fablabs::Application.routes.draw do
       end
     end
 
+    get 'events' => 'events#show', as: 'events'
+
     # resources :labs, path: '', only: [:show]
 
     # resources :labs, only: [:show, :destroy], path: ''
@@ -77,6 +77,7 @@ Fablabs::Application.routes.draw do
     get 'labs' => 'labs#index'
     post 'labs' => 'labs#create'
     resources :labs, path: '', except: :index do
+      resources :events
       resources :admin_applications
       resources :role_applications
       resources :employees

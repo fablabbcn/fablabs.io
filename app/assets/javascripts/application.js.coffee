@@ -18,6 +18,8 @@
 #= require leaflet.markercluster
 #= require private_pub
 #= require cocoon
+#= require jquery.timepicker
+#= require foundation-datepicker
 #= require underscore
 #= require select2
 #= require messenger
