@@ -1,6 +1,7 @@
 Fablabs::Application.routes.draw do
   resources :pages
 
+  resources :translations
   resources :events
 
   use_doorkeeper

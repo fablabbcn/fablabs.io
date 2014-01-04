@@ -60,7 +60,7 @@ module ApplicationHelper
   end
 
   def body_classes
-    "c-#{controller_name} a-#{action_name} #{'backstage' if backstage?}"
+    "#{Rails.env} c-#{controller_name} a-#{action_name} #{'backstage' if backstage?}"
   end
 
 end

@@ -31,7 +31,8 @@
 
 initEvents = ->
 
-  $('textarea').autosize({append: "\n"})
+  $('textarea').autosize()
+  # {append: "\n"}
   $(document).foundation()
   $("select").select2()
 

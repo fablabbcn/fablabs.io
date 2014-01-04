@@ -34,7 +34,7 @@ table.table {
   }
 }
 
-.translation_missing{
+body.development .translation_missing{
   color: red;
 
   &:before{
