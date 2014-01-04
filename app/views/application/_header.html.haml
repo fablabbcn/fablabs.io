@@ -21,7 +21,7 @@
         %li{class: ('active' if controller_name == 'labs')}= link_to "Labs", labs_path, class: 'top-link'
         - if current_or_null_user.can_read?(Event)
           %li{class: ('active' if controller_name == 'events')}= link_to "Events", events_path, class: 'top-link'
-        %li{class: ('active' if controller_name == 'machines')}= link_to t("views.header.machines", default: "Machines"), machines_path, class: 'top-link'
+        %li{class: ('active' if controller_name == 'machines')}= link_to t("views.header.machines"), machines_path, class: 'top-link'
 
         -# %li{class: ('active' if controller_name == 'activity')}= link_to "Activity", activity_path, class: 'top-link'
         -# %li{class: ('active' if controller_name == 'machines')}= link_to "Machines", machines_path
