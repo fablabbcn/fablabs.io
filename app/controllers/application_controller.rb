@@ -23,7 +23,7 @@ private
     begin
       if params[:locale].present?
         I18n.locale = cookies[:locale] = params[:locale]
-      elsif cookies[:locale].present?
+      elsif cookies[:locale]
         I18n.locale = cookies[:locale]
       else
         I18n.locale = http_accept_language.compatible_language_from(I18n.available_locales)
