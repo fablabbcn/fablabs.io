@@ -23,6 +23,8 @@ Authority.configure do |config|
   config.controller_action_map = {
     :index   => 'read',
     :show    => 'read',
+    :main_index   => 'read',
+
     :new     => 'create',
     :create  => 'create',
     :edit    => 'update',

@@ -2,6 +2,7 @@ class EventsController < ApplicationController
 
   def main_index
     @events = Event.upcoming.includes(:lab)
+    authorize_action_for @events
   end
 
   def show
