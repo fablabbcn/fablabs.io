@@ -8,49 +8,22 @@ class Event < ActiveRecord::Base
   include Authority::Abilities
   self.authorizer_name = 'EventAuthorizer'
 
-  attr_accessor :all_day, :location, :time_zone
-
-  attr_writer :start_date, :start_time, :end_date, :end_time
-
-  def time_zone
-    'Madrid'
-  end
-
-  def start_date
-    ActiveSupport::TimeZone.new(time_zone).utc_to_local(starts_at).stamp('30/12/99')
-  end
-
-  def start_time
-    ActiveSupport::TimeZone.new(time_zone).utc_to_local(starts_at).stamp('01:45am')
-  end
-
-  def end_date
-    ActiveSupport::TimeZone.new(time_zone).utc_to_local(ends_at).stamp('30/12/99')
-  end
-
-  def end_time
-    ActiveSupport::TimeZone.new(time_zone).utc_to_local(ends_at).stamp('01:45am')
-  end
-
-
   belongs_to :lab
   belongs_to :creator, class_name: 'User'
   validates_presence_of :name, :description, :lab #:starts_at,
 
-  before_save :set_timezones
+  attr_accessor :all_day, :location, :time_zone
+  attr_writer :start_date, :start_time, :end_date, :end_time
 
   scope :upcoming, -> { where('starts_at > ?', Time.now) }
 
-  def set_timezones
-    if time_zone.present?
-      Chronic.time_class = ActiveSupport::TimeZone.new(time_zone)
-    end
-    self.starts_at = Chronic.parse( [start_date, start_time].join(' '), endian_precedence: :little)
-    self.ends_at = Chronic.parse( [end_date, end_time].join(' '), endian_precedence: :little)
-    # if time_zone.present?
-    #   self.starts_at = ActiveSupport::TimeZone.new(time_zone).local_to_utc(starts_at)
-    #   self.ends_at = ActiveSupport::TimeZone.new(time_zone).local_to_utc(ends_at)
-    # end
+  Tags = %w(open_days workshops lectures social_party)
+  bitmask :tags, as: Tags
+
+  before_save :set_timezones
+
+  def time_zone
+    'Madrid'
   end
 
   def to_s
@@ -59,6 +32,28 @@ class Event < ActiveRecord::Base
 
   def all_day?
     starts_at == starts_at.beginning_of_day
+  end
+
+  %w(start end).each do |word|
+
+    define_method "#{word}_date" do
+      ActiveSupport::TimeZone.new(time_zone).utc_to_local(self["#{word}s_at"]).stamp('30/12/99') if self["#{word}s_at"].present?
+    end
+
+    define_method "#{word}_time" do
+      ActiveSupport::TimeZone.new(time_zone).utc_to_local(self["#{word}s_at"]).stamp('01:45am') if self["#{word}s_at"].present?
+    end
+
+  end
+
+private
+
+  def set_timezones
+    if time_zone.present?
+      Chronic.time_class = ActiveSupport::TimeZone.new(time_zone)
+    end
+    self.starts_at = Chronic.parse( [start_date, start_time].join(' '), endian_precedence: :little)
+    self.ends_at = Chronic.parse( [end_date, end_time].join(' '), endian_precedence: :little)
   end
 
 end

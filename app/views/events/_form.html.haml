@@ -20,10 +20,10 @@
       .columns.large-3
         = f.time_zone_select :time_zone
 
-
     = f.input :all_day, as: 'boolean'
 
   %fieldset
+    = f.input :tags, as: 'check_boxes', collection: Event::Tags, checked: @event.tags
     = f.input :location
     = f.input :description
 

@@ -2,6 +2,15 @@
 
 FactoryGirl.define do
 
+  factory :repeat do
+    event
+    year 2013
+    month 0
+    day 1
+    week 1
+    weekday 1
+  end
+
   factory :coupon do
     user
     description "Fab 10 Discount Code"

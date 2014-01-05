@@ -1,0 +1,23 @@
+class CreateRepeats < ActiveRecord::Migration
+  def change
+    create_table :repeats do |t|
+      t.belongs_to :event, index: true
+      t.datetime :starts_at
+      t.datetime :ends_at
+
+      # look at ancestry e.g.
+      # '/2004/**/**/**/**/*/'
+
+      t.integer :year
+      t.integer :month
+      t.integer :day
+      t.integer :week
+      t.integer :weekday
+
+      t.timestamps
+    end
+  end
+end
+
+# "Labs:7:academy:students:2014": [243,112,23,44,65,34,32,10,7]
+# "Labs:7:academy:students:2013": [243,112,23,44,65,34,32,10,7]
