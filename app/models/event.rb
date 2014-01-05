@@ -14,9 +14,13 @@ class Event < ActiveRecord::Base
 
   before_save :set_timezones
 
+  scope :upcoming, -> { where('starts_at > ?', Time.now) }
+
   def set_timezones
-    self.starts_at = ActiveSupport::TimeZone.new(time_zone).local_to_utc(starts_at)
-    self.ends_at = ActiveSupport::TimeZone.new(time_zone).local_to_utc(ends_at)
+    if time_zone.present?
+      self.starts_at = ActiveSupport::TimeZone.new(time_zone).local_to_utc(starts_at)
+      self.ends_at = ActiveSupport::TimeZone.new(time_zone).local_to_utc(ends_at)
+    end
   end
 
   def to_s

@@ -70,7 +70,7 @@ Fablabs::Application.routes.draw do
       end
     end
 
-    get 'events' => 'events#show', as: 'events'
+    get 'events' => 'events#main_index', as: 'events'
 
     # resources :labs, path: '', only: [:show]
 

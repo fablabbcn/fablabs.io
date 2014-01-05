@@ -1,8 +1,8 @@
 - if event.present?
   = content_tag_for :li, activity do
     = link_to activity.creator, activity.creator, class: 'user'
-    added the event
-    = link_to event, event
+    = event
+    = link_to event, lab_event_path(event.lab, event)
     at
     = link_to event.lab, event.lab
     %i #{time_ago_in_words(activity.created_at)} ago

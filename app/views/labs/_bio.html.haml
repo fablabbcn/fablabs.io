@@ -27,3 +27,6 @@
     %li
       = link_to lab_employees_path(@lab) do
         = fa_icon "group", text: t('views.labs.show.edit_employee_list', default: "Edit Employee List")
+    %li
+      = link_to new_lab_event_path(@lab) do
+        = fa_icon "calendar", text: t('views.labs.show.add_event', default: "Add Event")

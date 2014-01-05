@@ -1,0 +1,6 @@
+.row
+  .columns.large-12
+    = title "Events"
+    %ul.events
+      - @events.each do |event|
+        %li= link_to event, lab_event_path(event.lab, event)

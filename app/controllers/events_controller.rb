@@ -1,12 +1,16 @@
 class EventsController < ApplicationController
 
+  def main_index
+    @events = Event.upcoming.includes(:lab)
+  end
+
   def show
     @event = Event.find(params[:id])
     authorize_action_for @event
   end
 
   def index
-    @events = Event.order('starts_at ASC').group_by { |t| t.starts_at.beginning_of_day }#.where('starts_at > ?', Time.now)
+    @events = Event.upcoming.includes(:lab).order('starts_at ASC').group_by { |t| t.starts_at.beginning_of_day }#.where('starts_at > ?', Time.now)
     authorize_action_for Event
   end
 
@@ -22,7 +26,7 @@ class EventsController < ApplicationController
     authorize_action_for @event
     if @event.save
       track_activity @event, current_user
-      redirect_to event_url(@event), notice: "Event Created"
+      redirect_to [@event.lab,@event], notice: "Event Created"
     else
       render :new
     end

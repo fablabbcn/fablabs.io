@@ -3,7 +3,7 @@
 #homepage-map
   .filter
   #homepage-search
-    %p= t("views.home.show_me_fab_labs")
+    %p= t("views.home.show_me_fab_labs", default: "Show me Fab Labs")
     = link_to labs_path, class: 'button ' do
       = fa_icon "globe"
       = t("views.home.around_the_world")
