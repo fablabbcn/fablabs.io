@@ -7,7 +7,7 @@ gem 'private_pub'
 gem 'thin'
 gem 'rack-cors', :require => 'rack/cors'
 gem 'http_accept_language'
-
+gem 'chronic'
 gem 'date_time_attribute'
 gem 'whenever', :require => false
 gem 'slim'

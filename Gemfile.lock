@@ -490,6 +490,7 @@ DEPENDENCIES
   bullet!
   capistrano (~> 2.15)
   capybara
+  chronic
   cocoon!
   codeclimate-test-reporter
   coffee-rails (~> 4.0.0)

@@ -1,4 +1,4 @@
-- if event.present?
+- if event.present? and current_or_null_user.can_read?(Event)
   = content_tag_for :li, activity do
     = link_to activity.creator, activity.creator, class: 'user'
     = event
