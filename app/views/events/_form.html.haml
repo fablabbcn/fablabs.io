@@ -1,0 +1,33 @@
+= simple_form_for [@lab,@event] do |f|
+  = render 'form_errors', resource: @event
+  %fieldset
+    = f.input :name, placeholder: "New Event"
+    .row
+      .columns.large-5
+        = f.input :starts_at
+      .columns.large-5
+        = f.input :ends_at
+      -# .columns.large-2
+      -#   = f.input :starts_at_date, as: 'string', input_html: { class: 'datepicker' }
+      -# .columns.large-2
+      -#   = f.input :starts_at_time, as: 'string', input_html: { class: 'timepicker' }
+      -# .columns.large-1
+      -#   to
+      -# .columns.large-2
+      -#   = f.input :ends_at_date, as: 'string', input_html: { class: 'datepicker' }
+      -# .columns.large-2
+      -#   = f.input :ends_at_time, as: 'string', input_html: { class: 'timepicker' }
+      .columns.large-3
+        = f.time_zone_select :time_zone
+
+
+    = f.input :all_day, as: 'boolean'
+
+  %fieldset
+    = f.input :location
+    = f.input :description
+
+  -# = f.input :starts_at, as: 'time'
+  -# = f.input :ends_at
+  -# = f.association :lab
+  = f.submit class: 'button'

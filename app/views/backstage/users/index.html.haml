@@ -32,5 +32,5 @@
           %tr
             %td= user.id
             %td= link_to user, backstage_user_path(user)
-            %td= user.email
+            %td= mail_to user.email, user.email
             %td= user.created_at
