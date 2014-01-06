@@ -22,12 +22,13 @@
         = render("events", lab: @lab, events: @events)
 
       = render("employees", lab: @lab, employees: @employees)
+      = render("academics", lab: @lab, academics: @academics)
       - if @machines.length > 0
         = render("machines", lab: @lab, machines: @machines)
 
     .columns.large-4.sidebar
       = render "nearby", lab: @lab, nearby_labs: @nearby_labs
-      - cache ["side-v2", @lab] do
+      - cache ["side-v2-#{I18n.locale}", @lab] do
         = render "links", links: @lab.links
         - if @lab.capabilities.length > 0
           = render "capabilities", capabilities: @lab.capabilities

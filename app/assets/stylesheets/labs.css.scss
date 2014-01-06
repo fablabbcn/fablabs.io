@@ -2,6 +2,42 @@
 
 $sea-blue: #98BCDA;
 
+table.disciplines {
+  width: 100%;
+  td {
+    width: 50%;
+  }
+  .discipline {
+    color: #AAA;
+  }
+}
+
+ul.academics {
+.academic {
+  width: 55px;
+  height: 55px;
+}
+}
+
+li.person {
+.employee {
+  width: 75px;
+  height: 75px;
+}
+}
+
+ul.events {
+  list-style: none;
+}
+
+.med {
+  text-align: center;
+  .button {
+    background: #777;
+    margin-top: 10px;
+  }
+}
+
 .rotate {
 
   font-size: 0.6em;

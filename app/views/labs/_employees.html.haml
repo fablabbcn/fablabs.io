@@ -1,5 +1,5 @@
 .heading
-  = fa_icon "users", text: t("views.labs.show.people", default: "People")
+  = fa_icon "users", text: t("views.labs.show.people", default: "Employees")
   - if current_or_null_user.can_update?(lab)
     = link_to "edit", lab_employees_path(lab), id: "edit-employees"
 
@@ -9,7 +9,7 @@
       %li.person{itemscope: true, itemtype: "http://data-vocabulary.org/Person"}
         .media
           .pull-left
-            = image_tag hocho(employee.user.avatar, "o=t&q=80&d=90x90"), class: 'avatar med'
+            = image_tag hocho(employee.user.avatar, "o=t&q=80&d=90x90"), class: 'avatar med employee'
           .media-body
             = link_to employee.user, class: 'person-name' do
               %span.first_name{itemprop: "givenName"}= employee.user.first_name
@@ -21,7 +21,7 @@
               - if employee.phone.present?
                 .phone{itemprop: "telephone"}= employee.phone
 
-  %li.person
+  %li.person.med
     - if current_user
       - if current_user.applied_to?(@lab) and !current_user.employed_by?(@lab)
         = link_to new_lab_employee_path(@lab), class: 'button tiny disabled secondary' do
@@ -35,6 +35,3 @@
       = link_to new_lab_employee_path(@lab), class: 'button tiny' do
         = fa_icon "check-square"
         = t("views.labs.show.i_work_here", default: "I work here")
-
--# = link_to new_lab_academic_path(@lab), class: 'button tiny' do
--#   = t("views.labs.show.i_studied_here", default: "I did the fab academy here")

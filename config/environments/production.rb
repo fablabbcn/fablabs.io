@@ -18,7 +18,7 @@ Fablabs::Application.configure do
   # Add `rack-cache` to your Gemfile before enabling this.
   # For large-scale production use, consider using a caching reverse proxy like nginx, varnish or squid.
   config.action_controller.perform_caching = true
-  config.cache_store = :redis_store, 'redis://localhost:6379/0/cache', { expires_in: 90.minutes }
+  config.cache_store = :redis_store, 'redis://localhost:6379/0/cache', { expires_in: 15.minutes }
   config.action_dispatch.rack_cache = {
     metastore:   'redis://localhost:6379/0/metastore',
     entitystore: 'redis://localhost:6379/0/entitystore'

@@ -49,10 +49,10 @@
                     = gem_count_tag Lab.with_unverified_state.size
               %li
                 = link_to signout_path do
-                  = fa_icon "sign-out", text: t("views.header.sign_out", default: "Sign out")
+                  = fa_icon "sign-out", text: t("views.header.signout", default: "Sign out")
         - else
-          %li= link_to t("views.header.sign_in"), signin_path
-          %li.last= link_to t("views.header.sign_up"), signup_path
+          %li= link_to t("views.header.signin", default: "Sign in"), signin_path
+          %li.last= link_to t("views.header.signup", default: "Sign up"), signup_path
 
         -# %li#locale
         -#   = link_to choose_locale_path, id: 'locale-icon', class: I18n.locale, data: { reveal_id: "myModal", reveal_ajax: "true" } do

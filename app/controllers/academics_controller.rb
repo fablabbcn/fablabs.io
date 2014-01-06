@@ -69,13 +69,11 @@ private
 
   def academic_params
     params.require(:academic).permit(
-      :user_id,
-      :lab_id,
-      :ordinal,
-      :job_title,
-      :email,
-      :phone,
-      :description
+      :started_in,
+      :graduated_in,
+      :url,
+      :final_project_name,
+      :final_project_description
     )
   end
 

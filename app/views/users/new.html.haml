@@ -1,6 +1,6 @@
 .row
   .columns.large-12
-    = title "Sign Up"
+    = title t("views.header.signup", default: "Sign up")
 
   .columns.large-12.left
     = simple_form_for @user do |f|
@@ -32,7 +32,7 @@
           = label_tag 'name', 'IGNORE'
           = text_field_tag 'name', nil, alt: "This field is to prevent bots. Please leave it blank.", placeholder: "LEAVE BLANK TO PROVE YOU ARE HUMAN"
 
-        = f.submit 'Sign Up', class: 'button'
+        = f.submit t("views.header.signup", default: "Sign Up"), class: 'button'
 
     -# .columns.large-4
     -#   %h4 Joining the Network

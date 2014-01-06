@@ -3,7 +3,7 @@
   -# - if current_or_null_user.can_update?(lab)
   -#   = link_to "edit", lab_employees_path(lab), id: "edit-employees"
 
-%ul
+%ul.events
   - events.each do |event|
     %li
       = link_to event, [event.lab, event]

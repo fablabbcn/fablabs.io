@@ -11,11 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140105130937) do
+ActiveRecord::Schema.define(version: 20140105170650) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "uuid-ossp"
+  enable_extension "hstore"
 
   create_table "academics", force: true do |t|
     t.integer  "user_id"
@@ -25,6 +26,11 @@ ActiveRecord::Schema.define(version: 20140105130937) do
     t.integer  "approver_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "graduated_in"
+    t.string   "url"
+    t.string   "final_project_name"
+    t.text     "final_project_description"
+    t.hstore   "meta"
   end
 
   add_index "academics", ["approver_id"], name: "index_academics_on_approver_id", using: :btree

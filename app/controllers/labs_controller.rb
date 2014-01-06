@@ -61,6 +61,8 @@ class LabsController < ApplicationController
     @employees = @lab.employees.includes(:user).active.order('employees.id ASC')
     @machines = @lab.machines.includes(:brand, :tags)
     @events = @lab.events.order('starts_at ASC').includes(:lab)
+    @academics = @lab.academics.includes(:user).order('users.first_name ASC')
+    @years = @academics.map(&:started_in).uniq.sort.reverse
     @nearby_labs = @lab.nearby_labs(false, 1000)
     @nearby_labs = @nearby_labs.limit(5) if @nearby_labs
     authorize_action_for @lab

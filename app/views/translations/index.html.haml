@@ -6,7 +6,7 @@
         %tr
           %th English
           %th
-            = select_tag :locale, options_for_select([ ['English', 'en'], ['Deutsch', 'de'], ['Español', 'es'], ['Français', 'fr'], ['Italiano', 'it'], ['日本語', 'ja'], ['Nederlands', 'nl'] ], selected: params[:translation_locale]), id: 'locale-select'
+            = select_tag :locale, options_for_select([ ['English', 'en'], ['Deutsch', 'de'], ['Español', 'es'], ['Français', 'fr'], ['Italiano', 'it'], ['日本語', 'ja'], ['Nederlands', 'nl'], ['Português', 'pt'] ], selected: params[:translation_locale]), id: 'locale-select'
             .debug= @translations.keys('en.*').to_yaml
       - @translations.keys('en.*').each do |key|
         %tr

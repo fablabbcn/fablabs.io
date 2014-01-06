@@ -9,12 +9,12 @@ feature "Visitor signs up" do
 
   scenario 'with invalid email' do
     sign_up_as FactoryGirl.build(:user, email: 'wrong')
-    expect(page).to have_content('Sign In')
+    expect(page).to have_content('Sign in')
   end
 
   scenario 'with blank password' do
     sign_up_as FactoryGirl.build(:user, password: '', password_confirmation: '')
-    expect(page).to have_content('Sign In')
+    expect(page).to have_content('Sign in')
   end
 
 end
