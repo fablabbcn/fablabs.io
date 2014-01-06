@@ -109,7 +109,9 @@ Fablabs::Application.routes.draw do
     namespace :api, path: '' do
       namespace :v0 do
         get 'me' => 'users#me'
-        resources :coupons
+        resources :coupons do
+          get :redeem, on: :member
+        end
         resources :labs do
           get :map, on: :collection
         end
