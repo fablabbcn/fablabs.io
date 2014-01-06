@@ -83,7 +83,7 @@ Fablabs::Application.routes.draw do
       resources :admin_applications
       resources :role_applications
       resources :employees
-      resources :academics
+      # resources :academics
 
       get 'mapdata', on: :collection
       # resources :discussions
