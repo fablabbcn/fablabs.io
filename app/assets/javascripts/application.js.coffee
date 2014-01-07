@@ -41,7 +41,5 @@ initEvents = ->
   $('*[data-limit]').each ->
     $(this).limit parseInt($(this).data('limit')), $(this).data('counter')
 
-
 document.addEventListener "page:load", initEvents
 $(document).ready initEvents
-# jQuery -> initEvents
