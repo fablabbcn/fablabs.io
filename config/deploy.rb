@@ -6,6 +6,8 @@ set :whenever_command, "bundle exec whenever"
 require "whenever/capistrano"
 # require 'capistrano/maintenance'
 
+set :bundle_flags,   "--deployment --verbose --without development test"
+
 set :rails_env, "production"
 set :recipes, "config/recipes"
 # monit varnish redis
