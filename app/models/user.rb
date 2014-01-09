@@ -7,6 +7,8 @@ class User < ActiveRecord::Base
   include Authority::Abilities
   self.authorizer_name = 'UserAuthorizer'
 
+  before_create :generate_fab10_coupon_code
+
   include Workflow
 
   rolify
@@ -104,6 +106,23 @@ class User < ActiveRecord::Base
 
   def self.admin_emails
     User.with_role(:superadmin).map(&:email)
+  end
+
+  # def coupon_code
+  #   SecureRandom.urlsafe_base64[0..10].gsub(/[^0-9a-zA-Z]/i, '')
+  # end
+
+  def generate_fab10_coupon_code
+    if self.fab10_coupon_code.blank?
+      self.fab10_coupon_code = loop do
+        random_token = SecureRandom.urlsafe_base64[0..10].gsub(/[^0-9a-zA-Z]/i, '')
+        break random_token unless User.exists?(fab10_coupon_code: random_token)
+      end
+    end
+
+    if employees.with_approved_state.any?
+      self.fab10_cost = 35000
+    end
   end
 
 private

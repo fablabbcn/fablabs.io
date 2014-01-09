@@ -1,3 +1,5 @@
+Premailer::Rails.config.merge!(link_query_string: 'from=f10m001')
+
 class UserMailer < ActionMailer::Base
 
   default from: "FabLabs.io <notifications@fablabs.io>"
@@ -15,6 +17,11 @@ class UserMailer < ActionMailer::Base
       rescue ActiveRecord::RecordNotFound
       end
     end
+  end
+
+  def fab10 user
+    @user = user
+    mail(reply_to: "fab10@fablabbcn.org", to: @user.email_string, subject: "FAB10 Discount Code")
   end
 
   def employee_approved employee_id

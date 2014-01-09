@@ -1,8 +1,10 @@
 source 'https://rubygems.org'
 
-# gem 'rubysl'
-# gem 'racc'
-# gem "dalli"
+# # gem 'rubysl'
+# # gem 'racc'
+# # gem "dalli"
+gem 'nokogiri'
+gem 'premailer-rails'
 gem 'private_pub'
 gem 'thin'
 gem 'rack-cors', :require => 'rack/cors'
