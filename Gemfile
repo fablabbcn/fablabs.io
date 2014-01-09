@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 # # gem 'rubysl'
 # # gem 'racc'
 # # gem "dalli"
-gem 'nokogiri'
+gem 'hpricot'
 gem 'premailer-rails'
 gem 'private_pub'
 gem 'thin'

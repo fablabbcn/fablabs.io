@@ -228,6 +228,7 @@ GEM
     hashie (2.0.5)
     highline (1.6.20)
     hike (1.2.3)
+    hpricot (0.8.6)
     htmlentities (4.3.1)
     http (0.5.0)
       http_parser.rb
@@ -516,6 +517,7 @@ DEPENDENCIES
   geocoder!
   guard-rspec
   haml-rails
+  hpricot
   http_accept_language
   inherited_resources
   jbuilder (~> 1.2)
@@ -526,7 +528,6 @@ DEPENDENCIES
   momentjs-rails
   nest
   newrelic_rpm
-  nokogiri
   paper_trail (>= 3.0.0.rc2)
   pg
   pg_search
