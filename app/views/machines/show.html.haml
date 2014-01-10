@@ -22,7 +22,7 @@
         %ul
           - if @machine.inventory_item?
             %li
-              = link_to "http://fab.cba.mit.edu/about/fab/inv.html", class: "button tiny", data: { tooltip: true }, title: "This is included in the Official Fab Lab hardware specification" do
+              = link_to "http://fab.cba.mit.edu/about/fab/inv.html", class: "button tiny", data: { tooltip: true }, title: "This is included in the Official Fab Lab hardware specification", style: "margin: 0" do
                 = fa_icon "tag"
                 Fab Lab Inventory Item
           - @machine.tags.each do |tag|
@@ -42,6 +42,10 @@
         - @machine.root.subtree.arrange_as_array.flatten.each do |node|
           %li= (node == @machine) ? node : link_to(node, node)
 
+      .heading Available at
+      %ul
+        - @machine.labs.each do |lab|
+          %li= link_to lab, lab
 
       -# %h4 Discussions
       -# = render @machine.discussions
