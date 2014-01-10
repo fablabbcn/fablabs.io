@@ -10,8 +10,7 @@
         = @machine.brand
         %h1= @machine
 
-        -# = simple_format(@machine.description)
-        %p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse.
+        = simple_format(@machine.description)
 
         -# = image_tag @machine.photo_src
         = image_tag hocho(@machine.photo_src, "o=r&q=80&d=800x800>")
