@@ -17,6 +17,24 @@
   color: #444;
 }
 
+.c-machines.a-show {
+  .main {
+    background: #FFF;
+    padding: 20px;
+    img {
+      margin-bottom: 20px;
+    }
+  }
+  .side {
+    ul,ol {
+    margin-left: 25px;
+    }
+    .lab-links {
+      margin-left: 5px;
+    }
+  }
+}
+
 .machine {
   border-radius: 4px;
   padding: 5px;

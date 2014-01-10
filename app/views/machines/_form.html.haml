@@ -9,4 +9,13 @@
 
   = f.input :inventory_item
 
+  %fieldset
+    %legend Links
+    = f.simple_fields_for :links do |link|
+      = render 'link_fields', f: link
+    .links
+      = link_to_add_association f, :links, class: 'button tiny' do
+        = fa_icon "plus"
+        Add another link
+
   = f.submit

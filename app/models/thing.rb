@@ -9,6 +9,9 @@ class Thing < ActiveRecord::Base
   has_many :discussions, as: :discussable
   has_many :facilities
   has_many :labs, through: :facilities
+  has_many :links, as: :linkable
+
+  accepts_nested_attributes_for :links, reject_if: lambda{ |l| l[:url].blank? }, allow_destroy: true
 
   acts_as_taggable
 

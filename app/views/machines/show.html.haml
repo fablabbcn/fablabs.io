@@ -5,39 +5,45 @@
     .columns.large-12
       = render "breadcrumbs"
   .row
-    .columns.large-12
-      = @machine.brand
-      %h1= @machine
-
-      - if @machine.inventory_item?
-        = link_to "http://fab.cba.mit.edu/about/fab/inv.html", class: "button tiny", data: { tooltip: true }, title: "This is included in the Official Fab Lab hardware specification" do
-          = fa_icon "tag"
-          Fab Lab Inventory Item
-
-      - @machine.tags.each do |tag|
-        = link_to tag, machines_path(tag: tag)
-
-      = simple_format(@machine.description)
-      -# = link_to @machine.brand, @machine.brand
-
-  .row
     .columns.large-8
-      -# = image_tag @machine.photo_src
-      = image_tag hocho(@machine.photo_src, "o=r&q=80&d=800x800>")
+      .main
+        = @machine.brand
+        %h1= @machine
 
-    .columns.large-4
+        -# = simple_format(@machine.description)
+        %p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse.
 
+        -# = image_tag @machine.photo_src
+        = image_tag hocho(@machine.photo_src, "o=r&q=80&d=800x800>")
 
-      - if @machine.labs.any?
-        .heading Operating at
+    .columns.large-4.side
+
+      - if @machine.tags.length > 0
+        .heading Tags
         %ul
-          - @machine.labs.with_approved_state.each do |lab|
-            %li= link_to lab, lab
+          - if @machine.inventory_item?
+            %li
+              = link_to "http://fab.cba.mit.edu/about/fab/inv.html", class: "button tiny", data: { tooltip: true }, title: "This is included in the Official Fab Lab hardware specification" do
+                = fa_icon "tag"
+                Fab Lab Inventory Item
+          - @machine.tags.each do |tag|
+            %li= link_to tag, machines_path(tag: tag)
 
-      .heading Revisions
+
+      - if @machine.links.length > 0
+        .heading Useful Links
+        %ul
+          - @machine.links.each do |link|
+            %li.machine-link
+              = link_to link.url do
+                = favicon link.url
+                %span.url{itemprop: "sameAs"}= link.description
+
+      .heading Machine Revisions
       %ol
         - @machine.root.subtree.arrange_as_array.flatten.each do |node|
           %li= (node == @machine) ? node : link_to(node, node)
+
 
       -# %h4 Discussions
       -# = render @machine.discussions

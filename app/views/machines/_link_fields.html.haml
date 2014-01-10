@@ -1,0 +1,6 @@
+.nested-fields
+  .row.collapse
+    -# .columns.small-1.large-1= fa_icon "reorder"
+    .columns.small-10.large-5= f.input :description, label: false, placeholder: 'Guidebook'
+    .columns.small-10.large-6= f.input :url, label: false, placeholder: 'http://www.myfablab.com'
+    .columns.small-2.large-1.close= link_to_remove_association "x", f, class: 'button tiny alert'
