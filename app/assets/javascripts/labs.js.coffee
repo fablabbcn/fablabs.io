@@ -70,7 +70,7 @@ ready = ->
     $("input#lab_latitude").val result.geometry.location.lat()
     $("input#lab_longitude").val result.geometry.location.lng()
 
-  if $('body').hasClass 'c-labs a-map'
+  if $('body').hasClass('c-labs a-map') or $('body').hasClass('a-embed')
 
     map = L.map('map', { scrollWheelZoom: true, zoomControl: false }).setView([50, 0], 2 )
 

@@ -36,6 +36,18 @@ table.table {
   }
 }
 
+body.a-embed {
+  &, #map {
+    top: 0;
+    margin: 0;
+    padding: 0;
+  }
+
+  header, footer, .uv-icon {
+    display: none;
+  }
+}
+
 body.development .translation_missing{
   color: red;
 

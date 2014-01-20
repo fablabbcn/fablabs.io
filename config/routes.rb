@@ -97,6 +97,7 @@ Fablabs::Application.routes.draw do
       end
       collection do
         get :map
+        get :embed
       end
     end
 

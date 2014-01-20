@@ -4,6 +4,11 @@ class LabsController < ApplicationController
 
   # authorize_actions_for Lab, actions: { map: :read, manage_admins: :update}
 
+  def embed
+    @labs = Lab.with_approved_state
+    # render :embed, layout: false
+  end
+
   def map
     @labs = Lab.with_approved_state
   end
