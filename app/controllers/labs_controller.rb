@@ -1,6 +1,7 @@
 class LabsController < ApplicationController
 
   before_filter :require_login, except: [:index, :map, :show, :mapdata]
+  after_action :allow_iframe, only: :embed
 
   # authorize_actions_for Lab, actions: { map: :read, manage_admins: :update}
 
@@ -106,6 +107,10 @@ class LabsController < ApplicationController
   end
 
 private
+
+  def allow_iframe
+    response.headers.except! 'X-Frame-Options'
+  end
 
   def lab_params
     params.require(:lab).permit(
