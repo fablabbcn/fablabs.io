@@ -2,31 +2,36 @@
   = image_tag "https://f.cloud.github.com/assets/133016/563610/2dc5ac82-c4f3-11e2-8ac0-c44b5d09b2c8.png", style: 'height: 25px; margin-bottom: -6px; padding: 0; opacity: 0.8'
   Fab Academy Students
   -# = fa_icon "users", text: "Fab Academy Students"
-  = link_to "edit", new_lab_academic_path(@lab)
+  -# = link_to "edit", new_lab_academic_path(@lab)
 
-%dl.sub-nav
-  %dt Year:
+%dl.sub-nav#students-filter
+  %dt Started in:
 
   %dd.active= link_to "All", "#"
   - @years.each do |year|
-    %dd= link_to year, "#"
+    %dd= link_to year, "#", data: { year: year }
 
-%ul.large-block-grid-2.academics
-  - academics.each do |academic|
-    %li.person{itemscope: true, itemtype: "http://data-vocabulary.org/Person"}
-      .media
-        .pull-left
-          = image_tag hocho(academic.user.avatar, "o=t&q=80&d=90x90"), class: 'avatar med academic'
-        .media-body
-          = link_to academic.user, class: 'person-name' do
-            %span.first_name{itemprop: "givenName"}= academic.user.first_name
-            %span.last_name{itemprop: "familyName"}= academic.user.last_name
-          .person-details
-            = link_to "Archive Website", "http://academy.cba.mit.edu/2013/students/rees.john/"
-            .graduated= fa_icon "check-circle-o", text: "Graduated 2013"
+#students
+  -# %input.search{placeholder: "Search"}
+  -# %button.sort{data:{sort: "name"}} Sort by name
+  %ul.large-block-grid-2.academics.list
+    - academics.each do |academic|
+      %li.person{itemscope: true, itemtype: "http://data-vocabulary.org/Person", data: {year: 2013}}
+        .media
+          .pull-left
+            = image_tag hocho(academic.user.avatar, "o=t&q=80&d=90x90"), class: 'avatar med academic'
+          .media-body
+            = link_to academic.user, class: 'person-name name' do
+              %span.first_name{itemprop: "givenName"}= academic.user.first_name
+              %span.last_name{itemprop: "familyName"}= academic.user.last_name
+            .person-details
+              = link_to "Academy Website", academic.url
+            .year #{academic.started_in} Student
+            = academic.id
+            -# .graduated= fa_icon "check-circle-o", text: "Graduated 2013"
 
-  - unless current_or_null_user.studied_at? @lab
-    %li.person.med
-      = link_to new_lab_academic_path(@lab), class: 'button tiny success' do
-        = fa_icon "check-square"
-        = t("views.labs.show.i_work_here", default: "I study/studied here")
+    - unless current_or_null_user.studied_at? @lab
+      %li.person.med
+        = link_to new_lab_academic_path(@lab), class: 'button tiny success' do
+          = fa_icon "check-square"
+          = t("views.labs.show.i_work_here", default: "I study/studied here")

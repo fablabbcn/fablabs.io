@@ -14,28 +14,47 @@
     %legend Final Project Details
     = f.input :fp_name, placeholder: "Musical Box", label: "Final Project Name"
     = f.input :fp_description, placeholder: "A press-fit box that can synthesize sound.", label: "Description", as: 'text'
-    = f.input :fp_photo, input_html: { class: 'fp', data: { fp_store_location: 'S3', fp_store_path: 'final_projects/', fp_store_container: ENV['S3_BUCKET'] } }, label: 'Project Photo'
+
+    .row
+      .columns.large-3= image_tag academic.fp_photo
+      .columns.large-9= f.input :fp_photo, input_html: { class: 'fp', data: { fp_store_location: 'S3', fp_store_path: 'final_projects/', fp_store_container: ENV['S3_BUCKET'] } }, label: 'Project Photo'
+
     = f.input :fp_url, label: "Project URL", hint: "A direct link to details about your final project"
 
   %fieldset
     %legend Feedback
     %label Disciplines
     %p.hint What were your favourite subjects? Drag the titles from the right, to the left column.
+
     %table.disciplines
       %thead
+        %th.discipline Discipline
+        %th <span>Disliked</span>
+        %th <span>Didn't enjoy</span>
+        %th <span>No Opinion</span>
+        %th <span>Liked</span>
+        %th <span>Loved</span>
+      - Academic::Disciplines.each do |discipline|
         %tr
-          %td= fa_icon "thumbs-up", text: "Favourite"
-          %td= fa_icon "arrow-left", text: "Drag"
-      - Academic::Disciplines.sort.each_with_index do |discipline, index|
-        %tr
-          %td
-            #{index+1}. #{Academic::Favourites[index].to_s.humanize.gsub('Three d', '3D')}
-          %td
-            %span.discipline= discipline.to_s.humanize.gsub('Three d', '3D')
-      %tfoot
-        %tr
-          %td= fa_icon "thumbs-down", text: "Least Favourite"
-          %td= fa_icon "arrow-left", text: "Drag"
+          %th= discipline.to_s.humanize.titleize.gsub('Three D', '3D')
+          -(1..5).each do |i|
+            %td= radio_button_tag :rating, i
+
+    -# %table.disciplines
+    -#   %thead
+    -#     %tr
+    -#       %td= fa_icon "thumbs-up", text: "Favourite"
+    -#       %td= fa_icon "arrow-left", text: "Drag"
+    -#   - Academic::Disciplines.sort.each_with_index do |discipline, index|
+    -#     %tr
+    -#       %td
+    -#         #{index+1}. #{Academic::Favourites[index].to_s.humanize.gsub('Three d', '3D')}
+    -#       %td
+    -#         %span.discipline= discipline.to_s.humanize.gsub('Three d', '3D')
+    -#   %tfoot
+    -#     %tr
+    -#       %td= fa_icon "thumbs-down", text: "Least Favourite"
+    -#       %td= fa_icon "arrow-left", text: "Drag"
 
     = f.input :comments, label: "Comments / Suggestions / Feedback", as: 'text', hint: "Anything else you have to say about the course, or how it could be improved"
 

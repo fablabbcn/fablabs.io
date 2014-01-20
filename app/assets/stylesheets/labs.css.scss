@@ -2,13 +2,29 @@
 
 $sea-blue: #98BCDA;
 
+#students-filter {
+  dd.active a {
+    padding: 0 !important;
+  }
+}
+#students {
+
+  .year {
+    font-size: 0.9em;
+  }
+}
+
 table.disciplines {
   width: 100%;
-  td {
-    width: 50%;
+  td.discipline {
+    width: 30%;
   }
-  .discipline {
-    color: #AAA;
+  td {
+    width: 14%;
+  }
+  th {
+    font-size: 0.8em;
+    text-align: left;
   }
 }
 

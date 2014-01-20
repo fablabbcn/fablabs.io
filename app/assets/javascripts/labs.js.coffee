@@ -10,6 +10,22 @@ down = false
 
 ready = ->
 
+
+  options = {
+    valueNames: [ 'name', 'year' ]
+  }
+  window.userList = new List('students', options)
+
+  $('#students-filter a').click (e) ->
+    e.preventDefault()
+    $('#students-filter dd').removeClass('active')
+    $(this).parents('dd').addClass('active')
+    if $(this).data('year')
+      window.userList.filter (item) =>
+        return parseInt(item._values.year) == parseInt($(this).data('year'))
+    else
+      window.userList.filter()
+
   $('#check-labs').change ->
     alert("We already have '#{$(this).val()}' lab in our database, if it is not yet visible on the site it will be soon")
 

@@ -1,5 +1,12 @@
 class Academic < ActiveRecord::Base
 
+# t.belongs_to :user
+# t.belongs_to :lab
+# t.integer :started_in
+# t.string :type
+# t.belongs_to :approver
+# meta
+
   Favourites = [
     :molding_and_casting,
     :group_project
