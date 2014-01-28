@@ -24,6 +24,17 @@
 @import "foundation_and_overrides";
 @import "foundation";
 @import "font-awesome";
+
+#embed-logo {
+  display: block;
+  background: image_url("embed-logo.png");
+  width: 200px;
+  height: 51px;
+  bottom: 18px;
+  right: 10px;
+  text-indent: -999px;
+  position: absolute;
+}
 table.table {
   font-size: 0.8em;
   width: 100%;
@@ -33,6 +44,18 @@ table.table {
   form, form div {
     display: inline;
     margin: 0;
+  }
+}
+
+body.a-embed {
+  &, #map {
+    top: 0;
+    margin: 0;
+    padding: 0;
+  }
+
+  header, footer, .uv-icon {
+    display: none;
   }
 }
 
