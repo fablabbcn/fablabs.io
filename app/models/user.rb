@@ -65,7 +65,7 @@ class User < ActiveRecord::Base
   end
 
   def studied_at? lab
-    Academic.where(lab: lab, user: self).exists?
+    academics.where(lab: lab).exists?
   end
 
   def employed_by? lab

@@ -27,7 +27,7 @@
             .person-details
               = link_to "Academy Website", academic.url
             .year #{academic.started_in} Student
-            = academic.id
+            -# = academic.id
             -# .graduated= fa_icon "check-circle-o", text: "Graduated 2013"
 
     - unless current_or_null_user.studied_at? @lab

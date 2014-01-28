@@ -1,5 +1,7 @@
 class Academic < ActiveRecord::Base
 
+  include Authority::Abilities
+  self.authorizer_name = 'AcademicAuthorizer'
 # t.belongs_to :user
 # t.belongs_to :lab
 # t.integer :started_in
