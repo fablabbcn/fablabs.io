@@ -15,20 +15,21 @@
   -# %input.search{placeholder: "Search"}
   -# %button.sort{data:{sort: "name"}} Sort by name
   %ul.large-block-grid-2.academics.list
-    - academics.each do |academic|
-      %li.person{itemscope: true, itemtype: "http://data-vocabulary.org/Person", data: {year: 2013}}
-        .media
-          .pull-left
-            = image_tag hocho(academic.user.avatar, "o=t&q=80&d=90x90"), class: 'avatar med academic'
-          .media-body
-            = link_to academic.user, class: 'person-name name' do
-              %span.first_name{itemprop: "givenName"}= academic.user.first_name
-              %span.last_name{itemprop: "familyName"}= academic.user.last_name
-            .person-details
-              = link_to "Academy Website", academic.url
-            .year #{academic.started_in} Student
-            -# = academic.id
-            -# .graduated= fa_icon "check-circle-o", text: "Graduated 2013"
+    - if academics.length > 0
+      - academics.each do |academic|
+        %li.person{itemscope: true, itemtype: "http://data-vocabulary.org/Person", data: {year: 2013}}
+          .media
+            .pull-left
+              = image_tag hocho(academic.user.avatar, "o=t&q=80&d=90x90"), class: 'avatar med academic'
+            .media-body
+              = link_to academic.user, class: 'person-name name' do
+                %span.first_name{itemprop: "givenName"}= academic.user.first_name
+                %span.last_name{itemprop: "familyName"}= academic.user.last_name
+              .person-details
+                = link_to "Academy Website", academic.url
+              .year #{academic.started_in} Student
+              -# = academic.id
+              -# .graduated= fa_icon "check-circle-o", text: "Graduated 2013"
 
     - unless current_or_null_user.studied_at? @lab
       %li.person.med
