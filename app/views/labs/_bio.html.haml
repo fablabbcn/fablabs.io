@@ -2,6 +2,7 @@
   = image_tag hocho(lab.avatar, "o=t&q=80&d=300x300&"), class: 'big avatar', itemprop: "logo"
 
 = title lab
+.kind= "[#{lab.kind_name.humanize.titleize}]"
 
 %span.microdata{itemprop: "url"}= lab_url(lab, { locale: nil })
 

@@ -111,6 +111,10 @@ class Lab < ActiveRecord::Base
     end
   end
 
+  def kind_name
+    Kinds[ (kind >= 0 && kind <= 2) ? kind : 2 ]
+  end
+
   def active?
     kind > 0
   end

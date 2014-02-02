@@ -58,7 +58,7 @@ ready = ->
     new L.Control.Zoom({ position: 'topright' }).addTo(labmap)
     L.tileLayer('https://ssl_tiles.cloudmade.com/d8b794cdcd1e4e37bd83addfd40b7c68/110755/256/{z}/{x}/{y}.png', { attribution: osmAttrib }).addTo(labmap)
     icon = L.icon({
-      iconUrl: '//i.imgur.com/bKe7MW2.png'
+      iconUrl: window.mapIcons[$('#lab-map').data('kind-name')]
       iconSize:     [35, 35]
       iconAnchor:   [17, 33]
       popupAnchor:  [0, -20]
@@ -113,7 +113,7 @@ ready = ->
       for lab in labs.labs
         if lab.latitude and lab.longitude
           icon = L.icon({
-            iconUrl: window.mapIcons['fablab']
+            iconUrl: window.mapIcons[lab.kind_name]
             iconSize:     [35, 35]
             iconAnchor:   [17, 33]
             popupAnchor:  [0, -20]

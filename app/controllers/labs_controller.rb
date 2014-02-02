@@ -15,7 +15,7 @@ class LabsController < ApplicationController
   end
 
   def mapdata
-    @labs = Lab.with_approved_state.select(:id, :name, :slug, :latitude, :longitude)
+    @labs = Lab.with_approved_state.select(:id, :name, :slug, :latitude, :longitude, :kind)
     render json: @labs, each_serializer: MapSerializer
   end
 

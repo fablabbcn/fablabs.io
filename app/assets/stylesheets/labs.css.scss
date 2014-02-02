@@ -117,6 +117,9 @@ li.lab-link {
   @media #{$small} {
     padding-top: 20px;
   }
+  .kind {
+    margin: 5px 0;
+  }
 }
 .lab {
   background: white;
