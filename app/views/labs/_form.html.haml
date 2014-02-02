@@ -8,12 +8,12 @@
 
       = f.input :parent_id, label: "Parent (Supernode) Lab", as: 'select', collection: Lab.with_approved_state.order('name ASC'), hint: "Is this lab connected with a Supernode? If so, which lab?", input_html: { class: 'enhanced' }
 
-      = f.input :kind, collection: Lab::Kinds.each_with_index.map{|m, index| [m.humanize.titleize, index]}, as: 'radio_buttons', item_wrapper_class: 'checkbox_container'
-
   %fieldset
 
     %legend Basic Details
     = f.input :name, label: 'Fab Lab Name'
+
+    = f.input :kind, collection: Lab::Kinds.each_with_index.map{|m, index| [m.humanize.titleize, index]}, as: 'radio_buttons', item_wrapper_class: 'checkbox_container'
 
     = f.input :blurb, as: 'text', hint: 'A very brief overview of the lab, maybe include what it specializes in. <span id="description-count"></span> characters available.'.html_safe, input_html: { rows: 3, data: { limit: 200, counter: '#description-count'} }
 
