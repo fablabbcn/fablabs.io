@@ -21,7 +21,7 @@ class UserMailer < ActionMailer::Base
 
   def fab10 user
     @user = user
-    mail(reply_to: "fab10@fablabbcn.org", to: @user.email_string, subject: "FAB10 Discount Code")
+    mail(reply_to: "info@fab10.org", to: @user.email_string, subject: "FAB10 Discount Code")
   end
 
   def employee_approved employee_id
