@@ -67,3 +67,10 @@
     - else
       = link_to new_lab_path, class: "button tiny success disabled has-tip", data: { tooltip: true }, title: "You need to be signed in to add a Lab" do
         = fa_icon "plus", text: t("views.labs.index.add_a_lab", default: "Add a Lab")
+
+    .show-for-medium-up
+      .heading
+        Join us at
+        %strong FAB10
+      = link_to "https://www.fab10.org", style: 'display: block; margin: 10px auto;' do
+        = image_tag "https://www.fab10.org/b/001/all/tall.gif"
