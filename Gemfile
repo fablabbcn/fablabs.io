@@ -45,7 +45,7 @@ gem 'workflow', github: 'geekq/workflow'
 gem 'bourbon'
 gem "cocoon", github: 'nathanvda/cocoon'
 gem "pg_search"
-gem "pg"
+gem "pg",'0.17.1'
 gem 'simple_form'
 gem 'countries', github: "hexorx/countries"
 gem 'country_select'
