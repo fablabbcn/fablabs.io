@@ -1,5 +1,3 @@
-# http://cloudmade.com/documentation/map-tiles
-
 window.labs = []
 window.map = null
 window.showingContacts = false
@@ -40,15 +38,6 @@ ready = ->
     $(this).toggleClass 'active'
 
 
-  # if $('body').hasClass 'a-home'
-  #   map = L.map('homepage-map', { scrollWheelZoom: false, zoomControl: false }).setView([50, 0], 2 )
-  #   L.tileLayer('https://ssl_tiles.cloudmade.com/384aceabcd0942189d0e93cf0e98cd31/90734/256/{z}/{x}/{y}.png').addTo(map)
-  #   $(window).resize _.debounce((-> map.invalidateSize()),500)
-  #   # navigator.geolocation.getCurrentPosition((position)->
-  #   #   map.setView([position.coords.latitude, position.coords.longitude], 13)
-  #   # )
-
-
   $('[data-toggle=offcanvas]').click ->
     $('.row-offcanvas').toggleClass('active')
 
@@ -56,7 +45,7 @@ ready = ->
     location = [$('#lab-map').data('latitude'), $('#lab-map').data('longitude')]
     labmap = L.map('lab-map', { scrollWheelZoom: false, zoomControl: false, loadingControl: true }).setView(location, 14 )
     new L.Control.Zoom({ position: 'topright' }).addTo(labmap)
-    L.tileLayer('https://ssl_tiles.cloudmade.com/d8b794cdcd1e4e37bd83addfd40b7c68/110755/256/{z}/{x}/{y}.png', { attribution: osmAttrib }).addTo(labmap)
+    L.tileLayer('https://{s}.tiles.mapbox.com/v3/examples.map-9ijuk24y/{z}/{x}/{y}.png', { attribution: osmAttrib }).addTo(labmap)
     icon = L.icon({
       iconUrl: window.mapIcons[$('#lab-map').data('kind-name')]
       iconSize:     [35, 35]
@@ -104,7 +93,7 @@ ready = ->
 
     window.map = map
     new L.Control.Zoom({ position: 'topleft' }).addTo(map)
-    L.tileLayer('https://ssl_tiles.cloudmade.com/d8b794cdcd1e4e37bd83addfd40b7c68/110755/256/{z}/{x}/{y}.png', { attribution: osmAttrib, maxZoom: 14 }).addTo(map)
+    L.tileLayer('https://{s}.tiles.mapbox.com/v3/examples.map-9ijuk24y/{z}/{x}/{y}.png', { attribution: osmAttrib, maxZoom: 14 }).addTo(map)
     navigator.geolocation.getCurrentPosition((position)->
       map.setView([position.coords.latitude, position.coords.longitude], 4)
     )
