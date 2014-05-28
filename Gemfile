@@ -14,6 +14,7 @@ gem 'date_time_attribute'
 gem 'whenever', :require => false
 gem 'slim'
 gem 'redis-rails'
+gem 'redis-rack-cache'
 gem 'newrelic_rpm'
 gem 'sitemap_generator'
 gem "rack-cache"
