@@ -45,7 +45,7 @@ ready = ->
     location = [$('#lab-map').data('latitude'), $('#lab-map').data('longitude')]
     labmap = L.map('lab-map', { scrollWheelZoom: false, zoomControl: false, loadingControl: true }).setView(location, 14 )
     new L.Control.Zoom({ position: 'topright' }).addTo(labmap)
-    L.tileLayer('https://{s}.tiles.mapbox.com/v3/johnrees.i8b9pofn/{z}/{x}/{y}.png', { attribution: osmAttrib }).addTo(labmap)
+    L.tileLayer('https://{s}.tiles.mapbox.com/v3/johnrees.ined2i0c/{z}/{x}/{y}.png', { attribution: osmAttrib }).addTo(labmap)
     icon = L.icon({
       iconUrl: window.mapIcons[$('#lab-map').data('kind-name')]
       iconSize:     [35, 35]
@@ -93,7 +93,7 @@ ready = ->
 
     window.map = map
     new L.Control.Zoom({ position: 'topleft' }).addTo(map)
-    L.tileLayer('https://{s}.tiles.mapbox.com/v3/johnrees.i8b9pofn/{z}/{x}/{y}.png', { attribution: osmAttrib, maxZoom: 14 }).addTo(map)
+    L.tileLayer('https://{s}.tiles.mapbox.com/v3/johnrees.ined2i0c/{z}/{x}/{y}.png', { attribution: osmAttrib, maxZoom: 14 }).addTo(map)
     navigator.geolocation.getCurrentPosition((position)->
       map.setView([position.coords.latitude, position.coords.longitude], 4)
     )
