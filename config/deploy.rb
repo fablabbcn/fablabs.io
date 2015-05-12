@@ -27,7 +27,7 @@ set :deploy_via, :remote_cache
 set :use_sudo, false
 set :rake, "#{rake} --trace"
 set :scm, "git"
-set :repository, "git@github.com:johnrees/#{application}.git"
+set :repository, "git@github.com:fablabbcn/#{application}.git"
 set :branch, "master"
 set :default_environment, {
   'PATH' => "$HOME/.rbenv/shims:$HOME/.rbenv/bin:$PATH"
