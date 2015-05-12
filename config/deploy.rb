@@ -27,7 +27,7 @@ set :deploy_via, :remote_cache
 set :use_sudo, false
 set :rake, "#{rake} --trace"
 set :scm, "git"
-set :repository, "git@github.com:johnrees/#{application}-old.git"
+set :repository, "git@github.com:johnrees/#{application}.git"
 set :branch, "master"
 set :default_environment, {
   'PATH' => "$HOME/.rbenv/shims:$HOME/.rbenv/bin:$PATH"
@@ -44,6 +44,5 @@ set :maintenance_template_path, File.expand_path("../recipes/templates/maintenan
 
 after "deploy", "deploy:cleanup" # keep only the last 5 releases
 
-
-        require './config/boot'
-        require 'airbrake/capistrano'
+require './config/boot'
+require 'airbrake/capistrano'
