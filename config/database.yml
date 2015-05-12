@@ -1,7 +1,7 @@
 development: &defaults
   adapter      : postgresql
   encoding     : unicode
-  database     : fablabs_development
+  database     : fablabs_develop
   pool         : 5
   host         : 127.0.0.1
   username     : john
@@ -9,7 +9,7 @@ development: &defaults
 
 test:
   <<: *defaults
-  database     : fablabs_test
+  database     : fablabs_testdb
 
 production:
   <<: *defaults

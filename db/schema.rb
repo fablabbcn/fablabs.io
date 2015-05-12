@@ -15,7 +15,6 @@ ActiveRecord::Schema.define(version: 20140109170108) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-  enable_extension "uuid-ossp"
   enable_extension "hstore"
 
   create_table "academics", force: true do |t|
@@ -26,10 +25,6 @@ ActiveRecord::Schema.define(version: 20140109170108) do
     t.integer  "approver_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "graduated_in"
-    t.string   "url"
-    t.string   "final_project_name"
-    t.text     "final_project_description"
     t.hstore   "meta"
   end
 

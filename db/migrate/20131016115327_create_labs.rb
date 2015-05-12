@@ -37,7 +37,7 @@ class CreateLabs < ActiveRecord::Migration
 
       t.text       :application_notes
 
-      t.text       :machines_list
+      t.text       :tools_list
       t.timestamps
     end
   end
