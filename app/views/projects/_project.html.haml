@@ -1,0 +1,8 @@
+- cache ["v1", project] do
+  %li.large-block-grid-3
+    = content_tag_for :div, project do
+      .project-title
+        = link_to project do
+          %span.project-title-span= project.title
+      .project-description
+        %span.project-description-span= project.description

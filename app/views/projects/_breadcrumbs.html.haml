@@ -1,0 +1,4 @@
+%ul.breadcrumbs
+  %li= link_to Project.to_s.pluralize, projects_path
+  - if @project
+    %li.current= link_to @project.title, @project

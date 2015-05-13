@@ -1,0 +1,6 @@
+= simple_form_for project do |f|
+  = render "form_errors", resource: project
+  = f.input :title
+  = f.input :description
+
+  = f.submit

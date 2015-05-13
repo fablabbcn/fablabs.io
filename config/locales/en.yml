@@ -1,0 +1,29 @@
+en:
+  capabilities:
+    three_d_printing:     '3D printing'
+    circuit_production:   'Circuit production'
+    laser:                'Laser'
+    precision_milling:    'Precision milling'
+    vinyl_cutting:        'Vinyl cutting'
+    cnc_milling:          'CNC-Milling'
+    three_d_printing:     '3D printing'
+    circuit_production:   'Circuit production'
+    laser:                'Laser'
+    precision_milling:    'Precision milling'
+    vinyl_cutting:        'Vinyl cutting'
+
+  views:
+
+    header:
+      search_labs: 'Search lab'
+      labs:        'Labs'
+      machines:    'Machines'
+      me:          'Me'
+      settings:    'Settings'
+      projects:    'Projects'
+
+    labs:
+      index:
+        all_countries: 'All countries'
+      show:
+        nearby_labs:      'nearby_labs'

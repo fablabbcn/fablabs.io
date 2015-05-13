@@ -1,1 +1,3 @@
-= render "activities/#{activity.trackable_type.underscore}/#{activity.action}", activity.trackable_type.underscore.to_sym => activity.trackable, :activity => activity
+= render "activities/#{activity.trackable_type.underscore}/#{activity.action}",
+          activity.trackable_type.underscore.to_sym => activity.trackable,
+          :activity => activity

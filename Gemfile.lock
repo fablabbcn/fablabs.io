@@ -205,6 +205,8 @@ GEM
     figaro (0.7.0)
       bundler (~> 1.0)
       rails (>= 3, < 5)
+    font-awesome-sass (4.3.2.1)
+      sass (~> 3.2)
     formatador (0.2.4)
     guard (1.8.3)
       formatador (>= 0.2.4)
@@ -516,6 +518,7 @@ DEPENDENCIES
   ffaker
   figaro
   font-awesome-rails!
+  font-awesome-sass (~> 4.3.0)
   friendly_id!
   geocoder!
   guard-rspec
@@ -557,6 +560,7 @@ DEPENDENCIES
   sitemap_generator
   slim
   sort_alphabetical
+  sprockets-rails
   stamp
   thin
   timezone

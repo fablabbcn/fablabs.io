@@ -14,29 +14,33 @@ textarea {
 }
 
 fieldset {
-  border-top: 1px solid #EEE;
+
   // overflow: hidden;
   margin-bottom: 20px;
   padding: 20px;
   background: #FEFEFE;
   fieldset {
     padding: 5px;
-    background: #FFF;
+    background: none;
     border: none;
     legend {
       // font-weight: normal;
       // color: #AAA;
+      border: none;
     }
   }
   legend {
-    border: none;
+    border: 1px solid #ddd;
+    border-bottom: none;
     width: auto;
-    background: none;
+    background: #FEFEFE;
     color: #111;
     font-weight: bold;
     text-transform: uppercase;
     // font-size: 1.1em;
-    margin: 0;
+    padding: 20px 20px 0px 20px;
+    margin-bottom: 36px;
+    border-radius: 4px 4px 0px 0px;
   }
 }
 

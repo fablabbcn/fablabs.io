@@ -22,6 +22,7 @@
         - if current_or_null_user.can_read?(Event)
           %li{class: ('active' if controller_name == 'events')}= link_to t("views.header.events"), events_path, class: 'top-link'
         %li{class: ('active' if controller_name == 'machines')}= link_to t("views.header.machines"), machines_path, class: 'top-link'
+        %li{class: ('active' if controller_name == 'projects')}= link_to t("views.header.projects"), projects_path, class: 'top-link'
 
         -# %li{class: ('active' if controller_name == 'activity')}= link_to "Activity", activity_path, class: 'top-link'
         -# %li{class: ('active' if controller_name == 'machines')}= link_to "Machines", machines_path

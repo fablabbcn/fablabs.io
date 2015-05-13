@@ -4,7 +4,6 @@ development: &defaults
   database     : fablabs_develop
   pool         : 5
   host         : 127.0.0.1
-  username     : john
   min_messages : WARNING
 
 test:

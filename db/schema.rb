@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140109170108) do
+ActiveRecord::Schema.define(version: 20150521130617) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -79,6 +79,17 @@ ActiveRecord::Schema.define(version: 20140109170108) do
   add_index "comments", ["ancestry"], name: "index_comments_on_ancestry", using: :btree
   add_index "comments", ["author_id"], name: "index_comments_on_author_id", using: :btree
   add_index "comments", ["commentable_id", "commentable_type"], name: "index_comments_on_commentable_id_and_commentable_type", using: :btree
+
+  create_table "contributions", force: true do |t|
+    t.integer  "project_id"
+    t.integer  "contributor_id"
+    t.datetime "last_contribution"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "contributions", ["contributor_id"], name: "index_contributions_on_contributor_id", using: :btree
+  add_index "contributions", ["project_id"], name: "index_contributions_on_project_id", using: :btree
 
   create_table "coupons", force: true do |t|
     t.integer  "user_id"
@@ -276,6 +287,23 @@ ActiveRecord::Schema.define(version: 20140109170108) do
 
   add_index "pages", ["creator_id"], name: "index_pages_on_creator_id", using: :btree
   add_index "pages", ["pageable_id", "pageable_type"], name: "index_pages_on_pageable_id_and_pageable_type", using: :btree
+
+  create_table "projects", force: true do |t|
+    t.string   "type"
+    t.string   "title"
+    t.text     "description"
+    t.string   "github"
+    t.string   "web"
+    t.string   "dropbox"
+    t.string   "bitbucket"
+    t.integer  "lab_id"
+    t.integer  "owner_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "projects", ["lab_id"], name: "index_projects_on_lab_id", using: :btree
+  add_index "projects", ["owner_id"], name: "index_projects_on_owner_id", using: :btree
 
   create_table "recoveries", force: true do |t|
     t.integer  "user_id"

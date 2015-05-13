@@ -16,17 +16,21 @@ class User < ActiveRecord::Base
 
   has_many :created_events, class_name: 'Event', foreign_key: 'creator_id'
   has_many :created_labs, class_name: 'Lab', foreign_key: 'creator_id'
+  has_many :projects, foreign_key: 'owner_id'
   has_many :comments, foreign_key: 'author_id'
   has_many :discussions, foreign_key: 'creator_id'
   has_many :recoveries
   has_many :role_applications
   has_many :employees
-  has_one :coupon
+  has_one  :coupon
 
   has_many :academics
 
   has_many :created_activities, foreign_key: 'creator_id', class_name: 'Activity'
   has_many :activities, foreign_key: 'actor_id'
+
+  has_many :contributions
+  has_many :projects, through: :contributions
 
   validates_format_of :email, :with => /\A(.+)@(.+)\z/
   validates :username, format: { :with => /\A[a-zA-Z0-9]+\z/ }, length: { minimum: 4, maximum: 30 }

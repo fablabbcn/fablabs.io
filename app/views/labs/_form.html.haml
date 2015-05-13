@@ -3,7 +3,8 @@
 
   - if lab.new_record?
     %fieldset
-      %legend Important Information
+      %legend
+        Important Information
       = f.association :referee, collection: Lab.with_approved_state.order('name ASC'), hint: "An existing lab MUST be able to verify your application", label: "Referee Lab"
 
       = f.input :parent_id, label: "Parent (Supernode) Lab", as: 'select', collection: Lab.with_approved_state.order('name ASC'), hint: "Is this lab connected with a Supernode? If so, which lab?", input_html: { class: 'enhanced' }

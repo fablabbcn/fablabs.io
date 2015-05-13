@@ -1,0 +1,33 @@
+#project-container > li {
+  background: #fff;
+  margin-left: 5px;
+  margin-bottom: 5px;
+}
+
+.project {
+  background: #F5F5F5;
+  border: 1px solid #ccc; /* !test */
+  height: 250px;
+  border-radius: 4px;
+  div {
+    padding: 0px;
+    margin: 0px;
+    height: 120px;
+  }
+  .project-title {
+    padding-top: 40px;
+    text-align: center;
+    text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3);
+    font-weight: bold;
+    color: #FFF;
+    background-color: #159957;
+    background-image: linear-gradient(120deg, #155799, #159957);
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1) inset;
+    a {
+      color: #FFF;
+    }
+  }
+  .project-description {
+    padding: 10px;
+  }
+}
