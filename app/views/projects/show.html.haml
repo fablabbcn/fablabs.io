@@ -4,15 +4,39 @@
   .row
     .columns.large-12
       = render "breadcrumbs"
-  .row
-    .columns.large-8
-      .main
-        = @project.title
+
+  .main-project
+    .row
+      .columns.large-12
+        %p
+          %span
+            = icon('code')
+            = link_to @project.owner do
+              = @project.owner.username
+
         %h1= @project.title
 
-        = simple_format(@project.description)
+        %p
+          - if @project.lab.present?
+            %span
+              = icon('map-marker')
+              = link_to @project.lab do
+                = @project.lab.name
 
-    .columns.large-4.side
+          - if (@project.contributors.count > 0)
+            %span
+              = icon('users')
+              = @project.contributors.count + 1
+              contributors
+
+          %span
+            = icon('clock-o')
+            Last updated at:
+            = time_tag(@project.updated_at.to_date)
+
+.row
+  .columns.large-12
+    = simple_format(@project.description)
 
 
 .row
