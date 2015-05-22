@@ -53,7 +53,6 @@
   box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1) inset;
   border-bottom: 1px solid #ccc;
   border: 1px solid #ccc;
-  border-radius: 4px;
   padding: 30px;
 
   a {
@@ -61,5 +60,19 @@
   }
   p > span {
     padding-right: 30px;
+  }
+}
+
+.project-description {
+  padding-top: 20px;
+  ul {
+    list-style: none;
+    li {
+      padding-bottom: 10px;
+      strong {
+        vertical-align: top;
+        padding-left: 10px;
+      }
+    }
   }
 }

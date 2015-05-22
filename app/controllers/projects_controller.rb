@@ -18,14 +18,41 @@ class ProjectsController < ApplicationController
   end
 
   def new
+    @project = Project.new(owner: current_user)
+    authorize_action_for @project
   end
 
   def create
+    @project = Project.create(owner: current_user)
+    authorize_action_for @project
+    if @project.save
+      redirect_to projects_path, notice: "Thanks for adding your project."
+    else
+      render :new
+    end
   end
 
   def edit
     @project = Project.find(params[:id])
     authorize_action_for @project
+  end
+
+  def update
+    @project = Project.find(params[:id])
+    authorize_action_for @project
+    if @project.update_attributes project_params
+      redirect_to project_url(@project), notice: "Project was successfully updated"
+    else
+      render :edit
+    end
+
+  end
+
+  def destroy
+    @project = Project.find(params[:id])
+    authorize_action_for @project
+    @project.delete
+    redirect_to projects_path, notice: "Project deleted"
   end
 
 

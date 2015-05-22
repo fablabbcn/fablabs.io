@@ -1,6 +1,6 @@
 class ProjectAuthorizer < ApplicationAuthorizer
 
-  def self.creatable_by?(user)
+  def creatable_by?(user)
     true
   end
 
@@ -9,6 +9,10 @@ class ProjectAuthorizer < ApplicationAuthorizer
   end
 
   def updatable_by?(user)
+    user == resource.owner
+  end
+
+  def deletable_by?(user)
     user == resource.owner
   end
 

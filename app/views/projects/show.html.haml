@@ -34,12 +34,15 @@
             Last updated at:
             = time_tag(@project.updated_at.to_date)
 
-.row
-  .columns.large-12
+.row.project-description
+  .columns.large-8
     = simple_format(@project.description)
+  .columns.large-4
+    = render "link_fields"
+    = render "contributors"
 
 
 .row
   .columns.large-12
     - if current_or_null_user.can_update?(@project)
-      = link_to "Edit", edit_machine_path(@project), class: 'button'
+      = link_to "Edit", edit_project_path(@project), class: 'button'
