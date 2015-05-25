@@ -1,6 +1,19 @@
 = simple_form_for project do |f|
   = render "form_errors", resource: project
-  = f.input :title
+  .row
+    .columns.large-4
+      %label
+        Owner
+      .owner-container
+        .icon
+          %span
+            = icon('code')
+        .owner-btn
+          = image_tag hocho(@project.owner.avatar, "o=t&q=80&d=90x90"), class: 'avatar tiny'
+          = link_to @project.owner do
+            %strong= @project.owner.username
+    .columns.large-8
+      = f.input :title
   = f.input :description
   .row
     .columns.large-6

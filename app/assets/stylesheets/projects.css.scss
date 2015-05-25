@@ -82,11 +82,55 @@ form {
     font-size: 0.8em;
     padding-bottom: 10px;
   }
+
+  input {
+    border-radius: 3px;
+  }
+
+  textarea {
+    border-radius: 3px;
+  }
+
   i {
     float: left;
     padding-right: 10px;
     padding-bottom: 10px;
   }
+
+  .icon {
+    vertical-align: bottom;
+    padding-right: 20px;
+    width: 50px;
+    font-size: 1.6em;
+    span {
+      i {
+        padding-top: 10px;
+        padding-left: 5px;
+      }
+    }
+  }
+
+  .owner-btn {
+    vertical-align: middle;
+    cursor: pointer;
+    background-color: #EEE;
+    background-image: linear-gradient(#FCFCFC, #EEE);
+    border: 1px solid #D5D5D5;
+    border-radius: 3px;
+    padding: 5px;
+    margin-left: 50px;
+
+    img {
+      vertical-align: middle;
+    }
+    a {
+      padding-left: 5px;
+      padding-top: 5px;
+      vertical-align: middle;
+      text-align: center;
+    }
+  }
+
   #project_description {
     height: 200px;
   }

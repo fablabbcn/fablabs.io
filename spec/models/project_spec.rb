@@ -12,9 +12,4 @@ describe Project do
     expect(project).to be_valid
   end
 
-  it "has to_s" do
-    expect(FactoryGirl.build_stubbed(:project, title: "Great New Project").to_s).to eq("Great New Project")
-  end
-
-
 end
