@@ -2,5 +2,16 @@
   = render "form_errors", resource: project
   = f.input :title
   = f.input :description
+  .row
+    .columns.large-6
+      = icon('github')
+      = f.input :github
+      = icon('link')
+      = f.input :web
+    .columns.large-6
+      = icon('dropbox')
+      = f.input :dropbox
+      = icon('bitbucket')
+      = f.input :bitbucket
 
   = f.submit

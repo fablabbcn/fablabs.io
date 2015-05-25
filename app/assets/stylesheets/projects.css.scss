@@ -76,3 +76,18 @@
     }
   }
 }
+
+form {
+  label {
+    font-size: 0.8em;
+    padding-bottom: 10px;
+  }
+  i {
+    float: left;
+    padding-right: 10px;
+    padding-bottom: 10px;
+  }
+  #project_description {
+    height: 200px;
+  }
+}

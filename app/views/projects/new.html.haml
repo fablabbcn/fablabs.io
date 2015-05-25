@@ -1,4 +1,6 @@
 .row
   .columns.large-12
-    = title "New Project"
+    %h4
+      = icon('cog')
+      New Project
     = render "form", project: @project
