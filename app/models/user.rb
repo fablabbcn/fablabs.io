@@ -16,7 +16,7 @@ class User < ActiveRecord::Base
 
   has_many :created_events, class_name: 'Event', foreign_key: 'creator_id'
   has_many :created_labs, class_name: 'Lab', foreign_key: 'creator_id'
-  has_many :projects, foreign_key: 'owner_id'
+  has_many :created_projects, class_name: 'Project', foreign_key: 'owner_id'
   has_many :comments, foreign_key: 'author_id'
   has_many :discussions, foreign_key: 'creator_id'
   has_many :recoveries

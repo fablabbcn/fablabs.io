@@ -18,12 +18,13 @@ class ProjectsController < ApplicationController
   end
 
   def new
-    @project = Project.new(owner: current_user)
+    @project = current_user.created_projects.build
     authorize_action_for @project
   end
 
   def create
-    @project = Project.create(owner: current_user)
+    @project = current_user.created_projects.build project_params
+    @project.assign_attributes(owner: current_user)
     authorize_action_for @project
     if @project.save
       redirect_to projects_path, notice: "Thanks for adding your project."
@@ -54,6 +55,22 @@ class ProjectsController < ApplicationController
     @project.delete
     redirect_to projects_path, notice: "Project deleted"
   end
+
+  private
+    def project_params
+      params.require(:project).permit(
+        :type,
+        :title,
+        :description,
+        :github,
+        :bitbucket,
+        :dropbox,
+        :web,
+        :description,
+        :lab_id,
+        :owner_id
+      )
+    end
 
 
 end
