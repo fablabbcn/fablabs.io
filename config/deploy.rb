@@ -45,4 +45,4 @@ set :maintenance_template_path, File.expand_path("../recipes/templates/maintenan
 after "deploy", "deploy:cleanup" # keep only the last 5 releases
 
 require './config/boot'
-require 'airbrake/capistrano'
+# require 'airbrake/capistrano'
