@@ -15,3 +15,6 @@ script:
 before_script:
   - cp config/database.travis.yml config/database.yml
   - psql -c 'create database fablabs_test' -U postgres
+addons:
+  code_climate:
+    repo_token: fda6f4f9bf2387705b47cd6135429a29a11ae9c5927afe01a18ee3e33c47246a
