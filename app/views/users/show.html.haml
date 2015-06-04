@@ -8,21 +8,29 @@
             - if current_or_null_user == @user
               = link_to settings_path, class: 'button tiny' do
                 = fa_icon "edit", text: "Edit Profile"
-          .columns.large-8.left= title @user
-        = simple_format @user.bio
-        .joined-on
-          Joined #{@user.created_at.to_date.to_formatted_s(:long)}
+          .columns.large-6.left= title @user
+        .row
+          .columns.large-8
+            = simple_format @user.bio
+          .columns.large-4
+            .joined-on
+              %em
+                Joined #{time_ago_in_words(@user.created_at)} ago.
+        .row
+          .columns.large-12
+            - if @user.employees.with_approved_state.any?
+              %ul
+                Works at:
+                - @user.employees.with_approved_state.each do |employee|
+                  = content_tag_for :li, employee do
+                    = link_to employee.lab, employee.lab
+                    \-
+                    = employee.job_title
 
 .row
   .columns.large-6
-    - if @user.employees.with_approved_state.any?
-      %h4 Works at
-      %ul
-        - @user.employees.with_approved_state.each do |employee|
-          = content_tag_for :li, employee do
-            = link_to employee.lab, employee.lab
-            \-
-            = employee.job_title
+
 
   .columns.large-6
-    %ul= render @user.activities
+    .activity
+      %ul= render @user.activities

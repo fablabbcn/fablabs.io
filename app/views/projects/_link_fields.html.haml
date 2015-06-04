@@ -1,0 +1,26 @@
+%p links
+%ul
+  - if @project.web
+    %li
+      = icon('link')
+      %a{ href: @project.web, title: "Project www" }
+        %strong
+          = @project.web
+  - if @project.github
+    %li
+      = icon('github')
+      %a{ href: @project.github, title: "Github repository" }
+        %strong
+          Github repository
+  - if @project.dropbox
+    %li
+      = icon('dropbox')
+      %a{ href: @project.dropbox, title: "Dropbox folder"}
+        %strong
+          Dropbox folder
+  - if @project.bitbucket
+    %li
+      = icon('bitbucket')
+      %a{ href: @project.bitbucket, title: "Bitbucket repository"}
+        %strong
+          Bitbucket repository

@@ -1,5 +1,7 @@
 // Required global settings and mixins for Foundation
 @import "foundation/foundation-global";
+@import "font-awesome-sprockets";
+@import "font-awesome";
 
 // Settings file to override Foundation variables
 
@@ -15,8 +17,8 @@
 $em-base: 14px;
 
 // We use these to control various global styles
-$body-bg: #f0f0f0;
-$body-font-color: #444;
+$body-bg: #FFF;
+$body-font-color: #4D4D4D;
 $body-font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
 // $body-font-weight: normal;
 // $body-font-style: normal;
@@ -968,7 +970,7 @@ $tooltip-font-size: emCalc(11px);
 //
 
 // Background color for the top bar
-$topbar-bg: #333;//#1C242B;
+$topbar-bg: #F5F5F5;//#1C242B;
 
 // Height and margin
 $topbar-height: 60px;
@@ -982,7 +984,7 @@ $topbar-height: 60px;
 // $topbar-title-font-size: emCalc(17px);
 
 // Set the link colors and styles for top-level nav
-$topbar-link-color: #fefefe;
+$topbar-link-color: #333;
 $topbar-link-weight: normal;
 $topbar-link-font-size: emCalc(14px);
 

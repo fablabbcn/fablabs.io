@@ -18,9 +18,10 @@ gem 'slim'
 gem 'redis-rails'
 gem 'redis-rack-cache'
 gem 'newrelic_rpm'
+gem "skylight"
 gem 'sitemap_generator'
 gem "rack-cache"
-gem "airbrake"
+# gem "airbrake"
 gem 'simplecov', :require => false, :group => :test
 gem 'paper_trail', '>= 3.0.0.rc2'
 gem 'sort_alphabetical'
@@ -56,8 +57,10 @@ gem 'momentjs-rails'
 gem 'active_model_serializers'
 gem 'stamp'
 gem 'sass-rails', '~> 4.0.0'
+gem 'sprockets-rails'
 gem 'haml-rails'
 gem 'uglifier', '>= 1.3.0'
+gem 'font-awesome-sass', '~> 4.3.0'
 
 gem 'database_cleaner', github: 'bmabey/database_cleaner'
 gem 'letter_opener'

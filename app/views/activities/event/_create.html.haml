@@ -1,8 +1,10 @@
 - if event.present? and current_or_null_user.can_read?(Event)
   = content_tag_for :li, activity do
-    = link_to activity.creator, activity.creator, class: 'user'
-    = event
-    = link_to event, lab_event_path(event.lab, event)
-    at
-    = link_to event.lab, event.lab
+    = icon('heartbeat')
+    %span
+      = link_to activity.creator, activity.creator, class: 'user'
+      = event
+      = link_to event, lab_event_path(event.lab, event)
+      at
+      = link_to event.lab, event.lab
     %i #{time_ago_in_words(activity.created_at)} ago

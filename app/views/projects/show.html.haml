@@ -1,0 +1,48 @@
+- title @project.title
+
+- cache ["v3-project-#{@project.id}-#{I18n.locale}", Project.last_updated_at] do
+  .row
+    .columns.large-12
+      = render "breadcrumbs"
+
+  .main-project
+    .row
+      .columns.large-12
+        %p
+          %span
+            = icon('code')
+            = link_to @project.owner do
+              = @project.owner.username
+
+        %h1= @project.title
+
+        %p
+          - if @project.lab.present?
+            %span
+              = icon('map-marker')
+              = link_to @project.lab do
+                = @project.lab.name
+
+          - if (@project.contributors.count > 0)
+            %span
+              = icon('users')
+              = @project.contributors.count + 1
+              contributors
+
+          %span
+            = icon('clock-o')
+            Last updated at:
+            = time_tag(@project.updated_at.to_date)
+
+.row.project-description
+  .columns.large-8
+    = simple_format(@project.description)
+  .columns.large-4
+    = render "link_fields"
+    = render "contributors"
+
+
+.row
+  .columns.large-12
+    - if current_or_null_user.can_update?(@project)
+      = link_to "Edit", edit_project_path(@project), class: 'button'

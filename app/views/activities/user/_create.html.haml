@@ -1,5 +1,7 @@
 - if user.present?
   = content_tag_for :li, activity do
-    = link_to activity.creator, activity.creator, class: 'user'
-    signed up
+    = icon('user')
+    %span
+      = link_to activity.creator, activity.creator, class: 'user'
+      signed up
     %i #{time_ago_in_words(activity.created_at)} ago

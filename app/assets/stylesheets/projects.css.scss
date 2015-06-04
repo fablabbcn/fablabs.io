@@ -1,0 +1,137 @@
+#project-container > li {
+  background: #fff;
+  margin-left: 5px;
+  margin-bottom: 5px;
+}
+
+.project {
+  background: #F5F5F5;
+  border: 1px solid #ccc;
+  height: 250px;
+  border-radius: 4px;
+  div {
+    padding: 0px;
+    margin: 0px;
+  }
+  .project-title {
+    height: 120px;
+    padding-top: 40px;
+    text-align: center;
+    text-shadow: 0px 1px 2px rgba(255, 255, 255, 0.8);
+    font-weight: bold;
+    color: #4D4D4D;
+    background-color: #0275BC;
+    background-image: linear-gradient(120deg, #0275BC, #009E5A);
+    background-repeat: no-repeat;
+    background-size: cover;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1) inset;
+    border-bottom: 1px solid #ccc;
+    a {
+      color: #4F4F4F;
+    }
+  }
+  .project-description {
+    height: 90px;
+    padding: 10px;
+  }
+  .project-baseline {
+    padding: 10px;
+    height: 30px;
+    font-size: 0.7em;
+    span {
+      padding-right: 10px;
+    }
+  }
+}
+
+.main-project {
+  color: #4D4D4D;
+  background-color: #0275BC;
+  background-image: linear-gradient(120deg, #0275BC, #009E5A);
+  background-repeat: no-repeat;
+  background-size: cover;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1) inset;
+  border-bottom: 1px solid #ccc;
+  border: 1px solid #ccc;
+  padding: 30px;
+
+  a {
+    color: #4F4F4F;
+  }
+  p > span {
+    padding-right: 30px;
+  }
+}
+
+.project-description {
+  padding-top: 20px;
+  ul {
+    list-style: none;
+    li {
+      padding-bottom: 10px;
+      strong {
+        vertical-align: top;
+        padding-left: 10px;
+      }
+    }
+  }
+}
+
+form {
+  label {
+    font-size: 0.8em;
+    padding-bottom: 10px;
+  }
+
+  input {
+    border-radius: 3px;
+  }
+
+  textarea {
+    border-radius: 3px;
+  }
+
+  i {
+    float: left;
+    padding-right: 10px;
+    padding-bottom: 10px;
+  }
+
+  .icon {
+    vertical-align: bottom;
+    padding-right: 20px;
+    width: 50px;
+    font-size: 1.6em;
+    span {
+      i {
+        padding-top: 10px;
+        padding-left: 5px;
+      }
+    }
+  }
+
+  .owner-btn {
+    vertical-align: middle;
+    cursor: pointer;
+    background-color: #EEE;
+    background-image: linear-gradient(#FCFCFC, #EEE);
+    border: 1px solid #D5D5D5;
+    border-radius: 3px;
+    padding: 5px;
+    margin-left: 50px;
+
+    img {
+      vertical-align: middle;
+    }
+    a {
+      padding-left: 5px;
+      padding-top: 5px;
+      vertical-align: middle;
+      text-align: center;
+    }
+  }
+
+  #project_description {
+    height: 200px;
+  }
+}
