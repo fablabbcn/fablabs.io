@@ -110,6 +110,7 @@ group :test do
 end
 group :development do
   gem 'quiet_assets'
+  gem 'net-ssh'
 end
 
 # Use ActiveModel has_secure_password
