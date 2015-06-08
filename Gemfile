@@ -84,6 +84,9 @@ gem 'friendly_id', github: 'norman/friendly_id'
 gem 'ffaker'
 gem 'doorkeeper', '~> 0.7.0'
 
+gem 'redcarpet'
+gem 'coderay'
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
@@ -110,6 +113,7 @@ group :test do
 end
 group :development do
   gem 'quiet_assets'
+  gem 'net-ssh'
 end
 
 # Use ActiveModel has_secure_password

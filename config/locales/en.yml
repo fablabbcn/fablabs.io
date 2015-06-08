@@ -1,29 +1,57 @@
 en:
   capabilities:
-    three_d_printing:     '3D printing'
-    circuit_production:   'Circuit production'
-    laser:                'Laser'
-    precision_milling:    'Precision milling'
-    vinyl_cutting:        'Vinyl cutting'
-    cnc_milling:          'CNC-Milling'
-    three_d_printing:     '3D printing'
-    circuit_production:   'Circuit production'
-    laser:                'Laser'
-    precision_milling:    'Precision milling'
-    vinyl_cutting:        'Vinyl cutting'
+    three_d_printing:       "3D printing"
+    circuit_production:     "Circuit production"
+    laser:                  "Laser"
+    precision_milling:      "Precision milling"
+    vinyl_cutting:          "Vinyl cutting"
+    cnc_milling:            "CNC-Milling"
+    three_d_printing:       "3D printing"
+    circuit_production:     "Circuit production"
+    laser:                  "Laser"
+    precision_milling:      "Precision milling"
+    vinyl_cutting:          "Vinyl cutting"
 
   views:
-
     header:
-      search_labs: 'Search lab'
-      labs:        'Labs'
-      machines:    'Machines'
-      me:          'Me'
-      settings:    'Settings'
-      projects:    'Projects'
+      search_labs:          "Search lab"
+      labs:                 "Labs"
+      machines:             "Machines"
+      me:                   "Me"
+      settings:             "Settings"
+      projects:             "Projects"
 
     labs:
       index:
-        all_countries: 'All countries'
+        all_countries:      "All countries"
       show:
-        nearby_labs:      'nearby_labs'
+        nearby_labs:        "nearby_labs"
+
+    home:
+      welcome:              "Welcome"
+      around_the_world:     "Around the world"
+      whats_a_fab_lab:      "I'm new here. What's a Fab Lab?"
+      fab_labs_description: "Fab labs provide widespread access to modern means
+                            for invention. They began as an outreach project from
+                            MIT's Center for Bits and Atoms (CBA), and became into a
+                            collaborative and global network. You can find more
+                            information about Fab Labs on the
+                            <a href='www.fabfoundation.org'>Fab Foundation</a>
+                            Website. The annotated photo below illustrates the
+                            facilities of a typical Fab Lab."
+      who_is_it_for:        "Who is fablabs.io for?"
+      what_can_i_do:        "What can I do?"
+      lab_profiles:         "Lab profiles"
+      world_map:            "World map"
+      machines:             "Machines"
+      whats_coming_next:    "What's coming next?"
+
+      features:
+        opening_hours:      "Opening hours"
+        events:             "Events"
+        discussions:        "Discussions"
+        developer_api:      "Developer API"
+        localisation:       "Localisation"
+        activity_feeds:     "Activity feeds"
+
+      beyond_that:          "And beyond that?"

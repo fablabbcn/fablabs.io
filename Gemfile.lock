@@ -277,11 +277,11 @@ GEM
     multipart-post (1.2.0)
     nest (1.1.2)
       redis
-    net-scp (1.1.2)
+    net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-sftp (2.1.2)
       net-ssh (>= 2.6.5)
-    net-ssh (2.7.0)
+    net-ssh (2.9.2)
     net-ssh-gateway (1.2.0)
       net-ssh (>= 2.6.5)
     newrelic_rpm (3.6.9.171)
@@ -342,6 +342,7 @@ GEM
       ffi (>= 0.5.0)
     rdoc (3.12.2)
       json (~> 1.4)
+    redcarpet (3.3.0)
     redis (2.2.2)
     redis-actionpack (4.0.0)
       actionpack (~> 4)
@@ -506,6 +507,7 @@ DEPENDENCIES
   chronic
   cocoon!
   codeclimate-test-reporter
+  coderay
   coffee-rails (~> 4.0.0)
   countries!
   country_select
@@ -531,6 +533,7 @@ DEPENDENCIES
   letter_opener
   momentjs-rails
   nest
+  net-ssh
   newrelic_rpm
   paper_trail (>= 3.0.0.rc2)
   pg (= 0.17.1)
@@ -542,6 +545,7 @@ DEPENDENCIES
   rack-cors
   rails (= 4.0.1)
   ransack!
+  redcarpet
   redis-rack-cache
   redis-rails
   rocket_pants (~> 1.0)
