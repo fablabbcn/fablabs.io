@@ -84,6 +84,9 @@ gem 'friendly_id', github: 'norman/friendly_id'
 gem 'ffaker'
 gem 'doorkeeper', '~> 0.7.0'
 
+gem 'redcarpet'
+gem 'coderay'
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false

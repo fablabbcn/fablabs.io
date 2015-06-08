@@ -63,4 +63,15 @@ module ApplicationHelper
     "#{Rails.env} c-#{controller_name} a-#{action_name} #{'backstage' if backstage?}"
   end
 
+  def markdown(text)
+    md = Redcarpet::Markdown.new(Redcarpet::Render::HTML,
+      filter_html: true,
+      safe_links_only: true,      
+      no_intra_emphasis: true,
+      fenced_code_blocks: true,
+      disable_indented_code_blocks: true)
+    md.render(text).html_safe
+  end
+
+
 end

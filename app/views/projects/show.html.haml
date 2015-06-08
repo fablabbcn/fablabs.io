@@ -36,7 +36,7 @@
 
 .row.project-description
   .columns.large-8
-    = simple_format(@project.description)
+    = simple_format(markdown(@project.description))
   .columns.large-4
     = render "link_fields"
     = render "contributors"

@@ -14,6 +14,13 @@
             %strong= @project.owner.username
     .columns.large-8
       = f.input :title
+  %p
+    You can use  
+    = link_to "Markdown", "http://daringfireball.net/projects/markdown/"
+    (MD)
+    to style your project description. Please see
+    = link_to "MD-basics", "https://help.github.com/articles/markdown-basics/"
+    for more info.
   = f.input :description
   .row
     .columns.large-6
@@ -27,4 +34,4 @@
       = icon('bitbucket')
       = f.input :bitbucket
 
-  = f.submit
+  = f.submit class: 'button'
