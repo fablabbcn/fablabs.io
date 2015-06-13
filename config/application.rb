@@ -58,5 +58,7 @@ module Fablabs
       :password => ENV['EMAIL_PASSWORD']
     }
 
+
+    config.autoload_paths += %W(#{config.root}/lib)
   end
 end

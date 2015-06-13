@@ -18,7 +18,9 @@ class ProjectsController < ApplicationController
   end
 
   def new
+    @user_options = User.limit(10).map{ |u| [ u.username, u.id ] }
     @project = current_user.created_projects.build
+    @project.contributions.build
     authorize_action_for @project
   end
 
@@ -35,6 +37,7 @@ class ProjectsController < ApplicationController
 
   def edit
     @project = Project.find(params[:id])
+    @user_options = User.limit(10).map{ |u| [ u.username, u.id ] }
     authorize_action_for @project
   end
 
@@ -68,8 +71,12 @@ class ProjectsController < ApplicationController
         :web,
         :description,
         :lab_id,
-        :owner_id
-      )
+        :owner_id,
+        :flickr,
+        :drive,
+        :youtube,
+        :vimeo,
+        contributions_attributes: [ :contributor_id ])
     end
 
 
