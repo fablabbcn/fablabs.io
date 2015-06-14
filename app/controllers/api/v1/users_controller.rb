@@ -6,4 +6,9 @@ class Api::V1::UsersController < Api::V1::ApiController
     expose current_user
   end
 
+  def search
+    @users = User.where(username: params['username']).map{ |u| [ u.username, u.id ] }
+    render json: @users
+  end
+
 end
