@@ -1,5 +1,5 @@
 .row
-  .columns.large-6
+  .columns.large-4
     %label
       Contributors
     .contributors-container
@@ -9,9 +9,8 @@
     .contributors
       - @project.contributions.each do |c|
         - if c.contributor.present?
+          = link_to "x", contribution_path(c), method: :delete
           = image_tag hocho(c.contributor.avatar, "o=t&q=80&d=90x90"), class: 'avatar tiny'
 
-  .columns.large-6
-    %label
-      Search and select
-    = select_tag :contributor_id
+  .columns.large-8
+    = select_tag :contributions_attributes, options_from_collection_for_select(@project.contributors, :id, :username), name: "project[contributions_attributes][0][contributor_id]", multiple: true

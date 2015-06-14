@@ -14,7 +14,7 @@
             %strong= @project.owner.username
     .columns.large-8
       = f.input :title
-  = render 'project_contribution_fields'
+  = render 'project_contribution_fields', :f => f
 
   %p
     You can use

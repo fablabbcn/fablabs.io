@@ -74,6 +74,9 @@ Fablabs::Application.routes.draw do
 
     resources :projects
 
+    # TODO: restrict accessible methods
+    resources :contributions
+
     # resources :labs, path: '', only: [:show]
 
     # resources :labs, only: [:show, :destroy], path: ''

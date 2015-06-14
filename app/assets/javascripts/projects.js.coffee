@@ -9,8 +9,7 @@ formatRes = (res) ->
 
 
 formatResSelection = (res) ->
-  res.username
-
+  '<img alt="' + res.username + '" class="avatar tiny" src="' + res.avatar + '">' + '&nbsp;&nbsp;&nbsp;' + res.username
 
 triglify = (h, w) ->
   size = Math.floor Math.random() * 99 + 1
@@ -38,7 +37,7 @@ $(window).load ->
     image = triglify(300, 1200)
     $('.main-project').css('background-image', image)
 
-  $('#contributor_id').select2
+  $('#contributions_attributes').select2
     placeholder: "Select a user",
     allowClear: true
     ajax:
