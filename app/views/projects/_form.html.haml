@@ -14,8 +14,10 @@
             %strong= @project.owner.username
     .columns.large-8
       = f.input :title
+  = render 'project_contribution_fields', :f => f
+
   %p
-    You can use  
+    You can use
     = link_to "Markdown", "http://daringfireball.net/projects/markdown/"
     (MD)
     to style your project description. Please see
@@ -24,14 +26,22 @@
   = f.input :description
   .row
     .columns.large-6
-      = icon('github')
-      = f.input :github
       = icon('link')
       = f.input :web
+      = icon('github')
+      = f.input :github
+      = icon('hdd-o')
+      = f.input :drive
+      = icon('flickr')
+      = f.input :flickr
     .columns.large-6
       = icon('dropbox')
       = f.input :dropbox
       = icon('bitbucket')
       = f.input :bitbucket
+      = icon('youtube')
+      = f.input :youtube
+      = icon('vimeo-square')
+      = f.input :vimeo
 
   = f.submit class: 'button'

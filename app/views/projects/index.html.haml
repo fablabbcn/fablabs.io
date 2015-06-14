@@ -10,5 +10,6 @@
 
       %ul#project-container.large-block-grid-3.medium-block-grid-3.small-block-grid-1= render @projects
 
-      - if current_or_null_user.can_create?(Project)
-        = link_to "New Project", new_project_path
+      - if current_user
+        = link_to new_project_path, class: "button tiny success" do
+          = fa_icon "plus", text: t("views.projects.index.new_project", default: "New project")

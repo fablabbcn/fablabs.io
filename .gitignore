@@ -28,3 +28,5 @@ words.yml
 *.rdb
 rails_best_practices_output.html
 sitemap.x*
+
+.DS_Store

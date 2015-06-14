@@ -21,9 +21,13 @@ en:
       settings:             "Settings"
       projects:             "Projects"
 
+    projects:
+      new_project:          "New project"
+      
     labs:
       index:
         all_countries:      "All countries"
+        add_a_lab:          "Add Lab"
       show:
         nearby_labs:        "nearby_labs"
 
