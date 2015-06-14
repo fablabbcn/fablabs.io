@@ -41,7 +41,7 @@ $(window).load ->
     placeholder: "Select a user",
     allowClear: true
     ajax:
-      url: 'http://api.fablabs.dev/v0/users'
+      url: 'http://api.fablabs.io/v0/users'
       dataType: 'json'
       delay: 250
       data: (params) ->
