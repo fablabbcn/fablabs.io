@@ -15,15 +15,37 @@
     .columns.large-8
       = f.input :title
   = render 'project_contribution_fields', :f => f
+  .row
+    .columns.large-12
+      \
+      %p
+        You can use
+        = link_to "Markdown", "http://daringfireball.net/projects/markdown/"
+        (MD) to style text and include videos and images. Please see
+        = link_to "MD-basics", "https://help.github.com/articles/markdown-basics/"
+        for more info.
+  .row
+    .columns.large-12
+      %p
+        = f.input :description
+        Here you can describe your project to the world.
+        \
 
-  %p
-    You can use
-    = link_to "Markdown", "http://daringfireball.net/projects/markdown/"
-    (MD)
-    to style your project description. Please see
-    = link_to "MD-basics", "https://help.github.com/articles/markdown-basics/"
-    for more info.
-  = f.input :description
+  .row
+    .columns.large-12
+      %p
+        = f.input :scope
+        This section can be used to describe the scope of your project and what
+        you would like to accomplish.
+        \
+
+  .row
+    .columns.large-12
+      %p
+        = f.input :faq
+        This section can be used to answer some FAQ about your project.
+        \
+
   .row
     .columns.large-6
       = icon('link')
@@ -32,13 +54,21 @@
       = f.input :github
       = icon('hdd-o')
       = f.input :drive
+      = icon('twitter')
+      = f.input :twitter
       = icon('flickr')
       = f.input :flickr
     .columns.large-6
-      = icon('dropbox')
-      = f.input :dropbox
+      \
+      \
       = icon('bitbucket')
       = f.input :bitbucket
+      = icon('dropbox')
+      = f.input :dropbox
+      = icon('facebook')
+      = f.input :facebook
+      = icon('google-plus')
+      = f.input :googleplus
       = icon('youtube')
       = f.input :youtube
       = icon('vimeo-square')

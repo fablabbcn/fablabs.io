@@ -70,13 +70,20 @@ class ProjectsController < ApplicationController
         :dropbox,
         :web,
         :description,
+        :scope,
+        :faq,
+        :lookingfor,
+        :community,
         :lab_id,
         :owner_id,
         :flickr,
         :drive,
         :youtube,
         :vimeo,
-        contributions_attributes: [ :contributor_id ])
+        :googleplus,
+        contributions_attributes: [ :contributor_id ],
+        collaborations_attributes: [ :collaborator_id ]),
+        machineries_attributes: [ :device_id ])
     end
 
 

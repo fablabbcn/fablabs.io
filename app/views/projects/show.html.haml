@@ -34,12 +34,36 @@
             Last updated at:
             = time_tag(@project.updated_at.to_date)
 
-.row.project-description
-  .columns.large-8
-    = simple_format(markdown(@project.description))
-  .columns.large-4
-    = render "link_fields"
-    = render "contributors"
+  .row.project-description
+    .columns.large-8
+      - if @project.description.present?
+        %h5
+          Description
+        = simple_format(markdown(@project.description))
+
+      - if @project.scope.present?
+        %h5
+          Scope
+        = simple_format(markdown(@project.scope))
+
+      - if @project.faq.present?
+        %h5
+          FAQ
+        = simple_format(markdown(@project.faq))
+
+      - if @project.community.present?
+        %h5
+          Community
+        = simple_format(markdown(@project.community))
+
+      - if @project.lookingfor.present?
+        %h5
+          Looking for
+        = simple_format(markdown(@project.lookingfor))
+
+    .columns.large-4
+      = render "link_fields"
+      = render "contributors"
 
 
 .row
