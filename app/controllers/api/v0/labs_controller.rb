@@ -20,4 +20,9 @@ class Api::V0::LabsController < Api::V0::ApiController
       each_serializer: MapSerializer
   end
 
+  def search
+    @labs = Lab.where("name LIKE ?", "%#{params[:name]}%")
+    render json: @labs, each_serializer: LabSerializer
+  end
+
 end
