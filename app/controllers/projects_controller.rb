@@ -77,6 +77,7 @@ class ProjectsController < ApplicationController
         :lab_id,
         :owner_id,
         :flickr,
+        :instagram,
         :drive,
         :youtube,
         :vimeo,
