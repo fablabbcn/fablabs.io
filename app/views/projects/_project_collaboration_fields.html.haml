@@ -5,7 +5,7 @@
     .contributors-container
       .icon
         %span
-          = icon('cube')
+          = icon('map-marker')
     .contributors
       - @project.collaborations.each do |c|
         - if c.collaborator.present?
@@ -13,5 +13,5 @@
           = image_tag hocho(c.collaborator.avatar, "o=t&q=80&d=90x90"), class: 'avatar tiny'
 
   .columns.large-8
-    - @selected = @project.collaborator.collect
+    - @selected = @project.collaborators.collect
     = select_tag :collaborations_attributes, options_from_collection_for_select(@selected, :id, :slug), { multiple: true, size: 10, name: 'project[collaborations_attributes][][collaborator_id]'}
