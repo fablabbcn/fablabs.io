@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150613200629) do
+ActiveRecord::Schema.define(version: 20150615080259) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -65,6 +65,17 @@ ActiveRecord::Schema.define(version: 20150613200629) do
   end
 
   add_index "brands", ["creator_id"], name: "index_brands_on_creator_id", using: :btree
+
+  create_table "collaborations", force: true do |t|
+    t.integer  "project_id"
+    t.integer  "collaborator_id"
+    t.datetime "last_collaboration"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "collaborations", ["collaborator_id"], name: "index_collaborations_on_collaborator_id", using: :btree
+  add_index "collaborations", ["project_id"], name: "index_collaborations_on_project_id", using: :btree
 
   create_table "comments", force: true do |t|
     t.integer  "author_id"
@@ -234,6 +245,16 @@ ActiveRecord::Schema.define(version: 20150613200629) do
   add_index "links", ["creator_id"], name: "index_links_on_creator_id", using: :btree
   add_index "links", ["linkable_id", "linkable_type", "ordinal"], name: "index_links_on_linkable_id_and_linkable_type_and_ordinal", using: :btree
 
+  create_table "machineries", force: true do |t|
+    t.integer  "project_id"
+    t.integer  "device_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "machineries", ["device_id"], name: "index_machineries_on_device_id", using: :btree
+  add_index "machineries", ["project_id"], name: "index_machineries_on_project_id", using: :btree
+
   create_table "oauth_access_grants", force: true do |t|
     t.integer  "resource_owner_id",              null: false
     t.integer  "application_id",                 null: false
@@ -304,6 +325,16 @@ ActiveRecord::Schema.define(version: 20150613200629) do
     t.string   "flickr"
     t.string   "youtube"
     t.string   "drive"
+    t.string   "twitter"
+    t.string   "facebook"
+    t.string   "googleplus"
+    t.string   "instagram"
+    t.string   "status"
+    t.string   "version"
+    t.text     "faq"
+    t.text     "scope"
+    t.text     "community"
+    t.text     "lookingfor"
   end
 
   add_index "projects", ["lab_id"], name: "index_projects_on_lab_id", using: :btree

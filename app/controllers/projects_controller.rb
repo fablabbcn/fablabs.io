@@ -82,7 +82,7 @@ class ProjectsController < ApplicationController
         :vimeo,
         :googleplus,
         contributions_attributes: [ :contributor_id ],
-        collaborations_attributes: [ :collaborator_id ]),
+        collaborations_attributes: [ :collaborator_id ],
         machineries_attributes: [ :device_id ])
     end
 

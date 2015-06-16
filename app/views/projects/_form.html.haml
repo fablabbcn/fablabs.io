@@ -17,7 +17,7 @@
   = render 'project_contribution_fields', :f => f
   .row
     .columns.large-12
-      \
+      %p
       %p
         You can use
         = link_to "Markdown", "http://daringfireball.net/projects/markdown/"
@@ -58,9 +58,9 @@
       = f.input :twitter
       = icon('flickr')
       = f.input :flickr
+      = icon('instagram')
+      = f.input :instagram
     .columns.large-6
-      \
-      \
       = icon('bitbucket')
       = f.input :bitbucket
       = icon('dropbox')
