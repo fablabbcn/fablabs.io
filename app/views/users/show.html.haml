@@ -29,8 +29,21 @@
 
 .row
   .columns.large-6
+    %h5
+    = icon('plus-square')
+    Contributions
+    .projects
+      %ul#project-container.large-block-grid-1
+        - if @user.created_projects.any?
+          = render @user.created_projects
+        - if @user.projects.any?
+          = render @user.projects
+
 
 
   .columns.large-6
+    %h5
+    = icon('signal')
+    Activity
     .activity
       %ul= render @user.activities

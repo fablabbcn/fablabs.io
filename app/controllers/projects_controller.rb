@@ -18,9 +18,9 @@ class ProjectsController < ApplicationController
   end
 
   def new
-    @user_options = User.limit(10).map{ |u| [ u.username, u.id ] }
     @project = current_user.created_projects.build
     @project.contributions.build
+    @project.collaborations.build
     authorize_action_for @project
   end
 
@@ -29,6 +29,7 @@ class ProjectsController < ApplicationController
     @project.assign_attributes(owner: current_user)
     authorize_action_for @project
     if @project.save
+      track_activity @project
       redirect_to projects_path, notice: "Thanks for adding your project."
     else
       render :new
@@ -37,7 +38,6 @@ class ProjectsController < ApplicationController
 
   def edit
     @project = Project.find(params[:id])
-    @user_options = User.limit(10).map{ |u| [ u.username, u.id ] }
     authorize_action_for @project
   end
 
@@ -45,6 +45,7 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:id])
     authorize_action_for @project
     if @project.update_attributes project_params
+      track_activity @project
       redirect_to project_url(@project), notice: "Project was successfully updated"
     else
       render :edit
@@ -70,13 +71,21 @@ class ProjectsController < ApplicationController
         :dropbox,
         :web,
         :description,
+        :scope,
+        :faq,
+        :lookingfor,
+        :community,
         :lab_id,
         :owner_id,
         :flickr,
+        :instagram,
         :drive,
         :youtube,
         :vimeo,
-        contributions_attributes: [ :contributor_id ])
+        :googleplus,
+        contributions_attributes: [ :contributor_id ],
+        collaborations_attributes: [ :collaborator_id ],
+        machineries_attributes: [ :device_id ])
     end
 
 

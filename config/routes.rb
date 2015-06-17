@@ -76,6 +76,7 @@ Fablabs::Application.routes.draw do
 
     # TODO: restrict accessible methods
     resources :contributions
+    resources :collaborations
 
     # resources :labs, path: '', only: [:show]
 
@@ -116,6 +117,7 @@ Fablabs::Application.routes.draw do
       namespace :v0 do
         get 'me' => 'users#me'
         get 'users' => 'users#search'
+        get 'labs' => 'labs#search'
         resources :coupons do
           get "redeem", on: :member
         end

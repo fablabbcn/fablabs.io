@@ -34,6 +34,7 @@
     height: 90px;
     padding: 10px;
   }
+
   .project-baseline {
     padding: 10px;
     height: 30px;
@@ -89,6 +90,7 @@ form {
 
   textarea {
     border-radius: 3px;
+    height: 200px;
   }
 
   i {
@@ -131,7 +133,26 @@ form {
     }
   }
 
-  #project_description {
-    height: 200px;
+  .selections {
+    ul {
+      list-style: none;
+      li { display: inline; }
+    }
+    span {
+      float: left;
+      margin-top: -15px;
+      padding-right: 10px;
+    }
+  }
+
+  .select2-selection {
+    border: none;
+  }
+
+  .select2-search__field {
+    border: none;
+    -webkit-box-shadow: none;
+	  -moz-box-shadow: none;
+	  box-shadow: none;
   }
 }

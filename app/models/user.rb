@@ -29,7 +29,7 @@ class User < ActiveRecord::Base
   has_many :created_activities, foreign_key: 'creator_id', class_name: 'Activity'
   has_many :activities, foreign_key: 'actor_id'
 
-  has_many :contributions
+  has_many :contributions, foreign_key: 'contributor_id'
   has_many :projects, through: :contributions
 
   validates_format_of :email, :with => /\A(.+)@(.+)\z/
