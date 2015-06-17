@@ -29,6 +29,12 @@
 
 .row
   .columns.large-6
+    %h5
+    = icon('plus-square')
+    Contributions
+    .projects
+      - if @user.created_projects.any?
+        %ul#project-container.large-block-grid-1= render @user.created_projects
 
 
   .columns.large-6

@@ -2,15 +2,18 @@
   .columns.large-4
     %label
       Contributors
-    .contributors-container
+    .selection-container
       .icon
         %span
           = icon('terminal')
-    .contributors
-      - @project.contributions.each do |c|
-        - if c.contributor.present?
-          = link_to "x", contribution_path(c), method: :delete
-          = image_tag hocho(c.contributor.avatar, "o=t&q=80&d=90x90"), class: 'avatar tiny'
+    .selections
+      %ul
+        - @project.contributions.each do |c|
+          - if c.contributor.present?
+            %li
+              %span
+                = link_to icon('times'), contribution_path(c), method: :delete
+                = image_tag hocho(c.contributor.avatar, "o=t&q=80&d=90x90"), class: 'avatar tiny'
 
   .columns.large-8
     - @selected = @project.contributors.collect

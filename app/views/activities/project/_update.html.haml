@@ -1,0 +1,8 @@
+- if project.present?
+  = content_tag_for :li, activity do
+    = icon('rocket')
+    %span
+      = link_to activity.creator, activity.creator, class: 'user'
+      = activity.actioned
+      = link_to project.title, project
+    %i #{time_ago_in_words(activity.created_at)} ago

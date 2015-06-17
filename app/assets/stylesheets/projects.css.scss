@@ -133,6 +133,18 @@ form {
     }
   }
 
+  .selections {
+    ul {
+      list-style: none;
+      li { display: inline; }
+    }
+    span {
+      float: left;
+      margin-top: -15px;
+      padding-right: 10px;
+    }
+  }
+
   .select2-selection {
     border: none;
   }

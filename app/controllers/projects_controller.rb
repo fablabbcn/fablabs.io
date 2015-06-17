@@ -29,6 +29,7 @@ class ProjectsController < ApplicationController
     @project.assign_attributes(owner: current_user)
     authorize_action_for @project
     if @project.save
+      track_activity @project
       redirect_to projects_path, notice: "Thanks for adding your project."
     else
       render :new
@@ -44,6 +45,7 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:id])
     authorize_action_for @project
     if @project.update_attributes project_params
+      track_activity @project
       redirect_to project_url(@project), notice: "Project was successfully updated"
     else
       render :edit
