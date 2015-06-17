@@ -65,6 +65,8 @@ module ApplicationHelper
 
   def markdown(text)
     md = Redcarpet::Markdown.new(Redcarpet::Render::HTML,
+      filter_html: true,
+      prettify: true,
       safe_links_only: true,
       no_intra_emphasis: true,
       fenced_code_blocks: true,
@@ -77,8 +79,8 @@ module ApplicationHelper
       filter_html: true,
       no_images: true,
       no_links: true,
-      no_styles: true,
-      escape_html: true,      
+      no_style: true,
+      escape_html: true,
       no_intra_emphasis: true,
       fenced_code_blocks: true,
       disable_indented_code_blocks: true)

@@ -33,6 +33,11 @@
   .project-description {
     height: 90px;
     padding: 10px;
+    span {
+      a {
+        float: right;
+      }
+    }
   }
 
   .project-baseline {
