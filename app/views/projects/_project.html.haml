@@ -6,7 +6,7 @@
           %span.project-title-span= project.title
       .project-description
         %span.project-description-span
-          = truncate project.description, :length => 130, :omission => "..."
+          = markdown(truncate project.description, :length => 130, :omission => "...")
           = link_to "more", project
       .project-baseline
         %p
