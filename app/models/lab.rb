@@ -146,7 +146,7 @@ class Lab < ActiveRecord::Base
   end
 
   def country
-    Country[country_code]
+    ISO3166::Country[country_code]
   end
 
   def self.country_list_for labs
@@ -154,8 +154,8 @@ class Lab < ActiveRecord::Base
     labs.map{ |v| c[v[:country_code]] += 1 }
     countries = []
     c.each do |country_code, count|
-      if Country[country_code]
-        countries.push([Country[country_code].name, country_code, count])
+      if ISO3166::Country[country_code]
+        countries.push([ISO3166::Country[country_code].name, country_code, count])
       end
     end
     return countries.sort_alphabetical_by(&:first)

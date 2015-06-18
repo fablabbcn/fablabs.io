@@ -41,6 +41,15 @@
           Description
         = simple_format(markdown(@project.description))
 
+      - if @project.images.present?
+        %h5 Images
+
+        - @project.images.each do |image|
+          %ul
+            %li
+              = attachment_image_tag(image, :file, :fill, 300, 300)
+              = link_to image.id, attachment_url(image, :file)
+
       - if @project.scope.present?
         %h5
           Scope

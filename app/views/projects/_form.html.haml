@@ -46,6 +46,16 @@
         = f.input :faq
         This section can be used to answer some FAQ about your project.
         \
+  .row
+    .columns.large-12
+      %p
+        = f.label :images_files
+        = f.attachment_field :images_files, multiple: true, direct: true, presigned: true
+        - if @project.images.present?
+          - @project.images.each do |image|
+            %ul
+              %li
+                = attachment_image_tag(image, :file, :fill, 75, 75)
 
   .row
     .columns.large-6

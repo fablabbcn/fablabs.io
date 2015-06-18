@@ -1,1 +1,1 @@
-Country['TW'].data['name'] = "Taiwan"
+ISO3166::Country['TW'].data['name'] = "Taiwan"

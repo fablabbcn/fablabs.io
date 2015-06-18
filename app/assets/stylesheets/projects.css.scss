@@ -160,4 +160,12 @@ form {
 	  -moz-box-shadow: none;
 	  box-shadow: none;
   }
+
+  ul {
+    list-style: none;
+    li {
+      float: left;
+      padding-left: 20px;
+    }
+  }
 }

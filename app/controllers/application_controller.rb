@@ -36,7 +36,7 @@ private
 
   helper_method :current_country
   def current_country
-    Country[(Rails.env.test? ? 'GB' : request.env["HTTP_CF_IPCOUNTRY"] || ENV["COUNTRY_CODE"])]
+    ISO3166::Country[(Rails.env.test? ? 'GB' : request.env["HTTP_CF_IPCOUNTRY"] || ENV["COUNTRY_CODE"])]
   end
 
   # def default_url_options(options = {})
