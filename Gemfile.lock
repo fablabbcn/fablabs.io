@@ -118,6 +118,10 @@ GEM
       httparty
     arel (4.0.1)
     atomic (1.1.14)
+    aws-s3 (0.6.3)
+      builder
+      mime-types
+      xml-simple
     aws-sdk-v1 (1.64.0)
       json (~> 1.4)
       nokogiri (>= 1.4.4)
@@ -498,6 +502,7 @@ GEM
       activesupport (>= 2.3.4)
       chronic (>= 0.6.3)
     will_paginate (3.0.5)
+    xml-simple (1.1.5)
     xpath (2.0.0)
       nokogiri (~> 1.3)
     zonebie (0.5.1)
@@ -512,6 +517,7 @@ DEPENDENCIES
   acts-as-taggable-on
   ancestry!
   authority!
+  aws-s3
   aws-sdk-v1
   bcrypt-ruby
   bitmask_attributes

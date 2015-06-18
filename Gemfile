@@ -73,6 +73,7 @@ gem 'jquery-rails'
 
 gem "paperclip", "~> 4.2"
 # For paperclip/refile we need:
+gem 'aws-s3'
 gem 'aws-sdk-v1' # Can be used together with v2 because of different namespaces.
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks

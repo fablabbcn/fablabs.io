@@ -48,7 +48,7 @@
         \
   .row
     .columns.large-12
-      %p
+      %p.images
         = f.label :images_files
         = f.fields_for :documents_attributes, project.documents do |d|
           = d.file_field "image", name: "project[documents_attributes][][image]", multiple: true

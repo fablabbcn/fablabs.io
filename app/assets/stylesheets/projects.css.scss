@@ -150,6 +150,14 @@ form {
     }
   }
 
+  ul{
+    list-style: none;
+    li {
+      float: left;
+      padding-right: 20px;
+    }
+  }
+
   .select2-selection {
     border: none;
   }
