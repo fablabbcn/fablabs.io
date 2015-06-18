@@ -7,7 +7,7 @@
         %li.current
           = link_to labs_path(country: params[:country]) do
             %span.flag{class: "flag-#{params[:country]}"}
-            = Country[params[:country]]
+            = ISO3166::Country[params[:country]]
       - else
         %li.current= link_to t("views.labs.index.all_countries"), labs_path
   .columns.large-4
