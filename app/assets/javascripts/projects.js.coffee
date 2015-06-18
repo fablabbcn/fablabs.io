@@ -76,7 +76,7 @@ $(window).load ->
       placeholder: "Select a lab..",
       allowClear: true
       ajax:
-        url: 'https://api.fablabs.io/v0/labs'
+        url: 'https://api.fablabs.io/v0/labs/search'
         dataType: 'json'
         delay: 250
         data: (params) ->
