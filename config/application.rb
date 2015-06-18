@@ -43,6 +43,18 @@ module Fablabs
       g.fixture_replacement :factory_girl
     end
 
+    #
+    # Paperclip configuration options
+    #
+    config.paperclip_defaults = {
+      storage: :s3,
+      s3_credentials: {
+        bucket: ENV['S3_BUCKET'],
+        access_key_id: ENV['S3_ACCESS_KEY_ID'],
+        secret_access_key: ENV['S3_SECRET']
+      },
+    }
+
     config.url = 'http://fablabs.dev'
 
     config.action_mailer.default_url_options = { host: "www.fablabs.io", protocol: "https" }

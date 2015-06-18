@@ -20,6 +20,9 @@ class Project < ActiveRecord::Base
   has_many :devices, through: :machineries
   accepts_nested_attributes_for :machineries
 
+  has_many :documents, dependent: :destroy
+  accepts_nested_attributes_for :documents
+
   def self.last_updated_at
     self.select(:updated_at).order('updated_at DESC').first
   end

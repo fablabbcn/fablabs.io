@@ -1,4 +1,4 @@
-= simple_form_for project do |f|
+= simple_form_for project, html: { multipart: true} do |f|
   = render "form_errors", resource: project
   .row
     .columns.large-4
@@ -46,7 +46,17 @@
         = f.input :faq
         This section can be used to answer some FAQ about your project.
         \
-
+  .row
+    .columns.large-12
+      %p
+        = f.label :images_files
+        = f.fields_for :documents_attributes, project.documents do |d|
+          = d.file_field "image", name: "project[documents_attributes][][image]", multiple: true
+        - if @project.documents.present?
+          - @project.documents.each do |document|
+            %ul
+              %li
+                = image_tag document.image.url(:thumb)
   .row
     .columns.large-6
       = icon('link')
