@@ -5,6 +5,9 @@ class Project < ActiveRecord::Base
 
   self.authorizer_name = 'ProjectAuthorizer'
 
+  has_many :images, dependent: :destroy
+  accepts_attachments_for :images, attachment: :file, append: true
+
   belongs_to :lab
   belongs_to :owner, class_name: 'User'
 

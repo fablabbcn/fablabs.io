@@ -83,6 +83,7 @@ class ProjectsController < ApplicationController
         :youtube,
         :vimeo,
         :googleplus,
+        images_files: [],
         contributions_attributes: [ :contributor_id ],
         collaborations_attributes: [ :collaborator_id ],
         machineries_attributes: [ :device_id ])

@@ -19,6 +19,7 @@
 
 # Ignore application configuration
 /config/application.yml
+/config/secrets.yml
 .zeus.sock
 /coverage
 /config/initializers/words.rb

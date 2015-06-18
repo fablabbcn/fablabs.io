@@ -1,4 +1,4 @@
-ruby '2.0.0'
+ruby '2.2.2'
 
 source 'https://rubygems.org'
 
@@ -30,7 +30,7 @@ gem 'twitter'
 gem 'sinatra', '>= 1.3.0', :require => nil
 gem 'sidekiq'
 gem 'nest'
-gem 'rails', '4.0.1'
+gem 'rails', '4.2.1'
 gem 'inherited_resources'
 gem 'timezone'
 gem 'bitmask_attributes'
@@ -51,7 +51,7 @@ gem "cocoon", github: 'nathanvda/cocoon'
 gem "pg_search"
 gem "pg",'0.17.1'
 gem 'simple_form'
-gem 'countries', github: "hexorx/countries"
+gem 'countries', :require => 'iso3166'
 gem 'country_select'
 gem 'momentjs-rails'
 gem 'active_model_serializers'
@@ -67,6 +67,13 @@ gem 'letter_opener'
 gem 'coffee-rails', '~> 4.0.0'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
+
+gem "refile", require: "refile/rails", github: 'refile/refile'
+gem "refile-mini_magick"
+gem "refile-s3"
+# To upload images to S3 with refile we need:
+gem 'aws-sdk'
+gem 'aws-sdk-v1' # Can be used together with v2 because of different namespaces.
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
