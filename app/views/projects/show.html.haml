@@ -41,6 +41,16 @@
           Description
         = simple_format(markdown(@project.description))
 
+      - if @project.documents.present?
+        %h5
+          Images
+
+        - @project.documents.each do |document|
+          %ul
+            %li
+              = image_tag document.image.url(:medium)
+              = link_to document.id, document.image.url
+
       - if @project.scope.present?
         %h5
           Scope

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150615080259) do
+ActiveRecord::Schema.define(version: 20150619083234) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -65,6 +65,22 @@ ActiveRecord::Schema.define(version: 20150615080259) do
   end
 
   add_index "brands", ["creator_id"], name: "index_brands_on_creator_id", using: :btree
+
+  create_table "categories", force: true do |t|
+    t.string   "keyword"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "categorizes", force: true do |t|
+    t.integer  "project_id"
+    t.integer  "category_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "categorizes", ["category_id"], name: "index_categorizes_on_category_id", using: :btree
+  add_index "categorizes", ["project_id"], name: "index_categorizes_on_project_id", using: :btree
 
   create_table "collaborations", force: true do |t|
     t.integer  "project_id"
@@ -128,6 +144,21 @@ ActiveRecord::Schema.define(version: 20150615080259) do
   add_index "discussions", ["creator_id"], name: "index_discussions_on_creator_id", using: :btree
   add_index "discussions", ["discussable_id", "discussable_type"], name: "index_discussions_on_discussable_id_and_discussable_type", using: :btree
 
+  create_table "documents", force: true do |t|
+    t.string   "type"
+    t.string   "title"
+    t.text     "description"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.integer  "project_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "documents", ["project_id"], name: "index_documents_on_project_id", using: :btree
+
   create_table "employees", force: true do |t|
     t.integer  "user_id"
     t.integer  "lab_id"
@@ -190,6 +221,17 @@ ActiveRecord::Schema.define(version: 20150615080259) do
   end
 
   add_index "featured_images", ["creator_id"], name: "index_featured_images_on_creator_id", using: :btree
+
+  create_table "images", force: true do |t|
+    t.string   "title",       limit: nil
+    t.string   "description", limit: nil
+    t.string   "file_id",     limit: nil
+    t.integer  "project_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "images", ["project_id"], name: "index_images_on_project_id", using: :btree
 
   create_table "labs", force: true do |t|
     t.string   "name"
