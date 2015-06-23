@@ -3,6 +3,7 @@ class Project < ActiveRecord::Base
   include Authority::Abilities
   include RocketPants::Cacheable
 
+  before_save :assign_to_lab
   self.authorizer_name = 'ProjectAuthorizer'
 
   belongs_to :lab
@@ -30,5 +31,10 @@ class Project < ActiveRecord::Base
   def self.last_updated_at
     self.select(:updated_at).order('updated_at DESC').first
   end
+
+  private
+    def assign_to_lab
+      self.lab = self.collaborators.first if self.collaborators
+    end
 
 end

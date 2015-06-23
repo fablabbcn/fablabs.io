@@ -5,6 +5,9 @@ describe Project do
 
   it { should have_many(:contributions) }
   it { should have_many(:contributors).through(:contributions) }
+  it { should have_many(:collaborators).through(:collaborations) }
+  it { should have_many(:devices).through(:machineries) }
+  it { should have_many(:documents)}
   it { should belong_to(:owner) }
   it { should belong_to(:lab) }
 

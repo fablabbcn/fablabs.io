@@ -1,82 +1,79 @@
 - title @project.title
 
-- cache ["v3-project-#{@project.id}-#{I18n.locale}", Project.last_updated_at] do
+.row
+  .columns.large-12
+    = render "breadcrumbs"
+
+.main-project
   .row
     .columns.large-12
-      = render "breadcrumbs"
+      %p
+        %span
+          = icon('code')
+          = link_to @project.owner do
+            = @project.owner.username
 
-  .main-project
-    .row
-      .columns.large-12
-        %p
+      %h1= @project.title
+
+      %p
+        - if @project.lab.present?
           %span
-            = icon('code')
-            = link_to @project.owner do
-              = @project.owner.username
+            = icon('map-marker')
+            = link_to @project.lab do
+              = @project.lab.name
 
-        %h1= @project.title
-
-        %p
-          - if @project.lab.present?
-            %span
-              = icon('map-marker')
-              = link_to @project.lab do
-                = @project.lab.name
-
-          - if (@project.contributors.count > 0)
-            %span
-              = icon('users')
-              = @project.contributors.count + 1
-              contributors
-
+        - if (@project.contributors.count > 0)
           %span
-            = icon('clock-o')
-            Last updated at:
-            = time_tag(@project.updated_at.to_date)
+            = icon('users')
+            = @project.contributors.count + 1
+            contributors
 
-  .row.project-description
-    .columns.large-8
-      - if @project.description.present?
-        %h5
-          Description
-        = simple_format(markdown(@project.description))
+        %span
+          = icon('clock-o')
+          Last updated at:
+          = time_tag(@project.updated_at.to_date)
 
-      - if @project.documents.present?
-        %h5
-          Images
+.row.project-description
+  .columns.large-8
+    - if @project.description.present?
+      %h5
+        Description
+      = simple_format(markdown(@project.description))
 
+    - if @project.documents.present?
+      %h5
+        Images
+
+      %ul
         - @project.documents.each do |document|
-          %ul
-            %li
-              = image_tag document.image.url(:medium)
-              = link_to document.id, document.image.url
+          %li
+            = image_tag document.image.url(:medium)
+            = link_to document.id, document.image.url
 
-      - if @project.scope.present?
-        %h5
-          Scope
-        = simple_format(markdown(@project.scope))
+    - if @project.scope.present?
+      %h5
+        Scope
+      = simple_format(markdown(@project.scope))
 
-      - if @project.faq.present?
-        %h5
-          FAQ
-        = simple_format(markdown(@project.faq))
+    - if @project.faq.present?
+      %h5
+        FAQ
+      = simple_format(markdown(@project.faq))
 
-      - if @project.community.present?
-        %h5
-          Community
-        = simple_format(markdown(@project.community))
+    - if @project.community.present?
+      %h5
+        Community
+      = simple_format(markdown(@project.community))
 
-      - if @project.lookingfor.present?
-        %h5
-          Looking for
-        = simple_format(markdown(@project.lookingfor))
+    - if @project.lookingfor.present?
+      %h5
+        Looking for
+      = simple_format(markdown(@project.lookingfor))
 
-    .columns.large-4
-      = render "collaborations"
-      = render "link_fields"
-      = render "contributors"
-
-
+  .columns.large-4
+    = render "collaborations"
+    = render "link_fields"
+    = render "contributors"
 
 .row
   .columns.large-12

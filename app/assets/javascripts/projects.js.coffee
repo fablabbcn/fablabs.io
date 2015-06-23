@@ -1,6 +1,7 @@
 //= require masonry.pkgd.min.js
 //= require trianglify.min.js
 
+
 formatUser = (res) ->
   if res.loading
     return res
@@ -35,8 +36,15 @@ triglify = (h, w) ->
 
   return image
 
-
 $(window).load ->
+  if ($('#project_documents_attributes_image')[0])
+    val = $('#project_documents_attributes_image')[0].value
+    $('#file-input-name').text(val)
+
+    $('#project_documents_attributes_image').on 'change', ->
+      val = $('#project_documents_attributes_image')[0].value
+      $('#file-input-name').text(val)
+
   if ($('#project-container'))
     $('#project-container').masonry itemSelector: '#project-container li'
 
@@ -49,50 +57,53 @@ $(window).load ->
     image = triglify(300, 1200)
     $('.main-project').css('background-image', image)
 
-  $('#contributions_attributes').select2
-    placeholder: "Select a user..",
-    allowClear: true
-    ajax:
-      url: 'https://api.fablabs.io/v0/users'
-      dataType: 'json'
-      delay: 250
-      data: (params) ->
-        {
-          username: params.term
-        }
-      processResults: (data) ->
-        # parse the results into the format expected by Select2.
-        # since we are using custom formatting functions we do not need to
-        # alter the remote JSON data
-        { results: data.users }
-      cache: true
-    escapeMarkup: (markup) ->
-      markup
-    minimumInputLength: 1
-    templateResult: formatUser
-    templateSelection: formatUserSelection
 
-    $('#collaborations_attributes').select2
-      placeholder: "Select a lab..",
+  if $('#contributions_attributes')
+    $('#contributions_attributes').select2
+      placeholder: "Select a user..",
       allowClear: true
       ajax:
-        url: 'https://api.fablabs.io/v0/labs/search'
+        url: 'https://api.fablabs.io/v0/users'
         dataType: 'json'
         delay: 250
         data: (params) ->
           {
-            name: params.term
+            username: params.term
           }
         processResults: (data) ->
           # parse the results into the format expected by Select2.
           # since we are using custom formatting functions we do not need to
           # alter the remote JSON data
-          { results: data.labs }
+          { results: data.users }
         cache: true
       escapeMarkup: (markup) ->
         markup
       minimumInputLength: 1
-      templateResult: formatLab
-      templateSelection: formatLabSelection
+      templateResult: formatUser
+      templateSelection: formatUserSelection
+
+    if $('#collaborations_attributes')
+      $('#collaborations_attributes').select2
+        placeholder: "Select a lab..",
+        allowClear: true
+        ajax:
+          url: 'https://api.fablabs.io/v0/labs/search'
+          dataType: 'json'
+          delay: 250
+          data: (params) ->
+            {
+              name: params.term
+            }
+          processResults: (data) ->
+            # parse the results into the format expected by Select2.
+            # since we are using custom formatting functions we do not need to
+            # alter the remote JSON data
+            { results: data.labs }
+          cache: true
+        escapeMarkup: (markup) ->
+          markup
+        minimumInputLength: 1
+        templateResult: formatLab
+        templateSelection: formatLabSelection
 
   return
