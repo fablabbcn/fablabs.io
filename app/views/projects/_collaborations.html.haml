@@ -6,7 +6,7 @@
       = link_to @project.lab do
         %strong= @project.lab.name
   - @project.collaborators.each do |collaborator|
-    - unless collaborator.id == @project.lab.id
+    - unless collaborator == @project.lab
       %li
         = image_tag hocho(collaborator.avatar, "o=t&q=80&d=90x90"), class: 'avatar tiny'
         = link_to collaborator do
