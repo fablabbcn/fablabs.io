@@ -1,21 +1,28 @@
 = simple_form_for project, html: { multipart: true} do |f|
   = render "form_errors", resource: project
-  .row
-    .columns.large-4
-      %label
-        Owner
-      .owner-container
-        .icon
-          %span
-            = icon('code')
-        .owner-btn
-          = image_tag hocho(@project.owner.avatar, "o=t&q=80&d=90x90"), class: 'avatar tiny'
-          = link_to @project.owner do
-            %strong= @project.owner.username
-    .columns.large-8
-      = f.input :title
-  = render 'project_contribution_fields', :f => f
-  = render 'project_collaboration_fields', :f => f
+  %fieldset
+    %legend Core
+    .row
+      .columns.large-12
+        .columns.large-4
+          %label
+            Owner
+          .owner-container
+            .icon
+              %span
+                = icon('code')
+            .owner-btn
+              = image_tag hocho(@project.owner.avatar, "o=t&q=80&d=90x90"), class: 'avatar tiny'
+              = link_to @project.owner do
+                %strong= @project.owner.username
+        .columns.large-8
+          = f.input :title
+    .row
+      .columns.large-12
+        = render 'project_contribution_fields', :f => f
+    .row
+      .columns.large-12
+        = render 'project_collaboration_fields', :f => f
   .row
     .columns.large-12
       %p
@@ -27,62 +34,75 @@
         for more info.
   .row
     .columns.large-12
-      %p
+      %fieldset
+        %legend Description
         = f.input :description
         Here you can describe your project to the world.
         \
 
-  .row
-    .columns.large-12
-      %p
+      %fieldset
+        %legend Scope
         = f.input :scope
         This section can be used to describe the scope of your project and what
         you would like to accomplish.
         \
-
-  .row
-    .columns.large-12
-      %p
+      %fieldset
+        %legend FAQ
         = f.input :faq
         This section can be used to answer some FAQ about your project.
         \
+      %fieldset
+        %legend Media
+        .row
+          .columns.large-3
+            %span#file-input-name
+          .columns.large-9
+            = f.label :images_files
+            = f.fields_for :documents_attributes, project.documents do |d|
+              %span#file-click.button.button-file
+                Pick file
+                = d.file_field "image", name: "project[documents_attributes][][image]", multiple: true
+
+        %hr/
+        .row
+          .columns.large-3
+          .columns.large-9
+            - if @project.documents.present?
+              = f.label "Thumbnails"
+              %ul
+                - @project.documents.each do |document|
+                  %li
+                    = link_to icon('times'), document_path(document), method: :delete
+                    = image_tag document.image.url(:thumb)
   .row
     .columns.large-12
-      %p.images
-        = f.label :images_files
-        = f.fields_for :documents_attributes, project.documents do |d|
-          = d.file_field "image", name: "project[documents_attributes][][image]", multiple: true
-        - if @project.documents.present?
-          - @project.documents.each do |document|
-            %ul
-              %li
-                = image_tag document.image.url(:thumb)
-  .row
-    .columns.large-6
-      = icon('link')
-      = f.input :web
-      = icon('github')
-      = f.input :github
-      = icon('hdd-o')
-      = f.input :drive
-      = icon('twitter')
-      = f.input :twitter
-      = icon('flickr')
-      = f.input :flickr
-      = icon('instagram')
-      = f.input :instagram
-    .columns.large-6
-      = icon('bitbucket')
-      = f.input :bitbucket
-      = icon('dropbox')
-      = f.input :dropbox
-      = icon('facebook')
-      = f.input :facebook
-      = icon('google-plus')
-      = f.input :googleplus
-      = icon('youtube')
-      = f.input :youtube
-      = icon('vimeo-square')
-      = f.input :vimeo
+      %fieldset
+        %legend Links
+        .columns.large-6
+          = icon('link')
+          = f.input :web
+          = icon('github')
+          = f.input :github
+          = icon('hdd-o')
+          = f.input :drive
+          = icon('twitter')
+          = f.input :twitter
+          = icon('flickr')
+          = f.input :flickr
+          = icon('instagram')
+          = f.input :instagram
+        .columns.large-6
+          = icon('bitbucket')
+          = f.input :bitbucket
+          = icon('dropbox')
+          = f.input :dropbox
+          = icon('facebook')
+          = f.input :facebook
+          = icon('google-plus')
+          = f.input :googleplus
+          = icon('youtube')
+          = f.input :youtube
+          = icon('vimeo-square')
+          = f.input :vimeo
 
   = f.submit class: 'button'

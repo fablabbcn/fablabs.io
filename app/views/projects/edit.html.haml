@@ -1,4 +1,6 @@
 .row
   .columns.large-12
-    = title "Edit #{@project.title}"
-    = render "form", project: @project
+    = render "projects/breadcrumbs", lab: @project
+.row
+  .columns.large-12= title "Editing #{@project.title}"
+  .columns.large-12= render 'form', project: @project
