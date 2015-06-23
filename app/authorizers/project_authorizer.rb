@@ -17,7 +17,7 @@ class ProjectAuthorizer < ApplicationAuthorizer
   end
 
   def is_collaborator?(user)
-    user == resource.collaborators.where(id: user.id)
+    user == resource.contributors.where(id: user.id).first
   end
 
 end
