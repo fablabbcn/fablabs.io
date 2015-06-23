@@ -53,7 +53,7 @@ module Fablabs
         bucket: ENV['AWS_BUCKET'],
         access_key_id: ENV['AWS_ACCESS_KEY_ID'],
         secret_access_key: ENV['AWS_SECRET'],
-        s3_host_name: "s3-us-west-1.amazonaws.com"
+        s3_host_name: "s3-eu-west-1.amazonaws.com"
       },
     }
 
