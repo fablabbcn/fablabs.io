@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
 
-  before_filter :require_login, except: [:index, :map, :show, :mapdata, :embed]
+  before_filter :require_login, except: [:index]
 
   def index
     @projects = Project.includes(:owner, :lab, :contributors).page(params['page']).per(params['per'])
@@ -83,7 +83,8 @@ class ProjectsController < ApplicationController
         :youtube,
         :vimeo,
         :googleplus,
-        documents_attributes: [:image],
+        tag_list: [],
+        documents_attributes: [ :image, :title, :description ],
         contributions_attributes: [ :contributor_id ],
         collaborations_attributes: [ :collaborator_id ],
         machineries_attributes: [ :device_id ])

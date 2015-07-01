@@ -1,0 +1,6 @@
+%ul.taglist-form
+  - project.setted_tags.each do |tag|
+    %li
+      %strong
+        = f.check_box :tag_list, { :multiple => true }, tag
+        = f.label tag

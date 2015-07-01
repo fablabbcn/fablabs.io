@@ -3,7 +3,8 @@ class Project < ActiveRecord::Base
   include Authority::Abilities
   include RocketPants::Cacheable
 
-  before_save :assign_to_lab
+  before_save :assign_to_lab, :strip_zeroes
+
   self.authorizer_name = 'ProjectAuthorizer'
 
   belongs_to :lab
@@ -21,15 +22,25 @@ class Project < ActiveRecord::Base
   has_many :devices, through: :machineries
   accepts_nested_attributes_for :machineries
 
-  has_many :categorizes, dependent: :destroy
-  has_many :categories, through: :categorizes
-  accepts_nested_attributes_for :categorizes
-
   has_many :documents, dependent: :destroy
   accepts_nested_attributes_for :documents
 
+  acts_as_taggable
+
   def self.last_updated_at
     self.select(:updated_at).order('updated_at DESC').first
+  end
+
+  def setted_tags
+    [ "Fab Academy Final Project",
+      "Fab Academy Diploma Thesis",
+      "Fab Awards 14",
+      "Fab Awards 15",
+      "Software",
+      "Hardware",
+      "OpenSource",
+      "Furniture"
+    ]
   end
 
   private
@@ -37,4 +48,7 @@ class Project < ActiveRecord::Base
       self.lab = self.collaborators.first if self.collaborators
     end
 
+    def strip_zeroes
+      self.tag_list.remove("0")
+    end
 end
