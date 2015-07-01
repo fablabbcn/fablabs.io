@@ -40,6 +40,16 @@
         Description
       = simple_format(markdown(@project.description))
 
+    - if @project.tag_list.present?
+      %h5
+        Tags
+      %ul.taglist
+        - @project.tag_list.each do |tag|
+          %li
+            %strong
+
+              = "##{tag}"
+
     - if @project.documents.present?
       %h5
         Images

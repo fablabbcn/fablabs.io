@@ -41,6 +41,10 @@
         \
 
       %fieldset
+        %legend Tags
+        = render 'tag_list', { :f => f, :project => project }
+
+      %fieldset
         %legend Scope
         = f.input :scope
         This section can be used to describe the scope of your project and what
@@ -53,56 +57,8 @@
         \
       %fieldset
         %legend Media
-        .row
-          .columns.large-3
-            %span#file-input-name
-          .columns.large-9
-            = f.label :images_files
-            = f.fields_for :documents_attributes, project.documents do |d|
-              %span#file-click.button.button-file
-                Pick file
-                = d.file_field "image", name: "project[documents_attributes][][image]", multiple: true
+        = render 'media', { :f => f, :project => project }
 
-        %hr/
-        .row
-          .columns.large-3
-          .columns.large-9
-            - if @project.documents.present?
-              = f.label "Thumbnails"
-              %ul
-                - @project.documents.each do |document|
-                  %li
-                    = link_to icon('times'), document_path(document), method: :delete
-                    = image_tag document.image.url(:thumb)
-  .row
-    .columns.large-12
-      %fieldset
-        %legend Links
-        .columns.large-6
-          = icon('link')
-          = f.input :web
-          = icon('github')
-          = f.input :github
-          = icon('hdd-o')
-          = f.input :drive
-          = icon('twitter')
-          = f.input :twitter
-          = icon('flickr')
-          = f.input :flickr
-          = icon('instagram')
-          = f.input :instagram
-        .columns.large-6
-          = icon('bitbucket')
-          = f.input :bitbucket
-          = icon('dropbox')
-          = f.input :dropbox
-          = icon('facebook')
-          = f.input :facebook
-          = icon('google-plus')
-          = f.input :googleplus
-          = icon('youtube')
-          = f.input :youtube
-          = icon('vimeo-square')
-          = f.input :vimeo
+  = render 'link_form_fields', :f => f
 
   = f.submit class: 'button'

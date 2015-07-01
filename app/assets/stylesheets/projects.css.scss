@@ -83,10 +83,22 @@
   }
 }
 
+.project-description {
+  ul.taglist li {
+      display: inline;
+      padding-bottom: 10px;
+  }
+}
+
 form {
   label {
     font-size: 0.8em;
     padding-bottom: 10px;
+  }
+
+  ul.taglist-form li {
+    padding: 15px;
+    label { display: inline }
   }
 
   input {
