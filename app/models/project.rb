@@ -22,10 +22,6 @@ class Project < ActiveRecord::Base
   has_many :devices, through: :machineries
   accepts_nested_attributes_for :machineries
 
-  has_many :categorizes, dependent: :destroy
-  has_many :categories, through: :categorizes
-  accepts_nested_attributes_for :categorizes
-
   has_many :documents, dependent: :destroy
   accepts_nested_attributes_for :documents
 
