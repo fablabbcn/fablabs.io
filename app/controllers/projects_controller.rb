@@ -83,6 +83,7 @@ class ProjectsController < ApplicationController
         :youtube,
         :vimeo,
         :googleplus,
+        :cover,
         tag_list: [],
         documents_attributes: [ :image, :title, :description ],
         contributions_attributes: [ :contributor_id ],

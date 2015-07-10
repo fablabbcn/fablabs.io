@@ -25,6 +25,9 @@ class Project < ActiveRecord::Base
   has_many :documents, dependent: :destroy
   accepts_nested_attributes_for :documents
 
+  has_many :steps, dependent: :destroy
+  accepts_nested_attributes_for :steps
+
   acts_as_taggable
 
   def self.last_updated_at

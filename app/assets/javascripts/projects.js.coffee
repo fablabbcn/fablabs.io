@@ -37,6 +37,11 @@ triglify = (h, w) ->
   return image
 
 $(window).load ->
+
+  if $('.radio')
+    $(".radio").click ->
+      console.log $($($(this).parent()).children()[0]).click()
+
   if ($('#project_documents_attributes_image')[0])
     val = $('#project_documents_attributes_image')[0].value
     $('#file-input-name').text(val)
@@ -50,12 +55,13 @@ $(window).load ->
 
   if $('#project-container li .project').length > 0
     $('#project-container li .project').each ->
-      image = triglify(150, 350)
-      $(this).children('.project-title').css('background-image', image)
+      if $(this).children('.project-title').css('background-image') == 'none'
+        image = triglify(150, 350)
+        $(this).children('.project-title').css('background-image', image)
 
-  if $('.main-project')
-    image = triglify(300, 1200)
-    $('.main-project').css('background-image', image)
+  if $('.main-project') && $('.main-project').css('background-image') == 'none'
+      image = triglify(300, 1200)
+      $('.main-project').css('background-image', image)
 
 
   if $('#contributions_attributes')

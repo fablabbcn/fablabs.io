@@ -13,8 +13,15 @@
   .columns.large-9
     - if @project.documents.present?
       = f.label "Thumbnails"
+      %p
+        Select the image that you would like to use as cover image.
       %ul
         - @project.documents.each do |document|
-          %li
-            = link_to icon('times'), document_path(document), method: :delete
-            = image_tag document.image.url(:thumb)
+          %li.thumbs
+            %div
+              = f.radio_button :cover, document.id
+              %label.radio
+                = document.id
+            %h4
+              = link_to icon('trash-o'), document_path(document), method: :delete
+            = image_tag hocho(document.image.url(:thumb), "o=t&q=80&d=200x200")

@@ -1,0 +1,35 @@
+- if @project.documents.empty?
+  - cover = 'none'
+- elsif @project.cover.present?
+  - cover = @project.documents.find(@project.cover).image.url
+- else
+  - cover = @project.documents.first.image.url
+
+.main-project{ :style => "background-image: url('#{cover}')" }
+  .row
+    .columns.large-12
+      %p
+        %span
+          = icon('code')
+          = link_to @project.owner do
+            = @project.owner.username
+
+      %h1= @project.title
+
+      %p
+        - if @project.lab.present?
+          %span
+            = icon('map-marker')
+            = link_to @project.lab do
+              = @project.lab.name
+
+        - if (@project.contributors.count > 0)
+          %span
+            = icon('users')
+            = @project.contributors.count + 1
+            contributors
+
+        %span
+          = icon('clock-o')
+          Last updated at:
+          = time_tag(@project.updated_at.to_date)

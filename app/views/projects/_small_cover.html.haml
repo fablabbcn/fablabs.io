@@ -1,0 +1,10 @@
+- if project.documents.empty?
+  - cover = 'none'
+- elsif project.cover.present?
+  - cover = project.documents.find(project.cover).image.url
+- else
+  - cover = project.documents.first.image.url
+
+.project-title{ :style => "background-image: url('#{cover}')" }
+  = link_to project do
+    %span.project-title-span= project.title

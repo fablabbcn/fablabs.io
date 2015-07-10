@@ -1,16 +1,19 @@
 - cache ["v1", project] do
   %li.large-block-grid-3
     = content_tag_for :div, project do
-      .project-title
-        = link_to project do
-          %span.project-title-span= project.title
+      .owner-avatar
+        = link_to project.owner do
+          = image_tag hocho(project.owner.avatar, "o=t&q=80&d=90x90"), class: 'avatar'
+
+      = render 'small_cover', { :project => project }
+
       .project-description
         %span.project-description-span
-          = truncate  strip_tags(restricted_markdown(project.description)), :length => 130, :omission => "..."
+          = truncate strip_tags(restricted_markdown(project.description)), :length => 120, :omission => "..."
           = link_to "more", project
+
       .project-baseline
         %p
-
           %span
             = icon('code')
             = link_to project.owner do
