@@ -76,6 +76,9 @@ Fablabs::Application.routes.draw do
       collection do
         get :search_by_tag
       end
+      resources :steps do
+        resources :links
+      end
     end
 
     resources :contributions, only: [:destroy]

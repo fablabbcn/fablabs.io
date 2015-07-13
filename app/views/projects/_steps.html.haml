@@ -1,0 +1,14 @@
+%h5
+  Step #{step.position}
+= simple_format(markdown(step.title))
+= simple_format(markdown(step.description))
+
+- if step.links.length > 0
+  .heading External Links
+  %ul.lab-links
+    - step.links.each do |link|
+
+      %li.step-link
+        = link_to link.url do
+          = favicon link.url
+          = raw player link.url

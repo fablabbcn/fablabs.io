@@ -404,9 +404,12 @@ ActiveRecord::Schema.define(version: 20150710104128) do
     t.string   "title"
     t.text     "description"
     t.integer  "position"
+    t.integer  "project_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "steps", ["project_id"], name: "index_steps_on_project_id", using: :btree
 
   create_table "taggings", force: true do |t|
     t.integer  "tag_id"

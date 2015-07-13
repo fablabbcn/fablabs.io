@@ -46,4 +46,4 @@
         - @project.tag_list.each do |tag|
           %li
             %strong
-              = "##{tag}"
+              = link_to "##{tag}", "/projects/search_by_tag?tags=#{tag}"

@@ -39,6 +39,7 @@ class ProjectsController < ApplicationController
     @project = current_user.created_projects.build
     @project.contributions.build
     @project.collaborations.build
+    @project.steps.build
     authorize_action_for @project
   end
 
@@ -103,10 +104,16 @@ class ProjectsController < ApplicationController
         :googleplus,
         :cover,
         tag_list: [],
-        documents_attributes: [ :image, :title, :description ],
-        contributions_attributes: [ :contributor_id ],
-        collaborations_attributes: [ :collaborator_id ],
-        machineries_attributes: [ :device_id ])
+        documents_attributes: [ :id, :image, :title, :description ],
+        steps_attributes: [
+          :id,
+          :title,
+          :description,
+          :position, '_destroy',
+          links_attributes: [:id, :link_id, :url, '_destroy'] ],
+        contributions_attributes: [ :id, :contributor_id ],
+        collaborations_attributes: [ :id, :collaborator_id ],
+        machineries_attributes: [ :id, :device_id ])
     end
 
 

@@ -26,7 +26,7 @@ class Project < ActiveRecord::Base
   accepts_nested_attributes_for :documents
 
   has_many :steps, dependent: :destroy
-  accepts_nested_attributes_for :steps
+  accepts_nested_attributes_for :steps, allow_destroy: true
 
   acts_as_taggable
 

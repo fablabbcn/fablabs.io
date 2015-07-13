@@ -12,16 +12,6 @@
         Description
       = simple_format(markdown(@project.description))
 
-    - if @project.tag_list.present?
-      %h5
-        Tags
-      %ul.taglist
-        - @project.tag_list.each do |tag|
-          %li
-            %strong
-
-              = "##{tag}"
-
     - if @project.documents.present?
       %h5
         Images
@@ -31,6 +21,12 @@
           %li
             = image_tag document.image.url(:medium)
             = link_to document.id, document.image.url
+
+    - unless @project.steps.empty?
+      %h5
+        Steps
+        - @project.steps.order(position: :asc).each do |step|
+          = render 'steps', { :step => step }
 
     - if @project.scope.present?
       %h5
@@ -54,7 +50,7 @@
 
   .columns.large-4
     = render "collaborations"
-    = render "link_fields"
+    = render "link_side_fields"
     = render "contributors"
 
 .row

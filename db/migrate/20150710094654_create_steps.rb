@@ -4,6 +4,7 @@ class CreateSteps < ActiveRecord::Migration
       t.string :title
       t.text :description
       t.integer :position
+      t.belongs_to :project, index: true
       t.timestamps
     end
   end
