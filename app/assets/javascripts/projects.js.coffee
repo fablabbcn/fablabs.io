@@ -5,23 +5,23 @@
 formatUser = (res) ->
   if res.loading
     return res
-  markup = '<img alt="' + res.username + '" class="avatar tiny" src="' + res.avatar + '">' + '&nbsp;&nbsp;&nbsp;' + res.username
+  markup = "<img alt='" + res.username + "' class='avatar tiny' src='" + res.avatar + "'>" + "&nbsp;&nbsp;&nbsp;" + res.username
   markup
 
 
 formatUserSelection = (res) ->
-  '<img alt="' + res.username + '" class="avatar tiny" src="' + res.avatar + '">' + '&nbsp;&nbsp;&nbsp;' + res.username
+  "<img alt='" + res.username + "' class='avatar tiny' src='" + res.avatar + "'>" + "&nbsp;&nbsp;&nbsp;" + res.username
 
 
 formatLab = (res) ->
   if res.loading
     return res
-  markup = '<img alt="' + res.name + '" class="avatar tiny" src="' + res.avatar + '">' + '&nbsp;&nbsp;&nbsp;' + res.name
+  markup = "<img alt='" + res.name + "' class='avatar tiny' src='" + res.avatar + "'>" + "&nbsp;&nbsp;&nbsp;" + res.name
   markup
 
 
 formatLabSelection = (res) ->
-  '<img alt="' + res.name + '" class="avatar tiny" src="' + res.avatar + '">' + '&nbsp;&nbsp;&nbsp;' + res.name
+  "<img alt='" + res.name + "' class='avatar tiny' src='" + res.avatar + "'>" + "&nbsp;&nbsp;&nbsp;" + res.name
 
 
 triglify = (h, w) ->
@@ -30,47 +30,47 @@ triglify = (h, w) ->
       height: h,
       width: w,
       cell_size: size,
-      x_colors: 'random'
+      x_colors: "random"
     )
-  image = 'url(' + pattern.png() + ')'
+  image = "url(" + pattern.png() + ")"
 
   return image
 
 $(window).load ->
 
-  if $('.radio')
+  if $(".radio")
     $(".radio").click ->
       console.log $($($(this).parent()).children()[0]).click()
 
-  if ($('#project_documents_attributes_image')[0])
-    val = $('#project_documents_attributes_image')[0].value
-    $('#file-input-name').text(val)
+  if ($("#project_documents_attributes_image")[0])
+    val = $("#project_documents_attributes_image")[0].value
+    $("#file-input-name").text(val)
 
-    $('#project_documents_attributes_image').on 'change', ->
-      val = $('#project_documents_attributes_image')[0].value
-      $('#file-input-name').text(val)
+    $("#project_documents_attributes_image").on "change", ->
+      val = $("#project_documents_attributes_image")[0].value
+      $("#file-input-name").text(val)
 
-  if ($('#project-container'))
-    $('#project-container').masonry itemSelector: '#project-container li'
+  if ($("#project-container"))
+    $("#project-container").masonry itemSelector: "#project-container li"
 
-  if $('#project-container li .project').length > 0
-    $('#project-container li .project').each ->
-      if $(this).children('.project-title').css('background-image') == 'none'
+  if $("#project-container li .project").length > 0
+    $("#project-container li .project").each ->
+      if $(this).children(".project-title").css("background-image") == "none"
         image = triglify(150, 350)
-        $(this).children('.project-title').css('background-image', image)
+        $(this).children(".project-title").css("background-image", image)
 
-  if $('.main-project') && $('.main-project').css('background-image') == 'none'
+  if $(".main-project") && $(".main-project").css("background-image") == "none"
       image = triglify(300, 1200)
-      $('.main-project').css('background-image', image)
+      $(".main-project").css("background-image", image)
 
 
-  if $('#contributions_attributes')
-    $('#contributions_attributes').select2
+  if $("#contributions_attributes")
+    $("#contributions_attributes").select2
       placeholder: "Select a user..",
       allowClear: true
       ajax:
-        url: 'https://api.fablabs.io/v0/users'
-        dataType: 'json'
+        url: "https://api.fablabs.io/v0/users"
+        dataType: "json"
         delay: 250
         data: (params) ->
           {
@@ -88,13 +88,13 @@ $(window).load ->
       templateResult: formatUser
       templateSelection: formatUserSelection
 
-    if $('#collaborations_attributes')
-      $('#collaborations_attributes').select2
+    if $("#collaborations_attributes")
+      $("#collaborations_attributes").select2
         placeholder: "Select a lab..",
         allowClear: true
         ajax:
-          url: 'https://api.fablabs.io/v0/labs/search'
-          dataType: 'json'
+          url: "https://api.fablabs.io/v0/labs/search"
+          dataType: "json"
           delay: 250
           data: (params) ->
             {

@@ -8,7 +8,25 @@ class ProjectsController < ApplicationController
     respond_to do |format|
       format.html
       format.json { render json: @projects }
-      # format.csv { send_data @labs.to_csv }
+      # format.csv { send_data @projects.to_csv }
+    end
+  end
+
+  # Ugly. Refactor.
+  def search_by_tag
+    @projects = Project.joins(:tags).where(:tags => {:name => params[:tags].split(',')}).page(params['page']).per(params['per'])
+    if @projects.empty?
+      respond_to do |format|
+        format.html { redirect_to projects_path, :notice => 'Tags not found' }
+        format.json { render json: @projects }
+        # format.csv { send_data @projects.to_csv }
+      end
+    else
+      respond_to do |format|
+        format.html { render template: 'projects/index'}
+        format.json { render json: @projects }
+        # format.csv { send_data @projects.to_csv }
+      end
     end
   end
 

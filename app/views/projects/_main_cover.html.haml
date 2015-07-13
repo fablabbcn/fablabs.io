@@ -5,9 +5,14 @@
 - else
   - cover = @project.documents.first.image.url
 
-.main-project{ :style => "background-image: url('#{cover}')" }
-  .row
-    .columns.large-12
+- if cover == 'none'
+  .main-project
+- else
+  .main-project{ :style => "background-image: url('#{cover}')" }
+
+.row
+  .columns.large-8
+    .main-title
       %p
         %span
           = icon('code')
@@ -33,3 +38,12 @@
           = icon('clock-o')
           Last updated at:
           = time_tag(@project.updated_at.to_date)
+  .columns.large-4
+    - if @project.tag_list.present?
+      %h5
+        Tags
+      %ul.taglist
+        - @project.tag_list.each do |tag|
+          %li
+            %strong
+              = "##{tag}"
