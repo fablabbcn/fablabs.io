@@ -109,6 +109,9 @@
   .columns.large-4 {
     background: #FFF;
     border-left: 1px solid #EEE;
+    .heading {
+      font-size: 0.9em;
+    }
   }
   padding-top: 20px;
   ul {
