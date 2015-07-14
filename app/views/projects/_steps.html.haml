@@ -1,10 +1,13 @@
-%h5
+.heading
+  = icon('chevron-right')
   Step #{step.position}
 = simple_format(markdown(step.title))
 = simple_format(markdown(step.description))
 
 - if step.links.length > 0
-  .heading External Links
+  .heading
+    = icon('link')
+    Links & Media
   %ul.lab-links
     - step.links.each do |link|
 

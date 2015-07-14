@@ -35,6 +35,7 @@
 
         - if @project.tag_list.present?
           %ul.taglist
+            = icon('tags')
             - @project.tag_list.each do |tag|
               %li
                 %strong
@@ -42,4 +43,3 @@
 
       .columns.large-8.polaroid
         = image_tag cover
-.stripe

@@ -5,15 +5,18 @@
     = render "breadcrumbs"
 
 = render "main_cover"
+.stripe
 .row.project-description
   .columns.large-8
     - if @project.description.present?
-      %h5
+      .heading
+        = icon('file-text-o')
         Description
       = simple_format(markdown(@project.description))
 
     - if @project.documents.present?
-      %h5
+      .heading
+        = icon('picture-o')
         Images
 
       %ul
@@ -23,30 +26,23 @@
             = link_to document.id, document.image.url
 
     - unless @project.steps.empty?
-      %h5
+      .heading
+        = icon('cog')
         Steps
-        - @project.steps.order(position: :asc).each do |step|
-          = render 'steps', { :step => step }
+      - @project.steps.order(position: :asc).each do |step|
+        = render 'steps', { :step => step }
 
     - if @project.scope.present?
-      %h5
+      .heading
+        = icon('asterisk')
         Scope
       = simple_format(markdown(@project.scope))
 
     - if @project.faq.present?
-      %h5
+      .heading
+        = icon('question')
         FAQ
       = simple_format(markdown(@project.faq))
-
-    - if @project.community.present?
-      %h5
-        Community
-      = simple_format(markdown(@project.community))
-
-    - if @project.lookingfor.present?
-      %h5
-        Looking for
-      = simple_format(markdown(@project.lookingfor))
 
   .columns.large-4
     = render "collaborations"

@@ -4,6 +4,14 @@
   margin-bottom: 5px;
 }
 
+.stripe {
+  background: #FFF;
+  border-bottom: 1px solid #EEE;
+  margin-top: -20px;
+  padding-top: 20px;
+  // position: relative;
+}
+
 .project {
   background: #F5F5F5;
   border: 1px solid #D9D9D9;
@@ -76,7 +84,10 @@
 }
 
 .main-title {
-  ul { list-style: none }
+  ul {
+    list-style: none;
+    li { padding-top: 10px}
+  }
   i {
     padding-right: 20px;
     margin: 0 auto;
@@ -95,6 +106,11 @@
 }
 
 .project-description {
+  .columns.large-4 {
+    background: #FFF;
+    border-left: 1px solid #EEE;
+    padding-top: 20px;
+  }
   padding-top: 20px;
   ul {
     list-style: none;
