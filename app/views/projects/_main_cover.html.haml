@@ -1,49 +1,45 @@
 - if @project.documents.empty?
-  - cover = 'none'
+  - cover = nil
 - elsif @project.cover.present?
   - cover = @project.documents.find(@project.cover).image.url
 - else
   - cover = @project.documents.first.image.url
 
-- if cover == 'none'
-  .main-project
-- else
-  .main-project{ :style => "background-image: url('#{cover}')" }
-
 .row
-  .columns.large-8
-    .main-title
-      %p
-        %span
-          = icon('code')
-          = link_to @project.owner do
-            = @project.owner.username
-
-      %h1= @project.title
-
-      %p
-        - if @project.lab.present?
-          %span
-            = icon('map-marker')
-            = link_to @project.lab do
-              = @project.lab.name
-
-        - if (@project.contributors.count > 0)
-          %span
-            = icon('users')
-            = @project.contributors.count + 1
-            contributors
-
-        %span
-          = icon('clock-o')
-          Last updated at:
-          = time_tag(@project.updated_at.to_date)
-  .columns.large-4
-    - if @project.tag_list.present?
-      %h5
-        Tags
-      %ul.taglist
-        - @project.tag_list.each do |tag|
+  .columns.large-12.main-title
+    .row.header
+      .columns.large-4
+        %h1= @project.title
+        %ul
           %li
-            %strong
-              = link_to "##{tag}", "/projects/search_by_tag?tags=#{tag}"
+            = icon('code')
+            = link_to @project.owner do
+              = @project.owner.username
+
+          - if @project.lab.present?
+            %li
+              = icon('map-marker')
+              = link_to @project.lab do
+                = @project.lab.name
+
+          - if (@project.contributors.count > 0)
+            %li
+              = icon('users')
+              = @project.contributors.count + 1
+              contributors
+
+          %li
+            = icon('clock-o')
+            Last updated at:
+            = time_tag(@project.updated_at.to_date)
+
+        - if @project.tag_list.present?
+          %ul.taglist
+            - @project.tag_list.each do |tag|
+              %li
+                %strong
+                  = link_to "##{tag}", "/projects/tags?q=#{tag}"
+
+      .columns.large-8.polaroid
+        = image_tag cover
+.stripe

@@ -37,7 +37,7 @@ module ApplicationHelper
       id = match[:id] if match.present?
       "<iframe src=\"https://player.vimeo.com/video/#{id}\" width=\"500\" height=\"281\" frameborder=\"0\" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>"
     else
-      url
+      nil
     end
   end
 

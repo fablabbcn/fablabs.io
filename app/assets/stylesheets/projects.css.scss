@@ -76,15 +76,21 @@
 }
 
 .main-title {
-  opacity: 1.0;
-  filter: alpha(opacity=100); /* For IE8 and earlier */
-  -moz-opacity: 1.0;
-
-  a {
-    color: #4F4F4F;
+  ul { list-style: none }
+  i {
+    padding-right: 20px;
+    margin: 0 auto;
+    width: 30px;
+    clear: right;
   }
-  p > span {
-    padding-right: 30px;
+  .tag-list {
+    text-align: center;
+  }
+  .polaroid {
+    img {
+      box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+      border: 1px solid #D9D9D9;
+    }
   }
 }
 

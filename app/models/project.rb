@@ -28,6 +28,8 @@ class Project < ActiveRecord::Base
   has_many :steps, dependent: :destroy
   accepts_nested_attributes_for :steps, allow_destroy: true
 
+  validates :title, presence: true, allow_blank: false
+
   acts_as_taggable
 
   def self.last_updated_at

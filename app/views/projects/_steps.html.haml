@@ -10,5 +10,9 @@
 
       %li.step-link
         = link_to link.url do
-          = favicon link.url
-          = raw player link.url
+          - container = player link.url
+          - if container
+            = raw container
+          - else
+            = favicon link.url
+            %span.url{itemprop: "sameAs"}= link.url

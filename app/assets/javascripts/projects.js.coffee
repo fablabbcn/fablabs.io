@@ -59,11 +59,6 @@ $(window).load ->
         image = triglify(150, 350)
         $(this).children(".project-title").css("background-image", image)
 
-  if $(".main-project") && $(".main-project").css("background-image") == "none"
-      image = triglify(300, 1200)
-      $(".main-project").css("background-image", image)
-
-
   if $("#contributions_attributes")
     $("#contributions_attributes").select2
       placeholder: "Select a user..",
