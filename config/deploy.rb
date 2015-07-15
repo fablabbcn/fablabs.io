@@ -22,7 +22,7 @@ server ENV['APP_SERVER'], :web, :app, :db, primary: true
 set :port, ENV['SSH_PORT']
 set :application, "fablabs"
 set :user, ENV['DEPLOY_USER']
-set :password, "sshpassword"
+set :password, ENV['DEPLOY_PASS']
 set :deploy_to, "/home/#{user}/apps/#{application}"
 set :deploy_via, :remote_cache
 set :use_sudo, false
