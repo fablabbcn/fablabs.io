@@ -11,4 +11,10 @@ class DocumentsController < ApplicationController
     end
   end
 
+  private
+
+    def document_params
+      params.require(:document).permit(:image, :title, :description)
+    end
+
 end

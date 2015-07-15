@@ -36,6 +36,16 @@ triglify = (h, w) ->
 
   return image
 
+$(document).foundation clearing: open_selectors: '.image_link'
+
+$(document).foundation orbit:
+  animation: 'slide'
+  timer_speed: 1000
+  pause_on_hover: true
+  animation_speed: 500
+  navigation_arrows: true
+  bullets: false
+
 $(window).load ->
 
   if $(".radio")

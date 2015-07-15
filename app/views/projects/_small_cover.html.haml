@@ -8,8 +8,8 @@
 - if cover == 'none'
   .project-title
     = link_to project do
-      %span.project-title-span= truncate project.title, length: 20
+      %span.project-title-span= truncate project.title, length: 25
 - else
   .project-title{ :style => "background-image: url('#{cover}')" }
     = link_to project do
-      %span.project-title-span= truncate project.title, length: 20
+      %span.project-title-span= truncate project.title, length: 25

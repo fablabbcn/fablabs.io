@@ -15,7 +15,8 @@
         = link_to link.url do
           - container = player link.url
           - if container
-            = raw container
+            .flex-video
+              = raw container
           - else
             = favicon link.url
             %span.url{itemprop: "sameAs"}= link.url

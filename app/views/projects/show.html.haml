@@ -12,37 +12,41 @@
       .heading
         = icon('file-text-o')
         Description
-      = simple_format(markdown(@project.description))
+      .box
+        = simple_format(markdown(@project.description))
 
     - if @project.documents.present?
       .heading
         = icon('picture-o')
         Images
-
-      %ul
-        - @project.documents.each do |document|
-          %li
-            = image_tag document.image.url(:medium)
-            = link_to document.id, document.image.url
+      .box
+        %ul.clearing-thumbs{data: { clearing: "" } }
+          - @project.documents.each do |document|
+            %li
+              = link_to document.image.url(:large), class: "image_link th [radius]" do
+                = image_tag document.image.url(:thumb)
 
     - unless @project.steps.empty?
       .heading
         = icon('cog')
         Steps
-      - @project.steps.order(position: :asc).each do |step|
-        = render 'steps', { :step => step }
+      .box
+        - @project.steps.order(position: :asc).each do |step|
+          = render 'steps', { :step => step }
 
     - if @project.scope.present?
       .heading
         = icon('asterisk')
         Scope
-      = simple_format(markdown(@project.scope))
+      .box
+        = simple_format(markdown(@project.scope))
 
     - if @project.faq.present?
       .heading
         = icon('question')
         FAQ
-      = simple_format(markdown(@project.faq))
+      .box
+        = simple_format(markdown(@project.faq))
 
   .columns.large-4
     = render "collaborations"

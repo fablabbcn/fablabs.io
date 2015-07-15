@@ -31,11 +31,11 @@ module ApplicationHelper
       query_string = URI.parse(url).query
       parameters = Hash[URI.decode_www_form(query_string)]
       v = parameters['v']
-      "<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/#{v}\" frameborder=\"0\" allowfullscreen></iframe>"
+      "<iframe width=\"400\" height=\"315\" src=\"https://www.youtube.com/embed/#{v}\" frameborder=\"0\" allowfullscreen></iframe>"
     elsif domain.match(/(www\.)?#{'vimeo.com'}/)
       match = url.match(/https?:\/\/(?:[\w]+\.)*vimeo\.com(?:[\/\w]*\/?)?\/(?<id>[0-9]+)[^\s]*/)
       id = match[:id] if match.present?
-      "<iframe src=\"https://player.vimeo.com/video/#{id}\" width=\"500\" height=\"281\" frameborder=\"0\" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>"
+      "<iframe src=\"https://player.vimeo.com/video/#{id}\" width=\"400\" height=\"225\" frameborder=\"0\" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>"
     else
       nil
     end
