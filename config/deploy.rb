@@ -1,6 +1,6 @@
 # load Rails for env vars
 require File.expand_path('../application', __FILE__)
-require "bundler/capistrano"
+# require "bundler/capistrano"
 require "sidekiq/capistrano"
 set :whenever_command, "bundle exec whenever"
 require "whenever/capistrano"
@@ -42,6 +42,15 @@ set :maintenance_template_path, File.expand_path("../recipes/templates/maintenan
 # task :refresh_sitemaps do
 #   run "cd #{latest_release} && RAILS_ENV=#{rails_env} bundle exec rake sitemap:refresh"
 # end
+
+task :bundle_install do
+    on roles(:app) do
+      within release_path do
+        execute :bundle, "--gemfile Gemfile --path #{shared_path}/bundle --quiet --binstubs #{shared_path}bin --without [:test, :development]"
+      end
+    end
+  end
+after 'deploy:updating', 'deploy:bundle_install'
 
 after "deploy", "deploy:migrate", "deploy:cleanup", "unicorn:restart" # keep only the last 5 releases
 
