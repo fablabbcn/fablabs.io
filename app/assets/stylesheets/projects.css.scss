@@ -4,15 +4,30 @@
   margin-bottom: 5px;
 }
 
+.stripe {
+  background: #FFF;
+  border-bottom: 1px solid #EEE;
+  padding-top: 10px;
+  // position: relative;
+}
+
 .project {
   background: #F5F5F5;
-  border: 1px solid #ccc;
+  border: 1px solid #D9D9D9;
   height: 250px;
   border-radius: 4px;
   div {
     padding: 0px;
     margin: 0px;
   }
+  .owner-avatar {
+    position: absolute;
+    padding: 5px;
+    img {
+        width: 40px;
+    }
+  }
+
   .project-title {
     height: 120px;
     padding-top: 40px;
@@ -20,14 +35,21 @@
     text-shadow: 0px 1px 2px rgba(255, 255, 255, 0.8);
     font-weight: bold;
     color: #4D4D4D;
-    background-color: #0275BC;
-    background-image: linear-gradient(120deg, #0275BC, #009E5A);
     background-repeat: no-repeat;
     background-size: cover;
     box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1) inset;
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid #D9D9D9;
     a {
       color: #4F4F4F;
+    }
+    .project-title-span {
+      background-color: #fff;
+      opacity: 0.8;
+      filter: alpha(opacity=80); /* For IE8 and earlier */
+      -moz-opacity: 0.8;
+      padding: 10px;
+      border: 1px solid #D9D9D9;
+      border-radius: 3px;
     }
   }
   .project-description {
@@ -52,24 +74,44 @@
 
 .main-project {
   color: #4D4D4D;
-  background-color: #0275BC;
-  background-image: linear-gradient(120deg, #0275BC, #009E5A);
   background-repeat: no-repeat;
   background-size: cover;
   box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1) inset;
-  border-bottom: 1px solid #ccc;
-  border: 1px solid #ccc;
+  border: 1px solid #D9D9D9;
   padding: 30px;
+  text-shadow: 2px 2px 20px #fff;
+}
 
-  a {
-    color: #4F4F4F;
+.main-title {
+  ul {
+    list-style: none;
+    li { padding-top: 10px}
   }
-  p > span {
-    padding-right: 30px;
+  i {
+    padding-right: 20px;
+    margin: 0 auto;
+    width: 30px;
+    clear: right;
+  }
+  .tag-list {
+    text-align: center;
+  }
+  .polaroid {
+    img {
+      box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+      border: 1px solid #D9D9D9;
+    }
   }
 }
 
 .project-description {
+  .columns.large-4 {
+    background: #FFF;
+    border-left: 1px solid #EEE;
+    .heading {
+      font-size: 0.9em;
+    }
+  }
   padding-top: 20px;
   ul {
     list-style: none;
@@ -83,11 +125,11 @@
   }
 }
 
-.project-description {
-  ul.taglist li {
-      display: inline;
-      padding-bottom: 10px;
-  }
+ul.taglist li {
+  font-size: 0.8em;
+  display: inline;
+  text-align: center;
+  padding-bottom: 10px;
 }
 
 form {
@@ -134,7 +176,7 @@ form {
     cursor: pointer;
     background-color: #EEE;
     background-image: linear-gradient(#FCFCFC, #EEE);
-    border: 1px solid #D5D5D5;
+    border: 1px solid #D9D9D9;
     border-radius: 3px;
     padding: 5px;
     margin-left: 50px;
@@ -160,6 +202,88 @@ form {
       margin-top: -15px;
       padding-right: 10px;
     }
+  }
+
+  li.thumbs {
+    border-radius: 3px;
+    border: 1px solid #D9D9D9;
+    margin-right: 15px;
+    margin-bottom: 15px;
+    padding: 10px;
+  }
+
+  label.radio {
+    width: 70px;
+    border-radius: 3px;
+    border: 1px solid #D9D9D9
+  }
+
+  /* hide input */
+  input[type="radio"]:empty {
+  	margin-left: -999px;
+  }
+
+  /* style label */
+  input[type="radio"]:empty ~ label.radio {
+  	position: relative;
+  	float: left;
+  	line-height: 2.5em;
+  	text-indent: 3.25em;
+  	margin-top: 2em;
+  	cursor: pointer;
+  	-webkit-user-select: none;
+  	-moz-user-select: none;
+  	-ms-user-select: none;
+  	user-select: none;
+  }
+
+  input[type="radio"]:empty ~ label.radio:before {
+  	position: absolute;
+  	display: block;
+  	top: 0;
+  	bottom: 0;
+  	left: 0;
+  	content: '';
+  	width: 2.5em;
+  	background: #EBEBEB;
+  	border-radius: 3px 0 0 3px;
+  }
+
+  /* toggle hover */
+  input[type="radio"]:hover:not(:checked) ~ label.radio:before {
+  	content:'\2714';
+  	text-indent: .9em;
+  	color: #4D4D4D;
+  }
+
+  input[type="radio"]:hover:not(:checked) ~ label.radio {
+  	color: #4D4D4D;
+  }
+
+  /* toggle on */
+  input[type="radio"]:checked ~ label.radio:before {
+  	content:'\2714';
+  	text-indent: .9em;
+  	color: #fff;
+  	background-color: #009E5A;
+  }
+
+  input[type="radio"]:checked ~ label.radio {
+  	color: #4D4D4D;
+  }
+
+  /* radio focus */
+  input[type="radio"]:focus ~ label.radio:before {
+  	box-shadow: 0 0 0 3px #999;
+  }
+  /* radio focus */
+  input[type="radio"]:focus ~ label.radio:before {
+	   box-shadow: 0 0 0 3px #999;
+  }
+
+  h4 {
+    a { float: right; }
+    i { padding: 10px; }
   }
 
   ul{

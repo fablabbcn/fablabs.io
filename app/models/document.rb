@@ -12,6 +12,6 @@ class Document < ActiveRecord::Base
   validates_attachment_file_name :image, :matches => [/png\Z/, /jpe?g\Z/, /gif\Z/, /bmp\Z/]
   validates_with AttachmentSizeValidator, :attributes => :image, :less_than => 15.megabytes
 
-  
+
 
 end

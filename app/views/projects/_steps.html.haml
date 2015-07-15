@@ -1,0 +1,21 @@
+.heading
+  = icon('chevron-right')
+  Step #{step.position}
+= simple_format(markdown(step.title))
+= simple_format(markdown(step.description))
+
+- if step.links.length > 0
+  .heading
+    = icon('link')
+    Links & Media
+  %ul.lab-links
+    - step.links.each do |link|
+
+      %li.step-link
+        = link_to link.url do
+          - container = player link.url
+          - if container
+            = raw container
+          - else
+            = favicon link.url
+            %span.url{itemprop: "sameAs"}= link.url

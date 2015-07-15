@@ -4,54 +4,19 @@
   .columns.large-12
     = render "breadcrumbs"
 
-.main-project
-  .row
-    .columns.large-12
-      %p
-        %span
-          = icon('code')
-          = link_to @project.owner do
-            = @project.owner.username
-
-      %h1= @project.title
-
-      %p
-        - if @project.lab.present?
-          %span
-            = icon('map-marker')
-            = link_to @project.lab do
-              = @project.lab.name
-
-        - if (@project.contributors.count > 0)
-          %span
-            = icon('users')
-            = @project.contributors.count + 1
-            contributors
-
-        %span
-          = icon('clock-o')
-          Last updated at:
-          = time_tag(@project.updated_at.to_date)
-
+= render "main_cover"
+.stripe
 .row.project-description
   .columns.large-8
     - if @project.description.present?
-      %h5
+      .heading
+        = icon('file-text-o')
         Description
       = simple_format(markdown(@project.description))
 
-    - if @project.tag_list.present?
-      %h5
-        Tags
-      %ul.taglist
-        - @project.tag_list.each do |tag|
-          %li
-            %strong
-
-              = "##{tag}"
-
     - if @project.documents.present?
-      %h5
+      .heading
+        = icon('picture-o')
         Images
 
       %ul
@@ -60,29 +25,28 @@
             = image_tag document.image.url(:medium)
             = link_to document.id, document.image.url
 
+    - unless @project.steps.empty?
+      .heading
+        = icon('cog')
+        Steps
+      - @project.steps.order(position: :asc).each do |step|
+        = render 'steps', { :step => step }
+
     - if @project.scope.present?
-      %h5
+      .heading
+        = icon('asterisk')
         Scope
       = simple_format(markdown(@project.scope))
 
     - if @project.faq.present?
-      %h5
+      .heading
+        = icon('question')
         FAQ
       = simple_format(markdown(@project.faq))
 
-    - if @project.community.present?
-      %h5
-        Community
-      = simple_format(markdown(@project.community))
-
-    - if @project.lookingfor.present?
-      %h5
-        Looking for
-      = simple_format(markdown(@project.lookingfor))
-
   .columns.large-4
     = render "collaborations"
-    = render "link_fields"
+    = render "link_side_fields"
     = render "contributors"
 
 .row

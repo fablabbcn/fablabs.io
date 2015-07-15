@@ -1,0 +1,18 @@
+.nested-fields
+  .row.collapse
+    -# .columns.small-1.large-1= fa_icon "reorder"
+    .columns.small-10.large-11
+      = f.input :title, label: :title, placeholder: 'First step'
+      = f.input :description, label: :description, placeholder: 'This is the first step'
+      = f.input :position, label: :position
+
+      %label
+        links
+      = f.simple_fields_for :links do |link|
+        = render 'link_fields', f: link
+      .links
+        = link_to_add_association f, :links, class: 'button tiny' do
+          = fa_icon "plus"
+          Add another link
+
+    .columns.small-2.large-1.close= link_to_remove_association "x", f, class: 'button tiny alert'

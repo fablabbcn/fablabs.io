@@ -1,0 +1,45 @@
+- if @project.documents.empty?
+  - cover = nil
+- elsif @project.cover.present?
+  - cover = @project.documents.find(@project.cover).image.url
+- else
+  - cover = @project.documents.first.image.url
+
+.row
+  .columns.large-12.main-title
+    .row.header
+      .columns.large-4
+        %h1= @project.title
+        %ul
+          %li
+            = icon('code')
+            = link_to @project.owner do
+              = @project.owner.username
+
+          - if @project.lab.present?
+            %li
+              = icon('map-marker')
+              = link_to @project.lab do
+                = @project.lab.name
+
+          - if (@project.contributors.count > 0)
+            %li
+              = icon('users')
+              = @project.contributors.count + 1
+              contributors
+
+          %li
+            = icon('clock-o')
+            Last updated at:
+            = time_tag(@project.updated_at.to_date)
+
+        - if @project.tag_list.present?
+          %ul.taglist
+            = icon('tags')
+            - @project.tag_list.each do |tag|
+              %li
+                %strong
+                  = link_to "##{tag}", "/projects/tags?q=#{tag}"
+
+      .columns.large-8.polaroid
+        = image_tag cover
