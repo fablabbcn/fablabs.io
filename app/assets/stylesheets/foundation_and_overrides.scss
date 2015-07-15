@@ -382,29 +382,29 @@ $button-border-width: 0;//1px;
 //
 
 // We use this to set the background color for the breadcrumb container.
-$crumb-bg: none;//lighten($secondary-color, 5%);
+$crumb-bg: lighten($secondary-color, 5%);
 
 // We use these to set the padding around the breadcrumbs.
-$crumb-padding: emCalc(6px) emCalc(14px) emCalc(0px) 0;
-$crumb-side-padding: emCalc(4px);
+$crumb-padding: emCalc(10px) emCalc(10px) emCalc(10px) emCalc(10px);
+$crumb-side-padding: emCalc(10px);
 
 // We use these to control border styles.
-// $crumb-function-factor: 10%;
+$crumb-function-factor: 10%;
 $crumb-border-size: 0;
 // $crumb-border-style: solid;
-$crumb-border-color: transparent;//darken($crumb-bg, $crumb-function-factor);
-// $crumb-radius: $global-radius;
+$crumb-border-color: darken($crumb-bg, $crumb-function-factor);
+$crumb-radius: $global-radius;
 
 // We use these to set various text styles for breadcrumbs.
-$crumb-font-size: inherit;//emCalc(11px);
-// $crumb-font-color: $primary-color;
-// $crumb-font-color-current: #333;
-// $crumb-font-color-unavailable: #999;
+$crumb-font-size: emCalc(11px);
+$crumb-font-color: $primary-color;
+$crumb-font-color-current: #333;
+$crumb-font-color-unavailable: #999;
 $crumb-font-transform: none;
 $crumb-link-decor: none;
 
 // We use these to control the slash between breadcrumbs
-// $crumb-slash-color: #aaa;
+$crumb-slash-color: #aaa;
 $crumb-slash: "/";
 
 //
@@ -412,28 +412,28 @@ $crumb-slash: "/";
 //
 
 // We use these to set the background colors for parts of Clearing.
-// $clearing-bg: #111;
-// $clearing-caption-bg: $clearing-bg;
-// $clearing-carousel-bg: #111;
-// $clearing-img-bg: $clearing-bg;
+$clearing-bg: #111;
+$clearing-caption-bg: $clearing-bg;
+$clearing-carousel-bg: #111;
+$clearing-img-bg: $clearing-bg;
 
 // We use these to style the close button
-// $clearing-close-color: #fff;
-// $clearing-close-size: 40px;
+$clearing-close-color: #fff;
+$clearing-close-size: 40px;
 
 // We use these to style the arrows
-// $clearing-arrow-size: 16px;
-// $clearing-arrow-color: $clearing-close-color;
+$clearing-arrow-size: 16px;
+$clearing-arrow-color: $clearing-close-color;
 
 // We use these to style captions
-// $clearing-caption-font-color: #fff;
-// $clearing-caption-padding: 10px 30px;
+$clearing-caption-font-color: #fff;
+$clearing-caption-padding: 10px 30px;
 
 // We use these to make the image and carousel height and style
-// $clearing-active-img-height: 75%;
-// $clearing-carousel-height: 150px;
-// $clearing-carousel-thumb-width: 175px;
-// $clearing-carousel-thumb-active-border: 4px solid rgb(255,255,255);
+$clearing-active-img-height: 75%;
+$clearing-carousel-height: 150px;
+$clearing-carousel-thumb-width: 175px;
+$clearing-carousel-thumb-active-border: 4px solid rgb(255,255,255);
 
 //
 // Custom Form Variables
@@ -513,12 +513,12 @@ $crumb-slash: "/";
 //
 
 // We use these to control video container padding and margins
-// $flex-video-padding-top: emCalc(25px);
-// $flex-video-padding-bottom: 67.5%;
-// $flex-video-margin-bottom: emCalc(16px);
+$flex-video-padding-top: emCalc(25px);
+$flex-video-padding-bottom: 67.5%;
+$flex-video-margin-bottom: emCalc(16px);
 
 // We use this to control widescreen bottom padding
-// $flex-video-widescreen-padding-bottom: 57.25%;
+$flex-video-widescreen-padding-bottom: 57.25%;
 
 //
 // Inline List Variables
@@ -609,31 +609,31 @@ $crumb-slash: "/";
 //
 
 // We use these to control the caption styles
-// $orbit-container-bg: #f5f5f5;
-// $orbit-caption-bg-old-browser: #000;
-// $orbit-caption-bg-old: rgb(0,0,0);
-// $orbit-caption-bg: rgba(0,0,0,0.6);
-// $orbit-caption-font-color: #fff;
+$orbit-container-bg: transparent;
+//$orbit-caption-bg-old-browser: #000;
+//$orbit-caption-bg-old: rgb(0,0,0);
+//$orbit-caption-bg: rgba(0,0,0,0.6);
+//$orbit-caption-font-color: #fff;
 
 // We use these to control the left/right nav styles
-// $orbit-nav-bg-old: rgb(0,0,0);
-// $orbit-nav-bg: rgba(0,0,0,0.6);
+//$orbit-nav-bg-old: rgb(0,0,0);
+//$orbit-nav-bg: rgba(0,0,0,0.6);
 
 // We use these to control the timer styles
-// $orbit-timer-bg-old: rgb(0,0,0);
-// $orbit-timer-bg: rgba(0,0,0,0.6);
+//$orbit-timer-bg-old: rgb(0,0,0);
+//$orbit-timer-bg: rgba(0,0,0,0.6);
 
 // We use these to control the bullet nav styles
-// $orbit-bullet-nav-color: #999;
-// $orbit-bullet-nav-color-active: #222;
+//$orbit-bullet-nav-color: #999;
+//$orbit-bullet-nav-color-active: #222;
 
 // We use thes to controls the style of slide numbers
-// $orbit-slide-number-bg: rgb(0,0,0);
-// $orbit-slide-number-font-color: #fff;
-// $orbit-slide-number-padding: emCalc(5px);
+//$orbit-slide-number-bg: rgb(0,0,0);
+//$orbit-slide-number-font-color: #fff;
+//$orbit-slide-number-padding: emCalc(5px);
 
 // Margin for when Orbit is stacked on small screens
-// $stack-on-small-margin-bottom: emCalc(20px); // Doesn't quite work yet
+//$stack-on-small-margin-bottom: emCalc(20px); // Doesn't quite work yet
 
 //
 // Pagination Variables

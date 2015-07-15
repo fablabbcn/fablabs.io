@@ -4,6 +4,26 @@
   margin-bottom: 5px;
 }
 
+ul.clearing-thumbs {
+  li {
+    padding-right: 10px;
+    display: inline;
+    a {
+      margin: 10px;
+    }
+  }
+}
+ol.orbit-bullets li {
+  width: 8px;
+  height: 8px;
+  color: #222;
+}
+.orbit-container .orbit-prev, .orbit-container .orbit-next { background-color: transparent; }
+
+.orbit-slide-number {
+  color: #fff
+}
+
 .stripe {
   background: #FFF;
   border-bottom: 1px solid #EEE;
@@ -97,12 +117,7 @@
   .tag-list {
     text-align: center;
   }
-  .polaroid {
-    img {
-      box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
-      border: 1px solid #D9D9D9;
-    }
-  }
+
 }
 
 .project-description {

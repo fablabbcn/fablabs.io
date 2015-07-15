@@ -81,6 +81,13 @@ footer a.active {
 .button[type=submit] {
   background: $success-color;
 }
+.red {
+  background-color: #E84E61;
+}
+.red:hover {
+  background-color: #D04657;
+}
+
 p {
   font-family: 'Open Sans';
 }
@@ -131,8 +138,9 @@ h1 {
   font-size: 1.5em !important;
   line-height: 1.2 !important;
 }
-.breadcrumbs a {
-  font-weight: bold;
+.breadcrumbs li a {
+  text-transform: uppercase;
+  font-weight: normal;
 }
 
 .count {

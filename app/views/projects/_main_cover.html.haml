@@ -42,4 +42,8 @@
                   = link_to "##{tag}", "/projects/tags?q=#{tag}"
 
       .columns.large-8.polaroid
-        = image_tag cover
+        - if @project.documents.present?
+          %ul.example-orbit{data: { orbit: "" }}
+            - @project.documents.each_with_index do |document, index|
+              %li
+                = image_tag document.image.url(:medium), alt: "slide #{index}"
