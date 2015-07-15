@@ -2,3 +2,5 @@
   %li= link_to Project.to_s.pluralize, projects_path
   - if @project and @project.lab
     %li= link_to @project.lab, "/projects/lab/#{@project.lab.slug}"
+  - if @project
+    %li= link_to @project.title, project_path(@project)
