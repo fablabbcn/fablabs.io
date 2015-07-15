@@ -58,7 +58,7 @@
     - if current_or_null_user.can_update?(@project)
       = link_to icon('pencil'), edit_project_path(@project), class: 'button'
     - if current_or_null_user.can_delete?(@project)
-      = link_to icon('trash-o'), @project, method: :delete, class: 'button red'
+      = link_to icon('trash-o'), @project, method: :delete, class: 'button red', data: { confirm: "Are you sure?" }
 .row
   #disqus_thread
   :javascript
