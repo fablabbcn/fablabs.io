@@ -1,5 +1,5 @@
 // Required global settings and mixins for Foundation
-@import "foundation";
+@import "foundation/components/global";
 @import "font-awesome-sprockets";
 @import "font-awesome";
 
@@ -31,7 +31,7 @@ $body-font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
 
 // We use these as default colors throughout
 $primary-color: #0275BC;//#0099FF;
-// $secondary-color: #e9e9e9;
+//$secondary-color: #e9e9e9;
 // $alert-color: #c60f13;
 $success-color: #009E5A;
 
@@ -990,10 +990,10 @@ $topbar-link-font-size: emCalc(14px);
 
 // Style the top bar dropdown elements
 // $topbar-dropdown-bg: #333;
-// $topbar-dropdown-link-color: #fff;
+$topbar-dropdown-link-color: #222;
 // $topbar-dropdown-toggle-size: 5px;
-// $topbar-dropdown-toggle-color: #fff;
-// $topbar-dropdown-toggle-alpha: 0.5;
+$topbar-dropdown-toggle-color: #222;
+$topbar-dropdown-toggle-alpha: 0.8;
 // $dropdown-label-color: #555;
 
 // Top menu icon styles

@@ -13,10 +13,13 @@ ul.clearing-thumbs {
     }
   }
 }
-ol.orbit-bullets li {
-  width: 8px;
-  height: 8px;
-  color: #222;
+ol.orbit-bullets {
+  top: 20px;
+  li {
+    width: 8px;
+    height: 8px;
+    color: #222;
+  }
 }
 .orbit-container .orbit-prev, .orbit-container .orbit-next { background-color: transparent; }
 

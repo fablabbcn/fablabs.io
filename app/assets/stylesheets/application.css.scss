@@ -126,6 +126,8 @@ body {
     background: $topbar-bg !important;
   }
 }
+.top-bar-section ul li > a:hover { color: #222; }
+.top-bar-section ul li.active > a { color: #222; }
 
 #honeypot {
   background: #DDD;
