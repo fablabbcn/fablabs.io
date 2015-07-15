@@ -5,7 +5,7 @@ class DocumentsController < ApplicationController
     @project = @document.project
     if authorize_action_for @project
       @document.delete
-      redirect_to project_path(@project), notice: "Document deleted"
+      redirect_to edit_project_path(@project), notice: "Document deleted"
     else
       redirect_to project_path(@project), notice: "You cannot delete this document"
     end
