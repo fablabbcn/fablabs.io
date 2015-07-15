@@ -46,4 +46,4 @@
     = icon('signal')
     Activity
     .activity
-      %ul= render @user.activities
+      %ul= render @user.activities.limit(10)

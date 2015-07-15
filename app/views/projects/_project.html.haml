@@ -5,7 +5,7 @@
         = link_to project.owner do
           = image_tag hocho(project.owner.avatar, "o=t&q=80&d=90x90"), class: 'avatar'
 
-      = render 'small_cover', { :project => project }
+      = render 'projects/small_cover', { :project => project }
 
       .project-description
         %span.project-description-span
