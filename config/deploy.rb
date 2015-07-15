@@ -43,7 +43,7 @@ set :maintenance_template_path, File.expand_path("../recipes/templates/maintenan
 #   run "cd #{latest_release} && RAILS_ENV=#{rails_env} bundle exec rake sitemap:refresh"
 # end
 
-after "deploy", "deploy:migrate", "deploy:cleanup", "unicorn:restart" # keep only the last 5 releases
+after "deploy", "deploy:migrate", "deploy:cleanup", "deploy:restart" # keep only the last 5 releases
 
 require './config/boot'
 # require 'airbrake/capistrano'
