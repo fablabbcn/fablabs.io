@@ -22,6 +22,7 @@ server ENV['APP_SERVER'], :web, :app, :db, primary: true
 set :port, ENV['SSH_PORT']
 set :application, "fablabs"
 set :user, ENV['DEPLOY_USER']
+set :password, ENV['DEPLOY_PASS']
 set :deploy_to, "/home/#{user}/apps/#{application}"
 set :deploy_via, :remote_cache
 set :use_sudo, false
@@ -42,7 +43,7 @@ set :maintenance_template_path, File.expand_path("../recipes/templates/maintenan
 #   run "cd #{latest_release} && RAILS_ENV=#{rails_env} bundle exec rake sitemap:refresh"
 # end
 
-after "deploy", "deploy:migrate", "deploy:cleanup" # keep only the last 5 releases
+after "deploy", "deploy:migrate", "deploy:cleanup", "unicorn:restart" # keep only the last 5 releases
 
 require './config/boot'
 # require 'airbrake/capistrano'
