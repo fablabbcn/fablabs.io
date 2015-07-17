@@ -9,6 +9,8 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
+ //= require foundation_and_overrides
+
  *= require Control.Loading.css
  *= require select2
  *= require taggd
@@ -23,6 +25,7 @@
 
 @import "foundation_and_overrides";
 @import "foundation";
+@import "font-awesome-sprockets";
 @import "font-awesome";
 
 #embed-logo {
@@ -120,15 +123,6 @@ body {
   text-rendering: optimizeLegibility;
   position: static;
 }
-
-.top-bar-section li a {
-  &,&:hover {
-    background: $topbar-bg !important;
-  }
-}
-.top-bar-section ul li > a:hover { color: #222; }
-.top-bar-section ul li.active > a { color: #222; }
-.dropdown-toggle { color: #444 !important }
 
 #honeypot {
   background: #DDD;

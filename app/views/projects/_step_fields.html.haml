@@ -1,7 +1,14 @@
-.nested-fields
+.step
+  .row
+    .columns.small-10.large-11
+      .heading
+        = icon('paperclip')
+        Step
+    .columns.small-2.large-1.close= link_to_remove_association "x", f, class: 'button tiny alert'
+  .nested-fields
   .row.collapse
     -# .columns.small-1.large-1= fa_icon "reorder"
-    .columns.small-10.large-11
+    .columns.small-10.large-12
       = f.input :title, label: :title, placeholder: 'First step'
       = f.input :description, label: :description, placeholder: 'This is the first step'
       = f.input :position, label: :position
@@ -14,5 +21,3 @@
         = link_to_add_association f, :links, class: 'button tiny' do
           = fa_icon "plus"
           Add another link
-
-    .columns.small-2.large-1.close= link_to_remove_association "x", f, class: 'button tiny alert'

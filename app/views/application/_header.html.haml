@@ -1,6 +1,6 @@
 #myModal.reveal-modal
 %header.contain-to-grid
-  %nav.top-bar
+  %nav.top-bar{ data: {topbar: "true" } }
     %ul.title-area
       %li.name
         %h1
@@ -32,7 +32,7 @@
       %ul.right
         - if current_user
           %li.has-dropdown
-            = link_to current_user, class: 'dropdown-toggle', data: { toggle: 'dropdown'} do
+            = link_to "#", class: 'dropdown-toggle', data: { toggle: 'dropdown', options: "is_hover: true" } do
               = image_tag hocho(current_user.avatar, "o=t&q=80&d=90x90"), class: 'avatar tiny'
               = t("views.header.me")
               - if current_or_null_user.has_role? :superadmin
