@@ -21,7 +21,7 @@ class Api::V0::LabsController < Api::V0::ApiController
   end
 
   def search
-    @labs = Lab.where("slug LIKE ?", "%#{params[:name]}%")
+    @labs = Lab.where("slug LIKE ? or name LIKE ?", "%#{params[:q]}%", "%#{params[:q].capitalize}%")
     render json: @labs, each_serializer: LabSerializer
   end
 
