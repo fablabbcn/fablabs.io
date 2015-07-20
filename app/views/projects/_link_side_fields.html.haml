@@ -3,31 +3,31 @@
   - if @project.web.present?
     %li
       = icon('link')
-      %a{ href: @project.web, title: "Project www" }
+      %a{ href: @project.web, title: "WWW" }
         %strong
           = @project.web
   - if @project.github.present?
     %li
       = icon('github')
-      %a{ href: @project.github, title: "Github repository" }
+      %a{ href: @project.github, title: "Github" }
         %strong
           Github repository
   - if @project.dropbox.present?
     %li
       = icon('dropbox')
-      %a{ href: @project.dropbox, title: "Dropbox folder"}
+      %a{ href: @project.dropbox, title: "Dropbox"}
         %strong
           Dropbox folder
   - if @project.drive.present?
     %li
       = icon('hdd-o')
-      %a{ href: @project.Drive, title: "Google Drive folder"}
+      %a{ href: @project.Drive, title: "Google Drive"}
         %strong
           Google Drive folder
   - if @project.bitbucket.present?
     %li
       = icon('bitbucket')
-      %a{ href: @project.bitbucket, title: "Bitbucket repository"}
+      %a{ href: @project.bitbucket, title: "Bitbucket"}
         %strong
           Bitbucket repository
   - if @project.twitter.present?
