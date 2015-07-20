@@ -14,38 +14,21 @@ class ProjectsController < ApplicationController
 
   # Ugly. Refactor.
   def search_by_lab
-    @lab = Lab.where(slug: params[:slug]).first
-    if @lab
-      @projects = Project.where(lab_id: @lab.id).page(params['page']).per(params['per'])
-      respond_to do |format|
-        format.html { render template: 'projects/index'}
-        format.json { render json: @projects }
-        # format.csv { send_data @projects.to_csv }
-      end
-    else
-      respond_to do |format|
-        format.html { redirect_to projects_path, :notice => 'Tags not found' }
-        format.json { render json: @projects }
-        # format.csv { send_data @projects.to_csv }
-      end
+    @projects = Project.joins(:lab).where("labs.slug = ?", params[:slug]).page(params['page']).per(params['per'])
+    respond_to do |format|
+      format.html { render template: 'projects/index'}
+      format.json { render json: @projects }
+      # format.csv { send_data @projects.to_csv }
     end
   end
 
   # Ugly. Refactor.
   def search_by_tag
     @projects = Project.joins(:tags).where(:tags => {:name => params[:q].split(',')}).page(params['page']).per(params['per'])
-    if @projects.empty?
-      respond_to do |format|
-        format.html { redirect_to projects_path, :notice => 'Tags not found' }
-        format.json { render json: @projects }
-        # format.csv { send_data @projects.to_csv }
-      end
-    else
-      respond_to do |format|
-        format.html { render template: 'projects/index'}
-        format.json { render json: @projects }
-        # format.csv { send_data @projects.to_csv }
-      end
+    respond_to do |format|
+      format.html { redirect_to projects_path, :notice => 'Tags not found' }
+      format.json { render json: @projects }
+      # format.csv { send_data @projects.to_csv }
     end
   end
 

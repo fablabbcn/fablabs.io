@@ -46,6 +46,7 @@ class Lab < ActiveRecord::Base
   has_many :role_applications
   has_many :facilities
   has_many :machines, through: :facilities, source: :thing
+  has_many :projects
 
   belongs_to :creator, class_name: 'User'
   belongs_to :referee, class_name: 'Lab'
