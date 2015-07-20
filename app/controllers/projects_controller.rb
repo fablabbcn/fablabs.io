@@ -105,6 +105,8 @@ class ProjectsController < ApplicationController
         :vimeo,
         :googleplus,
         :cover,
+        :twitter,
+        :facebook,
         tag_list: [],
         documents_attributes: [ :id, :image, :title, :description ],
         steps_attributes: [
