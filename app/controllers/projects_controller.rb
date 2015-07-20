@@ -3,7 +3,7 @@ class ProjectsController < ApplicationController
   before_filter :require_login, except: [:index]
 
   def index
-    @projects = Project.includes(:owner, :lab, :contributors).page(params['page']).per(params['per'])
+    @projects = Project.includes(:owner, :lab, :contributors).order('updated_at DESC').page(params['page']).per(params['per'])
 
     respond_to do |format|
       format.html
