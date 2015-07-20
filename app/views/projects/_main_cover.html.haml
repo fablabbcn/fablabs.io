@@ -1,10 +1,3 @@
-- if @project.documents.empty?
-  - cover = nil
-- elsif @project.cover.present?
-  - cover = @project.documents.find(@project.cover).image.url
-- else
-  - cover = @project.documents.first.image.url
-
 .row
   .columns.large-12.main-title
     .row.header
