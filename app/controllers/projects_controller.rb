@@ -26,7 +26,7 @@ class ProjectsController < ApplicationController
   def search_by_tag
     @projects = Project.joins(:tags).where(:tags => {:name => params[:q].split(',')}).page(params['page']).per(params['per'])
     respond_to do |format|
-      format.html { redirect_to projects_path, :notice => 'Tags not found' }
+      format.html { render template: 'projects/index' }
       format.json { render json: @projects }
       # format.csv { send_data @projects.to_csv }
     end
@@ -41,7 +41,6 @@ class ProjectsController < ApplicationController
     @project = current_user.created_projects.build
     @project.contributions.build
     @project.collaborations.build
-    @project.steps.build
     authorize_action_for @project
   end
 
