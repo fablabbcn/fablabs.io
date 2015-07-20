@@ -5,6 +5,9 @@ class Step < ActiveRecord::Base
 
   before_create :assign_position
 
+  validates :title, presence: true, allow_blank: false
+  validates :description, presence: true, allow_blank: false
+
   private
     def assign_position
       p = self.project.steps.count
