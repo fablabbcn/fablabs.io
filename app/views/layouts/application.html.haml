@@ -1,8 +1,9 @@
 !!!
-%html{xmlns: "http://www.w3.org/1999/xhtml", "xmlns:fb" => "http://www.facebook.com/2008/fbml", "xmlns:og" => "http://ogp.me/ns#"}
+%html{xmlns: "http://www.w3.org/1999/xhtml", "xmlns:fb" => "http://www.facebook.com/2008/fbml", "xmlns:og" => "http://ogp.me/ns#", :lang => "en"}
   %head
     %title= content_for?(:title) ? "#{yield(:title)} | FabLabs" : "FabLabs.io - The Fab Lab Network"
     %base{target: "_parent"}
+    %meta{ :charset => "utf-8" }
     %meta{ name: "viewport", content: "width=device-width, initial-scale=1.0, user-scalable=no" }
     %meta{content: (content_for?(:title) ? "#{yield(:title)} | FabLabs" : "FabLabs.io - The Fab Lab Network"), property: "og:title"}/
     %meta{content: "FabLabs.io - The Fab Lab Network", property: "og:site_name"}/
@@ -20,7 +21,7 @@
     = stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true
     = javascript_include_tag "//maps.googleapis.com/maps/api/js?sensor=false&libraries=places", "//cdnjs.cloudflare.com/ajax/libs/leaflet/0.6.4/leaflet.js", "//api.filepicker.io/v1/filepicker.js"
     = javascript_include_tag "application", "data-turbolinks-track" => true
-    = javascript_include_tag "vendor/custom.modernizr"
+    = javascript_include_tag "vendor/modernizr"
     %link{type: "text/plain", rel: "author", href: "/humans.txt"}
     = csrf_meta_tags
 

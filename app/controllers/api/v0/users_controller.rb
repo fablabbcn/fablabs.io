@@ -5,7 +5,7 @@ class Api::V0::UsersController < Api::V0::ApiController
   end
 
   def search
-    @users = User.where("first_name LIKE ?", "%#{params[:username]}%")  
+    @users = User.where("first_name LIKE ? or username LIKE ? or last_name LIKE ?", "%#{ params[:q].capitalize }%", "%#{ params[:q] }%", "%#{ params[:q].capitalize }%")
     render json: @users, each_serializer: UserSerializer
   end
 

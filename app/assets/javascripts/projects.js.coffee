@@ -79,7 +79,7 @@ $(window).load ->
         delay: 250
         data: (params) ->
           {
-            username: params.term
+            q: params.term
           }
         processResults: (data) ->
           # parse the results into the format expected by Select2.
@@ -103,7 +103,7 @@ $(window).load ->
           delay: 250
           data: (params) ->
             {
-              name: params.term
+              q: params.term
             }
           processResults: (data) ->
             # parse the results into the format expected by Select2.

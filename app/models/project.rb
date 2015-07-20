@@ -44,7 +44,8 @@ class Project < ActiveRecord::Base
       "Software",
       "Hardware",
       "OpenSource",
-      "Furniture"
+      "Furniture",
+      "Architecture"
     ]
   end
 

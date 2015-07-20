@@ -89,9 +89,10 @@ ol.orbit-bullets {
   .project-baseline {
     padding: 10px;
     height: 30px;
-    font-size: 0.7em;
-    span {
-      padding-right: 10px;
+    p { font-size: 0.7rem;
+      span {
+        padding-right: 10px;
+      }
     }
   }
 }
@@ -159,7 +160,12 @@ form {
 
   ul.taglist-form li {
     padding: 15px;
-    label { display: inline }
+    label {
+      display: inline;
+      font-size: 0.9em;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
   }
 
   input {
@@ -234,7 +240,7 @@ form {
   label.radio {
     width: 70px;
     border-radius: 3px;
-    border: 1px solid #D9D9D9
+    border: 1px solid #D9D9D9;
   }
 
   /* hide input */
@@ -246,8 +252,9 @@ form {
   input[type="radio"]:empty ~ label.radio {
   	position: relative;
   	float: left;
-  	line-height: 2.5em;
-  	text-indent: 3.25em;
+    line-height: 2.4em;
+    text-indent: 3.9em;
+    padding-top: 0.5em;
   	margin-top: 2em;
   	cursor: pointer;
   	-webkit-user-select: none;
@@ -283,6 +290,8 @@ form {
   input[type="radio"]:checked ~ label.radio:before {
   	content:'\2714';
   	text-indent: .9em;
+    line-height: 2.4em;
+    padding-top: 0.5em;
   	color: #fff;
   	background-color: #009E5A;
   }
@@ -301,8 +310,8 @@ form {
   }
 
   h4 {
-    a { float: right; }
-    i { padding: 10px; }
+    a { float: right; margin: -10px; }
+    i { padding: 5px 15px }
   }
 
   ul{
@@ -339,11 +348,18 @@ form {
     right: 0;
     margin: 0;
     padding: 0;
+    height: 100%;
     font-size: 20px;
     cursor: pointer;
     opacity: 0;
     filter: alpha(opacity=0);
     -moz-opacity: 0;
     filter:progid:DXImageTransform.Microsoft.Alpha(opacity=0);
+  }
+
+  .step {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin: 10px;
   }
 }
