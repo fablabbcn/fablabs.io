@@ -21,15 +21,15 @@
   - if @project.drive.present?
     %li
       = icon('hdd-o')
-      %a{ href: @project.Drive, title: "Google Drive"}
+      %a{ href: @project.drive, title: "Google Drive"}
         %strong
-          Google Drive folder
+          Google Drive
   - if @project.bitbucket.present?
     %li
       = icon('bitbucket')
       %a{ href: @project.bitbucket, title: "Bitbucket"}
         %strong
-          Bitbucket repository
+          Bitbucket
   - if @project.twitter.present?
     %li
       = icon('twitter')
