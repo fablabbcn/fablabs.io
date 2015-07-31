@@ -85,8 +85,8 @@ class ProjectsController < ApplicationController
   end
 
   def mapdata
-    @projects = Project.joins(:collaborations).includes(:lab).select(:id, :name, :slug, :latitude, :longitude, :kind)
-    render json: @projects, each_serializer: MapSerializer
+    @projects = Project.joins(:collaborations).includes(:lab).collect { |p| {id: p.id, title: p.title, name: p.lab.name, latitude: p.lab.latitude, longitude: p.lab.longitude, kind: p.lab.kind_name}}
+    render json: @projects
   end
 
   private

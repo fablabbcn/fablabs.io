@@ -1,6 +1,17 @@
 //= require masonry.pkgd.min.js
 //= require trianglify.min.js
 
+window.projects = []
+window.map = null
+window.showingContacts = false
+
+osmAttrib = 'Map data © <a href="http://www.openstreetmap.org" target="_blank">OpenStreetMap</a> contributors'
+
+down = false
+
+windowHeight = ->
+  $('#map').css('top', $('#main').offset().top).height($(window).height() - $('#main').offset().top)
+  map.invalidateSize()
 
 formatUser = (res) ->
   if res.loading
@@ -116,5 +127,47 @@ $(window).load ->
         minimumInputLength: 1
         templateResult: formatLab
         templateSelection: formatLabSelection
+
+  if $('body').hasClass('c-projects a-map')
+
+    map = L.map('map', { scrollWheelZoom: true, zoomControl: false }).setView([50, 0], 2 )
+
+    # removed for ios7 see: https://github.com/Leaflet/Leaflet.markercluster/issues/279
+    if !navigator.userAgent.match(/(iPad|iPhone|iPod touch);.*CPU.*OS 7_\d/i)
+      window.markers = new L.MarkerClusterGroup
+        showCoverageOnHover: true
+        spiderfyOnMaxZoom: false
+        removeOutsideVisibleBounds: true
+        zoomToBoundsOnClick: true
+        maxClusterRadius: 50
+        disableClusteringAtZoom: 14
+    else
+      window.markers = map
+
+    window.map = map
+    new L.Control.Zoom({ position: 'topleft' }).addTo(map)
+    L.tileLayer('https://{s}.tiles.mapbox.com/v3/johnrees.ined2i0c/{z}/{x}/{y}.png', { attribution: osmAttrib, maxZoom: 14 }).addTo(map)
+    navigator.geolocation.getCurrentPosition((position)->
+      map.setView([position.coords.latitude, position.coords.longitude], 4)
+    )
+
+    $.get "/projects/mapdata.json", (projects) ->
+      for p in projects.projects
+        if p.latitude and p.longitude
+          icon = L.icon({
+            iconUrl: window.mapIcons[p.kind]
+            iconSize:     [35, 35]
+            iconAnchor:   [17, 33]
+            popupAnchor:  [0, -20]
+          })
+          p.marker = L.marker([p.latitude, p.longitude], {icon: icon})
+          p.marker.bindPopup("<a href='/projects/#{p.id}'>#{p.title}</a>")
+          window.markers.addLayer(p.marker)
+          window.projects.push(p)
+
+    map.addLayer(window.markers)
+
+    $(window).resize _.debounce(windowHeight,100)
+    $('footer').css('margin-top', '600px');
 
   return
