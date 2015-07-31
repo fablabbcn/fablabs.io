@@ -59,6 +59,9 @@ Fablabs::Application.routes.draw do
           patch :approve
           patch :reject
           patch :remove
+          patch :referee_approve
+          patch :need_more_info
+          patch :add_more_info
         end
       end
       root to: 'labs#index'
@@ -76,7 +79,10 @@ Fablabs::Application.routes.draw do
       collection do
         get '/tags', to: :search_by_tag
         get '/lab/:slug', to: :search_by_lab
+        get :map
+        get :embed
       end
+      get 'mapdata', on: :collection
       resources :steps do
         resources :links
       end
@@ -130,6 +136,9 @@ Fablabs::Application.routes.draw do
           get "redeem", on: :member
         end
         resources :labs do
+          get :map, on: :collection
+        end
+        resources :projects do
           get :map, on: :collection
         end
       end

@@ -8,7 +8,13 @@
         %td
           = @lab.current_state
           - @lab.current_state.events.keys.each do |event|
-            = button_to "#{event.capitalize} Lab", {controller: 'labs', action: event}, method: :patch, class: 'button small'
+            - if current_user.has_role? :superadmin
+              = button_to "#{event.capitalize}", {controller: 'labs', action: event}, method: :patch, class: 'button small tiny'
+            - else
+              - if current_user.is_referee?
+                - if ['referee_approve', 'need_more_info', 'reject'].include? event.to_s
+                  = button_to "#{event.capitalize.to_s.tr('_', ' ')}", {controller: 'labs', action: event}, method: :patch, class: 'button small tiny'
+
       %tr
         %th Referee
         %td= @lab.referee
@@ -69,6 +75,6 @@
       %tr
         %th Updated At
         %td= @lab.updated_at
-
-    = link_to edit_backstage_lab_path(@lab), class: 'button' do
-      = fa_icon "edit", text: "Edit Lab"
+    - if current_user.has_role? :superadmin
+      = link_to edit_backstage_lab_path(@lab), class: 'button' do
+        = fa_icon "edit", text: "Edit Lab"

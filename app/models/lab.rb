@@ -26,6 +26,24 @@ class Lab < ActiveRecord::Base
   include Workflow
   workflow do
     state :unverified do
+      event :referee_approve, transition_to: :referee_approved
+      event :approve, transitions_to: :approved
+      event :need_more_info, transitions_to: :more_info_needed
+      event :reject, transitions_to: :rejected
+    end
+    state :more_info_needed do
+      event :add_more_info, transitions_to: :more_info_added
+      event :referee_approve, transition_to: :referee_approved
+      event :approve, transitions_to: :approved
+      event :reject, transitions_to: :rejected
+    end
+    state :more_info_added do
+      event :need_more_info, transitions_to: :more_info_needed
+      event :referee_approve, transition_to: :referee_approved
+      event :approve, transitions_to: :approved
+      event :reject, transitions_to: :rejected
+    end
+    state :referee_approved do
       event :approve, transitions_to: :approved
       event :reject, transitions_to: :rejected
     end
@@ -135,6 +153,18 @@ class Lab < ActiveRecord::Base
     else
       'https://i.imgur.com/iymHWkm.png'
     end
+  end
+
+  def referee_approve
+    employees.update_all(workflow_state: :referee_approved)
+  end
+
+  def add_more_info
+    employees.update_all(workflow_state: :more_info_added)
+  end
+
+  def need_more_info
+    employees.update_all(workflow_state: :more_info_needed)
   end
 
   def approve

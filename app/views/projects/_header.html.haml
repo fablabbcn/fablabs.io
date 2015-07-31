@@ -1,0 +1,10 @@
+.view-as
+  -# = I18n.t("projects.index.view_as", :default => "View as")
+  -# \:
+  %ul.button-group
+    %li
+      = link_to projects_path, class: "list button small #{'secondary' if action_name != 'index'}" do
+        = fa_icon "list", text: t("views.projects.index.list", default: "List")
+    %li
+      = link_to map_projects_path, class: "map button small #{'secondary' if action_name != 'map'}" do
+        = fa_icon "globe", text: t("views.projects.index.map", default: "Map")

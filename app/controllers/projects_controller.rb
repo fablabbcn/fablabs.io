@@ -80,6 +80,15 @@ class ProjectsController < ApplicationController
     redirect_to projects_path, notice: "Project deleted"
   end
 
+  def map
+    @projects = Project.all
+  end
+
+  def mapdata
+    @projects = Project.joins(:collaborations).includes(:lab).collect { |p| {id: p.id, title: p.title, name: p.lab.name, latitude: p.lab.latitude, longitude: p.lab.longitude, kind: p.lab.kind_name}}
+    render json: @projects
+  end
+
   private
     def project_params
       params.require(:project).permit(
@@ -112,7 +121,8 @@ class ProjectsController < ApplicationController
           :id,
           :title,
           :description,
-          :position, '_destroy',
+          :position,
+          '_destroy',
           links_attributes: [:id, :link_id, :url, '_destroy'] ],
         contributions_attributes: [ :id, :contributor_id ],
         collaborations_attributes: [ :id, :collaborator_id ],

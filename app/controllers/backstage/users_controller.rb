@@ -1,5 +1,6 @@
 class Backstage::UsersController < Backstage::BackstageController
-
+  before_filter :require_admin
+  
   def index
     @q = User.search(params[:q])
     @q.sorts = 'id desc' if @q.sorts.empty?
@@ -27,6 +28,17 @@ private
 
   def user_params
     params.require(:user).permit!
+  end
+
+
+  def require_admin
+    if current_user
+      unless current_user.has_role? :superadmin
+        return redirect_to backstage_labs_url, notice: "Not authorized"
+      end
+    else
+      return redirect_to signin_url
+    end
   end
 
 end
