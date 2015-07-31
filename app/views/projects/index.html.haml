@@ -10,3 +10,7 @@
     - if current_user
       = link_to new_project_path, class: "button tiny success" do
         = fa_icon "plus", text: t("views.projects.index.new_project", default: "New project")
+      = link_to "JSON", api_v0_projects_url(format: 'json'), class: 'button tiny'
+      .hint CSV and XLSX (Excel) coming soon.
+      = link_to map_labs_path, class: "map button small #{'secondary' if action_name != 'map'}" do
+        = fa_icon "globe", text: t("views.projects.index.map", default: "Map")

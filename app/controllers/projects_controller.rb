@@ -80,6 +80,15 @@ class ProjectsController < ApplicationController
     redirect_to projects_path, notice: "Project deleted"
   end
 
+  def map
+    @projects = Project.all
+  end
+
+  def mapdata
+    @projects = Project.joins(:collaborations).includes(:lab).select(:id, :name, :slug, :latitude, :longitude, :kind)
+    render json: @projects, each_serializer: MapSerializer
+  end
+
   private
     def project_params
       params.require(:project).permit(

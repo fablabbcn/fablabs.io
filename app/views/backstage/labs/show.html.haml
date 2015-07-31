@@ -7,15 +7,13 @@
         %th State
         %td
           = @lab.current_state
-          - if current_user.has_role? :superadmin
-            = button_to "Approve", {controller: 'labs', action: 'approve'}, method: :patch, class: 'button tiny'
-            = button_to "Need Info", {controller: 'labs', action: 'need_more_info'}, method: :patch, class: 'button tiny'
-            = button_to "Reject", {controller: 'labs', action: 'reject'}, method: :patch, class: 'button tiny alert'
-          - else
-            - if current_user.is_referee?
-              = button_to "Approve", {controller: 'labs', action: 'referee_approve'}, method: :patch, class: 'button tiny'
-              = button_to "Need Info", {controller: 'labs', action: 'need_more_info'}, method: :patch, class: 'button tiny'
-              = button_to "Reject", {controller: 'labs', action: 'reject'}, method: :patch, class: 'button tiny alert'
+          - @lab.current_state.events.keys.each do |event|
+            - if current_user.has_role? :superadmin
+              = button_to "#{event.capitalize}", {controller: 'labs', action: event}, method: :patch, class: 'button small tiny'
+            - else
+              - if current_user.is_referee?
+                - if ['referee_approve', 'need_more_info', 'reject'].include? event.to_s
+                  = button_to "#{event.capitalize.to_s.tr('_', ' ')}", {controller: 'labs', action: event}, method: :patch, class: 'button small tiny'
 
       %tr
         %th Referee
@@ -77,6 +75,6 @@
       %tr
         %th Updated At
         %td= @lab.updated_at
-
-    = link_to edit_backstage_lab_path(@lab), class: 'button' do
-      = fa_icon "edit", text: "Edit Lab"
+    - if current_user.has_role? :superadmin
+      = link_to edit_backstage_lab_path(@lab), class: 'button' do
+        = fa_icon "edit", text: "Edit Lab"
