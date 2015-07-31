@@ -96,6 +96,18 @@ class User < ActiveRecord::Base
     has_role? :superadmin
   end
 
+  def admin_labs
+    self.roles.where(name: "admin", resource_type: "Lab")
+  end
+
+  def is_referee?
+    return true if not Lab.where("referee_id IN (?)",  self.admin_labs.map{ |u| u.resource_id }).empty?
+  end
+
+  def referee_labs
+    Lab.where("referee_id IN (?)",  self.admin_labs.map{ |u| u.resource_id })
+  end
+
   def recovery_key
     recoveries.last.key if recoveries.any?
   end

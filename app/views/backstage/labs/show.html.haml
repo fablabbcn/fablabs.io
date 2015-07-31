@@ -7,8 +7,16 @@
         %th State
         %td
           = @lab.current_state
-          - @lab.current_state.events.keys.each do |event|
-            = button_to "#{event.capitalize} Lab", {controller: 'labs', action: event}, method: :patch, class: 'button small'
+          - if current_user.has_role? :superadmin
+            = button_to "Approve", {controller: 'labs', action: 'approve'}, method: :patch, class: 'button tiny'
+            = button_to "Need Info", {controller: 'labs', action: 'need_more_info'}, method: :patch, class: 'button tiny'
+            = button_to "Reject", {controller: 'labs', action: 'reject'}, method: :patch, class: 'button tiny alert'
+          - else
+            - if current_user.is_referee?
+              = button_to "Approve", {controller: 'labs', action: 'referee_approve'}, method: :patch, class: 'button tiny'
+              = button_to "Need Info", {controller: 'labs', action: 'need_more_info'}, method: :patch, class: 'button tiny'
+              = button_to "Reject", {controller: 'labs', action: 'reject'}, method: :patch, class: 'button tiny alert'
+
       %tr
         %th Referee
         %td= @lab.referee

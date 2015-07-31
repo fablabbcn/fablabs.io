@@ -59,6 +59,9 @@ Fablabs::Application.routes.draw do
           patch :approve
           patch :reject
           patch :remove
+          patch :referee_approve
+          patch :need_more_info
+          patch :add_more_info
         end
       end
       root to: 'labs#index'

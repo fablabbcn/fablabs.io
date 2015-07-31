@@ -5,7 +5,7 @@ class UserMailer < ActionMailer::Base
   default from: "FabLabs.io <notifications@fablabs.io>"
 
   # why doesn't this work??
-  %w(submitted approved rejected removed).each do |action|
+  %w(submitted approved rejected removed referee_approved more_info_added more_info_needed).each do |action|
     define_method("lab_#{action}") do |lab_id|
       begin
         @lab = Lab.find(lab_id)
@@ -13,6 +13,14 @@ class UserMailer < ActionMailer::Base
         users.each do |user|
           @user = user
           mail(to: @user.email_string, subject: "[#{@lab}] #{action.capitalize}")
+        end
+        if @lab.referee_id
+          @referee = @lab.referee
+          users = (@referee.direct_admins + [@referee.creator]).compact.uniq
+          users.each do |user|
+            @user = user
+            mail(to: @user.email_string, subject: "[Fablabs.io] #{@lab} #{action.capitalize}")
+          end
         end
       rescue ActiveRecord::RecordNotFound
       end
