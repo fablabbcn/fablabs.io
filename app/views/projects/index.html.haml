@@ -12,7 +12,7 @@
         = fa_icon "plus", text: t("views.projects.index.new_project", default: "New project")
     %div
       = link_to "JSON", api_v0_projects_url(format: 'json'), class: 'button tiny'
-        .hint CSV and XLSX (Excel) coming soon.
+      .hint CSV and XLSX (Excel) coming soon.
     %div
       = link_to map_projects_path, class: "map button small #{'secondary' if action_name != 'map'}" do
         = fa_icon "globe", text: t("views.projects.index.map", default: "Map")
