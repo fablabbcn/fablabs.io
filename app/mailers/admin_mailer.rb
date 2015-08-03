@@ -10,6 +10,14 @@ class AdminMailer < ActionMailer::Base
     end
   end
 
+  def lab_referee_approved lab_id
+    begin
+      @lab = Lab.find(lab_id)
+      mail(subject: "[#{@lab}] approved by referee", to: User.admin_emails)
+    rescue ActiveRecord::RecordNotFound
+    end  
+  end
+
   def employee_applied employee_id
     begin
       @employee = Employee.find(employee_id)
