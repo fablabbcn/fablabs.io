@@ -30,7 +30,7 @@ class Backstage::LabsController < Backstage::BackstageController
     end
   end
 
-  %w(approve reject remove referee_approve more_info_needed).each do |verb|
+  %w(approve reject remove referee_approve need_more_info).each do |verb|
     define_method(verb) do
       verbed = "#{verb}ed".gsub('ee', 'e')
       @lab = Lab.friendly.find(params[:id])
