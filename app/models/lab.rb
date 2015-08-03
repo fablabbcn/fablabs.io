@@ -45,6 +45,7 @@ class Lab < ActiveRecord::Base
     end
     state :referee_approved do
       event :approve, transitions_to: :approved
+      event :need_more_info, transitions_to: :more_info_needed
       event :reject, transitions_to: :rejected
     end
     state :approved do
