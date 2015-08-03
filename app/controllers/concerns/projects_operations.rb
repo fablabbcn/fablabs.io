@@ -6,6 +6,14 @@ module ProjectsOperations
     Project.includes(:owner, :lab, :contributors).order('updated_at DESC')
   end
 
+  def filter_by(params)
+    if params[:slug]
+      filter_by_lab(params[:slug])
+    elsif params[:q]
+      filter_by_tag(params[:q])
+    end
+  end
+
   def filter_by_lab(slug)
     Project.joins(:lab).where("labs.slug = ?", slug)
   end

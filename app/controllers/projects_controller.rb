@@ -13,21 +13,10 @@ class ProjectsController < ApplicationController
     end
   end
 
-  # Ugly. Refactor.
-  def search_by_lab
-    @projects = filter_by_lab(params[:slug]).page(params['page']).per(params['per'])
+  def search
+    @projects = filter_by(params).page(params['page']).per(params['per'])
     respond_to do |format|
       format.html { render template: 'projects/index'}
-      format.json { render json: @projects }
-      # format.csv { send_data @projects.to_csv }
-    end
-  end
-
-  # Ugly. Refactor.
-  def search_by_tag
-    @projects = filter_by_tag(params[:q]).page(params['page']).per(params['per'])
-    respond_to do |format|
-      format.html { render template: 'projects/index' }
       format.json { render json: @projects }
       # format.csv { send_data @projects.to_csv }
     end

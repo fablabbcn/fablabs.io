@@ -77,8 +77,8 @@ Fablabs::Application.routes.draw do
 
     resources :projects do
       collection do
-        get '/tags', to: :search_by_tag
-        get '/lab/:slug', to: :search_by_lab
+        get '/tags', to: :search
+        get '/lab/:slug', to: :search
         get :map
         get :embed
       end
