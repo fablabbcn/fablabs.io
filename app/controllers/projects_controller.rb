@@ -1,9 +1,10 @@
 class ProjectsController < ApplicationController
+  include ProjectsOperations
 
   before_filter :require_login, except: [:index]
 
   def index
-    @projects = Project.includes(:owner, :lab, :contributors).order('updated_at DESC').page(params['page']).per(params['per'])
+    @projects = all_projects.page(params['page']).per(params['per'])
 
     respond_to do |format|
       format.html
@@ -14,7 +15,7 @@ class ProjectsController < ApplicationController
 
   # Ugly. Refactor.
   def search_by_lab
-    @projects = Project.joins(:lab).where("labs.slug = ?", params[:slug]).page(params['page']).per(params['per'])
+    @projects = filter_by_lab(params[:slug]).page(params['page']).per(params['per'])
     respond_to do |format|
       format.html { render template: 'projects/index'}
       format.json { render json: @projects }
@@ -24,7 +25,7 @@ class ProjectsController < ApplicationController
 
   # Ugly. Refactor.
   def search_by_tag
-    @projects = Project.joins(:tags).where(:tags => {:name => params[:q].split(',')}).page(params['page']).per(params['per'])
+    @projects = filter_by_tag(params[:q]).page(params['page']).per(params['per'])
     respond_to do |format|
       format.html { render template: 'projects/index' }
       format.json { render json: @projects }
@@ -85,7 +86,7 @@ class ProjectsController < ApplicationController
   end
 
   def mapdata
-    @projects = Project.joins(:collaborations).includes(:lab).collect { |p| {id: p.id, title: p.title, name: p.lab.name, latitude: p.lab.latitude, longitude: p.lab.longitude, kind: p.lab.kind_name}}
+    @projects = map_projects
     render json: @projects
   end
 
