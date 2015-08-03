@@ -5,7 +5,7 @@ class UserMailer < ActionMailer::Base
   default from: "FabLabs.io <notifications@fablabs.io>"
 
   # why doesn't this work??
-  %w(submitted approved rejected removed referee_approved more_info_added more_info_needed).each do |action|
+  %w(submitted approved rejected removed referee_approve add_more_info need_more_info).each do |action|
     define_method("lab_#{action}") do |lab_id|
       begin
         @lab = Lab.find(lab_id)
