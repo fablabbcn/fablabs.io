@@ -2,7 +2,7 @@ class RefereeMailer < ActionMailer::Base
 
   default from: "FabLabs <notifications@fablabs.io>"
 
-  %w(submitted approved rejected referee_approved more_info_added).each do |action|
+  %w(submitted approved rejected referee_approved more_info_needed more_info_added).each do |action|
     define_method("lab_#{action}") do |lab_id|
       begin
         @lab = Lab.find(lab_id)

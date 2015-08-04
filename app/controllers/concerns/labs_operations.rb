@@ -5,7 +5,7 @@ module LabsOperations
   def update_workflow_state
     if @lab.workflow_state == "more_info_needed"
       @lab.update_attributes workflow_state: "more_info_added"
-      RefereeMailer.delay.lab_submitted(@lab.id)
+      RefereeMailer.delay.lab_more_info_added(@lab.id)
     end
   end
 
