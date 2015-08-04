@@ -17,3 +17,4 @@ class AdminMailer < ActionMailer::Base
       end
     end
   end
+end
