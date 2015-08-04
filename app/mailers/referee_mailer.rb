@@ -1,4 +1,4 @@
-class AdminMailer < ActionMailer::Base
+class RefereeMailer < ActionMailer::Base
 
   default from: "FabLabs <notifications@fablabs.io>"
 
@@ -10,6 +10,7 @@ class AdminMailer < ActionMailer::Base
           @referee = @lab.referee
           users = (@referee.direct_admins + [@referee.creator]).compact.uniq
           users.each do |user|
+            @user = user
             mail(to: user.email_string, subject: "[Fablabs.io] #{@lab} #{action.capitalize}")
           end
         end

@@ -96,7 +96,7 @@ class User < ActiveRecord::Base
   end
 
   def referee_labs
-    Lab.where("referee_id IN (?)",  self.admin_labs.map{ |u| u.resource_id })
+    Lab.where("referee_id IN (?) AND workflow_state in (?)", self.admin_labs.map{ |u| u.resource_id }, ['unverified', 'more_info_needed', 'more_info_added'])
   end
 
   def recovery_key
