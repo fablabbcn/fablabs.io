@@ -3,7 +3,10 @@ module LabsOperations
   extend ActiveSupport::Concern
 
   def update_workflow_state
-    @lab.update_attributes workflow_state: "more_info_added" if @lab.workflow_state == "more_info_needed"
+    if @lab.workflow_state == "more_info_needed"
+      @lab.update_attributes workflow_state: "more_info_added"
+      RefereeMailer.delay.lab_submitted(@lab.id)
+    end
   end
 
   def with_approved_or_pending_state(lab_id)
