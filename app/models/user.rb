@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
   before_create :generate_fab10_coupon_code
 
   include Workflow
+  include VerifyWorkflow
 
   rolify
   has_secure_password
@@ -47,16 +48,6 @@ class User < ActiveRecord::Base
 
   before_create { generate_token(:email_validation_hash) }
   before_create :downcase_email
-
-  workflow do
-    state :unverified do
-      event :verify, transitions_to: :verified
-      event :unverify, transitions_to: :unverified
-    end
-    state :verified do
-      event :unverify, transitions_to: :unverified
-    end
-  end
 
   def avatar
     if avatar_src.present?
@@ -105,7 +96,7 @@ class User < ActiveRecord::Base
   end
 
   def referee_labs
-    Lab.where("referee_id IN (?)",  self.admin_labs.map{ |u| u.resource_id })
+    Lab.where("referee_id IN (?), workflow_state in (?)",  self.admin_labs.map{ |u| u.resource_id }, ['unverified', 'more_info_needed', 'more_info_added'])
   end
 
   def recovery_key
