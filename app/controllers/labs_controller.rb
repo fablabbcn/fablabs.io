@@ -94,7 +94,7 @@ class LabsController < ApplicationController
     authorize_action_for @lab
     if @lab.update_attributes lab_params
       track_activity @lab
-      lab.workflow_state = "more_info_added" if lab.workflow_state == "more_info_needed"
+      update_workflow_state
       redirect_to lab_url(@lab), notice: "Lab was successfully updated"
     else
       @lab.links.build
