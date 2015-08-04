@@ -1,5 +1,4 @@
 module InheritedResourcesWithAuthority
-
   extend ActiveSupport::Concern
 
   included do
