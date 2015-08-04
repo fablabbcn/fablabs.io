@@ -1,12 +1,11 @@
 class LabAuthorizer < ApplicationAuthorizer
 
   def updatable_by?(user)
-    user.has_role?(:superadmin) or
-      (resource.approved? and user.has_role?(:admin, resource))
+    user.has_role?(:superadmin) or user.has_role?(:admin, resource) or user.is_creator? resource
   end
 
   def readable_by?(user)
-    resource.approved?
+    resource.approved? or user.has_role?(:admin, resource) or user.is_creator? resource
   end
 
   def self.creatable_by?(user)

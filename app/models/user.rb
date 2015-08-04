@@ -95,6 +95,10 @@ class User < ActiveRecord::Base
     return true if not Lab.where("referee_id IN (?)",  self.admin_labs.map{ |u| u.resource_id }).empty?
   end
 
+  def is_creator? lab
+    return true if lab.creator_id == self.id
+  end
+
   def referee_labs
     Lab.where("referee_id IN (?) AND workflow_state in (?)", self.admin_labs.map{ |u| u.resource_id }, ['unverified', 'more_info_needed', 'more_info_added'])
   end
