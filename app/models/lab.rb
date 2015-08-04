@@ -93,10 +93,6 @@ class Lab < ActiveRecord::Base
     end
   end
 
-  def with_approved_or_pending_state
-    Lab.where("workflow_state in (?)", ['approved', 'referee_approved', 'more_info_needed', 'more_info_added'])
-  end
-
   def nearby_labs same_country = true, max_distance = 1000
     if nearbys(max_distance)
       labs = nearbys(max_distance, units: :km).limit(5).with_approved_state

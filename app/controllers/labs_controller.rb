@@ -1,4 +1,5 @@
 class LabsController < ApplicationController
+  include LabsOperations
 
   before_filter :require_login, except: [:index, :map, :show, :mapdata, :embed]
   after_action :allow_iframe, only: :embed
@@ -60,7 +61,7 @@ class LabsController < ApplicationController
 
   def show
     begin
-      @lab = Lab.with_approved_or_pending_state.friendly.find(params[:id])
+      @lab = with_approved_or_pending_state(params[:id])
     rescue ActiveRecord::RecordNotFound
       return redirect_to root_path, notice: "Lab not found"
     end
