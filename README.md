@@ -1,6 +1,6 @@
 # FabLabs
 
-[![Code Climate](https://codeclimate.com/github/fablabbcn/fablabs.png)](https://codeclimate.com/github/fablabbcn/fablabs) [![Build Status](https://travis-ci.org/fablabbcn/fablabs.png)](https://travis-ci.org/fablabbcn/fablabs) [![Dependency Status](https://gemnasium.com/fablabbcn/fablabs.png)](https://gemnasium.com/fablabbcn/fablabs)
+[![Code Climate](https://codeclimate.com/github/fablabbcn/fablabs.png)](https://codeclimate.com/github/fablabbcn/fablabs) [![Build Status](https://travis-ci.org/fablabbcn/fablabs.png)](https://travis-ci.org/fablabbcn/fablabs) [![Dependency Status](https://gemnasium.com/fablabbcn/fablabs.png)](https://gemnasium.com/fablabbcn/fablabs) [![Test Coverage](https://codeclimate.com/github/fablabbcn/fablabs/badges/coverage.svg)](https://codeclimate.com/github/fablabbcn/fablabs/coverage)
 
 This is the official repository for fablabs.io platform project. 
 
