@@ -64,6 +64,7 @@ Fablabs::Application.routes.draw do
           patch :add_more_info
         end
       end
+      get "users/list" => "users#list"
       root to: 'labs#index'
     end
 
