@@ -1,6 +1,6 @@
 class Backstage::UsersController < Backstage::BackstageController
   before_filter :require_admin
-  
+
   def index
     @q = User.search(params[:q])
     @q.sorts = 'id desc' if @q.sorts.empty?
@@ -22,6 +22,11 @@ class Backstage::UsersController < Backstage::BackstageController
     else
       render :edit
     end
+  end
+
+  def list
+    @users = User.all
+    render text: @users.to_csv
   end
 
 private
