@@ -27,4 +27,11 @@ describe AdminMailer do
     expect(mail.body.encoded).to match(lab_employees_url(lab))
   end
 
+  it "lab_referee_approved notification" do
+    mail = AdminMailer.lab_referee_approved(lab.id)
+    expect(mail.subject).to eq("[#{lab} submitted]")
+    expect(mail.to).to eq(["admin_notifications@fablabs.io"])
+    expect(mail.body.encoded).to match("#{backstage_lab_url(lab)}")
+  end
+
 end
