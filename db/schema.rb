@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150715154957) do
+ActiveRecord::Schema.define(version: 20150908133724) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -193,6 +193,16 @@ ActiveRecord::Schema.define(version: 20150715154957) do
   add_index "facilities", ["creator_id"], name: "index_facilities_on_creator_id", using: :btree
   add_index "facilities", ["lab_id", "thing_id"], name: "index_facilities_on_lab_id_and_thing_id", unique: true, using: :btree
 
+  create_table "favourites", force: true do |t|
+    t.integer  "project_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "favourites", ["project_id"], name: "index_favourites_on_project_id", using: :btree
+  add_index "favourites", ["user_id"], name: "index_favourites_on_user_id", using: :btree
+
   create_table "featured_images", force: true do |t|
     t.string   "src"
     t.string   "name"
@@ -206,16 +216,16 @@ ActiveRecord::Schema.define(version: 20150715154957) do
 
   add_index "featured_images", ["creator_id"], name: "index_featured_images_on_creator_id", using: :btree
 
-  create_table "images", force: true do |t|
-    t.string   "title",       limit: nil
-    t.string   "description", limit: nil
-    t.string   "file_id",     limit: nil
+  create_table "grades", force: true do |t|
     t.integer  "project_id"
+    t.integer  "user_id"
+    t.integer  "stars"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "images", ["project_id"], name: "index_images_on_project_id", using: :btree
+  add_index "grades", ["project_id"], name: "index_grades_on_project_id", using: :btree
+  add_index "grades", ["user_id"], name: "index_grades_on_user_id", using: :btree
 
   create_table "labs", force: true do |t|
     t.string   "name"

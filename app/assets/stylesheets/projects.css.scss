@@ -149,7 +149,11 @@ ul.taglist li {
   font-size: 0.8em;
   display: inline;
   text-align: center;
-  padding-bottom: 10px;
+  padding: 10px;
+  margin: 10px 10px 10px 0;
+  background-color: #F4F4F4;
+  border-color: #DCDCDC;
+  border-radius: 4px;
 }
 
 form {

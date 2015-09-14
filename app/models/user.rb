@@ -33,6 +33,9 @@ class User < ActiveRecord::Base
   has_many :contributions, foreign_key: 'contributor_id'
   has_many :projects, through: :contributions
 
+  has_many :favourites
+  has_many :projects, :through => :favourites
+
   validates_format_of :email, :with => /\A(.+)@(.+)\z/
   validates :username, format: { :with => /\A[a-zA-Z0-9]+\z/ }, length: { minimum: 4, maximum: 30 }
 
@@ -97,6 +100,14 @@ class User < ActiveRecord::Base
 
   def is_creator? lab
     return true if lab.creator_id == self.id
+  end
+
+  def favourited? project_id
+    return true if self.favourites.where(project_id: project_id).first
+  end
+
+  def favourite project_id
+    return self.favourites.where(project_id: project_id).first
   end
 
   def referee_labs

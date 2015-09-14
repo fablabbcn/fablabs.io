@@ -28,6 +28,9 @@ class Project < ActiveRecord::Base
   has_many :steps, dependent: :destroy
   accepts_nested_attributes_for :steps, allow_destroy: true
 
+  has_many :favourites
+  has_many :users, :through => :favourites
+
   validates :title, presence: true, allow_blank: false
 
   acts_as_taggable

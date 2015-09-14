@@ -3,6 +3,11 @@
     .row.header
       .columns.large-4
         %h1= @project.title
+        - if current_user
+          - if current_user.favourited? @project.id
+            = link_to "Dislike", user_favourite_path(current_user, current_user.favourite(@project.id), project_id: @project.id), class: 'fav', method: :delete
+          - else
+            = link_to "Like", user_favourites_path(current_user, project_id: @project.id), class: 'fav', method: :post
         %ul
           %li
             = icon('code')
