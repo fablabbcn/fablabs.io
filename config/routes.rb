@@ -95,6 +95,7 @@ Fablabs::Application.routes.draw do
 
     resources :users do
       resources :favourites, only: [:create, :destroy]
+      resources :grades, only: [:create, :destroy]
     end
 
     # resources :labs, path: '', only: [:show]

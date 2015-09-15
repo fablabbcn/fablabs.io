@@ -31,6 +31,9 @@ class Project < ActiveRecord::Base
   has_many :favourites
   has_many :users, :through => :favourites
 
+  has_many :grades
+  has_many :users, :through => :grades
+
   validates :title, presence: true, allow_blank: false
 
   acts_as_taggable
@@ -51,6 +54,25 @@ class Project < ActiveRecord::Base
       "Architecture"
     ]
   end
+
+  def grade_average
+    num = self.grades.count
+    if num > 0
+      total = self.total_grades
+      return total / num
+    else
+      return 0
+    end
+  end
+
+  protected
+    def total_grades
+      total = 0
+      self.grades.each do |grade|
+        total += grade.stars
+      end
+      return total
+    end
 
   private
     def assign_to_lab

@@ -5,7 +5,7 @@ class FavouritesController < ApplicationController
   end
 
   def destroy
-    @fav = current_user.favourites.where(project_id: params[:project_id]).first
+    @fav = current_user.favourites.find(params[:id])
     @fav.destroy
     redirect_to project_path(params[:project_id])
   end

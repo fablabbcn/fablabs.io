@@ -4,10 +4,22 @@
       .columns.large-4
         %h1= @project.title
         - if current_user
+          +1:
           - if current_user.favourited? @project.id
-            = link_to "Dislike", user_favourite_path(current_user, current_user.favourite(@project.id), project_id: @project.id), class: 'fav', method: :delete
+            = link_to icon('thumbs-up'), user_favourite_path(current_user, current_user.favourite(@project.id), project_id: @project.id), class: 'fav', method: :delete
           - else
-            = link_to "Like", user_favourites_path(current_user, project_id: @project.id), class: 'fav', method: :post
+            = link_to icon('thumbs-o-up'), user_favourites_path(current_user, project_id: @project.id), class: 'fav', method: :post
+          Stars:
+          - if current_user.graded? @project.id
+            = icon('star')
+            = @project.grade_average
+            = link_to 'Remove stars', user_grade_path(current_user, current_user.grade(@project.id), project_id: @project.id), class: 'star', method: :delete
+          - else
+            = link_to icon('star-o'), user_grades_path(current_user, project_id: @project.id, stars: 1), class: 'star', method: :post
+            = link_to icon('star-o'), user_grades_path(current_user, project_id: @project.id, stars: 2), class: 'star', method: :post
+            = link_to icon('star-o'), user_grades_path(current_user, project_id: @project.id, stars: 3), class: 'star', method: :post
+            = link_to icon('star-o'), user_grades_path(current_user, project_id: @project.id, stars: 4), class: 'star', method: :post
+            = link_to icon('star-o'), user_grades_path(current_user, project_id: @project.id, stars: 5), class: 'star', method: :post
         %ul
           %li
             = icon('code')
