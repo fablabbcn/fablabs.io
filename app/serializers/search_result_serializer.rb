@@ -6,9 +6,9 @@ class SearchResultSerializer < ActiveModel::Serializer
 
 
   def title
-    if object.has_key? title
+    if object.title
       return object.title
-    elsif object.has_key? name
+    elsif object.name
       return object.name
     else return " "
     end
