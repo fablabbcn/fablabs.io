@@ -22,6 +22,10 @@
         #{pluralize @results.size, "search result"} for
         %strong= params[:query]
 
-    .results= render @results
+    .labs= render @labs
+    = paginate @labs
+
+    .projects= render @projects
+    = paginate @projects
 
   .columns.large-4.sidebar-offcanvas
