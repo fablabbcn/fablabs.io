@@ -29,8 +29,20 @@ feature "Adding a project" do
       fill_in 'project_title', with: 'My fab project'
       fill_in 'project_description', with: 'An awesome project'
       click_button 'Create Project'
-      expect(page).to have_content "Thanks"
+      expect(page).to have_content 'Thanks'
 
+    end
+
+    scenario "add project steps" do
+      user = FactoryGirl.create(:user)
+      fill_in 'project_title', with: 'My fab project'
+      fill_in 'project_description', with: 'An awesome project'
+      click_link 'Add another step'
+      fill_in 'project_steps_title', with: 'First step'
+      fill_in 'project_steps_description', with: 'This is the description for the first step'
+      click_button 'Create Project'
+      expect(page).to have_content 'Thanks'
+      expect(page).to have_content 'This is the description for the first step'
     end
 
 

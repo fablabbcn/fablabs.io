@@ -52,6 +52,7 @@ Fablabs::Application.routes.draw do
     get "resend_verification_email" => "users#resend_verification_email"
 
     namespace :backstage do
+      get "users/list" => "users#list"
       resources :users
       resources :employees, only: :index
       resources :labs do
@@ -64,7 +65,6 @@ Fablabs::Application.routes.draw do
           patch :add_more_info
         end
       end
-      get "users/list" => "users#list"
       root to: 'labs#index'
     end
 
@@ -92,6 +92,11 @@ Fablabs::Application.routes.draw do
     resources :contributions, only: [:destroy]
     resources :collaborations, only: [:destroy]
     resources :documents, only: [:destroy]
+
+    resources :users do
+      resources :favourites, only: [:create, :destroy]
+      resources :grades, only: [:create, :destroy]
+    end
 
     # resources :labs, path: '', only: [:show]
 
@@ -133,6 +138,12 @@ Fablabs::Application.routes.draw do
         get 'me' => 'users#me'
         get 'users' => 'users#search'
         get 'labs/search' => 'labs#search'
+        namespace :search do
+          get 'all' => 'search#all'
+          get 'labs' => 'search#labs'
+          get 'projects' => 'search#projects'
+          get 'machines' => 'search#machines'
+        end
         resources :coupons do
           get "redeem", on: :member
         end

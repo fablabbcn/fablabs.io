@@ -14,12 +14,13 @@ en:
 
   views:
     header:
-      search_labs:          "Search Labs..."
+      search_labs:          "Search.."
       labs:                 "Labs"
       machines:             "Machines"
       me:                   "Me"
       settings:             "Settings"
       projects:             "Projects"
+      events:               "Events"
 
     projects:
       new_project:          "New project"

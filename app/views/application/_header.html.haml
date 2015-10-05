@@ -14,7 +14,7 @@
       %ul.left
         -# %li.divider
         %li.has-form
-          = form_tag labs_path, class: 'navbar-form navbar-left', role: 'search', method: 'get' do
+          = form_tag api_v0_search_all_url, class: 'navbar-form navbar-left', method: 'get' do
             - if params[:country].present?
               = hidden_field_tag 'country', params[:country]
             = text_field_tag 'query', params[:query], class: 'form-control', autocomplete: 'off', placeholder: t("views.header.search_labs"), id: 'search-box'
