@@ -138,6 +138,12 @@ Fablabs::Application.routes.draw do
         get 'me' => 'users#me'
         get 'users' => 'users#search'
         get 'labs/search' => 'labs#search'
+        namespace :search do
+          get 'all' => 'search#all'
+          get 'labs' => 'search#labs'
+          get 'projects' => 'search#projects'
+          get 'machines' => 'search#machines'
+        end
         resources :coupons do
           get "redeem", on: :member
         end
