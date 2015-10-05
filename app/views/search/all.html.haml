@@ -1,0 +1,27 @@
+- title "Search"
+.row.top
+  .columns.large-8
+    %ul.breadcrumbs
+      %li= link_to Lab.to_s.pluralize, labs_path
+      %li.current= link_to t("views.labs.index.all_countries"), labs_path
+  .columns.large-4
+    = render "header"
+
+.row
+  .columns.large-8.content
+    .row
+      .columns.large-12
+        -# %dl.sub-nav.right.order-by
+        -#   %dt Order by:
+        -#   %dd= select_tag :order, ['title','title']
+
+    - if params[:query].present?
+      .search-results
+        -# %button.close{type: "button", data: { dismiss: "alert"}, aria: { hidden: true}} ×
+        = link_to "×", labs_path, class: 'close right'
+        #{pluralize @results.size, "search result"} for
+        %strong= params[:query]
+
+    .results= render @results
+    = paginate @results
+  .columns.large-4.sidebar-offcanvas
