@@ -4,7 +4,6 @@ class Api::V0::SearchController < Api::V0::ApiController
     @results = Lab.where("slug LIKE ? or name LIKE ?", "%#{params[:q]}%", "%#{params[:q].capitalize}%")
     @results << Project.where("title LIKE ?", "%#{params[:q]}%")
 
-    @results = @resuts.page(params['page']).per(params['per'])
     respond_to do |format|
       format.html { render :template => 'search/all' }
       format.json { render json: @results, each_serializer: SearchResultSerializer }
