@@ -75,7 +75,7 @@ Fablabs::Application.routes.draw do
     end
 
     get 'events' => 'events#main_index', as: 'events'
-
+    resources :search, :only [:index]
     resources :projects do
       collection do
         get '/tags', to: :search
@@ -138,7 +138,7 @@ Fablabs::Application.routes.draw do
         get 'me' => 'users#me'
         get 'users' => 'users#search'
         get 'labs/search' => 'labs#search'
-        
+
         get 'search/all' => 'search#all'
         get 'search/labs' => 'search#labs'
         get 'search/projects' => 'search#projects'
