@@ -1,6 +1,6 @@
 class SearchResultSerializer < ActiveModel::Serializer
   # cached
-  :id,
+  attributes :id,
   :url,
   :title
 
