@@ -1,0 +1,4 @@
+= content_tag_for :div, lab, class: 'media', itemscope: true, itemtype: "http://data-vocabulary.org/Organization" do
+  .media-body
+    = link_to result.url, class: 'name' do
+      %span.name{itemprop: "title"}= result.title
