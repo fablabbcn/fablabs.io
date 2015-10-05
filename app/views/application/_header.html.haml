@@ -17,7 +17,7 @@
           = form_tag api_v0_search_all_url, class: 'navbar-form navbar-left', method: 'get' do
             - if params[:country].present?
               = hidden_field_tag 'country', params[:country]
-            = text_field_tag 'query', params[:query], class: 'form-control', autocomplete: 'off', placeholder: t("views.header.search_labs"), id: 'search-box'
+            = text_field_tag 'q', params[:q], class: 'form-control', autocomplete: 'off', placeholder: t("views.header.search"), id: 'search-box'
         %li{class: ('active' if controller_name == 'labs')}= link_to t("views.header.labs"), labs_path, class: 'top-link'
         - if current_or_null_user.can_read?(Event)
           %li{class: ('active' if controller_name == 'events')}= link_to t("views.header.events"), events_path, class: 'top-link'
