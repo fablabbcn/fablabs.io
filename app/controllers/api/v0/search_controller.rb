@@ -5,7 +5,7 @@ class Api::V0::SearchController < Api::V0::ApiController
     @results << Project.where("title LIKE ?", "%#{params[:q]}%")
 
     respond_to do |format|
-      format.html { render :template => 'search/all' }
+      format.html { render '/search/all' }
       format.json { render json: @results, each_serializer: SearchResultSerializer }
       # format.csv { send_data @results.to_csv }
     end
