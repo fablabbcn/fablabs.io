@@ -128,6 +128,25 @@ class Lab < ActiveRecord::Base
     end
   end
 
+  def approved_referees
+    referees = [
+      "thewellingtonmakerspace",
+      "fablabtaipei",
+      "waagsociety",
+      "fablablima",
+      "fablabuniversidadedesaopaulo",
+      "fablabsandiego",
+      "as220labs",
+      "fablabbcn",
+      "fablabcascina",
+      "vigyanashram",
+      "fablabkamakura"
+    ]
+
+    Lab.where(slug: referees).order('name ASC')
+
+  end
+
   def referee_approve
     employees.update_all(workflow_state: :referee_approved)
   end

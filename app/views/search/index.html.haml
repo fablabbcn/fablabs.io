@@ -15,9 +15,10 @@
         %strong= params[:query]
 
     .labs= render @labs
-    = paginate @labs
 
     .projects= render @projects
-    = paginate @projects
+
+    .users= render @users
+
 
   .columns.large-4

@@ -26,6 +26,10 @@ module ProjectsOperations
     Project.joins(:collaborations).includes(:lab).references(:lab).collect { |p| hash_project(p) }
   end
 
+  def search_projects(query)
+    Project.where("title LIKE ?", "%#{query}%") | filter_by_lab(query) | filter_by_tag(query)
+  end
+
   def hash_project(project)
     { id: project.id,
       title: project.title,
