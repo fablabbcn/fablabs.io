@@ -1,4 +1,4 @@
-module LabsOperations
+module LabsSearch
 
   extend ActiveSupport::Concern
 
