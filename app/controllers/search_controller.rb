@@ -1,10 +1,14 @@
 class SearchController < ApplicationController
+  include LabsSearch
+  include ProjectsOperations
+  include UsersOperations
 
   before_filter :require_login, except: :index
 
   def index
-    @labs = Lab.where("slug LIKE ? or name LIKE ?", "%#{params[:q]}%", "%#{params[:q].capitalize}%").page(params['page']).per(params['per'])
-    @projects = Project.where("title LIKE ?", "%#{params[:q]}%").page(params['page']).per(params['per'])
+    @labs = search_labs(params[:q]).page(1).per(25)
+    @projects = search_projects(params[:q]).page(1).per(25)
+    @users = search_users(params[:q]).page(1).per(25)
 
     respond_to do |format|
       format.html

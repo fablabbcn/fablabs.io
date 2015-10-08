@@ -1,8 +1,9 @@
 class Api::V0::SearchController < Api::V0::ApiController
-  def all
+  include LabsSearch
+  include ProjectsOperations
 
-    @results = Lab.where("slug LIKE ? or name LIKE ?", "%#{params[:q]}%", "%#{params[:q].capitalize}%")
-    @results << Project.where("title LIKE ?", "%#{params[:q]}%")
+  def all
+    @results = search_labs(params[:q]).page(params['page']).per(params['per']) |  search_projects(params[:q]).page(params['page']).per(params['per'])
 
     respond_to do |format|
       format.json { render json: @results, each_serializer: SearchResultSerializer }
@@ -12,13 +13,13 @@ class Api::V0::SearchController < Api::V0::ApiController
   end
 
   def labs
-    @labs = Lab.where("slug LIKE ? or name LIKE ?", "%#{params[:q]}%", "%#{params[:q].capitalize}%").page(params['page']).per(params['per'])
+    @labs = search_labs(params[:q]).page(params['page']).per(params['per'])
     render json: @labs, each_serializer: LabSerializer
   end
 
   def projects
-    @labs = Project.where("title LIKE ?", "%#{params[:q]}%", "%#{params[:q].capitalize}%").page(params['page']).per(params['per'])
-    render json: @labs, each_serializer: LabSerializer
+    @projects = search_projects(params[:q]).page(params['page']).per(params['per'])
+    render json: @projects
   end
 
 end

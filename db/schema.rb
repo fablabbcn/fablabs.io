@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150908133724) do
+ActiveRecord::Schema.define(version: 20151006120527) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -483,6 +483,18 @@ ActiveRecord::Schema.define(version: 20150908133724) do
     t.datetime "fab10_claimed_at"
     t.integer  "fab10_attendee_id"
     t.boolean  "fab10_email_sent"
+    t.string   "vimeo"
+    t.string   "flickr"
+    t.string   "youtube"
+    t.string   "drive"
+    t.string   "dropbox"
+    t.string   "twitter"
+    t.string   "facebook"
+    t.string   "web"
+    t.string   "github"
+    t.string   "bitbucket"
+    t.string   "googleplus"
+    t.string   "instagram"
   end
 
   add_index "users", ["fab10_coupon_code"], name: "index_users_on_fab10_coupon_code", unique: true, using: :btree

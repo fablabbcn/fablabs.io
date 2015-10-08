@@ -19,6 +19,9 @@
                 Joined #{time_ago_in_words(@user.created_at)} ago.
         .row
           .columns.large-12
+            = render 'social_fields'
+        .row
+          .columns.large-12
             - if @user.employees.with_approved_state.any?
               %ul
                 Works at:
