@@ -84,7 +84,19 @@ private
       :avatar_src,
       :use_metric,
       :bio,
-      :url
+      :url,
+      :vimeo,
+      :flickr,
+      :youtube,
+      :drive,
+      :dropbox,
+      :twitter,
+      :facebook,
+      :web,
+      :github,
+      :bitbucket,
+      :googleplus,
+      :instagram
     )
   end
 

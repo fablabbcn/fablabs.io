@@ -4,6 +4,7 @@ class AddFieldsToUsers < ActiveRecord::Migration
     add_column :users, :flickr, :string
     add_column :users, :youtube, :string
     add_column :users, :drive, :string
+    add_column :users, :dropbox, :string
     add_column :users, :twitter, :string
     add_column :users, :facebook, :string
     add_column :users, :web, :string
