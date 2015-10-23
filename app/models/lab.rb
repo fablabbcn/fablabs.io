@@ -44,6 +44,8 @@ class Lab < ActiveRecord::Base
   validates_presence_of :name, :country_code, :slug#, :creator
   validates_presence_of :address_1, :kind, on: :create
 
+  validates_acceptance_of :network, :programs, :tools, :accept => true, message: 'You must agree to our terms and conditions.'
+
   validates :slug, format: {:with => /\A[a-zA-Z0-9]+\z/ }, allow_nil: true, allow_blank: true, length: { minimum: 3 }
   validates_format_of :email, :with => /\A(.+)@(.+)\z/, allow_blank: true
   validates_uniqueness_of :name, :slug, case_sensitive: false

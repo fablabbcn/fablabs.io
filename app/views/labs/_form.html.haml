@@ -21,6 +21,23 @@
           = m.humanize.titleize
 
   %fieldset
+    %legend Terms and conditions
+    .row
+      = f.radio_button :tools, 1
+      %label.radio{style: "width: 80%;"}
+        Tools: The submitted Fab Lab has a compatible set of tools related with the official fab lab inventory.
+
+    .row
+      = f.radio_button :network, 1
+      %label.radio{style: "width: 80%;"}
+        Network: The submitted Fab Lab commits to participate in the network activities: regional meetings, FABX conferences.
+
+    .row
+      = f.radio_button :programs, 1
+      %label.radio{style: "width: 80%;"}
+        Programs: Our staff is (or will be) trained in the Fab Academy or compatible programs.
+
+  %fieldset
     %legend Description
 
     = f.input :blurb, as: 'text', hint: 'A very brief overview of the lab, maybe include what it specializes in. <span id="description-count"></span> characters available.'.html_safe, input_html: { rows: 3, data: { limit: 200, counter: '#description-count'} }

@@ -5,8 +5,6 @@ window.projects = []
 window.map = null
 window.showingContacts = false
 
-osmAttrib = 'Map data © <a href="http://www.openstreetmap.org" target="_blank">OpenStreetMap</a> contributors'
-
 down = false
 
 windowHeight = ->
@@ -61,7 +59,11 @@ $(window).load ->
 
   if $(".radio")
     $(".radio").click ->
-      console.log $($($(this).parent()).children()[0]).click()
+      val = $($($(this).parent()).children()[0]).is ':checked'
+      if val
+        console.log $($($(this).parent()).children()[0]).attr 'checked', false
+      else
+        $($($(this).parent()).children()[0]).click()
 
   if ($("#project_documents_attributes_image")[0])
     val = $("#project_documents_attributes_image")[0].value
@@ -129,9 +131,11 @@ $(window).load ->
         templateSelection: formatLabSelection
 
   if $('body').hasClass('c-projects a-map')
-
-    map = L.map('map', { scrollWheelZoom: true, zoomControl: false }).setView([50, 0], 2 )
-
+    L.mapbox.accessToken = 'pk.eyJ1IjoidG9tYXNkaWV6IiwiYSI6ImRTd01HSGsifQ.loQdtLNQ8GJkJl2LUzzxVg'
+    map = L.mapbox.map('map', 'mapbox.pencil', { scrollWheelZoom: true, zoomControl: false }).setView([
+      50
+      0
+    ], 2)
     # removed for ios7 see: https://github.com/Leaflet/Leaflet.markercluster/issues/279
     if !navigator.userAgent.match(/(iPad|iPhone|iPod touch);.*CPU.*OS 7_\d/i)
       window.markers = new L.MarkerClusterGroup
@@ -146,7 +150,6 @@ $(window).load ->
 
     window.map = map
     new L.Control.Zoom({ position: 'topleft' }).addTo(map)
-    L.tileLayer('https://{s}.tiles.mapbox.com/v3/johnrees.ined2i0c/{z}/{x}/{y}.png', { attribution: osmAttrib, maxZoom: 14 }).addTo(map)
     navigator.geolocation.getCurrentPosition((position)->
       map.setView([position.coords.latitude, position.coords.longitude], 4)
     )
