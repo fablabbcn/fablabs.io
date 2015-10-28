@@ -19,14 +19,19 @@
 
       - if @machine.tags.length > 0
         .heading Tags
-        %ul
-          - if @machine.inventory_item?
+        %ul.taglist.no-bullets
+          = icon('tags')
+          - @machine.tags.each do |tag|
+            %li.gray
+              %strong
+                = link_to "##{tag}", machines_path(tag: tag)
+
+        - if @machine.inventory_item?
+          %ul.no-bullets
             %li
               = link_to "http://fab.cba.mit.edu/about/fab/inv.html", class: "button tiny", data: { tooltip: true }, title: "This is included in the Official Fab Lab hardware specification", style: "margin: 0" do
                 = fa_icon "tag"
                 Fab Lab Inventory Item
-          - @machine.tags.each do |tag|
-            %li= link_to tag, machines_path(tag: tag)
 
       - if @machine.links.length > 0
         .heading Useful Links
@@ -43,9 +48,11 @@
           %li= (node == @machine) ? node : link_to(node, node)
 
       .heading Available at
-      %ul
+      %ul.no-bullets
         - @machine.labs.each do |lab|
-          %li= link_to lab, lab
+          %li
+            = image_tag hocho(lab.avatar, "o=t&q=80&d=90x90"), class: 'avatar tiny'
+            = link_to lab, lab
 
       -# %h4 Discussions
       -# = render @machine.discussions
@@ -55,7 +62,10 @@
   .columns.large-12
     - if current_or_null_user.can_update?(@machine)
       = link_to "Edit", edit_machine_path(@machine), class: 'button'
-      
+    - if current_or_null_user.can_delete?(@machine)
+      = link_to icon('trash-o'), @machine, method: :delete, class: 'button red', data: { confirm: "Are you sure?" }
+
+
 .row
   #disqus_thread
   :javascript

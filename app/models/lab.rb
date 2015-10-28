@@ -38,6 +38,9 @@ class Lab < ActiveRecord::Base
   has_many :machines, through: :facilities, source: :thing
   has_many :projects
 
+  has_many :documents, as: :documentable, dependent: :destroy
+  accepts_nested_attributes_for :documents
+
   belongs_to :creator, class_name: 'User'
   belongs_to :referee, class_name: 'Lab'
 

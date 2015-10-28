@@ -65,12 +65,12 @@ $(window).load ->
       else
         $($($(this).parent()).children()[0]).click()
 
-  if ($("#project_documents_attributes_image")[0])
-    val = $("#project_documents_attributes_image")[0].value
+  if ($(".document_image")[0])
+    val = $(".document_image")[0].value
     $("#file-input-name").text(val)
 
-    $("#project_documents_attributes_image").on "change", ->
-      val = $("#project_documents_attributes_image")[0].value
+    $(".document_image").on "change", ->
+      val = $(".document_image")[0].value
       $("#file-input-name").text(val)
 
   if ($("#project-container"))
@@ -106,8 +106,8 @@ $(window).load ->
       templateResult: formatUser
       templateSelection: formatUserSelection
 
-    if $("#collaborations_attributes")
-      $("#collaborations_attributes").select2
+    if $(".lab_selection_attributes")
+      $(".lab_selection_attributes").select2
         placeholder: "Select a lab..",
         allowClear: true
         ajax:

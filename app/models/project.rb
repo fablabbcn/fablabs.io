@@ -22,7 +22,7 @@ class Project < ActiveRecord::Base
   has_many :devices, through: :machineries
   accepts_nested_attributes_for :machineries
 
-  has_many :documents, dependent: :destroy
+  has_many :documents, as: :documentable, dependent: :destroy
   accepts_nested_attributes_for :documents
 
   has_many :steps, dependent: :destroy

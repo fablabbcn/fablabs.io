@@ -1,13 +1,15 @@
 class DocumentsController < ApplicationController
+  include DocumentsOperations
 
   def destroy
     @document = Document.find(params[:id])
-    @project = @document.project
-    if authorize_action_for @project
+    @item = @document.documentable
+    @type = @document.documentable_type
+    if authorize_action_for @item
       @document.delete
-      redirect_to edit_project_path(@project), notice: "Document deleted"
+      redirect_to edit_object_path(@item, @type), notice: "Document deleted"
     else
-      redirect_to project_path(@project), notice: "You cannot delete this document"
+      redirect_to object_path(@item, @type), notice: "You cannot delete this document"
     end
   end
 
