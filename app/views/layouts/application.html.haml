@@ -14,12 +14,19 @@
       %meta{content: "https://www.fablabs.io/logo.jpg", property: "og:image"}/
       %meta{content: "A platform for connecting Fab Labs and their users from around the world.", property: "og:description"}/
     %meta{content: "1349222175", property: "fb:admins"}/
-
     = render 'application/map_icons'
+
     %link{rel: "canonical", href: "#{request.url.split('?').first}"}
+    %link{rel: "stylesheet", href: "https://api.mapbox.com/mapbox.js/v2.2.2/mapbox.css"}
+    %link{rel: "stylesheet", href: "https://api.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/MarkerCluster.css"}
+    %link{rel: "stylesheet", href: "https://api.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/MarkerCluster.Default.css"}
+
     = stylesheet_link_tag "//fonts.googleapis.com/css?family=Open+Sans:400|Montserrat"
     = stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true
-    = javascript_include_tag "//maps.googleapis.com/maps/api/js?sensor=false&libraries=places", "//cdnjs.cloudflare.com/ajax/libs/leaflet/0.6.4/leaflet.js", "//api.filepicker.io/v1/filepicker.js"
+    = javascript_include_tag "//maps.googleapis.com/maps/api/js?sensor=false&libraries=places", "//api.filepicker.io/v1/filepicker.js"
+    = javascript_include_tag "https://api.mapbox.com/mapbox.js/v2.2.2/mapbox.js"
+    = javascript_include_tag "https://api.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/leaflet.markercluster.js"
+
     = javascript_include_tag "application", "data-turbolinks-track" => true
     = javascript_include_tag "vendor/modernizr"
     %link{type: "text/plain", rel: "author", href: "/humans.txt"}

@@ -2,8 +2,6 @@ window.labs = []
 window.map = null
 window.showingContacts = false
 
-osmAttrib = 'Map data © <a href="http://www.openstreetmap.org" target="_blank">OpenStreetMap</a> contributors'
-
 down = false
 
 ready = ->
@@ -43,9 +41,11 @@ ready = ->
 
   if $('body').hasClass('c-labs a-show') and $('#lab-map').length > 0
     location = [$('#lab-map').data('latitude'), $('#lab-map').data('longitude')]
-    labmap = L.map('lab-map', { scrollWheelZoom: false, zoomControl: false, loadingControl: true }).setView(location, 14 )
+
+    L.mapbox.accessToken = 'pk.eyJ1IjoidG9tYXNkaWV6IiwiYSI6ImRTd01HSGsifQ.loQdtLNQ8GJkJl2LUzzxVg'
+    labmap = L.mapbox.map('lab-map', 'mapbox.pencil', { scrollWheelZoom: false, zoomControl: false, loadingControl: true }).setView(location, 14 )
+
     new L.Control.Zoom({ position: 'topright' }).addTo(labmap)
-    L.tileLayer('https://{s}.tiles.mapbox.com/v3/johnrees.ined2i0c/{z}/{x}/{y}.png', { attribution: osmAttrib }).addTo(labmap)
     icon = L.icon({
       iconUrl: window.mapIcons[$('#lab-map').data('kind-name')]
       iconSize:     [35, 35]
@@ -76,8 +76,11 @@ ready = ->
     $("input#lab_longitude").val result.geometry.location.lng()
 
   if $('body').hasClass('c-labs a-map') or $('body').hasClass('a-embed')
-
-    map = L.map('map', { scrollWheelZoom: true, zoomControl: false }).setView([50, 0], 2 )
+    L.mapbox.accessToken = 'pk.eyJ1IjoidG9tYXNkaWV6IiwiYSI6ImRTd01HSGsifQ.loQdtLNQ8GJkJl2LUzzxVg'
+    map = L.mapbox.map('map', 'mapbox.pencil', { scrollWheelZoom: true, zoomControl: false }).setView([
+      50
+      0
+    ], 2)
 
     # removed for ios7 see: https://github.com/Leaflet/Leaflet.markercluster/issues/279
     if !navigator.userAgent.match(/(iPad|iPhone|iPod touch);.*CPU.*OS 7_\d/i)
@@ -91,9 +94,7 @@ ready = ->
     else
       window.markers = map
 
-    window.map = map
     new L.Control.Zoom({ position: 'topleft' }).addTo(map)
-    L.tileLayer('https://{s}.tiles.mapbox.com/v3/johnrees.ined2i0c/{z}/{x}/{y}.png', { attribution: osmAttrib, maxZoom: 14 }).addTo(map)
     navigator.geolocation.getCurrentPosition((position)->
       map.setView([position.coords.latitude, position.coords.longitude], 4)
     )
