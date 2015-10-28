@@ -23,7 +23,7 @@ module ProjectsOperations
   end
 
   def map_projects
-    Project.joins(:collaborations).includes(:lab).references(:lab).collect { |p| hash_project(p) }
+    Project.joins(:collaborations).includes(:lab).where.not('labs.id' => nil).collect { |p| hash_project(p) }
   end
 
   def search_projects(query)
