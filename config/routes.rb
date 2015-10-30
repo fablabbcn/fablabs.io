@@ -92,6 +92,7 @@ Fablabs::Application.routes.draw do
     resources :contributions, only: [:destroy]
     resources :collaborations, only: [:destroy]
     resources :documents, only: [:destroy]
+    resources :facilities, only: [:destroy]
 
     resources :users do
       resources :favourites, only: [:create, :destroy]

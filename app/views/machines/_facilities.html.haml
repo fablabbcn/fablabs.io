@@ -17,4 +17,4 @@
 
   .columns.large-9
     - @selected = @machine.facilities.collect
-    = select_tag :facilities_attributes, options_from_collection_for_select(@selected, :id, :slug), { multiple: true, size: 10, name: 'machine[facilities_attributes][][lab_id]', class: 'lab_selection_attributes'}
+    = select_tag :facilities_attributes, options_from_collection_for_select(@selected, :id, :lab_id), { multiple: true, size: 10, name: 'machine[facilities_attributes][][lab_id]', class: 'lab_selection_attributes'}
