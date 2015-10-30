@@ -3,23 +3,23 @@
     %span#file-input-name
   .columns.large-9
     = f.label :images_files
-    = f.fields_for :documents_attributes, project.documents do |d|
+    = f.fields_for :documents_attributes, machine.documents do |d|
       %span#file-click.button.button-file
         Pick file
-        = d.file_field "image", name: "project[documents_attributes][][image]", class: "document_image", multiple: true
+        = d.file_field "image", name: "machine[documents_attributes][][image]", class: "document_image", multiple: true
 %hr/
 .row
   .columns.large-3
   .columns.large-9
-    - if @project.documents.present?
+    - if @machine.documents.present?
       = f.label "Thumbnails"
       %p
         Select the image that you would like to use as cover image.
       %ul
-        - @project.documents.each do |document|
+        - @machine.documents.each do |document|
           %li.thumbs
             %div
-              = f.radio_button :cover, document.id
+              = f.radio_button :photo_src, document.image.url(:large)
               %label.radio
                 = document.id
             %h4

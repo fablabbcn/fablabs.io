@@ -47,7 +47,7 @@
           %ul.taglist
             = icon('tags')
             - @project.tag_list.each do |tag|
-              %li
+              %li.gray
                 %strong
                   = link_to "##{tag}", "/projects/tags?q=#{tag}"
 

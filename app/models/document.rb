@@ -1,5 +1,5 @@
 class Document < ActiveRecord::Base
-  belongs_to :project
+  belongs_to :documentable, :polymorphic => :true
 
   has_attached_file :image,
                     :styles => { :large => "1200x1200>",

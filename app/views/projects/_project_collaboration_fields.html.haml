@@ -16,4 +16,4 @@
 
 .columns.large-8
   - @selected = @project.collaborators.collect
-  = select_tag :collaborations_attributes, options_from_collection_for_select(@selected, :id, :slug), { multiple: true, size: 10, name: 'project[collaborations_attributes][][collaborator_id]'}
+  = select_tag :collaborations_attributes, options_from_collection_for_select(@selected, :id, :slug), { multiple: true, size: 10, name: 'project[collaborations_attributes][][collaborator_id]', class: 'lab_selection_attributes'}
