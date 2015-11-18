@@ -5,7 +5,7 @@
 - else
   - cover = project.documents.first.image.url(:medium)
 
-- if cover == 'none'
+- if cover == 'none' or cover.nil?
   .project-title
     = link_to project do
       %span.project-title-span= truncate project.title, length: 25
