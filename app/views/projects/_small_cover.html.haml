@@ -1,9 +1,11 @@
 - if project.documents.empty?
   - cover = 'none'
-- elsif project.cover.present?
+- elsif project.cover.present? and project.documents.find(project.cover)
   - cover = project.documents.find(project.cover).image.url(:medium)
-- else
+- elsif project.documents.first
   - cover = project.documents.first.image.url(:medium)
+- else
+  - cover = 'none'
 
 - if cover == 'none' or cover.nil?
   .project-title
