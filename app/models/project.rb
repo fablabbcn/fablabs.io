@@ -65,6 +65,22 @@ class Project < ActiveRecord::Base
     end
   end
 
+  def project_cover
+    begin
+      if self.documents.empty?
+        return 'none'
+      elsif self.cover.present?
+        return self.documents.find(self.cover).image.url(:medium)
+      elsif self.documents.first
+        return self.documents.first.image.url(:medium)
+      else
+        return 'none'
+      end
+    rescue ActiveRecord::RecordNotFound
+      return 'none'
+    end
+  end
+
   protected
     def total_grades
       total = 0

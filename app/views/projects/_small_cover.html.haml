@@ -1,13 +1,5 @@
-- if project.documents.empty?
-  - cover = 'none'
-- elsif project.cover.present? and project.documents.find(project.cover)
-  - cover = project.documents.find(project.cover).image.url(:medium)
-- elsif project.documents.first
-  - cover = project.documents.first.image.url(:medium)
-- else
-  - cover = 'none'
-
-- if cover == 'none' or cover.nil?
+- cover = project.project_cover
+- if cover == 'none'
   .project-title
     = link_to project do
       %span.project-title-span= truncate project.title, length: 25
