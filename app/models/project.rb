@@ -67,7 +67,7 @@ class Project < ActiveRecord::Base
 
   def project_cover
     begin
-      if self.documents.empty? or self.cover.nil?
+      if self.documents.empty?
         return 'none'
       elsif self.cover.present?
         return self.documents.find(self.cover).image.url(:medium)
