@@ -43,7 +43,7 @@ ready = ->
     location = [$('#lab-map').data('latitude'), $('#lab-map').data('longitude')]
 
     L.mapbox.accessToken = 'pk.eyJ1IjoidG9tYXNkaWV6IiwiYSI6ImRTd01HSGsifQ.loQdtLNQ8GJkJl2LUzzxVg'
-    labmap = L.mapbox.map('lab-map', 'mapbox.pencil', { scrollWheelZoom: false, zoomControl: false, loadingControl: true }).setView(location, 14 )
+    labmap = L.mapbox.map('lab-map', 'mapbox.light', { scrollWheelZoom: false, zoomControl: false, loadingControl: true }).setView(location, 14 )
 
     new L.Control.Zoom({ position: 'topright' }).addTo(labmap)
     icon = L.icon({
@@ -77,7 +77,7 @@ ready = ->
 
   if $('body').hasClass('c-labs a-map') or $('body').hasClass('a-embed')
     L.mapbox.accessToken = 'pk.eyJ1IjoidG9tYXNkaWV6IiwiYSI6ImRTd01HSGsifQ.loQdtLNQ8GJkJl2LUzzxVg'
-    map = L.mapbox.map('map', 'mapbox.pencil', { scrollWheelZoom: true, zoomControl: false }).setView([
+    map = L.mapbox.map('map', 'mapbox.light', { scrollWheelZoom: true, zoomControl: false }).setView([
       50
       0
     ], 2)
