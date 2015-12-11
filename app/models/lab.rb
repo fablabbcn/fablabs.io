@@ -134,8 +134,13 @@ class Lab < ActiveRecord::Base
     end
   end
 
-  def referee_approve
-    employees.update_all(workflow_state: :referee_approved)
+  def referee_approve(referee_lab_id)
+    referee_approval_process.referee_labs.create(lab_id: referee_lab_id)
+    if referee_approval_process.is_approved?
+      approve
+    elsif needs_admin_approval?
+      
+    end
   end
 
   def add_more_info

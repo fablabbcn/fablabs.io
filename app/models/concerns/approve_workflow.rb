@@ -24,6 +24,7 @@ module ApproveWorkflow
       end
       state :referee_approved do
         event :approve, transitions_to: :approved
+        event :needs_admin_review, transition_to: :admin_rewieved
         event :need_more_info, transitions_to: :more_info_needed
         event :reject, transitions_to: :rejected
       end
