@@ -5,32 +5,41 @@ module ApproveWorkflow
 
     base.workflow do
       state :unverified do
-        event :referee_approve, transition_to: :referee_approved
-        event :approve, transitions_to: :approved
-        event :need_more_info, transitions_to: :more_info_needed
-        event :reject, transitions_to: :rejected
+        event :referee_approves, transition_to: :referee_approval
+        event :request_more_info, transition_to: :need_more_info
+        event :referee_requests_admin_approval, transition_to: :admin_approval
+        event :referee_rejects, transition_to: :might_need_review
       end
-      state :more_info_needed do
-        event :add_more_info, transitions_to: :more_info_added
-        event :referee_approve, transition_to: :referee_approved
-        event :approve, transitions_to: :approved
-        event :reject, transitions_to: :rejected
+      state :need_more_info do
+        event :lab_adds_info, transition_to: :more_info_added
       end
-      state :more_info_added do
-        event :need_more_info, transitions_to: :more_info_needed
-        event :referee_approve, transition_to: :referee_approved
-        event :approve, transitions_to: :approved
-        event :reject, transitions_to: :rejected
+      state :referee_approval do
+        event :referee_approves, transition_to: :approved
+        event :referee_rejects, transition_to: :undecided
+        event :request_more_info, transition_to: :need_more_info
+        event :referee_requests_admin_approval, transition_to: :admin_approval
       end
-      state :referee_approved do
-        event :approve, transitions_to: :approved
-        event :needs_admin_review, transition_to: :admin_rewieved
-        event :need_more_info, transitions_to: :more_info_needed
-        event :reject, transitions_to: :rejected
+      state :undecided do
+        event :referee_approves, transition_to: :approved
+        event :referee_rejects, transition_to: :rejected
+        event :request_more_info, transition_to: :need_more_info
+        event :referee_requests_admin_approval, transition_to: :admin_approval
+      end
+      state :might_need_review do
+        event :referee_approves, transition_to: :undecided
+        event :referee_rejects, transition_to: :rejected
+        event :request_more_info, transition_to: :need_more_info
+        event :referee_requests_admin_approval, transition_to: :admin_approval
+      end
+      state :admin_approval do
+        event :admin_approves, transition_to: :approved
+        event :admin_rejects, transition_to: :rejected
+        event :request_more_info, transition_to: :need_more_info
       end
       state :approved do
         event :remove, transitions_to: :removed
       end
+      state :more_info_added
       state :rejected
       state :removed
     end

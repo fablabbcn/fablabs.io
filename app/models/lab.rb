@@ -32,7 +32,6 @@ class Lab < ActiveRecord::Base
   has_many :discussions, as: :discussable
   has_many :employees
   has_many :links, as: :linkable
-  has_many :referred_labs, foreign_key: 'referee_id', class_name: 'Lab'
   has_many :role_applications
   has_many :facilities
   has_many :machines, through: :facilities, source: :thing
@@ -43,7 +42,10 @@ class Lab < ActiveRecord::Base
 
   belongs_to :creator, class_name: 'User'
   belongs_to :referee, class_name: 'Lab'
-  belongs_to :refere_approval_process
+
+  has_many :referee_approval_processes
+  has_many :referees, through: :referee_approval_processes, source: :referee_lab
+  has_many :referred_labs, through: :referee_approval_processes, source: :referred_lab
 
   validates_presence_of :name, :country_code, :slug#, :creator
   validates_presence_of :address_1, :kind, on: :create
@@ -134,22 +136,41 @@ class Lab < ActiveRecord::Base
     end
   end
 
-  def referee_approve(referee_lab_id)
-    referee_approval_process.referee_labs.create(lab_id: referee_lab_id)
-    if referee_approval_process.is_approved?
-      approve
-    elsif needs_admin_approval?
-      
-    end
+  def referee_approves(referee_lab_id)
+
   end
 
-  def add_more_info
-    employees.update_all(workflow_state: :more_info_added)
+  def request_more_info
   end
 
-  def need_more_info
-    employees.update_all(workflow_state: :more_info_needed)
+  def referee_requests_admin_approval
   end
+
+  def referee_rejects
+
+  end
+
+  def lab_adds_info
+  end
+
+  def admin_approves
+  end
+
+  def admin_rejects
+  end
+
+  def more_info_added
+  end
+
+
+
+  # def add_more_info
+  #   employees.update_all(workflow_state: :more_info_added)
+  # end
+  #
+  # def need_more_info
+  #   employees.update_all(workflow_state: :more_info_needed)
+  # end
 
   def approve
     employees.update_all(workflow_state: :approved)
