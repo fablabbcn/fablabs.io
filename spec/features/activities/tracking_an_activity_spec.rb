@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 feature "Tracking an activity" do
-
   given(:lab) { FactoryGirl.create(:lab) }
 
   scenario "admin updates a lab" do
@@ -21,8 +20,7 @@ feature "Tracking an activity" do
 
   scenario "employee is approved" do
     sign_in_superadmin
-    lab = FactoryGirl.create(:lab)
-    lab.approve!
+    lab = FactoryGirl.create(:lab, workflow_state: 'approved')
     employee = FactoryGirl.create(:employee, lab: lab)
     visit lab_employees_path(lab)
     click_button "Approve"

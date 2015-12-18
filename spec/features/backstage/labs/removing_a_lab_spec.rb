@@ -4,8 +4,7 @@ feature "Removing a lab" do
 
   scenario "as an admin" do
     sign_in_superadmin
-    lab = FactoryGirl.create(:lab)
-    lab.approve!
+    lab = FactoryGirl.create(:lab, workflow_state: 'approved')
     visit backstage_lab_path(lab)
     click_button "Remove Lab"
     expect(page).to have_content("Lab removed")
