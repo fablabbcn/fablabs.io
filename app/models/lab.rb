@@ -3,6 +3,7 @@ class Lab < ActiveRecord::Base
   include Authority::Abilities
   include Workflow
   include ApproveWorkflow
+  include LabApproveMethods
 
   self.authorizer_name = 'LabAuthorizer'
   resourcify
@@ -134,47 +135,6 @@ class Lab < ActiveRecord::Base
     else
       'https://i.imgur.com/iymHWkm.png'
     end
-  end
-
-  def referee_approves(referee_lab_id)
-
-  end
-
-  def request_more_info
-  end
-
-  def referee_requests_admin_approval
-  end
-
-  def referee_rejects
-
-  end
-
-  def lab_adds_info
-  end
-
-  def admin_approves
-  end
-
-  def admin_rejects
-  end
-
-  def more_info_added
-  end
-
-
-
-  # def add_more_info
-  #   employees.update_all(workflow_state: :more_info_added)
-  # end
-  #
-  # def need_more_info
-  #   employees.update_all(workflow_state: :more_info_needed)
-  # end
-
-  def approve
-    employees.update_all(workflow_state: :approved)
-    creator.add_role :admin, self
   end
 
   def to_s

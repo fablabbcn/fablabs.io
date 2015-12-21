@@ -6,7 +6,7 @@ feature "Approving a lab" do
     sign_in_superadmin
     lab = FactoryGirl.create(:lab)
     visit backstage_lab_path(lab)
-    click_button "Approve Lab"
+    click_button "Approve"
     expect(page).to have_content("Lab approved")
     expect(last_email.to).to include(lab.creator.email)
   end

@@ -6,7 +6,7 @@ feature "Rejecting a lab" do
     sign_in_superadmin
     lab = FactoryGirl.create(:lab)
     visit backstage_lab_path(lab)
-    click_button "Reject Lab"
+    click_button "Reject"
     expect(page).to have_content("Lab rejected")
     expect(last_email.to).to include(lab.creator.email)
   end
@@ -14,9 +14,9 @@ feature "Rejecting a lab" do
   scenario "as an admin rejecting a rejected lab" do
     sign_in_superadmin
     lab = FactoryGirl.create(:lab)
-    lab.reject!
+    lab.workflow_state = :rejected
     visit backstage_lab_path(lab)
-    expect(page).to_not have_link("Reject Lab")
+    expect(page).to_not have_link("Reject")
   end
 
 end

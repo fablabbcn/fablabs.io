@@ -102,15 +102,19 @@ describe Lab do
     end
 
     it "can be removed" do
-      lab.approve!
-      lab.remove!
+      superadmin = FactoryGirl.create(:user)
+      superadmin.add_role :superadmin
+      lab.approve(superadmin)
+      lab.remove(superadmin)
       expect(lab).to be_removed
       expect(Lab.with_removed_state).to include(lab)
       expect(Lab.with_approved_state).to_not include(lab)
     end
 
     it "can be approved" do
-      lab.approve!
+      superadmin = FactoryGirl.create(:user)
+      superadmin.add_role :superadmin
+      lab.approve(superadmin)
       expect(lab).to be_approved
       expect(Lab.with_approved_state).to include(lab)
     end
@@ -244,8 +248,7 @@ describe Lab do
     end
 
     it "has needs_admin?" do
-      lab = FactoryGirl.create(:lab)
-      lab.approve!
+      lab = FactoryGirl.create(:lab, workflow_state: :approved)
       User.with_role(:admin, lab).delete_all
       expect(lab.needs_admin?).to be_true
       expect(@superadmin).to have_role(:superadmin)
