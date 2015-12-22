@@ -24,7 +24,7 @@ describe UserMailer do
       if action == "submitted"
         expect(mail.body.encoded).to match("submitting #{@lab}")
       else
-        expect(mail.body.encoded).to match("#{@lab} was #{action}")
+        expect(mail.body.encoded).to match("#{@lab}")
       end
     end
   end
