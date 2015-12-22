@@ -17,9 +17,9 @@ module LabsOperations
     end
   end
 
-  def lab_send_action(verb)
-    UserMailer.delay.send("lab_#{verb}", @lab.id)
-    RefereeMailer.delay.send("lab_#{verb}", @lab.id)
+  def lab_send_action(verbed)
+    UserMailer.delay.send("lab_#{verbed}", @lab.id)
+    RefereeMailer.delay.send("lab_#{verbed}", @lab.id)
   end
 
   private

@@ -120,15 +120,19 @@ describe Lab do
     end
 
     it "can be rejected" do
-      lab.reject!
+      superadmin = FactoryGirl.create(:user)
+      superadmin.add_role :superadmin
+      lab.reject(superadmin)
       expect(lab).to be_rejected
       expect(Lab.with_rejected_state).to include(lab)
       expect(Lab.with_approved_state).to_not include(lab)
     end
 
     it "adds employees and makes creator admin when approved" do
+      superadmin = FactoryGirl.create(:user)
+      superadmin.add_role :superadmin
       expect(lab.creator).to_not have_role(:admin, lab)
-      lab.approve!
+      lab.approve(superadmin)
       expect(lab.creator).to have_role(:admin, lab)
       expect(lab.creator).to_not have_role(:admin)
       expect(lab.employees).to eq(lab.employees.with_approved_state)

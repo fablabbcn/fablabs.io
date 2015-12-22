@@ -43,6 +43,7 @@ module LabApproveMethods
     votes_up = referee_approval_processes.where(approved: true).count
     votes_down = referee_approval_processes.where(approved: false).count
     if votes_up >= 2
+      update_attributes(workflow_state: :approved)
       employees.update_all(workflow_state: :approved)
     elsif votes_up == 1 and votes_down == 1
       update_attributes(workflow_state: :undecided)
@@ -52,11 +53,13 @@ module LabApproveMethods
       update_attributes(workflow_state: :might_need_review)
     elsif votes_down >=2
       employees.update_all(workflow_state: :rejected)
+      update_attributes(workflow_state: :rejected)
     end
   end
 
   def approve(admin)
     if admin.has_role? :superadmin
+      update_attributes(workflow_state: :approved)
       employees.update_all(workflow_state: :approved)
       creator.add_role :admin, self
     else
@@ -66,6 +69,7 @@ module LabApproveMethods
 
   def reject(admin)
     if admin.has_role? :superadmin
+      update_attributes(workflow_state: :rejected)
       employees.update_all(workflow_state: :rejected)
     else
       consensus
@@ -74,6 +78,7 @@ module LabApproveMethods
 
   def remove(admin)
     if admin.has_role? :superadmin
+      update_attributes(workflow_state: :removed)
       employees.update_all(workflow_state: :removed)
     else
       raise 'Operation not permitted'

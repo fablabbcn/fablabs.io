@@ -13,7 +13,7 @@ describe UserMailer do
     removed
     referee_approved
     referee_rejected
-    more_info_needed
+    requested_more_info
     more_info_added
   ).each do |action|
     it "lab_#{action} notification" do

@@ -13,6 +13,7 @@ feature "Rejecting a lab" do
 
   scenario "as an admin rejecting a rejected lab" do
     sign_in_superadmin
+    referee = FactoryGirl.create(:lab, referee: referee)
     lab = FactoryGirl.create(:lab)
     lab.workflow_state = :rejected
     visit backstage_lab_path(lab)
