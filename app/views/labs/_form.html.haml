@@ -5,8 +5,8 @@
     %fieldset
       %legend
         Important Information
-      = f.association :referee, collection: Lab.approved_referees, hint: "An existing lab MUST be able to verify your application", label: "Referee Lab"
 
+      = render 'referees', :f => f
       = f.input :parent_id, label: "Parent (Supernode) Lab", as: 'select', collection: Lab.with_approved_state.order('name ASC'), hint: "Is this lab connected with a Supernode? If so, which lab?", input_html: { class: 'enhanced' }
 
   %fieldset

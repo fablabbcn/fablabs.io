@@ -21,13 +21,16 @@ feature "Adding a lab" do
       user.verify!
       sign_in user
       visit labs_path
-      click_link "Add a Lab"
+      click_link "Add Lab"
     end
 
     scenario "as a user with valid details" do
       admin = FactoryGirl.create(:user)
       admin.add_role :superadmin
-      choose "Fab Lab"
+      choose "lab_kind_2"
+      choose "lab_tools_1"
+      choose "lab_network_1"
+      choose "lab_programs_1"
       fill_in 'Name', with: 'New Lab'
       fill_in 'lab_description', with: 'An awesome place'
       fill_in 'lab_address_1', with: 'Mars'

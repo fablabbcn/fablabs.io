@@ -3,7 +3,7 @@ require 'spec_helper'
 describe "Listing labs" do
 
   it "approved labs are on index page" do
-    lab = FactoryGirl.create(:lab, workflow_state: 'approved')
+    lab = FactoryGirl.create(:lab, workflow_state: 'approved', name: "Fab Lab BCN")
     visit labs_path
     expect(page).to have_link "Fab Lab BCN"
   end

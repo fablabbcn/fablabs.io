@@ -12,7 +12,7 @@ describe "Viewing a lab" do
     lab = FactoryGirl.create(:lab, name: 'A Lab')
     # expect{visit lab_path(lab)}.to raise_error ActiveRecord::RecordNotFound
     visit lab_path(lab)
-    expect(page).to have_content("not found")
+    expect(page).to have_content("Access Denied")
   end
 
 end

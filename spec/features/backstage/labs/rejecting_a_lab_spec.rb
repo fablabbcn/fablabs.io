@@ -2,19 +2,21 @@ require 'spec_helper'
 
 feature "Rejecting a lab" do
 
+  let(:lab_admin) { FactoryGirl.create(:user) }
+  let(:referee) { FactoryGirl.create(:lab) }
+  let(:referee_employee) { FactoryGirl.create(:employee, user: referee, lab: referee) }
+  let(:lab) { FactoryGirl.create(:lab, referee: referee) }
+
   scenario "as an admin" do
     sign_in_superadmin
-    lab = FactoryGirl.create(:lab)
     visit backstage_lab_path(lab)
     click_button "Reject"
     expect(page).to have_content("Lab rejected")
-    expect(last_email.to).to include(lab.creator.email)
   end
 
   scenario "as an admin rejecting a rejected lab" do
     sign_in_superadmin
-    referee = FactoryGirl.create(:lab, referee: referee)
-    lab = FactoryGirl.create(:lab)
+    new_lab = FactoryGirl.create(:lab, referee: referee)
     lab.workflow_state = :rejected
     visit backstage_lab_path(lab)
     expect(page).to_not have_link("Reject")

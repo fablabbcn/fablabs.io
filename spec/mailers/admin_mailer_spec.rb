@@ -1,8 +1,10 @@
 require "spec_helper"
 
 describe AdminMailer do
-
-  let(:lab) { FactoryGirl.create(:lab) }
+  let(:lab_admin) { FactoryGirl.create(:user) }
+  let(:referee) { FactoryGirl.create(:lab) }
+  let(:referee_employee) { FactoryGirl.create(:employee, user: referee, lab: referee) }
+  let(:lab) { FactoryGirl.create(:lab, referee: referee) }
   let(:user) { FactoryGirl.create(:user) }
   let(:employee) { FactoryGirl.create(:employee, user: user, lab: lab) }
   let(:admin) { FactoryGirl.create(:user, email: 'john@bitsushi.com') }

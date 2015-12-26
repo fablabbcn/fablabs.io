@@ -4,7 +4,7 @@ class UserMailer < ActionMailer::Base
 
   default from: "FabLabs.io <notifications@fablabs.io>"
 
-  %w(submitted approved rejected removed referee_approved referee_rejected more_info_added more_info_needed).each do |action|
+  %w(submitted approved rejected removed referee_approved referee_rejected requested_more_info more_info_added more_info_needed).each do |action|
     define_method("lab_#{action}") do |lab_id|
       begin
         @lab = Lab.find(lab_id)
