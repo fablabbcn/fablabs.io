@@ -1,6 +1,5 @@
 .columns.large-4
-  %label
-    Referees - Select up to 3 referee labs
+  Select 3 referee labs.
   .selections
     %ul
       - @lab.referee_approval_processes.each do |c|
@@ -12,4 +11,6 @@
 
 .columns.large-8
   - @selected = @lab.referee_approval_processes.collect
-  = select_tag :referee_approval_processes_attributes, options_for_select(Lab.approved_referees.collect, @selected), { multiple: true, name: 'lab[referee_approval_processes_attributes][][referee_id]', class: 'referee_approval'}
+  %label{for: "referee_approval_processes_attributes"}
+    Referees
+  = select_tag :referee_approval_processes_attributes, options_for_select(Lab.approved_referees.collect, @selected), { multiple: true, name: 'lab[referee_approval_processes_attributes][][referee_lab_id]', class: 'referee_approval'}

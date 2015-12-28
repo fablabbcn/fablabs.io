@@ -393,11 +393,11 @@ ActiveRecord::Schema.define(version: 20151210105622) do
   add_index "recoveries", ["user_id"], name: "index_recoveries_on_user_id", using: :btree
 
   create_table "referee_approval_processes", force: true do |t|
-    t.integer  "referred_lab_id"
-    t.integer  "referee_lab_id"
     t.boolean  "approved"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "referee_lab_id"
+    t.integer  "referred_lab_id"
   end
 
   add_index "referee_approval_processes", ["referee_lab_id"], name: "index_referee_approval_processes_on_referee_lab_id", using: :btree

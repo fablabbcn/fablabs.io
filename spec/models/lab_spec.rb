@@ -11,7 +11,6 @@ describe Lab do
   it { should have_many(:links) }
   it { should have_many(:events) }
   it { should have_many(:referees).through(:referee_approval_processes)}
-  it { should have_many(:referred_labs).through(:referee_approval_processes)}
   it { should have_many(:role_applications) }
   it { should have_many(:facilities) }
   it { should have_many(:machines).through(:facilities) }

@@ -109,6 +109,10 @@ class LabsController < ApplicationController
     @users = User.all# - User.with_role(:admin) - [current_user]
   end
 
+  def docs
+    render template: "labs/docs/#{params[:page]}"
+  end
+
 private
 
   def allow_iframe
@@ -148,6 +152,7 @@ private
       machine_ids: [ ],
       capabilities: [ ],
       links_attributes: [ :id, :link_id, :url, '_destroy' ],
+      referee_approval_processes_attributes: [:referee_lab_id, '_destroy'],
       employees_attributes: [ :id, :job_title, :description ]
     )
   end

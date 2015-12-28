@@ -1,7 +1,6 @@
 class RefereeApprovalProcess < ActiveRecord::Base
   belongs_to :referee_lab, class_name: 'Lab'
   belongs_to :referred_lab, class_name: 'Lab'
-
   # referee_lab and referred_lab need to be different
 
   def self.approval_ratio

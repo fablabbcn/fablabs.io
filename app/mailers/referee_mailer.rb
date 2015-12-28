@@ -14,7 +14,7 @@ class RefereeMailer < ActionMailer::Base
             mail(to: user.email_string, subject: "[Fablabs.io] #{@lab} #{action.capitalize}")
           end
         elsif @lab.referee_approval_processes
-          @lab.referee_approval_processes.map{ |lab| lab.referee }.each do |ref|
+          @lab.referee_approval_processes.map{ |process| process.referee_lab }.each do |ref|
             users = (ref.direct_admins + [ref.creator]).compact.uniq
             users.each do |user|
               @user = user
