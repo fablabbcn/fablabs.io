@@ -1,13 +1,13 @@
 require "spec_helper"
 
 describe AdminMailer do
-  let(:lab_admin) { FactoryGirl.create(:user) }
-  let(:referee) { FactoryGirl.create(:lab) }
-  let(:referee_employee) { FactoryGirl.create(:employee, user: referee, lab: referee) }
-  let(:lab) { FactoryGirl.create(:lab, referee: referee) }
-  let(:user) { FactoryGirl.create(:user) }
-  let(:employee) { FactoryGirl.create(:employee, user: user, lab: lab) }
-  let(:admin) { FactoryGirl.create(:user, email: 'john@bitsushi.com') }
+  let!(:lab_admin) { FactoryGirl.create(:user) }
+  let!(:referee) { FactoryGirl.create(:lab) }
+  let!(:referee_employee) { FactoryGirl.create(:employee, user: lab_admin, lab: referee) }
+  let!(:lab) { FactoryGirl.create(:lab, referee: referee) }
+  let!(:user) { FactoryGirl.create(:user) }
+  let!(:employee) { FactoryGirl.create(:employee, user: user, lab: lab) }
+  let!(:admin) { FactoryGirl.create(:user, email: 'john@bitsushi.com') }
 
   before(:each) do
     admin.add_role :superadmin
@@ -31,8 +31,8 @@ describe AdminMailer do
 
   it "lab_referee_approved notification" do
     mail = AdminMailer.lab_referee_approved(lab.id)
-    expect(mail.subject).to eq("[#{lab} submitted]")
-    expect(mail.to).to eq(["admin_notifications@fablabs.io"])
+    expect(mail.subject).to eq("[#{lab}] approved by referee")
+    expect(mail.from).to eq(["admin_notifications@fablabs.io"])
     expect(mail.body.encoded).to match("#{backstage_lab_url(lab)}")
   end
 
