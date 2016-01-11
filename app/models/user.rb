@@ -145,13 +145,6 @@ class User < ActiveRecord::Base
     unique_referee_labs.count + referee_labs.count
   end
 
-  def referee_lab(lab_id)
-    lab = Lab.find(lab_id)
-    lab.referee_approval_processes.where(
-      "referee_id IN (?)", self.admin_labs.map{ |u| u.resource_id }
-    ).first
-  end
-
   def recovery_key
     recoveries.last.key if recoveries.any?
   end

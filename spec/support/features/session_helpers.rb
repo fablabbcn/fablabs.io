@@ -21,6 +21,11 @@ module Features
       click_button "Sign in"
     end
 
+    def sign_out(user = nil)
+      user ||= FactoryGirl.create(:user)
+      visit signout_path
+    end
+
     def sign_in_admin_for resource
       admin = FactoryGirl.create(:user)
       admin.add_role :admin, resource

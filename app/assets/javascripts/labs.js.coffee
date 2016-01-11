@@ -13,7 +13,7 @@ ready = ->
   window.userList = new List('students', options)
 
   last_valid_selection = $('.referee_approval').val
-  
+
   $('.referee_approval').change (event) ->
     if $(this).val().length > 3
       $(this).val last_valid_selection
@@ -94,16 +94,16 @@ ready = ->
     ], 2)
 
     # removed for ios7 see: https://github.com/Leaflet/Leaflet.markercluster/issues/279
-    if !navigator.userAgent.match(/(iPad|iPhone|iPod touch);.*CPU.*OS 7_\d/i)
-      window.markers = new L.MarkerClusterGroup
-        showCoverageOnHover: true
-        spiderfyOnMaxZoom: false
-        removeOutsideVisibleBounds: true
-        zoomToBoundsOnClick: true
-        maxClusterRadius: 50
-        disableClusteringAtZoom: 14
-    else
-      window.markers = map
+    # if !navigator.userAgent.match(/(iPad|iPhone|iPod touch);.*CPU.*OS 7_\d/i)
+    #   window.markers = new L.MarkerClusterGroup
+    #     showCoverageOnHover: true
+    #     spiderfyOnMaxZoom: false
+    #     removeOutsideVisibleBounds: true
+    #     zoomToBoundsOnClick: true
+    #     maxClusterRadius: 50
+    #     disableClusteringAtZoom: 14
+    # else
+    window.markers = map
 
     new L.Control.Zoom({ position: 'topleft' }).addTo(map)
     navigator.geolocation.getCurrentPosition((position)->

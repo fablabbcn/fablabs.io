@@ -35,9 +35,11 @@ feature "Adding a lab" do
       choose "lab_tools_1"
       choose "lab_network_1"
       choose "lab_programs_1"
-      select 'AS220 Labs', from: 'Referees'
-      select 'Fab Lab BCN', from: 'Referees'
-      select 'Fab Lab Cascina', from: 'Referees'
+      choose "lab_charter_1"
+      choose "lab_public_1"
+      select 'as220labs', from: 'Referees'
+      select 'fablabbcn', from: 'Referees'
+      select 'fablabcascina', from: 'Referees'
       fill_in 'Name', with: 'New Lab'
       fill_in 'lab_description', with: 'An awesome place'
       fill_in 'lab_address_1', with: 'Mars'

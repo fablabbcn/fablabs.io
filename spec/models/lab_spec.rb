@@ -52,7 +52,7 @@ describe Lab do
   end
 
   it "has Kinds" do
-    expect(Lab::Kinds).to eq(%w(planned_fab_lab mini_fab_lab fab_lab))
+    expect(Lab::Kinds).to eq(%w(planned_fab_lab mini_fab_lab fab_lab supernode))
   end
 
   it "has Capabilities" do

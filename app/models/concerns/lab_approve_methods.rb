@@ -2,17 +2,21 @@ module LabApproveMethods
   extend ActiveSupport::Concern
 
   def referee_approves(referee)
-    referee_lab = referee.referee_lab(@lab.id)
-    referee_process(referee_lab.id).update_attributes(approved: true) unless referee_lab.nil?
+    process = referee_process(referee)
+    process.update_attributes(approved: true) unless process.nil?
+    consensus
   end
 
   def referee_rejects(referee)
-    referee_lab = referee.referee_lab(@lab.id)
-    referee_process(referee_lab.id).update_attributes(approved: false) unless referee_lab.nil?
+    process = referee_process(referee)
+    process.update_attributes(approved: false) unless process.nil?
+    consensus
   end
 
-  def referee_process(referee_lab_id)
-    referee_approval_processes.where(referee_lab_id: referee_lab_id).first
+  def referee_process(referee)
+    referee_approval_processes.where(
+      "referee_lab_id IN (?) AND approved IS ?", referee.admin_labs.map{ |u| u.resource_id }, nil
+    ).first
   end
 
   def request_more_info(user)
@@ -24,7 +28,7 @@ module LabApproveMethods
   end
 
   def referee_requests_admin_approval(referee)
-    if user.is_referee?
+    if referee.is_referee?
       employees.update_all(workflow_state: :admin_approval)
     else
       raise 'Operation not permitted'
@@ -54,6 +58,22 @@ module LabApproveMethods
     elsif votes_down >=2
       employees.update_all(workflow_state: :rejected)
       update_attributes(workflow_state: :rejected)
+    end
+  end
+
+  def guardian
+    votes_up = referee_approval_processes.where(approved: true).count
+    votes_down = referee_approval_processes.where(approved: false).count
+    if votes_up >= 2
+      return 1
+    elsif votes_up == 1 and votes_down == 1
+      return 2
+    elsif votes_up == 1 and votes_down == 0
+      return 3
+    elsif votes_up == 0 and votes_down == 1
+      return 4
+    elsif votes_down >=2
+      return 0
     end
   end
 

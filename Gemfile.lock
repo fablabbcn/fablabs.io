@@ -572,6 +572,7 @@ DEPENDENCIES
   pg_search
   premailer-rails
   private_pub
+  pry
   quiet_assets
   rack-cache
   rack-cors

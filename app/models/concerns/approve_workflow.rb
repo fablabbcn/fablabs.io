@@ -55,7 +55,20 @@ module ApproveWorkflow
       state :approved do
         event :remove, transitions_to: :removed
       end
-      state :more_info_added
+
+      state :more_info_added do
+        event :referee_approves, transition_to: :approved, :if => proc { lab.guardian == 1 }
+        event :referee_approves, transition_to: :undecided, :if => proc { lab.guardian == 2 }
+        event :referee_approves, transition_to: :referee_approval, :if => proc { lab.guardian == 3 }
+        event :referee_approves, transitions_to: :might_need_review, :if => proc { lab.guardian == 4 }
+        event :referee_rejects, transition_to: :rejected, :if => proc { lab.guardian == 0 }
+        event :referee_rejects, transition_to: :might_need_review, :if => proc { lab.guardian == 4 }
+        event :request_more_info, transition_to: :need_more_info
+        event :referee_requests_admin_approval, transition_to: :admin_approval
+        event :approve, transition_to: :approved
+        event :reject, transition_to: :rejected
+        event :remove, transition_to: :removed
+      end
       state :rejected
       state :removed
     end

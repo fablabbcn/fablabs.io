@@ -5,6 +5,7 @@ module LabsOperations
     if @lab.workflow_state == "more_info_needed"
       @lab.update_attributes workflow_state: "more_info_added"
       RefereeMailer.delay.lab_more_info_added(@lab.id)
+      @lab.more_info_added
     end
   end
 
