@@ -131,6 +131,13 @@ $(window).load ->
         templateSelection: formatLabSelection
 
   if $('body').hasClass('c-projects a-map')
+    windowHeight = ->
+      $('#map').css('top', $('#main').offset().top).height($(window).height() - $('#main').offset().top)
+      map.invalidateSize()
+
+    $(window).resize _.debounce(windowHeight,100)
+    $('footer').css('margin-top', '800px')
+
     L.mapbox.accessToken = 'pk.eyJ1IjoidG9tYXNkaWV6IiwiYSI6ImRTd01HSGsifQ.loQdtLNQ8GJkJl2LUzzxVg'
     map = L.mapbox.map('map', 'mapbox.light', { scrollWheelZoom: true, zoomControl: false }).setView([
       50
@@ -169,8 +176,5 @@ $(window).load ->
           window.projects.push(p)
 
     map.addLayer(window.markers)
-
-    $(window).resize _.debounce(windowHeight,100)
-    $('footer').css('margin-top', '600px');
 
   return
