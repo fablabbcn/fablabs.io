@@ -1,0 +1,58 @@
+- title "Labs"
+.row.top
+  .columns.large-8
+    %ul.breadcrumbs
+      %li= link_to Lab.to_s.pluralize, labs_path
+      %li.current= "Docs"
+  .columns.large-4
+    = render "header"
+
+.row
+  - cache ["v1-labsindex-#{I18n.locale}-#{Digest::MD5.hexdigest([params.to_s].to_s)}", Lab.last_updated_at] do
+    .columns.large-8.content
+      .row
+        %p
+          We have recently redesigned the fab lab approval process to minimise the waiting time
+          for labs to get approved.
+        %p
+          Each new lab need to go through the referee approval process in order to get approved on the platform.
+        %p
+          Each lab, need to select three referees lab during the application process. These are trusted labs on our platform.
+          Please note that you can, but you do not have to necessarily select , labs close to you geographically.
+        %p
+          To be approved a lab need to be approved by 2 referees out of the 3 designated. If less than 2/3 referees approve the lab, this is rejected.
+        %p
+          Referees might request more info about the lab. In this case you will receive an email inviting you to add more content to some sections of the lab form.
+        %p
+          Referees can also send a lab for admin approval. In this case, it will be up to the platform admins to approve or not the new lab.
+        %p
+          When submitted, is first assigned the "unverified" state. If one of the referee gives their first approval the lab is moved into the "referee approval" state.
+        %p
+          If the referee rejects, the lab is moved to the "might need review" state. Being in one of the two states doesn't guarantee approval, nor means that the lab will be rejected.
+        %p
+          The lab will be rejected or approved depending on the vote of the other referees and always need to be approved by 2/3 or the referees in order to be recognised as a fablab.
+        %p
+          The following image describe the approval process as a simplified state machine.
+        %p
+          =image_tag "approval_process.png"
+
+
+  .columns.large-4.sidebar-offcanvas
+
+    .heading
+      %strong Download
+      the Fab Labs list
+    %dl.sub-nav
+      %dt Format:
+      %dd{}= link_to "JSON", api_v0_labs_url(format: 'json'), class: 'button tiny'
+    .hint CSV and XLSX (Excel) coming soon.
+
+    .heading
+      %strong Expand
+      the Network
+    - if current_user
+      = link_to new_lab_path, class: "button tiny success" do
+        = fa_icon "plus", text: t("views.labs.index.add_a_lab", default: "Add a Lab")
+    - else
+      = link_to new_lab_path, class: "button tiny success disabled has-tip", data: { tooltip: true }, title: "You need to be signed in to add a Lab" do
+        = fa_icon "plus", text: t("views.labs.index.add_a_lab", default: "Add a Lab")

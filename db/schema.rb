@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151028125049) do
+ActiveRecord::Schema.define(version: 20160111105418) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -264,6 +264,8 @@ ActiveRecord::Schema.define(version: 20151028125049) do
     t.boolean  "network",                  default: false
     t.boolean  "programs",                 default: false
     t.boolean  "tools",                    default: false
+    t.boolean  "charter",                  default: false
+    t.boolean  "public",                   default: false
   end
 
   add_index "labs", ["creator_id"], name: "index_labs_on_creator_id", using: :btree
@@ -391,6 +393,17 @@ ActiveRecord::Schema.define(version: 20151028125049) do
   end
 
   add_index "recoveries", ["user_id"], name: "index_recoveries_on_user_id", using: :btree
+
+  create_table "referee_approval_processes", force: true do |t|
+    t.boolean  "approved"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "referee_lab_id"
+    t.integer  "referred_lab_id"
+  end
+
+  add_index "referee_approval_processes", ["referee_lab_id"], name: "index_referee_approval_processes_on_referee_lab_id", using: :btree
+  add_index "referee_approval_processes", ["referred_lab_id"], name: "index_referee_approval_processes_on_referred_lab_id", using: :btree
 
   create_table "role_applications", force: true do |t|
     t.integer  "user_id"

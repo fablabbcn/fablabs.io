@@ -6,7 +6,7 @@
     %dd{class: ('active' if controller_name == "employees")}= link_to "Employees", backstage_employees_path
     %dd{class: ('active' if controller_name == "users")}= link_to "Users", backstage_users_path
 
-  - if current_user.is_referee?
+  - if current_user.is_referee? or current_user.is_unique_referee?
     %dt Approve:
 
     %dd{class: ('active' if controller_name == "labs")}= link_to "Labs", backstage_labs_path

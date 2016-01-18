@@ -3,6 +3,7 @@ class Lab < ActiveRecord::Base
   include Authority::Abilities
   include Workflow
   include ApproveWorkflow
+  include LabApproveMethods
 
   self.authorizer_name = 'LabAuthorizer'
   resourcify
@@ -32,9 +33,9 @@ class Lab < ActiveRecord::Base
   has_many :discussions, as: :discussable
   has_many :employees
   has_many :links, as: :linkable
-  has_many :referred_labs, foreign_key: 'referee_id', class_name: 'Lab'
   has_many :role_applications
   has_many :facilities
+  accepts_nested_attributes_for :facilities
   has_many :machines, through: :facilities, source: :thing
   has_many :projects
 
@@ -44,10 +45,15 @@ class Lab < ActiveRecord::Base
   belongs_to :creator, class_name: 'User'
   belongs_to :referee, class_name: 'Lab'
 
+  has_many :referee_approval_processes, foreign_key: 'referred_lab_id'
+  accepts_nested_attributes_for :referee_approval_processes
+  has_many :referees, through: :referee_approval_processes, source: :referee_lab
+  has_many :referred_labs, through: :referee_approval_processes, source: :referred_lab
+
   validates_presence_of :name, :country_code, :slug#, :creator
   validates_presence_of :address_1, :kind, on: :create
 
-  validates_acceptance_of :network, :programs, :tools, :accept => true, message: 'You must agree to our terms and conditions.'
+  validates_acceptance_of :network, :programs, :tools, :access, :chart, :accept => true, message: 'You must agree to our terms and conditions.'
 
   validates :slug, format: {:with => /\A[a-zA-Z0-9]+\z/ }, allow_nil: true, allow_blank: true, length: { minimum: 3 }
   validates_format_of :email, :with => /\A(.+)@(.+)\z/, allow_blank: true
@@ -60,12 +66,12 @@ class Lab < ActiveRecord::Base
     end
   end
 
-  Kinds = %w(planned_fab_lab mini_fab_lab fab_lab)
+  Kinds = %w(planned_fab_lab mini_fab_lab fab_lab supernode)
   Capabilities = %w(three_d_printing cnc_milling circuit_production laser precision_milling vinyl_cutting)
   bitmask :capabilities, as: Capabilities
 
   unless Rails.env.test?
-    validates :referee, presence: true, on: :create
+    validates :referee_approval_processes, presence: true, on: :create
   end
   # validates :employees, presence: true, on: :create
 
@@ -109,7 +115,7 @@ class Lab < ActiveRecord::Base
   end
 
   def kind_name
-    Kinds[ (kind >= 0 && kind <= 2) ? kind : 2 ]
+    Kinds[ (kind >= 0 && kind <= 3) ? kind : 3 ]
   end
 
   def active?
@@ -131,23 +137,6 @@ class Lab < ActiveRecord::Base
     else
       'https://i.imgur.com/iymHWkm.png'
     end
-  end
-
-  def referee_approve
-    employees.update_all(workflow_state: :referee_approved)
-  end
-
-  def add_more_info
-    employees.update_all(workflow_state: :more_info_added)
-  end
-
-  def need_more_info
-    employees.update_all(workflow_state: :more_info_needed)
-  end
-
-  def approve
-    employees.update_all(workflow_state: :approved)
-    creator.add_role :admin, self
   end
 
   def to_s

@@ -6,7 +6,16 @@ describe UserMailer do
   let(:user) { FactoryGirl.create(:user) }
   let(:employee) { FactoryGirl.create(:employee, user: user, lab: lab) }
 
-  %w(submitted approved rejected removed referee_approved more_info_needed more_info_added).each do |action|
+  %w(
+    submitted
+    approved
+    rejected
+    removed
+    referee_approved
+    referee_rejected
+    requested_more_info
+    more_info_added
+  ).each do |action|
     it "lab_#{action} notification" do
       mail = UserMailer.send("lab_#{action}", lab.id)
       expect(mail.subject).to eq("[#{lab.name}] #{action.capitalize}")
@@ -15,7 +24,7 @@ describe UserMailer do
       if action == "submitted"
         expect(mail.body.encoded).to match("submitting #{@lab}")
       else
-        expect(mail.body.encoded).to match("#{@lab} was #{action}")
+        expect(mail.body.encoded).to match("#{@lab}")
       end
     end
   end

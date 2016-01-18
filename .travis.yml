@@ -4,6 +4,9 @@ rvm:
 services:
   - redis-server
 env:
+  - OPBEAT_ORG_ID=org_id
+  - OPBEAT_APP_ID=app_id
+  - OPBEAT_SECRET=secret
   matrix:
     - DB=postgresql
   global:

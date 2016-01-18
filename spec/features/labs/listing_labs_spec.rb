@@ -2,18 +2,16 @@ require 'spec_helper'
 
 describe "Listing labs" do
 
-  let!(:lab) { FactoryGirl.create(:lab, name: "Fab Lab BCN") }
-
   it "approved labs are on index page" do
-    lab.approve!
+    lab = FactoryGirl.create(:lab, workflow_state: 'approved', name: "Fab Lab BCN")
     visit labs_path
     expect(page).to have_link "Fab Lab BCN"
   end
 
   it "unapproved labs are not on the index page" do
+    lab = FactoryGirl.create(:lab)
     visit labs_path
     expect(page).to_not have_link "A Lab"
   end
 
 end
-

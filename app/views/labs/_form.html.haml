@@ -5,8 +5,8 @@
     %fieldset
       %legend
         Important Information
-      = f.association :referee, collection: Lab.approved_referees, hint: "An existing lab MUST be able to verify your application", label: "Referee Lab"
 
+      = render 'referees', :f => f
       = f.input :parent_id, label: "Parent (Supernode) Lab", as: 'select', collection: Lab.with_approved_state.order('name ASC'), hint: "Is this lab connected with a Supernode? If so, which lab?", input_html: { class: 'enhanced' }
 
   %fieldset
@@ -21,7 +21,19 @@
           = m.humanize.titleize
 
   %fieldset
-    %legend Terms and conditions
+    %legend  What qualifies as a Fablab
+    %p
+      Fablabs have a list of
+      %a{href: "http://www.fabfoundation.org/fab-labs/fab-lab-criteria/"} qualities and requirements.
+      More information can be found
+      %a{href: "http://www.fabfoundation.org/fab-labs/fab-lab-criteria/"} here.
+
+    .row
+      = f.radio_button :charter, 1
+      %label.radio{style: "width: 80%;"}
+        Charter: You need to agree with the
+        %a{href: "http://fab.cba.mit.edu/about/charter/"} Fablab charter.
+
     .row
       = f.radio_button :tools, 1
       %label.radio{style: "width: 80%;"}
@@ -36,6 +48,11 @@
       = f.radio_button :programs, 1
       %label.radio{style: "width: 80%;"}
         Programs: Our staff is (or will be) trained in the Fab Academy or compatible programs.
+
+    .row
+      = f.radio_button :public, 1
+      %label.radio{style: "width: 80%;"}
+        Access: Public access to the Fablab is essential.
 
   %fieldset
     %legend Description
@@ -131,7 +148,11 @@
     %legend Capabilities
     = f.input :capabilities, as: 'check_boxes', inline_label: true, item_wrapper_class: 'checkbox_container', label: false, collection: Lab::Capabilities.map{|f| [ I18n.t("capabilities.#{f}"), f]}, checked: f.object.capabilities, hint: "Check all of the boxes that apply to this lab"
 
-    -# = f.association :machines, collection: Machine.includes(:brand).map{|m| ["#{m.brand} - #{m.name}", m.id]}, hint: "We are doing a lot of work with the list of machines. Soon you will be able to add your own machines to the directory, but until then maybe you have some in our list?"
+    - @collection = Machine.includes(:brand)
+    - @selected = @lab.machines.map{|u| u.id}.collect
+    %label{for: "facilities_attributes"}
+      Machine
+    = select_tag :facilities_attributes, options_from_collection_for_select(@collection, :id, :name, @selected), { multiple: true, name: 'lab[facilities_attributes][][thing_id]', class: 'machines'}
 
     = f.input :tools_list, hint: "Please list any machines that you have so that we can add them to the directory.", input_html: { style: "height: 8em" }, placeholder: "e.g. Makerbot Industries - Makerbot 2"
 

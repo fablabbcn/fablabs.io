@@ -1,7 +1,7 @@
 require "opbeat"
 
 Opbeat.configure do |config|
- config.organization_id = "2a51e08fcc2944a19dc46c631b52ac12"
- config.app_id = "8f47478910"
- config.secret_token = "e10ca09c11e0e069dae4658e75239e0034dfb4c6"
+ config.organization_id = ENV["OPBEAT_ORG_ID"]
+ config.app_id = ENV["OPBEAT_APP_ID"]
+ config.secret_token = ENV["OPBEAT_SECRET"]
 end

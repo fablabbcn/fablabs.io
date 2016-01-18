@@ -113,9 +113,12 @@ group :test do
   gem "selenium-webdriver"
   # gem "nyan-cat-formatter"
   gem "capybara"
+  gem "selenium-webdriver"
+  gem "capybara-webkit"
   gem "guard-rspec"
   gem "shoulda-matchers"
   gem "codeclimate-test-reporter", require: nil
+  gem "pry"
 end
 group :development do
   gem 'quiet_assets'

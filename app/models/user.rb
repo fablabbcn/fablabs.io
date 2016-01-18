@@ -97,8 +97,12 @@ class User < ActiveRecord::Base
     self.roles.where(name: "admin", resource_type: "Lab")
   end
 
-  def is_referee?
+  def is_unique_referee?
     return true if not Lab.where("referee_id IN (?)",  self.admin_labs.map{ |u| u.resource_id }).empty?
+  end
+
+  def is_referee?
+    return true if not RefereeApprovalProcess.where("referee_lab_id IN (?)", self.admin_labs.map{ |u| u.resource_id }).empty?
   end
 
   def is_creator? lab
@@ -121,8 +125,24 @@ class User < ActiveRecord::Base
     return self.grades.where(project_id: project_id).first
   end
 
+  def unique_referee_labs
+    Lab.where("referee_id IN (?) AND workflow_state IN (?)", self.admin_labs.map{ |u| u.resource_id }, ['unverified', 'more_info_needed', 'more_info_added'])
+  end
+
   def referee_labs
-    Lab.where("referee_id IN (?) AND workflow_state in (?)", self.admin_labs.map{ |u| u.resource_id }, ['unverified', 'more_info_needed', 'more_info_added'])
+    processes = RefereeApprovalProcess.where(
+      "referee_lab_id IN (?)",
+      self.admin_labs.map{ |u| u.resource_id }
+    )
+
+    labs = processes.map{ |u| u.referee_lab }
+    referees = labs.map { |u| u if ['unverified', 'need_more_info', 'more_info_added'].include? u.workflow_state }
+
+    return referees
+  end
+
+  def referees_count
+    unique_referee_labs.count + referee_labs.count
   end
 
   def recovery_key

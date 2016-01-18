@@ -7,7 +7,9 @@ feature "Managing employees" do
   given(:employee) { FactoryGirl.create(:employee, user: user, lab: lab, job_title: "Nuclear Safety Inspector") }
 
   scenario "unverified lab" do
-    lab.remove!
+    superadmin = FactoryGirl.create(:user)
+    superadmin.add_role :superadmin
+    lab.remove(superadmin)
     sign_in_superadmin
     expect{visit lab_employees_path(lab)}.to raise_error ActiveRecord::RecordNotFound
   end

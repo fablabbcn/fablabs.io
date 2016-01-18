@@ -18,6 +18,6 @@ private
   end
 
   def referee
-    current_user.is_referee?
+    current_user.is_referee? or current_user.is_unique_referee?
   end
 end

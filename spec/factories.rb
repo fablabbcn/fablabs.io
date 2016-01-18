@@ -2,6 +2,21 @@
 
 FactoryGirl.define do
 
+  factory :lab, aliases: [:linkable, :trackable] do
+    sequence(:name) { |n| "Fab Lab #{n}" }
+    sequence(:slug) { |n| "fablab#{n}" }
+    description { Faker::Lorem.sentence }
+    address_1 { Faker::Address.street_address }
+    county "County"
+    country_code "es"
+    network true
+    programs true
+    tools true
+    kind 1
+    referee_id 1
+    creator
+  end
+
   factory :repeat do
     event
     year 2013
@@ -94,18 +109,6 @@ FactoryGirl.define do
     name "ELEFAB"
     description "A one-of-a-kind elephant creature during a kids' workshop "
     url "http://www.fablabbcn.org/2013/10/elefab-2/"
-  end
-
-  factory :lab, aliases: [:linkable, :trackable] do
-    sequence(:name) { |n| "Fab Lab #{n}" }
-    sequence(:slug) { |n| "fablab#{n}" }
-    description { Faker::Lorem.sentence }
-    address_1 { Faker::Address.street_address }
-    county "County"
-    country_code "es"
-    kind 1
-    referee_id 1
-    creator
   end
 
   factory :user, aliases: [:creator, :author, :applicant, :actor, :approver] do

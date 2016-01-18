@@ -26,7 +26,7 @@ feature "Adding a machine" do
     click_link "New Machine"
     fill_in "Name", with: "Replicator 2"
     fill_in "Description", with: "3D Printer"
-    click_button "Create Machine"
+    click_button "New Machine"
     expect(page).to have_css("h1", text: "Replicator 2")
   end
 

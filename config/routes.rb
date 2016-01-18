@@ -60,8 +60,12 @@ Fablabs::Application.routes.draw do
           patch :approve
           patch :reject
           patch :remove
-          patch :referee_approve
-          patch :need_more_info
+          patch :referee_approves
+          patch :referee_rejects
+          patch :request_more_info
+          patch :referee_requests_admin_approval
+          patch :admin_approves
+          patch :admin_rejects
           patch :add_more_info
         end
       end
@@ -88,7 +92,7 @@ Fablabs::Application.routes.draw do
         resources :links
       end
     end
-
+    resources :referee_approval_processes, only: [:destroy]
     resources :contributions, only: [:destroy]
     resources :collaborations, only: [:destroy]
     resources :documents, only: [:destroy]
@@ -105,6 +109,7 @@ Fablabs::Application.routes.draw do
      #, except: [:show]
     get 'labs' => 'labs#index'
     post 'labs' => 'labs#create'
+    get "/labs/docs/:page" => "labs#docs"
     resources :labs, path: '', except: :index do
       resources :events
       resources :admin_applications

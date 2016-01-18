@@ -132,21 +132,21 @@ $(window).load ->
 
   if $('body').hasClass('c-projects a-map')
     L.mapbox.accessToken = 'pk.eyJ1IjoidG9tYXNkaWV6IiwiYSI6ImRTd01HSGsifQ.loQdtLNQ8GJkJl2LUzzxVg'
-    map = L.mapbox.map('map', 'mapbox.pencil', { scrollWheelZoom: true, zoomControl: false }).setView([
+    map = L.mapbox.map('map', 'mapbox.light', { scrollWheelZoom: true, zoomControl: false }).setView([
       50
       0
     ], 2)
     # removed for ios7 see: https://github.com/Leaflet/Leaflet.markercluster/issues/279
-    if !navigator.userAgent.match(/(iPad|iPhone|iPod touch);.*CPU.*OS 7_\d/i)
-      window.markers = new L.MarkerClusterGroup
-        showCoverageOnHover: true
-        spiderfyOnMaxZoom: false
-        removeOutsideVisibleBounds: true
-        zoomToBoundsOnClick: true
-        maxClusterRadius: 50
-        disableClusteringAtZoom: 14
-    else
-      window.markers = map
+    # if !navigator.userAgent.match(/(iPad|iPhone|iPod touch);.*CPU.*OS 7_\d/i)
+    #   window.markers = new L.MarkerClusterGroup
+    #     showCoverageOnHover: true
+    #     spiderfyOnMaxZoom: false
+    #     removeOutsideVisibleBounds: true
+    #     zoomToBoundsOnClick: true
+    #     maxClusterRadius: 50
+    #     disableClusteringAtZoom: 14
+    # else
+    window.markers = map
 
     window.map = map
     new L.Control.Zoom({ position: 'topleft' }).addTo(map)

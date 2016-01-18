@@ -10,7 +10,7 @@ describe Lab do
   it { should have_many(:employees) }
   it { should have_many(:links) }
   it { should have_many(:events) }
-  it { should have_many(:referred_labs) }
+  it { should have_many(:referees).through(:referee_approval_processes)}
   it { should have_many(:role_applications) }
   it { should have_many(:facilities) }
   it { should have_many(:machines).through(:facilities) }
@@ -52,7 +52,7 @@ describe Lab do
   end
 
   it "has Kinds" do
-    expect(Lab::Kinds).to eq(%w(planned_fab_lab mini_fab_lab fab_lab))
+    expect(Lab::Kinds).to eq(%w(planned_fab_lab mini_fab_lab fab_lab supernode))
   end
 
   it "has Capabilities" do
@@ -101,29 +101,37 @@ describe Lab do
     end
 
     it "can be removed" do
-      lab.approve!
-      lab.remove!
+      superadmin = FactoryGirl.create(:user)
+      superadmin.add_role :superadmin
+      lab.approve(superadmin)
+      lab.remove(superadmin)
       expect(lab).to be_removed
       expect(Lab.with_removed_state).to include(lab)
       expect(Lab.with_approved_state).to_not include(lab)
     end
 
     it "can be approved" do
-      lab.approve!
+      superadmin = FactoryGirl.create(:user)
+      superadmin.add_role :superadmin
+      lab.approve(superadmin)
       expect(lab).to be_approved
       expect(Lab.with_approved_state).to include(lab)
     end
 
     it "can be rejected" do
-      lab.reject!
+      superadmin = FactoryGirl.create(:user)
+      superadmin.add_role :superadmin
+      lab.reject(superadmin)
       expect(lab).to be_rejected
       expect(Lab.with_rejected_state).to include(lab)
       expect(Lab.with_approved_state).to_not include(lab)
     end
 
     it "adds employees and makes creator admin when approved" do
+      superadmin = FactoryGirl.create(:user)
+      superadmin.add_role :superadmin
       expect(lab.creator).to_not have_role(:admin, lab)
-      lab.approve!
+      lab.approve(superadmin)
       expect(lab.creator).to have_role(:admin, lab)
       expect(lab.creator).to_not have_role(:admin)
       expect(lab.employees).to eq(lab.employees.with_approved_state)
@@ -243,8 +251,7 @@ describe Lab do
     end
 
     it "has needs_admin?" do
-      lab = FactoryGirl.create(:lab)
-      lab.approve!
+      lab = FactoryGirl.create(:lab, workflow_state: :approved)
       User.with_role(:admin, lab).delete_all
       expect(lab.needs_admin?).to be_true
       expect(@superadmin).to have_role(:superadmin)
