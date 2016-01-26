@@ -149,9 +149,13 @@
 
     - @collection = Machine.includes(:brand)
     - @selected = @lab.machines.map{|u| u.id}.collect
-    %label{for: "facilities_attributes"}
-      Machine
-    = select_tag :facilities_attributes, options_from_collection_for_select(@collection, :id, :name, @selected), { multiple: true, name: 'lab[facilities_attributes][][thing_id]', class: 'machines'}
+
+    - if lab.new_record?
+      %p You will be able to add individual machines once your lab is approved.
+    - else
+      %label{for: "facilities_attributes"}
+        Machine
+        = select_tag :facilities_attributes, options_from_collection_for_select(@selected, :id, :lab_id), { multiple: true, size: 10, name: 'machine[facilities_attributes][][lab_id]', class: 'lab_selection_attributes'}
 
     = f.input :tools_list, hint: "Please list any machines that you have so that we can add them to the directory.", input_html: { style: "height: 8em" }, placeholder: "e.g. Makerbot Industries - Makerbot 2"
 
