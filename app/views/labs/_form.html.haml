@@ -1,13 +1,12 @@
 = simple_form_for lab, html: { class: 'form-horizontal' } do |f|
   = render 'form_errors', resource: lab
 
-  - if lab.new_record?
-    %fieldset
-      %legend
-        Important Information
+  %fieldset
+    %legend
+      Important Information
 
-      = render 'referees', :f => f
-      = f.input :parent_id, label: "Parent (Supernode) Lab", as: 'select', collection: Lab.with_approved_state.order('name ASC'), hint: "Is this lab connected with a Supernode? If so, which lab?", input_html: { class: 'enhanced' }
+    = render 'referees', :f => f
+    = f.input :parent_id, label: "Parent (Supernode) Lab", as: 'select', collection: Lab.with_approved_state.order('name ASC'), hint: "Is this lab connected with a Supernode? If so, which lab?", input_html: { class: 'enhanced' }
 
   %fieldset
     %legend Basic Details

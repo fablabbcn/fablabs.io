@@ -5,7 +5,24 @@
       = render "form_errors", resource: @lab
       = f.input :kind
       -# = f.association :parent
-      = f.association :referee
+
+      .columns.large-4
+        Select 3 referee labs.
+        .selections
+          %ul
+            - @lab.referee_approval_processes.each do |c|
+              - if c.referee_lab.present? and c.id
+                %li
+                  %span
+                    = link_to icon('times'), referee_approval_process_path(c), method: :delete
+                    = image_tag hocho(c.referee_lab.avatar, "o=t&q=80&d=90x90"), class: 'avatar tiny'
+
+      .columns.large-8
+        - @selected = @lab.referee_approval_processes.map{|u| u.referee_lab_id}.collect
+        %label{for: "referee_approval_processes_attributes"}
+          Referees
+        = select_tag :referee_approval_processes_attributes, options_from_collection_for_select(Lab.approved_referees.collect, :id, :slug, @selected), { multiple: true, name: 'lab[referee_approval_processes_attributes][][referee_lab_id]', class: 'referee_approval'}
+
       = f.input :tools_list
       = f.input :name
       = f.input :blurb

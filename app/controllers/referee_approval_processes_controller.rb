@@ -4,9 +4,9 @@ class RefereeApprovalProcessesController < ApplicationController
     @lab = @referee_approval.referred_lab
     if authorize_action_for @lab
       @referee_approval.delete
-      redirect_to project_path(@lab), notice: "Approval Process Deleted"
+      redirect_to lab_path(@lab), notice: "Approval Process Deleted"
     else
-      redirect_to project_path(@lab), notice: "You cannot delete this approval process"
+      redirect_to lab_path(@lab), notice: "You cannot delete this approval process"
     end
   end
 end

@@ -71,7 +71,7 @@ class Lab < ActiveRecord::Base
   bitmask :capabilities, as: Capabilities
 
   unless Rails.env.test?
-    validates :referee_approval_processes, presence: true, on: :create
+    validates :referee_approval_processes, presence: true, :length => { is: 3 }
   end
   # validates :employees, presence: true, on: :create
 
