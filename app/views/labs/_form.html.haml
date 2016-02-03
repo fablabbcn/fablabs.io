@@ -1,12 +1,13 @@
 = simple_form_for lab, html: { class: 'form-horizontal' } do |f|
   = render 'form_errors', resource: lab
 
-  %fieldset
-    %legend
-      Important Information
+  - if lab.workflow_state != "approved"
+    %fieldset
+      %legend
+        Important Information
 
-    = render 'referees', :f => f
-    = f.input :parent_id, label: "Parent (Supernode) Lab", as: 'select', collection: Lab.with_approved_state.order('name ASC'), hint: "Is this lab connected with a Supernode? If so, which lab?", input_html: { class: 'enhanced' }
+      = render 'referees', :f => f
+      = f.input :parent_id, label: "Parent (Supernode) Lab", as: 'select', collection: Lab.with_approved_state.order('name ASC'), hint: "Is this lab connected with a Supernode? If so, which lab?", input_html: { class: 'enhanced' }
 
   %fieldset
     %legend Basic Details
@@ -18,6 +19,7 @@
         = f.radio_button :kind, index
         %label.radio{style: "width: 160px;"}
           = m.humanize.titleize
+
 
   %fieldset
     %legend  What qualifies as a Fablab
@@ -155,7 +157,7 @@
     - else
       %label{for: "facilities_attributes"}
         Machine
-        = select_tag :facilities_attributes, options_from_collection_for_select(@selected, :id, :lab_id), { multiple: true, size: 10, name: 'machine[facilities_attributes][][lab_id]', class: 'lab_selection_attributes'}
+        = select_tag :facilities_attributes, options_from_collection_for_select(@collection, :id, :name, @selected), { multiple: true, size: 10, name: 'lab[facilities_attributes][][thing_id]', class: 'machine_selection_attributes'}
 
     = f.input :tools_list, hint: "Please list any machines that you have so that we can add them to the directory.", input_html: { style: "height: 8em" }, placeholder: "e.g. Makerbot Industries - Makerbot 2"
 

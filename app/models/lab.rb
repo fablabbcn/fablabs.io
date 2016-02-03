@@ -71,7 +71,7 @@ class Lab < ActiveRecord::Base
   bitmask :capabilities, as: Capabilities
 
   unless Rails.env.test?
-    validates :referee_approval_processes, presence: true, :length => { is: 3 }
+    validates :referee_approval_processes, presence: true, :length => { is: 3 }, unless: :is_approved?
   end
   # validates :employees, presence: true, on: :create
 
@@ -212,6 +212,10 @@ class Lab < ActiveRecord::Base
 
     Lab.where(slug: referees).order('name ASC')
 
+  end
+
+  def is_approved?
+    return true if workflow_state == "approved"
   end
 
 private
