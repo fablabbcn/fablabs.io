@@ -11,14 +11,22 @@
       .search-results
         -# %button.close{type: "button", data: { dismiss: "alert"}, aria: { hidden: true}} ×
         = link_to "×", labs_path, class: 'close right'
-        #{pluralize @results.size, "search result"} for
+        #{pluralize @labs.size, "search result"} for
         %strong= params[:query]
-
-    .labs= render @labs
-
-    .projects= render @projects
-
-    .users= render @users
+    - if @labs.size > 0
+      .row
+        %h4 Labs
+        .labs= render @labs
+    - if @projects.size > 0
+      .row
+        %h4 Projects
+        .projects= render @projects
+    - if @users.size > 0
+      .row
+        %h4 People
+        .users= render @users
+    - else
+      %p We could not find what you were looking for. Maybe you can try again.
 
 
   .columns.large-4

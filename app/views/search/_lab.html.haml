@@ -1,22 +1,21 @@
-.row
-  - cache ["v1-#{I18n.locale}", lab] do
-    = content_tag_for :div, lab, class: 'media', itemscope: true, itemtype: "http://data-vocabulary.org/Organization" do
-      .img.pull-left
-        = link_to lab do
-          = image_tag hocho(lab.avatar, "o=t&q=80&d=100x100&"), class: 'med avatar', itemprop: "logo"
-      .media-body
-        = link_to lab, class: 'name' do
-          %span.name{itemprop: "name"}= lab
-        %span.url.microdata{itemprop: "url"}= lab_url(lab, {locale: nil})
-        .lab-location
-          - if lab.short_address(!params[:country]).present?
-            = fa_icon "map-marker"
-            %span.short_address{itemprop: "addressLocality"}= lab.short_address(!params[:country])
-            %span.microdata.country{itemprop: "country"}= lab.country_code
-          - if lab.email.present?
-            = fa_icon "envelope-o"
-            %span.email= mail_to(lab.email, lab.email)
-          - if lab.phone.present?
-            = fa_icon "phone"
-            %span.telephone{itemprop: "telephone"}= lab.phone
-        %p.lab-blurb.truncate{itemprop: "description"}= lab.blurb
+- cache ["v1-#{I18n.locale}", lab] do
+  = content_tag_for :div, lab, class: 'media', itemscope: true, itemtype: "http://data-vocabulary.org/Organization" do
+    .img.pull-left
+      = link_to lab do
+        = image_tag hocho(lab.avatar, "o=t&q=80&d=100x100&"), class: 'med avatar', itemprop: "logo"
+    .media-body
+      = link_to lab, class: 'name' do
+        %span.name{itemprop: "name"}= lab
+      %span.url.microdata{itemprop: "url"}= lab_url(lab, {locale: nil})
+      .lab-location
+        - if lab.short_address(!params[:country]).present?
+          = fa_icon "map-marker"
+          %span.short_address{itemprop: "addressLocality"}= lab.short_address(!params[:country])
+          %span.microdata.country{itemprop: "country"}= lab.country_code
+        - if lab.email.present?
+          = fa_icon "envelope-o"
+          %span.email= mail_to(lab.email, lab.email)
+        - if lab.phone.present?
+          = fa_icon "phone"
+          %span.telephone{itemprop: "telephone"}= lab.phone
+      %p.lab-blurb.truncate{itemprop: "description"}= lab.blurb
