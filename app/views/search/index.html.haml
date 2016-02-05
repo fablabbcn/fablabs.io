@@ -11,7 +11,7 @@
       .search-results
         -# %button.close{type: "button", data: { dismiss: "alert"}, aria: { hidden: true}} ×
         = link_to "×", labs_path, class: 'close right'
-        #{pluralize @labs.size, "search result"} for
+        #{pluralize @results.size, "search result"} for
         %strong= params[:query]
     - if @labs.size > 0
       .row
@@ -25,7 +25,7 @@
       .row
         %h4 People
         .users= render @users
-    - else
+    - if @results.empty?
       %p We could not find what you were looking for. Maybe you can try again.
 
 

@@ -10,6 +10,8 @@ class SearchController < ApplicationController
     @projects = search_projects(params[:q])
     @users = search_users(params[:q])
 
+    @results = @labs + @projects + @users
+
     respond_to do |format|
       format.html
     end
