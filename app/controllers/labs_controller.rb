@@ -7,7 +7,6 @@ class LabsController < ApplicationController
   # authorize_actions_for Lab, actions: { map: :read, manage_admins: :update}
 
   def embed
-    response.headers.delete "X-Frame-Options"
     @labs = Lab.with_approved_state
     # render :embed, layout: false
   end
@@ -117,7 +116,7 @@ class LabsController < ApplicationController
 private
 
   def allow_iframe
-    response.headers.except! 'X-Frame-Options'
+    response.headers['X-Frame-Options'] = "ALLOW-FROM fabfoundation.org"
   end
 
   def lab_params
