@@ -14,10 +14,21 @@
             - if current_user.has_role? :superadmin
               - if ['approve', 'request_more_info', 'reject', 'remove'].include? event.to_s
                 = button_to "#{event.capitalize.to_s.tr('_', ' ')}", {controller: 'labs', action: event}, method: :patch, class: 'button small tiny', id: 'event'
+      - if @lab.referee.present?
+        %tr
+          %th Referee
+          %td= @lab.referee
+      - if @lab.referee_approval_processes.present?
+        %tr
+          %th Referees
+        - @lab.referee_approval_processes.each do |c|
+          - if c.referee_lab.present? and c.id
+            %tr
+              %th
+                = image_tag hocho(c.referee_lab.avatar, "o=t&q=80&d=90x90"), class: 'avatar tiny'
+              %td  
+                = link_to link_to c.referee_lab, c.referee_lab
 
-      %tr
-        %th Referee
-        %td= @lab.referee
       %tr
         %th Avatar
         %td= image_tag @lab.avatar, class: 'avatar med'
