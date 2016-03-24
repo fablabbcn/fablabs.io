@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160118100620) do
+ActiveRecord::Schema.define(version: 20160318115404) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -400,6 +400,7 @@ ActiveRecord::Schema.define(version: 20160118100620) do
     t.datetime "updated_at"
     t.integer  "referee_lab_id"
     t.integer  "referred_lab_id"
+    t.string   "action",          default: "pending"
   end
 
   add_index "referee_approval_processes", ["referee_lab_id"], name: "index_referee_approval_processes_on_referee_lab_id", using: :btree

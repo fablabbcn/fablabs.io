@@ -161,8 +161,9 @@ Fablabs::Application.routes.draw do
         end
       end
       namespace :v1 do
-        get 'users' => 'users#search'
-
+        resources :labs do
+          get :map, on: :collection
+        end
       end
     end
   end

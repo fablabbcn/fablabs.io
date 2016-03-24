@@ -23,6 +23,12 @@ module LabsOperations
     RefereeMailer.delay.send("lab_#{verbed}", @lab.id)
   end
 
+  def record_user_action(verbed, current_user)
+    if current_user.is_referee_of_lab @lab.id
+      process = current_user.referee_approval_processes.where(referred_lab_id: @lab.id).first
+    end
+  end
+
   private
 
     def intermediate_states

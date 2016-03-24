@@ -105,6 +105,10 @@ class User < ActiveRecord::Base
     return true if not RefereeApprovalProcess.where("referee_lab_id IN (?)", self.admin_labs.map{ |u| u.resource_id }).empty?
   end
 
+  def is_referee_of_lab? lab_id
+    return true if not refereee_approval_process.where(referred_lab_id: lab_id).empty?
+  end
+
   def is_creator? lab
     return true if lab.creator_id == self.id
   end

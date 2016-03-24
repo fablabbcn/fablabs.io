@@ -47,6 +47,7 @@ class Backstage::LabsController < Backstage::BackstageController
       verbed = action_to_verb[verb.parameterize.underscore.to_sym]
       @lab = Lab.friendly.find(params[:id])
       if @lab.send("#{verb}!", current_user)
+        record_user_action(verbed, current_user)
         lab_send_action("#{verbed}")
         redirect_to backstage_labs_path, notice: "Lab #{verbed.tr('_', ' ')}"
       else

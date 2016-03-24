@@ -27,6 +27,13 @@ module Fablabs
       end
     end
 
+    config.middleware.insert_before 0, "Rack::Cors" do
+      allow do
+        origins '*'
+        resource '*', :headers => :any, :methods => [:get, :post, :options]
+      end
+    end
+
     config.i18n.fallbacks = false
     config.i18n.enforce_available_locales = true
     config.i18n.available_locales = [:en, :it, :de, :fr, :es, :ja, :nl]

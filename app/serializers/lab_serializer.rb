@@ -23,9 +23,9 @@ class LabSerializer < ActiveModel::Serializer
     :phone,
     :email,
     :capabilities,
-    :url
-    # :links,
-    # :employees
+    :url,
+    :links,
+    :employees
     # links_attributes: [ :id, :link_id, :url, '_destroy' ],
     # employees_attributes: [ :id, :job_title, :description ]
 

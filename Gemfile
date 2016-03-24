@@ -62,6 +62,7 @@ gem 'sprockets-rails'
 gem 'haml-rails'
 gem 'uglifier', '>= 1.3.0'
 gem 'font-awesome-sass', '~> 4.3.0'
+gem 'will_paginate', '~> 3.0.6'
 
 gem 'database_cleaner', github: 'bmabey/database_cleaner'
 gem 'letter_opener'

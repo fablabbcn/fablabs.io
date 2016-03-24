@@ -510,7 +510,7 @@ GEM
     whenever (0.8.4)
       activesupport (>= 2.3.4)
       chronic (>= 0.6.3)
-    will_paginate (3.0.5)
+    will_paginate (3.0.7)
     xml-simple (1.1.5)
     xpath (2.0.0)
       nokogiri (~> 1.3)
@@ -604,6 +604,7 @@ DEPENDENCIES
   uglifier (>= 1.3.0)
   unicorn
   whenever
+  will_paginate (~> 3.0.6)
   workflow!
   zonebie
 
