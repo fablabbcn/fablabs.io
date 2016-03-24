@@ -36,7 +36,7 @@ class LabSerializer < ActiveModel::Serializer
   end
 
   def url
-    lab_url(object)
+    lab_path(object)
   end
 
   # def cache_key

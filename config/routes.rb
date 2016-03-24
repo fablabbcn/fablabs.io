@@ -161,9 +161,8 @@ Fablabs::Application.routes.draw do
         end
       end
       namespace :v1 do
-        resources :labs do
-          get :map, on: :collection
-        end
+        resources :labs
+        resources :users
       end
     end
   end

@@ -52,7 +52,7 @@ gem "cocoon", github: 'nathanvda/cocoon'
 gem "pg_search"
 gem "pg",'0.17.1'
 gem 'simple_form'
-gem 'countries', github: "hexorx/countries"
+gem 'countries', :require => 'countries/global'
 gem 'country_select'
 gem 'momentjs-rails'
 gem 'active_model_serializers'

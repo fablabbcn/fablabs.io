@@ -26,7 +26,7 @@ module ApplicationHelper
     rescue
       fa_icon "link"
     end
-    
+
     fa_icon "link"
   end
 
