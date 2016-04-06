@@ -3,27 +3,21 @@ class RefereeMailer < ActionMailer::Base
   default from: "FabLabs <notifications@fablabs.io>"
 
   %w(submitted approved rejected removed referee_approved referee_requested_admin_approval referee_rejected requested_more_info more_info_added).each do |action|
-    define_method("lab_#{action}") do |lab_id|
+    define_method("lab_#{action}") do |lab_id, message, recipient|
       begin
         @lab = Lab.find(lab_id)
-        if @lab.referee_id
-          @referee = @lab.referee
-          users = (@referee.direct_admins + [@referee.creator]).compact.uniq
-          users.each do |user|
-            @user = user
-            mail(to: user.email_string, subject: "[Fablabs.io] #{@lab} #{action.capitalize}")
-          end
-        elsif @lab.referee_approval_processes
-          @lab.referee_approval_processes.map{ |process| process.referee_lab }.each do |ref|
-            users = (ref.direct_admins + [ref.creator]).compact.uniq
-            users.each do |user|
-              @user = user
-              mail(to: user.email_string, subject: "[Fablabs.io] #{@lab} #{action.capitalize}")
-            end
-          end
-        end
+        lab_referee_mailer(action, message, recipient)
+
       rescue ActiveRecord::RecordNotFound
       end
     end
+  end
+
+  def lab_referee_mailer(action, message, recipient)
+    users = (recipient.direct_admins + [recipient.creator]).compact.uniq.map { |u| u.email_string }
+    users.join(", ")
+    @user = recipient.direct_admins.first
+    mail(to: users, subject: "[Fablabs.io] #{@lab} #{action.capitalize} - #{message}")
+
   end
 end

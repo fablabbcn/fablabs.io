@@ -15,22 +15,35 @@ feature "Adding a lab" do
 
   feature "as a verified user" do
     Capybara.javascript_driver = :webkit
-    given(:user) { FactoryGirl.create(:user) }
+    given(:user) { FactoryGirl.create(:user, email: "creator@fablabfoundation.com") }
     let!(:as220) { FactoryGirl.create(:lab, name: "AS220 Labs", slug: "as220labs", workflow_state: :approved) }
     let!(:bcn) { FactoryGirl.create(:lab, name: "Fab Lab BCN", slug: "fablabbcn", workflow_state: :approved) }
     let!(:cascina) { FactoryGirl.create(:lab, name: "Fab Lab Cascina", slug: "fablabcascina", workflow_state: :approved) }
-
+    let!(:admin) { FactoryGirl.create(:user, email: "admin@fablabfoundation.com") }
+    let!(:referee_one) { FactoryGirl.create(:user, email:"referee@as220.org", first_name: "Referee", last_name: "AS220") }
+    let!(:referee_two) { FactoryGirl.create(:user, email:"referee@fablabbcn.org", first_name: "Referee", last_name: "BCN") }
+    let!(:referee_three) { FactoryGirl.create(:user, email:"referee@fablabcascina.org", first_name: "Referee", last_name: "Cascina") }
 
     background do
+      admin.add_role :superadmin
+
+      referee_one.verify!
+      referee_one.add_role :admin, as220
+
+      referee_two.verify!
+      referee_two.add_role :admin, bcn
+
+      referee_three.verify!
+      referee_three.add_role :admin, cascina
+
       user.verify!
       sign_in user
+
       visit labs_path
       click_link "Add Lab"
     end
 
     scenario "as a user with valid details" do
-      admin = FactoryGirl.create(:user)
-      admin.add_role :superadmin
       choose "lab_kind_2"
       choose "lab_tools_1"
       choose "lab_network_1"
@@ -51,8 +64,10 @@ feature "Adding a lab" do
       fill_in 'Slug', with: 'newlab'
       click_button 'Add Lab'
       expect(page).to have_content "Thanks"
-
-      emails = ActionMailer::Base.deliveries.map(&:to).flatten
+      lab = Lab.last
+      expect(lab.referee_approval_processes.count).to eq(3)
+      emails = ActionMailer::Base.deliveries
+      expect(emails).to eq(5)
     end
 
     scenario "as a user with invalid details" do

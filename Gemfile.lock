@@ -126,6 +126,8 @@ GEM
       json (~> 1.4)
       nokogiri (>= 1.4.4)
     bcrypt-ruby (3.1.2)
+    binding_of_caller (0.7.2)
+      debug_inspector (>= 0.0.1)
     bitmask_attributes (1.0.0)
       activerecord (>= 3.1)
     bourbon (3.1.8)
@@ -175,6 +177,7 @@ GEM
     daemons (1.1.9)
     date_time_attribute (0.0.5)
       activesupport (>= 3.0.0)
+    debug_inspector (0.0.2)
     descendants_tracker (0.0.3)
     diff-lcs (1.2.5)
     docile (1.1.1)
@@ -257,6 +260,7 @@ GEM
     inherited_resources (1.4.1)
       has_scope (~> 0.6.0.rc)
       responders (~> 1.0.0.rc)
+    interception (0.5)
     jbuilder (1.5.3)
       activesupport (>= 3.0.0)
       multi_json (>= 1.2.0)
@@ -337,6 +341,12 @@ GEM
       coderay (~> 1.0)
       method_source (~> 0.8)
       slop (~> 3.4)
+    pry-rescue (1.4.2)
+      interception (>= 0.5)
+      pry
+    pry-stack_explorer (0.4.9.2)
+      binding_of_caller (>= 0.7)
+      pry (>= 0.9.11)
     quiet_assets (1.0.2)
       railties (>= 3.1, < 5.0)
     rack (1.5.5)
@@ -573,6 +583,8 @@ DEPENDENCIES
   premailer-rails
   private_pub
   pry
+  pry-rescue
+  pry-stack_explorer
   quiet_assets
   rack-cache
   rack-cors

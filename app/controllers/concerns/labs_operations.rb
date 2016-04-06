@@ -20,7 +20,31 @@ module LabsOperations
 
   def lab_send_action(verbed)
     UserMailer.delay.send("lab_#{verbed}", @lab.id)
-    RefereeMailer.delay.send("lab_#{verbed}", @lab.id)
+    mails_referees(@lab, verbed)
+  end
+
+  def sends_emails(action)
+    UserMailer.delay.send("lab_#{action}", @lab.id)
+    AdminMailer.delay.send("lab_#{action}", @lab.id)
+
+    mails_referees(action)
+  end
+
+  def mails_referees(action)
+    if @lab.referee_id
+      @referee = @lab.referee
+      message = "You are the unique referee for this lab, please take action"
+      RefereeMailer.delay.send("lab_#{action}", @lab.id, message, @referee.id)
+    end
+
+    if not @lab.referee_approval_processes.empty?
+      message = "You are one of the lab referees, please take action"
+      @lab.referee_approval_processes.each do |process|
+        referee = process.referee_lab
+        RefereeMailer.delay.send("lab_#{action}", @lab.id, message, referee)
+      end
+    end
+
   end
 
   private
