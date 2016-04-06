@@ -1,6 +1,6 @@
 # Use localized name if it's available
 
-ISO3166::Country.class_eval do
+Country.class_eval do
   def name
     translations[I18n.locale.to_s] || names.first
   end
