@@ -67,7 +67,7 @@ feature "Adding a lab" do
       lab = Lab.last
       expect(lab.referee_approval_processes.count).to eq(3)
       emails = ActionMailer::Base.deliveries
-      expect(emails).to eq(5)
+      expect(emails.count).to eq(5)
     end
 
     scenario "as a user with invalid details" do

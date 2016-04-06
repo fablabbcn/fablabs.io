@@ -15,4 +15,12 @@ class RefereeApprovalProcess < ActiveRecord::Base
     3
   end
 
+  def action
+    if approved.nil?
+      return "Pending"
+    else
+      return approved ? "Approved" : "Rejected"
+    end
+  end
+
 end

@@ -20,7 +20,7 @@ module LabsOperations
 
   def lab_send_action(verbed)
     UserMailer.delay.send("lab_#{verbed}", @lab.id)
-    mails_referees(@lab, verbed)
+    mails_referees(verbed)
   end
 
   def sends_emails(action)
