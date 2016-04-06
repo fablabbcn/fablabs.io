@@ -48,9 +48,7 @@ class LabsController < ApplicationController
     @lab.employees.first.assign_attributes(user: current_user, lab: @lab)
     authorize_action_for @lab
     if @lab.save
-      UserMailer.delay.lab_submitted(@lab.id)
-      AdminMailer.delay.lab_submitted(@lab.id)
-      RefereeMailer.delay.lab_submitted(@lab.id)
+      sends_emails("submitted")
       redirect_to labs_path, notice: "Thanks for adding your lab. We shall review your application and be in touch."
     else
       # @lab.employees.build if @lab.employees.empty?
