@@ -2,10 +2,18 @@ require 'spec_helper'
 
 feature "Rejecting a lab" do
 
-  let(:lab_admin) { FactoryGirl.create(:user) }
   let(:referee) { FactoryGirl.create(:lab) }
-  let(:referee_employee) { FactoryGirl.create(:employee, user: referee, lab: referee) }
+  let(:referee_admin) { FactoryGirl.create(:user) }
+  let(:referee_employee) { FactoryGirl.create(:employee, user: referee_admin, lab: referee) }
+
   let(:lab) { FactoryGirl.create(:lab, referee: referee) }
+  let(:lab_admin) { FactoryGirl.create(:user) }
+  let(:lab_admin_employee) { FactoryGirl.create(:employee, user: lab_admin, lab: lab) }
+
+  background do
+    lab_admin.add_role :admin, lab
+    referee_admin.add_role :admin, referee
+  end
 
   scenario "as an admin" do
     sign_in_superadmin

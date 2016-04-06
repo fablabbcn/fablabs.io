@@ -17,7 +17,7 @@ class RefereeMailer < ActionMailer::Base
     @referee = Lab.find(recipient)
     users = (@referee.direct_admins + [@referee.creator]).compact.uniq.map { |u| u.email_string }
     users.join(", ")
-    @user = @referee.direct_admins.first
+    @user = @referee.creator
     mail(to: users, subject: "[Fablabs.io] #{@lab} #{action.capitalize} - #{message}")
 
   end
