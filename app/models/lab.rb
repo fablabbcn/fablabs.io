@@ -152,8 +152,8 @@ class Lab < ActiveRecord::Base
     labs.map{ |v| c[v[:country_code]] += 1 }
     countries = []
     c.each do |country_code, count|
-      if ISO3166::Country[country_code]
-        countries.push([ISO3166::Country[country_code].name, country_code, count])
+      if Country[country_code]
+        countries.push([Country[country_code].name, country_code, count])
       end
     end
     return countries.sort_alphabetical_by(&:first)
@@ -207,7 +207,8 @@ class Lab < ActiveRecord::Base
       "fablabbcn",
       "fablabcascina",
       "vigyanashram",
-      "fablabkamakura"
+      "fablabkamakura",
+      "fablabil"
     ]
 
     Lab.where(slug: referees).order('name ASC')
