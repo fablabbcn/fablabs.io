@@ -1,8 +1,8 @@
 class LabsController < ApplicationController
   include LabsOperations
 
-  before_filter :require_login, except: [:index, :map, :show, :mapdata, :embed]
-  after_action :allow_iframe, only: :embed
+  before_filter :require_login, except: [:index, :map, :show, :mapdata, :embed, :list]
+  after_action :allow_iframe, only: [:embed, :list]
 
   # authorize_actions_for Lab, actions: { map: :read, manage_admins: :update}
 
@@ -13,6 +13,13 @@ class LabsController < ApplicationController
 
   def map
     @labs = Lab.with_approved_state
+  end
+
+  def list
+    if params[:country]
+      params["country"].downcase!
+    end
+    @labs = Lab.with_approved_state.order('LOWER(name) ASC').in_country_code(params["country"]).page(params['page']).per(params['per'])
   end
 
   def mapdata

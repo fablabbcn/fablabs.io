@@ -1,0 +1,18 @@
+#list
+  .row.top
+    .columns.large-8
+      %ul.breadcrumbs
+        %li= link_to Lab.to_s.pluralize, labs_path
+        - if params[:country].present?
+          %li.current
+            = link_to labs_path(country: params[:country]) do
+              %span.flag{class: "flag-#{params[:country]}"}
+              = ISO3166::Country[params[:country]]
+        - else
+          %li.current= link_to t("views.labs.index.all_countries"), labs_path
+  -# = link_to "Fablabs.io", "https://www.fablabs.io/map", id: "embed-logo"
+  .row.labs-list
+    - cache ["v1-labsindex-#{I18n.locale}-#{Digest::MD5.hexdigest([params.to_s].to_s)}", Lab.last_updated_at] do
+      .columns.large-12
+        .labs= render @labs
+        = paginate @labs

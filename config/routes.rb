@@ -130,6 +130,7 @@ Fablabs::Application.routes.draw do
       collection do
         get :map
         get :embed
+        get :list
       end
     end
 
