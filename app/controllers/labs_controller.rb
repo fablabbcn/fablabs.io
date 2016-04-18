@@ -29,6 +29,8 @@ class LabsController < ApplicationController
     @count = all_labs.size
     @labs = all_labs.order('LOWER(name) ASC').in_country_code(params["country"]).page(params['page']).per(params['per'])
 
+    binding.pry
+
     respond_to do |format|
       format.html
       format.json { render json: @labs }

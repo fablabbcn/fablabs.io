@@ -41,7 +41,7 @@ gem 'authority', github: 'nathanl/authority'
 gem 'rolify', github: 'EppO/rolify'
 gem 'font-awesome-rails', github: 'bokmann/font-awesome-rails'
 # gem 'compass-rails' # you need this or you get an err
-gem 'foundation-rails'
+gem 'foundation-rails', '>=5.5.3'
 gem 'acts-as-taggable-on'
 gem 'kaminari'
 gem 'ancestry', github: 'stefankroes/ancestry'
@@ -58,7 +58,7 @@ gem 'momentjs-rails'
 gem 'active_model_serializers'
 gem 'stamp'
 gem 'sass-rails', '~> 4.0.0'
-gem 'sprockets-rails'
+gem 'sprockets', '~>2.11.0'
 gem 'haml-rails'
 gem 'uglifier', '>= 1.3.0'
 gem 'font-awesome-sass', '~> 4.3.0'
@@ -124,6 +124,7 @@ end
 group :development do
   gem 'quiet_assets'
   gem 'net-ssh'
+  gem "pry"
 end
 
 # Use ActiveModel has_secure_password
