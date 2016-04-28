@@ -1,0 +1,124 @@
+FORMAT: 1A
+HOST: http://api.fablabs.io/
+
+# Fablabs.io
+
+Fablabs.io API.
+
+## Labs Collection [/labs]
+
+### List All Labs [GET]
+
++ Response 200 (application/json)
+
+        { 
+            "data":
+                { 
+                    "labs":
+                        [   
+                            {
+                                "id": "142",
+                                "type":"supernode",
+                                "attributes":
+                                    {
+                                        "slug": "fablabbcn",
+                                        "name": "Fab Lab BCN",
+                                        "blurb": "Fab Lab Barcelona is a centre of production, investigation and education, that uses the latest computer-assisted design software for the creation of prototypes and scale models.","description":"Fab Lab Barcelona is a centre of production, investigation and education, that uses the latest computer-assisted design software for the creation of prototypes and scale models for Architecture, Construction and Industrial Design.",
+                                        "location": 
+                                            {
+                                                "address_1":"Carrer de Pujades, 102",
+                                                "address_2":"",
+                                                "city":"Barcelona",
+                                                "county":"Catalonia",
+                                                "postal_code":"08005",
+                                                "country_code":"es",
+                                                "latitude":41.3965511,
+                                                "longitude":2.19416179999996,
+                                                "address_notes":"",
+                                            },
+                                        "avatar":"https://www.filepicker.io/api/file/N2owmTJoSMOR2wousv66",
+                                        "header_image_src":"https://www.filepicker.io/api/file/sJw7EBcTxSXYG5IrgWYg",
+                                        "phone":"+34 93 3209520",
+                                        "email":"info@fablabbcn.org",
+                                        "capabilities":
+                                            [
+                                                "three_d_printing",
+                                                "cnc_milling",
+                                                "circuit_production",
+                                                "laser",
+                                                "precision_milling",
+                                                "vinyl_cutting"
+                                            ],
+                                        "links": 
+                                            {
+                                                "self": "https://www.fablabs.io/fablabbcn",
+                                                "related": "http://fablab.fikket.com/",
+                                                "media": "http://vimeo.com/fablabbcn/videos",
+                                                "twitter": "http://twitter.com/fablabbcn",
+                                                "github": "https://github.com/fablabbcn",
+                                            }
+                                    }
+                            },
+                        ]
+                }
+        }
+    
+## Projects Collection [/projects]
+
+### List All Projects [GET]
+
++ Response 200 (application/json)
+
+        { 
+            "data":
+                {
+                }
+        }
+        
+## Events Collection [/events]
+
+### List All Events [GET]
+
++ Response 200 (application/json)
+
+        { 
+            "data":
+                {
+                }
+        }
+        
+## People Collection [/people]
+
+### List All People [GET]
+
++ Response 200 (application/json)
+
+        { 
+            "data":
+                {
+                }
+        }
+        
+## Authentication [/auth]
+
+### Authenticate application [GET]
+
++ Response 200 (application/json)
+
+        { 
+            "data":
+                {
+                }
+        }
+
+## Blockchain [/blockchain]
+
+### Endpoint to query fablabs.io blockchain
+    
++ Response 200 (application/json)
+
+        { 
+            "data":
+                {
+                }
+        }
