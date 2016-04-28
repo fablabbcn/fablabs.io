@@ -5,13 +5,16 @@ HOST: http://api.fablabs.io/
 
 Fablabs.io API.
 
+
+
+
 ## Labs Collection [/labs?{page}&{per}&{sort}]
 
 ### List All Labs [GET]
 
 + Parameters
-    + page (int) - Page number for pagination.
-    + per (int) - Number of results per page.
+    + page (int) - Page number for pagination
+    + per (int) - Number of results per page
     + sort (string) - Sort by name ASC or DESC
 
 + Response 200 (application/json)
@@ -82,15 +85,19 @@ Fablabs.io API.
                         ]
                 }
         }
-        
-        
-## Search Labs [/labs/search?{country}&{country_code}&{lat}&{lon}&{city}&{query}&{points}&{radius}&{ip}]
 
-### Search Labs
+
+
+
+## Search Labs [/labs/search?{country}&{country_code}&{lat}&{lon}&{city}&{query}&{points}&{ip}&{radius}]
+
+### Search Labs [GET]
+
++ Response 200 (application/json)
 
 + Parameters
-    + country (string) - Fab lab country: ex. "spain".
-    + country_code (string) - Fab lab country code: ex. "es".
+    + country (string) - Fab lab country: ex. spain.
+    + country_code (string) - Fab lab country code: ex. es.
     + lat (string) - Fab lab latitude.
     + lon (string) - Fab lab longitude.
     + city (string) - Fab lab city.
@@ -98,7 +105,78 @@ Fablabs.io API.
     + radius (string) - Spherical radius for geographical searches
     + points (array) - Array of geographical coordinates
     + ip (string) - IP address
-        
+
++ Response 200 (application/json)
+
+        { 
+            "data":
+                { 
+                    "labs":
+                        [   
+                            {
+                                "id": "142",
+                                "type":"supernode",
+                                "attributes":
+                                    {
+                                        "slug": "fablabbcn",
+                                        "name": "Fab Lab BCN",
+                                        "blurb": "Fab Lab Barcelona is a centre of production, investigation and education, that uses the latest computer-assisted design software for the creation of prototypes and scale models.","description":"Fab Lab Barcelona is a centre of production, investigation and education, that uses the latest computer-assisted design software for the creation of prototypes and scale models for Architecture, Construction and Industrial Design.",
+                                        "location": 
+                                            {
+                                                "address_1":"Carrer de Pujades, 102",
+                                                "address_2":"",
+                                                "city":"Barcelona",
+                                                "county":"Catalonia",
+                                                "postal_code":"08005",
+                                                "country_code":"es",
+                                                "coordinates": 
+                                                    {
+                                                        "latitude":41.3965511,
+                                                        "longitude":2.19416179999996,
+                                                    },
+                                                "address_notes":"",
+                                            },
+                                        "avatar":"https://www.filepicker.io/api/file/N2owmTJoSMOR2wousv66",
+                                        "header_image_src":"https://www.filepicker.io/api/file/sJw7EBcTxSXYG5IrgWYg",
+                                        "phone":"+34 93 3209520",
+                                        "email":"info@fablabbcn.org",
+                                        "capabilities":
+                                            [
+                                                "three_d_printing",
+                                                "cnc_milling",
+                                                "circuit_production",
+                                                "laser",
+                                                "precision_milling",
+                                                "vinyl_cutting"
+                                            ],
+                                        "referees": 
+                                            [
+                                                {
+                                                    "id":"123",
+                                                    "type": "supernode",
+                                                    "attributes": 
+                                                        {
+                                                            "name": "AS220",
+                                                            "slug": "as220",
+                                                        }
+                                                },
+                                            ]
+                                    },
+                                 "links": 
+                                    {
+                                        "self": "https://www.fablabs.io/fablabbcn",
+                                        "related": "http://fablab.fikket.com/",
+                                        "media": "http://vimeo.com/fablabbcn/videos",
+                                        "twitter": "http://twitter.com/fablabbcn",
+                                        "github": "https://github.com/fablabbcn",
+                                    }
+                            },
+                        ]
+                }
+        }
+
+
+
 
 ## Lab [/labs/{lab_id}]
 
@@ -108,6 +186,8 @@ Fablabs.io API.
     + lab_id (string) - Fab lab unique id.
 
 + Response 200 (application/json)
+
+
 
     
 ## Projects Collection [/projects]
@@ -121,7 +201,10 @@ Fablabs.io API.
                 {
                 }
         }
-        
+
+
+
+
 ## Events Collection [/events]
 
 ### List All Events [GET]
@@ -133,7 +216,10 @@ Fablabs.io API.
                 {
                 }
         }
-        
+
+
+
+    
 ## People Collection [/people]
 
 ### List All People [GET]
@@ -145,7 +231,10 @@ Fablabs.io API.
                 {
                 }
         }
-        
+
+
+
+    
 ## Authentication [/auth]
 
 ### Authenticate application [GET]
@@ -157,6 +246,9 @@ Fablabs.io API.
                 {
                 }
         }
+
+
+
 
 ## Blockchain [/blockchain]
 
