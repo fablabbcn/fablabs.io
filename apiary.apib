@@ -5,9 +5,14 @@ HOST: http://api.fablabs.io/
 
 Fablabs.io API.
 
-## Labs Collection [/labs]
+## Labs Collection [/labs?{page}&{per}&{sort}]
 
 ### List All Labs [GET]
+
++ Parameters
+    + page (int) - Page number for pagination.
+    + per (int) - Number of results per page.
+    + sort (string) - Sort by name ASC or DESC
 
 + Response 200 (application/json)
 
@@ -32,8 +37,11 @@ Fablabs.io API.
                                                 "county":"Catalonia",
                                                 "postal_code":"08005",
                                                 "country_code":"es",
-                                                "latitude":41.3965511,
-                                                "longitude":2.19416179999996,
+                                                "coordinates": 
+                                                    {
+                                                        "latitude":41.3965511,
+                                                        "longitude":2.19416179999996,
+                                                    },
                                                 "address_notes":"",
                                             },
                                         "avatar":"https://www.filepicker.io/api/file/N2owmTJoSMOR2wousv66",
@@ -49,19 +57,58 @@ Fablabs.io API.
                                                 "precision_milling",
                                                 "vinyl_cutting"
                                             ],
-                                        "links": 
-                                            {
-                                                "self": "https://www.fablabs.io/fablabbcn",
-                                                "related": "http://fablab.fikket.com/",
-                                                "media": "http://vimeo.com/fablabbcn/videos",
-                                                "twitter": "http://twitter.com/fablabbcn",
-                                                "github": "https://github.com/fablabbcn",
-                                            }
+                                        "referees": 
+                                            [
+                                                {
+                                                    "id":"123",
+                                                    "type": "supernode",
+                                                    "attributes": 
+                                                        {
+                                                            "name": "AS220",
+                                                            "slug": "as220",
+                                                        }
+                                                },
+                                            ]
+                                    },
+                                 "links": 
+                                    {
+                                        "self": "https://www.fablabs.io/fablabbcn",
+                                        "related": "http://fablab.fikket.com/",
+                                        "media": "http://vimeo.com/fablabbcn/videos",
+                                        "twitter": "http://twitter.com/fablabbcn",
+                                        "github": "https://github.com/fablabbcn",
                                     }
                             },
                         ]
                 }
         }
+        
+        
+## Search Labs [/labs/search?{country}&{country_code}&{lat}&{lon}&{city}&{query}&{points}&{radius}&{ip}]
+
+### Search Labs
+
++ Parameters
+    + country (string) - Fab lab country: ex. "spain".
+    + country_code (string) - Fab lab country code: ex. "es".
+    + lat (string) - Fab lab latitude.
+    + lon (string) - Fab lab longitude.
+    + city (string) - Fab lab city.
+    + query (string) - Search labs by search query 
+    + radius (string) - Spherical radius for geographical searches
+    + points (array) - Array of geographical coordinates
+    + ip (string) - IP address
+        
+
+## Lab [/labs/{lab_id}]
+
+### Lab [GET]
+
++ Parameters
+    + lab_id (string) - Fab lab unique id.
+
++ Response 200 (application/json)
+
     
 ## Projects Collection [/projects]
 
