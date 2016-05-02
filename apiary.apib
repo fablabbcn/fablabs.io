@@ -5,6 +5,7 @@ HOST: http://api.fablabs.io/
 
 Fablabs.io API.
 
+We implement JSON API. For more information visit: http://jsonapi.org/.
 
 
 
@@ -89,7 +90,7 @@ Fablabs.io API.
 
 
 
-## Search Labs [/labs/search?{country}&{country_code}&{lat}&{lon}&{city}&{query}&{points}&{ip}&{radius}]
+## Search Labs [/labs/search?{country}&{country_code}&{lat}&{lon}&{city}&{query}&{points}&{ip}&{radius}&{referee}&{capabilities}]
 
 ### Search Labs [GET]
 
@@ -105,6 +106,8 @@ Fablabs.io API.
     + radius (string) - Spherical radius for geographical searches
     + points (array) - Array of geographical coordinates
     + ip (string) - IP address
+    + referee (string) - Search lab by referee lab
+    + capabilities - Search lab by capabilities
 
 + Response 200 (application/json)
 
@@ -187,6 +190,43 @@ Fablabs.io API.
 
 + Response 200 (application/json)
 
+### Lab [POST]
+
++ Response 200 (application/json)
+
+        { 
+            "data":
+                {
+                }
+        }
+
++ Response 400 (application/json)
+
+        { 
+            "errors":
+                [
+                    {
+                        "status":"400",
+                        "code":"400",
+                        "title":"Bad request",
+                        "details":"The server cannot or will not process the request due to an apparent client error."
+                    },
+                ]
+        }
+        
++ Response 500 (application/json)
+
+### Lab [PUT]
+
++ Response 200 (application/json)
+
+### Lab [PATCH]
+
++ Response 200 (application/json)
+
+### Lab [DELETE]
+
++ Response 200 (application/json)
 
 
     
@@ -219,6 +259,21 @@ Fablabs.io API.
 
 
 
+
+## Events Collection [/machines]
+
+### List All Machines [GET]
+
++ Response 200 (application/json)
+
+        { 
+            "data":
+                {
+                }
+        }
+
+
+
     
 ## People Collection [/people]
 
@@ -235,17 +290,72 @@ Fablabs.io API.
 
 
     
-## Authentication [/auth]
+## Application Authentication [/auth/applications?{redirect_uri}&{response_type}&{client_id}]
 
-### Authenticate application [GET]
+### Authenticate application implicit OAuth flow [GET]
 
-+ Response 200 (application/json)
++ Parameters
+    + redirect_uri (string) - Redirect URI on app
+    + response_type (string) - Always code
+    + client_id (string) - Client ID
 
-        { 
-            "data":
-                {
-                }
++ Response 302 (text/html)
+
+    + Headers
+        
+            Location: https://api.fablabs.io/signin?goto=%2Foauth%2Fauthorize%3Fclient_id%3D1204a007bebfe971ec89db90a0b994db8c49327f2cbed2c6c7bcbd13f471697a%26redirect_uri%3Dhttps%253A%252F%252Foauth-fablabs-io.herokuapp.com%252Fcallback%26response_type%3Dcode
+            Set-Cookie: _fablabs_session=OEZFa1ZyaXVCUWZGVld5RFdtZnd3enZaMFBpUEQzcmVXbVdIYXoySlRYYnVHZkI5NG56a2tMUE80U3h0NFNWUHBBMGVXVEhRYU42aVBJa0lFVVNNZkEzSXVGaTlWeEtoa0M1dCthYTQvbi84K0xwRjA2azBKTjdiUWUvTSt2WEM3RW0wZ0c5bTdHQ2k2RlpwbjlKc1ZBOXdRY2hkVnJoR2V1cmFzVW1pMXBiQ0tqQ1VSa2JxYnlMY0FOcWQ0TUdNLS1uUXYrSzZ0S0trdlE3cVpWUEt2dUpBPT0%3D--2f244bac1b08de67b54b102206ade82f0e3af34c; domain=.fablabs.io; path=/; secure; HttpOnly
+            Status: 302 Found
+
+
+
+
+## User Authentication [/auth/sessions]
+
+### Authenticate user [POST]
+
++ Request (application/json)
+
+        {
+            "authenticity_token": "l2yUnGCJ1r/1fFBrfWdfCdtZgni8IzMV2IBWEWXmWY8=",
+            "goto": "/oauth/authorize?client_id=1204a007bebfe971ec89db90a0b994db8c49327f2cbed2c6c7bcbd13f471697a&redirect_uri=https%3A%2F%2Foauth-fablabs-io.herokuapp.com%2Fcallback&response_type=code",
+            "email_or_username": "email@fablabs.io"
+            "password": "MySuperStrongPassword!"
         }
+
++ Response 302 (text/html)
+
+    + Headers
+    
+            Location: https://api.fablabs.io/oauth/authorize?client_id=1204a007bebfe971ec89db90a0b994db8c49327f2cbed2c6c7bcbd13f471697a&redirect_uri=https%3A%2F%2Foauth-fablabs-io.herokuapp.com%2Fcallback&response_type=code
+            Set-Cookie: _fablabs_session=ejN2a3NQc1RnbWFEbkJCV0RlNk40UkZhQVZWVlBwRGlzWUtKQUcrbEw5VGx5cDRiUjZsaEtaekJxL015dWhpQ3M4TTNvY1VrS2ZqbEEwS1NiNXE3Zm1INUNCYWZLWUZPU1V1enRoL3NFTEJIOHVIUkdOdk43MlE2NUdvSzUwZk9nQUtyUEJzMitROHZScW1xMFhweFo3TkNYM200eUg1L2JWYWdMdk9aTDFOa3RkanNEZjVzSU9mR1dzNHBYb2FvMGNNZzcyKzYyRjRzVnM4ZlBHT1VuYTFZMXhGMFVjQ0wvZm5nTjJlMlZLYXB1SUVBR1B4RDk4cHZGbjIxTTluK2V3YlVYQTNyTk5qUTFJNGQ2K1Vad3N5TERGOTBFbGUxVWVxUkNZZkJrenc9LS10aVdDeXJrMk1PbU9pT1VGWktEbk5BPT0%3D--fc4c22c15f0c4badd7af795b05b19a01e258b046; domain=.fablabs.io; path=/; secure; HttpOnly
+            Status: 302 Found
+
+
+## User Authorization [/auth/authorize?{client_id}&{redirect_uri}&{response_type}]
+
+### Authorize user [GET]
+
++ Request (application/json)
+
+        {
+            "redirect_uri": "https://oauth-fablabs-io.herokuapp.com/callback",
+            "client_id": "1204a007bebfe971ec89db90a0b994db8c49327f2cbed2c6c7bcbd13f471697a",
+            "response_type": "code"
+        }
+
++ Parameters
+    + redirect_uri (string) - Redirect URI on app
+    + response_type (string) - Always code
+    + client_id (string) - Client ID
+
++ Response 302 (text/html)
+
+    + Headers
+    
+            Location: https://oauth-fablabs-io.herokuapp.com/callback?code=76bc2fad088c159c75cc0c93008b1076e93ea7f66c8d392fc4b647aceba6fc97
+            Set-Cookie: _fablabs_session=MVdRS080RUpyQm4xT3VHMEhjYVl0d1NOUjdJMWY5L2pFeXhnU0RTUUxTbHFZelRvdi9KRmZXVXB2aHdXRGNTZVhiSFFuNVVrclppM1o1RTNiOFZzdnNEQ3d1S0ZaQ1ZTb09MR2V5UG55QXV3T3F4TTlCenM2WWNWU29KeUJuWVY0RExyTHJ6Y1VsZDgwTVJsV3VSOUcycVJaN3l1Uk4ydGtsWnhkQUl2S2dTcURNNkZuM0NPUTl1STBOR1RSMk92TGNSemZMSnpPcm9rZjFOUGhZT2ZESDNpSVFHaTJSZ3RiUy8xVThla3BFQzFLNHlvVys0SUdJbEt1Q1B6eElGRGF2Qk81T2JraDJocnZFeWlrSVNyZzQ3eFZVNG5pSHpnMGdZbE9jK3puM0U9LS1KUVJ3SWgrdzIxYlNUOUJaRmRqZjZnPT0%3D--37c55f0ec07b422c4148710cb586d6cb0ea0c1f2; domain=.fablabs.io; path=/; secure; HttpOnly
+            Status: 302 Found
 
 
 
