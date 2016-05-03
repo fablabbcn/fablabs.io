@@ -76,7 +76,7 @@ We implement JSON API. For more information visit: http://jsonapi.org/.
                                     },
                                  "links": 
                                     {
-                                        "self": "https://www.fablabs.io/fablabbcn",
+                                        "self": "https://api.fablabs.io/fablabbcn",
                                         "related": "http://fablab.fikket.com/",
                                         "media": "http://vimeo.com/fablabbcn/videos",
                                         "twitter": "http://twitter.com/fablabbcn",
@@ -90,7 +90,7 @@ We implement JSON API. For more information visit: http://jsonapi.org/.
 
 
 
-## Search Labs [/labs/search?{country}&{country_code}&{lat}&{lon}&{city}&{query}&{points}&{ip}&{radius}&{referee}&{capabilities}]
+## Search Labs [/labs/search?{country}&{country_code}&{lat}&{lon}&{city}&{query}&{points}&{ip}&{radius}&{referee}&{capabilities}&{tags}]
 
 ### Search Labs [GET]
 
@@ -107,7 +107,8 @@ We implement JSON API. For more information visit: http://jsonapi.org/.
     + points (array) - Array of geographical coordinates
     + ip (string) - IP address
     + referee (string) - Search lab by referee lab
-    + capabilities - Search lab by capabilities
+    + capabilities (string) - Search lab by capabilities
+    + tags (string) - Search lab by tags
 
 + Response 200 (application/json)
 
@@ -167,7 +168,7 @@ We implement JSON API. For more information visit: http://jsonapi.org/.
                                     },
                                  "links": 
                                     {
-                                        "self": "https://www.fablabs.io/fablabbcn",
+                                        "self": "https://api.fablabs.io/fablabbcn",
                                         "related": "http://fablab.fikket.com/",
                                         "media": "http://vimeo.com/fablabbcn/videos",
                                         "twitter": "http://twitter.com/fablabbcn",
@@ -190,15 +191,116 @@ We implement JSON API. For more information visit: http://jsonapi.org/.
 
 + Response 200 (application/json)
 
+        { 
+            "data":
+                { 
+                    {
+                        "id": "142",
+                        "type":"supernode",
+                        "attributes":
+                            {
+                                "slug": "fablabbcn",
+                                "name": "Fab Lab BCN",
+                                "blurb": "Fab Lab Barcelona is a centre of production, investigation and education, that uses the latest computer-assisted design software for the creation of prototypes and scale models.","description":"Fab Lab Barcelona is a centre of production, investigation and education, that uses the latest computer-assisted design software for the creation of prototypes and scale models for Architecture, Construction and Industrial Design.",
+                                "location": 
+                                    {
+                                        "address_1":"Carrer de Pujades, 102",
+                                        "address_2":"",
+                                        "city":"Barcelona",
+                                        "county":"Catalonia",
+                                        "postal_code":"08005",
+                                        "country_code":"es",
+                                        "coordinates": 
+                                            {
+                                                "latitude":41.3965511,
+                                                "longitude":2.19416179999996,
+                                            },
+                                        "address_notes":"",
+                                    },
+                                "avatar": "https://www.filepicker.io/api/file/N2owmTJoSMOR2wousv66",
+                                "header_image_src": "https://www.filepicker.io/api/file/sJw7EBcTxSXYG5IrgWYg",
+                                "phone": "+34 93 3209520",
+                                "email": "info@fablabbcn.org",
+                                "capabilities":
+                                    [
+                                        "three_d_printing",
+                                        "cnc_milling",
+                                        "circuit_production",
+                                        "laser",
+                                        "precision_milling",
+                                        "vinyl_cutting"
+                                    ],
+                                "referees": 
+                                    [
+                                        {
+                                            "id":"123",
+                                            "type": "supernode",
+                                            "attributes": 
+                                                {
+                                                    "name": "AS220",
+                                                    "slug": "as220",
+                                                }
+                                        },
+                                    ],
+                            },
+                        "links": 
+                            {
+                                "self": "https://api.fablabs.io/fablabbcn",
+                                "related": "http://fablab.fikket.com/",
+                                "media": "http://vimeo.com/fablabbcn/videos",
+                                "twitter": "http://twitter.com/fablabbcn",
+                                "github": "https://github.com/fablabbcn",
+                            }
+                    }
+                }
+        }
+
 ### Lab [POST]
 
-+ Response 200 (application/json)
++ Request
 
         { 
             "data":
                 {
+                    "authenticity_token": "l2yUnGCJ1r/1fFBrfWdfCdtZgni8IzMV2IBWEWXmWY8=",
+                    "type": "fablab",
+                    "id": "213",
+                    "attributes": 
+                        {
+                            "name": "TestLab21",
+                            "charter": 1,
+                            "tools": 1,
+                            "network": 1,
+                            "programs": 1,
+                            "public": 1,
+                            "blurb": "This is a test fab lab.",
+                            "description": "This is a test lab. Just ignore everything about it.",
+                            "slug": "testlab21",
+                            "location": 
+                                {
+                                    "geocomplete": "Carrer+de+la+Canuda,+45-47,+08002+Barcelona,+Barcelona,+Spain",
+                                    "address_1": "Barcelona",
+                                    "address_2": "Plaza+de+Catalunya",
+                                    "city": "Barcelona",
+                                    "postal_code": "08002",
+                                    "country_code": "es",
+                                    "coordinates": 
+                                        {
+                                            "latitude": "41.3850595",
+                                            "longitude" : "2.173406699999987"
+                                        }
+                                },
+                            "email": "email@fablabs.io"
+                            "links": 
+                                {
+                                    "self": "https://api.fablabs.io/testfablab"
+                                }
+                        }
                 }
         }
+
++ Response 200 (application/json)
+
 
 + Response 400 (application/json)
 
@@ -216,13 +318,23 @@ We implement JSON API. For more information visit: http://jsonapi.org/.
         
 + Response 500 (application/json)
 
+        { 
+            "errors":
+                [
+                    {
+                        "status":"500",
+                        "code":"500",
+                        "title":"Internal Server Error",
+                        "details": "An unexpected condition caused an internal server error."
+                    },
+                ]
+        }
+
+
 ### Lab [PUT]
 
 + Response 200 (application/json)
 
-### Lab [PATCH]
-
-+ Response 200 (application/json)
 
 ### Lab [DELETE]
 
@@ -239,6 +351,50 @@ We implement JSON API. For more information visit: http://jsonapi.org/.
         { 
             "data":
                 {
+                    "projects": 
+                        [
+                            {
+                                "id":49,
+                                "attributes": {
+                                    "title": "RETAZO by: Toshiro/Ricardo",
+                                    "description": "Retazo is an Open Source Product Design Style based primarily on CNC process created by Toshiro Tabuchi and Ricardo Torres from Peru. It has the possibility to be customizable and parametric. But the main contribution of this project is the extreme optimization as a formal style that sets a challenge for all makers, designers and users around the world. \r\nDigital Fabrication makes possible to empower the user to make personalized things, but a huge power means a big responsibility, that is why a correct use of processes and resources is really important. Mixing the digital fabrication with analogical processes helps to make more competitive projects.\r\nThe Retazo Project started as an attempt to improve the process of nesting and efficiency of CNC cutting. Thanks to this improvement there are less material wastes and the machine working time is reduced. All the pieces of furniture “Retazo” are united with the common CNC joints that are really simple. The tables and chairs have a very intuitive assembly system, are user-friendly and at this way the use of analogical processes is promoted as a very useful complement to the digital Fabrication.\r\nWe wanted to design products with a style that considers functionality and efficiency to reach a really good design in the third industrial revolution. We are looking for sharing this project and we are hoping that the makers of the world will use the method offered by “Retazo Project” and will implement it in their designs. \r\n",
+                                    "faq": "¿How can I really optimize the usage of material applying the “Retazo” technique?\r\nBascally in two levels, but you should consider that more important than this is the functionality and aestetic of the product. Because of that we consider that Retazo is a challenge for each Maker.\r\n\r\nOptimization of Material: Using all the surface of the plywood board one can reach a perfect nesting process. The perfect nesting process means to not waste the material.\r\n\r\nOptimization of use of the Machine: While optimizing the nesting in an extreme way, the cut of pieces means also the cut of another piece. Also the time of cutting is reducing. The two of our tables could be fabricated in approximately 20 minutes depending on the machine characteristics that is used.\r\n\r\n\r\n¿What kind of cutter is better to use for milling?\r\nWe recommend to use a down-cut mill for the CNC, and for the fillet and finishing, a trimer tupia and a corner around router bit. \r\n\r\n\r\n¿How do you fix a board?\r\nOf course it is more difficult when you don’t have a vacuum equipment because usually one fixes the board using the some instruments. Without the vacuum equipment one should look for some smart solutions. We prefer some strategies like using taps and screws in strategic positions. \r\n\r\n\r\n¿Does it means less freedom of personalization in the digital fabrication?\r\nThe “Retazo Project” is a challenge for all makers! Everybody can do more products with less material usage. It means that one has to think more on each design. So, each one will be planned better. This method will help to save money, material and to contribute to the environment rescue. Do you accept the challenge?\r\n\r\n\r\n¿Why Open Source design?\r\nWe want to share our models and style to encourage people to think more about using the possibilities of digital fabrication. Our goal is also to fabricate more designs of this kind to expand the idea of optimization and combination of processes of analogical and digital fabrication.\r\n","scope":"In our country and in most cities of Latin America, the majority of CNC machines are being used just to cut signboards and letters. So, the possibility of demonstration of a functional and innovative use of digital fabrication, could change this tendency and the business models of some small companies in Latin America. And even better when the furniture or products made by “Retazo” are showed to them as designed and developed in their own country for the entire world.\r\nThe main objective of Retazo Project is to encourage and inspire makers of all the world to create innovative designs. Our goal consists of encouraging small local CNC shops and small companies to create products and to use the digital fabrication combined with analogical processes to make local profitable and adaptable production.  \r\nIt is also an opportunity for us to show that almost everything possible. As a motivation and support we are designing a sort of guide to build more optimized and ecologically friendly projects.\r\nTo make a global project with the help of different Open Source platforms is our dream. As the majority of Open Designs of this industrial revolution we want to share and commercialize our designs in order to put a challenge to all FabLabs, Makerspaces, Hackerspaces, CNC Shops. \r\n",
+                                    "cover":null
+                                },
+                                "links": 
+                                    {
+                                        "self": "https://api.fablabs.io/projects/49"
+                                        "github":"",
+                                        "web":"",
+                                        "dropbox":"",
+                                        "bitbucket":"",
+                                        "vimeo": "",
+                                        "flickr": "",
+                                        "youtube": "",
+                                        "drive": "https://docs.google.com/presentation/d/1_rNMzjH3KSvYudQR4JWG4blGncBimEiIlVba3exnPFU/edit?usp=sharing",
+                                        "twitter": "",
+                                        "facebook": "",
+                                        "googleplus": "",
+                                        "instagram": "",
+                                    },
+                                "meta": {
+                                    "lab_id": 245,
+                                    "owner_id": 3802,
+                                    "created_at":"2015-07-22T06:05:37.436Z",
+                                    "updated_at":"2015-07-22T19:40:00.553Z",
+                                    "status":null,
+                                    "version":null,
+                                    "collaborations":
+                                        {
+                                        },
+                                    "contributors":
+                                        {
+                                        },
+                                    "community":null,
+                                    "lookingfor":null,
+                                }
+                            },
+                        ]
                 }
         }
 
@@ -254,13 +410,110 @@ We implement JSON API. For more information visit: http://jsonapi.org/.
         { 
             "data":
                 {
+                    "events":
+                        [
+                            {
+                                "id": "123",
+                                "type": "workshop",
+                                "attributes": 
+                                    {
+                                        "title": "A great event!",
+                                        "description": "This is an event",
+                                        "faq": "What are we going to do? We are going to learn about fablabs",
+                                        "attendees": 
+                                            [
+                                                {
+                                                    "id": 213,
+                                                    "attributes": 
+                                                        {
+                                                            "first_name": "John",
+                                                            "last_name": "Smith",
+                                                            "username": "john687"
+                                                        },
+                                                    "links": 
+                                                        {
+                                                            "self": "https://api.fablabs.io/users/213",
+                                                            "github": "https://github.com/john687/"
+                                                        }
+                                                },
+                                            ],
+                                        "location": 
+                                            {
+                                                "geocomplete": "Carrer+de+la+Canuda,+45-47,+08002+Barcelona,+Barcelona,+Spain",
+                                                "address_1": "Barcelona",
+                                                "address_2": "Plaza+de+Catalunya",
+                                                "city": "Barcelona",
+                                                "postal_code": "08002",
+                                                "country_code": "es",
+                                                "coordinates": 
+                                                    {
+                                                        "latitude": "41.3850595",
+                                                        "longitude" : "2.173406699999987"
+                                                    }
+                                            },
+                                        "organizer": 
+                                            {
+                                                "id": "142",
+                                                "type":"supernode",
+                                                "attributes":
+                                                    {
+                                                        "slug": "fablabbcn",
+                                                        "name": "Fab Lab BCN",
+                                                        "blurb": "Fab Lab Barcelona is a centre of production, investigation and education, that uses the latest computer-assisted design software for the creation of prototypes and scale models.","description":"Fab Lab Barcelona is a centre of production, investigation and education, that uses the latest computer-assisted design software for the creation of prototypes and scale models for Architecture, Construction and Industrial Design.",
+                                                    },
+                                                "links": 
+                                                    {  
+                                                        "self": "https://api.fablabs.io/events/2315",
+                                                                
+                                                    },
+                                                "meta":
+                                                    {
+                                                        "media": 
+                                                            [
+                                                                {
+                                                                    "id": 2314,
+                                                                    "type": "image/jpg",
+                                                                    "attributes": 
+                                                                        {
+                                                                            "title": "Amazing pic",
+                                                                            "description": "This is a place for the event",
+                                                                        },
+                                                                    "links":
+                                                                        {
+                                                                            "self": "https://api.fablabs.io/events/2315/media/images/pic-2314.jpg
+                                                                        }
+                                                                }
+                                                            ],
+                                                    }
+                                            },
+                                        "payment-method": 
+                                            {   
+                                                "type": "one-time",
+                                                "attributes":
+                                                    {
+                                                        "accepted":
+                                                            [
+                                                                "paypal",
+                                                                "bitpay"
+                                                            ]
+                                                    },
+                                                "links": 
+                                                    {
+                                                        "paypal": "www.paypal.com/1231",
+                                                        "bitpay": "www.bitpay.com/sdajkl"
+                                                    }
+                                                    
+                                            }
+                                    }    
+                            },
+                        ]
                 }
         }
 
 
 
 
-## Events Collection [/machines]
+## Machines Collection [/machines]
 
 ### List All Machines [GET]
 
@@ -269,6 +522,81 @@ We implement JSON API. For more information visit: http://jsonapi.org/.
         { 
             "data":
                 {
+                    "machines": 
+                        [
+                            {
+                                "id": 123156,
+                                "type": "laser",
+                                "attributes":
+                                    {
+                                        "name": "Spirit GX 40W",
+                                        "brand":
+                                            {
+                                                "id": 24151,
+                                                "attributes":
+                                                    "name": "LaserPRO",
+                                                    "description": "Laser Machines"
+                                            },
+                                        "description": "LaserPRO - Spirit GX 40W",
+                                        "at": 
+                                            [
+                                                {
+                                                    "id": "142",
+                                                    "type":"supernode",
+                                                    "attributes":
+                                                        {
+                                                            "slug": "fablabbcn",
+                                                            "name": "Fab Lab BCN",
+                                                            "blurb": "Fab Lab Barcelona is a centre of production, investigation and education, that uses the latest computer-assisted design software for the creation of prototypes and scale models.","description":"Fab Lab Barcelona is a centre of production, investigation and education, that uses the latest computer-assisted design software for the creation of prototypes and scale models for Architecture, Construction and Industrial Design.",
+                                                        },
+                                                    "links": 
+                                                        {  
+                                                            "self": "https://api.fablabs.io/events/2315",
+                                                                    
+                                                        },
+                                                    "meta":
+                                                        {
+                                                            "media": 
+                                                                [
+                                                                    {
+                                                                        "id": 2314,
+                                                                        "type": "image/jpg",
+                                                                        "attributes": 
+                                                                            {
+                                                                                "title": "Amazing pic",
+                                                                                "description": "This is a place for the event",
+                                                                            },
+                                                                        "links":
+                                                                            {
+                                                                                "self": "https://api.fablabs.io/events/2315/media/images/pic-2314.jpg
+                                                                            }
+                                                                    }
+                                                                ],
+                                                        }
+                                                }
+                                            ]
+                                    },
+                                    "links": 
+                                        {
+                                            "media": 
+                                                {
+                                                    "type": "photo",
+                                                    "href": "https://api.fablabs.io/machines/2312315/media/images/pic-2312315.jpg"
+                                                }
+                                                
+                                        },
+                                    "meta":
+                                        {
+                                            "creator_id": "213"
+                                            "created_at":"2015-07-22T06:05:37.436Z",
+                                            "updated_at":"2015-07-22T19:40:00.553Z",
+                                            "tags":
+                                                [
+                                                    
+                                                ]
+                                        }
+                            },
+                        ]
                 }
         }
 
@@ -284,13 +612,80 @@ We implement JSON API. For more information visit: http://jsonapi.org/.
         { 
             "data":
                 {
+                    "people":
+                        [
+                            {
+                                "id": 213,
+                                "type": "user",
+                                "attributes": 
+                                    {
+                                        "first_name": "John",
+                                        "last_name": "Smith",
+                                        "username": "john687"
+                                        "projects":
+                                            [
+                                                {
+                                                    "id":49,
+                                                    "attributes": {
+                                                        "title": "RETAZO by: Toshiro/Ricardo",
+                                                        "description": "Retazo is an Open Source Product Design Style based primarily on CNC process created by Toshiro Tabuchi and Ricardo Torres from Peru. It has the possibility to be customizable and parametric. But the main contribution of this project is the extreme optimization as a formal style that sets a challenge for all makers, designers and users around the world. \r\nDigital Fabrication makes possible to empower the user to make personalized things, but a huge power means a big responsibility, that is why a correct use of processes and resources is really important. Mixing the digital fabrication with analogical processes helps to make more competitive projects.\r\nThe Retazo Project started as an attempt to improve the process of nesting and efficiency of CNC cutting. Thanks to this improvement there are less material wastes and the machine working time is reduced. All the pieces of furniture “Retazo” are united with the common CNC joints that are really simple. The tables and chairs have a very intuitive assembly system, are user-friendly and at this way the use of analogical processes is promoted as a very useful complement to the digital Fabrication.\r\nWe wanted to design products with a style that considers functionality and efficiency to reach a really good design in the third industrial revolution. We are looking for sharing this project and we are hoping that the makers of the world will use the method offered by “Retazo Project” and will implement it in their designs. \r\n",
+                                                        "faq": "¿How can I really optimize the usage of material applying the “Retazo” technique?\r\nBascally in two levels, but you should consider that more important than this is the functionality and aestetic of the product. Because of that we consider that Retazo is a challenge for each Maker.\r\n\r\nOptimization of Material: Using all the surface of the plywood board one can reach a perfect nesting process. The perfect nesting process means to not waste the material.\r\n\r\nOptimization of use of the Machine: While optimizing the nesting in an extreme way, the cut of pieces means also the cut of another piece. Also the time of cutting is reducing. The two of our tables could be fabricated in approximately 20 minutes depending on the machine characteristics that is used.\r\n\r\n\r\n¿What kind of cutter is better to use for milling?\r\nWe recommend to use a down-cut mill for the CNC, and for the fillet and finishing, a trimer tupia and a corner around router bit. \r\n\r\n\r\n¿How do you fix a board?\r\nOf course it is more difficult when you don’t have a vacuum equipment because usually one fixes the board using the some instruments. Without the vacuum equipment one should look for some smart solutions. We prefer some strategies like using taps and screws in strategic positions. \r\n\r\n\r\n¿Does it means less freedom of personalization in the digital fabrication?\r\nThe “Retazo Project” is a challenge for all makers! Everybody can do more products with less material usage. It means that one has to think more on each design. So, each one will be planned better. This method will help to save money, material and to contribute to the environment rescue. Do you accept the challenge?\r\n\r\n\r\n¿Why Open Source design?\r\nWe want to share our models and style to encourage people to think more about using the possibilities of digital fabrication. Our goal is also to fabricate more designs of this kind to expand the idea of optimization and combination of processes of analogical and digital fabrication.\r\n","scope":"In our country and in most cities of Latin America, the majority of CNC machines are being used just to cut signboards and letters. So, the possibility of demonstration of a functional and innovative use of digital fabrication, could change this tendency and the business models of some small companies in Latin America. And even better when the furniture or products made by “Retazo” are showed to them as designed and developed in their own country for the entire world.\r\nThe main objective of Retazo Project is to encourage and inspire makers of all the world to create innovative designs. Our goal consists of encouraging small local CNC shops and small companies to create products and to use the digital fabrication combined with analogical processes to make local profitable and adaptable production.  \r\nIt is also an opportunity for us to show that almost everything possible. As a motivation and support we are designing a sort of guide to build more optimized and ecologically friendly projects.\r\nTo make a global project with the help of different Open Source platforms is our dream. As the majority of Open Designs of this industrial revolution we want to share and commercialize our designs in order to put a challenge to all FabLabs, Makerspaces, Hackerspaces, CNC Shops. \r\n",
+                                                        "cover": null
+                                                    },
+                                                    "links": 
+                                                        {
+                                                            "self": "https://api.fablabs.io/projects/49"
+                                                        },
+                                                },
+                                            ]
+                                    },
+                                "meta":
+                                    {
+                                        "skills":
+                                            [
+                                                "design",
+                                                "frontend",
+                                            ],
+                                        "activities":
+                                            [
+                                                {
+                                                    "id": 6723,
+                                                    "type": "update",
+                                                    "attributes":
+                                                        {
+                                                            "title": "Updated Fablab",
+                                                            "description": "John Updated Fablab NYC"
+                                                        },
+                                                    "meta":
+                                                        {
+                                                            "lab":
+                                                                {
+                                                                    "id": 123,
+                                                                    "type": "fablab",
+                                                                    "links":
+                                                                        {
+                                                                            "self": "https://api.fablabs.io/labs/123"
+                                                                        }
+                                                                }
+                                                        }
+                                                    
+                                                }
+                                            ]
+                                    },
+                                "links": 
+                                    {
+                                        "self": "https://api.fablabs.io/people/213",
+                                        "github": "https://github.com/john687/"
+                                    }
+                            }
+                        ]
                 }
         }
 
-
-
     
 ## Application Authentication [/auth/applications?{redirect_uri}&{response_type}&{client_id}]
+
+Please check OAuth Protocol Flow (https://tools.ietf.org/html/rfc6749)
 
 ### Authenticate application implicit OAuth flow [GET]
 
@@ -311,6 +706,8 @@ We implement JSON API. For more information visit: http://jsonapi.org/.
 
 
 ## User Authentication [/auth/sessions]
+
+Please check OAuth Protocol Flow (https://tools.ietf.org/html/rfc6749)
 
 ### Authenticate user [POST]
 
@@ -333,6 +730,8 @@ We implement JSON API. For more information visit: http://jsonapi.org/.
 
 
 ## User Authorization [/auth/authorize?{client_id}&{redirect_uri}&{response_type}]
+
+Please check OAuth Protocol Flow (https://tools.ietf.org/html/rfc6749)
 
 ### Authorize user [GET]
 
@@ -358,6 +757,120 @@ We implement JSON API. For more information visit: http://jsonapi.org/.
             Status: 302 Found
 
 
+## Tags [/tags]
+
+### List of tags used across the platform [GET]
+
++ Response 200 (applicaiton/json)
+
+        {
+            "data": 
+                {
+                    "tags":
+                        [
+                            {
+                                "id": 2131,
+                                "attributes": 
+                                    {
+                                        "name": "opensource"
+                                    },
+                                "meta": 
+                                    {
+                                        "frequency": "0.6"
+                                    },
+                                "links":
+                                    {
+                                        "self": "https://api.fablabs.io/tags/opensource"
+                                    }
+                                
+                            }
+                        ]
+                }
+        }
+
+
+## Tag [/tags/{tag}]
+
+### Information for a single tag [GET]
+
++ Parameters
+    + tag (string) - Tag name
+
+
++ Response 200 (applicaiton/json)
+
+        {
+            "data": 
+                {
+                    
+                    {
+                        "id": 2131,
+                        "attributes": 
+                            {
+                                "name": "opensource"
+                            },
+                        "meta": 
+                            {
+                                "frequency": "0.6",
+                                "in": 
+                                    {
+                                        "people": 
+                                            [
+                                                {
+                                                }
+                                            ],
+                                        "projects":
+                                            [   
+                                                {
+                                                }
+                                            ],
+                                        "labs":
+                                            [   
+                                                {
+                                                }
+                                            ],
+                                        "events":
+                                            [   
+                                                {
+                                                }
+                                            ],
+                                        "machines":
+                                            [
+                                                {
+                                                }
+                                            ]
+                                    },
+                            },  
+                        "links":
+                            {
+                                "self": "https://api.fablabs.io/tags/opensource"
+                            }
+                    }
+                }
+        }
+
+
+
+
+## Activities [/activities]
+
+### List of latest activity across the platform [GET]
+
++ Response 200 (applicaiton/json)
+
+
+
+
+## Activity [/activities/{activity}]
+
+### Activity [GET]
+
++ Parameters
+    + activity (string) - Activity name
+
++ Response 200 (applicaiton/json)
+
+
 
 
 ## Blockchain [/blockchain]
@@ -369,5 +882,36 @@ We implement JSON API. For more information visit: http://jsonapi.org/.
         { 
             "data":
                 {
+                }
+        }
+
+
+
+
+## Block [/blockchain/block]
+
+### Endpoint to retrieve block information
+
++ Response 200 (applicaiton/json)
+
+    
+        {
+            "data":
+                {
+                    
+                }
+        }
+        
+## Transaction [/blockchain/transaction]
+
+### Endpoint to retrieve transaction information
+
++ Response 200 (applicaiton/json)
+
+    
+        {
+            "data":
+                {
+                    
                 }
         }
