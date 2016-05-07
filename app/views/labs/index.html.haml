@@ -28,8 +28,8 @@
           = link_to "×", labs_path, class: 'close right'
           #{pluralize @labs.size, "search result"} for
           %strong= params[:query]
-
-      .labs= render @labs
+      .labs
+        = render @labs
       = paginate @labs
 
   .columns.large-4.sidebar-offcanvas

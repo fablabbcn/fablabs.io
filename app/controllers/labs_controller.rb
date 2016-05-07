@@ -24,12 +24,14 @@ class LabsController < ApplicationController
     if params[:country]
       params["country"].downcase!
     end
+
+    if params[:per].blank?
+      params[:per] = 30
+    end
     all_labs = Lab.search_for(params[:query]).with_approved_state
     @countries = Lab.country_list_for all_labs
     @count = all_labs.size
     @labs = all_labs.order('LOWER(name) ASC').in_country_code(params["country"]).page(params['page']).per(params['per'])
-
-    binding.pry
 
     respond_to do |format|
       format.html
