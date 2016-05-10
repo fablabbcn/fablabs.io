@@ -182,10 +182,26 @@ class User < ActiveRecord::Base
     end
   end
 
+  def access_token
+    Doorkeeper::AccessToken.find_or_initialize_by(application_id: 4, resource_owner_id: id)
+  end
+
+  def access_token!
+    access_token.expires_in = 2.days.from_now
+    access_token.save
+    access_token
+  end
+
 private
 
   def downcase_email
     self.email.downcase!
+  end
+
+  def generate_token(column, token=SecureRandom.urlsafe_base64)
+   begin
+     self[column] = token
+   end while User.exists?(column => self[column])
   end
 
 end

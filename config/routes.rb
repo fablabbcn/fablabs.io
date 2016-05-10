@@ -140,6 +140,7 @@ Fablabs::Application.routes.draw do
   constraints subdomain: 'api' do
     get '/' => 'static#api'
     namespace :api, path: '' do
+      get :csrf, to: 'csrf#index'
       namespace :v0 do
         get 'me' => 'users#me'
         get 'users' => 'users#search'

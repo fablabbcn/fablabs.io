@@ -1,7 +1,7 @@
 class Api::V0::UsersController < Api::V0::ApiController
 
   def me
-    respond_with current_user
+    render json: current_user
   end
 
   def search
