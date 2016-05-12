@@ -9,12 +9,14 @@ class SessionsController < ApplicationController
     user = User.where('email = :eu or username = :eu', eu: params[:email_or_username]).first
     if user && user.authenticate(params[:password])
       # cookies.permanent[:user_id] = { value: user.id, domain: '.fablabs.dev' }
-      session[:user_id] = user.id
-      session[:token] = user.access_token!.token
+      session = {
+        email_or_username: user.id,
+        token: user.access_token!.token
+      }
 
       # redirect_to URI.parse(params[:goto]).path, flash: { success: "Signed in!" }, only_path: true
       if params[:goto].blank?
-        render json: { session: session }, status: :ok
+        render json: session , status: :ok
       else
         redirect_to params[:goto], flash: { success: "Signed in!" }
       end
