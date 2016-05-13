@@ -115,7 +115,9 @@ class Lab < ActiveRecord::Base
   end
 
   def kind_name
-    Kinds[ (kind >= 0 && kind <= 3) ? kind : 3 ]
+
+    Kinds[ (kind >= 0 && kind <= 3) ? kind : 3 ] if kind
+
   end
 
   def active?

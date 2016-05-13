@@ -32,11 +32,11 @@ class LabSerializer < ActiveModel::Serializer
   has_many :links
 
   def kind_name
-    Lab::Kinds[object.kind]
+    object.kind_name 
   end
 
   def url
-    lab_path(object)
+    "https://www.fablabs.io/#{object.slug}"
   end
 
   # def cache_key

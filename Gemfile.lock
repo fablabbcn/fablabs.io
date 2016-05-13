@@ -69,6 +69,15 @@ GIT
       activerecord (>= 4.0.0)
 
 GIT
+  remote: git://github.com/rails-api/active_model_serializers.git
+  revision: 070d58eacf8633e17f91ea5ea6dd5d15deb921ab
+  specs:
+    active_model_serializers (0.10.0.rc5)
+      actionpack (>= 4.0)
+      activemodel (>= 4.0)
+      railties (>= 4.0)
+
+GIT
   remote: git://github.com/stefankroes/ancestry.git
   revision: e686dd14fb4d4d62d254a1d18bd35973e90d1280
   specs:
@@ -87,8 +96,6 @@ GEM
       erubis (~> 2.7.0)
       rack (~> 1.5.2)
       rack-test (~> 0.6.2)
-    active_model_serializers (0.9.5)
-      activemodel (>= 3.2)
     activemodel (4.0.1)
       activesupport (= 4.0.1)
       builder (~> 3.1.0)
@@ -556,7 +563,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  active_model_serializers
+  active_model_serializers!
   acts-as-taggable-on
   ancestry!
   authority!

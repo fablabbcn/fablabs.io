@@ -163,7 +163,7 @@ Fablabs::Application.routes.draw do
       end
       namespace :v1 do
         get 'me' => 'users#me'
-
+        resources :labs
       end
     end
   end
