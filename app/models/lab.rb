@@ -197,7 +197,7 @@ class Lab < ActiveRecord::Base
 
   def self.approved_referees
     referees = [
-      "thewellingtonmakerspace",
+      "fablabwgtn",
       "fablabtaipei",
       "waagsociety",
       "fablablima",
