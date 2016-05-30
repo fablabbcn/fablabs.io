@@ -1,4 +1,4 @@
-class Api::V1::ApiController < ActionController::Base
+class Api::V1::ApiController < ApplicationController
   respond_to :json
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
 
@@ -16,5 +16,15 @@ private
     if doorkeeper_token
       @current_user ||= User.find(doorkeeper_token.resource_owner_id)
     end
+  end
+
+  helper_method :current_or_null_user
+  def current_or_null_user
+    current_user || User.new
+    # if current_user == nil
+    #   User.new
+    # else
+    #   current_user
+    # end
   end
 end

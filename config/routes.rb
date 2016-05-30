@@ -162,7 +162,10 @@ Fablabs::Application.routes.draw do
         end
       end
       namespace :v1 do
-        get 'me' => 'users#me'
+        scope '/me' do
+          get '/' => 'users#me'
+          resources :users, :path => '/',  only: [:update]
+        end
         resources :labs
       end
     end
