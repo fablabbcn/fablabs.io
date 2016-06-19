@@ -84,4 +84,10 @@ Fablabs::Application.configure do
   config.log_formatter = ::Logger::Formatter.new
 
   config.url = 'https://www.fablabs.io'
+
+  # ...
+  config.opbeat.organization_id = ENV["OPBEAT_ORG_ID"]
+  config.opbeat.app_id = ENV["OPBEAT_APP_ID"]
+  config.opbeat.secret_token = ENV["OPBEAT_SECRET"]
+
 end
