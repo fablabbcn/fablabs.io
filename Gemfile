@@ -18,7 +18,6 @@ gem 'slim'
 gem 'redis-rails'
 gem 'redis-rack-cache'
 gem 'newrelic_rpm'
-gem "skylight"
 gem "opbeat"
 gem 'sitemap_generator'
 gem "rack-cache"
