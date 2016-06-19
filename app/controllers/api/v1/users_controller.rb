@@ -16,9 +16,9 @@ class Api::V1::UsersController < Api::V1::ApiController
         UserMailer.delay.verification(@user.id)
         @user.unverify!
       end
-      render json: current_user, status: :ok
+      render json: current_user, serializer: UserJsonapiSerializer, root: "data", status: :ok
     else
-      # Would be nice to have a proper error class. 
+      # Would be nice to have a proper error class.
       render json: { error: 406 }, status: :not_acceptable
     end
   end
