@@ -131,10 +131,11 @@ end
 gem 'bcrypt-ruby'
 
 # gem 'foreman'
-gem 'unicorn'
-
-# Use unicorn as the app server
 # gem 'unicorn'
+# Use Puma as the app server
+gem 'puma'
+
+gem 'skylight'
 
 # Use Capistrano for deployment
 gem 'capistrano', '~> 2.15'#, group: :development
