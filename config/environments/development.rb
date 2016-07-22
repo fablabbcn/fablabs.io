@@ -35,10 +35,10 @@ Fablabs::Application.configure do
 
 
   config.action_controller.perform_caching = true
-  config.cache_store = :redis_store, 'redis://localhost:6379/0/cache', { expires_in: 90.minutes }
+  config.cache_store = :redis_store, "#{ENV['REDIS_URL']}/0/cache", { expires_in: 90.minutes }
   config.action_dispatch.rack_cache = {
-    metastore:   'redis://localhost:6379/0/metastore',
-    entitystore: 'redis://localhost:6379/0/entitystore'
+    metastore:   "#{ENV['REDIS_URL']}/0/metastore",
+    entitystore: "#{ENV['REDIS_URL']}/0/0/entitystore"
   }
 
   # Print deprecation notices to the Rails logger.
