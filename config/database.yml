@@ -1,18 +1,27 @@
-development: &defaults
+default: &default
   adapter      : postgresql
   encoding     : unicode
-  database     : fablabs_develop
   pool         : 5
-  host         : 127.0.0.1
+  timeout      : 5000
+  min_messages : WARNING
+  host         : db
+  port         : 5432
+  username     : postgres
+  password     : <%= ENV['POSTGRES_PASSWORD'] %>
+
+development:
+  <<: *default
+  #  host         : localhost
+  database     : fablabs_develop
   min_messages : WARNING
 
+# Warning: The database defined as "test" will be erased and
+# re-generated from your development database when you run "rake".
+# Do not set this db to the same as development or production.
 test:
-  <<: *defaults
-  database     : fablabs_testdb
+  <<: *default
+  database: fablabs_test
 
 production:
-  <<: *defaults
-  database : <%= ENV['DB_NAME'] %>
-  username : <%= ENV['DB_USERNAME'] %>
-  password : <%= ENV['DB_PASSWORD'] %>
-  host     : <%= ENV['DB_HOST'] %>
+  <<: *default
+  database: fablabs_prod
