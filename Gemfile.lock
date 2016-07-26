@@ -135,12 +135,6 @@ GEM
       thor (~> 0.19)
     buftok (0.2.0)
     builder (3.1.4)
-    capistrano (2.15.7)
-      highline
-      net-scp (>= 1.0.0)
-      net-sftp (>= 2.0.0)
-      net-ssh (>= 2.0.14)
-      net-ssh-gateway (>= 1.1.0)
     capybara (2.7.0)
       addressable
       mime-types (>= 1.16)
@@ -258,7 +252,6 @@ GEM
       actionpack (>= 3.2, < 5)
       activesupport (>= 3.2, < 5)
     hashie (2.1.2)
-    highline (1.7.8)
     hike (1.2.3)
     hiredis (0.6.1)
     hpricot (0.8.6)
@@ -327,13 +320,7 @@ GEM
     nenv (0.3.0)
     nest (2.0.0)
       redic
-    net-scp (1.2.1)
-      net-ssh (>= 2.6.5)
-    net-sftp (2.1.2)
-      net-ssh (>= 2.6.5)
     net-ssh (3.1.1)
-    net-ssh-gateway (1.2.0)
-      net-ssh (>= 2.6.5)
     newrelic_rpm (3.15.1.316)
     nokogiri (1.6.7.2)
       mini_portile2 (~> 2.0.0.rc2)
@@ -569,7 +556,6 @@ DEPENDENCIES
   bitmask_attributes
   bourbon
   bullet!
-  capistrano (~> 2.15)
   capybara
   capybara-webkit
   chronic

@@ -137,8 +137,5 @@ gem 'puma'
 
 gem 'skylight'
 
-# Use Capistrano for deployment
-gem 'capistrano', '~> 2.15'#, group: :development
-
 # Use debugger
 # gem 'debugger', group: [:development, :test]
