@@ -11,6 +11,15 @@ Fablabs::Application.routes.draw do
 
   resources :sessions
 
+  namespace :api do
+    namespace :v1 do
+      scope '/me' do
+        get '/' => 'users#me'
+        resources :users, :path => '/',  only: [:update]
+      end
+      resources :labs
+    end
+  end
 
   constraints subdomain: 'www' do
     # resources :discussions
