@@ -14,7 +14,6 @@ Fablabs::Application.routes.draw do
   namespace :api do
     get '/' => 'static#api'
     get :csrf, to: 'csrf#index'
-    resources :sessions
     namespace :v1 do
       scope '/me' do
         get '/' => 'users#me'
