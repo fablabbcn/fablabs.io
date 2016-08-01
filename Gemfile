@@ -128,7 +128,7 @@ group :development do
 end
 
 # Use ActiveModel has_secure_password
-gem 'bcrypt'
+gem 'bcrypt-ruby'
 
 # gem 'foreman'
 # gem 'unicorn'
