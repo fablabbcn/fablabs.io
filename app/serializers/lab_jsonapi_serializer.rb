@@ -8,7 +8,7 @@ class LabJsonapiSerializer < ActiveModel::Serializer
       kind: object.kind_name,
       slug: object.slug,
       description: object.description,
-      avatar: hocho(object.avatar_src),
+      avatar: object.avatar,
       header: object.header_image_src,
       location: location,
       contacts: contacts
