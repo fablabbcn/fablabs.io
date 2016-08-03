@@ -8,7 +8,7 @@ class LabJsonapiSerializer < ActiveModel::Serializer
       kind: object.kind_name,
       slug: object.slug,
       description: object.description,
-      avatar: object.avatar_src,
+      avatar: hocho(object.avatar_src),
       header: object.header_image_src,
       location: location,
       contacts: contacts
@@ -21,8 +21,8 @@ class LabJsonapiSerializer < ActiveModel::Serializer
 
   def contacts
     {
-      phone: :phone,
-      email: :email,
+      phone: object.phone,
+      email: object.email,
     }
   end
 
@@ -56,7 +56,7 @@ class LabJsonapiSerializer < ActiveModel::Serializer
 
   def links
     {
-      self: "https://api.fablabs.io/v1/#{object.slug}/",
+      self: "https://api.fablabs.io/api/v1/#{object.slug}/",
       related: object.links
     }
   end
