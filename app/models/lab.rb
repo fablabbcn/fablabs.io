@@ -135,7 +135,13 @@ class Lab < ActiveRecord::Base
 
   def avatar
     if avatar_src.present?
-      avatar_src
+      options = "o=t&q=80&d=16x16"
+      img = avatar_src
+      url = "https://davinci.fablabs.io"
+      options = options.unpack('H*').first
+      img = img.unpack('H*').first
+      sig = Digest::SHA1.hexdigest("#{options}#{img}#{ENV['HOCHO_SALT']}")
+      [url, options, img, sig].join('/')
     else
       'https://i.imgur.com/iymHWkm.png'
     end
