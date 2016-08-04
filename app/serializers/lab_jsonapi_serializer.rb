@@ -67,15 +67,15 @@ class LabJsonapiSerializer < ActiveModel::Serializer
       lookingfor: project.lookingfor,
       cover: project.project_cover,
       documents: project.documents,
-      owner: owner
+      owner: owner(project.owner)
     }
   end
 
-  def owner
+  def owner(user)
     {
-      id: object.owner.id,
-      full_name: object.owner.full_name,
-      avatar: object.owner.avatar
+      id: user.id,
+      full_name: user.full_name,
+      avatar: user.avatar
     }
   end
 
