@@ -24,7 +24,7 @@ class LabJsonapiSerializer < ActiveModel::Serializer
   end
 
   def projects
-    object.projects.map { |project|  Hash[id: project.id, attributes: project_attributes(project) ] }
+    object.projects.map { |project|  Hash[id: project.id, type: "projects", attributes: project_attributes(project) ] }
   end
 
   def project_attributes(project)
