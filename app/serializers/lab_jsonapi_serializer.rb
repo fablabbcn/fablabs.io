@@ -70,8 +70,10 @@ class LabJsonapiSerializer < ActiveModel::Serializer
       referees:
         [
 
-        ]
-      capabilities: object.capabilities
+        ],
+      capabilities: object.capabilities,
+      projects: object.collaborations,
+      users: object.employees
     }
   end
 
