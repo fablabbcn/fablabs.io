@@ -31,10 +31,11 @@ class LabJsonapiSerializer < ActiveModel::Serializer
     {
       id: user.id,
       job_title: user.job_title,
+      full_name: user.full_name, 
       avatar: user.avatar_src
     }
   end
-  
+
   def projects
     object.projects.map { |project|  Hash[ project_attributes(project) ] }
   end
