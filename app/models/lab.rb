@@ -147,6 +147,20 @@ class Lab < ActiveRecord::Base
     end
   end
 
+  def header
+    if header_image_src.present?
+      options = "o=r&d=800"
+      img = header_image_src
+      url = "https://davinci.fablabs.io"
+      options = options.unpack('H*').first
+      img = img.unpack('H*').first
+      sig = Digest::SHA1.hexdigest("#{options}#{img}#{ENV['HOCHO_SALT']}")
+      [url, options, img, sig].join('/')
+    else
+      'https://i.imgur.com/YkBScQk.png'
+    end
+  end
+
   def to_s
     name
   end

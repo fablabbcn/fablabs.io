@@ -9,7 +9,7 @@ class LabJsonapiSerializer < ActiveModel::Serializer
       slug: object.slug,
       description: object.description,
       avatar: object.avatar,
-      header: object.header_image_src,
+      header: object.header,
       location: location,
       contacts: contacts
     }
@@ -71,6 +71,7 @@ class LabJsonapiSerializer < ActiveModel::Serializer
         [
 
         ]
+      capabilities: object.capabilities
     }
   end
 
