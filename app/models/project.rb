@@ -72,17 +72,17 @@ class Project < ActiveRecord::Base
   def project_cover
     begin
       if self.documents.empty?
-        return 'none'
+        return 'http://i.imgur.com/XbxH9My.jpg'
       elsif self.cover.present?
         return self.documents.find(self.cover).image.url(:medium)
       elsif self.documents.first
         return self.documents.first.image.url(:medium)
       else
         self.update_attributes(cover: nil)
-        return 'none'
+        return 'http://i.imgur.com/XbxH9My.jpg'
       end
     rescue ActiveRecord::RecordNotFound
-      return 'none'
+      return 'http://i.imgur.com/XbxH9My.jpg'
     end
   end
 
