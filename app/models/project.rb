@@ -3,8 +3,6 @@ class Project < ActiveRecord::Base
   include Authority::Abilities
   include RocketPants::Cacheable
 
-  default_scope { includes(:documents, :owner) }
-
   before_save :assign_to_lab, :strip_zeroes
 
   self.authorizer_name = 'ProjectAuthorizer'
@@ -39,6 +37,8 @@ class Project < ActiveRecord::Base
   validates :title, presence: true, allow_blank: false
 
   acts_as_taggable
+
+  default_scope { eager_load(:documents, :owner) }
 
   def self.last_updated_at
     self.select(:updated_at).order('updated_at DESC').first
