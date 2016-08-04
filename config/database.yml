@@ -24,5 +24,6 @@ test:
 
 production:
   <<: *default
-  username: <%= ENV['POSTGRES_USERNAME'] %>
+  username: <%= ENV['DB_USERNAME'] %>
+  password: <%= ENV['DB_PASSWORD'] %>
   database: fablabs_production
