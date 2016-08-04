@@ -27,12 +27,12 @@ class LabJsonapiSerializer < ActiveModel::Serializer
     object.employees.map { |user| Hash[ user_attributes(user) ] }
   end
 
-  def user_attributes(user)
+  def user_attributes(employee)
     {
-      id: user.id,
-      job_title: user.job_title,
-      full_name: user.full_name, 
-      avatar: user.avatar_src
+      id: employee.id,
+      job_title: employee.job_title,
+      full_name: employee.user.full_name,
+      avatar: employee.avatar_src
     }
   end
 
