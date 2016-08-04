@@ -24,7 +24,7 @@ class LabJsonapiSerializer < ActiveModel::Serializer
   end
 
   def projects
-    Hash[*object.projects.map { |project|  [:project, { data: { project: project, documents: project.documents, owner: project.owner } } ] }.flatten]
+    Hash[*object.projects.map { |project|  [{ data: { attributes: { project, documents: project.documents, owner: project.owner } } } ] }.flatten]
   end
 
   def contacts

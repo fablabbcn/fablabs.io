@@ -10,7 +10,7 @@ module LabsOperations
   end
 
   def with_approved_or_pending_state(lab_id)
-    lab = Lab.friendly.find(lab_id).joins(:projects).includes(:links, :employees, :machines)
+    lab = Lab.friendly.joins(:projects).includes(:links, :employees, :machines).find(lab_id)
     if intermediate_states.include? lab.workflow_state
       lab
     else
