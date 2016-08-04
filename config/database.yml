@@ -6,7 +6,7 @@ default: &default
   min_messages : WARNING
   host         : db
   port         : 5432
-  username     : postgres
+  username     : fabsql
   password     : <%= ENV['POSTGRES_PASSWORD'] %>
 
 development:
