@@ -72,7 +72,7 @@ class LabJsonapiSerializer < ActiveModel::Serializer
 
         ],
       capabilities: object.capabilities,
-      projects: object.collaborations,
+      projects: object.projects,
       users: object.employees
     }
   end
