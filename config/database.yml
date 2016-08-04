@@ -24,4 +24,4 @@ test:
 
 production:
   <<: *default
-  database: fablabs_prod
+  database: fablabs_production
