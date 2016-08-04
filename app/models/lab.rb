@@ -135,7 +135,7 @@ class Lab < ActiveRecord::Base
 
   def avatar
     if avatar_src.present?
-      options = "o=t&q=100&d=42x42"
+      options = "o=t&q=100&d=96x96"
       img = avatar_src
       url = "https://davinci.fablabs.io"
       options = options.unpack('H*').first
