@@ -15,7 +15,7 @@ class LabJsonapiSerializer < ActiveModel::Serializer
       capabilities: object.capabilities,
       machines: object.machines,
       projects: projects,
-      users: object.employees
+      users: users
     }
   end
 
@@ -23,6 +23,18 @@ class LabJsonapiSerializer < ActiveModel::Serializer
     "labs"
   end
 
+  def users
+    object.employees.map { |user| Hash[ user_attributes(user) ] }
+  end
+
+  def user_attributes(user)
+    {
+      id: user.id,
+      job_title: user.job_title,
+      avatar: user.avatar_src
+    }
+  end
+  
   def projects
     object.projects.map { |project|  Hash[ project_attributes(project) ] }
   end
