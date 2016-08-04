@@ -29,7 +29,7 @@ class LabJsonapiSerializer < ActiveModel::Serializer
 
   def project_attributes(project)
     {
-      id: project.id, 
+      id: project.id,
       title: project.title,
       desription: project.description,
       faq: project.faq,
@@ -52,7 +52,7 @@ class LabJsonapiSerializer < ActiveModel::Serializer
       scope: project.scope,
       community: project.community,
       lookingfor: project.lookingfor,
-      cover: project.cover,
+      cover: project.project_cover,
       documents: project.documents,
       owner: project.owner
     }
