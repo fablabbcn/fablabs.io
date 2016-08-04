@@ -13,7 +13,7 @@ class LabJsonapiSerializer < ActiveModel::Serializer
       location: location,
       contacts: contacts,
       capabilities: object.capabilities,
-      machines: object.machines,
+      machines: machines,
       projects: projects,
       users: users
     }
@@ -21,6 +21,19 @@ class LabJsonapiSerializer < ActiveModel::Serializer
 
   def type
     "labs"
+  end
+
+  def machines
+    object.machines.map { |machine| Hash[ machine_attributes(machine)] }
+  end
+
+  def machine_attributes(machine)
+    {
+      id: machine.id,
+      name: machine.name,
+      brand: machine.brand,
+      photo: machine.photo_src
+    }
   end
 
   def users
