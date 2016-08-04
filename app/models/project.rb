@@ -3,6 +3,8 @@ class Project < ActiveRecord::Base
   include Authority::Abilities
   include RocketPants::Cacheable
 
+  default_scope { includes(:documents, :owner) }
+
   before_save :assign_to_lab, :strip_zeroes
 
   self.authorizer_name = 'ProjectAuthorizer'
