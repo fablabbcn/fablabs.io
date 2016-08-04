@@ -32,7 +32,7 @@ class LabJsonapiSerializer < ActiveModel::Serializer
       id: employee.id,
       job_title: employee.job_title,
       full_name: employee.user.full_name,
-      avatar: employee.avatar_src
+      avatar: employee.user.avatar_src
     }
   end
 
