@@ -74,7 +74,8 @@ class LabJsonapiSerializer < ActiveModel::Serializer
   def owner
     {
       id: project.owner.id,
-      full_name: project.owner.full_name
+      full_name: project.owner.full_name,
+      avatar: project.owner.avatar
     }
   end
 
