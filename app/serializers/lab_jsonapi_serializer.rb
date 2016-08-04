@@ -11,7 +11,11 @@ class LabJsonapiSerializer < ActiveModel::Serializer
       avatar: object.avatar,
       header: object.header,
       location: location,
-      contacts: contacts
+      contacts: contacts,
+      capabilities: object.capabilities,
+      machines: object.machines,
+      projects: object.projects,
+      users: object.employees
     }
   end
 
@@ -70,11 +74,7 @@ class LabJsonapiSerializer < ActiveModel::Serializer
       referees:
         [
 
-        ],
-      capabilities: object.capabilities,
-      machines: object.machines,
-      projects: object.projects,
-      users: object.employees
+        ]
     }
   end
 
