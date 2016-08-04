@@ -4,7 +4,7 @@ class Api::V1::LabsController < Api::V0::ApiController
   doorkeeper_for :update
 
   def index
-    @labs = Lab.with_approved_state.includes(:links, :employees, :machines, :projects).order(:slug).paginate(:page => params[:page], :per_page => 20)
+    @labs = Lab.with_approved_state.joins(:projects).includes(:links, :employees, :machines).order(:slug).paginate(:page => params[:page], :per_page => 20)
     render json: @labs, each_serializer: LabJsonapiSerializer, root: "data"
 
   end
