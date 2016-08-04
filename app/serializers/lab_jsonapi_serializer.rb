@@ -31,7 +31,7 @@ class LabJsonapiSerializer < ActiveModel::Serializer
     {
       id: project.id,
       title: project.title,
-      desription: project.description,
+      description: project.description,
       faq: project.faq,
       github: project.github,
       web: project.web,
