@@ -14,13 +14,17 @@ class LabJsonapiSerializer < ActiveModel::Serializer
       contacts: contacts,
       capabilities: object.capabilities,
       machines: object.machines,
-      projects: object.projects,
+      projects: projects,
       users: object.employees
     }
   end
 
   def type
     "labs"
+  end
+
+  def projects
+    object.projects.map {|project| [ project, project.owner, project.documents]  }
   end
 
   def contacts
