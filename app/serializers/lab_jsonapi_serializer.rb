@@ -24,7 +24,37 @@ class LabJsonapiSerializer < ActiveModel::Serializer
   end
 
   def projects
-    Hash[*object.projects.map { |project|  [{ data: { attributes: { project, documents: project.documents, owner: project.owner } } } ] }.flatten]
+    object.projects.map { |project|  Hash[id: project.id, attributes: project_attributes(project) ] }
+  end
+
+  def project_attributes(project)
+    {
+      title: project.title,
+      desription: project.description,
+      faq: project.faq,
+      github: project.github,
+      web: project.web,
+      dropbox: project.dropbox,
+      bitbucket:   project.bitbucket,
+      created_at: project.created_at,
+      updated_at: project.updated_at,
+      vimeo: project.vimeo,
+      flickr: project.flickr,
+      youtube: project.youtube,
+      drive: project.drive,
+      twitter: project.twitter,
+      facebook: project.facebook,
+      googleplus: project.googleplus,
+      instagram: project.instagram,
+      status: project.status,
+      version: project.version,
+      scope: project.scope,
+      community: project.community,
+      lookingfor: project.lookingfor,
+      cover: project.cover,
+      documents: project.documents,
+      owner: project.owner
+    }
   end
 
   def contacts
