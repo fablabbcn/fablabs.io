@@ -43,26 +43,13 @@ class ProjectJsonapiSerializer < ActiveModel::Serializer
 
   def collaborations
     if object.collaborations.any?
-      object.collaborations.map {|c| Hash[ lab(c.collaborator ) ] }
+      object.collaborations.map {|c| c.collaborator }
     end
   end
 
   def contributions
     if object.contributions.any?
-      object.contributions.map {|c| Hash[ user(c.contributor) ] }
-    end
-  end
-
-  def user(u)
-    if u
-      return
-        {
-          id: u.id,
-          full_name: u.full_name,
-          avatar: u.avatar
-        }
-    else
-      {}
+      object.contributions.map {|c| c.contributor }
     end
   end
 
@@ -71,7 +58,7 @@ class ProjectJsonapiSerializer < ActiveModel::Serializer
       name: object.lab.name,
       kind: object.lab.kind_name,
       slug: object.lab.slug,
-      avatar: object.lab.avatar,
+      avatar: object.lab.avatar
     }
   end
 
