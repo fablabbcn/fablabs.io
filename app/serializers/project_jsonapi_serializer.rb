@@ -27,7 +27,7 @@ class ProjectJsonapiSerializer < ActiveModel::Serializer
       community: object.community,
       lookingfor: object.lookingfor,
       cover: object.project_cover,
-      documents: object.documents,
+      documents: documents,
       owner: owner(object.owner),
       collaborators: collaborations,
       contributors: contributions,
@@ -35,14 +35,20 @@ class ProjectJsonapiSerializer < ActiveModel::Serializer
     }
   end
 
+  def documents
+    if object.documents.any?
+      object.documents.map {|d| d.image.url(:medium) }
+    end
+  end
+
   def collaborations
-    unless object.collaborations.any?
+    if object.collaborations.any?
       object.collaborations.map {|c| Hash[ lab(c.collaborator) ] }
     end
   end
 
   def contributions
-    unless object.contributions.any?
+    if object.contributions.any?
       object.contributions.map {|c| Hash[ user(c.contributor) ] }
     end
   end
