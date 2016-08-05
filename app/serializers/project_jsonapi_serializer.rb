@@ -55,6 +55,8 @@ class ProjectJsonapiSerializer < ActiveModel::Serializer
           full_name: u.full_name,
           avatar: u.avatar
         }
+    else
+      {}
     end
   end
 
@@ -67,6 +69,8 @@ class ProjectJsonapiSerializer < ActiveModel::Serializer
           slug: l.slug,
           avatar: l.avatar,
         }
+    else
+      {}
     end
   end
 
