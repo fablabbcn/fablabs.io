@@ -66,7 +66,7 @@ class ProjectJsonapiSerializer < ActiveModel::Serializer
     end
   end
 
-  def lab(l)
+  def lab
     {
       name: object.lab.name,
       kind: object.lab.kind_name,
