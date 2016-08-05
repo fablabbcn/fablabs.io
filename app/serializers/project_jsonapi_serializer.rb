@@ -30,7 +30,7 @@ class ProjectJsonapiSerializer < ActiveModel::Serializer
       documents: documents,
       steps: object.steps,
       owner: owner(object.owner),
-      users: [owner(object.owner)],
+      users: [owner(object.owner), collaborations, contributions].flatten,
       lab: lab
     }
   end
@@ -43,7 +43,7 @@ class ProjectJsonapiSerializer < ActiveModel::Serializer
 
   def collaborations
     if object.collaborations.any?
-      object.collaborations.map {|c| Hash[ lab(c.collaborator) ] }
+      object.collaborations.map {|c| Hash[ lab(c.collaborator ) ] }
     end
   end
 
