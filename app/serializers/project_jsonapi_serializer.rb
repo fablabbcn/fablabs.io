@@ -40,7 +40,7 @@ class ProjectJsonapiSerializer < ActiveModel::Serializer
   end
 
   def contributions
-    object.contributions.map {|c| Hash[lab(c.contributor)] }
+    object.contributions.map {|c| Hash[user(c.contributor)] }
   end
 
   def user(u)
