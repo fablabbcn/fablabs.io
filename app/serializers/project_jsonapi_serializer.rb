@@ -28,6 +28,7 @@ class ProjectJsonapiSerializer < ActiveModel::Serializer
       lookingfor: object.lookingfor,
       cover: object.project_cover,
       documents: documents,
+      steps: object.steps,
       owner: owner(object.owner),
       lab: lab(object.lab)
     }
