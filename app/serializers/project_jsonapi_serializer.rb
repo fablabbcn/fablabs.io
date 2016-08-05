@@ -55,12 +55,12 @@ class ProjectJsonapiSerializer < ActiveModel::Serializer
   end
 
   def lab(l)
-    {
+    return {
       name: l.name,
       kind: l.kind_name,
       slug: l.slug,
       avatar: l.avatar
-    }
+    } if l
   end
 
   def user(u)
