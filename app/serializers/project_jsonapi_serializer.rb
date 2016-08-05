@@ -31,7 +31,7 @@ class ProjectJsonapiSerializer < ActiveModel::Serializer
       steps: object.steps,
       owner: owner(object.owner),
       users: [owner(object.owner)],
-      lab: lab(object.lab)
+      lab: lab
     }
   end
 
@@ -67,17 +67,12 @@ class ProjectJsonapiSerializer < ActiveModel::Serializer
   end
 
   def lab(l)
-    if l
-      return
-        {
-          name: l.name,
-          kind: l.kind_name,
-          slug: l.slug,
-          avatar: l.avatar,
-        }
-    else
-      {}
-    end
+    {
+      name: object.lab.name,
+      kind: object.lab.kind_name,
+      slug: object.lab.slug,
+      avatar: object.lab.avatar,
+    }
   end
 
   def owner(user)
