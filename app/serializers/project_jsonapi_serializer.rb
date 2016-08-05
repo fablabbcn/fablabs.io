@@ -36,14 +36,14 @@ class ProjectJsonapiSerializer < ActiveModel::Serializer
   end
 
   def collaborations
-    unless object.collaborations.empty?
-      object.collaborations.map {|c| }
+    unless object.collaborations.any?
+      object.collaborations.map {|c| Hash[ lab(c.collaborator) ] }
     end
   end
 
   def contributions
-    unless object.contributions.empty?
-      object.contributions.map {|c| }
+    unless object.contributions.any?
+      object.contributions.map {|c| Hash[ user(c.contributor) ] }
     end
   end
 
