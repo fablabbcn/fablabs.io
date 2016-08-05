@@ -50,7 +50,7 @@ class ProjectJsonapiSerializer < ActiveModel::Serializer
 
   def contributions
     if object.contributions.any?
-      object.contributions.map {|c| c.contributor }
+      object.contributions.map {|c| owner(c.contributor) }
     end
   end
 
