@@ -1,4 +1,4 @@
-class Api::V1::LabsController < Api::V0::ApiController
+class Api::V1::LabsController < Api::V1::ApiController
   include LabsOperations
 
   doorkeeper_for :update

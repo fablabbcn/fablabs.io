@@ -20,6 +20,7 @@ Fablabs::Application.routes.draw do
         resources :users, :path => '/',  only: [:update]
       end
       resources :labs
+      resources :projects
     end
   end
 
