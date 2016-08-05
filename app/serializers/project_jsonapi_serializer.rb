@@ -29,10 +29,10 @@ class ProjectJsonapiSerializer < ActiveModel::Serializer
       cover: object.project_cover,
       documents: documents,
       steps: object.steps,
-      owner: owner(object.owner),
-      users: [owner(object.owner), contributions].flatten,
+      owner: user(object.owner),
+      users: [user(object.owner), contributions].flatten,
       collaborations: collaborations,
-      lab: lab
+      lab: lab(object.lab)
     }
   end
 
@@ -44,30 +44,30 @@ class ProjectJsonapiSerializer < ActiveModel::Serializer
 
   def collaborations
     if object.collaborations.any?
-      object.collaborations.map {|c| c.collaborator }
+      object.collaborations.map {|c| lab(c.collaborator) }
     end
   end
 
   def contributions
     if object.contributions.any?
-      object.contributions.map {|c| owner(c.contributor) }
+      object.contributions.map {|c| user(c.contributor) }
     end
   end
 
-  def lab
+  def lab(l)
     {
-      name: object.lab.name,
-      kind: object.lab.kind_name,
-      slug: object.lab.slug,
-      avatar: object.lab.avatar
+      name: l.name,
+      kind: l.kind_name,
+      slug: l.slug,
+      avatar: l.avatar
     }
   end
 
-  def owner(user)
+  def user(u)
     {
-      id: user.id,
-      full_name: user.full_name,
-      avatar: user.avatar
+      id: u.id,
+      full_name: u.full_name,
+      avatar: u.avatar
     }
   end
 
