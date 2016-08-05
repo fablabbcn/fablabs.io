@@ -44,20 +44,26 @@ class ProjectJsonapiSerializer < ActiveModel::Serializer
   end
 
   def user(u)
-    {
-      id: u.id,
-      full_name: u.full_name,
-      avatar: u.avatar
-    }
+    if u
+      return
+        {
+          id: u.id,
+          full_name: u.full_name,
+          avatar: u.avatar
+        }
+    end
   end
 
   def lab(l)
-    {
-      name: l.name,
-      kind: l.kind_name,
-      slug: l.slug,
-      avatar: l.avatar,
-    }
+    if l
+      return
+        {
+          name: l.name,
+          kind: l.kind_name,
+          slug: l.slug,
+          avatar: l.avatar,
+        }
+    end
   end
 
   def owner(user)
