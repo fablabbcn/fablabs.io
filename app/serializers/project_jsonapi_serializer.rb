@@ -32,7 +32,8 @@ class ProjectJsonapiSerializer < ActiveModel::Serializer
       owner: user(object.owner),
       users: [user(object.owner), contributions].flatten,
       collaborations: collaborations,
-      lab: lab(object.lab)
+      lab: lab(object.lab),
+      tags: object.tags
     }
   end
 
