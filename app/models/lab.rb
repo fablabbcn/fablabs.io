@@ -208,7 +208,7 @@ class Lab < ActiveRecord::Base
       "fablabcascina",
       "vigyanashram",
       "fablabkamakura",
-      "fablabil"
+      "hopelab"
     ]
 
     Lab.where(slug: referees).order('name ASC')
