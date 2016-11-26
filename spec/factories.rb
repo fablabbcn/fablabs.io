@@ -118,6 +118,7 @@ FactoryGirl.define do
     sequence(:email) {|n| "john#{n}@bitsushi.com"}
     password "password"
     password_confirmation "password"
+    agree_policy_terms true
   end
 
   factory :recovery do

@@ -39,6 +39,8 @@ class User < ActiveRecord::Base
   has_many :grades
   has_many :projects, :through => :grades
 
+  validates_acceptance_of :agree_policy_terms, :accept => true, on: :create
+
   validates_format_of :email, :with => /\A(.+)@(.+)\z/
   validates :username, format: { :with => /\A[a-zA-Z0-9]+\z/ }, length: { minimum: 4, maximum: 30 }
 

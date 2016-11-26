@@ -73,6 +73,7 @@ private
 
   def user_params
     params.require(:user).permit(
+      :agree_policy_terms,
       :username,
       :first_name,
       :last_name,

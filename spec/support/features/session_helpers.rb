@@ -10,6 +10,7 @@ module Features
       fill_in 'Email', with: user.email
       fill_in 'user_password', with: user.password
       fill_in 'user_password_confirmation', with: user.password_confirmation
+      check 'user_agree_policy_terms'
       click_button 'Sign Up'
     end
 
