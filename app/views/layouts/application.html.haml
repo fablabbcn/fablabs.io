@@ -31,6 +31,7 @@
     = javascript_include_tag "vendor/modernizr"
     %link{type: "text/plain", rel: "author", href: "/humans.txt"}
     = csrf_meta_tags
+    = cookie_policy_script
 
   %body{ class: body_classes }
     = render "application/please_verify" if current_user and current_user.unverified?
