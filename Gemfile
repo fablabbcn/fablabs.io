@@ -19,7 +19,6 @@ gem 'redis-rails'
 gem 'redis-rack-cache'
 gem 'newrelic_rpm'
 gem "skylight"
-gem "opbeat", require: false
 gem 'sitemap_generator'
 gem "rack-cache"
 # gem "airbrake"
@@ -109,6 +108,7 @@ group :test, :development do
   gem "rspec-rails"
   gem "factory_girl_rails"
 end
+
 group :test do
   gem 'zonebie'
   gem "launchy"
@@ -123,9 +123,14 @@ group :test do
   gem "pry-rescue"
   gem "pry-stack_explorer"
 end
+
 group :development do
   gem 'quiet_assets'
   gem 'net-ssh'
+end
+
+group :production do
+  gem "opbeat"
 end
 
 # Use ActiveModel has_secure_password
