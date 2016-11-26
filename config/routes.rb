@@ -22,8 +22,9 @@ Fablabs::Application.routes.draw do
 
     get "verify_email(/:id)", to: "users#verify_email", as: "verify_email"
 
-    %w(about choose_locale country_guess).each do |action|
-      get action => "static##{action}", as: action
+    %w(tos privacy-policy cookie-policy about choose_locale country_guess).each do |action|
+      underscored = action.underscore
+      get action => "static##{underscored}", as: underscored
     end
 
     resources :users

@@ -6,8 +6,10 @@ class StaticController < ApplicationController
     # @country_labs = @nearby_labs.exists?
   end
 
-  def about
-  end
+  def about; end
+  def cookie_policy; end
+  def privacy_policy; end
+  def tos; end
 
   def country_guess
     render text: (current_country ? "I think you are in #{current_country}" : "I don't know where you are")
