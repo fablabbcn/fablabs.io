@@ -19,7 +19,7 @@ gem 'redis-rails'
 gem 'redis-rack-cache'
 gem 'newrelic_rpm'
 gem "skylight"
-gem "opbeat"
+gem "opbeat", require: false
 gem 'sitemap_generator'
 gem "rack-cache"
 # gem "airbrake"
@@ -104,6 +104,8 @@ group :development do
 end
 
 group :test, :development do
+  gem 'pry-byebug'
+  gem 'byebug'
   gem "rspec-rails"
   gem "factory_girl_rails"
 end
