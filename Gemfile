@@ -112,7 +112,6 @@ end
 group :test do
   gem 'zonebie'
   gem "launchy"
-  gem "selenium-webdriver"
   # gem "nyan-cat-formatter"
   gem "capybara"
   gem "selenium-webdriver"

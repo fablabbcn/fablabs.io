@@ -15,12 +15,14 @@ env:
   matrix:
     - DB=postgresql
 language: ruby
+cache: bundler
 rvm:
   - "2.0.0"
 script:
   - "RAILS_ENV=test bundle exec rake db:migrate --trace"
   - "bundle exec rake db:test:prepare"
-  - "bundle exec rake"
+  - "bundle exec rspec spec/models/lab_spec.rb"
+  - "bundle exec codeclimate-test-reporter"
 services:
   - redis-server
 sudo: false
