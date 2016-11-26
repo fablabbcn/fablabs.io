@@ -27,6 +27,10 @@ describe Lab do
   pending { should validate_presence_of(:employees).on(:create) }
   it { should validate_presence_of(:address_1) }
 
+  it 'fails' do
+    expect(false).to be true
+  end
+
   it "is valid" do
     expect(lab).to be_valid
   end

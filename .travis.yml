@@ -20,7 +20,7 @@ rvm:
 script:
   - "RAILS_ENV=test bundle exec rake db:migrate --trace"
   - "bundle exec rake db:test:prepare"
-  - "bundle exec rake"
+  - "bundle exec rspec spec/models/lab_spec.rb"
 services:
   - redis-server
 sudo: false
