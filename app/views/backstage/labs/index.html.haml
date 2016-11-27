@@ -7,6 +7,11 @@
       = search_form_for [:backstage, @q], builder: SimpleForm::FormBuilder do |f|
         = f.input :name_or_city_cont, label: "Name"
         .row
+          .columns.large-3
+            = f.input :discourse_id_not_null, as: :boolean, label: "With discourse ID"
+          .columns.large-9
+            = f.input :discourse_errors_present, as: :boolean, label: "With discourse sync errors"
+        .row
           .columns.large-4
             = f.input :country_code_eq, as: 'country', label: 'Country', iso_codes: true
           .columns.large-4
@@ -15,6 +20,7 @@
             = f.submit "Filter", class: 'button expand'
 
     = paginate @labs
+    = page_entries_info @labs
 
     %table.table
       %thead

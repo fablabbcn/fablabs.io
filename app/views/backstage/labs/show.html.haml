@@ -87,6 +87,12 @@
       %tr
         %th Updated At
         %td= @lab.updated_at
+      %tr
+        %th Discourse sync
+        %td
+          = @lab.discourse_id
+          %pre
+            = @lab.discourse_errors
     - if current_user.has_role? :superadmin
       = link_to edit_backstage_lab_path(@lab), class: 'button' do
         = fa_icon "edit", text: "Edit Lab"
