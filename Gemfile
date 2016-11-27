@@ -50,7 +50,7 @@ gem 'bourbon'
 gem "cocoon", github: 'nathanvda/cocoon'
 gem "pg_search"
 gem "pg",'0.17.1'
-gem 'simple_form'
+gem 'simple_form', '3.0.1'
 gem 'countries', github: "hexorx/countries"
 gem 'country_select'
 gem 'momentjs-rails'
