@@ -42,6 +42,10 @@ describe User do
     end
   end
 
+  describe "agree_policy_terms" do
+    it { should validate_acceptance_of(:agree_policy_terms).on(:create) }
+  end
+
   describe "email" do
     it { should validate_presence_of(:email) }
 

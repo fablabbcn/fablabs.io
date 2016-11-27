@@ -32,6 +32,8 @@
           = label_tag 'name', 'IGNORE'
           = text_field_tag 'name', nil, alt: "This field is to prevent bots. Please leave it blank.", placeholder: "LEAVE BLANK TO PROVE YOU ARE HUMAN"
 
+        = f.input :agree_policy_terms, hint: "<a href='/cookie-policy'>Cookie</a>, <a href='/privacy-policy'>Privacy</a> and <a href='/tos'>TOS</a> policies".html_safe
+
         = f.submit t("views.header.signup", default: "Sign Up"), class: 'button'
 
     -# .columns.large-4

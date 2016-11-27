@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160507145108) do
+ActiveRecord::Schema.define(version: 20161126073956) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -395,12 +395,11 @@ ActiveRecord::Schema.define(version: 20160507145108) do
   add_index "recoveries", ["user_id"], name: "index_recoveries_on_user_id", using: :btree
 
   create_table "referee_approval_processes", force: true do |t|
+    t.integer  "referred_lab_id"
+    t.integer  "referee_lab_id"
     t.boolean  "approved"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "referee_lab_id"
-    t.integer  "referred_lab_id"
-    t.string   "action",          default: "pending"
   end
 
   add_index "referee_approval_processes", ["referee_lab_id"], name: "index_referee_approval_processes_on_referee_lab_id", using: :btree
@@ -513,6 +512,7 @@ ActiveRecord::Schema.define(version: 20160507145108) do
     t.string   "bitbucket"
     t.string   "googleplus"
     t.string   "instagram"
+    t.boolean  "agree_policy_terms",    default: false
   end
 
   add_index "users", ["fab10_coupon_code"], name: "index_users_on_fab10_coupon_code", unique: true, using: :btree
