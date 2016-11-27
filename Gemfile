@@ -103,6 +103,7 @@ group :development do
 end
 
 group :test, :development do
+  gem 'pry-rails'
   gem 'pry-byebug'
   gem 'byebug'
   gem "rspec-rails"

@@ -219,6 +219,10 @@ class Lab < ActiveRecord::Base
     return true if workflow_state == "approved"
   end
 
+  def discourse_sync
+    DiscourseService::Lab.new(self).sync
+  end
+
 private
 
   def get_time_zone
