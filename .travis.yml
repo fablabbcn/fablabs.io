@@ -3,6 +3,7 @@ addons:
   code_climate:
     repo_token: fda6f4f9bf2387705b47cd6135429a29a11ae9c5927afe01a18ee3e33c47246a
 before_script:
+  - "cp config/application.travis.yml config/application.yml"
   - "cp config/database.travis.yml config/database.yml"
   - "psql -c 'create database fablabs_test' -U postgres"
 env:
@@ -19,7 +20,7 @@ cache: bundler
 rvm:
   - "2.0.0"
 script:
-  - "RAILS_ENV=test bundle exec rake db:migrate --trace"
+  - "bundle exec rake db:schema:load"
   - "bundle exec rake db:test:prepare"
   - "bundle exec rake"
   - "bundle exec codeclimate-test-reporter"
