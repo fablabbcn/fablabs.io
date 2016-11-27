@@ -60,6 +60,8 @@ class Lab < ActiveRecord::Base
   validates_uniqueness_of :name, :slug, case_sensitive: false
   validate :excluded_slug
 
+  after_save :async_discourse_sync
+
   def excluded_slug
     if !slug.blank? and Fablabs::Application.config.banned_words.include?(slug.downcase)
       errors.add(:slug, "is reserved")
@@ -217,6 +219,12 @@ class Lab < ActiveRecord::Base
 
   def is_approved?
     return true if workflow_state == "approved"
+  end
+
+  def async_discourse_sync
+    if (changes.keys & ["name", "description"]).present?
+      DiscourseLabWorker.perform_async(self.id)
+    end
   end
 
   def discourse_sync
