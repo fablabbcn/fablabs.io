@@ -56,6 +56,7 @@ Fablabs::Application.routes.draw do
       get "users/list" => "users#list"
       resources :users
       resources :employees, only: :index
+      resources :pages, expect: [:show]
       resources :labs do
         member do
           patch :approve

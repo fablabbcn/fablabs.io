@@ -1,7 +1,17 @@
 class Page < ActiveRecord::Base
-  belongs_to :pageable, polymorphic: true
-  belongs_to :creator
+  validates :title, presence: true
+  validates :slug, presence: true, length: { minimum: 3 }, uniqueness: { case_sensitive: false}
 
-  validates_presence_of :name, :body, :creator, :pageable
+  extend FriendlyId
+  friendly_id :slug_candidates, use: :slugged
+
+  def slug_candidates
+    [:title]
+  end
+
+  def should_generate_new_friendly_id?
+    new_record?
+  end
+
 
 end
