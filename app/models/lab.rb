@@ -60,7 +60,6 @@ class Lab < ActiveRecord::Base
   validates_uniqueness_of :name, :slug, case_sensitive: false
   validate :excluded_slug
 
-  after_save :async_discourse_sync
 
   def excluded_slug
     if !slug.blank? and Fablabs::Application.config.banned_words.include?(slug.downcase)
@@ -87,6 +86,7 @@ class Lab < ActiveRecord::Base
   before_save :truncate_blurb
   before_save :get_time_zone unless Rails.env.test?
   after_save :save_roles
+  after_save :async_discourse_sync, if: Figaro.env.discourse_enabled
 
   attr_accessor :geocomplete
 
