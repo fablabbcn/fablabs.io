@@ -63,7 +63,7 @@
   .columns.large-12
     - if current_user && current_user.has_role?(:superadmin)
       - if @project.discourse_id.present?
-        %h3 Discourse
+        %h3 Discuss
         = comments_script(@project.discourse_id)
         %br
         %br
