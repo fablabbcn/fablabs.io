@@ -61,6 +61,7 @@ gem 'sprockets-rails'
 gem 'haml-rails'
 gem 'uglifier', '>= 1.3.0'
 gem 'font-awesome-sass', '~> 4.3.0'
+gem 'trumbowyg_rails', git: 'https://github.com/TikiTDO/trumbowyg_rails.git'
 
 gem 'database_cleaner', github: 'bmabey/database_cleaner'
 gem 'letter_opener'
