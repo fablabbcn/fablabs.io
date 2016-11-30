@@ -9,11 +9,20 @@ module DiscourseService
     end
 
     def name
-      @lab.name
+      "Discussion about #{@lab.name}"
     end
 
     def description
-      @lab.description
+      "<p>
+        #{@lab.description}
+      </p>
+      <p>
+        <a href='#{url}'>#{url}</a>
+      </p>"
+    end
+
+    def url
+      "#{Figaro.env.url}/#{@lab.slug}"
     end
 
     def category
