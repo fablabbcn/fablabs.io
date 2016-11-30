@@ -15,6 +15,7 @@ module DiscourseService
 
     def description
       "<p>#{name}</p>
+      <p>#{@project.description}</p>
       <p><a href='#{url}'>#{url}</a></p>"
     end
 
