@@ -86,7 +86,7 @@ class Lab < ActiveRecord::Base
   before_save :truncate_blurb
   before_save :get_time_zone unless Rails.env.test?
   after_save :save_roles
-  after_save :async_discourse_sync, if: Figaro.env.discourse_enabled
+  after_save :discourse_sync_if_needed, if: Figaro.env.discourse_enabled
 
   attr_accessor :geocomplete
 
@@ -222,16 +222,20 @@ class Lab < ActiveRecord::Base
   end
 
   def async_discourse_sync
-    if (changes.keys & ["name", "description"]).present?
-      DiscourseLabWorker.perform_async(self.id)
-    end
+    DiscourseLabWorker.perform_async(self.id)
   end
 
   def discourse_sync
     DiscourseService::Lab.new(self).sync
   end
 
-private
+  private
+
+  def discourse_sync_if_needed
+    if (changes.keys & ["name", "description"]).present?
+      async_discourse_sync
+    end
+  end
 
   def get_time_zone
     if latitude_changed? or longitude_changed?
