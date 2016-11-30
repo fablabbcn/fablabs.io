@@ -38,7 +38,7 @@ module Fablabs
     config.generators do |g|
       g.view_specs false
       g.helper_specs false
-      g.controller_specs false
+      g.controller_specs true
       g.integration_specs true
       g.fixture_replacement :factory_girl
     end

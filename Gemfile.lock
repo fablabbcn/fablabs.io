@@ -81,6 +81,15 @@ GIT
     ancestry (2.0.0)
       activerecord (>= 3.0.0)
 
+GIT
+  remote: https://github.com/TikiTDO/trumbowyg_rails.git
+  revision: 0b3a9386d804b378cba39e9d4043c9b8fe113507
+  specs:
+    trumbowyg_rails (2.1.0.3)
+      rails (>= 3.1)
+      railties (>= 3.1)
+      sass (>= 3.2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -625,6 +634,7 @@ DEPENDENCIES
   stamp
   thin
   timezone
+  trumbowyg_rails!
   twitter
   uglifier (>= 1.3.0)
   unicorn

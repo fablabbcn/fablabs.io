@@ -1,0 +1,28 @@
+.row
+  .columns.large-12
+    = render "backstage/header"
+    = title "Pages"
+
+    = page_entries_info @pages
+    %table.table
+      %thead
+        %tr
+          %th id
+          %th Title
+          %th Published
+          %th Position
+          %th
+      %tbody
+        - @pages.each do |page|
+          %tr
+            %td= page.id
+            %td= link_to page.title, [:edit, :backstage, page]
+            %th= page.published? ? 'TRUE' : 'FALSE'
+            %th= page.position
+            %th
+              = link_to 'preview', page
+              \-
+              = link_to 'delete', [:backstage, page], method: 'delete', confirm: 'Are you sure?'
+
+    = paginate @pages
+    = link_to 'new page', [:new, :backstage, :page], class: 'button'

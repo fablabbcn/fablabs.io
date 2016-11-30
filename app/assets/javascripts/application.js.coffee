@@ -30,11 +30,12 @@
 #= require jquery.autosize
 #= require alerts
 #= require moment
+#= require trumbowyg/trumbowyg
 #= require_tree .
 
 initEvents = ->
 
-  $('textarea').autosize()
+  $('textarea.trumbowyg').trumbowyg()
   # {append: "\n"}
   $(document).foundation()
   $("select").select2()
