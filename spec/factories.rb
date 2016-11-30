@@ -40,10 +40,9 @@ FactoryGirl.define do
   end
 
   factory :page do
-    pageable
-    name { "Tutorial #{1}" }
-    body "this is a tutorial"
-    creator
+    title { "Tutorial #{1}" }
+    content "this is a tutorial"
+    published false
   end
 
   factory :event do
@@ -130,7 +129,7 @@ FactoryGirl.define do
     name "Roland"
   end
 
-  factory :machine, aliases: [:commentable, :pageable] do
+  factory :machine, aliases: [:commentable] do
     name "Modela"
     brand
     description "A general purpose milling machine"

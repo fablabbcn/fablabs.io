@@ -1,5 +1,5 @@
 Fablabs::Application.routes.draw do
-  resources :pages
+  resources :pages, only: [:show]
   use_doorkeeper
   require 'sidekiq/web'
   require "admin_constraint"

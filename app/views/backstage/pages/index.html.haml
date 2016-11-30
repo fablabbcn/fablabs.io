@@ -19,7 +19,10 @@
             %td= link_to page.title, [:edit, :backstage, page]
             %th= page.published? ? 'TRUE' : 'FALSE'
             %th= page.position
-            %th= link_to 'delete', [:backstage, page], method: 'delete', confirm: 'Are you sure?'
+            %th
+              = link_to 'preview', page
+              \-
+              = link_to 'delete', [:backstage, page], method: 'delete', confirm: 'Are you sure?'
 
     = paginate @pages
     = link_to 'new page', [:new, :backstage, :page], class: 'button'
