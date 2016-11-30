@@ -52,7 +52,7 @@ namespace :discourse do
 
     p thread_id_discourse_id
 
-    hash['disqus']['post'].each do |post|
+    hash['disqus']['post'].reverse.each do |post|
       raw = "Posted by #{post["author"]["name"]} with the old comment system:<br/>"
       raw << post["message"]
       topic_id = thread_id_discourse_id[post["thread"]["dsq:id"]]
