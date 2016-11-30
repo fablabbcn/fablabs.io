@@ -4,6 +4,7 @@ class Project < ActiveRecord::Base
   include RocketPants::Cacheable
 
   before_save :assign_to_lab, :strip_zeroes
+  after_save :discourse_sync_if_needed, if: Figaro.env.discourse_enabled
 
   self.authorizer_name = 'ProjectAuthorizer'
 
@@ -84,21 +85,38 @@ class Project < ActiveRecord::Base
     end
   end
 
+  def async_discourse_sync
+    DiscourseProjectWorker.perform_async(self.id)
+  end
+
+  def discourse_sync
+    DiscourseService::Project.new(self).sync
+  end
+
   protected
-    def total_grades
-      total = 0
-      self.grades.each do |grade|
-        total += grade.stars
-      end
-      return total
+
+  def total_grades
+    total = 0
+    self.grades.each do |grade|
+      total += grade.stars
     end
+    return total
+  end
 
   private
-    def assign_to_lab
-      self.lab = self.collaborators.first if self.collaborators
-    end
 
-    def strip_zeroes
-      self.tag_list.remove("0")
+  def assign_to_lab
+    self.lab = self.collaborators.first if self.collaborators
+  end
+
+  def strip_zeroes
+    self.tag_list.remove("0")
+  end
+
+  def discourse_sync_if_needed
+    if (changes.keys & ["name", "description"]).present?
+      async_discourse_sync
     end
+  end
+
 end

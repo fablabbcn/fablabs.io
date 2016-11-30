@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161130120131) do
+ActiveRecord::Schema.define(version: 20161130143215) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -377,6 +377,8 @@ ActiveRecord::Schema.define(version: 20161130120131) do
     t.text     "community"
     t.text     "lookingfor"
     t.string   "cover"
+    t.string   "discourse_id"
+    t.text     "discourse_errors"
   end
 
   add_index "projects", ["lab_id"], name: "index_projects_on_lab_id", using: :btree
