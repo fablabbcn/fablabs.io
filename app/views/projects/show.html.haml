@@ -60,17 +60,27 @@
     - if current_or_null_user.can_delete?(@project)
       = link_to icon('trash-o'), @project, method: :delete, class: 'button red', data: { confirm: "Are you sure?" }
 .row
-  #disqus_thread
-  :javascript
-    /* * * CONFIGURATION VARIABLES * * */
-    var disqus_shortname = 'fablabsio';
+  .columns.large-12
+    - if current_user && current_user.has_role?(:superadmin)
+      - if @project.discourse_id.present?
+        %h3 Discourse
+        = comments_script(@project.discourse_id)
+        %br
+        %br
+        %br
+        %h3 Disquss
 
-    /* * * DON'T EDIT BELOW THIS LINE * * */
-    (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    })();
-  %noscript
-    Please enable JavaScript to view the
-    %a{:href => "https://disqus.com/?ref_noscript", :rel => "nofollow"} comments powered by Disqus.
+    #disqus_thread
+    :javascript
+      /* * * CONFIGURATION VARIABLES * * */
+      var disqus_shortname = 'fablabsio';
+
+      /* * * DON'T EDIT BELOW THIS LINE * * */
+      (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    %noscript
+      Please enable JavaScript to view the
+      %a{:href => "https://disqus.com/?ref_noscript", :rel => "nofollow"} comments powered by Disqus.
