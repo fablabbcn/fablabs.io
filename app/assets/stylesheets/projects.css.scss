@@ -319,11 +319,13 @@ form {
     i { padding: 5px 15px }
   }
 
-  ul{
-    list-style: none;
-    li {
-      float: left;
-      padding: 5px;
+  .taglist {
+    ul{
+      list-style: none;
+      li {
+        float: left;
+        padding: 5px;
+      }
     }
   }
 
