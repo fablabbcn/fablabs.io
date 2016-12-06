@@ -62,4 +62,5 @@
 .row
   .columns.large-12
     - if @project.discourse_id.present?
+      %h3 Discuss this Project on discuss.fablabs.io
       = comments_script(@project.discourse_id)
