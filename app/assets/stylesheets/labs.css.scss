@@ -1,6 +1,7 @@
 @import "foundation_and_overrides";
 
 $sea-blue: #98BCDA;
+$sea-gray: #d7d7d7;
 
 #students-filter {
   dd.active a {
@@ -203,7 +204,7 @@ ul.lab-links {
 #lab-map {
   width: 100%;
   height: 300px;
-  background: $sea-blue;
+  background: $sea-gray; // Was: $sea-blue
   // border: 1px solid #CCC;
   // border-radius: 4px;
 }
