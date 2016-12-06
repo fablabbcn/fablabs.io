@@ -7,26 +7,48 @@
   ga('set', 'anonymizeIp', true);
   ga('send', 'pageview');
 
-  UserVoice=window.UserVoice||[];(function(){var uv=document.createElement('script');uv.type='text/javascript';uv.async=true;uv.src='//widget.uservoice.com/p8Olmp6H31k3PskamMmUBA.js';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(uv,s)})();
-  UserVoice.push(['set', {
-    accent_color: '#808283',
-    trigger_color: 'white',
-    trigger_background_color: 'rgba(46, 49, 51, 0.6)'
-  }]);
-  UserVoice.push(['identify', {
-    //email:      'john.doe@example.com', // User’s email address
-    //name:       'John Doe', // User’s real name
-    //created_at: 1364406966, // Unix timestamp for the date the user signed up
-    //id:         123, // Optional: Unique id of the user (if set, this should not change)
-    //type:       'Owner', // Optional: segment your users by type
-    //account: {
-    //  id:           123, // Optional: associate multiple users with a single account
-    //  name:         'Acme, Co.', // Account name
-    //  created_at:   1364406966, // Unix timestamp for the date the account was created
-    //  monthly_rate: 9.99, // Decimal; monthly rate of the account
-    //  ltv:          1495.00, // Decimal; lifetime value of the account
-    //  plan:         'Enhanced' // Plan name for the account
-    //}
-  }]);
-  UserVoice.push(['addTrigger', { mode: 'contact', trigger_position: 'bottom-right' }]);
-  UserVoice.push(['autoprompt', {}]);
+
+#get-help-text.reveal-modal{"aria-hidden" => "true", "aria-labelledby" => "How can we help you?", "data-reveal" => "", :role => "dialog"}
+  %h2#modalTitle How can we help you?
+
+  %h5 Welcome to Fablabs.io!
+  %p
+    Here are few suggestions about how we can help you and how you can participate
+    and talk with us if you have any question or problem regarding the Fablabs.io
+    platform.
+  %hr/
+  %h5 Discuss with the community
+  %p
+    You can ask for support to the administrators and the whole community
+    in the Fablabs.io Discuss section within the
+    = succeed "." do
+      %a{:href => "https://discuss.fablabs.io/c/site-feedback"} Site feedback category
+    %a{:href => "https://discuss.fablabs.io/c/site-feedback"} Site feedback category
+    we would also love to hear your ideas and suggestions regarding Fablabs.io,
+    its features, development, how it works and how we can improve it.
+  %a.button{:href => "https://discuss.fablabs.io/c/site-feedback"} Discuss with the community
+  %hr/
+
+
+  %h5 Help with the technical development on GitHub
+  %p
+    If you have instead messages regarding the technical development or bugs
+    of the platform, we would ask you to discuss these on the Fablabs.io repositories
+    on GitHub (Fablabs.io is free/open source software!) at
+    = succeed "." do
+      %a{:href => "https://github.com/fablabbcn/fablabs"} https://github.com/fablabbcn/fablabs
+  %a.button{:href => "https://github.com/fablabbcn/fablabs"} Join the development
+  %hr/
+  %h5 E-mail the administrators
+  %p
+    If you need instead to contact the administrators of Fablabs.io, please
+    write to
+    = succeed "." do
+      %a{:href => "mailto:webmasters@fablabs.io"} webmasters@fablabs.io
+  %a.button{:href => "mailto:webmasters@fablabs.io"} Write an e-mail to the administrators
+  %a.close-reveal-modal{"aria-label" => "Close"} X
+
+
+= link_to '#', class: 'button tiny get-help', "data-reveal-id" => "get-help-text" do
+  = fa_icon 'question-circle'
+  Get help
