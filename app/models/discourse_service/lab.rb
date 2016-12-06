@@ -13,12 +13,10 @@ module DiscourseService
     end
 
     def description
-      "<p>
-        #{@lab.description}
-      </p>
-      <p>
-        <a href='#{url}'>#{url}</a>
-      </p>"
+      "#{@lab.description}
+
+This is the general thread for discussing the lab; the thread is also visible on its page at #{url}
+      "
     end
 
     def url

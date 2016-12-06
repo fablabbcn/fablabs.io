@@ -14,9 +14,10 @@ module DiscourseService
     end
 
     def description
-      "<p>#{name}</p>
-      <p>#{@project.description}</p>
-      <p><a href='#{url}'>#{url}</a></p>"
+      "#{@project.description}
+
+This is the general thread for discussing the project; the thread is also visible on its page at #{url}
+      "
     end
 
     def url
