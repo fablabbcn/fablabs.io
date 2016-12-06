@@ -14,12 +14,10 @@ module DiscourseService
     end
 
     def description
-      "<p>
-        #{name}
-      </p>
-      <p>
-        <a href='#{url}'>#{url}</a>
-      </p>"
+      "#{name}
+
+This is the general thread for discussing the machine; the thread is also visible on its page at #{url}
+      "
     end
 
     def url
