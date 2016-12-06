@@ -1,0 +1,49 @@
+.row
+  .columns.large-12
+    = render "backstage/header"
+    = title "Organizations"
+
+  .panel
+    = search_form_for [:backstage, @q], builder: SimpleForm::FormBuilder do |f|
+      = f.input :name_cont, label: "Name"
+      .row
+        .columns.large-3
+          = f.input :discourse_id_not_null, as: :boolean, label: "With discourse ID"
+        .columns.large-9
+          = f.input :discourse_errors_present, as: :boolean, label: "With discourse sync errors"
+      .row
+        .columns.large-4
+          = f.input :workflow_state_eq, collection: Organization::WORKFLOW_STATES, label: "State", prompt: 'ALL'
+        .columns.large-3
+          = f.submit "Filter", class: 'button expand'
+
+    = paginate @organizations
+    = page_entries_info @organizations
+
+
+    %table.table
+      %thead
+        %tr
+          %th= sort_link @q, :id, 'ID'
+          %th= sort_link @q, :name, 'Name'
+          %th
+            Creator
+            = sort_link @q, 'creator_first_name', 'First'
+            = sort_link @q, 'creator_last_name', 'Last'
+
+          %th= sort_link @q, :state, 'State'
+          %th Actions
+      %tbody
+        - @organizations.each do |organization|
+          = content_tag_for :tr, organization, {class: organization.workflow_state} do
+            %td= organization.id
+            %td= link_to organization.name, organization_path(organization)
+            %td= link_to organization.creator, organization.creator
+            %td= organization.workflow_state
+            %td
+              = link_to 'edit', edit_organization_path(organization)
+
+    = paginate @organizations
+
+
+

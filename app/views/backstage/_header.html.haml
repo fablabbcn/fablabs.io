@@ -3,6 +3,7 @@
     %dt Manage:
 
     %dd{class: ('active' if controller_name == "labs")}= link_to "Labs", backstage_labs_path
+    %dd{class: ('active' if controller_name == "organizations")}= link_to "Orgs", backstage_organizations_path
     %dd{class: ('active' if controller_name == "employees")}= link_to "Employees", backstage_employees_path
     %dd{class: ('active' if controller_name == "users")}= link_to "Users", backstage_users_path
     %dd{class: ('active' if controller_name == "pages")}= link_to "Pages", backstage_pages_path

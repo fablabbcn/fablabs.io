@@ -19,8 +19,8 @@
               = hidden_field_tag 'country', params[:country]
             = text_field_tag 'q', params[:q], class: 'form-control', autocomplete: 'off', placeholder: t("views.header.search"), id: 'search-box'
         %li{class: ('active' if controller_name == 'labs')}= link_to t("views.header.labs"), labs_path, class: 'top-link'
-        - if current_or_null_user.can_read?(Event)
-          %li{class: ('active' if controller_name == 'events')}= link_to t("views.header.events"), events_path, class: 'top-link'
+        - if current_or_null_user.has_role?(:superadmin)
+          %li{class: ('active' if controller_name == 'organizations')}= link_to t("views.header.organizations"), organizations_path, class: 'top-link'
         %li{class: ('active' if controller_name == 'machines')}= link_to t("views.header.machines"), machines_path, class: 'top-link'
         %li{class: ('active' if controller_name == 'projects')}= link_to t("views.header.projects"), projects_path, class: 'top-link'
 

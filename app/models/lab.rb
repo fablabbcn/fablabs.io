@@ -44,6 +44,8 @@ class Lab < ActiveRecord::Base
 
   belongs_to :creator, class_name: 'User'
   belongs_to :referee, class_name: 'Lab'
+  has_many :organizations, through: :lab_organizations
+  has_many :lab_organizations
 
   has_many :referee_approval_processes, foreign_key: 'referred_lab_id'
   accepts_nested_attributes_for :referee_approval_processes

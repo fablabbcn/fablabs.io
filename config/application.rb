@@ -27,7 +27,7 @@ module Fablabs
       end
     end
 
-    config.i18n.fallbacks = false
+    config.i18n.fallbacks = true
     config.i18n.enforce_available_locales = true
     config.i18n.available_locales = [:en, :it, :de, :fr, :es, :ja, :nl]
     config.i18n.default_locale = :en

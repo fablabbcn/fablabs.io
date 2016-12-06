@@ -1,0 +1,33 @@
+.row
+  .columns.large-12
+    %ul.breadcrumbs
+      %li= link_to 'Organizations', organizations_path
+      %li= link_to @organization.name, organizations_path(@organization)
+      %li.current Add lab
+
+
+.row
+  .columns.large-12
+    %h1 Add lab to a organization
+
+    - if @lab
+
+      = render partial: 'labs/lab', locals: {lab: @lab}
+
+      = form_tag organization_lab_organizations_path(@organization) do
+        = hidden_field_tag :lab_id, @lab.id
+        = submit_tag 'Add lab to organization', class: 'button'
+
+    - else
+      = form_tag new_organization_lab_organization_path(@organization), method: :get do
+        = text_field_tag :query, params[:query], placeholder: 'Search lab'
+
+
+      #organization-labs-search
+        - @labs.each do |lab|
+          .row
+            .columns.large-2
+              = link_to "choose", new_organization_lab_organization_path(@organization, lab_id: lab.to_param), class: 'button tiny'
+
+            .columns.large-10
+              = render partial: 'labs/lab', locals: {lab: lab}

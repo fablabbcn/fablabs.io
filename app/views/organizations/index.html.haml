@@ -1,0 +1,23 @@
+- title "Organizations"
+
+.row.top
+  .columns.large-8
+    %ul.breadcrumbs
+      %li.current Organizations
+
+.row
+  .columns.large-8.content
+    #organizations-list
+      .labs= render @organizations
+    = paginate @organizations
+
+  .columns.large-4.sidebar-offcanvas
+
+    - if current_or_null_user.has_role?(:superadmin)
+      .heading
+        %strong Expand
+        the Network
+      = link_to new_organization_path, class: "button tiny success" do
+        = fa_icon "plus", text: 'Add organization'
+
+

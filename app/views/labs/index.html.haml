@@ -64,6 +64,7 @@
     - if current_user
       = link_to new_lab_path, class: "button tiny success" do
         = fa_icon "plus", text: t("views.labs.index.add_a_lab", default: "Add a Lab")
+
     - else
       = link_to new_lab_path, class: "button tiny success disabled has-tip", data: { tooltip: true }, title: "You need to be signed in to add a Lab" do
         = fa_icon "plus", text: t("views.labs.index.add_a_lab", default: "Add a Lab")
