@@ -21,6 +21,7 @@ en:
       settings:             "Settings"
       projects:             "Projects"
       events:               "Events"
+      organizations:        "Orgs"
 
     projects:
       new_project:          "New project"

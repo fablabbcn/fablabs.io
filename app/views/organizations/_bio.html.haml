@@ -1,0 +1,22 @@
+= link_to organization do
+  = image_tag hocho(organization.avatar, "o=t&q=80&d=300x300&"), class: 'big avatar', itemprop: "logo"
+
+= title organization.name
+.kind= "[#{organization.kind.humanize.titleize}]"
+
+%span.microdata{itemprop: "url"}= organization_url(organization)
+
+.lab-contact-details
+  - if organization.phone.present?
+    .lab-phone
+      %span.glyphicon.glyphicon-earphone
+      %span{itemprop: "telephone"}= organization.phone
+  - if organization.email.present?
+    .lab-email
+      %span.glyphicon.glyphicon-envelope
+      %span{itemprop: "email"}= mail_to organization.email, organization.email
+
+- if current_or_null_user.has_role?(:superadmin)
+  = link_to edit_organization_path(organization), class: 'button' do
+    = fa_icon "edit", text: "Edit Organization"
+  

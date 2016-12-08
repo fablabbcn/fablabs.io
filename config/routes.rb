@@ -16,6 +16,9 @@ Fablabs::Application.routes.draw do
     # resources :discussions
     get "activity" => "activities#index", :as => "activity"
     resources :featured_images
+    resources :organizations, only: [:index, :show, :new, :create, :edit, :update] do
+      resources :lab_organizations, controller: 'organizations/lab_organizations'
+    end
 
     resources :translations
     # resources :events
@@ -57,6 +60,7 @@ Fablabs::Application.routes.draw do
       resources :users
       resources :employees, only: :index
       resources :pages, expect: [:show]
+      resources :organizations, only: [:index]
       resources :labs do
         member do
           patch :approve

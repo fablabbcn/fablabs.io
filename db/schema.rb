@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161130143215) do
+ActiveRecord::Schema.define(version: 20161208110905) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -228,6 +228,17 @@ ActiveRecord::Schema.define(version: 20161130143215) do
   add_index "grades", ["project_id"], name: "index_grades_on_project_id", using: :btree
   add_index "grades", ["user_id"], name: "index_grades_on_user_id", using: :btree
 
+  create_table "lab_organizations", force: true do |t|
+    t.integer  "lab_id"
+    t.integer  "organization_id"
+    t.string   "workflow_state"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "lab_organizations", ["lab_id"], name: "index_lab_organizations_on_lab_id", using: :btree
+  add_index "lab_organizations", ["organization_id"], name: "index_lab_organizations_on_organization_id", using: :btree
+
   create_table "labs", force: true do |t|
     t.string   "name"
     t.string   "slug"
@@ -337,6 +348,25 @@ ActiveRecord::Schema.define(version: 20161130143215) do
   end
 
   add_index "oauth_applications", ["uid"], name: "index_oauth_applications_on_uid", unique: true, using: :btree
+
+  create_table "organizations", force: true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.integer  "creator_id"
+    t.string   "slug"
+    t.string   "kind"
+    t.string   "blurb"
+    t.string   "avatar_src"
+    t.string   "header_image_src"
+    t.string   "phone"
+    t.string   "email"
+    t.text     "application_notes"
+    t.string   "discourse_id"
+    t.string   "discourse_errors"
+    t.string   "workflow_state"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "pages", force: true do |t|
     t.string   "title"

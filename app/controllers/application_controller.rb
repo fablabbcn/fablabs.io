@@ -10,6 +10,13 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def require_superadmin
+    if !current_user || !current_user.has_role?(:superadmin)
+      flash[:error] = 'You must be superadmin to access this page'
+      redirect_to root_path
+    end
+  end
+
   before_action :set_locale
 
   around_filter :user_time_zone, if: :current_user

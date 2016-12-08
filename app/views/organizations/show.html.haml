@@ -1,0 +1,43 @@
+- content_for(:meta) do
+  %meta{content: hocho(@organization.avatar, "o=t&q=80&d=300x300&"), property: "og:image"}/
+  %meta{content: @organization.description, property: "og:description"}/
+
+
+%div{itemscope: true, itemtype: "http://data-vocabulary.org/Organization"}
+  .stripe
+    .row
+      .columns.large-12
+        %ul.breadcrumbs
+          %li= link_to 'Organizations', organizations_path
+          %li.current= link_to @organization.name, organizations_path(@organization)
+
+
+    .row.header
+      .columns.large-4.bio= render "bio", organization: @organization
+
+
+  .row.main
+    .columns.large-8.content
+      .lab-description{itemprop: "description"}
+        = simple_format @organization.description
+      - if @organization.header_image_src.present?
+        = image_tag hocho(@organization.header_image_src, "o=r&d=800"), class: 'big-picture', itemprop: "image"
+
+      %h3 Labs
+      - @organization.lab_organizations.each do |lab_organization|
+        = render partial: 'labs/lab', locals: {lab: lab_organization.lab}
+
+      - if current_or_null_user.has_role?(:superadmin)
+        = link_to new_organization_lab_organization_path(@organization), class: 'button' do
+          = fa_icon "add", text: 'Add lab'
+
+
+
+.row
+  .columns.large-12
+    - if @organization.discourse_id.present?
+      %h3 Discuss this Organization on discuss.fablabs.io
+      = comments_script(@organization.discourse_id)
+
+
+
