@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161208110905) do
+ActiveRecord::Schema.define(version: 20161214113624) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -366,6 +366,10 @@ ActiveRecord::Schema.define(version: 20161208110905) do
     t.string   "workflow_state"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "geojson"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.integer  "zoom"
   end
 
   create_table "pages", force: true do |t|
