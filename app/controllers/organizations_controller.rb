@@ -55,7 +55,7 @@ class OrganizationsController < ApplicationController
       :application_notes]
 
     if current_user.has_role?(:superadmin)
-      attributes << :workflow_state
+      attributes.push(:workflow_state, :geojson, :latitude, :longitude, :zoom)
     end
 
     params.require(:organization).permit(attributes)

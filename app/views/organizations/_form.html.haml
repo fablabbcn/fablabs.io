@@ -3,6 +3,10 @@
     %fieldset
       %legend Superadmin options
       = f.input :workflow_state, collection: Organization::WORKFLOW_STATES, include_blank: false
+      = f.input :geojson, as: :text
+      = f.input :latitude
+      = f.input :longitude
+      = f.input :zoom
 
   %fieldset
     %legend Basic Details

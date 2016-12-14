@@ -14,6 +14,9 @@
 
     .row.header
       .columns.large-4.bio= render "bio", organization: @organization
+      .columns.large-8
+        - if @organization.geojson.present?
+          #organization-map{ data: {geojson: @organization.geojson, latitude: @organization.latitude, longitude: @organization.longitude, zoom: @organization.zoom}}
 
 
   .row.main
