@@ -203,9 +203,7 @@ class Lab < ActiveRecord::Base
     referees = [
       "fablabwgtn",
       "fablabtaipei",
-      "waagsociety",
       "fablablima",
-      "fablabuniversidadedesaopaulo",
       "fablabsandiego",
       "as220labs",
       "fablabbcn",
