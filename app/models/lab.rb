@@ -212,7 +212,19 @@ class Lab < ActiveRecord::Base
       "fablabcascina",
       "vigyanashram",
       "fablabkamakura",
-      "hopelab"
+      "hopelab",
+      "thebeachlab",
+      "fablableon",
+      "woma",
+      "reykjavik",
+      "fablabuni",
+      "fablabmadridceu",
+      "fablabvancouver",
+      "fablabdigiscope",
+      "fabedcarolina",
+      "vestmannaeyjar",
+      "opendot",
+      "incitefocusfablab"
     ]
 
     Lab.where(slug: referees).order('name ASC')
