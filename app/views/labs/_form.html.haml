@@ -7,7 +7,7 @@
         Important Information
 
       = render 'referees', :f => f
-      = f.input :parent_id, label: "Parent (Supernode) Lab", as: 'select', collection: Lab.with_approved_state.order('name ASC'), hint: "Is this lab connected with a Supernode? If so, which lab?", input_html: { class: 'enhanced' }
+      = f.input :parent_id, label: "Parent Lab", as: 'select', collection: Lab.with_approved_state.order('name ASC'), hint: "Is this lab connected to another lab? If so, which lab?", input_html: { class: 'enhanced' }
 
   %fieldset
     %legend Basic Details
