@@ -8,7 +8,6 @@ class Backstage::LabsController < Backstage::BackstageController
       @q = Lab.includes(:creator).where("referee_id IN (?)",  current_user.admin_labs.map{ |u| u.resource_id }).search(params[:q])
     end
 
-    @q.workflow_state_eq = 'unverified' unless params[:q]
     @q.sorts = 'id desc' if @q.sorts.empty?
     @labs = @q.result.page(params[:page]).per(params[:per])
     #(distinct: true)
