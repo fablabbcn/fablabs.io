@@ -9,13 +9,15 @@
         .row
           .columns.large-3
             = f.input :discourse_id_not_null, as: :boolean, label: "With discourse ID"
-          .columns.large-9
-            = f.input :discourse_errors_present, as: :boolean, label: "With discourse sync errors"
+          .columns.large-3
+            = f.input :discourse_id_null, as: :boolean, label: "Without discourse ID"
+          .columns.large-6
+            = f.input :discourse_errors_not_null, as: :boolean, label: "With discourse sync errors"
         .row
           .columns.large-4
-            = f.input :country_code_eq, as: 'country', label: 'Country', iso_codes: true
+            = f.input :country_code_eq, as: 'country', label: 'Country', iso_codes: true, prompt: 'ALL'
           .columns.large-4
-            = f.input :workflow_state_eq, collection: Lab.workflow_spec.state_names, label: "State"
+            = f.input :workflow_state_eq, collection: Lab.workflow_spec.state_names, label: "State", prompt: 'ALL'
           .columns.large-3
             = f.submit "Filter", class: 'button expand'
 
