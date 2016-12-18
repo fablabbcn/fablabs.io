@@ -1,6 +1,5 @@
 class OrganizationsController < ApplicationController
 
-  before_filter :require_superadmin # just during testing
   before_filter :require_login, only: [:new, :create]
 
   def index

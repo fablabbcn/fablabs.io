@@ -16,8 +16,12 @@ Fablabs::Application.routes.draw do
     # resources :discussions
     get "activity" => "activities#index", :as => "activity"
     resources :featured_images
-    resources :organizations, only: [:index, :show, :new, :create, :edit, :update] do
-      resources :lab_organizations, controller: 'organizations/lab_organizations'
+    resources :organizations, only: [:index, :show, :new, :create, :edit] do
+      resources :lab_organizations, controller: 'organizations/lab_organizations' do
+        member do
+          post :accept
+        end
+      end
     end
 
     resources :translations

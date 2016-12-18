@@ -13,7 +13,7 @@
 
   .columns.large-4.sidebar-offcanvas
 
-    - if current_or_null_user.has_role?(:superadmin)
+    - if current_user
       .heading
         %strong Expand
         the Network

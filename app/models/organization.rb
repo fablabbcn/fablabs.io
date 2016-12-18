@@ -47,6 +47,10 @@ class Organization < ActiveRecord::Base
     end
   end
 
+  def to_s
+    name
+  end
+
   def geojson_file=(value)
     if value.present?
       self.geojson = value.read

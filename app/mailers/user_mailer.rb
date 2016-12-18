@@ -68,4 +68,11 @@ class UserMailer < ActionMailer::Base
     end
   end
 
+  def lab_organization_accept(lab_organization_id)
+    @lab_organization = LabOrganization.find(lab_organization_id)
+    @lab = @lab_organization.lab
+    @organization = @lab_organization.organization
+    mail(to: @lab.creator.email_string, subject: "Accept add lab to organization")
+  end
+
 end
