@@ -65,7 +65,7 @@ class OrganizationsController < ApplicationController
       :application_notes]
 
     if current_user.has_role?(:superadmin)
-      attributes.push(:workflow_state, :geojson, :zoom)
+      attributes.push(:workflow_state, :geojson, :geojson_file, :zoom)
     end
 
     params.require(:organization).permit(attributes)

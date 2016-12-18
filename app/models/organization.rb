@@ -47,6 +47,12 @@ class Organization < ActiveRecord::Base
     end
   end
 
+  def geojson_file=(value)
+    if value.present?
+      self.geojson = value.read
+    end
+  end
+
   def async_discourse_sync
     DiscourseOrganizationWorker.perform_async(self.id)
   end

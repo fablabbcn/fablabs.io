@@ -3,7 +3,7 @@
     %fieldset
       %legend Superadmin options
       = f.input :workflow_state, collection: Organization::WORKFLOW_STATES, include_blank: false
-      = f.input :geojson, as: :text
+      = f.input :geojson_file, as: :file
       = f.input :zoom
 
   %fieldset
