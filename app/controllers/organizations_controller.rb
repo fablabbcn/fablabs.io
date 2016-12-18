@@ -52,10 +52,20 @@ class OrganizationsController < ApplicationController
       :header_image_src,
       :phone,
       :email,
+      :latitude,
+      :longitude,
+      :geocomplete,
+      :address_1,
+      :address_2,
+      :city,
+      :county,
+      :postal_code,
+      :country_code,
+      :address_notes,
       :application_notes]
 
     if current_user.has_role?(:superadmin)
-      attributes.push(:workflow_state, :geojson, :latitude, :longitude, :zoom)
+      attributes.push(:workflow_state, :geojson, :geojson_file, :zoom)
     end
 
     params.require(:organization).permit(attributes)

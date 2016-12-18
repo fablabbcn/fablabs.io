@@ -3,9 +3,7 @@
     %fieldset
       %legend Superadmin options
       = f.input :workflow_state, collection: Organization::WORKFLOW_STATES, include_blank: false
-      = f.input :geojson, as: :text
-      = f.input :latitude
-      = f.input :longitude
+      = f.input :geojson_file, as: :file
       = f.input :zoom
 
   %fieldset
@@ -39,6 +37,36 @@
         - if organization.header_image_src.present?
           = image_tag organization.header_image_src, class: 'avatar big'
       .columns.large-9= f.input :header_image_src, input_html: { class: 'fp', data: { fp_store_location: 'S3', fp_store_path: "organizations/photos/", fp_store_container: ENV['S3_BUCKET'] } }, label: 'Photo', hint: "A single (large) photo of your organization. You will be able to add more photos soon."
+
+
+  %fieldset
+    %legend Organization Location
+    .address
+      %fieldset
+        %legend Step 1
+        %p.hint Enter the organization's address in the textbox below. Then drag the map marker to pinpoint its exact position.
+        = f.input :geocomplete, input_html: { id: 'geocomplete', data: { latlng: "#{@organization.latitude}, #{@organization.longitude}"} }, label: false
+      %fieldset.step-2
+        %legend Step 2
+        %p.hint Edit the details in the address fields below.
+        .row
+          .columns.large-6#map-holder
+            #location-picker-map
+          .columns.large-6
+            = f.input :address_1, input_html: { data: {geo: "street_address"}}, label: 'Organization Address', placeholder: 'Address Line 1'
+            = f.input :address_2, label: false, placeholder: 'Address Line 2 (Optional)'
+            = f.input :city, input_html: { data: {geo: "locality"}}
+            = f.input :county, label: 'State/Province/County'
+
+            = f.input :postal_code, input_html: { data: {geo: "postal_code"}}
+            = f.input :country_code, as: 'country', label: 'Country', input_html: { data: {geo: "country_short"} }, wrapper_html: { class: 'boo'}, iso_codes: true#, input_html: { class: 'enhanced'}
+            = f.input :latitude, as: :hidden, input_html: { data: {geo: "lat"}}
+            = f.input :longitude, as: :hidden, input_html: { data: {geo: "lng"}}
+            = f.input :zoom, as: :hidden
+        %hr/
+        = f.input :address_notes, hint: 'Any details that might be useful for someone trying to find the organization. For example, "Go up the stairs and through the red door".'
+
+
 
   - if organization.new_record?
     %fieldset

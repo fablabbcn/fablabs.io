@@ -128,7 +128,6 @@ class Lab < ActiveRecord::Base
 
   def formatted_address
     [address_1, address_2, city, county, postal_code, country].reject(&:blank?).join(", ")
-    #
   end
 
   def short_address include_country = true

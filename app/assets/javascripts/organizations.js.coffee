@@ -11,5 +11,19 @@ ready = ->
     L.geoJson(geojson, { style: L.mapbox.simplestyle.style }).addTo(map)
 
 
+  $(".c-organizations input#geocomplete").geocomplete
+    map: "#location-picker-map"
+    location: $('#geocomplete').data('latlng')
+    details: ".c-organizations .address"
+    detailsAttribute: "data-geo"
+    markerOptions:
+      draggable: true
+  .bind "geocode:dragged", (event, latLng) ->
+    $("input#organization_latitude").val latLng.lat()
+    $("input#organization_longitude").val latLng.lng()
+  .bind "geocode:result", (event, result) ->
+    $('.c-organizations #organization_address_1').focus()
+    $("input#organization_latitude").val result.geometry.location.lat()
+    $("input#organization_longitude").val result.geometry.location.lng()
 
 $(document).ready ready

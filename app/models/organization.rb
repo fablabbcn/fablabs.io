@@ -16,6 +16,7 @@ class Organization < ActiveRecord::Base
   validates :slug, presence: true, length: { minimum: 3 }, uniqueness: { case_sensitive: false}
   validates :kind, inclusion: {in: KINDS}
   validates :workflow_state, inclusion: {in: WORKFLOW_STATES}
+  validates :address_1, presence: true, on: :create
 
   validates_format_of :email, :with => /\A(.+)@(.+)\z/, allow_blank: true
 
@@ -25,6 +26,8 @@ class Organization < ActiveRecord::Base
   scope :approved, -> {where(workflow_state: STATE_APPROVED)}
 
   after_save :discourse_sync_if_needed, if: Figaro.env.discourse_enabled
+
+  attr_accessor :geocomplete
 
   extend FriendlyId
   friendly_id :slug_candidates, use: :slugged
@@ -44,12 +47,42 @@ class Organization < ActiveRecord::Base
     end
   end
 
+  def geojson_file=(value)
+    if value.present?
+      self.geojson = value.read
+    end
+  end
+
   def async_discourse_sync
     DiscourseOrganizationWorker.perform_async(self.id)
   end
 
   def discourse_sync
     DiscourseService::Organization.new(self).sync
+  end
+
+  def formatted_address
+    [address_1, address_2, city, county, postal_code, country].reject(&:blank?).join(", ")
+  end
+
+  def short_address include_country = true
+    [city, county, (country if include_country)].reject(&:blank?).join(", ")
+  end
+
+  def country
+    ISO3166::Country[country_code]
+  end
+
+  geocoded_by :formatted_address
+  reverse_geocoded_by :latitude, :longitude do |org,results|
+    if geo = results.first
+      org.city ||= geo.city
+      org.county ||= geo.state
+      org.postal_code ||= geo.postal_code
+      org.country_code ||= geo.country_code
+      org.reverse_geocoded_address = Marshal.dump([geo.address,geo])
+      org.save
+    end
   end
 
   private
