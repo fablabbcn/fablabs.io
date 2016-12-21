@@ -83,6 +83,7 @@ class Lab < ActiveRecord::Base
 
   scope :search_for, ->(q) { search_by_name(q) if q.present?}
   scope :in_country_code, ->(cc) { where(country_code: cc) if cc.present?}
+  scope :approved_referees, -> { where(is_referee: true).order('name ASC') }
 
   before_save :downcase_email
   before_save :truncate_blurb
@@ -196,36 +197,6 @@ class Lab < ActiveRecord::Base
 
   def self.last_updated_at
     self.select(:updated_at).order('updated_at DESC').first
-  end
-
-  def self.approved_referees
-    referees = [
-      "fablabwgtn",
-      "fablabtaipei",
-      "fablablima",
-      "fablabsandiego",
-      "as220labs",
-      "fablabbcn",
-      "fablabcascina",
-      "vigyanashram",
-      "fablabkamakura",
-      "hopelab",
-      "thebeachlab",
-      "fablableon",
-      "woma",
-      "reykjavik",
-      "fablabuni",
-      "fablabmadridceu",
-      "fablabvancouver",
-      "fablabdigiscope",
-      "fabedcarolina",
-      "vestmannaeyjar",
-      "opendot",
-      "incitefocusfablab"
-    ]
-
-    Lab.where(slug: referees).order('name ASC')
-
   end
 
   def is_approved?

@@ -16,9 +16,9 @@ feature "Adding a lab" do
   feature "as a verified user" do
     Capybara.javascript_driver = :webkit
     given(:user) { FactoryGirl.create(:user, email: "creator@fablabfoundation.com") }
-    let!(:as220) { FactoryGirl.create(:lab, name: "AS220 Labs", slug: "as220labs", workflow_state: :approved) }
-    let!(:bcn) { FactoryGirl.create(:lab, name: "Fab Lab BCN", slug: "fablabbcn", workflow_state: :approved) }
-    let!(:cascina) { FactoryGirl.create(:lab, name: "Fab Lab Cascina", slug: "fablabcascina", workflow_state: :approved) }
+    let!(:as220) { FactoryGirl.create(:lab, name: "AS220 Labs", slug: "as220labs", workflow_state: :approved, is_referee: true) }
+    let!(:bcn) { FactoryGirl.create(:lab, name: "Fab Lab BCN", slug: "fablabbcn", workflow_state: :approved, is_referee: true) }
+    let!(:cascina) { FactoryGirl.create(:lab, name: "Fab Lab Cascina", slug: "fablabcascina", workflow_state: :approved, is_referee: true) }
     let!(:admin) { FactoryGirl.create(:user, email: "admin@fablabfoundation.com") }
     let!(:referee_one) { FactoryGirl.create(:user, email:"referee@as220.org", first_name: "Referee", last_name: "AS220") }
     let!(:referee_two) { FactoryGirl.create(:user, email:"referee@fablabbcn.org", first_name: "Referee", last_name: "BCN") }
