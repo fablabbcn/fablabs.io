@@ -8,10 +8,12 @@
         = f.input :name_or_city_cont, label: "Name"
         .row
           .columns.large-3
+            = f.input :is_referee_true, as: :boolean, label: "Is referee"
+          .columns.large-3
             = f.input :discourse_id_not_null, as: :boolean, label: "With discourse ID"
           .columns.large-3
             = f.input :discourse_id_null, as: :boolean, label: "Without discourse ID"
-          .columns.large-6
+          .columns.large-3
             = f.input :discourse_errors_not_null, as: :boolean, label: "With discourse sync errors"
         .row
           .columns.large-4
