@@ -4,4 +4,6 @@ class Role < ActiveRecord::Base
 
   scopify
 
+  AVAILABLE = [ROLE_ADMIN = 'admin', ROLE_SUPERADMIN = 'superadmin']
+
 end
