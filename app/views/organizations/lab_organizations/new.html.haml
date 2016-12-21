@@ -22,7 +22,6 @@
       = form_tag new_organization_lab_organization_path(@organization), method: :get do
         = text_field_tag :query, params[:query], placeholder: 'Search lab'
 
-
       #organization-labs-search
         - @labs.each do |lab|
           .row

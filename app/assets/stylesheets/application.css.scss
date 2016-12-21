@@ -271,17 +271,16 @@ h3 {
 }
 
 
-  .media {
-    margin-top: 50px;
-    &, .media-body {
-      zoom: 1;
-      overflow: hidden;
-    }
-    .pull-left {
-      float: left !important;
-      margin-right: 10px;
-    }
+.media {
+  &, .media-body {
+    zoom: 1;
+    overflow: hidden;
   }
+  .pull-left {
+    float: left !important;
+    margin-right: 10px;
+  }
+}
 
 .get-help {
   position: fixed;

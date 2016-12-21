@@ -27,20 +27,21 @@
         = image_tag hocho(@organization.header_image_src, "o=r&d=800"), class: 'big-picture', itemprop: "image"
 
       %h3 Labs
-      - @organization.lab_organizations.each do |lab_organization|
+      - @organization.lab_organizations.accepted.each do |lab_organization|
         = render partial: 'labs/lab', locals: {lab: lab_organization.lab}
 
-      - if current_or_null_user.has_role?(:superadmin)
+      - if @organization.lab_organizations.pending.present?
+        %h4 Pending
+        - @organization.lab_organizations.pending.each do |lab_organization|
+          %p.small.pull-right
+            = link_to 'state workflow', organization_lab_organization_path(@organization, lab_organization)
+          = render partial: 'labs/lab', locals: {lab: lab_organization.lab}
+      - if current_or_null_user == @organization.creator
         = link_to new_organization_lab_organization_path(@organization), class: 'button' do
           = fa_icon "add", text: 'Add lab'
-
-
 
 .row
   .columns.large-12
     - if @organization.discourse_id.present?
       %h3 Discuss this Organization on discuss.fablabs.io
       = comments_script(@organization.discourse_id)
-
-
-

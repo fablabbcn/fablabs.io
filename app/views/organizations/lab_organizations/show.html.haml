@@ -1,0 +1,25 @@
+.row
+  .columns.large-12
+    %ul.breadcrumbs
+      %li= link_to 'Organizations', organizations_path
+      %li= link_to @organization.name, organizations_path(@organization)
+      %li.current #{@lab_organization.lab.name} state
+
+
+.row
+  .columns.large-12
+    %h1 #{@lab_organization.lab.name} in #{@organization.name} state
+
+    = render partial: 'labs/lab', locals: {lab: @lab_organization.lab}
+
+.row
+  .columns.large-4
+    %dl
+      %dt Added at
+      %dd= @lab_organization.created_at
+
+      %dt State
+      %dd= @lab_organization.workflow_state
+  .columns.large-8
+    - if @lab_organization.pending? && current_or_null_user == @lab_organization.lab.creator
+      = link_to 'Accept', accept_organization_lab_organization_path(@organization, @lab_organization), class: 'button', method: :post
