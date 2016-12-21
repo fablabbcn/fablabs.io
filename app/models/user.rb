@@ -133,15 +133,8 @@ class User < ActiveRecord::Base
   end
 
   def referee_labs
-    processes = RefereeApprovalProcess.where(
-      "referee_lab_id IN (?)",
-      self.admin_labs.map{ |u| u.resource_id }
-    )
-
-    labs = processes.map{ |u| u.referee_lab }
-    referees = labs.map { |u| u if ['unverified', 'need_more_info', 'more_info_added'].include? u.workflow_state }
-
-    return referees
+    labs = RefereeApprovalProcess.where(referee_lab_id: admin_labs.map(&:resource_id)).map(&:referee_lab).uniq
+    labs.select{ |lab| lab if ['unverified', 'need_more_info', 'more_info_added'].include?(lab.workflow_state) }
   end
 
   def referees_count
