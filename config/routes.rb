@@ -61,7 +61,9 @@ Fablabs::Application.routes.draw do
 
     namespace :backstage do
       get "users/list" => "users#list"
-      resources :users
+      resources :users do
+        resources :roles, controller: 'users/roles', only: [:index, :new, :create, :destroy]
+      end
       resources :employees, only: :index
       resources :pages, expect: [:show]
       resources :organizations, only: [:index]
