@@ -39,7 +39,7 @@
           - @machine.links.each do |link|
             %li.machine-link
               = link_to link.url do
-                = favicon link.url
+                = fa_icon 'link'
                 %span.url{itemprop: "sameAs"}= link.description
 
       .heading Machine Revisions

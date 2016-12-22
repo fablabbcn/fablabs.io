@@ -43,21 +43,6 @@ module ApplicationHelper
     controller.class.parent == Backstage
   end
 
-  def favicon url
-    begin
-      domain = URI.parse(url).host
-      ['facebook.com','twitter.com','youtube.com','picasaweb.google.com','flickr.com','pinterest.com','github.com','vimeo.com', 'fablabbcn.org'].each do |s|
-        if domain.match(/(www\.)?#{s}/)
-          return image_tag hocho("http://#{domain}/favicon.ico", "o=t&q=80&d=16x16"), width: 16, height: 16
-        end
-      end
-    rescue
-      fa_icon "link"
-    end
-
-    fa_icon "link"
-  end
-
   def player url
     domain = URI.parse(url).host
     if domain.match(/(www\.)?#{'youtube.com'}/)
