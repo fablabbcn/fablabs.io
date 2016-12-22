@@ -5,5 +5,5 @@
       - cache ["v1", link] do
         %li.lab-link
           = link_to link.url do
-            = favicon link.url
+            = fa_icon 'link'
             %span.url{itemprop: "sameAs"}= link.url
