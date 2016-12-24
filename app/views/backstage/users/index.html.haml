@@ -10,12 +10,17 @@
           .columns.large-6= f.input :email_cont
 
         .row
-          .columns.large-4
-            = f.input :country_code_eq, as: 'country', label: 'Country', iso_codes: true
-          .columns.large-4
-            = f.input :workflow_state_eq, collection: User.workflow_spec.state_names, label: "State"
+          .columns.large-3
+            = f.input :country_code_eq, as: 'country', label: 'Country', iso_codes: true, include_blank: 'ALL'
+          .columns.large-3
+            = f.input :workflow_state_eq, collection: User.workflow_spec.state_names, label: "State", include_blank: 'ALL'
+          .columns.large-3
+            = f.input :roles_name_eq, collection: Role::AVAILABLE, include_blank: 'ALL'
           .columns.large-3
             = f.submit "Filter", class: 'button expand'
+
+    = paginate @users
+    = page_entries_info @users
 
     %table.table
       %thead
@@ -27,6 +32,7 @@
             (#{sort_link @q, :last_name, "Last"})
           %th= sort_link @q, :email, 'Email'
           %th= sort_link @q, :created_at, "Joined"
+          %th Role
       %tbody
         - @users.each do |user|
           %tr
@@ -34,3 +40,6 @@
             %td= link_to user, backstage_user_path(user)
             %td= mail_to user.email, user.email
             %td= user.created_at
+            %td= user.role_names
+
+    = paginate @users

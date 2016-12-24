@@ -174,6 +174,10 @@ class User < ActiveRecord::Base
     end
   end
 
+  def role_names
+    roles.map(&:name).uniq.join(', ')
+  end
+
 private
 
   def downcase_email
