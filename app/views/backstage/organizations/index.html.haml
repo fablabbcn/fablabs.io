@@ -13,7 +13,7 @@
           = f.input :discourse_errors_present, as: :boolean, label: "With discourse sync errors"
       .row
         .columns.large-4
-          = f.input :workflow_state_eq, collection: Organization::WORKFLOW_STATES, label: "State", prompt: 'ALL'
+          = f.input :workflow_state_eq, collection: Organization::WORKFLOW_STATES, label: "State", include_blank: 'ALL'
         .columns.large-3
           = f.submit "Filter", class: 'button expand'
 

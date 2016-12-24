@@ -17,9 +17,9 @@
             = f.input :discourse_errors_not_null, as: :boolean, label: "With discourse sync errors"
         .row
           .columns.large-4
-            = f.input :country_code_eq, as: 'country', label: 'Country', iso_codes: true, prompt: 'ALL'
+            = f.input :country_code_eq, as: 'country', label: 'Country', iso_codes: true, include_blank: 'ALL'
           .columns.large-4
-            = f.input :workflow_state_eq, collection: Lab.workflow_spec.state_names, label: "State", prompt: 'ALL'
+            = f.input :workflow_state_eq, collection: Lab.workflow_spec.state_names, label: "State", include_blank: 'ALL'
           .columns.large-3
             = f.submit "Filter", class: 'button expand'
 
