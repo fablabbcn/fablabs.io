@@ -7,9 +7,9 @@
         Important Information
 
       = render 'referees', :f => f
-      / email_off
+      /email_off
       = f.input :parent_id, label: "Parent Lab", as: 'select', collection: Lab.with_approved_state.order('name ASC'), hint: "Is this lab connected to another lab? If so, which lab?", input_html: { class: 'enhanced' }
-      / /email_off
+      //email_off
 
   %fieldset
     %legend Basic Details
