@@ -60,12 +60,7 @@ module ApplicationHelper
   end
 
   def hocho(img, options)
-    return if img.blank?
-    url = "https://davinci.fablabs.io"
-    options = options.unpack('H*').first
-    img = img.unpack('H*').first
-    sig = Digest::SHA1.hexdigest("#{options}#{img}#{ENV['HOCHO_SALT']}")
-    [url, options, img, sig].join('/')
+    Hocho.hocho(img, options)
   end
 
   def flash_class(level)
