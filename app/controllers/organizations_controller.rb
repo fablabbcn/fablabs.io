@@ -1,6 +1,6 @@
 class OrganizationsController < ApplicationController
 
-  before_filter :require_login, only: [:new, :create]
+  before_filter :require_login, only: [:new, :create, :update, :edit]
 
   def index
     @organizations = Organization.page(params[:page]).approved
@@ -49,6 +49,7 @@ class OrganizationsController < ApplicationController
       :blurb,
       :avatar_src,
       :header_image_src,
+
       :phone,
       :email,
       :latitude,
@@ -62,6 +63,8 @@ class OrganizationsController < ApplicationController
       :country_code,
       :address_notes,
       :application_notes]
+
+    attributes.push(links_attributes)
 
     if current_user.has_role?(:superadmin)
       attributes.push(:workflow_state, :geojson, :geojson_file, :zoom)

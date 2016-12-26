@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161221155502) do
+ActiveRecord::Schema.define(version: 20161226125744) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -381,6 +381,18 @@ ActiveRecord::Schema.define(version: 20161221155502) do
     t.string   "region"
     t.text     "address_notes"
     t.text     "reverse_geocoded_address"
+    t.string   "web"
+    t.string   "github"
+    t.string   "drive"
+    t.string   "twitter"
+    t.string   "flickr"
+    t.string   "instagram"
+    t.string   "bitbucket"
+    t.string   "dropbox"
+    t.string   "facebook"
+    t.string   "googleplus"
+    t.string   "youtube"
+    t.string   "vimeo"
   end
 
   create_table "pages", force: true do |t|
