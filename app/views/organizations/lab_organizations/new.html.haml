@@ -20,7 +20,12 @@
 
     - else
       = form_tag new_organization_lab_organization_path(@organization), method: :get do
-        = text_field_tag :query, params[:query], placeholder: 'Search lab'
+        .row
+          .columns.large-10
+            = text_field_tag :query, params[:query], placeholder: 'Search lab'
+          .columns.large-2
+            = submit_tag 'Search', class: 'button tiny'
+
 
       #organization-labs-search
         - @labs.each do |lab|
