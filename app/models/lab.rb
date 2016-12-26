@@ -60,8 +60,9 @@ class Lab < ActiveRecord::Base
   validates :slug, format: {:with => /\A[a-zA-Z0-9]+\z/ }, allow_nil: true, allow_blank: true, length: { minimum: 3 }
   validates_format_of :email, :with => /\A(.+)@(.+)\z/, allow_blank: true
   validates_uniqueness_of :name, :slug, case_sensitive: false
+  validates :avatar_src, image: true, allow_blank: true
+  validates :header_image_src, image: true, allow_blank: true
   validate :excluded_slug
-
 
   def excluded_slug
     if !slug.blank? and Fablabs::Application.config.banned_words.include?(slug.downcase)
