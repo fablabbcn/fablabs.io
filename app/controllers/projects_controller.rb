@@ -81,7 +81,7 @@ class ProjectsController < ApplicationController
 
   private
     def project_params
-      params.require(:project).permit(
+      attributes = [
         :type,
         :title,
         :description,
@@ -116,7 +116,11 @@ class ProjectsController < ApplicationController
           links_attributes: [:id, :link_id, :url, '_destroy'] ],
         contributions_attributes: [ :id, :contributor_id ],
         collaborations_attributes: [ :id, :collaborator_id ],
-        machineries_attributes: [ :id, :device_id ])
+        machineries_attributes: [ :id, :device_id ]
+      ]
+
+      attributes.push(links_attributes)
+      params.require(:project).permit(attributes)
     end
 
 

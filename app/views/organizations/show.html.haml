@@ -40,6 +40,9 @@
         = link_to new_organization_lab_organization_path(@organization), class: 'button' do
           = fa_icon "add", text: 'Add lab'
 
+    .columns.large-4
+      = render "link_side_fields", object: @organization
+
 .row
   .columns.large-12
     - if @organization.discourse_id.present?
