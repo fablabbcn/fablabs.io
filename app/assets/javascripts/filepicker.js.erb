@@ -6,6 +6,7 @@ $(document).ready(function() {
   $('input.fp[type=text]').each(function() {
     $(this).addClass('done');
     $(this).attr('type', "filepicker-dragdrop");
+    $(this).attr('data-fp-mimetype', "image/*");
     if (!$(this).hasClass('done')) {
       return filepicker.constructWidget($(this));
     }
