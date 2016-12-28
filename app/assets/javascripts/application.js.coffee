@@ -12,6 +12,7 @@
 #
 #= require jquery
 #= require jquery_ujs
+#= require bootstrap
 #= require jquery.limit-1.2
 #= require Control.Loading.js
 #= require jquery.geocomplete
@@ -30,6 +31,8 @@
 #= require moment
 #= require trumbowyg/trumbowyg
 #= require_tree .
+#
+#
 
 initEvents = ->
 

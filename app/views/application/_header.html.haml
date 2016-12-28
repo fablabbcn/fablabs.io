@@ -1,32 +1,41 @@
-#myModal.reveal-modal
-%header.contain-to-grid
-  %nav.top-bar{ data: {topbar: "true" } }
-    %ul.title-area
-      %li.name
-        %h1
-          = link_to root_path do
-            = image_tag "circle-logo.png", id: 'logo'
-      %li.toggle-topbar.menu-icon
-        = link_to "#" do
-          %span
+%nav.navbar.navbar-default
+  .container
+    .navbar-header
+      %button.navbar-toggle.collapsed{"aria-controls" => "navbar", "aria-expanded" => "false", "data-target" => "#navbar", "data-toggle" => "collapse", :type => "button"}
+        %span.sr-only Toggle navigation
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
 
-    %section.top-bar-section
-      %ul.left
-        -# %li.divider
-        %li.has-form
-          = form_tag 'search', class: 'navbar-form navbar-left', method: 'get' do
-            - if params[:country].present?
-              = hidden_field_tag 'country', params[:country]
-            = text_field_tag 'q', params[:q], class: 'form-control', autocomplete: 'off', placeholder: t("views.header.search"), id: 'search-box'
-        %li{class: ('active' if controller_name == 'labs')}= link_to t("views.header.labs"), labs_path, class: 'top-link'
-        %li{class: ('active' if controller_name == 'organizations')}= link_to t("views.header.organizations"), organizations_path, class: 'top-link'
-        %li{class: ('active' if controller_name == 'machines')}= link_to t("views.header.machines"), machines_path, class: 'top-link'
-        %li{class: ('active' if controller_name == 'projects')}= link_to t("views.header.projects"), projects_path, class: 'top-link'
-      %ul.right
-        %li= link_to 'Discuss', 'https://discuss.fablabs.io/', class: 'top-link'
+      = link_to root_path, class: 'navbar-brand' do
+        = image_tag "circle-logo.png", id: 'logo'
+
+    #navbar.collapse.navbar-collapse
+
+      = form_tag '/search', class: 'navbar-form navbar-left', method: 'get' do
+        .form-group
+          - if params[:country].present?
+            = hidden_field_tag 'country', params[:country]
+          = text_field_tag 'q', params[:q], class: 'form-control', autocomplete: 'off', placeholder: t("views.header.search"), id: 'search-box'
+
+      %ul.nav.navbar-nav
+        %li
+          = link_to t("views.header.labs"), labs_path
+        %li
+          = link_to t("views.header.organizations"), organizations_path
+        %li
+          = link_to t("views.header.machines"), machines_path
+        %li
+          = link_to t("views.header.projects"), projects_path
+
+
+
+      %ul.nav.navbar-nav.navbar-right
+        %li= link_to 'Discuss', 'https://discuss.fablabs.io/'
         - if current_user
-          %li.has-dropdown
-            = link_to current_user, class: 'dropdown-toggle', data: { toggle: 'dropdown', options: "is_hover: true" } do
+          %li.dropdown
+            = link_to current_user, class: 'dropdown-toggle', "aria-expanded" => "true", "aria-haspopup" => "true", "data-toggle" => "dropdown", :role => "button" do
+
               = image_tag hocho(current_user.avatar, "o=t&q=80&d=90x90"), class: 'avatar tiny'
               = t("views.header.me")
               - if current_or_null_user.has_role? :superadmin
@@ -35,7 +44,8 @@
                 - if current_or_null_user.is_referee? or current_or_null_user.is_unique_referee?
                   = gem_count_tag current_or_null_user.referees_count
 
-            %ul.dropdown
+              %span.caret
+            %ul.dropdown-menu
               %li
                 = link_to settings_path do
                   = fa_icon "cog", text: t("views.header.settings")
@@ -53,13 +63,11 @@
                       = t("views.header.backstage", default: "Backstage")
                       = gem_count_tag current_or_null_user.referee_labs.count
 
+              %li.divider{:role => "separator"}
               %li
                 = link_to signout_path do
                   = fa_icon "sign-out", text: t("views.header.signout", default: "Sign out")
+
         - else
           %li= link_to t("views.header.signin", default: "Sign in"), signin_path
-          %li.last= link_to t("views.header.signup", default: "Sign up"), signup_path
-
-        -# %li#locale
-        -#   = link_to choose_locale_path, id: 'locale-icon', class: I18n.locale, data: { reveal_id: "myModal", reveal_ajax: "true" } do
-        -#     = image_tag "locales/#{I18n.locale}.png", width: 24
+          %li= link_to t("views.header.signup", default: "Sign up"), signup_path
