@@ -8,47 +8,50 @@
   ga('send', 'pageview');
 
 
-#get-help-text.reveal-modal{"aria-hidden" => "true", "aria-labelledby" => "How can we help you?", "data-reveal" => "", :role => "dialog"}
-  %h2#modalTitle How can we help you?
-
-  %h5 Welcome to Fablabs.io!
-  %p
-    Here are few suggestions about how we can help you and how you can participate
-    and talk with us if you have any question or problem regarding the Fablabs.io
-    platform.
-  %hr/
-  %h5 Discuss with the community
-  %p
-    You can ask for support to the administrators and the whole community
-    in the Fablabs.io Discuss section within the
-    = succeed "." do
-      %a{:href => "https://discuss.fablabs.io/c/site-feedback"} Site feedback category
-    %a{:href => "https://discuss.fablabs.io/c/site-feedback"} Site feedback category
-    we would also love to hear your ideas and suggestions regarding Fablabs.io,
-    its features, development, how it works and how we can improve it.
-  %a.button{:href => "https://discuss.fablabs.io/c/site-feedback"} Discuss with the community
-  %hr/
-
-
-  %h5 Help with the technical development on GitHub
-  %p
-    If you have instead messages regarding the technical development or bugs
-    of the platform, we would ask you to discuss these on the Fablabs.io repositories
-    on GitHub (Fablabs.io is free/open source software!) at
-    = succeed "." do
-      %a{:href => "https://github.com/fablabbcn/fablabs"} https://github.com/fablabbcn/fablabs
-  %a.button{:href => "https://github.com/fablabbcn/fablabs"} Join the development
-  %hr/
-  %h5 E-mail the administrators
-  %p
-    If you need instead to contact the administrators of Fablabs.io, please
-    write to
-    = succeed "." do
-      %a{:href => "mailto:webmasters@fablabs.io"} webmasters@fablabs.io
-  %a.button{:href => "mailto:webmasters@fablabs.io"} Write an e-mail to the administrators
-  %a.close-reveal-modal{"aria-label" => "Close"} X
+#get-help-text.modal.fade{"aria-labelledby" => "How can we help you?", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog{:role => "document"}
+    .modal-content
+      .modal-header
+        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} ×
+        %h4.modal-title How can we help you?
+      .modal-body
+        %h5 Welcome to Fablabs.io!
+        %p
+          Here are few suggestions about how we can help you and how you can participate
+          and talk with us if you have any question or problem regarding the Fablabs.io
+          platform.
+        %hr/
+        %h5 Discuss with the community
+        %p
+          You can ask for support to the administrators and the whole community
+          in the Fablabs.io Discuss section within the
+          = succeed "." do
+            %a{:href => "https://discuss.fablabs.io/c/site-feedback"} Site feedback category
+          %a{:href => "https://discuss.fablabs.io/c/site-feedback"} Site feedback category
+          we would also love to hear your ideas and suggestions regarding Fablabs.io,
+          its features, development, how it works and how we can improve it.
+        %a.button{:href => "https://discuss.fablabs.io/c/site-feedback"} Discuss with the community
+        %hr/
 
 
-= link_to '#', class: 'button tiny get-help', "data-reveal-id" => "get-help-text" do
+        %h5 Help with the technical development on GitHub
+        %p
+          If you have instead messages regarding the technical development or bugs
+          of the platform, we would ask you to discuss these on the Fablabs.io repositories
+          on GitHub (Fablabs.io is free/open source software!) at
+          = succeed "." do
+            %a{:href => "https://github.com/fablabbcn/fablabs"} https://github.com/fablabbcn/fablabs
+        %a.button{:href => "https://github.com/fablabbcn/fablabs"} Join the development
+        %hr/
+        %h5 E-mail the administrators
+        %p
+          If you need instead to contact the administrators of Fablabs.io, please
+          write to
+          = succeed "." do
+            %a{:href => "mailto:webmasters@fablabs.io"} webmasters@fablabs.io
+        %a.button{:href => "mailto:webmasters@fablabs.io"} Write an e-mail to the administrators
+
+%button.get-help.btn.btn-primary.btn-sm{"data-target" => "#get-help-text", "data-toggle" => "modal", :type => "button"}
   = fa_icon 'question-circle'
   Get help
