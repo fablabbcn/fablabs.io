@@ -426,12 +426,28 @@ input#lab_name {
 #description-count {
   font-weight: bold;
 }
-.countries-filter {
-  font-size: 0.9em;
-}
 .sidebar-offcanvas {
   .heading {
     font-weight: normal;
+  }
+
+  .list-group-item {
+    border: none;
+    color: #0275BC
+  }
+
+  .list-group-item.active {
+    background: #FFF;
+    color: #21a9fd;
+    .badge {
+      background-color: white;
+      color: #AAA;
+    }
+  }
+
+  .badge {
+    background-color: white;
+    color: #AAA;
   }
 }
 .sidebar-offcanvas .sub-nav {
