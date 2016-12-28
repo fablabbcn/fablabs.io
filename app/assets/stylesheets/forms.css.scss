@@ -14,15 +14,14 @@ textarea {
 }
 
 fieldset {
-
-  // overflow: hidden;
-  margin-bottom: 20px;
-  padding: 20px;
-  background: #FEFEFE;
+  border: 1px solid #c0c0c0 !important;
+  margin-bottom: 20px !important;
+  padding: 20px !important;
+  background: #FEFEFE !important;
   fieldset {
-    padding: 5px;
-    background: none;
-    border: none;
+    padding: 5px !important;
+    background: none !important;
+    border: none !important;
     legend {
       // font-weight: normal;
       // color: #AAA;
@@ -60,8 +59,8 @@ fieldset {
 }
 
 .fp {
-  border: none;
-  box-shadow: none;
+  border: none !important;
+  box-shadow: none !important;
   background: none;
 }
 
@@ -89,4 +88,11 @@ fieldset {
     font-weight: bold;
     font-size: 1.4em;
   }
+}
+
+.check_boxes .form-control{
+  height: auto;
+  width: auto;
+  border: none;
+  transition: none;
 }
