@@ -5,15 +5,15 @@
 %div{itemscope: true, itemtype: "http://data-vocabulary.org/Organization"}
   .stripe
     .row
-      .columns.large-12
+      .col-lg-12
         = render "breadcrumbs", lab: @lab
 
     .row.header
-      .columns.large-4.bio= render "bio", lab: @lab
-      .columns.large-8= render "minimap", lab: @lab if @lab.longitude
+      .col-lg-4.bio= render "bio", lab: @lab
+      .col-lg-8= render "minimap", lab: @lab if @lab.longitude
 
   .row.main
-    .columns.large-8.content
+    .col-lg-8.content
       .lab-description{itemprop: "description"}= simple_format @lab.description
       - if @lab.header_image_src.present?
         = image_tag hocho(@lab.header_image_src, "o=r&d=800"), class: 'big-picture', itemprop: "image"
@@ -30,7 +30,7 @@
         = render("academics", lab: @lab, academics: @academics)
 
 
-    .columns.large-4.sidebar
+    .col-lg-4.sidebar
       = render "nearby", lab: @lab, nearby_labs: @nearby_labs
       - cache ["side-v2-#{I18n.locale}", @lab] do
         = render "links", links: @lab.links
@@ -39,7 +39,7 @@
 
 .row
 
-  .columns.large-12
+  .col-lg-12
     - if @lab.discourse_id.present?
       %h3 Discuss this Lab on discuss.fablabs.io
       = comments_script(@lab.discourse_id)

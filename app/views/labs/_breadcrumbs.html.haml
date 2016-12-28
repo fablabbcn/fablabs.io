@@ -1,9 +1,9 @@
-%ul.breadcrumbs
+%ol.breadcrumb
   %li= link_to Lab.to_s.pluralize, labs_path
   %li
     = link_to labs_path(country: lab.country_code) do
       %span.flag{class: "flag-#{lab.country_code.downcase}"}
       = lab.country.name
       %span.microdata{itemprop: "country"}= lab.country_code
-  %li{class: ("current" if action_name == "show")}
+  %li
     = link_to lab, lab

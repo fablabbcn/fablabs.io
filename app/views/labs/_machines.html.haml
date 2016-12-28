@@ -2,4 +2,8 @@
   = fa_icon "cogs"
   Machines
 
-%ul.large-block-grid-4.small-block-grid-2= render machines
+- machines.in_groups_of(4, false) do |groups|
+  .row
+    - groups.each do |machine|
+      .col-md-3
+        = render machine
