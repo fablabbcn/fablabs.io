@@ -1,4 +1,4 @@
-@import "foundation_and_overrides";
+@import "common_vars";
 
 $sea-blue: #98BCDA;
 $sea-gray: #d7d7d7;
@@ -115,9 +115,6 @@ li.lab-link {
 }
 .bio {
   text-align: center;
-  @media #{$small} {
-    padding-top: 20px;
-  }
   .kind {
     margin: 5px 0;
   }

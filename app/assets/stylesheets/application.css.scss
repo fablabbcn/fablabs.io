@@ -9,8 +9,6 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
- //= require foundation_and_overrides
-
  *= require Control.Loading.css
  *= require select2
  *= require taggd
@@ -22,10 +20,11 @@
  *= require messenger-theme-flat
  *= require trumbowyg/trumbowyg
  *= require_tree .
+ *= require bootstrap/dist/css/bootstrap
+
  */
 
-@import "foundation_and_overrides";
-@import "foundation";
+@import "common_vars";
 @import "font-awesome-sprockets";
 @import "font-awesome";
 
