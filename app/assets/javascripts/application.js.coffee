@@ -20,12 +20,10 @@
 #= require cocoon
 #= require list
 #= require jquery.timepicker
-#= require foundation-datepicker
 #= require underscore
 #= require select2
 #= require messenger
 #= require messenger-theme-flat
-#= require foundation
 #= require placeholders
 #= require jquery.autosize
 #= require alerts
@@ -37,7 +35,6 @@ initEvents = ->
 
   $('textarea.trumbowyg').trumbowyg()
   # {append: "\n"}
-  $(document).foundation()
   $("select").select2()
 
   $('*[data-limit]').each ->
