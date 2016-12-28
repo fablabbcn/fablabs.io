@@ -250,7 +250,7 @@ form {
 
   /* hide input */
   input[type="radio"]:empty {
-  	margin-left: -999px;
+    display: none;
   }
 
   /* style label */
@@ -260,6 +260,7 @@ form {
     line-height: 2.4em;
     text-indent: 3.9em;
     padding-top: 0.5em;
+    margin-right: 10px;
   	margin-top: 2em;
   	cursor: pointer;
   	-webkit-user-select: none;

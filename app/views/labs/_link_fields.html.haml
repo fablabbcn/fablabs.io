@@ -1,5 +1,4 @@
 .nested-fields
-  .row.collapse
-    -# .columns.small-1.large-1= fa_icon "reorder"
-    .columns.small-10.large-11= f.input :url, label: false, placeholder: 'http://www.myfablab.com'
-    .columns.small-2.large-1.close= link_to_remove_association "x", f, class: 'button tiny alert'
+  .row
+    .col-sm-11= f.input :url, label: false, placeholder: 'http://www.myfablab.com'
+    .col-sm-1= link_to_remove_association "x", f, class: 'btn btn-danger'
