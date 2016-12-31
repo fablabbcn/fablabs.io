@@ -90,7 +90,11 @@ fieldset {
   }
 }
 
-.check_boxes .form-control{
+.input .boolean{
+  margin-left: 20px;
+}
+
+.checkbox .form-control, .check_boxes .form-control{
   height: auto;
   width: auto;
   border: none;
