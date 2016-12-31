@@ -28,6 +28,11 @@
 @import "font-awesome-sprockets";
 @import "font-awesome";
 
+
+a{
+  cursor: pointer;
+}
+
 #embed-logo {
   display: block;
   background: image_url("embed-logo.png");

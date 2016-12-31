@@ -1,23 +1,22 @@
 - title "Organizations"
 
 .row.top
-  .columns.large-8
-    %ul.breadcrumbs
-      %li.current Organizations
+  .col-lg-8
+    %ol.breadcrumb
+      %li Organizations
 
 .row
-  .columns.large-8.content
+  .col-lg-8.content
     #organizations-list
       .labs= render @organizations
     = paginate @organizations
 
-  .columns.large-4.sidebar-offcanvas
-
+  .col-lg-4.sidebar-offcanvas
     - if current_user
       .heading
         %strong Expand
         the Network
-      = link_to new_organization_path, class: "button tiny success" do
+      = link_to new_organization_path, class: "btn btn-success" do
         = fa_icon "plus", text: 'Add organization'
 
 
