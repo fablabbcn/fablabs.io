@@ -14,7 +14,7 @@
     = render "header"
 
 .row
-  - cache ["v1-labsindex-#{I18n.locale}-#{Digest::MD5.hexdigest([params.to_s].to_s)}", Lab.last_updated_at] do
+  - cache ["v2-labsindex-#{I18n.locale}-#{Digest::MD5.hexdigest([params.to_s].to_s)}", Lab.last_updated_at] do
     .col-lg-8.content
       - if params[:query].present?
         .search-results
