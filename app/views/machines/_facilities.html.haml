@@ -1,5 +1,5 @@
 .row
-  .columns.large-3
+  .col-lg-3
     %label
       Labs
     .selection-container
@@ -15,6 +15,6 @@
                 = link_to icon('times'), facility_path(c), method: :delete
                 = image_tag hocho(c.lab.avatar, "o=t&q=80&d=90x90"), class: 'avatar tiny'
 
-  .columns.large-9
+  .col-lg-9
     - @selected = @machine.facilities.collect
     = select_tag :facilities_attributes, options_from_collection_for_select(@selected, :id, :lab_id), { multiple: true, size: 10, name: 'machine[facilities_attributes][][lab_id]', class: 'lab_selection_attributes'}

@@ -1,13 +1,13 @@
 - title @project.title
 
 .row
-  .columns.large-12
+  .col-lg-12
     = render "breadcrumbs"
 
 = render "main_cover"
 .stripe
 .row.project-description
-  .columns.large-8
+  .col-lg-8
     - if @project.description.present?
       .heading
         = icon('file-text-o')
@@ -48,19 +48,19 @@
       .box
         = simple_format(markdown(@project.faq))
 
-  .columns.large-4
+  .col-lg-4
     = render "collaborations"
     = render "link_side_fields", object: @project
     = render "contributors"
 
 .row
-  .columns.large-12
+  .col-lg-12
     - if current_or_null_user.can_update?(@project)
       = link_to icon('pencil'), edit_project_path(@project), class: 'button'
     - if current_or_null_user.can_delete?(@project)
       = link_to icon('trash-o'), @project, method: :delete, class: 'button red', data: { confirm: "Are you sure?" }
 .row
-  .columns.large-12
+  .col-lg-12
     - if @project.discourse_id.present?
       %h3 Discuss this Project on discuss.fablabs.io
       = comments_script(@project.discourse_id)

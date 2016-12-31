@@ -1,12 +1,12 @@
 .row
-  .columns.large-12
+  .col-lg-12
     = title "Editing #{@lab}"
     = simple_form_for [:backstage, @lab] do |f|
       = render "form_errors", resource: @lab
       = f.input :kind
       -# = f.association :parent
 
-      .columns.large-4
+      .col-lg-4
         Select 3 Referee Labs.
         .selections
           %ul
@@ -18,7 +18,7 @@
                     = image_tag hocho(c.referee_lab.avatar, "o=t&q=80&d=90x90"), class: 'avatar tiny'
                     = link_to link_to c.referee_lab, c.referee_lab
 
-      .columns.large-8
+      .col-lg-8
         - @selected = @lab.referee_approval_processes.map{|u| u.referee_lab_id}.collect
         %label{for: "referee_approval_processes_attributes"}
           Referees

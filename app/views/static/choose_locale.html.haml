@@ -7,12 +7,12 @@
 
     .modal-body
       .row
-        .columns.large-4
+        .col-lg-4
           .media.locale
             = link_to root_path(locale: 'en'), class: 'pull-left' do
               = image_tag "locales/en.png"
             .media-body= link_to "English", root_path(locale: 'en')
-        .columns.large-4
+        .col-lg-4
           .media.locale
             = link_to root_path(locale: 'es'), class: 'pull-left' do
               = image_tag "locales/es.png"

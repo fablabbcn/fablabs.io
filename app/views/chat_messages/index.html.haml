@@ -2,7 +2,7 @@
   window.me = #{current_user.id}
 = subscribe_to "/chat_messages/new"
 .row
-  .columns.large-12
+  .col-lg-12
     #chat-window
       %ul#chat
       -# = render @messages

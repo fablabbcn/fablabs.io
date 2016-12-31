@@ -1,13 +1,13 @@
 - title t("views.header.signin", default: "Sign in")
 .row
-  .columns.large-4.large-centered
+  .col-lg-4.large-centered
 
     -# .fablabs
     -#   %span fablabs
     -#   %span.io IO
 
     .row
-      .columns.large-12.text-center
+      .col-lg-12.text-center
         = link_to root_path do
           = image_tag "fablabs.png", id: 'full-logo'
 
@@ -15,7 +15,7 @@
       -# = simple_form_for :signin, { url: sessions_path } do
       = hidden_field_tag :goto, params[:goto]
       .row
-        .columns.large-12
+        .col-lg-12
           = label_tag :email_or_username, "Email or Username", class: 'hide'
           = text_field_tag :email_or_username, params[:email_or_username], placeholder: 'Email or Username', autofocus: params[:email_or_username].blank?, autocapitalize: "off", autocorrect: "off"
       .row

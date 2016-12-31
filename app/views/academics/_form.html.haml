@@ -16,8 +16,8 @@
     = f.input :fp_description, placeholder: "A press-fit box that can synthesize sound.", label: "Description", as: 'text'
 
     .row
-      .columns.large-3= image_tag academic.fp_photo
-      .columns.large-9= f.input :fp_photo, input_html: { class: 'fp', data: { fp_store_location: 'S3', fp_store_path: 'final_projects/', fp_store_container: ENV['S3_BUCKET'] } }, label: 'Project Photo'
+      .col-lg-3= image_tag academic.fp_photo
+      .col-lg-9= f.input :fp_photo, input_html: { class: 'fp', data: { fp_store_location: 'S3', fp_store_path: 'final_projects/', fp_store_container: ENV['S3_BUCKET'] } }, label: 'Project Photo'
 
     = f.input :fp_url, label: "Project URL", hint: "A direct link to details about your final project"
 

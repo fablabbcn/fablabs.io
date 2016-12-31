@@ -1,30 +1,30 @@
 .row
-  .columns.large-12
+  .col-lg-12
     = title t("views.header.signup", default: "Sign up")
 
-  .columns.large-12.left
+  .col-lg-12.left
     = simple_form_for @user do |f|
       = render "form_errors", resource: @user
       = hidden_field_tag :goto, params[:goto]
 
       %fieldset
         .row
-          .columns.large-3.your-name
+          .col-lg-3.your-name
             = f.label :first_name, "Your Name"
-          .columns.large-4
+          .col-lg-4
             = f.input :first_name, autofocus: true, placeholder: 'First Name', label: false
-          .columns.large-4.left
+          .col-lg-4.left
             = f.input :last_name, placeholder: 'Last Name', label: false
 
         = f.input :username, autocapitalize: "off", autocorrect: "off", hint: "Alphanumeric characters only please (a-z0-9)"
         = f.input :email, autocapitalize: "off", autocorrect: "off"
         .row
-          .columns.large-6
+          .col-lg-6
             = f.input :password
-          .columns.large-6
+          .col-lg-6
             = f.input :password_confirmation
         -# .row
-        -#   .columns.large-12
+        -#   .col-lg-12
         -# = f.input :country_code, as: 'string', value: [current_country.alpha2.downcase], label: 'Country', iso_codes: true
 
         #honeypot
@@ -36,7 +36,7 @@
 
         = f.submit t("views.header.signup", default: "Sign Up"), class: 'button'
 
-    -# .columns.large-4
+    -# .col-lg-4
     -#   %h4 Joining the Network
     -#   %p We want all different types of people to engage with the global Fab Lab network
     -#   %ul
