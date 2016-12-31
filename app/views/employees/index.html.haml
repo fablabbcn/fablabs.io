@@ -1,8 +1,8 @@
 .row
-  .columns.large-12
+  .col-lg-12
     = render "labs/breadcrumbs", lab: @lab
 .row
-  .columns.large-12
+  .col-lg-12
     = title "Employees at #{@lab}"
 
     .panel
@@ -37,6 +37,6 @@
   -#   %h4 Approved Employees
   -#   = render @lab.employees.active
 
-  -# .columns.large-6
+  -# .col-lg-6
   -#   %h4 Unverified Employees
   -#   = render @lab.employees.with_unverified_state

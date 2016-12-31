@@ -1,9 +1,9 @@
 .row
-  .columns.large-12
+  .col-lg-12
     = render "breadcrumbs"
     - title "Projects"
 .row
-  .columns.large-12
+  .col-lg-12
     %ul#project-container.large-block-grid-3.medium-block-grid-3.small-block-grid-1= render @projects
 
     = paginate @projects

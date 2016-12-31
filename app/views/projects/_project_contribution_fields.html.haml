@@ -1,4 +1,4 @@
-.columns.large-4
+.col-lg-4
   %label
     Contributors
   .selection-container
@@ -14,6 +14,6 @@
               = link_to icon('times'), contribution_path(c), method: :delete
               = image_tag hocho(c.contributor.avatar, "o=t&q=80&d=90x90"), class: 'avatar tiny'
 
-.columns.large-8
+.col-lg-8
   - @selected = @project.contributors.collect
   = select_tag :contributions_attributes, options_from_collection_for_select(@selected, :id, :username), { multiple: true, size: 10, name: 'project[contributions_attributes][][contributor_id]'}

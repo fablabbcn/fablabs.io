@@ -2,10 +2,10 @@
 
 - cache ["v3-machine-#{@machine.id}-#{I18n.locale}", Machine.last_updated_at] do
   .row
-    .columns.large-12
+    .col-lg-12
       = render "breadcrumbs"
   .row
-    .columns.large-8
+    .col-lg-8
       .main
         = @machine.brand
         %h1= @machine
@@ -15,7 +15,7 @@
         -# = image_tag @machine.photo_src
         = image_tag hocho(@machine.photo_src, "o=r&q=80&d=800x800>")
 
-    .columns.large-4.side
+    .col-lg-4.side
 
       - if @machine.tags.length > 0
         .heading Tags
@@ -59,7 +59,7 @@
       -# = link_to "Start a new Discussion", new_machine_discussion_path(@machine)
 
 .row
-  .columns.large-12
+  .col-lg-12
     - if current_or_null_user.can_update?(@machine)
       = link_to "Edit", edit_machine_path(@machine), class: 'button'
     - if current_or_null_user.can_delete?(@machine)
@@ -67,7 +67,7 @@
 
 
 .row
-  .columns.large-12
+  .col-lg-12
     - if @machine.discourse_id.present?
       %h3 Discuss this Machine on discuss.fablabs.io
       = comments_script(@machine.discourse_id)

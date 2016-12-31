@@ -18,7 +18,7 @@
     #main
       - if flash.any?
         .row
-          .columns.large-12
+          .col-lg-12
           - flash.each do |name, msg|
             = content_tag :div, msg, class: flash_class(name)
       = yield

@@ -1,7 +1,7 @@
 .row
-  .columns.large-3
+  .col-lg-3
     %span#file-input-name
-  .columns.large-9
+  .col-lg-9
     = f.label :images_files
     = f.fields_for :documents_attributes, project.documents do |d|
       %span#file-click.button.button-file
@@ -9,8 +9,8 @@
         = d.file_field "image", name: "project[documents_attributes][][image]", class: "document_image", multiple: true
 %hr/
 .row
-  .columns.large-3
-  .columns.large-9
+  .col-lg-3
+  .col-lg-9
     - if @project.documents.present?
       = f.label "Thumbnails"
       %p

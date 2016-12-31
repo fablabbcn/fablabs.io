@@ -10,7 +10,7 @@
 
 .whats-a-fab-lab.stripe
   .row
-    .columns.large-12
+    .col-lg-12
       %h2= t("views.home.whats_a_fab_lab")
       %p= t("views.home.fab_labs_description", fab_foundation: (link_to "Fab Foundation", "http://www.fabfoundation.org") ).html_safe
 
@@ -18,7 +18,7 @@
 #frostis-lab= image_tag "https://i.imgur.com/KFS2V4n.jpg", id: "img"
 .credit{style: 'background: #F0F0F0'}
   .row
-    .columns.large-12.text-right
+    .col-lg-12.text-right
       .photo-from
         Concept and photo from
         = link_to "Fab Lab Vestmannaeyjar", "/vestmannaeyjar"\
@@ -27,12 +27,12 @@
 
 .whos-it-for.stripe
   .row
-    .columns.large-12
+    .col-lg-12
       %h2= t("views.home.who_is_it_for")
 
-    .columns.large-12
+    .col-lg-12
       .row.collapse.case-studies
-        .columns.large-6.case-study
+        .col-lg-6.case-study
           .media
             .pull-left= image_tag "home-icons/enthusiast.png", style: 'width: 100px'
             .media-body
@@ -41,7 +41,7 @@
                 %strong ENTHUSIAST
                 and I want to participate with the global Fab Lab Network. Find labs near me, see what's happening in the labs around the world and maybe one day open my own!
 
-        .columns.large-6.case-study
+        .col-lg-6.case-study
           .media
             .pull-left= image_tag "home-icons/manager.png", style: 'width: 100px'
             .media-body
@@ -51,7 +51,7 @@
                 and I want to add my lab to the network. Then I'll be able to share information and knowledge from my lab and interact with fellow users of the site.
 
   .row
-    .columns.large-12{style: "text-align: center"}
+    .col-lg-12{style: "text-align: center"}
 
 
       = link_to signup_path, class: 'button big-signup success' do
@@ -62,11 +62,11 @@
 .stripe.what-can-you-do
   .features
     .row
-      .columns.large-12
+      .col-lg-12
         %h2= t("views.home.what_can_i_do")
     .row
 
-      .columns.large-4
+      .col-lg-4
         = link_to labs_path do
           .row
             .col-md-3.large-4= image_tag "home-icons/profile.png"
@@ -74,7 +74,7 @@
               %h3= t("views.home.lab_profiles")
               %p Each lab has its own profile page which can be maintained and updated by its staff
 
-      .columns.large-4
+      .col-lg-4
         = link_to map_labs_path do
           .row
             .col-md-3.large-4= image_tag "home-icons/map.png"
@@ -82,7 +82,7 @@
               %h3= t("views.home.world_map")
               %p An interactive map showing the location of all the Fab Labs around the world
 
-      .columns.large-4
+      .col-lg-4
         = link_to machines_path do
           .row
             .col-md-3.large-4= image_tag "home-icons/machines.png"
@@ -93,24 +93,24 @@
 
 
     .row.coming-next
-      .columns.large-12
+      .col-lg-12
         %h2= t("views.home.whats_coming_next")
 
-      .columns.large-4
+      .col-lg-4
         .row
           .col-md-3.large-4= image_tag "home-icons/clock.png"
           .col-md-9.large-8
             %h3= t("views.home.features.opening_hours")
             %p See at a glance when labs will be open and available for use
 
-      .columns.large-4
+      .col-lg-4
         .row
           .col-md-3.large-4= image_tag "home-icons/calendar.png"
           .col-md-9.large-8
             %h3= t("views.home.features.events")
             %p A calendar of all upcoming events within the global Fab Lab Network
 
-      .columns.large-4
+      .col-lg-4
         .row
           .col-md-3.large-4= image_tag "home-icons/discussions.png"
           .col-md-9.large-8
@@ -118,20 +118,20 @@
             %p You will have a places to discuss general, lab-specific and tool-specific topics
 
     .row.coming-next
-      .columns.large-4
+      .col-lg-4
         .row
           .col-md-3.large-4= image_tag "home-icons/api.png"
           .col-md-9.large-8
             %h3= t("views.home.features.developer_api")
             %p A REST-based API that can be used to fetch and change data on the platform
 
-      .columns.large-4
+      .col-lg-4
         .row
           .col-md-3.large-4= image_tag "home-icons/localisation.png"
           .col-md-9.large-8
             %h3= t("views.home.features.localisation")
             %p We want the platform to be translated and localised for everyone. More details to follow
-      .columns.large-4
+      .col-lg-4
         .row
           .col-md-3.large-4= image_tag "home-icons/activity.png"
           .col-md-9.large-8
@@ -139,7 +139,7 @@
             %p See what you've missed while you were away, and what's happening right now
 
     .row
-      .columns.large-12
+      .col-lg-12
         %h2= t("views.home.beyond_that")
         .row
           .col-md-3.large-1= image_tag "home-icons/help.png"

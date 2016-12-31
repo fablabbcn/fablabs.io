@@ -1,11 +1,11 @@
 .row
-  .columns.large-12
+  .col-lg-12
     = render "labs/breadcrumbs", lab: @lab
 .row
-  .columns.large-12= title "Editing #{@lab}"
+  .col-lg-12= title "Editing #{@lab}"
 
   -# - if current_or_null_user.can_delete(@lab)?
   -#   = link_to lab, class: ' alert small', method: 'delete', data: { confirm: "Are you sure?" } do
   -#     = fa_icon "trash-o", text: "Delete Lab"
 
-  .columns.large-12= render 'form', lab: @lab
+  .col-lg-12= render 'form', lab: @lab
