@@ -1,34 +1,30 @@
 = simple_form_for machine do |f|
   %fieldset
     %legend General
-    .row
-      = render "form_errors", resource: machine
-      = f.association :brand, hint: "Not in the list? #{link_to 'Add a new brand', new_brand_path}".html_safe
-      = f.input :parent_id
-      = f.input :name
-      = f.input :description
+    = render "form_errors", resource: machine
+    = f.association :brand, hint: "Not in the list? #{link_to 'Add a new brand', new_brand_path}".html_safe
+    = f.input :parent_id
+    = f.input :name
+    = f.input :description
 
   %fieldset
     %legend Facilities
-    .row
-      = render "facilities", :f => f
+    = render "facilities", :f => f
 
   %fieldset
     %legend Media
     = render "media", { :f => f, :machine => machine }
   %fieldset
     %legend Tags
-    .row
-      = f.input :tag_list
-      = f.input :inventory_item
+    = f.input :tag_list
+    = f.input :inventory_item, class: 'form-control'
 
   %fieldset
     %legend Links
     = f.simple_fields_for :links do |link|
       = render 'link_fields', f: link
     .links
-      = link_to_add_association f, :links, class: 'button tiny' do
-        = fa_icon "plus"
-        Add another link
+      = link_to_add_association f, :links, class: 'btn btn-success' do
+        = fa_icon "plus", text: 'Add another link'
 
-  = f.submit (machine.new_record? ? 'New Machine' : 'Update Machine'), class: 'button'
+  = f.submit (machine.new_record? ? 'New Machine' : 'Update Machine'), class: 'btn btn-success'

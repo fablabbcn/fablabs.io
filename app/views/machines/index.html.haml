@@ -5,16 +5,13 @@
       - title "Machines"
   .row
     .col-lg-12
-
       - if current_or_null_user.can_create?(Machine)
-        = link_to new_machine_path, class: "button tiny success" do
+        = link_to new_machine_path, class: "btn btn-success" do
           = fa_icon "plus", text: t("views.labs.index.add_a_machine", default: "New Machine")
 
 
-      %ul.large-block-grid-5.small-block-grid-2= render @machines
-
-
-    -# .col-lg-3
-    -#   -# %ul
-    -#   -#   - Machine.new.tag_list.each do |tag|
-    -#   -#     %li= tag
+  - @machines.in_groups_of(4, false) do |group|
+    .row
+      - group.each do |machine|
+        .col-lg-3
+          = render 'machine', machine: machine

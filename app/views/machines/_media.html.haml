@@ -4,7 +4,7 @@
   .col-lg-9
     = f.label :images_files
     = f.fields_for :documents_attributes, machine.documents do |d|
-      %span#file-click.button.button-file
+      %span#file-click.btn.btn-primary.button-file
         Pick file
         = d.file_field "image", name: "machine[documents_attributes][][image]", class: "document_image", multiple: true
 %hr/
