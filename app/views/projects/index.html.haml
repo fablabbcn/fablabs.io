@@ -4,15 +4,22 @@
     - title "Projects"
 .row
   .col-lg-12
-    %ul#project-container.large-block-grid-3.medium-block-grid-3.small-block-grid-1= render @projects
+    #project-container
+      - @projects.in_groups_of(3, false) do |group|
+        .row
+          - group.each do |project|
+            .col-lg-4
+              = render project
 
+.row
+  .col-lg-12
     = paginate @projects
     - if current_user
-      = link_to new_project_path, class: "button tiny success" do
+      = link_to new_project_path, class: "btn btn-success" do
         = fa_icon "plus", text: t("views.projects.index.new_project", default: "New project")
     %div
-      = link_to "JSON", api_v0_projects_url(format: 'json'), class: 'button tiny'
+      = link_to "JSON", api_v0_projects_url(format: 'json'), class: 'btn btn-primary'
       .hint CSV and XLSX (Excel) coming soon.
     %div
-      = link_to map_projects_path, class: "map button small #{'secondary' if action_name != 'map'}" do
+      = link_to map_projects_path, class: "map btn btn-primary" do
         = fa_icon "globe", text: t("views.projects.index.map", default: "Map")

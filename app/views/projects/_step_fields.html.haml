@@ -1,7 +1,6 @@
 .nested-fields
-  .row.collapse
-    -# .col-md-1.large-1= fa_icon "reorder"
-    .col-md-10.large-12
+  .row
+    .col-md-10.col-lg-12
       .step
         .heading
           = icon('paperclip')
@@ -15,9 +14,8 @@
         = f.simple_fields_for :links do |link|
           = render 'link_fields', f: link
         .links
-          = link_to_add_association f, :links, class: 'button tiny' do
-            = fa_icon "plus"
-            Add another link
-    .col-md-2.large-1.close
-      = link_to_remove_association f, class: 'button tiny alert' do
+          = link_to_add_association f, :links, class: 'btn btn-primary' do
+            = fa_icon "plus", text: 'Add another link'
+    .col-md-2.col-lg-1
+      = link_to_remove_association f, class: 'btn btn-danger' do
         = "x"

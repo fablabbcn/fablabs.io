@@ -51,8 +51,7 @@
           = render 'step_fields', f: step
         .steps
           = link_to_add_association f, :steps, class: 'button tiny' do
-            = fa_icon "plus"
-            Add another step
+            = fa_icon "plus", text: 'Add another step'
 
       %fieldset
         %legend Scope
@@ -72,4 +71,4 @@
 
   = render 'link_form_fields', :f => f
 
-  = f.submit class: 'button'
+  = f.submit class: 'btn btn-success'
