@@ -9,8 +9,8 @@
 
     = form_for ChatMessage.new, remote: true do |f|
       .row
-        .columns.small-8
+        .col-md-8
           = f.text_field :content, autofocus: true, id: 'chat-message'
-        .columns.small-4
+        .col-md-4
           = f.submit "Send", class: 'button small', id: 'send-chat-message'
 

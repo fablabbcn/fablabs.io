@@ -1,7 +1,7 @@
 .nested-fields
   .row.collapse
-    -# .columns.small-1.large-1= fa_icon "reorder"
-    .columns.small-10.large-12
+    -# .col-md-1.large-1= fa_icon "reorder"
+    .col-md-10.large-12
       .step
         .heading
           = icon('paperclip')
@@ -18,6 +18,6 @@
           = link_to_add_association f, :links, class: 'button tiny' do
             = fa_icon "plus"
             Add another link
-    .columns.small-2.large-1.close
+    .col-md-2.large-1.close
       = link_to_remove_association f, class: 'button tiny alert' do
         = "x"
