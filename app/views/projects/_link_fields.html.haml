@@ -1,5 +1,4 @@
 .nested-fields
-  .row.collapse
-    -# .col-md-1.large-1= fa_icon "reorder"
-    .col-md-10.large-11= f.input :url, label: false, placeholder: 'https://www.youtube.com/watch?v=bO-Dvm5OTuU'
-    .col-md-2.large-1.close= link_to_remove_association "x", f, class: 'button tiny alert'
+  .row
+    .col-md-10.col-lg-11= f.input :url, label: false, placeholder: 'https://www.youtube.com/watch?v=bO-Dvm5OTuU'
+    .col-md-2.col-lg-1= link_to_remove_association "x", f, class: 'btn btn-danger'

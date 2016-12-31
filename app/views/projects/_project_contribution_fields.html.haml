@@ -16,4 +16,4 @@
 
 .col-lg-8
   - @selected = @project.contributors.collect
-  = select_tag :contributions_attributes, options_from_collection_for_select(@selected, :id, :username), { multiple: true, size: 10, name: 'project[contributions_attributes][][contributor_id]'}
+  = select_tag :contributions_attributes, options_from_collection_for_select(@selected, :id, :username), { multiple: true, size: 10, name: 'project[contributions_attributes][][contributor_id]', class: 'form-control'}
