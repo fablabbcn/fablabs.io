@@ -14,7 +14,7 @@ class Organizations::LabOrganizationsController < ApplicationController
   def create
     find_lab
     @lab_organization = @organization.lab_organizations.create(lab: @lab, workflow_state: LabOrganization::STATE_PENDING)
-    UserMailer.delay.lab_organization_accept(@lab_organization_accept.id)
+    UserMailer.delay.lab_organization_accept(@lab_organization.id)
     redirect_to @organization
   end
 
