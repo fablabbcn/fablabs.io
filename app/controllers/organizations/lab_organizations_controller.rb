@@ -1,6 +1,8 @@
 class Organizations::LabOrganizationsController < ApplicationController
 
   before_filter :find_organization
+  before_filter :check_creator, only: [:new, :create]
+
   include LabsSearch
 
   def new
@@ -34,12 +36,18 @@ class Organizations::LabOrganizationsController < ApplicationController
 
   private
 
+  def check_creator
+    unless @organization.creator == current_user
+      redirect_to root_path
+    end
+  end
+
   def find_lab_organization
     @lab_organization = @organization.lab_organizations.find(params[:id])
   end
 
   def find_organization
-    @organization = current_user.created_organizations.friendly.find(params[:organization_id])
+    @organization = Organization.friendly.find(params[:organization_id])
   end
 
   def find_lab
