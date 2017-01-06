@@ -12,7 +12,7 @@ set :bundle_flags,   "--deployment --verbose --without development test"
 set :rails_env, "production"
 set :recipes, "config/recipes"
 # monit varnish redis
-%w(newrelic varnish memcached monit base postgresql sidekiq redis logs figaro blacklist nginx logs unicorn nodejs rbenv security check mosh).each do |r|
+%w(varnish memcached monit base postgresql sidekiq redis logs figaro blacklist nginx logs unicorn nodejs rbenv security check mosh).each do |r|
   load "#{recipes}/#{r}"
 end
 
