@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Recovery do
+describe Recovery, type: :model do
 
   it { should belong_to(:user) }
 

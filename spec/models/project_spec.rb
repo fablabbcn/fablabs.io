@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Project do
+describe Project, type: :model do
   let(:project) { FactoryGirl.create(:project) }
 
   it { should have_many(:contributions) }
