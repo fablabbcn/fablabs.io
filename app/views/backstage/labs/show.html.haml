@@ -94,5 +94,5 @@
           %pre
             = @lab.discourse_errors
     - if current_user.has_role? :superadmin
-      = link_to edit_backstage_lab_path(@lab), class: 'button' do
+      = link_to edit_backstage_lab_path(@lab), class: 'btn btn-success' do
         = fa_icon "edit", text: "Edit Lab"
