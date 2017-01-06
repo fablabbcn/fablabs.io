@@ -117,7 +117,6 @@ html {
 body {
   margin: 0 0 ($footer-height + 20px);
   &.a-home {
-    margin-bottom: $footer-height;
     footer {
       background: #222222;
       text-shadow: 1px 1px 1px #333;

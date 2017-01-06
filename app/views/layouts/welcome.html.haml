@@ -2,7 +2,5 @@
 %html{xmlns: "http://www.w3.org/1999/xhtml", "xmlns:fb" => "http://www.facebook.com/2008/fbml", "xmlns:og" => "http://ogp.me/ns#", :lang => "en"}
   = render 'head'
   %body{ class: body_classes }
-    = render "application/header"
-    #main.container
-      = yield
+    = yield
     = render 'footer'

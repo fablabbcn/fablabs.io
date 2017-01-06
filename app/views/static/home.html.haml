@@ -4,144 +4,143 @@
   .filter
   #homepage-search
     %p= t("views.home.show_me_fab_labs", default: "Show me Fab Labs")
-    = link_to labs_path, class: 'button ' do
+    = link_to labs_path, class: 'btn btn-primary btn-lg ' do
       = fa_icon "globe"
       = t("views.home.around_the_world")
 
 .whats-a-fab-lab.stripe
-  .row
-    .col-lg-12
-      %h2= t("views.home.whats_a_fab_lab")
-      %p= t("views.home.fab_labs_description", fab_foundation: (link_to "Fab Foundation", "http://www.fabfoundation.org") ).html_safe
+  .container
+    .row
+      .col-lg-12
+        %h2= t("views.home.whats_a_fab_lab")
+        %p= t("views.home.fab_labs_description", fab_foundation: (link_to "Fab Foundation", "http://www.fabfoundation.org") ).html_safe
 
 
 #frostis-lab= image_tag "https://i.imgur.com/KFS2V4n.jpg", id: "img"
 .credit{style: 'background: #F0F0F0'}
-  .row
-    .col-lg-12.text-right
-      .photo-from
-        Concept and photo from
-        = link_to "Fab Lab Vestmannaeyjar", "/vestmannaeyjar"\
-        ,
-        = link_to "Iceland", "/labs?country=is"
+  .container
+    .row
+      .col-lg-12.text-right
+        .photo-from
+          Concept and photo from
+          = link_to "Fab Lab Vestmannaeyjar", "/vestmannaeyjar"\
+          ,
+          = link_to "Iceland", "/labs?country=is"
 
 .whos-it-for.stripe
-  .row
-    .col-lg-12
-      %h2= t("views.home.who_is_it_for")
+  .container
+    .row
+      .col-lg-12
+        %h2= t("views.home.who_is_it_for")
 
-    .col-lg-12
-      .row.collapse.case-studies
-        .col-lg-6.case-study
-          .media
-            .pull-left= image_tag "home-icons/enthusiast.png", style: 'width: 100px'
-            .media-body
-              %p
-                I'm an
-                %strong ENTHUSIAST
-                and I want to participate with the global Fab Lab Network. Find labs near me, see what's happening in the labs around the world and maybe one day open my own!
+      .col-lg-12
+        .row.collapse.case-studies
+          .col-lg-6.case-study
+            .media
+              .pull-left= image_tag "home-icons/enthusiast.png", style: 'width: 100px'
+              .media-body
+                %p
+                  I'm an
+                  %strong ENTHUSIAST
+                  and I want to participate with the global Fab Lab Network. Find labs near me, see what's happening in the labs around the world and maybe one day open my own!
 
-        .col-lg-6.case-study
-          .media
-            .pull-left= image_tag "home-icons/manager.png", style: 'width: 100px'
-            .media-body
-              %p
-                I'm a
-                %strong FAB LAB MANAGER
-                and I want to add my lab to the network. Then I'll be able to share information and knowledge from my lab and interact with fellow users of the site.
+          .col-lg-6.case-study
+            .media
+              .pull-left= image_tag "home-icons/manager.png", style: 'width: 100px'
+              .media-body
+                %p
+                  I'm a
+                  %strong FAB LAB MANAGER
+                  and I want to add my lab to the network. Then I'll be able to share information and knowledge from my lab and interact with fellow users of the site.
 
-  .row
-    .col-lg-12{style: "text-align: center"}
-
-
-      = link_to signup_path, class: 'button big-signup success' do
-        .glyphicon.glyphicon-check
-        Sign up
+    .row
+      .col-lg-12{style: "text-align: center"}
+        = link_to signup_path, class: 'btn btn-lg btn-success' do
+          .glyphicon.glyphicon-check
+          Sign up
 
 
 .stripe.what-can-you-do
-  .features
-    .row
-      .col-lg-12
-        %h2= t("views.home.what_can_i_do")
-    .row
+  .container
+    .features
+      .row
+        .col-lg-12
+          %h2= t("views.home.what_can_i_do")
+      .row
+        .col-lg-4
+          = link_to labs_path do
+            .row
+              .col-md-4= image_tag "home-icons/profile.png"
+              .col-md-8
+                %h3= t("views.home.lab_profiles")
+                %p Each lab has its own profile page which can be maintained and updated by its staff
 
-      .col-lg-4
-        = link_to labs_path do
+        .col-lg-4
+          = link_to map_labs_path do
+            .row
+              .col-md-4= image_tag "home-icons/map.png"
+              .col-md-8
+                %h3= t("views.home.world_map")
+                %p An interactive map showing the location of all the Fab Labs around the world
+
+        .col-lg-4
+          = link_to machines_path do
+            .row
+              .col-md-4= image_tag "home-icons/machines.png"
+              .col-md-8
+                %h3= t("views.home.machines")
+                %p A growing directory/wiki of all of the tools used and recommended by Fab Labs
+
+      .row.coming-next
+        .col-lg-12
+          %h2= t("views.home.whats_coming_next")
+
+        .col-lg-4
           .row
-            .col-md-3.large-4= image_tag "home-icons/profile.png"
-            .col-md-9.large-8
-              %h3= t("views.home.lab_profiles")
-              %p Each lab has its own profile page which can be maintained and updated by its staff
+            .col-md-4= image_tag "home-icons/clock.png"
+            .col-md-8
+              %h3= t("views.home.features.opening_hours")
+              %p See at a glance when labs will be open and available for use
 
-      .col-lg-4
-        = link_to map_labs_path do
+        .col-lg-4
           .row
-            .col-md-3.large-4= image_tag "home-icons/map.png"
-            .col-md-9.large-8
-              %h3= t("views.home.world_map")
-              %p An interactive map showing the location of all the Fab Labs around the world
+            .col-md-4= image_tag "home-icons/calendar.png"
+            .col-md-8
+              %h3= t("views.home.features.events")
+              %p A calendar of all upcoming events within the global Fab Lab Network
 
-      .col-lg-4
-        = link_to machines_path do
+        .col-lg-4
           .row
-            .col-md-3.large-4= image_tag "home-icons/machines.png"
-            .col-md-9.large-8
-              %h3= t("views.home.machines")
-              %p A growing directory/wiki of all of the tools used and recommended by Fab Labs
+            .col-md-4= image_tag "home-icons/discussions.png"
+            .col-md-8
+              %h3= t("views.home.features.discussions")
+              %p You will have a places to discuss general, lab-specific and tool-specific topics
 
+      .row.coming-next
+        .col-lg-4
+          .row
+            .col-md-4= image_tag "home-icons/api.png"
+            .col-md-8
+              %h3= t("views.home.features.developer_api")
+              %p A REST-based API that can be used to fetch and change data on the platform
 
+        .col-lg-4
+          .row
+            .col-md-4= image_tag "home-icons/localisation.png"
+            .col-md-8
+              %h3= t("views.home.features.localisation")
+              %p We want the platform to be translated and localised for everyone. More details to follow
+        .col-lg-4
+          .row
+            .col-md-4= image_tag "home-icons/activity.png"
+            .col-md-8
+              %h3= t("views.home.features.activity_feeds")
+              %p See what you've missed while you were away, and what's happening right now
 
-    .row.coming-next
-      .col-lg-12
-        %h2= t("views.home.whats_coming_next")
-
-      .col-lg-4
-        .row
-          .col-md-3.large-4= image_tag "home-icons/clock.png"
-          .col-md-9.large-8
-            %h3= t("views.home.features.opening_hours")
-            %p See at a glance when labs will be open and available for use
-
-      .col-lg-4
-        .row
-          .col-md-3.large-4= image_tag "home-icons/calendar.png"
-          .col-md-9.large-8
-            %h3= t("views.home.features.events")
-            %p A calendar of all upcoming events within the global Fab Lab Network
-
-      .col-lg-4
-        .row
-          .col-md-3.large-4= image_tag "home-icons/discussions.png"
-          .col-md-9.large-8
-            %h3= t("views.home.features.discussions")
-            %p You will have a places to discuss general, lab-specific and tool-specific topics
-
-    .row.coming-next
-      .col-lg-4
-        .row
-          .col-md-3.large-4= image_tag "home-icons/api.png"
-          .col-md-9.large-8
-            %h3= t("views.home.features.developer_api")
-            %p A REST-based API that can be used to fetch and change data on the platform
-
-      .col-lg-4
-        .row
-          .col-md-3.large-4= image_tag "home-icons/localisation.png"
-          .col-md-9.large-8
-            %h3= t("views.home.features.localisation")
-            %p We want the platform to be translated and localised for everyone. More details to follow
-      .col-lg-4
-        .row
-          .col-md-3.large-4= image_tag "home-icons/activity.png"
-          .col-md-9.large-8
-            %h3= t("views.home.features.activity_feeds")
-            %p See what you've missed while you were away, and what's happening right now
-
-    .row
-      .col-lg-12
-        %h2= t("views.home.beyond_that")
-        .row
-          .col-md-3.large-1= image_tag "home-icons/help.png"
-          .col-md-9.large-11
-            %p We've got lots of ideas that we hope to implement but if you have any suggestions or problems with the site, please click the ? icon at the bottom right of any page.
+      .row
+        .col-lg-12
+          %h2= t("views.home.beyond_that")
+          .row
+            .col-md-4= image_tag "home-icons/help.png"
+            .col-md-8
+              %p We've got lots of ideas that we hope to implement but if you have any suggestions or problems with the site, please click the ? icon at the bottom right of any page.
