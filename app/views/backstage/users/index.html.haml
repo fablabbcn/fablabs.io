@@ -3,7 +3,7 @@
     = render "backstage/header"
     = title "Users"
 
-    .panel
+    .well
       = search_form_for [:backstage, @q], builder: SimpleForm::FormBuilder do |f|
         .row
           .col-lg-6= f.input :first_name_cont, label: "First Name"
@@ -17,11 +17,9 @@
           .col-lg-3
             = f.input :roles_name_eq, collection: Role::AVAILABLE, include_blank: 'ALL'
           .col-lg-3
-            = f.submit "Filter", class: 'button expand'
+            = f.submit "Filter", class: 'btn btn-success btn-lg'
 
-    = paginate @users
     = page_entries_info @users
-
     %table.table
       %thead
         %tr
