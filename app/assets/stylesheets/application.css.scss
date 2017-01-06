@@ -9,8 +9,6 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
- //= require foundation_and_overrides
-
  *= require Control.Loading.css
  *= require select2
  *= require taggd
@@ -22,12 +20,22 @@
  *= require messenger-theme-flat
  *= require trumbowyg/trumbowyg
  *= require_tree .
+ *= require bootstrap/dist/css/bootstrap
+
  */
 
-@import "foundation_and_overrides";
-@import "foundation";
+@import "common_vars";
 @import "font-awesome-sprockets";
 @import "font-awesome";
+
+
+a{
+  cursor: pointer;
+}
+
+.navbar-nav .gem-count{
+  color: #333333;
+}
 
 #embed-logo {
   display: block;
@@ -109,7 +117,6 @@ html {
 body {
   margin: 0 0 ($footer-height + 20px);
   &.a-home {
-    margin-bottom: $footer-height;
     footer {
       background: #222222;
       text-shadow: 1px 1px 1px #333;

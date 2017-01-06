@@ -1,5 +1,5 @@
 .row
-  .columns.large-6.large-centered
+  .col-lg-6.large-centered
     = title "Reset Your Password"
     %p
       Hey #{@recovery.user.first_name}, enter your new password below
@@ -9,4 +9,4 @@
       = f.simple_fields_for :user do |u|
         = u.input :password, autofocus: true
         = u.input :password_confirmation
-      = f.submit "Reset Password", class: 'button'
+      = f.submit "Reset Password", class: 'btn btn-success'

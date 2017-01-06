@@ -1,26 +1,23 @@
 .row
-  .columns.large-12
+  .col-lg-12
     = render "backstage/header"
     = title "Organizations"
 
-  .panel
-    = search_form_for [:backstage, @q], builder: SimpleForm::FormBuilder do |f|
-      = f.input :name_cont, label: "Name"
-      .row
-        .columns.large-3
-          = f.input :discourse_id_not_null, as: :boolean, label: "With discourse ID"
-        .columns.large-9
-          = f.input :discourse_errors_present, as: :boolean, label: "With discourse sync errors"
-      .row
-        .columns.large-4
-          = f.input :workflow_state_eq, collection: Organization::WORKFLOW_STATES, label: "State", include_blank: 'ALL'
-        .columns.large-3
-          = f.submit "Filter", class: 'button expand'
+    .well
+      = search_form_for [:backstage, @q], builder: SimpleForm::FormBuilder do |f|
+        = f.input :name_cont, label: "Name"
+        .row
+          .col-lg-3
+            = f.input :discourse_id_not_null, as: :boolean, label: "With discourse ID"
+          .col-lg-9
+            = f.input :discourse_errors_present, as: :boolean, label: "With discourse sync errors"
+        .row
+          .col-lg-4
+            = f.input :workflow_state_eq, collection: Organization::WORKFLOW_STATES, label: "State", include_blank: 'ALL'
+          .col-lg-3
+            = f.submit "Filter", class: 'btn btn-success btn-lg'
 
-    = paginate @organizations
     = page_entries_info @organizations
-
-
     %table.table
       %thead
         %tr
@@ -44,6 +41,3 @@
               = link_to 'edit', edit_organization_path(organization)
 
     = paginate @organizations
-
-
-

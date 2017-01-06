@@ -1,13 +1,13 @@
 .row
-  .columns.large-12
-    %ul.breadcrumbs
+  .col-lg-12
+    %ol.breadcrumb
       %li= link_to 'Organizations', organizations_path
       %li= link_to @organization.name, organizations_path(@organization)
-      %li.current Add lab
+      %li.active Add lab
 
 
 .row
-  .columns.large-12
+  .col-lg-12
     %h1 Add lab to a organization
 
     - if @lab
@@ -16,22 +16,23 @@
 
       = form_tag organization_lab_organizations_path(@organization) do
         = hidden_field_tag :lab_id, @lab.id
-        = submit_tag 'Add lab to organization', class: 'button'
+        = submit_tag 'Add lab to organization', class: 'btn btn-primary'
 
     - else
       = form_tag new_organization_lab_organization_path(@organization), method: :get do
         .row
-          .columns.large-10
-            = text_field_tag :query, params[:query], placeholder: 'Search lab'
-          .columns.large-2
-            = submit_tag 'Search', class: 'button tiny'
+          .col-lg-10
+            = text_field_tag :query, params[:query], class: 'form-control', placeholder: 'Search lab'
+          .col-lg-2
+            = submit_tag 'Search', class: 'btn btn-success'
 
 
       #organization-labs-search
         - @labs.each do |lab|
           .row
-            .columns.large-2
-              = link_to "choose", new_organization_lab_organization_path(@organization, lab_id: lab.to_param), class: 'button tiny'
+            .col-lg-1
+              %br
+              = link_to "choose", new_organization_lab_organization_path(@organization, lab_id: lab.to_param), class: 'btn btn-primary'
 
-            .columns.large-10
+            .col-lg-11
               = render partial: 'labs/lab', locals: {lab: lab}

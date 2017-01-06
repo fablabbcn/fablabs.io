@@ -1,5 +1,5 @@
 .row
-  .columns.large-12
+  .col-lg-12
     = render "backstage/header"
     = title "User #{@user} roles"
 
@@ -15,6 +15,6 @@
             %td
               = link_to 'delete', [:backstage, @user, role], method: :delete, confirm: 'Are you sure?'
 
-    = link_to 'Add role', [:new, :backstage, @user, :role], class: 'button'
+    = link_to 'Add role', [:new, :backstage, @user, :role], class: 'btn btn-success'
 
 

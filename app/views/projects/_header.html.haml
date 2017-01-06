@@ -1,10 +1,6 @@
 .view-as
-  -# = I18n.t("projects.index.view_as", :default => "View as")
-  -# \:
-  %ul.button-group
-    %li
-      = link_to projects_path, class: "list button small #{'secondary' if action_name != 'index'}" do
-        = fa_icon "list", text: t("views.projects.index.list", default: "List")
-    %li
-      = link_to map_projects_path, class: "map button small #{'secondary' if action_name != 'map'}" do
-        = fa_icon "globe", text: t("views.projects.index.map", default: "Map")
+  .btn-group.btn-group-justified
+    = link_to projects_path, class: "list btn btn-lg #{action_name == 'index' ? 'btn-primary' : 'btn-default'}" do
+      = fa_icon "list", text: t("views.projects.index.list", default: "List")
+    = link_to map_projects_path, class: "map btn btn-lg #{action_name == 'map' ? 'btn-primary' : 'btn-default'}" do
+      = fa_icon "globe", text: t("views.projects.index.map", default: "Map")

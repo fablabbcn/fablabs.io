@@ -1,8 +1,8 @@
 .row
-  .columns.large-6.large-centered
+  .col-lg-6.large-centered
     = title "Reset Your Password"
     = simple_form_for @recovery do |f|
       -# = render "form_errors", resource: @recovery
       %p Enter your email or username below and we'll email you instructions to reset your password.
       = f.input :email_or_username, autofocus: true, label: 'Your Email or Username'
-      = f.submit 'Reset Password', class: 'button'
+      = f.submit 'Reset Password', class: 'btn btn-success'

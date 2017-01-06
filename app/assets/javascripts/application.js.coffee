@@ -12,6 +12,7 @@
 #
 #= require jquery
 #= require jquery_ujs
+#= require bootstrap
 #= require jquery.limit-1.2
 #= require Control.Loading.js
 #= require jquery.geocomplete
@@ -20,24 +21,24 @@
 #= require cocoon
 #= require list
 #= require jquery.timepicker
-#= require foundation-datepicker
 #= require underscore
 #= require select2
 #= require messenger
 #= require messenger-theme-flat
-#= require foundation
 #= require placeholders
 #= require jquery.autosize
 #= require alerts
 #= require moment
 #= require trumbowyg/trumbowyg
 #= require_tree .
+#
+#
 
 initEvents = ->
 
+  $('[data-toggle="tooltip"]').tooltip()
   $('textarea.trumbowyg').trumbowyg()
   # {append: "\n"}
-  $(document).foundation()
   $("select").select2()
 
   $('*[data-limit]').each ->

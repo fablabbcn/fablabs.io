@@ -23,7 +23,7 @@ feature "Editing a user" do
     click_link "Edit User"
     fill_in "First name", with: "Randy"
     fill_in "Last name", with: "Marsh"
-    click_button "Update User"
+    click_button "save"
     expect(page).to have_content("User updated")
     expect(page).to have_content("Randy Marsh")
   end
@@ -32,7 +32,7 @@ feature "Editing a user" do
     sign_in_superadmin
     visit edit_backstage_user_path(user)
     fill_in "First name", with: ""
-    click_button "Update User"
+    click_button "save"
     expect(page).to have_css(".errors")
   end
 

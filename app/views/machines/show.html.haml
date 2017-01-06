@@ -2,10 +2,10 @@
 
 - cache ["v3-machine-#{@machine.id}-#{I18n.locale}", Machine.last_updated_at] do
   .row
-    .columns.large-12
+    .col-lg-12
       = render "breadcrumbs"
   .row
-    .columns.large-8
+    .col-lg-8
       .main
         = @machine.brand
         %h1= @machine
@@ -15,11 +15,11 @@
         -# = image_tag @machine.photo_src
         = image_tag hocho(@machine.photo_src, "o=r&q=80&d=800x800>")
 
-    .columns.large-4.side
+    .col-lg-4.side
 
       - if @machine.tags.length > 0
         .heading Tags
-        %ul.taglist.no-bullets
+        %ul.taglist.list-unstyled
           = icon('tags')
           - @machine.tags.each do |tag|
             %li.gray
@@ -27,15 +27,15 @@
                 = link_to "##{tag}", machines_path(tag: tag)
 
         - if @machine.inventory_item?
-          %ul.no-bullets
+          %ul.list-unstyled
             %li
-              = link_to "http://fab.cba.mit.edu/about/fab/inv.html", class: "button tiny", data: { tooltip: true }, title: "This is included in the Official Fab Lab hardware specification", style: "margin: 0" do
+              = link_to "http://fab.cba.mit.edu/about/fab/inv.html", class: "btn btn-primary", data: {toggle: "tooltip"}, title: "This is included in the Official Fab Lab hardware specification", style: "margin: 0" do
                 = fa_icon "tag"
                 Fab Lab Inventory Item
 
       - if @machine.links.length > 0
         .heading Useful Links
-        %ul
+        %ul.list-unstyled
           - @machine.links.each do |link|
             %li.machine-link
               = link_to link.url do
@@ -48,26 +48,22 @@
           %li= (node == @machine) ? node : link_to(node, node)
 
       .heading Available at
-      %ul.no-bullets
+      %ul.list-unstyled
         - @machine.labs.each do |lab|
           %li
             = image_tag hocho(lab.avatar, "o=t&q=80&d=90x90"), class: 'avatar tiny'
             = link_to lab, lab
 
-      -# %h4 Discussions
-      -# = render @machine.discussions
-      -# = link_to "Start a new Discussion", new_machine_discussion_path(@machine)
-
 .row
-  .columns.large-12
+  .col-lg-12
     - if current_or_null_user.can_update?(@machine)
-      = link_to "Edit", edit_machine_path(@machine), class: 'button'
+      = link_to "Edit", edit_machine_path(@machine), class: 'btn btn-primary'
     - if current_or_null_user.can_delete?(@machine)
-      = link_to icon('trash-o'), @machine, method: :delete, class: 'button red', data: { confirm: "Are you sure?" }
+      = link_to icon('trash-o'), @machine, method: :delete, class: 'btn btn-danger', data: { confirm: "Are you sure?" }
 
 
 .row
-  .columns.large-12
+  .col-lg-12
     - if @machine.discourse_id.present?
       %h3 Discuss this Machine on discuss.fablabs.io
       = comments_script(@machine.discourse_id)

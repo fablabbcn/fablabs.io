@@ -2,15 +2,15 @@
   window.me = #{current_user.id}
 = subscribe_to "/chat_messages/new"
 .row
-  .columns.large-12
+  .col-lg-12
     #chat-window
       %ul#chat
       -# = render @messages
 
     = form_for ChatMessage.new, remote: true do |f|
       .row
-        .columns.small-8
+        .col-md-8
           = f.text_field :content, autofocus: true, id: 'chat-message'
-        .columns.small-4
+        .col-md-4
           = f.submit "Send", class: 'button small', id: 'send-chat-message'
 

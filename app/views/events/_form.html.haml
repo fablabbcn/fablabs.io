@@ -3,21 +3,21 @@
   %fieldset
     = f.input :name, placeholder: "New Event"
     .row
-      -# .columns.large-5
+      -# .col-lg-5
       -#   = f.input :starts_at
-      -# .columns.large-5
+      -# .col-lg-5
       -#   = f.input :ends_at
-      .columns.large-2
+      .col-lg-2
         = f.input :start_date, as: 'string', input_html: { placeholder: 'dd/mm/yy', class: 'datepicker', data: { date_format: 'dd/mm/yy' }}
-      .columns.large-2
+      .col-lg-2
         = f.input :start_time, as: 'string', input_html: { class: 'timepicker' }
-      .columns.large-1
+      .col-lg-1
         to
-      .columns.large-2
+      .col-lg-2
         = f.input :end_date, as: 'string', input_html: { placeholder: 'dd/mm/yy', class: 'datepicker', data: { date_format: 'dd/mm/yy' }}
-      .columns.large-2
+      .col-lg-2
         = f.input :end_time, as: 'string', input_html: { class: 'timepicker' }
-      .columns.large-3
+      .col-lg-3
         = f.time_zone_select :time_zone
 
     = f.input :all_day, as: 'boolean'
@@ -30,4 +30,4 @@
   -# = f.input :starts_at, as: 'time'
   -# = f.input :ends_at
   -# = f.association :lab
-  = f.submit class: 'button'
+  = f.submit class: 'btn btn-success'

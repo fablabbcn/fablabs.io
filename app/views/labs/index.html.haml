@@ -1,30 +1,23 @@
 - title "Labs"
 .row.top
-  .columns.large-8
-    %ul.breadcrumbs
+  .col-lg-8
+    %ol.breadcrumb
       %li= link_to Lab.to_s.pluralize, labs_path
       - if params[:country].present?
-        %li.current
+        %li.active
           = link_to labs_path(country: params[:country]) do
             %span.flag{class: "flag-#{params[:country]}"}
             = ISO3166::Country[params[:country]]
       - else
-        %li.current= link_to t("views.labs.index.all_countries"), labs_path
-  .columns.large-4
+        %li.active= link_to t("views.labs.index.all_countries"), labs_path
+  .col-lg-4
     = render "header"
 
 .row
-  - cache ["v1-labsindex-#{I18n.locale}-#{Digest::MD5.hexdigest([params.to_s].to_s)}", Lab.last_updated_at] do
-    .columns.large-8.content
-      .row
-        .columns.large-12
-          -# %dl.sub-nav.right.order-by
-          -#   %dt Order by:
-          -#   %dd= select_tag :order, ['name','name']
-
+  - cache ["v2-labsindex-#{I18n.locale}-#{Digest::MD5.hexdigest([params.to_s].to_s)}", Lab.last_updated_at] do
+    .col-lg-8.content
       - if params[:query].present?
         .search-results
-          -# %button.close{type: "button", data: { dismiss: "alert"}, aria: { hidden: true}} ×
           = link_to "×", labs_path, class: 'close right'
           #{pluralize @labs.size, "search result"} for
           %strong= params[:query]
@@ -32,39 +25,36 @@
       .labs= render @labs
       = paginate @labs
 
-  .columns.large-4.sidebar-offcanvas
+  .col-lg-4.sidebar-offcanvas
     - cache ["v1-countries-#{I18n.locale}-#{Digest::MD5.hexdigest([params.to_s].to_s)}", Lab.last_updated_at] do
       .heading
         Filter by
         %strong Country
-      %ul.side-nav.countries-filter
-        %li.all{class: ('active' if params[:country].blank?)}
-          = link_to url_for(params.merge(country: nil, page: nil)) do
-            = t("views.labs.index.all_countries", default: "All Countries")
-            %span.count.right= @count
+      .list-group
+        = link_to url_for(params.merge(country: nil, page: nil)), class: "list-group-item #{params[:country].blank? ? 'active' : ''}" do
+          = t("views.labs.index.all_countries", default: "All Countries")
+          %span.badge= @count
 
         - @countries.each do |country,country_code,count|
-          %li{class: ('active' if params[:country] == country_code)}
-            -# %div{class: "flag flag-#{country[1]} pull-left"}
-            = link_to url_for(params.merge(country: country_code, page: nil)) do
-              = country
-              %span.count.right= count
+          = link_to url_for(params.merge(country: country_code, page: nil)), class: "list-group-item #{params[:country] == country_code ? 'active' : ''}" do
+            = country
+            %span.badge= count
 
     .heading
       %strong Download
       the Fab Labs list
-    %dl.sub-nav
+    %dl
       %dt Format:
-      %dd{}= link_to "JSON", api_v0_labs_url(format: 'json'), class: 'button tiny'
+      %dd= link_to "JSON", api_v0_labs_url(format: 'json'), class: 'btn btn-primary'
     .hint CSV and XLSX (Excel) coming soon.
 
     .heading
       %strong Expand
       the Network
     - if current_user
-      = link_to new_lab_path, class: "button tiny success" do
+      = link_to new_lab_path, class: "btn btn-success" do
         = fa_icon "plus", text: t("views.labs.index.add_a_lab", default: "Add a Lab")
 
     - else
-      = link_to new_lab_path, class: "button tiny success disabled has-tip", data: { tooltip: true }, title: "You need to be signed in to add a Lab" do
+      = link_to new_lab_path, class: "btn btn-success", data: {toggle: "tooltip", placement: "bottom" }, title: "You need to be signed in to add a Lab" do
         = fa_icon "plus", text: t("views.labs.index.add_a_lab", default: "Add a Lab")

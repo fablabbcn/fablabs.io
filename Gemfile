@@ -40,7 +40,6 @@ gem 'authority', github: 'nathanl/authority'
 gem 'rolify', github: 'EppO/rolify'
 gem 'font-awesome-rails', github: 'bokmann/font-awesome-rails'
 # gem 'compass-rails' # you need this or you get an err
-gem 'foundation-rails'
 gem 'acts-as-taggable-on'
 gem 'kaminari'
 gem 'ancestry', github: 'stefankroes/ancestry'

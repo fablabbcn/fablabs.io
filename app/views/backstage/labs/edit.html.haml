@@ -1,12 +1,11 @@
 .row
-  .columns.large-12
+  .col-lg-12
+    = render "backstage/header"
     = title "Editing #{@lab}"
     = simple_form_for [:backstage, @lab] do |f|
       = render "form_errors", resource: @lab
       = f.input :kind
-      -# = f.association :parent
-
-      .columns.large-4
+      .col-lg-4
         Select 3 Referee Labs.
         .selections
           %ul
@@ -18,11 +17,11 @@
                     = image_tag hocho(c.referee_lab.avatar, "o=t&q=80&d=90x90"), class: 'avatar tiny'
                     = link_to link_to c.referee_lab, c.referee_lab
 
-      .columns.large-8
+      .col-lg-8
         - @selected = @lab.referee_approval_processes.map{|u| u.referee_lab_id}.collect
         %label{for: "referee_approval_processes_attributes"}
           Referees
-        = select_tag :referee_approval_processes_attributes, options_from_collection_for_select(Lab.approved_referees.collect, :id, :slug, @selected), { multiple: true, name: 'lab[referee_approval_processes_attributes][][referee_lab_id]', class: 'referee_approval'}
+        = select_tag :referee_approval_processes_attributes, options_from_collection_for_select(Lab.approved_referees.collect, :id, :slug, @selected), { multiple: true, name: 'lab[referee_approval_processes_attributes][][referee_lab_id]', class: 'referee_approval form-control'}
 
       = f.input :tools_list
       = f.input :name
@@ -45,8 +44,4 @@
       = f.input :email
       = f.input :application_notes
       = f.input :is_referee
-      -# = f.input capabilities: [ ]
-      -# = f.input links_attributes: [ :id, :link_id, :url, '_destroy' ]
-      -# = f.input employees_attributes: [ :id, :job_title, :description
-
-      = f.submit
+      = f.submit 'save', class: 'btn btn-success'

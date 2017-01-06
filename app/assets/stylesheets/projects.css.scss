@@ -241,79 +241,6 @@ form {
     margin-bottom: 15px;
     padding: 10px;
   }
-
-  label.radio {
-    width: 70px;
-    border-radius: 3px;
-    border: 1px solid #D9D9D9;
-  }
-
-  /* hide input */
-  input[type="radio"]:empty {
-  	margin-left: -999px;
-  }
-
-  /* style label */
-  input[type="radio"]:empty ~ label.radio {
-  	position: relative;
-  	float: left;
-    line-height: 2.4em;
-    text-indent: 3.9em;
-    padding-top: 0.5em;
-  	margin-top: 2em;
-  	cursor: pointer;
-  	-webkit-user-select: none;
-  	-moz-user-select: none;
-  	-ms-user-select: none;
-  	user-select: none;
-  }
-
-  input[type="radio"]:empty ~ label.radio:before {
-  	position: absolute;
-  	display: block;
-  	top: 0;
-  	bottom: 0;
-  	left: 0;
-  	content: '';
-  	width: 2.5em;
-  	background: #EBEBEB;
-  	border-radius: 3px 0 0 3px;
-  }
-
-  /* toggle hover */
-  input[type="radio"]:hover:not(:checked) ~ label.radio:before {
-  	content:'\2714';
-  	text-indent: .9em;
-  	color: #4D4D4D;
-  }
-
-  input[type="radio"]:hover:not(:checked) ~ label.radio {
-  	color: #4D4D4D;
-  }
-
-  /* toggle on */
-  input[type="radio"]:checked ~ label.radio:before {
-  	content:'\2714';
-  	text-indent: .9em;
-    line-height: 2.4em;
-    padding-top: 0.5em;
-  	color: #fff;
-  	background-color: #009E5A;
-  }
-
-  input[type="radio"]:checked ~ label.radio {
-  	color: #4D4D4D;
-  }
-
-  /* radio focus */
-  input[type="radio"]:focus ~ label.radio:before {
-  	box-shadow: 0 0 0 3px #999;
-  }
-  /* radio focus */
-  input[type="radio"]:focus ~ label.radio:before {
-	   box-shadow: 0 0 0 3px #999;
-  }
-
   h4 {
     a { float: right; margin: -10px; }
     i { padding: 5px 15px }
@@ -336,8 +263,8 @@ form {
   .select2-search__field {
     border: none;
     -webkit-box-shadow: none;
-	  -moz-box-shadow: none;
-	  box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
   }
 
   .button-file {

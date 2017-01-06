@@ -1,4 +1,4 @@
-@import "foundation_and_overrides";
+@import "common_vars";
 
 @-webkit-keyframes pulsate {
     0% {-webkit-transform: scale(1, 1); opacity: 0.7;}
@@ -48,10 +48,6 @@
     height: 20px;
     background: rgba(#E84E61, 1);
     border-radius: 99999px;
-    @media #{$small} {
-      width: 30px;
-      height: 30px;
-    }
   }
 }
 

@@ -11,15 +11,14 @@
     = csrf_meta_tags
     :css
       body {
-        background-image: url('#{image_path("//i.imgur.com/myy9Pdq.jpg")}');
+        background-image: url('#{image_path("/elefant-bg.jpg")}');
       }
     = cookie_policy_script
   %body.sessions{ class: body_classes }
-    .fade-bg
     #main
       - if flash.any?
         .row
-          .columns.large-12
+          .col-lg-12
           - flash.each do |name, msg|
             = content_tag :div, msg, class: flash_class(name)
       = yield
