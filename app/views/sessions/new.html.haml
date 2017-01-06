@@ -25,6 +25,6 @@
         .col-md-3.forgot
           = link_to "Forgot?", new_recovery_url(subdomain: 'www')
 
-      .actions= submit_tag t("views.header.signin", default: "Sign in"), class: 'button'
+      .actions= submit_tag t("views.header.signin", default: "Sign in"), class: 'btn btn-success'
 
       = link_to "Not yet a member? <strong>#{t('views.header.signup', default: 'Sign up')}</strong>".html_safe, signup_url(subdomain: 'www', goto: params[:goto])
