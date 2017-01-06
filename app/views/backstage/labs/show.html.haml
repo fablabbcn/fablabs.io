@@ -10,10 +10,10 @@
           - @lab.current_state.events.keys.each do |event|
             - if current_user.is_referee? or current_user.is_unique_referee?
               - if ['referee_approves', 'request_more_info', 'referee_requests_admin_approval', 'referee_rejects'].include? event.to_s
-                = button_to "#{event.capitalize.to_s.tr('_', ' ')}", {controller: 'labs', action: event}, method: :patch, class: 'button small tiny', id: 'event'
+                = button_to "#{event.capitalize.to_s.tr('_', ' ')}", {controller: 'labs', action: event}, method: :patch, class: 'btn btn-success', id: 'event'
             - if current_user.has_role? :superadmin
               - if ['approve', 'request_more_info', 'reject', 'remove'].include? event.to_s
-                = button_to "#{event.capitalize.to_s.tr('_', ' ')}", {controller: 'labs', action: event}, method: :patch, class: 'button small tiny', id: 'event'
+                = button_to "#{event.capitalize.to_s.tr('_', ' ')}", {controller: 'labs', action: event}, method: :patch, class: 'btn btn-success', id: 'event'
       - if @lab.referee.present?
         %tr
           %th Referee
