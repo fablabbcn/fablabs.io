@@ -1,31 +1,29 @@
 .row
-  .columns.large-12
+  .col-lg-12
     = render "backstage/header"
     = title "Labs"
 
-    .panel
+    .well
       = search_form_for [:backstage, @q], builder: SimpleForm::FormBuilder do |f|
         = f.input :name_or_city_cont, label: "Name"
         .row
-          .columns.large-3
+          .col-lg-3
             = f.input :is_referee_true, as: :boolean, label: "Is referee"
-          .columns.large-3
+          .col-lg-3
             = f.input :discourse_id_not_null, as: :boolean, label: "With discourse ID"
-          .columns.large-3
+          .col-lg-3
             = f.input :discourse_id_null, as: :boolean, label: "Without discourse ID"
-          .columns.large-3
+          .col-lg-3
             = f.input :discourse_errors_not_null, as: :boolean, label: "With discourse sync errors"
         .row
-          .columns.large-4
+          .col-lg-4
             = f.input :country_code_eq, as: 'country', label: 'Country', iso_codes: true, include_blank: 'ALL'
-          .columns.large-4
+          .col-lg-4
             = f.input :workflow_state_eq, collection: Lab.workflow_spec.state_names, label: "State", include_blank: 'ALL'
-          .columns.large-3
-            = f.submit "Filter", class: 'button expand'
+          .col-lg-3
+            = f.submit "Filter", class: 'btn btn-success btn-lg'
 
-    = paginate @labs
     = page_entries_info @labs
-
     %table.table
       %thead
         %tr
@@ -38,7 +36,6 @@
             = sort_link @q, 'creator_last_name', 'Last'
 
           %th= sort_link @q, :state, 'State'
-          -# %th= sort_link @q, :created_at
       %tbody
         - @labs.each do |lab|
           = content_tag_for :tr, lab, {class: lab.current_state} do
@@ -46,8 +43,6 @@
             %td= link_to lab, backstage_lab_path(lab)
             %td= lab.country
             %td= link_to lab.creator, lab.creator
-
             %td= lab.current_state
-            -# %td= lab.created_at#l(lab.created_at, format: :short)
 
     = paginate @labs

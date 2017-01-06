@@ -3,8 +3,8 @@
   %fieldset
     %legend Core
     .row
-      .columns.large-12
-        .columns.large-4
+      .col-lg-12
+        .col-lg-4
           %label
             Owner
           .owner-container
@@ -15,16 +15,16 @@
               = image_tag hocho(@project.owner.avatar, "o=t&q=80&d=90x90"), class: 'avatar tiny'
               = link_to @project.owner do
                 %strong= @project.owner.username
-        .columns.large-8
+        .col-lg-8
           = f.input :title
     .row
-      .columns.large-12
+      .col-lg-12
         = render 'project_contribution_fields', :f => f
     .row
-      .columns.large-12
+      .col-lg-12
         = render 'project_collaboration_fields', :f => f
   .row
-    .columns.large-12
+    .col-lg-12
       %p
       %p
         You can use
@@ -33,7 +33,7 @@
         = link_to "MD-basics", "https://help.github.com/articles/markdown-basics/"
         for more info.
   .row
-    .columns.large-12
+    .col-lg-12
       %fieldset
         %legend Description
         = f.input :description
@@ -51,8 +51,7 @@
           = render 'step_fields', f: step
         .steps
           = link_to_add_association f, :steps, class: 'button tiny' do
-            = fa_icon "plus"
-            Add another step
+            = fa_icon "plus", text: 'Add another step'
 
       %fieldset
         %legend Scope
@@ -72,4 +71,4 @@
 
   = render 'link_form_fields', :f => f
 
-  = f.submit class: 'button'
+  = f.submit class: 'btn btn-success'

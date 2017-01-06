@@ -7,9 +7,7 @@
         Important Information
 
       = render 'referees', :f => f
-      /email_off
       = f.input :parent_id, label: "Parent Lab", as: 'select', collection: Lab.with_approved_state.order('name ASC'), hint: "Is this lab connected to another lab? If so, which lab?", input_html: { class: 'enhanced' }
-      //email_off
 
   %fieldset
     %legend Basic Details
@@ -66,23 +64,22 @@
     = f.input :description, hint: 'An in-depth description of the lab', input_html: { style: 'height: 8em' }
 
     = f.input :slug, hint: "This is the unique 'username' of the lab, it will be in the URL" do
-      .row.collapse
-        .columns.large-3
-          %span.prefix= "#{Rails.application.config.url}/"
-        .columns.large-9= f.input_field :slug, class: 'form-control'
+      .input-group
+        %span.input-group-addon= "#{Rails.application.config.url}/"
+        = f.input_field :slug, class: 'form-control'
 
   %fieldset
     %legend Lab Images
 
     .row
-      .columns.large-3= image_tag @lab.avatar, class: 'avatar big'
-      .columns.large-9= f.input :avatar_src, input_html: { class: 'fp', data: { fp_store_location: 'S3', fp_store_path: 'labs/avatars/', fp_store_container: ENV['S3_BUCKET'] } }, label: 'Avatar', hint: "This will be a square image next shown next to the lab name throughout the site"
+      .col-lg-3= image_tag @lab.avatar, class: 'avatar big'
+      .col-lg-9= f.input :avatar_src, input_html: { class: 'fp', data: { fp_store_location: 'S3', fp_store_path: 'labs/avatars/', fp_store_container: ENV['S3_BUCKET'] } }, label: 'Avatar', hint: "This will be a square image next shown next to the lab name throughout the site"
     %hr/
     .row
-      .columns.large-3
+      .col-lg-3
         - if @lab.header_image_src.present?
           = image_tag @lab.header_image_src, class: 'avatar big'
-      .columns.large-9= f.input :header_image_src, input_html: { class: 'fp', data: { fp_store_location: 'S3', fp_store_path: "labs/photos/", fp_store_container: ENV['S3_BUCKET'] } }, label: 'Photo', hint: "A single (large) photo of your lab. You will be able to add more photos soon."
+      .col-lg-9= f.input :header_image_src, input_html: { class: 'fp', data: { fp_store_location: 'S3', fp_store_path: "labs/photos/", fp_store_container: ENV['S3_BUCKET'] } }, label: 'Photo', hint: "A single (large) photo of your lab. You will be able to add more photos soon."
 
   %fieldset
     %legend Lab Location
@@ -95,9 +92,9 @@
         %legend Step 2
         %p.hint Edit the details in the address fields below.
         .row
-          .columns.large-6#map-holder
+          .col-lg-6#map-holder
             #location-picker-map
-          .columns.large-6
+          .col-lg-6
             = f.input :address_1, input_html: { data: {geo: "street_address"}}, label: 'Lab Address', placeholder: 'Address Line 1'
             = f.input :address_2, label: false, placeholder: 'Address Line 2 (Optional)'
             = f.input :city, input_html: { data: {geo: "locality"}}
@@ -123,20 +120,6 @@
       = f.simple_fields_for :employees do |e|
         = e.input :job_title, placeholder: "e.g. Lab Manager"
         = e.input :description, placeholder: "e.g. Coordinates Workshops and Events"
-
-  -# %fieldset.opening-hours
-  -#   %legend Opening Hours
-  -#   %table{cellspacing: 0}
-  -#     %tr
-  -#       %td
-  -#       - (0..48).each do |quart|
-  -#         %td
-  -#           .rotate= Time.at(quart* 30 * 60).utc.strftime("%H:%M")
-  -#     - [1,2,3,4,5,6,0].each do |day|
-  -#       %tr
-  -#         %th= Date::DAYNAMES[day][0..1]
-  -#         - (0..48).each do |quart|
-  -#           %td
 
   %fieldset
     %legend Links
@@ -169,4 +152,4 @@
       %legend Anything else?
       = f.input :application_notes
 
-  = f.submit (lab.new_record? ? 'Add Lab' : 'Update Lab'), class: 'button'
+  = f.submit (lab.new_record? ? 'Add Lab' : 'Update Lab'), class: 'btn btn-success btn-lg'

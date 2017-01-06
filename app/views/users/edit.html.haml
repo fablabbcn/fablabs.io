@@ -1,15 +1,15 @@
 .row
-  .columns.large-12= title "Edit Your Settings"
-  .columns.large-12
+  .col-lg-12= title "Edit Your Settings"
+  .col-lg-12
     = simple_form_for @user do |f|
       %fieldset
         = render "form_errors", resource: @user
         .row
-          .columns.large-1
+          .col-lg-1
             = f.label :first_name, "Name"
-          .columns.large-3
+          .col-lg-3
             = f.input :first_name, label: false, placeholder: 'First'
-          .columns.large-3.left
+          .col-lg-3.left
             = f.input :last_name, label: false, placeholder: 'Last'
 
         = f.input :username
@@ -25,10 +25,10 @@
 
       %fieldset
         .row
-          .columns.large-3= image_tag hocho(@user.avatar, "o=t&q=80&d=200x200&"), class: 'avatar big'
-          .columns.large-9= f.input :avatar_src, input_html: { class: 'fp', data: { fp_store_location: 'S3', fp_store_path: "users/#{current_user.id}/avatars/", fp_store_container: ENV['S3_BUCKET'] } }, label: 'Avatar', hint: "You can upload an avatar, otherwise we'll try and use your #{link_to 'gravatar', 'http://gravatar.com'}".html_safe
+          .col-lg-3= image_tag hocho(@user.avatar, "o=t&q=80&d=200x200&"), class: 'avatar big'
+          .col-lg-9= f.input :avatar_src, input_html: { class: 'fp', data: { fp_store_location: 'S3', fp_store_path: "users/#{current_user.id}/avatars/", fp_store_container: ENV['S3_BUCKET'] } }, label: 'Avatar', hint: "You can upload an avatar, otherwise we'll try and use your #{link_to 'gravatar', 'http://gravatar.com'}".html_safe
 
       %fieldset
         = f.input :use_metric, :collection => [[true, 'Metric - cm/m/km'], [false, 'Imperial - in/ft/mi']], :label_method => :last, :value_method => :first, :as => :radio_buttons, :label => "Preferred units", :hint => "This doesn't update measurements on the site yet, but will do soon"
 
-      = f.submit "Update", class: 'button'
+      = f.submit "Update", class: 'btn btn-success'

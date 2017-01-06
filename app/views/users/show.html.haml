@@ -1,27 +1,27 @@
 .row
-  .columns.large-12
+  .col-lg-12
     .media
       .pull-left= image_tag @user.avatar, class: 'avatar big'
       .media-body
         .row
-          .columns.large-4.text-right.right
+          .col-lg-4.text-right.right
             - if current_or_null_user == @user
               = link_to settings_path, class: 'button tiny' do
                 = fa_icon "edit", text: "Edit Profile"
 
-          .columns.large-6.left= title @user
+          .col-lg-6.left= title @user
         .row
-          .columns.large-8
+          .col-lg-8
             = simple_format @user.bio
-          .columns.large-4
+          .col-lg-4
             .joined-on
               %em
                 Joined #{time_ago_in_words(@user.created_at)} ago.
         .row
-          .columns.large-12
+          .col-lg-12
             = render 'social_fields'
         .row
-          .columns.large-12
+          .col-lg-12
             - if @user.employees.with_approved_state.any?
               %ul
                 Works at:
@@ -32,7 +32,7 @@
                     = employee.job_title
 
 .row
-  .columns.large-6
+  .col-lg-6
     %h5
     = icon('plus-square')
     Contributions
@@ -43,7 +43,7 @@
 
 
 
-  .columns.large-6
+  .col-lg-6
     %h5
     = icon('signal')
     Activity

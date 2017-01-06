@@ -1,0 +1,23 @@
+{
+  "name": "fablabs",
+  "homepage": "https://github.com/fablabbcn/fablabs",
+  "authors": [
+    "Jose Galisteo <ceritium@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "vendor/assets/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "select2": "^4.0.3"
+  }
+}

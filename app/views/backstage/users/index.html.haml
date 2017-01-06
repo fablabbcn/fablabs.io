@@ -1,27 +1,25 @@
 .row
-  .columns.large-12
+  .col-lg-12
     = render "backstage/header"
     = title "Users"
 
-    .panel
+    .well
       = search_form_for [:backstage, @q], builder: SimpleForm::FormBuilder do |f|
         .row
-          .columns.large-6= f.input :first_name_cont, label: "First Name"
-          .columns.large-6= f.input :email_cont
+          .col-lg-6= f.input :first_name_cont, label: "First Name"
+          .col-lg-6= f.input :email_cont
 
         .row
-          .columns.large-3
+          .col-lg-3
             = f.input :country_code_eq, as: 'country', label: 'Country', iso_codes: true, include_blank: 'ALL'
-          .columns.large-3
+          .col-lg-3
             = f.input :workflow_state_eq, collection: User.workflow_spec.state_names, label: "State", include_blank: 'ALL'
-          .columns.large-3
+          .col-lg-3
             = f.input :roles_name_eq, collection: Role::AVAILABLE, include_blank: 'ALL'
-          .columns.large-3
-            = f.submit "Filter", class: 'button expand'
+          .col-lg-3
+            = f.submit "Filter", class: 'btn btn-success btn-lg'
 
-    = paginate @users
     = page_entries_info @users
-
     %table.table
       %thead
         %tr
