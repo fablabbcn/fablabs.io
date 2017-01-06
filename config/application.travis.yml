@@ -1,2 +1,3 @@
 discourse_enabled: false
 GEONAMES_USERNAME: fablabs
+url: 'http://localhost:3000'
