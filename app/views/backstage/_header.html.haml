@@ -1,11 +1,11 @@
 %ul.nav.nav-pills
-  - if current_user.has_role? :superadmin
+
+  - if current_user.is_referee? || current_user.is_unique_referee? || current_user.has_role?(:superadmin)
     %li{class: ('active' if controller_name == "labs")}= link_to "Labs", backstage_labs_path
+
+  - if current_user.has_role? :superadmin
     %li{class: ('active' if controller_name == "organizations")}= link_to "Orgs", backstage_organizations_path
     %li{class: ('active' if controller_name == "employees")}= link_to "Employees", backstage_employees_path
     %li{class: ('active' if controller_name == "users")}= link_to "Users", backstage_users_path
     %li{class: ('active' if controller_name == "pages")}= link_to "Pages", backstage_pages_path
-
-  - if current_user.is_referee? or current_user.is_unique_referee?
-    %li{class: ('active' if controller_name == "labs")}= link_to "Labs", backstage_labs_path
 %br
