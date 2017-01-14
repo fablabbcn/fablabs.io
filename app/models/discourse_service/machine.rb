@@ -1,16 +1,7 @@
 module DiscourseService
-  class Machine
-
-    def initialize(machine)
-      @machine = machine
-    end
-
-    def discourse_id
-      @machine.discourse_id
-    end
-
+  class Machine < Entity
     def name
-      "Discussion about #{@machine.brand.try(:name)} #{@machine.name}"
+      "Discussion about #{@entity.brand.try(:name)} #{@entity.name}"
     end
 
     def description
@@ -21,31 +12,11 @@ This is the general thread for discussing the machine; the thread is also visibl
     end
 
     def url
-      Rails.application.routes.url_helpers.machine_url(@machine, host: Figaro.env.url)
+      Rails.application.routes.url_helpers.machine_url(@entity, host: Figaro.env.url)
     end
 
     def category
       Figaro.env.discourse_machine_category
-    end
-
-    def machine_params
-      {title: name, raw: description, category: category}
-    end
-
-    def sync
-      if discourse_id
-        response = client.update_topic(discourse_id, machine_params)
-        @machine.update_columns(discourse_errors: nil)
-      else
-        response = client.create_topic(machine_params)
-        @machine.update_columns(discourse_id: response['topic_id'], discourse_errors: nil)
-      end
-    rescue ArgumentError => e
-      @machine.update_column(:discourse_errors, e.message)
-    end
-
-    def client
-      DiscourseService::Client.instance
     end
   end
 end
