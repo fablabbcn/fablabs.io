@@ -6,8 +6,9 @@
     .well
       = search_form_for [:backstage, @q], builder: SimpleForm::FormBuilder do |f|
         .row
-          .col-lg-6= f.input :first_name_cont, label: "First Name"
-          .col-lg-6= f.input :email_cont
+          .col-lg-3= f.input :first_name_cont, label: "First Name"
+          .col-lg-3= f.input :username_cont, label: 'Username'
+          .col-lg-3= f.input :email_cont, label: 'Email'
 
         .row
           .col-lg-3
