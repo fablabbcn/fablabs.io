@@ -65,7 +65,7 @@
                     = link_to backstage_root_path do
                       = fa_icon "gamepad"
                       = t("views.header.backstage", default: "Backstage")
-                      = gem_count_tag current_or_null_user.referee_labs.count
+                      = gem_count_tag current_or_null_user.pending_referee_labs.count
 
               %li.divider{:role => "separator"}
               %li
