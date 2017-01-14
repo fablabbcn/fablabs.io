@@ -3,6 +3,11 @@
   - if current_user.is_referee? || current_user.is_unique_referee? || current_user.has_role?(:superadmin)
     %li{class: ('active' if controller_name == "labs")}= link_to "Labs", backstage_labs_path
 
+    %li{class: ('active' if controller_name == "my_labs")}
+      = link_to 'My labs', [:backstage, :my_labs]
+    %li{class: ('active' if controller_name == "to_approve_labs")}
+      = link_to 'My labs to approve', [:backstage, :to_approve_labs]
+
   - if current_user.has_role? :superadmin
     %li{class: ('active' if controller_name == "organizations")}= link_to "Orgs", backstage_organizations_path
     %li{class: ('active' if controller_name == "employees")}= link_to "Employees", backstage_employees_path

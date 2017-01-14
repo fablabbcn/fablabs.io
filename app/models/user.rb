@@ -132,13 +132,17 @@ class User < ActiveRecord::Base
     Lab.where("referee_id IN (?) AND workflow_state IN (?)", self.admin_labs.map{ |u| u.resource_id }, ['unverified', 'more_info_needed', 'more_info_added'])
   end
 
-  def referee_labs
-    labs = RefereeApprovalProcess.where(referee_lab_id: admin_labs.map(&:resource_id)).map(&:referee_lab).uniq
+  def pending_referee_labs
+    labs = RefereeApprovalProcess.where(referee_lab_id: admin_labs.map(&:resource_id)).map(&:referred_lab).uniq
     labs.select{ |lab| lab if ['unverified', 'need_more_info', 'more_info_added'].include?(lab.workflow_state) }
   end
 
+  def referee_labs
+    RefereeApprovalProcess.where(referee_lab_id: admin_labs.map(&:resource_id)).map(&:referred_lab).uniq
+  end
+
   def referees_count
-    unique_referee_labs.count + referee_labs.count
+    unique_referee_labs.count + pending_referee_labs.count
   end
 
   def recovery_key
