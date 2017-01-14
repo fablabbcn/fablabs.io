@@ -102,6 +102,6 @@ class Organization < ActiveRecord::Base
   end
 
   def set_initial_workflow_state
-    self.workflow_state ||= STATE_APPROVED
+    self.workflow_state ||= STATE_PENDING
   end
 end
