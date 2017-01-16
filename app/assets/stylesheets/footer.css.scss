@@ -22,6 +22,10 @@ footer {
     // visibility: hidden;
   }
 
+  .footer_logos {
+      display: inline !important;
+  }
+
   body.c-labs.a-map & { display: none; }
 
   ul, li {
