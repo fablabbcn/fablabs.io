@@ -100,3 +100,7 @@ fieldset {
   border: none;
   transition: none;
 }
+
+input:focus {
+    color: #000 !important;
+}
