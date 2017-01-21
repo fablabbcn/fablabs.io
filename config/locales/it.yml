@@ -1,0 +1,50 @@
+---
+it:
+  capabilities:
+    cnc_milling: "Fresatura CNC"
+    circuit_production: "Produzione di circuiti"
+    laser: "Incisione e taglio laser"
+    precision_milling: "Fresatura di precisione"
+    vinyl_cutting: "Taglio vinile"
+    three_d_printing: "Stampa 3D"
+  views:
+    header:
+      settings: "Configurazione"
+      labs: "Laboratori"
+      backstage: "Retroscena"
+      signin: "Accedi"
+      search_labs: "Cerca tra i Laboratori..."
+      signout: "Esci"
+      machines: "Macchine"
+      me: "Io"
+      events: "Eventi"
+      signup: "Registrati"
+    home:
+      whats_a_fab_lab: "Sono un nuovo utente. Che cosa é un FabLab?"
+      who_is_it_for: "A chi é rivolto fablabs.io?"
+      whats_coming_next: "Che cosa succederà prossimamente?"
+      features:
+        discussions: "Discussioni"
+        events: "Eventi"
+        developer_api: "API"
+        localisation: "Localizzazione"
+        activity_feeds: "Attivitá"
+        opening_hours: "Orari di apertura"
+      beyond_that: "E oltre quello?"
+      fab_labs_description: "I Fab Lab forniscono un accesso diffuso a moderni strumenti
+        di invenzione. Sono iniziati come un progetto di estensione del Center for
+        Bits and Atoms (CBA) presso il MIT, e sono diventati una rete collaborativa
+        e globale. Puoi trovare maggior informazioni sui Fab Lab sul sito della %{fab_foundation}.
+        La foto qui sotto mostra le strumentazioni tipiche di un Fab Lab."
+      machines: "Macchine"
+      what_can_i_do: "Che cosa posso fare?"
+      lab_profiles: "Profili dei Laboratori"
+      welcome: "Benvenuto"
+      show_me_fab_labs: "Mostrami Fab Labs"
+      around_the_world: "In tutto il mondo"
+      world_map: "Mappa mondiale"
+    labs:
+      index:
+        list: "Lista"
+        all_countries: "Tutti i paesi"
+        map: "Mappa"

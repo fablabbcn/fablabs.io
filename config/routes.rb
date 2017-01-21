@@ -24,7 +24,6 @@ Fablabs::Application.routes.draw do
       end
     end
 
-    resources :translations
     # resources :events
 
     get "verify_email(/:id)", to: "users#verify_email", as: "verify_email"
