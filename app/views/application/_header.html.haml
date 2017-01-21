@@ -38,7 +38,7 @@
         %li= link_to 'Discuss', 'https://discuss.fablabs.io/'
         - if current_user
           %li.dropdown
-            = link_to current_user, class: 'dropdown-toggle', "aria-expanded" => "true", "aria-haspopup" => "true", "data-toggle" => "dropdown", :role => "button" do
+            = link_to current_user do
 
               = image_tag hocho(current_user.avatar, "o=t&q=80&d=90x90"), class: 'avatar tiny'
               = t("views.header.me")
@@ -47,7 +47,8 @@
               - else
                 - if current_or_null_user.is_referee? or current_or_null_user.is_unique_referee?
                   = gem_count_tag current_or_null_user.referees_count
-
+          %li
+            %a.dropdown-toggle{data: {toggle: 'dropdown'}}
               %span.caret
             %ul.dropdown-menu
               %li
