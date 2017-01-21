@@ -1,0 +1,8 @@
+.row
+  .col-lg-12
+    = render "backstage/header"
+    = title "My labs"
+
+    = render 'backstage/labs/labs', q: @q, url_form: [:backstage, :my_labs], labs: @labs
+
+
