@@ -3,9 +3,10 @@ class Organization < ActiveRecord::Base
   KINDS = ['global', 'continent', 'country', 'state', 'region', 'province', 'city']
 
   WORKFLOW_STATES = [
-    STATE_PENDING  = 'pending',
-    STATE_APPROVED = 'approved'
-  ]
+    STATE_PENDING  = 'pending'.freeze,
+    STATE_APPROVED = 'approved'.freeze,
+    STATE_REJECTED = 'rejected'.freeze
+  ].freeze
 
   has_many :labs, through: :lab_organizations
   has_many :lab_organizations
