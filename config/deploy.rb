@@ -30,7 +30,12 @@ set :use_sudo, false
 set :rake, "#{rake} --trace"
 set :scm, "git"
 set :repository, "git@github.com:fablabbcn/#{application}.git"
-set :branch, "master"
+
+
+# use the branch specified as a param, then use the current branch. If all fails use master branch
+current_branch = `git branch`.match(/\* (\S+)\s/m)[1]
+set :branch, ENV['branch'] || current_branch || "master" # you can use the 'branch' parameter on deployment to specify the branch you wish to deploy
+
 set :default_environment, {
   'PATH' => "$HOME/.rbenv/shims:$HOME/.rbenv/bin:$PATH"
 }
@@ -45,6 +50,29 @@ set :maintenance_template_path, File.expand_path("../recipes/templates/maintenan
 # end
 
 after "deploy", "deploy:migrate", "deploy:cleanup" # keep only the last 5 releases
+
+before "bower:install", "bower:symlink"
+after  "bower:install", "bower:prune"
+
+before "deploy:assets:precompile", "bower:install"
+
+namespace :bower do
+  desc "Symlink shared components to current release"
+  task :symlink, roles: :app do
+    run "mkdir -p #{shared_path}/bower_components"
+    run "ln -nfs #{shared_path}/bower_components #{latest_release}/vendor/assets/bower_components"
+  end
+
+  desc "Install the current Bower environment"
+  task :install, roles: :app do
+    run "cd #{latest_release} && /usr/bin/node /usr/bin/bower install --production --quiet"
+  end
+
+  desc "Uninstalls local extraneous packages"
+  task :prune, roles: :app do
+    run "cd #{latest_release} && /usr/bin/node /usr/bin/bower prune"
+  end
+end
 
 require './config/boot'
 # require 'airbrake/capistrano'
