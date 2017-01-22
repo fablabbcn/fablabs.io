@@ -46,5 +46,28 @@ set :maintenance_template_path, File.expand_path("../recipes/templates/maintenan
 
 after "deploy", "deploy:migrate", "deploy:cleanup" # keep only the last 5 releases
 
+before "bower:install", "bower:symlink"
+after  "bower:install", "bower:prune"
+
+before "deploy:assets:precompile", "bower:install"
+
+namespace :bower do
+  desc "Symlink shared components to current release"
+  task :symlink, roles: :app do
+    run "mkdir -p #{shared_path}/bower_components"
+    run "ln -nfs #{shared_path}/bower_components #{latest_release}/vendor/assets/bower_components"
+  end
+
+  desc "Install the current Bower environment"
+  task :install, roles: :app do
+    run "cd #{latest_release} && /usr/bin/node /usr/bin/bower install --production --quiet"
+  end
+
+  desc "Uninstalls local extraneous packages"
+  task :prune, roles: :app do
+    run "cd #{latest_release} && /usr/bin/node /usr/bin/bower prune"
+  end
+end
+
 require './config/boot'
 # require 'airbrake/capistrano'
