@@ -1,3 +1,3 @@
-Timezone::Configure.begin do |c|
+Timezone::Lookup.config(:geonames) do |c|
   c.username = ENV['GEONAMES_USERNAME']
 end
