@@ -5,6 +5,8 @@ class Lab < ActiveRecord::Base
   include ApproveWorkflow
   include LabApproveMethods
 
+  dragonfly_accessor :avatar
+
   self.authorizer_name = 'LabAuthorizer'
   resourcify
   has_ancestry
@@ -136,8 +138,10 @@ class Lab < ActiveRecord::Base
     [city, county, (country if include_country)].reject(&:blank?).join(", ")
   end
 
-  def avatar
-    if avatar_src.present?
+  def avatar_url
+    if avatar_uid.present?
+      avatar.url
+    elsif avatar_src.present?
       avatar_src
     else
       'https://i.imgur.com/iymHWkm.png'

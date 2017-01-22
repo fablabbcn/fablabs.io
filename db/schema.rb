@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161226125744) do
+ActiveRecord::Schema.define(version: 20170122144527) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -280,6 +280,8 @@ ActiveRecord::Schema.define(version: 20161226125744) do
     t.string   "discourse_id"
     t.text     "discourse_errors"
     t.boolean  "is_referee",               default: false
+    t.string   "avatar_uid"
+    t.string   "avatar_name"
   end
 
   add_index "labs", ["creator_id"], name: "index_labs_on_creator_id", using: :btree

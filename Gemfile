@@ -59,6 +59,10 @@ gem 'letter_opener'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
 
+
+gem 'dragonfly', '~> 1.1.1'
+gem 'dragonfly-s3_data_store'
+
 gem "paperclip", "~> 4.2"
 # For paperclip/refile we need:
 gem 'aws-s3'
