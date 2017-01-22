@@ -4,17 +4,8 @@
     - nearby_labs.each do |lab|
       %li.nearby-lab
         = link_to lab, class: 'pull-left' do
-          = image_tag hocho(lab.avatar, "o=t&q=80&d=90x90&"), class: 'small avatar'
+          = image_tag hocho(lab.avatar_url, "o=t&q=80&d=90x90&"), class: 'small avatar'
 
         .media-body
           .media-heading= link_to lab, lab, class: 'nearby-lab-name'
           .distance= "#{lab.distance.ceil}km away"
-
-    -# %li
-    -#   .pull-left
-    -#     -# = image_tag "all/#{lab.country_code}/24.png", style: 'margin: 0 auto 20px; display: block'
-    -#   .media-body
-    -#     = link_to labs_path(country: lab.country_code), class: 'all-labs' do
-    -#       All labs in
-    -#       %strong #{lab.country}
-    -#       »

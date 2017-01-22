@@ -72,8 +72,11 @@
     %legend Lab Images
 
     .row
-      .col-lg-3= image_tag @lab.avatar, class: 'avatar big'
-      .col-lg-9= f.input :avatar_src, input_html: { class: 'fp', data: { fp_store_location: 'S3', fp_store_path: 'labs/avatars/', fp_store_container: ENV['S3_BUCKET'] } }, label: 'Avatar', hint: "This will be a square image next shown next to the lab name throughout the site"
+      .col-lg-3= image_tag @lab.avatar_url, class: 'avatar big'
+      .col-lg-9
+        = f.input :avatar, as: :file, label: 'Avatar', hint: "This will be a square image next shown next to the lab name throughout the site"
+        = f.hidden_field :retained_avatar
+
     %hr/
     .row
       .col-lg-3

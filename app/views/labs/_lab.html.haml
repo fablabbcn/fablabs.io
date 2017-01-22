@@ -2,7 +2,7 @@
   = content_tag_for :div, lab, class: 'media', itemscope: true, itemtype: "http://data-vocabulary.org/Organization" do
     .img.pull-left
       = link_to lab do
-        = image_tag hocho(lab.avatar, "o=t&q=80&d=100x100&"), class: 'med avatar', itemprop: "logo"
+        = image_tag hocho(lab.avatar_url, "o=t&q=80&d=100x100&"), class: 'med avatar', itemprop: "logo"
     .media-body
       = link_to lab, class: 'name' do
         %span.name{itemprop: "name"}= lab

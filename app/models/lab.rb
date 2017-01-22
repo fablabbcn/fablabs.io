@@ -140,7 +140,7 @@ class Lab < ActiveRecord::Base
 
   def avatar_url
     if avatar_uid.present?
-      avatar.url
+      avatar.remote_url
     elsif avatar_src.present?
       avatar_src
     else
