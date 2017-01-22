@@ -30,7 +30,7 @@ gem 'sidekiq'
 gem 'nest'
 gem 'rails', '4.0.1'
 gem 'inherited_resources'
-gem 'timezone'
+gem 'timezone', '~> 1.0'
 gem 'bitmask_attributes'
 # gem 'jquery-turbolinks'
 gem 'ransack', github: "ernie/ransack"
@@ -48,7 +48,7 @@ gem "cocoon", github: 'nathanvda/cocoon'
 gem "pg_search"
 gem "pg",'0.17.1'
 gem 'simple_form', '3.0.1'
-gem 'countries', github: "hexorx/countries"
+gem 'countries', require: 'countries/global'
 gem 'country_select'
 gem 'momentjs-rails'
 gem 'active_model_serializers'
