@@ -6,6 +6,7 @@ before_script:
   - "cp config/application.travis.yml config/application.yml"
   - "cp config/database.travis.yml config/database.yml"
   - "psql -c 'create database fablabs_test' -U postgres"
+  - "npm install -g bower"
 env:
   global:
     -
@@ -20,6 +21,7 @@ cache: bundler
 rvm:
   - "2.0.0"
 script:
+  - "bower install"
   - "bundle exec rake db:schema:load"
   - "bundle exec rake db:test:prepare"
   - "bundle exec rake"
