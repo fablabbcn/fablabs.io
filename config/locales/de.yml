@@ -1,0 +1,50 @@
+---
+de:
+  views:
+    labs:
+      index:
+        all_countries: "Alle Länder"
+        map: "Karte"
+        list: "Liste"
+    home:
+      features:
+        opening_hours: "Öffnungszeiten"
+        developer_api: "Entwickler API"
+        localisation: "Standort"
+        activity_feeds: "Ereignisverlauf"
+        discussions: "Diskussion"
+        events: "Veranstaltungen"
+      who_is_it_for: "Für wen ist fablabs.io gedacht?"
+      whats_a_fab_lab: "Ich bin neu hier, was ist ein Fab Lab?"
+      world_map: "Weltkarte"
+      beyond_that: "Und außerdem?"
+      show_me_fab_labs: "Zeig mir Fab Labs"
+      lab_profiles: "Lab Profile"
+      whats_coming_next: "Was kommt als Nächstes?"
+      what_can_i_do: "Und wie kann ich mitmachen?"
+      welcome: "Willkommen"
+      machines: "Maschinen"
+      fab_labs_description: "Fab Labs bieten Zugang zu modernen Entwicklungsmethoden.
+        Was als Projekt am Center for Bits and Atoms (CBA) des MIT begann, wurde zu
+        einem weltweiten Netzwerk der Zusammenarbeit. Mehr Informationen über Fab
+        Labs findest du auf %{fab_foundation}. Das untenstehende Foto zeigt die Ausstattung
+        eines typischen Fab Labs."
+      around_the_world: "Weltweit"
+    header:
+      signout: "Abmelden"
+      settings: "Einstellungen"
+      labs: "Labs"
+      events: "Veranstaltungen"
+      search_labs: "Labs suchen..."
+      backstage: "Backstage"
+      signup: "Registrieren"
+      me: "Ich"
+      machines: "Maschinen"
+      signin: "Anmelden"
+  capabilities:
+    vinyl_cutting: "Schneideplotten"
+    cnc_milling: "CNC-Fräsen"
+    circuit_production: "Leiterplattenherstellung"
+    three_d_printing: "3D-Drucken"
+    precision_milling: "Präzisionsfräsen"
+    laser: "Laserschneiden/-gravieren"
