@@ -30,7 +30,12 @@ set :use_sudo, false
 set :rake, "#{rake} --trace"
 set :scm, "git"
 set :repository, "git@github.com:fablabbcn/#{application}.git"
-set :branch, "master"
+
+
+# use the branch specified as a param, then use the current branch. If all fails use master branch
+current_branch = `git branch`.match(/\* (\S+)\s/m)[1]
+set :branch, ENV['branch'] || current_branch || "master" # you can use the 'branch' parameter on deployment to specify the branch you wish to deploy
+
 set :default_environment, {
   'PATH' => "$HOME/.rbenv/shims:$HOME/.rbenv/bin:$PATH"
 }
