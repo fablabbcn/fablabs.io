@@ -6,6 +6,7 @@
 /app/assets/javascripts/custom/
 /app/assets/stylesheets/custom/
 /app/assets/images/custom/
+/vendor/assets/bower_components/
 
 # Ignore bundler config.
 /.bundle
