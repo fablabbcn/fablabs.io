@@ -2,9 +2,6 @@ ruby '2.0.0'
 
 source 'https://rubygems.org'
 
-# # gem 'rubysl'
-# # gem 'racc'
-# # gem "dalli"
 gem 'hpricot'
 gem 'premailer-rails'
 gem 'private_pub'
@@ -19,7 +16,6 @@ gem 'redis-rack-cache'
 gem "skylight"
 gem 'sitemap_generator'
 gem "rack-cache"
-# gem "airbrake"
 gem 'simplecov', :require => false, :group => :test
 gem 'paper_trail', '>= 3.0.0.rc2'
 gem 'sort_alphabetical'
@@ -32,12 +28,10 @@ gem 'rails', '4.0.1'
 gem 'inherited_resources'
 gem 'timezone', '~> 1.0'
 gem 'bitmask_attributes'
-# gem 'jquery-turbolinks'
 gem 'ransack', github: "ernie/ransack"
 gem 'authority', github: 'nathanl/authority'
 gem 'rolify', github: 'EppO/rolify'
 gem 'font-awesome-rails', github: 'bokmann/font-awesome-rails'
-# gem 'compass-rails' # you need this or you get an err
 gem 'acts-as-taggable-on'
 gem 'kaminari'
 gem 'ancestry', github: 'stefankroes/ancestry'
@@ -63,10 +57,6 @@ gem 'trumbowyg_rails', git: 'https://github.com/TikiTDO/trumbowyg_rails.git'
 gem 'database_cleaner', github: 'bmabey/database_cleaner'
 gem 'letter_opener'
 gem 'coffee-rails', '~> 4.0.0'
-# See https://github.com/sstephenson/execjs#readme for more supported runtimes
-# gem 'therubyracer', platforms: :ruby
-
-# Use jquery as the JavaScript library
 gem 'jquery-rails'
 
 gem "paperclip", "~> 4.2"
@@ -74,12 +64,6 @@ gem "paperclip", "~> 4.2"
 gem 'aws-s3'
 gem 'aws-sdk-v1' # Can be used together with v2 because of different namespaces.
 
-# Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-# gem 'turbolinks'
-# gem 'rspec_api_documentation'
-# gem "apitome"
-
-# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
 
 gem 'figaro'
@@ -97,7 +81,7 @@ end
 
 group :development do
   gem 'bullet', github: 'flyerhzm/bullet'
-  # gem 'localeapp', github: 'Locale/localeapp'
+  gem 'capistrano', '~> 2.15'#, group: :development
 end
 
 group :test, :development do
@@ -111,7 +95,6 @@ end
 group :test do
   gem 'zonebie'
   gem "launchy"
-  # gem "nyan-cat-formatter"
   gem "capybara"
   gem "selenium-webdriver"
   gem "capybara-webkit"
@@ -140,9 +123,3 @@ gem 'unicorn'
 
 # Use unicorn as the app server
 # gem 'unicorn'
-
-# Use Capistrano for deployment
-gem 'capistrano', '~> 2.15'#, group: :development
-
-# Use debugger
-# gem 'debugger', group: [:development, :test]
