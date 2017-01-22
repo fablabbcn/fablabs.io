@@ -1,5 +1,5 @@
 = link_to lab do
-  = image_tag hocho(lab.avatar, "o=t&q=80&d=300x300&"), class: 'big avatar', itemprop: "logo"
+  = image_tag hocho(lab.avatar_url, "o=t&q=80&d=300x300&"), class: 'big avatar', itemprop: "logo"
 
 = title lab
 .kind= "[#{lab.kind_name.humanize.titleize}]"
