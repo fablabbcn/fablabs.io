@@ -6,7 +6,7 @@ namespace :dragonfly do
         p lab.id
         p lab.avatar_src
 
-        file = Dragonfly.app.fetch_url('https://www.filepicker.io/api/file/Vlo09bYfQP2ROug0mpTM').encode('jpg')
+        file = Dragonfly.app.fetch_url(lab.avatar_src).encode('jpg')
         lab.avatar = file.data
         lab.avatar.name = "#{lab.name}.jpg"
         lab.save
