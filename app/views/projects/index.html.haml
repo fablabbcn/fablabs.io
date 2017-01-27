@@ -14,6 +14,9 @@
     - if current_user
       = link_to new_project_path, class: "btn btn-success" do
         = fa_icon "plus", text: t("views.projects.index.new_project", default: "Add a new Project")
+    - else
+      = link_to new_lab_path, class: "btn btn-success", data: {toggle: "tooltip", placement: "bottom" }, title: "You need to be signed in to add a Project" do
+        = fa_icon "plus", text: t("views.labs.index.add_a_lab", default: "Add a new Project")
 
 .row.row-no-padding
   .col-lg-12
