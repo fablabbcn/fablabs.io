@@ -1,24 +1,27 @@
 - title "Labs"
 .row.top
-  %h2 Fab Labs
-  %p
-  A Fab Lab is a technical prototyping platform for innovation and invention, providing stimulus for local entrepreneurship. A Fab Lab is also a platform for learning and innovation: a place to play, to create, to learn, to mentor, to invent. To be a Fab Lab means connecting to a global community of learners, educators, technologists, researchers, makers and innovators- -a knowledge sharing network that spans 30 countries and 24 time zones. Because all Fab Labs share common tools and processes, the program is building a global network, a distributed laboratory for research and invention.
-  %p
-  You can read more on the Fab Foundation website
-  = succeed "." do
-    %a{:href => "http://fabfoundation.org/index.php/what-is-a-fab-lab/index.html"} here
+  %h2 Labs
+.row.row-no-padding
+  .col-md-8
+    %p
+    A Fab Lab is a technical prototyping platform for innovation and invention, providing stimulus for local entrepreneurship. A Fab Lab is also a platform for learning and innovation: a place to play, to create, to learn, to mentor, to invent. To be a Fab Lab means connecting to a global community of learners, educators, technologists, researchers, makers and innovators- -a knowledge sharing network that spans 30 countries and 24 time zones. Because all Fab Labs share common tools and processes, the program is building a global network, a distributed laboratory for research and invention.
+    %p
+    You can read more on the Fab Foundation website
+    = succeed "." do
+      %a{:href => "http://fabfoundation.org/index.php/what-is-a-fab-lab/index.html"} here
 
-  %h3 Expand the Network
-  %p Here you can add your lab to the list.
-  - if current_user
-    = link_to new_lab_path, class: "btn btn-success" do
-      = fa_icon "plus", text: t("views.labs.index.add_a_lab", default: "Add a Lab")
-  - else
-    = link_to new_lab_path, class: "btn btn-success", data: {toggle: "tooltip", placement: "bottom" }, title: "You need to be signed in to add a Lab" do
-      = fa_icon "plus", text: t("views.labs.index.add_a_lab", default: "Add a Lab")
+  .col-md-4
+    %h4 Expand the Network
+    %p Here you can add your Lab to the list.
+    - if current_user
+      = link_to new_lab_path, class: "btn btn-success" do
+        = fa_icon "plus", text: t("views.labs.index.add_a_lab", default: "Add a new Lab")
+    - else
+      = link_to new_lab_path, class: "btn btn-success", data: {toggle: "tooltip", placement: "bottom" }, title: "You need to be signed in to add a Lab" do
+        = fa_icon "plus", text: t("views.labs.index.add_a_lab", default: "Add a new Lab")
 
-.row
-  .col-lg-8
+.row.row-no-padding
+  .col-lg-12
     %ol.breadcrumb
       %li= link_to Lab.to_s.pluralize, labs_path
       - if params[:country].present?
@@ -64,4 +67,3 @@
     %dl
       %dt Format:
       %dd= link_to "JSON", api_v0_labs_url(format: 'json'), class: 'btn btn-primary'
-    .hint CSV and XLSX (Excel) coming soon.
