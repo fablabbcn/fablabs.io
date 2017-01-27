@@ -1,7 +1,24 @@
-.row
+- title "Projects"
+
+.row.top
+  .col-lg-12
+  %h2 Projects
+.row.row-no-padding
+  .col-md-8
+    %p
+    The global Fab Lab Network connects makers, students, citizens and professionals with digital manufacturing and communication technologies. Anybody can share bits of digital projects globally which can then turned into atoms of physical objects locally. Fablabs.io hosts and promotes such projects within the Fab Lab Network in this section.
+
+  .col-md-4
+    %h4 Expand the Network
+    %p Here you can add your Project to the list.
+    - if current_user
+      = link_to new_project_path, class: "btn btn-success" do
+        = fa_icon "plus", text: t("views.projects.index.new_project", default: "Add a new Project")
+
+.row.row-no-padding
   .col-lg-12
     = render "breadcrumbs"
-    - title "Projects"
+
 .row
   .col-lg-12
     #project-container
@@ -14,9 +31,6 @@
 .row
   .col-lg-12
     = paginate @projects
-    - if current_user
-      = link_to new_project_path, class: "btn btn-success" do
-        = fa_icon "plus", text: t("views.projects.index.new_project", default: "New project")
     %div
       = link_to "JSON", api_v0_projects_url(format: 'json'), class: 'btn btn-primary'
       .hint CSV and XLSX (Excel) coming soon.
