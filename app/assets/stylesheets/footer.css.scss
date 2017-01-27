@@ -26,7 +26,8 @@ footer {
       display: inline !important;
   }
 
-  body.c-labs.a-map & { display: none; }
+  // This hides the footer in the Map page
+  // body.c-labs.a-map & { display: none; }
 
   ul, li {
     list-style: none;

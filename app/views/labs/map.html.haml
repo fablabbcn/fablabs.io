@@ -1,6 +1,27 @@
-- title "Map"
-#map
-.row
-  .col-lg-8
-  .col-lg-4= render "header"
+- title "Labs Map"
+.row.top
+  %h2 Labs
+.row.row-no-padding
+  .col-md-6
+    %p
+    A Fab Lab is a technical prototyping platform for innovation and invention, providing stimulus for local entrepreneurship. A Fab Lab is also a platform for learning and innovation: a place to play, to create, to learn, to mentor, to invent. To be a Fab Lab means connecting to a global community of learners, educators, technologists, researchers, makers and innovators- -a knowledge sharing network that spans 30 countries and 24 time zones. Because all Fab Labs share common tools and processes, the program is building a global network, a distributed laboratory for research and invention.
+    %p
+    You can read more on the Fab Foundation website
+    = succeed "." do
+      %a{:href => "http://fabfoundation.org/index.php/what-is-a-fab-lab/index.html"} here
+  .col-md-3
+    %h4 Expand the Network
+    %p Here you can add your Lab to the list.
+    - if current_user
+      = link_to new_lab_path, class: "btn btn-success" do
+        = fa_icon "plus", text: t("views.labs.index.add_a_lab", default: "Add a new Lab")
+    - else
+      = link_to new_lab_path, class: "btn btn-success", data: {toggle: "tooltip", placement: "bottom" }, title: "You need to be signed in to add a Lab" do
+        = fa_icon "plus", text: t("views.labs.index.add_a_lab", default: "Add a new Lab")
+  .col-md-3.list-map
+    %h4 Explore the Network
+    = render "header"
 
+.row.iframe-embed-map.row-no-padding
+  .col-ls-12
+    %iframe{:frameborder => "0", :height => "600", :marginheight => "0px", :marginwidth => "0px", :name => "labsMap", :scrolling => "no", :src => "embed", :style => "border: 0px #FFFFFF none;", :width => "100%"}
