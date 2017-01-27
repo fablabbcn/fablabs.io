@@ -1,7 +1,21 @@
 - title "Organizations"
 
 .row.top
-  .col-lg-8
+  %h2 Organizations
+.row.row-no-padding
+  .col-md-8
+    %p
+    The global Fab Lab Network has several continental, national, regional, local associations and organizations of Fab Labs and Makers. These Organizations aim at networking Labs and Makers at local level, promoting local and global projects, fundraising, organization of events and so on. Fablabs.io lists them in this section and is working on building advanced features for connecting them locally and globally even more.
+
+  .col-md-4
+    - if current_user
+      %h4 Expand the Network
+      %p Here you can add your Organization to the list.
+      = link_to new_organization_path, class: "btn btn-success" do
+        = fa_icon "plus", text: 'Add a new Organization'
+
+.row.top.row-no-padding
+  .col-lg-12
     %ol.breadcrumb
       %li Organizations
 
@@ -12,11 +26,4 @@
     = paginate @organizations
 
   .col-lg-4.sidebar-offcanvas
-    - if current_user
-      .heading
-        %strong Expand
-        the Network
-      = link_to new_organization_path, class: "btn btn-success" do
-        = fa_icon "plus", text: 'Add organization'
-
-
+    %p
