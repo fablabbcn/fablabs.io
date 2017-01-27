@@ -2,15 +2,14 @@
 .row.top
   %h2 Labs
 .row.row-no-padding
-  .col-md-8
+  .col-md-6
     %p
     A Fab Lab is a technical prototyping platform for innovation and invention, providing stimulus for local entrepreneurship. A Fab Lab is also a platform for learning and innovation: a place to play, to create, to learn, to mentor, to invent. To be a Fab Lab means connecting to a global community of learners, educators, technologists, researchers, makers and innovators- -a knowledge sharing network that spans 30 countries and 24 time zones. Because all Fab Labs share common tools and processes, the program is building a global network, a distributed laboratory for research and invention.
     %p
     You can read more on the Fab Foundation website
     = succeed "." do
       %a{:href => "http://fabfoundation.org/index.php/what-is-a-fab-lab/index.html"} here
-
-  .col-md-4
+  .col-md-3
     %h4 Expand the Network
     %p Here you can add your Lab to the list.
     - if current_user
@@ -19,6 +18,9 @@
     - else
       = link_to new_lab_path, class: "btn btn-success", data: {toggle: "tooltip", placement: "bottom" }, title: "You need to be signed in to add a Lab" do
         = fa_icon "plus", text: t("views.labs.index.add_a_lab", default: "Add a new Lab")
+  .col-md-3.list-map
+    %h4 Explore the Network
+    = render "header"
 
 .row.row-no-padding
   .col-lg-12
@@ -31,8 +33,6 @@
             = ISO3166::Country[params[:country]]
       - else
         %li.active= link_to t("views.labs.index.all_countries"), labs_path
-  .col-lg-4
-    = render "header"
 
 .row
   - cache ["v2-labsindex-#{I18n.locale}-#{Digest::MD5.hexdigest([params.to_s].to_s)}", Lab.last_updated_at] do
