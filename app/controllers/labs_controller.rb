@@ -126,6 +126,7 @@ private
 
   def lab_params
     params.require(:lab).permit(
+      :avatar,
       :kind,
       :parent_id,
       :referee_id,
