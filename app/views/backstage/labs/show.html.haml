@@ -34,10 +34,10 @@
         %th Avatar
         %td= image_tag @lab.avatar.url, class: 'avatar med'
 
-      - if @lab.header_url.present?
+      - if @lab.header.present?
         %tr
           %th Header
-          %td= image_tag @lab.header_url, class: 'avatar med'
+          %td= image_tag @lab.header.url, class: 'avatar med'
       %tr
         %th Slug
         %td= @lab.slug
