@@ -11,14 +11,6 @@ class Lab < ActiveRecord::Base
 
   dragonfly_accessor :header
 
-  def header_url
-    if header.present?
-      header.url
-    else
-      header_image_src
-    end
-  end
-
   self.authorizer_name = 'LabAuthorizer'
   resourcify
   has_ancestry
