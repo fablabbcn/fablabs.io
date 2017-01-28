@@ -12,7 +12,7 @@
               %span
                 = icon('code')
             .owner-btn
-              = image_tag hocho(@project.owner.avatar, "o=t&q=80&d=90x90"), class: 'avatar tiny'
+              = image_tag hocho(@project.owner.avatar_url, "o=t&q=80&d=90x90"), class: 'avatar tiny'
               = link_to @project.owner do
                 %strong= @project.owner.username
         .col-lg-8
