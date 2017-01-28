@@ -84,6 +84,7 @@
           = image_tag @lab.header.url, class: 'avatar big'
       .col-lg-9
         = f.input :header, as: :file, label: 'Header', hint: "A single (large) photo of your lab. You will be able to add more photos soon."
+        = f.hidden_field :retained_header
 
   %fieldset
     %legend Lab Location
