@@ -11,7 +11,7 @@
           .person{itemscope: true, itemtype: "http://data-vocabulary.org/Person"}
             .media
               .pull-left
-                = image_tag hocho(employee.user.avatar, "o=t&q=80&d=90x90"), class: 'avatar med employee'
+                = image_tag employee.user.avatar_url, class: 'avatar med employee'
               .media-body
                 = link_to employee.user, class: 'person-name' do
                   %span.first_name{itemprop: "givenName"}= employee.user.first_name
