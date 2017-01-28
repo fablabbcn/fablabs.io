@@ -32,7 +32,7 @@
 
       %tr
         %th Avatar
-        %td= image_tag @lab.avatar_url, class: 'avatar med'
+        %td= image_tag @lab.avatar.url, class: 'avatar med'
 
       - if @lab.header_image_src.present?
         %tr
