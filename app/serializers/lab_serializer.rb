@@ -10,7 +10,7 @@ class LabSerializer < ActiveModel::Serializer
     :description,
     :slug,
     :avatar_url,
-    :header_image_src,
+    :header_url,
     :address_1,
     :address_2,
     :city,
@@ -41,6 +41,14 @@ class LabSerializer < ActiveModel::Serializer
 
   def avatar_url
     Dragonfly.app.remote_url_for(object.avatar_uid)
+  end
+
+  def header_url
+    if object.header.present?
+      Dragonfly.app.remote_url_for(object.header_uid)
+    else
+      header_image_src
+    end
   end
 
   # def cache_key

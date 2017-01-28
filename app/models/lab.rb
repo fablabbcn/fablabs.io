@@ -9,6 +9,16 @@ class Lab < ActiveRecord::Base
     default 'public/default-lab-avatar.png'
   end
 
+  dragonfly_accessor :header
+
+  def header_url
+    if header.present?
+      header.url
+    else
+      header_image_src
+    end
+  end
+
   self.authorizer_name = 'LabAuthorizer'
   resourcify
   has_ancestry
@@ -64,7 +74,6 @@ class Lab < ActiveRecord::Base
   validates :slug, format: {:with => /\A[a-zA-Z0-9]+\z/ }, allow_nil: true, allow_blank: true, length: { minimum: 3 }
   validates_format_of :email, :with => /\A(.+)@(.+)\z/, allow_blank: true
   validates_uniqueness_of :name, :slug, case_sensitive: false
-  validates :header_image_src, image: true, allow_blank: true
   validate :excluded_slug
 
   def excluded_slug

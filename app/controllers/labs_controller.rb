@@ -127,6 +127,7 @@ private
   def lab_params
     params.require(:lab).permit(
       :avatar,
+      :header,
       :kind,
       :parent_id,
       :referee_id,
@@ -136,7 +137,6 @@ private
       :blurb,
       :description,
       :slug,
-      :header_image_src,
       :address_1,
       :address_2,
       :city,
