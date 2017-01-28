@@ -8,6 +8,10 @@ Dragonfly.app.configure do
 
   url_format "/media/:job/:name"
 
+  fetch_file_whitelist [
+    /public/
+  ]
+
   datastore :s3,
     bucket_name: Figaro.env.S3_BUCKET,
     access_key_id: Figaro.env.S3_KEY,
