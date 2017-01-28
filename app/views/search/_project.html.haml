@@ -2,7 +2,7 @@
   = content_tag_for :div, project, class: 'media', itemscope: true do
     .img.pull-left
       = link_to project.owner do
-        = image_tag hocho(project.owner.avatar, "o=t&q=80&d=90x90"), class: 'avatar'
+        = image_tag hocho(project.owner.avatar_url, "o=t&q=80&d=90x90"), class: 'avatar'
     .media-body
       = link_to project.title, project
       %span
