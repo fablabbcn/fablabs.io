@@ -293,21 +293,6 @@ describe Lab do
 
   end
 
-
-  describe "avatar" do
-
-    it "has default avatar" do
-      lab = FactoryGirl.build_stubbed(:lab)
-      expect(lab.avatar_url).to include('iymHWkm.png')
-    end
-
-    it "has custom avatar" do
-      lab = FactoryGirl.build_stubbed(:lab, avatar_src: 'http://i.imgur.com/XYBgt.gif')
-      expect(lab.avatar_url).to include('http://i.imgur.com/XYBgt.gif')
-    end
-
-  end
-
   it "has many machines/facilities" do
     lab = FactoryGirl.create(:lab)
     machine = FactoryGirl.create(:machine)
