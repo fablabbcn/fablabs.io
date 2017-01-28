@@ -40,14 +40,14 @@ class LabSerializer < ActiveModel::Serializer
   end
 
   def avatar_url
-    Dragonfly.app.remote_url_for(object.avatar_uid)
+    if object.avatar_uid.present?
+      Dragonfly.app.remote_url_for(object.avatar_uid)
+    end
   end
 
   def header_url
     if object.header.present?
       Dragonfly.app.remote_url_for(object.header_uid)
-    else
-      header_image_src
     end
   end
 
