@@ -106,16 +106,16 @@ describe User do
     end
   end
 
-  describe "avatar" do
+  describe "avatar_url" do
     it "has default avatar" do
       user = FactoryGirl.build_stubbed(:user)
-      expect(user.avatar).to include('gravatar')
-      expect(user.avatar).to include('default-user-avatar')
+      expect(user.avatar_url).to include('gravatar')
+      expect(user.avatar_url).to include('default-user-avatar')
     end
 
     it "has custom avatar" do
       user = FactoryGirl.build_stubbed(:user, avatar_src: 'http://i.imgur.com/XYBgt.gif')
-      expect(user.avatar).to eq('http://i.imgur.com/XYBgt.gif')
+      expect(user.avatar_url).to eq('http://i.imgur.com/XYBgt.gif')
     end
   end
 
