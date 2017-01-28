@@ -9,6 +9,10 @@ class User < ActiveRecord::Base
 
   before_create :generate_fab10_coupon_code
 
+  dragonfly_accessor :avatar do
+    default 'public/default-user-avatar.png'
+  end
+
   include Workflow
   include VerifyWorkflow
 
@@ -58,8 +62,10 @@ class User < ActiveRecord::Base
   before_create { generate_token(:email_validation_hash) }
   before_create :downcase_email
 
-  def avatar
-    if avatar_src.present?
+  def avatar_url
+    if avatar_uid.present?
+      avatar.thumb('150x150#').url
+    elsif avatar_src.present?
       avatar_src
     else
       default_url = "https://www.fablabs.io/default-user-avatar.png"
