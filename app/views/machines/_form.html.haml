@@ -3,7 +3,6 @@
     %legend General
     = render "form_errors", resource: machine
     = f.association :brand, hint: "Not in the list? #{link_to 'Add a new brand', new_brand_path}".html_safe
-    = f.input :parent_id
     = f.input :name
     = f.input :description
 
