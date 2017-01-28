@@ -9,7 +9,7 @@ class LabSerializer < ActiveModel::Serializer
     :blurb,
     :description,
     :slug,
-    :avatar,
+    :avatar_url,
     :header_image_src,
     :address_1,
     :address_2,
@@ -37,6 +37,10 @@ class LabSerializer < ActiveModel::Serializer
 
   def url
     lab_url(object)
+  end
+
+  def avatar_url
+    avatar.url
   end
 
   # def cache_key
