@@ -219,7 +219,7 @@ class Lab < ActiveRecord::Base
     if latitude_changed? or longitude_changed?
       begin
         self.time_zone = (Timezone::Zone.new :latlon => [latitude, longitude]).zone
-      rescue Timezone::Error::NilZone
+      rescue NoMethodError
       end
     end
   end
