@@ -7,8 +7,8 @@ namespace :dragonfly do
         p lab.header_image_src
 
         file = Dragonfly.app.fetch_url(lab.header_image_src).encode('jpg')
-        lab.avatar = file.data
-        lab.avatar.name = "#{lab.name}.jpg"
+        lab.header = file.data
+        lab.header.name = "#{lab.name}.jpg"
         lab.save
       end
     end
