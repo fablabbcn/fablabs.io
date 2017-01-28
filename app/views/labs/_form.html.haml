@@ -80,9 +80,10 @@
     %hr/
     .row
       .col-lg-3
-        - if @lab.header_image_src.present?
-          = image_tag @lab.header_image_src, class: 'avatar big'
-      .col-lg-9= f.input :header_image_src, input_html: { class: 'fp', data: { fp_store_location: 'S3', fp_store_path: "labs/photos/", fp_store_container: ENV['S3_BUCKET'] } }, label: 'Photo', hint: "A single (large) photo of your lab. You will be able to add more photos soon."
+        - if @lab.header.present?
+          = image_tag @lab.header.url, class: 'avatar big'
+      .col-lg-9
+        = f.input :header, as: :file, label: 'Header', hint: "A single (large) photo of your lab. You will be able to add more photos soon."
 
   %fieldset
     %legend Lab Location

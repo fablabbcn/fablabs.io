@@ -15,8 +15,8 @@
   .row.main
     .col-lg-8.content
       .lab-description{itemprop: "description"}= simple_format @lab.description
-      - if @lab.header_image_src.present?
-        = image_tag hocho(@lab.header_image_src, "o=r&d=800"), class: 'big-picture', itemprop: "image"
+      - if @lab.header_url.present?
+        = image_tag hocho(@lab.header_url, "o=r&d=800"), class: 'big-picture', itemprop: "image"
 
       - if current_or_null_user.can_read?(Event) and @events.length > 0
         = render("events", lab: @lab, events: @events)
