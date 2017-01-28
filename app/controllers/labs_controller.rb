@@ -135,7 +135,6 @@ private
       :blurb,
       :description,
       :slug,
-      :avatar_src,
       :header_image_src,
       :address_1,
       :address_2,
