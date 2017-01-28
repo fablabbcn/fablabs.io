@@ -64,7 +64,6 @@ class Lab < ActiveRecord::Base
   validates :slug, format: {:with => /\A[a-zA-Z0-9]+\z/ }, allow_nil: true, allow_blank: true, length: { minimum: 3 }
   validates_format_of :email, :with => /\A(.+)@(.+)\z/, allow_blank: true
   validates_uniqueness_of :name, :slug, case_sensitive: false
-  validates :avatar_src, image: true, allow_blank: true
   validates :header_image_src, image: true, allow_blank: true
   validate :excluded_slug
 
@@ -138,16 +137,6 @@ class Lab < ActiveRecord::Base
 
   def short_address include_country = true
     [city, county, (country if include_country)].reject(&:blank?).join(", ")
-  end
-
-  def avatar_url
-    if avatar_uid.present?
-      avatar.remote_url
-    elsif avatar_src.present?
-      avatar_src
-    else
-      'https://i.imgur.com/iymHWkm.png'
-    end
   end
 
   def to_s
