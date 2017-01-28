@@ -296,16 +296,14 @@ describe Lab do
 
   describe "avatar" do
 
-    pending "uses self-hosted avatar"
-
     it "has default avatar" do
       lab = FactoryGirl.build_stubbed(:lab)
-      expect(lab.avatar).to include('iymHWkm.png')
+      expect(lab.avatar_url).to include('iymHWkm.png')
     end
 
     it "has custom avatar" do
       lab = FactoryGirl.build_stubbed(:lab, avatar_src: 'http://i.imgur.com/XYBgt.gif')
-      expect(lab.avatar).to include('http://i.imgur.com/XYBgt.gif')
+      expect(lab.avatar_url).to include('http://i.imgur.com/XYBgt.gif')
     end
 
   end
@@ -318,7 +316,4 @@ describe Lab do
     expect(lab.facilities).to include(machine.facilities.first)
     expect(machine.labs).to include(lab)
   end
-
-  it "has .direct_admins"
-
 end
