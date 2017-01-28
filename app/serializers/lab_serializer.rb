@@ -40,7 +40,7 @@ class LabSerializer < ActiveModel::Serializer
   end
 
   def avatar_url
-    avatar.url
+    Dragonfly.app.remote_url_for(object.avatar_uid)
   end
 
   # def cache_key
