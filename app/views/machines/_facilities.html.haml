@@ -14,7 +14,7 @@
               %span
                 - if c.persisted?
                   = link_to icon('times'), facility_path(c), method: :delete
-                = image_tag hocho(c.lab.avatar_url, "o=t&q=80&d=90x90"), class: 'avatar tiny'
+                = image_tag c.lab.avatar.thumb("90x90#").url, class: 'avatar tiny'
 
   .col-lg-9
     - @selected = @machine.facilities.collect

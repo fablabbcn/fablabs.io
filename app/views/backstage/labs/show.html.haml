@@ -25,7 +25,7 @@
           - if c.referee_lab.present? and c.id
             %tr
               %th
-                = image_tag hocho(c.referee_lab.avatar_url, "o=t&q=80&d=90x90"), class: 'avatar tiny'
+                = image_tag c.referee_lab.avatar.thumb("90x90#").url, class: 'avatar tiny'
               %td
                 = link_to link_to c.referee_lab, c.referee_lab
                 = c.action
