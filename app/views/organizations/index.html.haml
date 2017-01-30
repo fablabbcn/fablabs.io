@@ -14,8 +14,8 @@
       = link_to new_organization_path, class: "btn btn-success" do
         = fa_icon "plus", text: 'Add a new Organization'
     - else
-      = link_to new_lab_path, class: "btn btn-success", data: {toggle: "tooltip", placement: "bottom" }, title: "You need to be signed in to add an Organization" do
-        = fa_icon "plus", text: t("views.labs.index.add_a_lab", default: "Add a new Organization")
+      = link_to new_organization_path, class: "btn btn-success", data: {toggle: "tooltip", placement: "bottom" }, title: "You need to be signed in to add an Organization" do
+        = fa_icon "plus", text: 'Add a new Organization'
 
 .row.top.row-no-padding
   .col-lg-12
