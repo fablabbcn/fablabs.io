@@ -12,12 +12,12 @@
     .col-md-4
       %h4 Expand the Network
       %p Here you can add new Machines to the list.
-      - if current_user
+      - if current_or_null_user.can_create?(Machine)
         = link_to new_machine_path, class: "btn btn-success" do
-          = fa_icon "plus", text: t("views.labs.index.add_a_machine", default: "Add a new Machine")
+          = fa_icon "plus", text: t("views.labs.index.add_a_machine", default: "New Machine")
       - else
         = link_to new_machine_path, class: "btn btn-success", data: {toggle: "tooltip", placement: "bottom" }, title: "You need to be signed in to add a Machine" do
-          = fa_icon "plus", text: t("views.labs.index.add_a_machine", default: "Add a new Machine")
+          = fa_icon "plus", text: t("views.labs.index.add_a_machine", default: "New Machine")
 
 
   .row.row-no-padding
