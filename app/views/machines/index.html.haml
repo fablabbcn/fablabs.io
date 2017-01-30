@@ -12,7 +12,7 @@
     .col-md-4
       %h4 Expand the Network
       %p Here you can add new Machines to the list.
-      - if current_user
+      - if if current_or_null_user.can_create?(Machine)
         = link_to new_machine_path, class: "btn btn-success" do
           = fa_icon "plus", text: "Add a new Machine"
       - else
