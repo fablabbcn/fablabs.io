@@ -1,4 +1,7 @@
 class MachinesController < ThingsController
+
+  before_filter :require_login, only: [:new, :create, :update, :edit]
+  
   defaults :resource_class => Machine
 
   def show
