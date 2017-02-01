@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170201050908) do
+ActiveRecord::Schema.define(version: 20170201052313) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -395,6 +395,10 @@ ActiveRecord::Schema.define(version: 20170201050908) do
     t.string   "googleplus"
     t.string   "youtube"
     t.string   "vimeo"
+    t.string   "avatar_uid"
+    t.string   "avatar_name"
+    t.string   "header_uid"
+    t.string   "header_name"
   end
 
   create_table "pages", force: true do |t|

@@ -1,5 +1,5 @@
 - content_for(:meta) do
-  %meta{content: hocho(@organization.avatar, "o=t&q=80&d=300x300&"), property: "og:image"}/
+  %meta{content: @organization.avatar.thumb("300x300#").url, property: "og:image"}/
   %meta{content: @organization.description, property: "og:description"}/
 
 
@@ -23,8 +23,8 @@
     .col-lg-8.content
       .lab-description{itemprop: "description"}
         = simple_format @organization.description
-      - if @organization.header_image_src.present?
-        = image_tag hocho(@organization.header_image_src, "o=r&d=800"), class: 'big-picture', itemprop: "image"
+      - if @organization.header.present?
+        = image_tag @organization.header.thumb("800x").url, class: 'big-picture', itemprop: "image"
 
       %h3 Labs
       - @organization.lab_organizations.accepted.each do |lab_organization|

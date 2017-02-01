@@ -8,6 +8,13 @@ class Organization < ActiveRecord::Base
     STATE_REJECTED = 'rejected'.freeze
   ].freeze
 
+
+  dragonfly_accessor :avatar do
+    default 'public/default-lab-avatar.png'
+  end
+
+  dragonfly_accessor :header
+
   has_many :labs, through: :lab_organizations
   has_many :lab_organizations
 
@@ -38,14 +45,6 @@ class Organization < ActiveRecord::Base
 
   def should_generate_new_friendly_id?
     new_record?
-  end
-
-  def avatar
-    if avatar_src.present?
-      avatar_src
-    else
-      'https://i.imgur.com/iymHWkm.png'
-    end
   end
 
   def to_s
