@@ -65,8 +65,6 @@ class User < ActiveRecord::Base
   def avatar_url
     if avatar_uid.present?
       avatar.thumb('150x150#').url
-    elsif avatar_src.present?
-      avatar_src
     else
       default_url = "https://www.fablabs.io/default-user-avatar.png"
       gravatar_id = Digest::MD5.hexdigest(email.downcase)
