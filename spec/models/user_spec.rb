@@ -112,11 +112,6 @@ describe User do
       expect(user.avatar_url).to include('gravatar')
       expect(user.avatar_url).to include('default-user-avatar')
     end
-
-    it "has custom avatar" do
-      user = FactoryGirl.build_stubbed(:user, avatar_src: 'http://i.imgur.com/XYBgt.gif')
-      expect(user.avatar_url).to eq('http://i.imgur.com/XYBgt.gif')
-    end
   end
 
   describe "locale" do
