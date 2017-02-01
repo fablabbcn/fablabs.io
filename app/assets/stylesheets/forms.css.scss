@@ -101,6 +101,10 @@ fieldset {
   transition: none;
 }
 
-input:focus {
-    color: #000 !important;
+input {
+    color: #555 !important;
+}
+
+input.btn {
+    color: #fff !important;
 }
