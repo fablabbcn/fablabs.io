@@ -47,9 +47,8 @@ class OrganizationsController < ApplicationController
       :description,
       :kind,
       :blurb,
-      :avatar_src,
-      :header_image_src,
-
+      :avatar,
+      :header,
       :phone,
       :email,
       :latitude,
