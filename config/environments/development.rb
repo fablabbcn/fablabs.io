@@ -34,7 +34,7 @@ Fablabs::Application.configure do
   config.consider_all_requests_local       = true
 
 
-  config.action_controller.perform_caching = true
+  config.action_controller.perform_caching = false
   config.cache_store = :redis_store, 'redis://localhost:6379/0/cache', { expires_in: 90.minutes }
   config.action_dispatch.rack_cache = {
     metastore:   'redis://localhost:6379/0/metastore',
