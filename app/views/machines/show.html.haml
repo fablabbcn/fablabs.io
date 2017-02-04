@@ -11,9 +11,8 @@
         %h1= @machine
 
         = simple_format(@machine.description)
-
-        -# = image_tag @machine.photo_src
-        = image_tag hocho(@machine.photo_src, "o=r&q=80&d=800x800>")
+        - if @machine.photo.present?
+          = image_tag @machine.photo.thumb("800x800>").url
 
     .col-lg-4.side
 

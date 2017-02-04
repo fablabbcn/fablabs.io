@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170204094517) do
+ActiveRecord::Schema.define(version: 20170204105626) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -531,6 +531,8 @@ ActiveRecord::Schema.define(version: 20170204094517) do
     t.boolean  "inventory_item",   default: false
     t.string   "discourse_id"
     t.text     "discourse_errors"
+    t.string   "photo_uid"
+    t.string   "photo_name"
   end
 
   add_index "things", ["brand_id"], name: "index_things_on_brand_id", using: :btree
