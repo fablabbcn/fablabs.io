@@ -14,23 +14,23 @@ windowHeight = ->
 formatUser = (res) ->
   if res.loading
     return res
-  markup = "<img alt='" + res.username + "' class='avatar tiny' src='" + res.avatar + "'>" + "&nbsp;&nbsp;&nbsp;" + res.username
+  markup = "<img alt='" + res.username + "' class='avatar tiny' src='" + res.avatar_url + "'>" + "&nbsp;&nbsp;&nbsp;" + res.username
   markup
 
 
 formatUserSelection = (res) ->
-  "<img alt='" + res.username + "' class='avatar tiny' src='" + res.avatar + "'>" + "&nbsp;&nbsp;&nbsp;" + res.username
+  "<img alt='" + res.username + "' class='avatar tiny' src='" + res.avatar_url + "'>" + "&nbsp;&nbsp;&nbsp;" + res.username
 
 
 formatLab = (res) ->
   if res.loading
     return res
-  markup = "<img alt='" + res.name + "' class='avatar tiny' src='" + res.avatar + "'>" + "&nbsp;&nbsp;&nbsp;" + res.name
+  markup = "<img alt='" + res.name + "' class='avatar tiny' src='" + res.avatar_url + "'>" + "&nbsp;&nbsp;&nbsp;" + res.name
   markup
 
 
 formatLabSelection = (res) ->
-  "<img alt='" + res.name + "' class='avatar tiny' src='" + res.avatar + "'>" + "&nbsp;&nbsp;&nbsp;" + res.name
+  "<img alt='" + res.name + "' class='avatar tiny' src='" + res.avatar_url + "'>" + "&nbsp;&nbsp;&nbsp;" + res.name
 
 
 triglify = (h, w) ->
