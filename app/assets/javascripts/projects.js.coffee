@@ -55,12 +55,12 @@ $(window).load ->
       else
         $($($(this).parent()).children()[0]).click()
 
-  if ($(".document_image")[0])
-    val = $(".document_image")[0].value
+  if ($(".document_photo")[0])
+    val = $(".document_photo")[0].value
     $("#file-input-name").text(val)
 
-    $(".document_image").on "change", ->
-      val = $(".document_image")[0].value
+    $(".document_photo").on "change", ->
+      val = $(".document_photo")[0].value
       $("#file-input-name").text(val)
 
   if ($("#project-container"))

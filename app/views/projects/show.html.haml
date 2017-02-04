@@ -25,7 +25,6 @@
             %li
               = link_to document.image.url(:large), class: "image_link th [radius]" do
                 = image_tag document.image.url(:thumb)
-
     - unless @project.steps.empty?
       .heading
         = icon('cog')
