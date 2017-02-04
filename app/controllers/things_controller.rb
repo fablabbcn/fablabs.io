@@ -7,7 +7,6 @@ class ThingsController < ApplicationController
       :brand_id,
       :description,
       :parent_id,
-      :photo_src,
       :photo,
       :tag_list,
       :inventory_item,
