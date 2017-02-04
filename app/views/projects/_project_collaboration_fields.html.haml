@@ -12,7 +12,7 @@
           %li
             %span
               = link_to icon('times'), collaboration_path(c), method: :delete
-              = image_tag c.collaborator.avatar, class: 'avatar tiny'
+              = image_tag c.collaborator.avatar.thumb("50x50#").url, class: 'avatar tiny'
 
 .col-lg-8
   - @selected = @project.collaborators.collect
