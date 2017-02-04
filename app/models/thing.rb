@@ -4,6 +4,8 @@ class Thing < ActiveRecord::Base
 
   after_create :update_photo_src
 
+  dragonfly_accessor :photo
+
   has_ancestry
   belongs_to :brand
   validates_presence_of :name

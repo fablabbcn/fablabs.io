@@ -1,7 +1,8 @@
 - cache ["v2", machine] do
   = content_tag_for :div, machine do
     = link_to machine do
-      = image_tag hocho(machine.photo_src, "o=t&q=80&d=200x200&f=jpg")
+      - if machine.photo.present?
+        = image_tag machine.photo.thumb("200x200>").url
       %span.machine-brand= machine.brand
       %span.machine-name= machine
       %span.machine-tags= machine.tags.map(&:name).join(',')
