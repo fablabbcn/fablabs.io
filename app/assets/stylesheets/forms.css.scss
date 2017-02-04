@@ -43,21 +43,6 @@ fieldset {
   }
 }
 
-::-webkit-input-placeholder { /* WebKit, Blink, Edge */
-    color:    #555;
-}
-:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
-   color:    #555;
-   opacity:  1;
-}
-::-moz-placeholder { /* Mozilla Firefox 19+ */
-   color:    #555;
-   opacity:  1;
-}
-:-ms-input-placeholder { /* Internet Explorer 10-11 */
-   color:    #555;
-}
-
 .fp {
   border: none !important;
   box-shadow: none !important;
