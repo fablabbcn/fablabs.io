@@ -8,6 +8,7 @@ class ThingsController < ApplicationController
       :description,
       :parent_id,
       :photo_src,
+      :photo,
       :tag_list,
       :inventory_item,
       links_attributes: [ :id, :link_id, :description, :url, '_destroy' ],
