@@ -20,7 +20,7 @@
             Please select a Parent Lab
           %p
             Is this Lab connected to another Lab? If so, which Lab?
-          = f.input :parent_id, as: 'select', label: false, collection: Lab.with_approved_state.order('name ASC'), input_html: { class: 'enhanced' }
+          = f.input :parent_id, as: 'select', collection: Lab.with_approved_state.order('name ASC'), input_html: { class: 'enhanced' }
 
   %fieldset
     %legend Basic Details
