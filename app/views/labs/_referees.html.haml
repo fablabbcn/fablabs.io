@@ -12,5 +12,7 @@
 .row
   .col-lg-12
     - @selected = @lab.referee_approval_processes.map{|u| u.referee_lab_id}.collect
+    %label{for: "referee_approval_processes_attributes"}
+    Referees
 
     = select_tag :referee_approval_processes_attributes, options_from_collection_for_select(Lab.approved_referees.collect, :id, :slug, @selected), { multiple: true, name: 'lab[referee_approval_processes_attributes][][referee_lab_id]', class: 'referee_approval form-control'}
