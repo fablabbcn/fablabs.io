@@ -6,7 +6,7 @@ feature "Viewing a machine" do
 
   scenario "as a visitor" do
     visit machine_path(machine)
-    expect(page).to have_title(machine)
+    expect(page).to have_css('h1', text: machine.name)
   end
 
   scenario "as a user" do
