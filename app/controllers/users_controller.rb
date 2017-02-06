@@ -82,7 +82,7 @@ private
       :password,
       :password_confirmation,
       :country_code,
-      :avatar_src,
+      :avatar,
       :use_metric,
       :bio,
       :url,

@@ -1,15 +1,16 @@
-.col-lg-4
-  Select 3 Referee Labs.
-  .selections
-    %ul
-      - @lab.referee_approval_processes.each do |c|
-        - if c.referee_lab.present? and c.id
-          %li
-            %span
-              = link_to icon('times'), referee_approval_process_path(c), method: :delete
-              = image_tag c.referee_lab.avatar.thumb('90x90#').url, class: 'avatar tiny'
+.row
+  .col-lg-12
+    .selections
+      %ul
+        - @lab.referee_approval_processes.each do |c|
+          - if c.referee_lab.present? and c.id
+            %li
+              %span
+                = link_to icon('times'), referee_approval_process_path(c), method: :delete
+                = image_tag c.referee_lab.avatar.thumb('90x90#').url, class: 'avatar tiny'
 
-.col-lg-8
+
+.col-lg-12
   - @selected = @lab.referee_approval_processes.map{|u| u.referee_lab_id}.collect
   %label{for: "referee_approval_processes_attributes"}
     Referees

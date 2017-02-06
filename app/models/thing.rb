@@ -2,7 +2,7 @@ class Thing < ActiveRecord::Base
   include Authority::Abilities
   self.authorizer_name = 'ThingAuthorizer'
 
-  after_create :update_photo_src
+  dragonfly_accessor :photo
 
   has_ancestry
   belongs_to :brand
@@ -42,13 +42,4 @@ class Thing < ActiveRecord::Base
   def self.last_updated_at
     self.select(:updated_at).order('updated_at DESC').first
   end
-
-  private
-
-    def update_photo_src
-      if self.photo_src.present? and self.photo_src.empty?
-        self.photo_src = self.documents.first.image.url(:large) if documents.first
-      end
-    end
-
 end
