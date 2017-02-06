@@ -1,17 +1,22 @@
-.col-lg-4
-  Select 3 Referee Labs.
-  .selections
-    %ul
-      - @lab.referee_approval_processes.each do |c|
-        - if c.referee_lab.present? and c.id
-          %li
-            %span
-              = link_to icon('times'), referee_approval_process_path(c), method: :delete
-              = image_tag c.referee_lab.avatar.thumb('90x90#').url, class: 'avatar tiny'
+.row
+  .col-lg-12
+    %h5
+      Please select 3 Referee Labs.
+    %p
+      Please choose 3 of the Referee Labs available and contact them, they will approve you after you have exchanged more information with them. The list of Referee Labs is limited to some Fab Labs with experience and a history of collaborating with the global Fab Lab Network, at the moment it is not possible to choose Referee Labs outside that list. It's not important that you already know them, it's important that you start a discussion with them. We are doing this so that the connections among the Labs (especially for new Labs) get strengthened.
+.row
+  .col-lg-12
+    .selections
+      %ul
+        - @lab.referee_approval_processes.each do |c|
+          - if c.referee_lab.present? and c.id
+            %li
+              %span
+                = link_to icon('times'), referee_approval_process_path(c), method: :delete
+                = image_tag c.referee_lab.avatar.thumb('90x90#').url, class: 'avatar tiny'
 
-.col-lg-8
-  - @selected = @lab.referee_approval_processes.map{|u| u.referee_lab_id}.collect
-  %label{for: "referee_approval_processes_attributes"}
-    Referees
+.row
+  .col-lg-12
+    - @selected = @lab.referee_approval_processes.map{|u| u.referee_lab_id}.collect
 
-  = select_tag :referee_approval_processes_attributes, options_from_collection_for_select(Lab.approved_referees.collect, :id, :slug, @selected), { multiple: true, name: 'lab[referee_approval_processes_attributes][][referee_lab_id]', class: 'referee_approval form-control'}
+    = select_tag :referee_approval_processes_attributes, options_from_collection_for_select(Lab.approved_referees.collect, :id, :slug, @selected), { multiple: true, name: 'lab[referee_approval_processes_attributes][][referee_lab_id]', class: 'referee_approval form-control'}

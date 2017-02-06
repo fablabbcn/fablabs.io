@@ -7,7 +7,14 @@
         Important Information
 
       = render 'referees', :f => f
-      = f.input :parent_id, label: "Parent Lab", as: 'select', collection: Lab.with_approved_state.order('name ASC'), hint: "Is this lab connected to another lab? If so, which lab?", input_html: { class: 'enhanced' }
+
+      .row
+        .col-lg-12
+          %h5
+            Please select a Parent Lab
+          %p
+            Is this Lab connected to another Lab? If so, which Lab?
+          = f.input :parent_id, as: 'select', label: false, collection: Lab.with_approved_state.order('name ASC'), input_html: { class: 'enhanced' }
 
   %fieldset
     %legend Basic Details
@@ -19,9 +26,6 @@
         = f.radio_button :kind, index
         %label.radio{style: "width: 160px;"}
           = m.humanize.titleize
-
-
-
 
   %fieldset
     %legend  What qualifies as a Fablab
