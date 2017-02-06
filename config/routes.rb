@@ -37,11 +37,7 @@ Fablabs::Application.routes.draw do
     resources :chat_messages
     get 'chat' => 'chat_messages#index', as: 'chat'
 
-    %w(books machines).each do |thing|
-      resources thing do
-        # resources :discussions
-      end
-    end
+    resources :machines
 
     resources :brands
 

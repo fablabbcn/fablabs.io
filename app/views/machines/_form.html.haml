@@ -12,7 +12,14 @@
 
   %fieldset
     %legend Media
-    = render "media", { :f => f, :machine => machine }
+    .row
+      .col-lg-3
+        - if machine.photo.present?
+          = image_tag machine.photo.thumb('150x150#').url, class: 'avatar big'
+      .col-lg-9
+        = f.input :photo, as: :file, label: 'Photo'
+        = f.hidden_field :retained_photo
+
   %fieldset
     %legend Tags
     = f.input :tag_list

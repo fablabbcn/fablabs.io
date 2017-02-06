@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170128152016) do
+ActiveRecord::Schema.define(version: 20170204133232) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -359,8 +359,6 @@ ActiveRecord::Schema.define(version: 20170128152016) do
     t.string   "slug"
     t.string   "kind"
     t.string   "blurb"
-    t.string   "avatar_src"
-    t.string   "header_image_src"
     t.string   "phone"
     t.string   "email"
     t.text     "application_notes"
@@ -395,6 +393,10 @@ ActiveRecord::Schema.define(version: 20170128152016) do
     t.string   "googleplus"
     t.string   "youtube"
     t.string   "vimeo"
+    t.string   "avatar_uid"
+    t.string   "avatar_name"
+    t.string   "header_uid"
+    t.string   "header_name"
   end
 
   create_table "pages", force: true do |t|
@@ -524,11 +526,12 @@ ActiveRecord::Schema.define(version: 20170128152016) do
     t.integer  "creator_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "photo_src"
     t.string   "type"
     t.boolean  "inventory_item",   default: false
     t.string   "discourse_id"
     t.text     "discourse_errors"
+    t.string   "photo_uid"
+    t.string   "photo_name"
   end
 
   add_index "things", ["brand_id"], name: "index_things_on_brand_id", using: :btree
@@ -542,7 +545,6 @@ ActiveRecord::Schema.define(version: 20170128152016) do
     t.string   "email"
     t.string   "username"
     t.string   "password_digest"
-    t.string   "avatar_src"
     t.string   "phone"
     t.string   "city"
     t.string   "country_code"
