@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
 
-  layout 'sessions'
+  layout 'application'
 
   def new
     return redirect_to root_url, notice: "You're already signed in" if current_user
