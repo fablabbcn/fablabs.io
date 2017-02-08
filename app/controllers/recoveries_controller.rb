@@ -1,6 +1,6 @@
 class RecoveriesController < ApplicationController
 
-  layout 'sessions'
+  layout 'application'
 
   def check_inbox; end
 
