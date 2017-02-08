@@ -6,19 +6,19 @@ feature "Viewing a machine" do
 
   scenario "as a visitor" do
     visit machine_path(machine)
-    expect(page).to have_title(machine)
+    find('H1').should have_content(machine)
   end
 
   scenario "as a user" do
     sign_in
     visit machine_path(machine)
-    expect(page).to have_title(machine)
+    find('H1').should have_content(machine)
   end
 
   scenario "as an admin" do
     sign_in_superadmin
     visit machine_path(machine)
-    expect(page).to have_title(machine.name)
+    find('H1').should have_content(machine.name)
   end
 
 end
