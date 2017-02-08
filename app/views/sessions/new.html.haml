@@ -10,7 +10,6 @@
       Fablabs.io is the online social network of the international Fab Lab community, and it is an exchange platform for people, labs, projects, machines, events and groups that operate around the Fab Lab Network, which collaboration and communication tools in order to align interests and to expand the global scale of this community.
 .row
   .col-lg-12.text-center
-
     = form_tag sessions_path do
       -# = simple_form_for :signin, { url: sessions_path } do
       = hidden_field_tag :goto, params[:goto]
@@ -23,8 +22,8 @@
           = label_tag :password, nil
           = password_field_tag :password, nil, placeholder: 'Password'
       .row
-        .col-md-12.forgot
-          = link_to "Forgot?", new_recovery_url(subdomain: 'www')
+        .col-md-12.forgot.text-center
+          = link_to "Forgot the password?", new_recovery_url(subdomain: 'www')
 
       .actions= submit_tag t("views.header.signin", default: "Sign in"), class: 'btn btn-success'
 
