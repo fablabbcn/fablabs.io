@@ -130,9 +130,9 @@ FactoryGirl.define do
   end
 
   factory :machine, aliases: [:commentable] do
-    name "Modela"
+    name "GX-24"
     brand
-    description "A general purpose milling machine"
+    description "A reliable tool for producing banners, store displays, informational signs, backlit displays, flock heat transfers and almost any other cutting application."
   end
 
   factory :role_application do
