@@ -1,25 +1,29 @@
-- title t("views.header.signin", default: "Sign in")
+- title "Sign in"
 .row
-  .col-md-5
-  .col-md-2
-    .row
-      .col-lg-12.text-center
-        = link_to root_path do
-          = image_tag "fablabs.png", id: 'full-logo'
-
+  .col-lg-12
+    %h1
+      Sign in
+.row
+  .col-lg-12
+    %h2 Welcome to FabLabs.io
+    %p
+      Fablabs.io is the online social network of the international Fab Lab community, and it is an exchange platform for people, labs, projects, machines, events and groups that operate around the Fab Lab Network, which collaboration and communication tools in order to align interests and to expand the global scale of this community.
+.row
+  .col-lg-12.text-center
     = form_tag sessions_path do
       -# = simple_form_for :signin, { url: sessions_path } do
       = hidden_field_tag :goto, params[:goto]
       .row
         .col-lg-12
-          = label_tag :email_or_username, "Email or Username", class: 'hide'
+          = label_tag :email_or_username, "Email or Username"
           = text_field_tag :email_or_username, params[:email_or_username], placeholder: 'Email or Username', autofocus: params[:email_or_username].blank?, autocapitalize: "off", autocorrect: "off"
       .row
-        .col-md-9
-          = label_tag :password, nil, class: 'hide'
+        .col-md-12
+          = label_tag :password, nil
           = password_field_tag :password, nil, placeholder: 'Password'
-        .col-md-3.forgot
-          = link_to "Forgot?", new_recovery_url(subdomain: 'www')
+      .row
+        .col-md-12.forgot.text-center
+          = link_to "Forgot the password?", new_recovery_url(subdomain: 'www')
 
       .actions= submit_tag t("views.header.signin", default: "Sign in"), class: 'btn btn-success'
 
