@@ -19,7 +19,6 @@ feature "Viewing a machine" do
     sign_in_superadmin
     visit machine_path(machine)
     expect(page).to have_title(machine.name)
-    expect(page).to have_css('h1', text: machine.name)
   end
 
 end

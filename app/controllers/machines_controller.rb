@@ -1,4 +1,8 @@
 class MachinesController < ThingsController
+
+  # Make the machines openly accessible
+  # before_filter :require_login, except: [:index]
+
   defaults :resource_class => Machine
 
   def show
