@@ -1,8 +1,7 @@
 class ProjectsController < ApplicationController
   include ProjectsOperations
 
-  # Make projects openly accessible
-  # before_filter :require_login, except: [:index]
+  before_filter :require_login, except: [:index, :show, :search]
 
   def index
     @projects = all_projects.page(params['page']).per(params['per'])
