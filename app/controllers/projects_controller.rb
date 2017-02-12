@@ -106,7 +106,7 @@ class ProjectsController < ApplicationController
         :twitter,
         :facebook,
         tag_list: [],
-        documents_attributes: [ :id, :image, :title, :description ],
+        documents_attributes: [ :id, :image, :photo, :title, :description ],
         steps_attributes: [
           :id,
           :title,
@@ -122,6 +122,4 @@ class ProjectsController < ApplicationController
       attributes.push(links_attributes)
       params.require(:project).permit(attributes)
     end
-
-
 end
