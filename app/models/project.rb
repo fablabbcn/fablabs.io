@@ -69,20 +69,15 @@ class Project < ActiveRecord::Base
   end
 
   def project_cover
-    begin
-      if self.documents.empty?
-        return 'none'
-      elsif self.cover.present?
-        return self.documents.find(self.cover).image.url(:medium)
-      elsif self.documents.first
-        return self.documents.first.image.url(:medium)
-      else
-        self.update_attributes(cover: nil)
-        return 'none'
-      end
-    rescue ActiveRecord::RecordNotFound
-      return 'none'
+    if self.cover.present?
+      self.documents.find(self.cover).photo
+    elsif self.documents.first
+      self.documents.first.photo
+    else
+      nil
     end
+  rescue ActiveRecord::RecordNotFound
+    nil
   end
 
   def async_discourse_sync

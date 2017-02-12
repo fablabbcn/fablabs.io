@@ -23,8 +23,10 @@
         %ul.clearing-thumbs{data: { clearing: "" } }
           - @project.documents.each do |document|
             %li
-              = link_to document.image.url(:large), class: "image_link th [radius]" do
-                = image_tag document.image.url(:thumb)
+              - if document.photo.present?
+                = link_to document.photo.thumb("1200x1200>").url, class: "image_link th [radius]" do
+                  = image_tag document.photo.thumb("250x250>").url
+
     - unless @project.steps.empty?
       .heading
         = icon('cog')
