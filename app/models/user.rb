@@ -9,9 +9,11 @@ class User < ActiveRecord::Base
 
   before_create :generate_fab10_coupon_code
 
+  extend DragonflyValidations
   dragonfly_accessor :avatar do
     default 'public/default-user-avatar.png'
   end
+  dragonfly_validations(:avatar)
 
   include Workflow
   include VerifyWorkflow

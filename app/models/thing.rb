@@ -1,8 +1,11 @@
 class Thing < ActiveRecord::Base
   include Authority::Abilities
+  extend DragonflyValidations
+
   self.authorizer_name = 'ThingAuthorizer'
 
   dragonfly_accessor :photo
+  dragonfly_validations :photo
 
   has_ancestry
   belongs_to :brand
