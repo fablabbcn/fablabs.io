@@ -6,7 +6,7 @@
     = f.fields_for :documents_attributes, project.documents do |d|
       %span#file-click.btn.btn-primary.button-file
         Pick file
-        = d.file_field "image", name: "project[documents_attributes][][image]", class: "document_image", multiple: true
+        = d.file_field "photo", name: "project[documents_attributes][][photo]", class: "document_photo", multiple: true
 %hr/
 .row
   .col-lg-3
@@ -24,4 +24,5 @@
                 = document.id
             %h4
               = link_to icon('trash-o'), document_path(document), method: :delete
-            = image_tag hocho(document.image.url(:thumb), "o=t&q=80&d=200x200")
+            - if document.photo.present?
+              = image_tag document.photo.thumb("200x200").url
