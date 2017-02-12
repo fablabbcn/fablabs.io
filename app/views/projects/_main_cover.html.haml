@@ -67,7 +67,8 @@
             .carousel-inner{:role => "listbox"}
               - @project.documents.each_with_index do |document, index|
                 .item{class: index == 0 ? 'active' : nil}
-                  = image_tag document.image.url(:medium), alt: "slide #{index}"
+                  - if document.photo.present?
+                    = image_tag document.photo.thumb("640x640>").url, alt: "slide #{index}"
             %a.left.carousel-control{"data-slide" => "prev", :href => "#carousel-documents", :role => "button"}
               %span.glyphicon.glyphicon-chevron-left{"aria-hidden" => "true"}
               %span.sr-only Previous
