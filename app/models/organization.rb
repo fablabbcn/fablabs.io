@@ -9,11 +9,14 @@ class Organization < ActiveRecord::Base
   ].freeze
 
 
+  extend DragonflyValidations
   dragonfly_accessor :avatar do
     default 'public/default-lab-avatar.png'
   end
+  dragonfly_validations :avatar
 
   dragonfly_accessor :header
+  dragonfly_validations :header
 
   has_many :labs, through: :lab_organizations
   has_many :lab_organizations

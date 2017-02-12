@@ -5,11 +5,15 @@ class Lab < ActiveRecord::Base
   include ApproveWorkflow
   include LabApproveMethods
 
+  extend DragonflyValidations
+
   dragonfly_accessor :avatar do
     default 'public/default-lab-avatar.png'
   end
+  dragonfly_validations :avatar
 
   dragonfly_accessor :header
+  dragonfly_validations :header
 
   self.authorizer_name = 'LabAuthorizer'
   resourcify
