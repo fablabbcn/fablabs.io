@@ -2,7 +2,9 @@ class Backstage::EmployeesController < Backstage::BackstageController
   before_filter :require_admin
 
   def index
-    @employees = Employee.includes(:lab, :user).where("labs.workflow_state" => 'approved').with_unverified_state.order('employees.id DESC')
+    @q = Employee.search(params[:q])
+    @q.sorts = 'id desc' if @q.sorts.empty?
+    @employees = @q.result.page(params[:page]).includes(:lab, :user).where("labs.workflow_state" => 'approved').with_unverified_state.order('employees.id DESC')
   end
 
   private

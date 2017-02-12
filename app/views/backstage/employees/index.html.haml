@@ -3,6 +3,27 @@
     = render "backstage/header"
     = title "Employees"
 
+
+    .well
+      = search_form_for [:backstage, @q], builder: SimpleForm::FormBuilder do |f|
+        .row
+          .col-lg-3= f.input :user_first_name_cont, label: "First Name"
+          .col-lg-3= f.input :user_last_name_cont, label: 'Last name'
+          .col-lg-3= f.input :user_username_cont, label: 'Username'
+          .col-lg-3= f.input :user_email_cont, label: 'Email'
+        .row
+          .col-lg-3
+            = f.input :user_country_code_eq, as: 'country', label: 'Country', iso_codes: true, include_blank: 'ALL'
+          .col-lg-3
+            = f.input :user_workflow_state_eq, collection: User.workflow_spec.state_names, label: "State", include_blank: 'ALL'
+          .col-lg-3
+            = f.input :user_roles_name_eq, collection: Role::AVAILABLE, include_blank: 'ALL'
+          .col-lg-3
+            = f.submit "Filter", class: 'btn btn-success btn-lg'
+
+
+
+    = page_entries_info @employees
     %table.table
       %thead
         %tr
@@ -19,4 +40,6 @@
               %td= link_to employee.user.full_name, lab_employees_url(employee.lab)
               %td= employee.job_title
               %td= link_to employee.lab, employee.lab
-              %td= employee.created_at.stamp("13:48, 22 Nov")
+              %td= employee.created_at.to_s(:short)
+
+    = paginate @employees
