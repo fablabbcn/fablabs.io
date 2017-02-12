@@ -518,7 +518,6 @@ GEM
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (~> 2.8)
-    stamp (0.5.0)
     temple (0.6.7)
     thin (1.6.1)
       daemons (>= 1.0.9)
@@ -649,7 +648,6 @@ DEPENDENCIES
   slim
   sort_alphabetical
   sprockets-rails
-  stamp
   thin
   timezone (~> 1.0)
   trumbowyg_rails!

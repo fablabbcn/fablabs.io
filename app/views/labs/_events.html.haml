@@ -7,4 +7,4 @@
       = link_to event, [event.lab, event]
       - if event.starts_at
         \-
-        = event.starts_at.stamp('Wed, 20th November')
+        = event.starts_at.to_date.to_s(:long)
