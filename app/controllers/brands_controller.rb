@@ -1,5 +1,7 @@
 class BrandsController < ApplicationController
 
+  before_filter :require_login
+
   def new
     @brand = Brand.new
     authorize_action_for @brand
