@@ -81,9 +81,8 @@ body.development .translation_missing{
 }
 
 footer a.active {
-  color: #0275BC;
   body.a-home & {
-    color: #FFF;
+    color: #dbab00;
   }
 }
 
@@ -118,12 +117,7 @@ body {
   margin: 0 0 ($footer-height + 20px);
   &.a-home {
     footer {
-      background: #222222;
-      text-shadow: 1px 1px 1px #333;
-      .split {
-        border-top: 1px solid #353535;
-        box-shadow: 0 -1px 0 #151515;
-      }
+      background: #fff;
     }
   }
   -webkit-text-size-adjust:none;
