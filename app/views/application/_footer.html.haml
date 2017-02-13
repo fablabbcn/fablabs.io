@@ -26,8 +26,16 @@
   .container.footer-images
     .row
       .col-xs-6
+        %p.eu-credits
+          This project has received funding from the Creative Europe Programme of the European Union for the
+          %a{:href => "https://madeat.eu/"} MADE@EU
+          project EAC/S16/2013.
         =image_tag ("logos/eu_flag_creative_europe_co_funded_pos_[rgb]_left_300.jpg") , :class => "footer_logos img-responsive"
       .col-xs-6
+        %p.eu-credits
+          This project has received funding from the European Union's Horizon 2020 research and innovation programme under grant agreement n.688241 for the
+          %a{:href => "http://make-it.io/"} MAKE-IT
+          project.
         =image_tag ("logos/euh2020.jpg") , :class => "footer_logos img-responsive"
 
 = render "application/footer_scripts"
