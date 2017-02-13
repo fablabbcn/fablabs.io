@@ -1,9 +1,6 @@
 %footer
-  .row
-    .col-lg-12
-      .split
 
-  .container
+  .container.footer-links
     .row
       .col-xs-6
         %ul
@@ -26,9 +23,11 @@
           %li= locale_link_to "Português", "pt"
           %li= locale_link_to "日本語", "ja"
 
-  .container
+  .container.footer-images
     .row
       .col-xs-6
-        =image_tag ("logos/eu_flag_creative_europe_co_funded_pos_[rgb]_left_300.jpg") , :class => "footer_logos"
+        =image_tag ("logos/eu_flag_creative_europe_co_funded_pos_[rgb]_left_300.jpg") , :class => "footer_logos img-responsive"
+      .col-xs-6
+        =image_tag ("logos/euh2020.jpg") , :class => "footer_logos img-responsive"
 
 = render "application/footer_scripts"

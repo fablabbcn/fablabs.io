@@ -5,26 +5,9 @@ footer {
   height: $footer-height;
   width: 100%;
   margin-bottom: 40px;
-  // background: #FFF;
+  background: #fff !important;
+
   a { font-size: 0.85em; }
-  // line-height: 2em;
-  .split {
-    width: 100%;
-    border-top: 1px solid #CCC;
-    box-shadow: 0 -1px 0 #EAEAEA;
-    margin-bottom: 20px;
-  }
-  text-shadow: 1px 1px 1px #FFF;
-
-  img {
-    max-width: 100%;
-    display: none;
-    // visibility: hidden;
-  }
-
-  .footer_logos {
-      display: inline !important;
-  }
 
   // This hides the footer in the Map page
   // body.c-labs.a-map & { display: none; }
@@ -39,8 +22,20 @@ footer {
       color: #AAA;
     }
   }
+
   #footer-twitter-icon {
     font-size: 30px;
   }
+
+.footer-images {
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.footer-links {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    color: red;
+}
 
 }
