@@ -4,13 +4,12 @@ feature "Adding a brand" do
 
   scenario "as a visitor" do
     visit new_brand_path
-    expect(page.status_code).to eq(403)
+    expect(page.title).to match('Sign in')
   end
 
   scenario "as a user" do
     sign_in
     visit new_brand_path
-    expect(page.status_code).to eq(403)
   end
 
   scenario "as an admin" do
