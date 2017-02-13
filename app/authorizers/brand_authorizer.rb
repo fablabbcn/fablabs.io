@@ -1,4 +1,4 @@
-class ThingAuthorizer < ApplicationAuthorizer
+class BrandAuthorizer < ApplicationAuthorizer
 
   def self.creatable_by?(user)
     true
