@@ -63,6 +63,7 @@ Fablabs::Application.routes.draw do
       resources :pages, expect: [:show]
       resources :organizations, only: [:index]
       resources :my_labs, only: [:index]
+      resources :my_projects, only: [:index]
       resources :to_approve_labs, only: [:index]
       resources :labs do
         member do
