@@ -5,6 +5,8 @@
 
     %li{class: ('active' if controller_name == "my_labs")}
       = link_to 'My labs', [:backstage, :my_labs]
+    %li{class: ('active' if controller_name == "my_projects")}
+      = link_to 'My projects', [:backstage, :my_projects]
     %li{class: ('active' if controller_name == "to_approve_labs")}
       = link_to 'My labs to approve', [:backstage, :to_approve_labs]
 
