@@ -1,0 +1,18 @@
+.row
+  .col-lg-12
+    = page_entries_info @projects
+    %table.table
+      %thead
+        %tr
+          %th id
+          %th Title
+          %th
+      %tbody
+        - @projects.each do |project|
+          %tr
+            %td= project.id
+            %td= link_to project.title, project
+            %th= link_to 'Edit', [:edit, project]
+            %th= link_to 'View', project
+
+    = paginate @projects
