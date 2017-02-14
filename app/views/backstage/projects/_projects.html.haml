@@ -1,0 +1,27 @@
+.well
+  = search_form_for @q, url: url_form, builder: SimpleForm::FormBuilder do |f|
+    = f.input :name_or_city_cont, label: "Name"
+
+= page_entries_info @projects
+%table.table
+  %thead
+    %tr
+      %th= sort_link @q, :id, 'ID'
+      %th= sort_link @q, :name, 'Name'
+      %th Country
+      %th
+        Creator
+        = sort_link @q, 'creator_first_name', 'First'
+        = sort_link @q, 'creator_last_name', 'Last'
+
+      %th= sort_link @q, :state, 'State'
+  %tbody
+    - @projects.each do |lab|
+      = content_tag_for :tr, lab, {class: lab.current_state} do
+        %td= lab.id
+        %td= link_to lab, backstage_lab_path(lab)
+        %td= lab.country
+        %td= link_to lab.creator, lab.creator
+        %td= lab.current_state
+
+= paginate @labs
