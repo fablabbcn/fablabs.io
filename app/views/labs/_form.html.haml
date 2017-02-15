@@ -12,6 +12,9 @@
             Please select 3 Referee Labs.
           %p
             Please choose 3 of the Referee Labs available and contact them, they will approve you after you have exchanged more information with them. The list of Referee Labs is limited to some Fab Labs with experience and a history of collaborating with the global Fab Lab Network, at the moment it is not possible to choose Referee Labs outside that list. It's not important that you already know them, it's important that you start a discussion with them. We are doing this so that the connections among the Labs (especially for new Labs) get strengthened.
+          %p
+            %span.label.label-danger Required
+            %span.required You must choose 3 Referee Labs.
 
           = render 'referees', :f => f
 
@@ -25,9 +28,14 @@
 
   %fieldset
     %legend Basic Details
+    %h5 Name of the Lab
+    %p
+      What is the name of your Lab?
+      %span.label.label-danger Required
+      %span.required This field is required.
+    = f.input :name, label: false
 
-    = f.input :name, label: 'Fab Lab Name'
-
+    %h5 Type of Lab
     %p
       What kind of Fab Lab is your Lab?
     - Lab::Kinds.each_with_index do |m, index|
@@ -40,15 +48,25 @@
 
   %fieldset
     %legend  What qualifies as a Fab Lab
+    %h5 Requirements
     %p
       Fab Labs have a list of qualities and requirements that defines them.
       More information can be found
       %a{href: "http://www.fabfoundation.org/index.php/what-qualifies-as-a-fab-lab/index.html"} here.
+    %p
+      %span.label.label-danger Required
+      %span.required Your Lab must fulfill these requirements in order to be considered a Fab Lab.
+
+    .col-lg-2
+      .radio-inline
+        = f.radio_button :public, 1
+        %label.radio
+          Access: Public access to the Fab Lab is essential.
 
     .col-lg-2
       .radio-inline
         = f.radio_button :charter, 1
-        %label.radio{style: "width: 80%;"}
+        %label.radio
           Charter: You need to agree with the
           = succeed "." do
             %a{:href => "http://fab.cba.mit.edu/about/charter/"} Fab Charter
@@ -56,7 +74,7 @@
     .col-lg-2
       .radio-inline
         = f.radio_button :tools, 1
-        %label.radio{style: "width: 80%;"}
+        %label.radio
           Tools: The submitted Fab Lab has a compatible set of tools related with the
           = succeed "." do
             %a{:href => "http://fab.cba.mit.edu/about/fab/inv.html"} official Fab Lab inventory.
@@ -64,7 +82,7 @@
     .col-lg-2
       .radio-inline
         = f.radio_button :network, 1
-        %label.radio{style: "width: 80%;"}
+        %label.radio
           Network: The submitted Fab Lab commits to participate in the network activities: regional meetings, FABX conferences,
           = succeed "." do
             %a{:href => "https://discuss.fablabs.io/"} the Discuss section on FabLabs.io.
@@ -72,25 +90,28 @@
     .col-lg-2
       .radio-inline
         = f.radio_button :programs, 1
-        %label.radio{style: "width: 80%;"}
+        %label.radio
           Programs: Our staff is (or will be) trained in the
           %a{:href => "http://fabacademy.org/"} Fab Academy
           or compatible programs.
 
-    .col-lg-2
-      .radio-inline
-        = f.radio_button :public, 1
-        %label.radio{style: "width: 80%;"}
-          Access: Public access to the Fab Lab is essential.
-
   %fieldset
     %legend Description
 
-    = f.input :blurb, as: 'text', hint: 'A very brief overview of the lab, maybe include what it specializes in. <span id="description-count"></span> characters available.'.html_safe, input_html: { rows: 3, data: { limit: 200, counter: '#description-count'} }
+    %h5 Blurb
+    %p Please insert a short description of your Lab.
+    = f.input :blurb, as: 'text', label: false, hint: 'A very brief overview of the lab, maybe include what it specializes in. <span id="description-count"></span> characters available.'.html_safe, input_html: { rows: 3, data: { limit: 200, counter: '#description-count'} }
 
-    = f.input :description, hint: 'An in-depth description of the lab', input_html: { style: 'height: 8em' }
+    %h5 Full description
+    %p Please insert a long description of your Lab.
+    = f.input :description, label: false, hint: 'An in-depth description of the lab', input_html: { style: 'height: 8em' }
 
-    = f.input :slug, hint: "This is the unique 'username' of the lab, it will be in the URL" do
+    %h5 Slug
+    %p
+      The slug of your Lab page:
+      %span.label.label-danger Required
+      %span.required This field is required.
+    = f.input :slug, label: false, hint: "This is the unique 'username' of the lab, it will be in the URL" do
       .input-group
         %span.input-group-addon= "#{Rails.application.config.url}/"
         = f.input_field :slug, class: 'form-control'
@@ -101,7 +122,8 @@
     .row
       .col-lg-3= image_tag @lab.avatar.url, class: 'avatar big'
       .col-lg-9
-        = f.input :avatar, as: :file, label: 'Avatar', hint: "This will be a square image next shown next to the lab name throughout the site"
+        %h5 Avatar
+        = f.input :avatar, as: :file, label: false, hint: "This will be a square image next shown next to the lab name throughout the site"
         = f.hidden_field :retained_avatar
 
     %hr/
@@ -110,7 +132,8 @@
         - if @lab.header.present?
           = image_tag @lab.header.url, class: 'avatar big'
       .col-lg-9
-        = f.input :header, as: :file, label: 'Header', hint: "A single (large) photo of your lab. You will be able to add more photos soon."
+        %h5 Header
+        = f.input :header, as: :file, label: false, hint: "A single (large) photo of your lab. You will be able to add more photos soon."
         = f.hidden_field :retained_header
 
   %fieldset
@@ -127,31 +150,49 @@
           .col-lg-6#map-holder
             #location-picker-map
           .col-lg-6
-            = f.input :address_1, input_html: { data: {geo: "street_address"}}, label: 'Lab Address', placeholder: 'Address Line 1'
+            %h5 Address
+            %p
+              %span.label.label-danger Required
+              %span.required This field is required.
+            = f.input :address_1, input_html: { data: {geo: "street_address"}}, label: false, placeholder: 'Address Line 1'
             = f.input :address_2, label: false, placeholder: 'Address Line 2 (Optional)'
-            = f.input :city, input_html: { data: {geo: "locality"}}
-            = f.input :county, label: 'State/Province/County'
-
-            = f.input :postal_code, input_html: { data: {geo: "postal_code"}}
-            = f.input :country_code, as: 'country', label: 'Country', input_html: { data: {geo: "country_short"} }, wrapper_html: { class: 'boo'}, iso_codes: true#, input_html: { class: 'enhanced'}
+            %h5 City
+            = f.input :city, label: false, input_html: { data: {geo: "locality"}}
+            %h5 State/Province/County
+            = f.input :county, label: false
+            %h5 Postal code
+            = f.input :postal_code, label: false, input_html: { data: {geo: "postal_code"}}
+            %h5 Country
+            %p
+              %span.label.label-danger Required
+              %span.required This field is required.
+            = f.input :country_code, label: false, as: 'country', input_html: { data: {geo: "country_short"} }, wrapper_html: { class: 'boo'}, iso_codes: true#, input_html: { class: 'enhanced'}
             = f.input :latitude, as: :hidden, input_html: { data: {geo: "lat"}}
             = f.input :longitude, as: :hidden, input_html: { data: {geo: "lng"}}
             = f.input :zoom, as: :hidden
         %hr/
-        = f.input :address_notes, hint: 'Any details that might be useful for someone trying to find the lab. For example, "Go up the stairs and through the red door".'
+        %h5 Address notes
+        = f.input :address_notes, label: false, hint: 'Any details that might be useful for someone trying to find the lab. For example, "Go up the stairs and through the red door".'
 
   %fieldset
     %legend Lab Contact Details
-    = f.input :phone, hint: "A general enquiries phone number for the lab", label: "Lab Phone Number"
-    = f.input :email, hint: "A general enquiries email address for the lab", label: "Lab Email Address"
+    %h5 Phone number
+    = f.input :phone, label: false, hint: "A general enquiries phone number for the lab"
+    %h5 E-mail
+    = f.input :email, label: false, hint: "A general enquiries email address for the lab"
 
   - if @lab.new_record?
     %fieldset
       %legend Your Role
-      %p.hint What is your association with this lab?
+      %p
+        What is your association with this lab?
+        %span.label.label-danger Required
+        %span.required This field is required.
       = f.simple_fields_for :employees do |e|
-        = e.input :job_title, placeholder: "e.g. Lab Manager"
-        = e.input :description, placeholder: "e.g. Coordinates Workshops and Events"
+        %h5 Job title
+        = e.input :job_title, label: false, placeholder: "e.g. Lab Manager"
+        %h5 Description
+        = e.input :description, label: false, placeholder: "e.g. Coordinates Workshops and Events"
 
   %fieldset
     %legend Links
@@ -165,23 +206,28 @@
 
   %fieldset
     %legend Capabilities
-    = f.input :capabilities, as: 'check_boxes', inline_label: true, item_wrapper_class: 'checkbox_container', label: false, collection: Lab::Capabilities.map{|f| [ I18n.t("capabilities.#{f}"), f]}, checked: f.object.capabilities, hint: "Check all of the boxes that apply to this lab"
+    %h5 Machines
+    %p Check all of the boxes that apply to this Lab.
+    .checkbox-inline
+      = f.input :capabilities, as: 'check_boxes', inline_label: true, item_wrapper_class: 'checkbox_container', label: false, collection: Lab::Capabilities.map{|f| [ I18n.t("capabilities.#{f}"), f]}, checked: f.object.capabilities
 
     - @collection = Machine.includes(:brand)
     - @selected = @lab.machines.map{|u| u.id}.collect
 
     - if lab.new_record?
-      %p You will be able to add individual machines once your lab is approved.
+      %p You will be able to add individual machines once your Lab is approved.
     - else
       %label{for: "facilities_attributes"}
         Machine
         = select_tag :facilities_attributes, options_from_collection_for_select(@collection, :id, :name, @selected), { multiple: true, size: 10, name: 'lab[facilities_attributes][][thing_id]', class: 'machine_selection_attributes'}
 
-    = f.input :tools_list, hint: "Please list any machines that you have so that we can add them to the directory.", input_html: { style: "height: 8em" }, placeholder: "e.g. Makerbot Industries - Makerbot 2"
+    %h5 Tools list
+    = f.input :tools_list, label: false, hint: "Please list any machines that you have so that we can add them to the directory.", input_html: { style: "height: 8em" }, placeholder: "e.g. Makerbot Industries - Makerbot 2"
 
   - if @lab.new_record?
     %fieldset
       %legend Anything else?
-      = f.input :application_notes
+      %h5 Application notes
+      = f.input :application_notes, label: false
 
   = f.submit (lab.new_record? ? 'Add Lab' : 'Update Lab'), class: 'btn btn-success btn-lg'
