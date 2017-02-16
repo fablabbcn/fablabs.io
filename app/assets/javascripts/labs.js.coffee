@@ -119,7 +119,7 @@ ready = ->
             popupAnchor:  [0, -20]
           })
           lab.marker = L.marker([lab.latitude, lab.longitude], {icon: icon})
-          lab.marker.bindPopup("<a href='#{lab.url}'>#{lab.name}</a>")
+          lab.marker.bindPopup("<a target='_top' href='#{lab.url}'>#{lab.name}</a>")
           window.markers.addLayer(lab.marker)
           window.labs.push(lab)
     map.addLayer(window.markers)
