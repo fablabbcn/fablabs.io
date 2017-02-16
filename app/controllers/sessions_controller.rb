@@ -20,7 +20,10 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    # cookies.delete(:user_id, domain: '.fablabs.dev')
+    if current_user && Figaro.env.discourse_enabled
+      DiscourseUserLogoutWorker.perform_async(current_user.id)
+    end
+
     session.delete(:user_id)
     redirect_to root_url, flash: { success: "Signed out!" }
   end
