@@ -1,5 +1,6 @@
 class DiscourseController < ApplicationController
   before_filter :require_login
+
   def sso
     secret = Figaro.env.discourse_sso_secret
     sso = SingleSignOn.parse(request.query_string, secret)
@@ -15,5 +16,8 @@ class DiscourseController < ApplicationController
     Rails.logger.error(e.backtrace)
     flash[:error] = 'SSO error'
     redirect_to root_path
+  end
+
+  def embed
   end
 end
