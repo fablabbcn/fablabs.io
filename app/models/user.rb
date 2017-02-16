@@ -64,6 +64,8 @@ class User < ActiveRecord::Base
   before_create { generate_token(:email_validation_hash) }
   before_create :downcase_email
 
+  after_save :discourse_sync_if_needed, if: Figaro.env.discourse_enabled
+
   def avatar_url
     if avatar_uid.present?
       avatar.thumb('150x150#').url
@@ -188,7 +190,17 @@ class User < ActiveRecord::Base
     roles.map(&:name).uniq.join(', ')
   end
 
-private
+  def async_discourse_sync
+    DiscourseUserSyncWorker.perform_async(self.id)
+  end
+
+  private
+
+  def discourse_sync_if_needed
+    if (changes.keys & ["first_name", "last_name", "username", "email"]).present?
+      async_discourse_sync
+    end
+  end
 
   def downcase_email
     self.email.downcase!
