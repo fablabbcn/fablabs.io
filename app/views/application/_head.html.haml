@@ -1,6 +1,6 @@
 %head
   %title= content_for?(:title) ? "#{yield(:title)} | FabLabs" : "FabLabs.io - The Fab Lab Network"
-  %base{target: "_self"}
+  %base{:target => "_parent"}
   %meta{ :charset => "utf-8" }
   %meta{ name: "viewport", content: "width=device-width, initial-scale=1.0, user-scalable=no" }
   %meta{content: (content_for?(:title) ? "#{yield(:title)} | FabLabs" : "FabLabs.io - The Fab Lab Network"), property: "og:title"}/
@@ -29,5 +29,3 @@
   %link{type: "text/plain", rel: "author", href: "/humans.txt"}
   = csrf_meta_tags
   = cookie_policy_script
-
-
