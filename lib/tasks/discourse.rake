@@ -1,4 +1,11 @@
 namespace :discourse do
+
+  desc 'Sync all sso users with discourse'
+  task sync_users: :environment do
+    User.find_each do |user|
+      user.async_discourse_sync
+    end
+  end
   desc 'Sync all labs with discourse'
   task sync_labs: :environment do
     Lab.find_each do |lab|

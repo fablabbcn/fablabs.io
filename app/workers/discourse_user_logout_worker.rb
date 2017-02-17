@@ -1,8 +1,8 @@
-class DiscourseUserSyncWorker
+class DiscourseUserLogoutWorker
   include Sidekiq::Worker
 
   def perform(user_id)
     user = User.find(user_id)
-    DiscourseService::User.sync_sso(user)
+    DiscourseService::User.logout(user)
   end
 end
