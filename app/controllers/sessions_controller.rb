@@ -20,7 +20,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    if current_user && Figaro.env.discourse_enabled
+    if current_user && Figaro.env.discourse_enabled == 'true'
       DiscourseUserLogoutWorker.perform_async(current_user.id)
     end
 
