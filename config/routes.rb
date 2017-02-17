@@ -1,5 +1,4 @@
 Fablabs::Application.routes.draw do
-  get "discourse/sso"
   resources :pages, only: [:show]
   use_doorkeeper
   require 'sidekiq/web'
@@ -14,6 +13,7 @@ Fablabs::Application.routes.draw do
 
 
   constraints subdomain: 'www' do
+    get "discourse/sso"
     # resources :discussions
     get "activity" => "activities#index", :as => "activity"
     resources :featured_images
