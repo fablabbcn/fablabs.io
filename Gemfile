@@ -1,6 +1,8 @@
-ruby '2.0.0'
+ruby '2.1.9'
 
 source 'https://rubygems.org'
+
+gem 'discourse_api'
 
 gem 'hpricot'
 gem 'premailer-rails'
