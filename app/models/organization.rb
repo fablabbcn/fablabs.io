@@ -20,6 +20,8 @@ class Organization < ActiveRecord::Base
 
   has_many :labs, through: :lab_organizations
   has_many :lab_organizations
+  has_many :links, as: :linkable
+  accepts_nested_attributes_for :links, reject_if: lambda{ |l| l[:url].blank? }, allow_destroy: true
 
   belongs_to :creator, class_name: 'User'
 

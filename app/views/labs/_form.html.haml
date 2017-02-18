@@ -153,15 +153,7 @@
         = e.input :job_title, placeholder: "e.g. Lab Manager"
         = e.input :description, placeholder: "e.g. Coordinates Workshops and Events"
 
-  %fieldset
-    %legend Links
-    %p.hint Any websites for this Fab Lab. It can include blogs, social networks, video/photo sites etc.
-    = f.simple_fields_for :links do |link|
-      = render 'link_fields', f: link
-    .links
-      = link_to_add_association f, :links, class: 'button tiny' do
-        = fa_icon "plus"
-        Add another link
+  = render 'form_links', f: f
 
   %fieldset
     %legend Capabilities
