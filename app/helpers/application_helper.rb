@@ -3,6 +3,35 @@ require 'uri'
 
 module ApplicationHelper
 
+  def url_icon(url)
+    case url
+    when /twitter\.com/
+      icon('twitter')
+    when /github\.com/
+      icon('github')
+    when /flickr\.com/
+      icon('flickr')
+    when /instagram\.com/
+      icon('instagram')
+    when /bitbucket\.org/
+      icon('bitbucket')
+    when /dropbox/
+      icon('dropbox')
+    when /facebook/
+      icon('facebook')
+    when /plus\.google\.com/
+      icon('google-plus')
+    when /youtube\.com/
+      icon('youtube')
+    when /vimeo\.com/
+      icon('vimeo-square')
+    when /linkedin\.com/
+      icon('linkedin')
+    else
+      icon('link')
+    end
+  end
+
   def comments_script(discourse_id)
     %Q{
       <div id='discourse-comments'></div>
