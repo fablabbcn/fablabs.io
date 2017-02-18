@@ -61,7 +61,9 @@ class OrganizationsController < ApplicationController
       :postal_code,
       :country_code,
       :address_notes,
-      :application_notes]
+      :application_notes,
+      links_attributes: [ :id, :link_id, :url, '_destroy' ]
+    ]
 
     attributes.push(links_attributes)
 
