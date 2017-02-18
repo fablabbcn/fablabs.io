@@ -42,5 +42,17 @@ namespace :fablab do
         end
       end
     end
+
+    User.find_each do |user|
+      p "user - #{user.id}"
+      attrs.each do |attr|
+        url = user.send(attr)
+        if url.present?
+          unless link = user.links.create(url: url)
+            p link.errors
+          end
+        end
+      end
+    end
   end
 end
