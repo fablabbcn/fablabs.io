@@ -20,10 +20,25 @@ namespace :fablab do
       "vimeo"]
 
     Organization.find_each do |org|
+      p "org - #{org.id}"
       attrs.each do |attr|
         url = org.send(attr)
         if url.present?
-          org.links.create!(url: url)
+          unless link = org.links.create(url: url)
+            p link.errors
+          end
+        end
+      end
+    end
+
+    Project.find_each do |pro|
+      p "pro - #{pro.id}"
+      attrs.each do |attr|
+        url = pro.send(attr)
+        if url.present?
+          unless link = pro.links.create(url: url)
+            p link.errors
+          end
         end
       end
     end
