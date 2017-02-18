@@ -15,6 +15,9 @@ class Project < ActiveRecord::Base
   has_many :contributors, through: :contributions
   accepts_nested_attributes_for :contributions
 
+  has_many :links, as: :linkable
+  accepts_nested_attributes_for :links, reject_if: lambda{ |l| l[:url].blank? }, allow_destroy: true
+
   has_many :collaborations, dependent: :destroy
   has_many :collaborators, through: :collaborations
   accepts_nested_attributes_for :collaborations
