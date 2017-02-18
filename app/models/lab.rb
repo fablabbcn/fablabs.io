@@ -43,6 +43,8 @@ class Lab < ActiveRecord::Base
   has_many :discussions, as: :discussable
   has_many :employees
   has_many :links, as: :linkable
+  accepts_nested_attributes_for :links, reject_if: lambda{ |l| l[:url].blank? }, allow_destroy: true
+
   has_many :role_applications
   has_many :facilities
   accepts_nested_attributes_for :facilities
@@ -87,7 +89,6 @@ class Lab < ActiveRecord::Base
   end
   # validates :employees, presence: true, on: :create
 
-  accepts_nested_attributes_for :links, reject_if: lambda{ |l| l[:url].blank? }, allow_destroy: true
   accepts_nested_attributes_for :employees
 
   scope :search_for, ->(q) { search_by_name(q) if q.present?}

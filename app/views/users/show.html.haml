@@ -19,7 +19,7 @@
                 Joined #{time_ago_in_words(@user.created_at)} ago.
         .row
           .col-lg-12
-            = render 'social_fields'
+            = render "links", links: @user.links
         .row
           .col-lg-12
             - if @user.employees.with_approved_state.any?
