@@ -116,6 +116,7 @@ class ProjectsController < ApplicationController
           links_attributes: [:id, :link_id, :url, '_destroy'] ],
         contributions_attributes: [ :id, :contributor_id ],
         collaborations_attributes: [ :id, :collaborator_id ],
+        links_attributes: [ :id, :link_id, :url, '_destroy' ],
         machineries_attributes: [ :id, :device_id ]
       ]
 
