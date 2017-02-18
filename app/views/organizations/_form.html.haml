@@ -68,7 +68,8 @@
             = f.input :longitude, as: :hidden, input_html: { data: {geo: "lng"}}
         %hr/
         = f.input :address_notes, hint: 'Any details that might be useful for someone trying to find the organization. For example, "Go up the stairs and through the red door".'
-  = render partial: 'link_form_fields', locals: {f: f}
+
+  = render 'form_links', f: f
   - if organization.new_record?
     %fieldset
       %legend Anything else?
