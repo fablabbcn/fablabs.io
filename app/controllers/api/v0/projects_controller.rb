@@ -11,7 +11,7 @@ class Api::V0::ProjectsController < Api::V0::ApiController
   end
 
   def show
-    respond_with Project.find(params[:id])
+    respond_with Project.friendly.find(params[:id])
   end
 
   def map
