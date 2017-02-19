@@ -37,11 +37,11 @@ class Event < ActiveRecord::Base
   %w(start end).each do |word|
 
     define_method "#{word}_date" do
-      ActiveSupport::TimeZone.new(time_zone).utc_to_local(self["#{word}s_at"]).stamp('30/12/99') if self["#{word}s_at"].present?
+      ActiveSupport::TimeZone.new(time_zone).utc_to_local(self["#{word}s_at"]).strftime('%D') if self["#{word}s_at"].present?
     end
 
     define_method "#{word}_time" do
-      ActiveSupport::TimeZone.new(time_zone).utc_to_local(self["#{word}s_at"]).stamp('01:45am') if self["#{word}s_at"].present?
+      ActiveSupport::TimeZone.new(time_zone).utc_to_local(self["#{word}s_at"]).strftime('%I:%m%p') if self["#{word}s_at"].present?
     end
 
   end

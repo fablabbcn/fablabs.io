@@ -3,7 +3,7 @@
     = render "breadcrumbs", event: @event
     - title @event
     - if @event.starts_at
-      = @event.starts_at.stamp("at 15:00 on Wednesday, 3rd October 2020")
+      = @event.starts_at.strftime('at %H:%M on %A, %B %d, %Y')
     %p created by #{link_to @event.creator, @event.creator}
     = simple_format @event.description
 
