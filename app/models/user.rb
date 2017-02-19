@@ -64,6 +64,17 @@ class User < ActiveRecord::Base
     end
   end
 
+  extend FriendlyId
+  friendly_id :slug_candidates, use: :slugged
+  def slug_candidates
+    [:username]
+  end
+
+  # Temp method until adapt controllers
+  def to_param
+    id
+  end
+
   before_create { generate_token(:email_validation_hash) }
   before_create :downcase_email
 
