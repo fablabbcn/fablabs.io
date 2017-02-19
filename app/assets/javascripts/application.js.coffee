@@ -17,7 +17,6 @@
 #= require Control.Loading.js
 #= require jquery.geocomplete
 #= require leaflet.markercluster
-#= require private_pub
 #= require cocoon
 #= require list
 #= require jquery.timepicker
