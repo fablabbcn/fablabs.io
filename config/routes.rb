@@ -3,8 +3,9 @@ Fablabs::Application.routes.draw do
   get "discourse/embed"
   resources :pages, only: [:show]
   use_doorkeeper
-  require 'sidekiq/web'
   require "admin_constraint"
+
+  require 'sidekiq/web'
   mount Sidekiq::Web, at: '/sidekiq', constraints: AdminConstraint.new
 
   get "signout" => "sessions#destroy", :as => "signout"
