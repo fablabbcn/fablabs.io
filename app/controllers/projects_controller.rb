@@ -85,10 +85,6 @@ class ProjectsController < ApplicationController
         :type,
         :title,
         :description,
-        :github,
-        :bitbucket,
-        :dropbox,
-        :web,
         :description,
         :scope,
         :faq,
@@ -96,15 +92,7 @@ class ProjectsController < ApplicationController
         :community,
         :lab_id,
         :owner_id,
-        :flickr,
-        :instagram,
-        :drive,
-        :youtube,
-        :vimeo,
-        :googleplus,
         :cover,
-        :twitter,
-        :facebook,
         tag_list: [],
         documents_attributes: [ :id, :image, :photo, :title, :description ],
         steps_attributes: [
@@ -120,7 +108,6 @@ class ProjectsController < ApplicationController
         machineries_attributes: [ :id, :device_id ]
       ]
 
-      attributes.push(links_attributes)
       params.require(:project).permit(attributes)
     end
 end

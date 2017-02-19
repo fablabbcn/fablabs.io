@@ -65,8 +65,6 @@ class OrganizationsController < ApplicationController
       links_attributes: [ :id, :link_id, :url, '_destroy' ]
     ]
 
-    attributes.push(links_attributes)
-
     if current_user.has_role?(:superadmin)
       attributes.push(:workflow_state, :geojson, :geojson_file, :zoom)
     end
