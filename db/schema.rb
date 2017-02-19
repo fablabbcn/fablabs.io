@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170219085358) do
+ActiveRecord::Schema.define(version: 20170219101108) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -389,6 +389,8 @@ ActiveRecord::Schema.define(version: 20170219085358) do
     t.string   "header_name"
   end
 
+  add_index "organizations", ["slug"], name: "index_organizations_on_slug", unique: true, using: :btree
+
   create_table "pages", force: true do |t|
     t.string   "title"
     t.string   "slug"
@@ -418,10 +420,12 @@ ActiveRecord::Schema.define(version: 20170219085358) do
     t.string   "cover"
     t.string   "discourse_id"
     t.text     "discourse_errors"
+    t.string   "slug"
   end
 
   add_index "projects", ["lab_id"], name: "index_projects_on_lab_id", using: :btree
   add_index "projects", ["owner_id"], name: "index_projects_on_owner_id", using: :btree
+  add_index "projects", ["slug"], name: "index_projects_on_slug", unique: true, using: :btree
 
   create_table "recoveries", force: true do |t|
     t.integer  "user_id"
@@ -510,11 +514,13 @@ ActiveRecord::Schema.define(version: 20170219085358) do
     t.text     "discourse_errors"
     t.string   "photo_uid"
     t.string   "photo_name"
+    t.string   "slug"
   end
 
   add_index "things", ["brand_id"], name: "index_things_on_brand_id", using: :btree
   add_index "things", ["creator_id"], name: "index_things_on_creator_id", using: :btree
   add_index "things", ["id", "type", "inventory_item"], name: "index_things_on_id_and_type_and_inventory_item", using: :btree
+  add_index "things", ["slug"], name: "index_things_on_slug", unique: true, using: :btree
 
   create_table "users", force: true do |t|
     t.string   "workflow_state"
@@ -558,9 +564,11 @@ ActiveRecord::Schema.define(version: 20170219085358) do
     t.string   "avatar_uid"
     t.string   "avatar_name"
     t.string   "discourse_id"
+    t.string   "slug"
   end
 
   add_index "users", ["fab10_coupon_code"], name: "index_users_on_fab10_coupon_code", unique: true, using: :btree
+  add_index "users", ["slug"], name: "index_users_on_slug", unique: true, using: :btree
 
   create_table "users_roles", id: false, force: true do |t|
     t.integer "user_id"
