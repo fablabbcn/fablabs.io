@@ -48,10 +48,6 @@ class Project < ActiveRecord::Base
     [:title]
   end
 
-  def to_param
-    id
-  end
-
   def self.last_updated_at
     self.select(:updated_at).order('updated_at DESC').first
   end

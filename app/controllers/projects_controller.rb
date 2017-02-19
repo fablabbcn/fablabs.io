@@ -23,7 +23,7 @@ class ProjectsController < ApplicationController
   end
 
   def show
-    @project = Project.find(params[:id])
+    @project = Project.friendly.find(params[:id])
     authorize_action_for @project
   end
 
@@ -47,7 +47,7 @@ class ProjectsController < ApplicationController
   end
 
   def edit
-    @project = Project.find(params[:id])
+    @project = Project.friendly.find(params[:id])
     authorize_action_for @project
   end
 
@@ -64,7 +64,7 @@ class ProjectsController < ApplicationController
   end
 
   def destroy
-    @project = Project.find(params[:id])
+    @project = Project.friendly.find(params[:id])
     authorize_action_for @project
     @project.delete
     redirect_to projects_path, notice: "Project deleted"
