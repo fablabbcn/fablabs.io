@@ -3,7 +3,7 @@ class Machine < Thing
   after_save :discourse_sync_if_needed, if: Figaro.env.discourse_enabled
 
   def to_param
-    "#{id}-#{brand}-#{name}".parameterize
+    slug
   end
 
   def async_discourse_sync
