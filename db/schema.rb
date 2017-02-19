@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170217105610) do
+ActiveRecord::Schema.define(version: 20170219085358) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -383,18 +383,6 @@ ActiveRecord::Schema.define(version: 20170217105610) do
     t.string   "region"
     t.text     "address_notes"
     t.text     "reverse_geocoded_address"
-    t.string   "web"
-    t.string   "github"
-    t.string   "drive"
-    t.string   "twitter"
-    t.string   "flickr"
-    t.string   "instagram"
-    t.string   "bitbucket"
-    t.string   "dropbox"
-    t.string   "facebook"
-    t.string   "googleplus"
-    t.string   "youtube"
-    t.string   "vimeo"
     t.string   "avatar_uid"
     t.string   "avatar_name"
     t.string   "header_uid"
@@ -417,22 +405,10 @@ ActiveRecord::Schema.define(version: 20170217105610) do
     t.string   "type"
     t.string   "title"
     t.text     "description"
-    t.string   "github"
-    t.string   "web"
-    t.string   "dropbox"
-    t.string   "bitbucket"
     t.integer  "lab_id"
     t.integer  "owner_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "vimeo"
-    t.string   "flickr"
-    t.string   "youtube"
-    t.string   "drive"
-    t.string   "twitter"
-    t.string   "facebook"
-    t.string   "googleplus"
-    t.string   "instagram"
     t.string   "status"
     t.string   "version"
     t.text     "faq"

@@ -23,24 +23,6 @@ class ApplicationController < ActionController::Base
 
 private
 
-  def links_attributes
-    [
-      :github,
-      :bitbucket,
-      :dropbox,
-      :web,
-      :flickr,
-      :instagram,
-      :drive,
-      :youtube,
-      :vimeo,
-      :googleplus,
-      :cover,
-      :twitter,
-      :facebook
-    ]
-  end
-
   def user_time_zone(&block)
     Time.use_zone(current_user.time_zone, &block)
   end

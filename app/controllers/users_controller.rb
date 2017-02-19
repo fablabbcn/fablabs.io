@@ -86,18 +86,6 @@ private
       :use_metric,
       :bio,
       :url,
-      :vimeo,
-      :flickr,
-      :youtube,
-      :drive,
-      :dropbox,
-      :twitter,
-      :facebook,
-      :web,
-      :github,
-      :bitbucket,
-      :googleplus,
-      :instagram,
       links_attributes: [ :id, :link_id, :url, '_destroy' ]
     )
   end
