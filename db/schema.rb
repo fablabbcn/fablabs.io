@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170219085358) do
+ActiveRecord::Schema.define(version: 20170219094534) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -418,10 +418,12 @@ ActiveRecord::Schema.define(version: 20170219085358) do
     t.string   "cover"
     t.string   "discourse_id"
     t.text     "discourse_errors"
+    t.string   "slug"
   end
 
   add_index "projects", ["lab_id"], name: "index_projects_on_lab_id", using: :btree
   add_index "projects", ["owner_id"], name: "index_projects_on_owner_id", using: :btree
+  add_index "projects", ["slug"], name: "index_projects_on_slug", unique: true, using: :btree
 
   create_table "recoveries", force: true do |t|
     t.integer  "user_id"
