@@ -6,8 +6,6 @@ gem 'discourse_api'
 
 gem 'hpricot'
 gem 'premailer-rails'
-gem 'private_pub'
-gem 'thin'
 gem 'rack-cors', :require => 'rack/cors'
 gem 'http_accept_language'
 gem 'chronic'
