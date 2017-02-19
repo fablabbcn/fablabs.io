@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170219095107) do
+ActiveRecord::Schema.define(version: 20170219095715) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -514,11 +514,13 @@ ActiveRecord::Schema.define(version: 20170219095107) do
     t.text     "discourse_errors"
     t.string   "photo_uid"
     t.string   "photo_name"
+    t.string   "slug"
   end
 
   add_index "things", ["brand_id"], name: "index_things_on_brand_id", using: :btree
   add_index "things", ["creator_id"], name: "index_things_on_creator_id", using: :btree
   add_index "things", ["id", "type", "inventory_item"], name: "index_things_on_id_and_type_and_inventory_item", using: :btree
+  add_index "things", ["slug"], name: "index_things_on_slug", unique: true, using: :btree
 
   create_table "users", force: true do |t|
     t.string   "workflow_state"

@@ -23,6 +23,12 @@ class Thing < ActiveRecord::Base
 
   acts_as_taggable
 
+  extend FriendlyId
+  friendly_id :slug_candidates, use: :slugged
+  def slug_candidates
+    [:name]
+  end
+
   def to_param
     "#{id}-#{name}".parameterize
   end
