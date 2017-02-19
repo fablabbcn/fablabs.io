@@ -10,5 +10,11 @@ namespace :fablab do
       pro.save
       p "project: #{pro.id} - #{pro.slug}"
     end
+
+    Thing.where(slug: nil).find_each do |thing|
+      thing.save
+      p "thing: #{thing.id} - #{thing.slug}"
+    end
+
   end
 end
