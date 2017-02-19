@@ -42,6 +42,12 @@ class Project < ActiveRecord::Base
 
   acts_as_taggable
 
+  extend FriendlyId
+  friendly_id :slug_candidates, use: :slugged
+  def slug_candidates
+    [:title]
+  end
+
   def self.last_updated_at
     self.select(:updated_at).order('updated_at DESC').first
   end
