@@ -10,8 +10,10 @@ gem 'rack-cors', :require => 'rack/cors'
 gem 'http_accept_language'
 gem 'chronic'
 gem 'whenever', :require => false
+gem 'slim'
 gem 'redis-rails'
 gem 'redis-rack-cache'
+gem "skylight"
 gem 'sitemap_generator'
 gem "rack-cache"
 gem 'simplecov', :require => false, :group => :test
@@ -20,7 +22,7 @@ gem 'sort_alphabetical'
 gem 'rocket_pants', '~> 1.0'
 gem 'twitter'
 gem 'sinatra', '>= 1.3.0', :require => nil
-gem 'sidekiq', '4.2.9'
+gem 'sidekiq'
 gem 'nest'
 gem 'rails', '4.0.1'
 gem 'inherited_resources'
