@@ -35,9 +35,6 @@ Fablabs::Application.routes.draw do
     end
 
     resources :users
-    resources :chat_messages
-    get 'chat' => 'chat_messages#index', as: 'chat'
-
     resources :machines
 
     resources :brands
