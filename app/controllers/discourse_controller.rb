@@ -1,4 +1,7 @@
 class DiscourseController < ApplicationController
+
+  layout 'application'
+
   before_filter :require_login
 
   def sso
