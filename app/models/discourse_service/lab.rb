@@ -12,7 +12,7 @@ This is the general thread for discussing the lab; the thread is also visible on
     end
 
     def url
-      "#{Figaro.env.url}/#{@entity.slug}"
+      "#{Figaro.env.url}/labs/#{@entity.slug}"
     end
 
     def category
