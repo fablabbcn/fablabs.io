@@ -111,14 +111,8 @@ Fablabs::Application.routes.draw do
       resources :grades, only: [:create, :destroy]
     end
 
-    # resources :labs, path: '', only: [:show]
-
-    # resources :labs, only: [:show, :destroy], path: ''
-     #, except: [:show]
-    get 'labs' => 'labs#index'
-    post 'labs' => 'labs#create'
     get "/labs/docs/:page" => "labs#docs"
-    resources :labs, path: '', except: :index do
+    resources :labs do
       resources :events
       resources :admin_applications
       resources :role_applications
@@ -127,11 +121,6 @@ Fablabs::Application.routes.draw do
 
       get 'mapdata', on: :collection
       # resources :discussions
-      resources :admins do
-        collection do
-          delete '/' => 'admins#destroy'
-        end
-      end
       member do
         get :manage_admins
       end
@@ -185,4 +174,5 @@ Fablabs::Application.routes.draw do
   #   end
   # end
 
+  get ':id' => 'redirects#show'
 end
