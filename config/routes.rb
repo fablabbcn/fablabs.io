@@ -174,4 +174,5 @@ Fablabs::Application.routes.draw do
   #   end
   # end
 
+  get ':id' => 'redirects#show'
 end
