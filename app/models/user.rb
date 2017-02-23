@@ -70,11 +70,6 @@ class User < ActiveRecord::Base
     [:username]
   end
 
-  # Temp method until adapt controllers
-  def to_param
-    id
-  end
-
   before_create { generate_token(:email_validation_hash) }
   before_create :downcase_email
 
