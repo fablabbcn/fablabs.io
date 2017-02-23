@@ -126,6 +126,10 @@ private
 
   def lab_params
     params.require(:lab).permit(
+      :activity_status,
+      :activity_start_at,
+      :activity_inaugurated_at,
+      :activity_closed_at,
       :avatar,
       :header,
       :kind,
