@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170219101108) do
+ActiveRecord::Schema.define(version: 20170223133150) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -284,6 +284,10 @@ ActiveRecord::Schema.define(version: 20170219101108) do
     t.string   "avatar_name"
     t.string   "header_uid"
     t.string   "header_name"
+    t.string   "activity_status"
+    t.date     "activity_start_at"
+    t.date     "activity_inaugurated_at"
+    t.date     "activity_closed_at"
   end
 
   add_index "labs", ["creator_id"], name: "index_labs_on_creator_id", using: :btree
