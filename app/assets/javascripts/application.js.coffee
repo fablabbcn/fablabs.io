@@ -29,12 +29,14 @@
 #= require alerts
 #= require moment
 #= require trumbowyg/trumbowyg
+#= require bootstrap-datepicker
 #= require_tree .
 #
 #
 
 initEvents = ->
 
+  $('.datepicker').datepicker()
   $('[data-toggle="tooltip"]').tooltip()
   $('textarea.trumbowyg').trumbowyg()
   # {append: "\n"}

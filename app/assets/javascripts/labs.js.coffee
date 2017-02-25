@@ -4,6 +4,23 @@ window.showingContacts = false
 
 down = false
 
+toggleActivityDateFields = (status) ->
+  switch status
+    when 'planned'
+      $('.input.lab_activity_start_at').show()
+      $('.input.lab_activity_inaugurated_at').hide()
+      $('.input.lab_activity_closed_at').hide()
+    when 'active'
+      $('.input.lab_activity_start_at').show()
+      $('.input.lab_activity_inaugurated_at').show()
+      $('.input.lab_activity_closed_at').hide()
+    else
+      $('.input.lab_activity_start_at').show()
+      $('.input.lab_activity_inaugurated_at').show()
+      $('.input.lab_activity_closed_at').show()
+
+
+
 ready = ->
 
 
@@ -13,6 +30,16 @@ ready = ->
   window.userList = new List('students', options)
 
   last_valid_selection = $('.referee_approval').val
+
+
+  # Toggle fields on load
+  toggleActivityDateFields($('.activity-status-radio:checked').val())
+
+  # Toggle fields on change
+  $('.activity-status-radio').change (event) ->
+    if $(event.target).is(':checked')
+      toggleActivityDateFields(event.target.value)
+
 
   $('.referee_approval').change (event) ->
     if $(this).val().length > 3
