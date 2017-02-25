@@ -38,6 +38,29 @@
             %label.radio{style: "width: 160px;"}
               = m.humanize.titleize
 
+    .row
+      .col-lg-12
+        %p Fab Lab Activity
+
+    .row
+      - Lab::ACTIVITY_STATUS.each do |status|
+        .col-lg-2
+          .radio-inline
+            %span
+              = f.radio_button :activity_status, status, class: 'activity-status-radio'
+              %label.radio{style: "width: 160px;"}
+                = status.humanize.titleize
+
+    .row
+      .col-lg-4
+        = f.input :activity_start_at, as: 'string', input_html: {class: 'datepicker', "data-date-format" => "yyyy-mm-dd"}
+      .col-lg-4
+        = f.input :activity_inaugurated_at, as: 'string', input_html: {class: 'datepicker' , "data-date-format" => "yyyy-mm-dd"}
+      .col-lg-4
+        = f.input :activity_closed_at, as: 'string', input_html: {class: 'datepicker' , "data-date-format" => "yyyy-mm-dd"}
+
+
+
   %fieldset
     %legend  What qualifies as a Fab Lab
     %p

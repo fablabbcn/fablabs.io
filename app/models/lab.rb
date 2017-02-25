@@ -80,7 +80,14 @@ class Lab < ActiveRecord::Base
     end
   end
 
-  Kinds = %w(planned_fab_lab mini_fab_lab fab_lab supernode)
+  Kinds = %w(mini_fab_lab fab_lab supernode mobile)
+
+  ACTIVITY_STATUS = [
+    ACTIVITY_PLANNED  = 'planned'.freeze,
+    ACTIVITY_ACTIVE   = 'active'.freeze,
+    ACTIVITY_CLOSED   = 'closed'.freeze
+  ].freeze
+
   Capabilities = %w(three_d_printing cnc_milling circuit_production laser precision_milling vinyl_cutting)
   bitmask :capabilities, as: Capabilities
 
