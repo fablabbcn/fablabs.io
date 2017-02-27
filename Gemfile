@@ -11,8 +11,7 @@ gem 'http_accept_language'
 gem 'chronic'
 gem 'whenever', :require => false
 gem 'slim'
-gem 'redis-rails'
-gem 'redis-rack-cache'
+gem 'dalli'
 gem "skylight"
 gem 'sitemap_generator'
 gem "rack-cache"
