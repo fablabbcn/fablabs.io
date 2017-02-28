@@ -9,6 +9,7 @@ class LabsController < ApplicationController
   def embed
     @labs = Lab.with_approved_state
     # render :embed, layout: false
+    render layout: "embed"
   end
 
   def map
