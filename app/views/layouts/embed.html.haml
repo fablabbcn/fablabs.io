@@ -1,15 +1,37 @@
 !!!
-%html
+%html{xmlns: "http://www.w3.org/1999/xhtml", "xmlns:fb" => "http://www.facebook.com/2008/fbml", "xmlns:og" => "http://ogp.me/ns#", :lang => "en"}
   %head
-    %title= content_for?(:title) ? "#{yield(:title)} | FabLabs" : "FabLabs"
-    %meta{ name: "viewport", content: "width=device-width" }
+    %title= content_for?(:title) ? "#{yield(:title)} | FabLabs" : "FabLabs.io - The Fab Lab Network"
+    %base{:target => "_parent"}
+    %meta{ :charset => "utf-8" }
+    %meta{ name: "viewport", content: "width=device-width, initial-scale=1.0, user-scalable=no" }
+    %meta{content: (content_for?(:title) ? "#{yield(:title)} | FabLabs" : "FabLabs.io - The Fab Lab Network"), property: "og:title"}/
+    %meta{content: "FabLabs.io - The Fab Lab Network", property: "og:site_name"}/
+    %meta{content: request.url, property: "og:url"}/
+    - if content_for?(:meta)
+      = yield(:meta)
+    - else
+      %meta{content: "https://www.fablabs.io/logo.jpg", property: "og:image"}/
+      %meta{content: "A platform for connecting Fab Labs and their users from around the world.", property: "og:description"}/
+    %meta{content: "1349222175", property: "fb:admins"}/
+    = render 'application/map_icons'
+
     %link{rel: "canonical", href: "#{request.url.split('?').first}"}
+    %link{rel: "stylesheet", href: "https://api.mapbox.com/mapbox.js/v2.2.2/mapbox.css"}
+    %link{rel: "stylesheet", href: "https://api.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/MarkerCluster.css"}
+    %link{rel: "stylesheet", href: "https://api.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/MarkerCluster.Default.css"}
+
     = stylesheet_link_tag "//fonts.googleapis.com/css?family=Open+Sans:400|Montserrat"
     = stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true
-    = javascript_include_tag "sessions", "data-turbolinks-track" => true
+    = javascript_include_tag "//maps.googleapis.com/maps/api/js?sensor=false&libraries=places"
+    = javascript_include_tag "https://api.mapbox.com/mapbox.js/v2.2.2/mapbox.js"
+    = javascript_include_tag "https://api.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/leaflet.markercluster.js"
+
+    = javascript_include_tag "application", "data-turbolinks-track" => true
     %link{type: "text/plain", rel: "author", href: "/humans.txt"}
     = csrf_meta_tags
 
-  %body
+
+  %body.a-embed
     #main
       = yield
