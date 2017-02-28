@@ -19,6 +19,8 @@
   "dependencies": {
     "bootstrap": "^3.3.7",
     "select2": "^4.0.3",
-    "bootstrap-datepicker": "^1.6.4"
+    "bootstrap-datepicker": "^1.6.4",
+    "leaflet": "^1.0.3",
+    "leaflet.markercluster": "^1.0.3"
   }
 }
