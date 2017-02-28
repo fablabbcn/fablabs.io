@@ -20,6 +20,7 @@ class LabsController < ApplicationController
       params["country"].downcase!
     end
     @labs = Lab.with_approved_state.order('LOWER(name) ASC').in_country_code(params["country"]).page(params['page']).per(params['per'])
+    render layout: "embed"
   end
 
   def mapdata
