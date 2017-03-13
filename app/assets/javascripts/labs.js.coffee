@@ -112,6 +112,9 @@ ready = ->
     $("input#lab_latitude").val result.geometry.location.lat()
     $("input#lab_longitude").val result.geometry.location.lng()
 
+
+# Embed map
+
   if $('body').hasClass('c-labs a-map') or $('body').hasClass('a-embed')
     L.mapbox.accessToken = 'pk.eyJ1IjoidG9tYXNkaWV6IiwiYSI6ImRTd01HSGsifQ.loQdtLNQ8GJkJl2LUzzxVg'
     map = L.mapbox.map('map', 'mapbox.light', { scrollWheelZoom: true, zoomControl: false }).setView([
@@ -119,22 +122,13 @@ ready = ->
       0
     ], 2)
 
-    # removed for ios7 see: https://github.com/Leaflet/Leaflet.markercluster/issues/279
-    # if !navigator.userAgent.match(/(iPad|iPhone|iPod touch);.*CPU.*OS 7_\d/i)
-    #   window.markers = new L.MarkerClusterGroup
-    #     showCoverageOnHover: true
-    #     spiderfyOnMaxZoom: false
-    #     removeOutsideVisibleBounds: true
-    #     zoomToBoundsOnClick: true
-    #     maxClusterRadius: 50
-    #     disableClusteringAtZoom: 14
-    # else
-    window.markers = map
-
     new L.Control.Zoom({ position: 'topleft' }).addTo(map)
     navigator.geolocation.getCurrentPosition((position)->
       map.setView([position.coords.latitude, position.coords.longitude], 4)
     )
+
+    allLabs = new (L.LayerGroup)
+    map.addLayer(allLabs)
 
     $.get "/labs/mapdata.json", (labs) ->
       for lab in labs.labs
@@ -146,10 +140,18 @@ ready = ->
             popupAnchor:  [0, -20]
           })
           lab.marker = L.marker([lab.latitude, lab.longitude], {icon: icon})
-          lab.marker.bindPopup("<a target='_top' href='#{lab.url}'>#{lab.name}</a>")
-          window.markers.addLayer(lab.marker)
+          lab.marker.bindPopup("<a target='_top' href='#{lab.url}'>#{lab.name}</a>").addTo allLabs
           window.labs.push(lab)
-    map.addLayer(window.markers)
+
+    map.on 'zoomend', ->
+      console.log allLabs
+      currentZoom = map.getZoom()
+      LeafIcon = L.Icon.extend(options: iconSize: [
+          currentZoom
+          currentZoom
+          ])
+      allLabs.setIcon LeafIcon
+      return
 
     windowHeight = ->
       $('#map').css('top', $('#main').offset().top).height($(window).height() - $('#main').offset().top)
