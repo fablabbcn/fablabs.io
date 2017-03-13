@@ -144,13 +144,12 @@ ready = ->
           window.labs.push(lab)
 
     map.on 'zoomend', ->
-      console.log allLabs
       currentZoom = map.getZoom()
-      LeafIcon = L.Icon.extend(options: iconSize: [
-          currentZoom
-          currentZoom
+      scaledIcon = L.Icon.extend(options: iconSize: [
+          10
+          10
           ])
-      allLabs.setIcon LeafIcon
+      allLabs.setIcon scaledIcon
       return
 
     windowHeight = ->
