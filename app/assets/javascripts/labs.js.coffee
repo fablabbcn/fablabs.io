@@ -129,7 +129,7 @@ ready = ->
     #     maxClusterRadius: 50
     #     disableClusteringAtZoom: 14
     # else
-    window.markers = new L.MarkerClusterGroup();
+    window.markers = map
 
     new L.Control.Zoom({ position: 'topleft' }).addTo(map)
     navigator.geolocation.getCurrentPosition((position)->
