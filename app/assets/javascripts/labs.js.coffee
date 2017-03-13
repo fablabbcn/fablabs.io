@@ -116,20 +116,24 @@ ready = ->
 # Embed map
 
   if $('body').hasClass('c-labs a-map') or $('body').hasClass('a-embed')
+    # Create map
     L.mapbox.accessToken = 'pk.eyJ1IjoidG9tYXNkaWV6IiwiYSI6ImRTd01HSGsifQ.loQdtLNQ8GJkJl2LUzzxVg'
     map = L.mapbox.map('map', 'mapbox.light', { scrollWheelZoom: true, zoomControl: false }).setView([
       50
       0
     ], 2)
 
+    # Create map control
     new L.Control.Zoom({ position: 'topleft' }).addTo(map)
     navigator.geolocation.getCurrentPosition((position)->
       map.setView([position.coords.latitude, position.coords.longitude], 4)
     )
 
+    # Create layer
     allLabs = new (L.LayerGroup)
     map.addLayer(allLabs)
 
+    # Add markers
     $.get "/labs/mapdata.json", (labs) ->
       for lab in labs.labs
         if lab.latitude and lab.longitude
@@ -143,6 +147,7 @@ ready = ->
           lab.marker.bindPopup("<a target='_top' href='#{lab.url}'>#{lab.name}</a>").addTo allLabs
           window.labs.push(lab)
 
+    # Resize markers on zoom
     map.on 'zoomend', ->
       currentZoom = map.getZoom()
       scaledIcon = L.Icon.extend(options: iconSize: [
