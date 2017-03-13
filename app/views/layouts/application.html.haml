@@ -6,3 +6,6 @@
     #main.container
       = yield
     = render 'footer'
+    - if current_user
+      - # Automatic login on discourse
+      %iframe{src: "#{Figaro.env.discourse_endpoint}session/sso", width: '0px', height: '0px', border: 'none'}
