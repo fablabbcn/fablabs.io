@@ -149,12 +149,11 @@ ready = ->
 
     # Resize markers on zoom
     map.on 'zoomend', ->
+      console.log "zoom"
       currentZoom = map.getZoom()
-      scaledIcon = L.Icon.extend(options: iconSize: [
-          10
-          10
-          ])
-      allLabs.setIcon scaledIcon
+      $('body').removeClass()
+      $('body').addClass "a-embed"
+      $('body').addClass "zoom" + currentZoom
       return
 
     windowHeight = ->
