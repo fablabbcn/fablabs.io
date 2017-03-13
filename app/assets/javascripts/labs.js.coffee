@@ -144,8 +144,12 @@ ready = ->
             popupAnchor:  [0, -20]
           })
           lab.marker = L.marker([lab.latitude, lab.longitude], {icon: icon})
+
+          $(lab.marker).addClass 'selectedMarker'
           lab.marker.bindPopup("<a target='_top' href='#{lab.url}'>#{lab.name}</a>").addTo allLabs
           window.labs.push(lab)
+          # Add class for stylinh
+          L.DomUtil.addClass lab.marker._icon, lab.kind_name
 
     # Resize markers on zoom
     map.on 'zoomend', ->
