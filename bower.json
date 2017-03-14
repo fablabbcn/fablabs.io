@@ -1,28 +1,31 @@
 {
-    "name": "fablabs",
-    "homepage": "https://github.com/fablabbcn/fablabs",
-    "authors": [
-        "Jose Galisteo <ceritium@gmail.com>"
-    ],
-    "description": "",
-    "main": "",
-    "license": "MIT",
-    "private": true,
-    "ignore": [
-        "**/.*",
-        "node_modules",
-        "bower_components",
-        "vendor/assets/bower_components",
-        "test",
-        "tests"
-    ],
-    "dependencies": {
-        "bootstrap": "^3.3.7",
-        "select2": "^4.0.3",
-        "bootstrap-datepicker": "^1.6.4",
-        "spin.js": "spinjs#^2.3.2",
-        "mapbox.js": "^2.4.0",
-        "leaflet-spin": "^1.1.0",
-        "leaflet": "!^1.0.3"
-    }
+  "name": "fablabs",
+  "homepage": "https://github.com/fablabbcn/fablabs",
+  "authors": [
+    "Jose Galisteo <ceritium@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "vendor/assets/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "select2": "^4.0.3",
+    "bootstrap-datepicker": "^1.6.4",
+    "spin.js": "spinjs#^2.3.2",
+    "mapbox.js": "^2.4.0",
+    "leaflet-spin": "^1.1.0",
+    "leaflet": "^1.0.3"
+  },
+  "resolutions": {
+    "leaflet": "^1.0.3"
+  }
 }
