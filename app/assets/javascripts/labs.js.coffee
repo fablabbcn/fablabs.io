@@ -112,44 +112,93 @@ ready = ->
     $("input#lab_latitude").val result.geometry.location.lat()
     $("input#lab_longitude").val result.geometry.location.lng()
 
+
+# Embed map
+
   if $('body').hasClass('c-labs a-map') or $('body').hasClass('a-embed')
+    # Create layer
+    allLabs = new (L.LayerGroup)
+    # Add markers to layer
+    $.get "/labs/mapdata.json", (labs) ->
+      for lab in labs.labs
+        if lab.latitude and lab.longitude
+          icon = L.divIcon({
+            iconSize: null
+            iconAnchor:   [0, 0]
+            popupAnchor: [0, -12]
+          })
+          lab.marker = L.marker([lab.latitude, lab.longitude], {icon: icon})
+          lab.marker.on 'zoomend', ->
+            currentZoom = map.getZoom()
+            console.log "bind"
+            nicon = L.divIcon({
+              iconSize: null
+              iconAnchor:   [0, 0]
+              popupAnchor: [0, -100]
+            })
+            this.setIcon nicon
+
+          lab.marker.bindPopup("<a target='_top' href='#{lab.url}'>#{lab.name}</a>").addTo allLabs
+          window.labs.push(lab)
+          # Add class for styling the marker by category of lab
+          L.DomUtil.addClass lab.marker._icon, lab.kind_name
+
+    # Create map
     L.mapbox.accessToken = 'pk.eyJ1IjoidG9tYXNkaWV6IiwiYSI6ImRTd01HSGsifQ.loQdtLNQ8GJkJl2LUzzxVg'
     map = L.mapbox.map('map', 'mapbox.light', { scrollWheelZoom: true, zoomControl: false }).setView([
       50
       0
     ], 2)
 
-    # removed for ios7 see: https://github.com/Leaflet/Leaflet.markercluster/issues/279
-    # if !navigator.userAgent.match(/(iPad|iPhone|iPod touch);.*CPU.*OS 7_\d/i)
-    #   window.markers = new L.MarkerClusterGroup
-    #     showCoverageOnHover: true
-    #     spiderfyOnMaxZoom: false
-    #     removeOutsideVisibleBounds: true
-    #     zoomToBoundsOnClick: true
-    #     maxClusterRadius: 50
-    #     disableClusteringAtZoom: 14
-    # else
-    window.markers = new L.MarkerClusterGroup();
+    # Add spin to show that the map is loading the data
+    map.spin true,
+      color: '#fff'
+      lines: 13
+      length: 7
+      width: 14
+      radius: 44
+      scale: 1.00
+      corners: 1.0
+      opacity: 0.6
+      rotate: 0
+      direction: 1
+      speed: 1.0
+      trail: 60
 
+    # Create map control
     new L.Control.Zoom({ position: 'topleft' }).addTo(map)
     navigator.geolocation.getCurrentPosition((position)->
       map.setView([position.coords.latitude, position.coords.longitude], 4)
     )
 
-    $.get "/labs/mapdata.json", (labs) ->
-      for lab in labs.labs
-        if lab.latitude and lab.longitude
-          icon = L.icon({
-            iconUrl: window.mapIcons[lab.kind_name]
-            iconSize:     [35, 35]
-            iconAnchor:   [17, 33]
-            popupAnchor:  [0, -20]
-          })
-          lab.marker = L.marker([lab.latitude, lab.longitude], {icon: icon})
-          lab.marker.bindPopup("<a target='_top' href='#{lab.url}'>#{lab.name}</a>")
-          window.markers.addLayer(lab.marker)
-          window.labs.push(lab)
-    map.addLayer(window.markers)
+    # Add layer to map
+    map.addLayer(allLabs)
+
+    # Markers are now ready, stop the spin after waiting a bit
+    setTimeout (->
+      map.spin false
+      return
+    ), 1000
+
+    # Resize markers on zoom
+    map.on 'zoomend', ->
+      currentZoom = map.getZoom()
+      # Add classes for icon styling via css
+      $('body').removeClass()
+      $('body').addClass "a-embed"
+      $('body').addClass "zoom" + currentZoom
+      # Fix the popupAnchor via offset
+      newOffset = -12
+      for mark in window.labs
+        if currentZoom < 4
+          newOffset = -12
+        else if currentZoom >= 4 and currentZoom < 6
+          newOffset = -24
+        else if currentZoom >= 7 and currentZoom < 9
+          newOffset = -35
+        else if currentZoom >= 10 and currentZoom < 20
+          newOffset = -70
+        mark.marker._popup.options.offset.y = newOffset
 
     windowHeight = ->
       $('#map').css('top', $('#main').offset().top).height($(window).height() - $('#main').offset().top)

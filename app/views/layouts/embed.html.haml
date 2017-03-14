@@ -14,15 +14,12 @@
       %meta{content: "https://www.fablabs.io/logo.jpg", property: "og:image"}/
       %meta{content: "A platform for connecting Fab Labs and their users from around the world.", property: "og:description"}/
     %meta{content: "1349222175", property: "fb:admins"}/
-    = render 'application/map_icons'
 
     %link{rel: "canonical", href: "#{request.url.split('?').first}"}
-    %link{rel: "stylesheet", href: "https://api.mapbox.com/mapbox.js/v2.2.2/mapbox.css"}
 
     = stylesheet_link_tag "//fonts.googleapis.com/css?family=Open+Sans:400|Montserrat"
     = stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true
     = javascript_include_tag "//maps.googleapis.com/maps/api/js?sensor=false&libraries=places"
-    = javascript_include_tag "https://api.mapbox.com/mapbox.js/v2.2.2/mapbox.js"
 
     = javascript_include_tag "application", "data-turbolinks-track" => true
     %link{type: "text/plain", rel: "author", href: "/humans.txt"}
