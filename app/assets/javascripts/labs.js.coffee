@@ -137,18 +137,15 @@ ready = ->
     $.get "/labs/mapdata.json", (labs) ->
       for lab in labs.labs
         if lab.latitude and lab.longitude
-          icon = L.icon({
-            iconUrl: window.mapIcons[lab.kind_name]
-            iconSize:     [35, 35]
+          icon = L.divIcon({
+            iconSize: new L.Point(35, 35)
             iconAnchor:   [17, 33]
             popupAnchor:  [0, -20]
           })
           lab.marker = L.marker([lab.latitude, lab.longitude], {icon: icon})
-
-          $(lab.marker).addClass 'selectedMarker'
           lab.marker.bindPopup("<a target='_top' href='#{lab.url}'>#{lab.name}</a>").addTo allLabs
           window.labs.push(lab)
-          # Add class for stylinh
+          # Add class for styling the marker by category of lab
           L.DomUtil.addClass lab.marker._icon, lab.kind_name
 
     # Resize markers on zoom
