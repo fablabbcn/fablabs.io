@@ -1,15 +1,24 @@
 @import "common_vars";
 
-.fab_lab {
-
+.fab_lab, .mobile, .mini_fab_lab, .supernode {
+    border: none;
+    background-color: rgba(255, 255, 255, 0);
 }
 
-.mobile {}
+.fab_lab {
+    background-image: image_url("map-icons/fab_lab.png");
+}
 
-.mini_fab_lab {}
+.mobile {
+    background-image: image_url("map-icons/mobile.png");
+}
+
+.mini_fab_lab {
+    background-image: image_url("map-icons/mini_fab_lab.png");
+}
 
 .supernode {
-    border: 3px solid blue !important;
+    background-image: image_url("map-icons/supernode.png");
 }
 
 $sea-blue: #98BCDA;
