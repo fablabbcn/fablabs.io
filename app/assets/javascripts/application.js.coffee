@@ -16,7 +16,6 @@
 #= require jquery.limit-1.2
 #= require Control.Loading.js
 #= require jquery.geocomplete
-#= require leaflet.markercluster
 #= require cocoon
 #= require list
 #= require jquery.timepicker
@@ -31,6 +30,9 @@
 #= require trumbowyg/trumbowyg
 #= require bootstrap-datepicker
 #= require_tree .
+#= require mapbox.js/mapbox.js
+#= require spin.js/spin.js
+#= require leaflet-spin/leaflet.spin.min.js
 #
 #
 

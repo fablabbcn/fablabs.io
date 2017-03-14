@@ -116,30 +116,15 @@ ready = ->
 # Embed map
 
   if $('body').hasClass('c-labs a-map') or $('body').hasClass('a-embed')
-    # Create map
-    L.mapbox.accessToken = 'pk.eyJ1IjoidG9tYXNkaWV6IiwiYSI6ImRTd01HSGsifQ.loQdtLNQ8GJkJl2LUzzxVg'
-    map = L.mapbox.map('map', 'mapbox.light', { scrollWheelZoom: true, zoomControl: false }).setView([
-      50
-      0
-    ], 2)
-
-    # Create map control
-    new L.Control.Zoom({ position: 'topleft' }).addTo(map)
-    navigator.geolocation.getCurrentPosition((position)->
-      map.setView([position.coords.latitude, position.coords.longitude], 4)
-    )
-
     # Create layer
     allLabs = new (L.LayerGroup)
-    map.addLayer(allLabs)
-
-    # Add markers
+    # Add markers to layer
     $.get "/labs/mapdata.json", (labs) ->
       for lab in labs.labs
         if lab.latitude and lab.longitude
           icon = L.divIcon({
-            iconSize: new L.Point(35, 35)
-            iconAnchor:   [17, 33]
+            iconSize: new L.Point(70, 70)
+            iconAnchor:   [0, 0]
             popupAnchor:  [0, -20]
           })
           lab.marker = L.marker([lab.latitude, lab.longitude], {icon: icon})
@@ -148,9 +133,47 @@ ready = ->
           # Add class for styling the marker by category of lab
           L.DomUtil.addClass lab.marker._icon, lab.kind_name
 
+    # Create map
+    L.mapbox.accessToken = 'pk.eyJ1IjoidG9tYXNkaWV6IiwiYSI6ImRTd01HSGsifQ.loQdtLNQ8GJkJl2LUzzxVg'
+    map = L.mapbox.map('map', 'mapbox.light', { scrollWheelZoom: true, zoomControl: false }).setView([
+      50
+      0
+    ], 2)
+
+    # Add spinner
+    map.spin true,
+      color: '#fff'
+      lines: 13
+      length: 7
+      width: 14
+      radius: 44
+      scale: 1.00
+      corners: 1.0
+      opacity: 0.6
+      rotate: 0
+      direction: 1
+      speed: 1.0
+      trail: 60
+
+    # Create map control
+    new L.Control.Zoom({ position: 'topleft' }).addTo(map)
+    navigator.geolocation.getCurrentPosition((position)->
+      map.setView([position.coords.latitude, position.coords.longitude], 4)
+    )
+
+    # Add layer to map
+    map.addLayer(allLabs)
+
+    # Markers are now ready, stop the spin after waiting a bit
+    setTimeout (->
+      map.spin false
+      return
+    ), 1000
+
+    #map.spin false
+
     # Resize markers on zoom
     map.on 'zoomend', ->
-      console.log "zoom"
       currentZoom = map.getZoom()
       $('body').removeClass()
       $('body').addClass "a-embed"
