@@ -30,6 +30,7 @@
 #= require trumbowyg/trumbowyg
 #= require bootstrap-datepicker
 #= require_tree .
+#= require_all leaflet/dist
 #= require mapbox.js/mapbox.js
 #= require spin.js/spin.js
 #= require leaflet-spin/leaflet.spin.min.js

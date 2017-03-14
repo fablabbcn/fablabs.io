@@ -125,9 +125,19 @@ ready = ->
           icon = L.divIcon({
             iconSize: null
             iconAnchor:   [0, 0]
-            popupAnchor: [0, -24]
+            popupAnchor: [0, -12]
           })
           lab.marker = L.marker([lab.latitude, lab.longitude], {icon: icon})
+          lab.marker.on 'zoomend', ->
+            currentZoom = map.getZoom()
+            console.log "bind"
+            nicon = L.divIcon({
+              iconSize: null
+              iconAnchor:   [0, 0]
+              popupAnchor: [0, -100]
+            })
+            this.setIcon nicon
+
           lab.marker.bindPopup("<a target='_top' href='#{lab.url}'>#{lab.name}</a>").addTo allLabs
           window.labs.push(lab)
           # Add class for styling the marker by category of lab
@@ -140,7 +150,7 @@ ready = ->
       0
     ], 2)
 
-    # Add spinner
+    # Add spin to show that the map is loading the data
     map.spin true,
       color: '#fff'
       lines: 13
@@ -170,15 +180,25 @@ ready = ->
       return
     ), 1000
 
-    #map.spin false
-
     # Resize markers on zoom
     map.on 'zoomend', ->
       currentZoom = map.getZoom()
+      # Add classes for icon styling via css
       $('body').removeClass()
       $('body').addClass "a-embed"
       $('body').addClass "zoom" + currentZoom
-      return
+      # Fix the popupAnchor via offset
+      newOffset = -12
+      for mark in window.labs
+        if currentZoom < 4
+          newOffset = -12
+        else if currentZoom >= 4 and currentZoom < 6
+          newOffset = -24
+        else if currentZoom >= 7 and currentZoom < 9
+          newOffset = -35
+        else if currentZoom >= 10 and currentZoom < 20
+          newOffset = -70
+        mark.marker._popup.options.offset.y = newOffset
 
     windowHeight = ->
       $('#map').css('top', $('#main').offset().top).height($(window).height() - $('#main').offset().top)
