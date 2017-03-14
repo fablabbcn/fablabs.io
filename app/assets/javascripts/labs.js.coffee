@@ -123,9 +123,9 @@ ready = ->
       for lab in labs.labs
         if lab.latitude and lab.longitude
           icon = L.divIcon({
-            iconSize: new L.Point(70, 70)
+            iconSize: null
             iconAnchor:   [0, 0]
-            popupAnchor:  [0, -20]
+            popupAnchor: [0, -24]
           })
           lab.marker = L.marker([lab.latitude, lab.longitude], {icon: icon})
           lab.marker.bindPopup("<a target='_top' href='#{lab.url}'>#{lab.name}</a>").addTo allLabs
