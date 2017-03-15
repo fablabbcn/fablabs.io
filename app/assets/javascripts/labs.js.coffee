@@ -115,7 +115,7 @@ ready = ->
 
 # Embed map
 
-  if $('body').hasClass('c-labs a-map') or $('body').hasClass('a-embed')
+  if $('body').hasClass('a-embed')
     # Create layer
     allLabs = new (L.LayerGroup)
     # Add markers to layer
