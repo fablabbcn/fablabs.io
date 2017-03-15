@@ -14,12 +14,13 @@
  *= require taggd
  *= require intlTelInput
  *= require jquery.timepicker
- *= require leaflet
+ *= require leaflet/dist/leaflet.css
+ *= require mapbox.js/mapbox.css
  *= require messenger
  *= require messenger-theme-flat
  *= require trumbowyg/trumbowyg
  *= require_tree .
- *= require bootstrap/dist/css/bootstrap
+ *= require bootstrap/dist/css/bootstrap.min.css
  *= require bootstrap-datepicker
 
  */

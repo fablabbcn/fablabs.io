@@ -14,6 +14,8 @@
   %meta{content: "1349222175", property: "fb:admins"}/
 
   %link{rel: "canonical", href: "#{request.url.split('?').first}"}
+  %link{rel: "stylesheet", href: "https://unpkg.com/leaflet@1.0.3/dist/leaflet.css"}
+  = javascript_include_tag "https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"
 
   = stylesheet_link_tag "//fonts.googleapis.com/css?family=Open+Sans:400|Montserrat"
   = stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true
