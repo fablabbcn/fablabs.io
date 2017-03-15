@@ -2,7 +2,7 @@ class LabsController < ApplicationController
   include LabsOperations
 
   before_filter :require_login, except: [:index, :map, :show, :mapdata, :embed, :list]
-  after_action :allow_iframe, only: [:embed, :list]
+  after_filter :allow_iframe, only: [:embed, :list]
 
   # authorize_actions_for Lab, actions: { map: :read, manage_admins: :update}
 
@@ -124,6 +124,7 @@ private
 
   def allow_iframe
     response.headers.delete "X-Frame-Options"
+    # From http://jerodsanto.net/2013/12/rails-4-let-specific-actions-be-embedded-as-iframes/
   end
 
   def lab_params
