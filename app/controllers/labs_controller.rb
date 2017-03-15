@@ -123,7 +123,7 @@ class LabsController < ApplicationController
 private
 
   def allow_iframe
-    response.headers['X-Frame-Options'] = "ALLOW-FROM fabfoundation.org"
+    response.headers.delete "X-Frame-Options"
   end
 
   def lab_params
