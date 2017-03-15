@@ -21,9 +21,7 @@
     "select2": "^4.0.3",
     "bootstrap-datepicker": "^1.6.4",
     "spin.js": "spinjs#^2.3.2",
-    "mapbox.js": "^2.4.0",
-    "leaflet-spin": "^1.1.0",
-    "leaflet": "^1.0.3"
+    "leaflet-spin": "^1.1.0"
   },
   "resolutions": {
     "leaflet": "^1.0.3"

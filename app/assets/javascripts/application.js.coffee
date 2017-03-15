@@ -29,8 +29,6 @@
 #= require moment
 #= require trumbowyg/trumbowyg
 #= require bootstrap-datepicker
-#= require leaflet/dist/leaflet
-#= require mapbox.js/mapbox
 #= require spin.js/spin
 #= require leaflet-spin
 #= require_tree .
