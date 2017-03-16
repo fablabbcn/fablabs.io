@@ -21,7 +21,8 @@
     "select2": "^4.0.3",
     "bootstrap-datepicker": "^1.6.4",
     "spin.js": "spinjs#^2.3.2",
-    "leaflet-spin": "^1.1.0"
+    "leaflet-spin": "^1.1.0",
+    "font-awesome": "fontawesome#^4.7.0"
   },
   "resolutions": {
     "leaflet": "^1.0.3"
