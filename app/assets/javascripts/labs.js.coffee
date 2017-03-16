@@ -76,6 +76,9 @@ ready = ->
   $('[data-toggle=offcanvas]').click ->
     $('.row-offcanvas').toggleClass('active')
 
+
+# Map in a Lab page
+
   if $('body').hasClass('c-labs a-show') and $('#lab-map').length > 0
     location = [$('#lab-map').data('latitude'), $('#lab-map').data('longitude')]
 
@@ -83,11 +86,11 @@ ready = ->
     labmap = L.mapbox.map('lab-map', 'mapbox.light', { scrollWheelZoom: false, zoomControl: false, loadingControl: true }).setView(location, 14 )
 
     new L.Control.Zoom({ position: 'topright' }).addTo(labmap)
-    icon = L.icon({
-      iconUrl: window.mapIcons[$('#lab-map').data('kind-name')]
-      iconSize:     [35, 35]
-      iconAnchor:   [17, 33]
-      popupAnchor:  [0, -20]
+    icon = L.divIcon({
+      iconSize: [70, ]
+      iconAnchor:   [0, 0]
+      popupAnchor: [0, -12]
+      className: 'lab-page ' + $('#lab-map').data('kind-name')
     })
     labmap.addLayer(L.marker(location, {icon: icon})).invalidateSize()
     $(window).resize _.debounce((-> labmap.invalidateSize()),500)
@@ -130,7 +133,6 @@ ready = ->
           lab.marker = L.marker([lab.latitude, lab.longitude], {icon: icon})
           lab.marker.on 'zoomend', ->
             currentZoom = map.getZoom()
-            console.log "bind"
             nicon = L.divIcon({
               iconSize: null
               iconAnchor:   [0, 0]

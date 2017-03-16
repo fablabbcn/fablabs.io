@@ -4,10 +4,48 @@
 /* Map icons */
 
 /* Common and default settings */
+
 .fab_lab, .mobile, .mini_fab_lab, .supernode {
     border: none;
     background-color: rgba(255, 255, 255, 0);
 }
+
+
+/* Single lab page */
+
+.lab-page.fab_lab {
+    background-image: image_url("map-icons/fab_lab70.png");
+    width: 70px !important;
+    height: 70px !important;
+    top: -70px;
+    left: -35px;
+}
+
+.lab-page.mobile {
+    background-image: image_url("map-icons/fab_lab70.png");
+    width: 70px !important;
+    height: 70px !important;
+    top: -70px;
+    left: -35px;
+}
+
+.lab-page.mini_fab_lab {
+    background-image: image_url("map-icons/fab_lab70.png");
+    width: 70px !important;
+    height: 70px !important;
+    top: -70px;
+    left: -35px;
+}
+
+.lab-page.supernode {
+    background-image: image_url("map-icons/supernode70.png");
+    width: 70px !important;
+    height: 70px !important;
+    top: -70px;
+    left: -35px;
+}
+
+/* Default zoom */
 
 .fab_lab {
     background-image: image_url("map-icons/fab_lab12.png");
