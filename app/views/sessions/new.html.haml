@@ -13,19 +13,19 @@
     .panel-heading
       .panel-title Sign in
     .panel-body
-      .testclass
+      .signinpanel
         = form_tag sessions_path do
           -# = simple_form_for :signin, { url: sessions_path } do
           = hidden_field_tag :goto, params[:goto]
           .row
             .col-md-6
-              %i.glyphicon.glyphicon-user
+              %i.fa.fa-user
               = label_tag :email_or_username, "Email or Username"
             .col-md-6
               = text_field_tag :email_or_username, params[:email_or_username], placeholder: 'Email or Username', autofocus: params[:email_or_username].blank?, autocapitalize: "off", autocorrect: "off", class: 'form-control'
           .row
             .col-md-6
-              %i.glyphicon.glyphicon-lock
+              %i.fa.fa-lock
               = label_tag :password, nil
             .col-md-6
               = password_field_tag :password, nil, placeholder: 'Password', class: 'form-control'

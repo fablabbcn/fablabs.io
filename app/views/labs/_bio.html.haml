@@ -10,11 +10,11 @@
   .lab-address{itemprop: "address"}= lab.formatted_address
   - if lab.phone.present?
     .lab-phone
-      %span.glyphicon.glyphicon-earphone
+      %span.fa.fa-phone
       %span{itemprop: "telephone"}= lab.phone
   - if lab.email.present?
     .lab-email
-      %span.glyphicon.glyphicon-envelope
+      %span.fa.fa-envelope
       %span{itemprop: "email"}= mail_to lab.email, lab.email
 
 - if current_or_null_user.can_update?(@lab)
