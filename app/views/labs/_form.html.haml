@@ -40,7 +40,10 @@
 
     .row
       .col-lg-12
-        %p Fab Lab Activity
+        %h5
+          Current status of your Lab
+        %p
+          Is this Lab already open, planned or closed?
 
     .row
       - Lab::ACTIVITY_STATUS.each do |status|
@@ -52,12 +55,18 @@
                 = status.humanize.titleize
 
     .row
+      .col-lg-12
+        %h5
+          History of your Lab
+        %p
+          Please indicate these important dates in the history of your Lab:
+    .row
       .col-lg-4
-        = f.input :activity_start_at, as: 'string', input_html: {class: 'datepicker', "data-date-format" => "yyyy-mm-dd"}
+        = f.input :activity_start_at, label: 'When did you start designing and planning your Lab?', as: 'string', input_html: {class: 'datepicker', "data-date-format" => "yyyy-mm-dd"}
       .col-lg-4
-        = f.input :activity_inaugurated_at, as: 'string', input_html: {class: 'datepicker' , "data-date-format" => "yyyy-mm-dd"}
+        = f.input :activity_inaugurated_at, label: 'When was the Lab officially inaugurated?', as: 'string', input_html: {class: 'datepicker' , "data-date-format" => "yyyy-mm-dd"}
       .col-lg-4
-        = f.input :activity_closed_at, as: 'string', input_html: {class: 'datepicker' , "data-date-format" => "yyyy-mm-dd"}
+        = f.input :activity_closed_at, label: 'When was the Lab closed?', as: 'string', input_html: {class: 'datepicker' , "data-date-format" => "yyyy-mm-dd"}
 
 
 
