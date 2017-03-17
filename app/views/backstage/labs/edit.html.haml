@@ -1,45 +1,126 @@
-.row
-  .col-lg-12
-    = render "backstage/header"
-    = title "Editing #{@lab}"
-    = simple_form_for [:backstage, @lab] do |f|
-      = render "form_errors", resource: @lab
-      = f.input :kind
-      .col-lg-4
-        Select 3 Referee Labs.
-        .selections
-          %ul
-            - @lab.referee_approval_processes.each do |c|
-              - if c.referee_lab.present? and c.id
-                %li
-                  %span
-                    = link_to icon('times'), referee_approval_process_path(c), method: :delete
-                    = image_tag c.referee_lab.avatar.thumb('90x90#').url, class: 'avatar tiny'
-                    = link_to link_to c.referee_lab, c.referee_lab
+= render "backstage/header"
+= title "Editing #{@lab}"
+= simple_form_for [:backstage, @lab] do |f|
+  = render "form_errors", resource: @lab
 
-      .col-lg-8
-        - @selected = @lab.referee_approval_processes.map{|u| u.referee_lab_id}.collect
-        %label{for: "referee_approval_processes_attributes"}
-          Referees
-        = select_tag :referee_approval_processes_attributes, options_from_collection_for_select(Lab.approved_referees.collect, :id, :slug, @selected), { multiple: true, name: 'lab[referee_approval_processes_attributes][][referee_lab_id]', class: 'referee_approval form-control'}
+  .edit-lab
 
-      = f.input :tools_list
-      = f.input :name
-      = f.input :blurb
-      = f.input :description
-      = f.input :slug
-      = f.input :address_1
-      = f.input :address_2
-      = f.input :city
-      = f.input :county
-      = f.input :postal_code
-      = f.input :country_code, as: 'country', label: 'Country', iso_codes: true
-      = f.input :latitude
-      = f.input :longitude
-      = f.input :zoom
-      = f.input :address_notes
-      = f.input :phone
-      = f.input :email
-      = f.input :application_notes
-      = f.input :is_referee
+  %fieldset
+    %legend Basic Details
+    .row
+      .col-lg-12
+        %h5
+          Name, description and slug of your Lab
+        = f.input :name
+        = f.input :blurb
+        = f.input :description
+        = f.input :slug
+    .row
+      .col-lg-12
+        %h5
+          Kind of Lab
+        %p
+          What kind of Fab Lab is your Lab?
+        - Lab::Kinds.each_with_index do |m, index|
+          .col-lg-2
+            .radio-inline
+              %span
+                = f.radio_button :kind, index
+                %label.radio{style: "width: 160px;"}
+                  = m.humanize.titleize
+
+  %fieldset
+    %legend
+      Approval process
+    .row
+      .col-lg-12
+        %h5
+          Referee Labs
+        %p
+          These are your Referee Labs. Please contact them in case you have any question regarding your approval process.
+        .selections.referees
+          - @lab.referee_approval_processes.each do |c|
+            - if c.referee_lab.present? and c.id
+              .col-lg-4
+                %p
+                  = image_tag c.referee_lab.avatar.thumb('90x90#').url, class: 'avatar tiny center-block'
+                %p
+                  = link_to link_to c.referee_lab, c.referee_lab
+
+
+  %fieldset
+    %legend Status and history of your Lab
+    .row
+      .col-lg-12
+        %h5
+          Current status of your Lab
+        %p
+          Is this Lab already open, planned or closed?
+
+        .row
+          - Lab::ACTIVITY_STATUS.each do |status|
+            .col-lg-2
+              .radio-inline
+                %span
+                  = f.radio_button :activity_status, status, class: 'activity-status-radio'
+                  %label.radio{style: "width: 160px;"}
+                    = status.humanize.titleize
+
+        .row
+          .col-lg-12
+            %h5
+              History of your Lab
+            %p
+              Please indicate these important dates in the history of your Lab:
+        .row
+          .col-lg-4
+            = f.input :activity_start_at, label: 'When did you start designing and planning your Lab?', as: 'string', input_html: {class: 'datepicker', "data-date-format" => "yyyy-mm-dd"}
+          .col-lg-4
+            = f.input :activity_inaugurated_at, label: 'When was the Lab officially inaugurated?', as: 'string', input_html: {class: 'datepicker' , "data-date-format" => "yyyy-mm-dd"}
+          .col-lg-4
+            = f.input :activity_closed_at, label: 'When was the Lab closed?', as: 'string', input_html: {class: 'datepicker' , "data-date-format" => "yyyy-mm-dd"}
+
+  %fieldset
+    %legend Location
+    .row
+      .col-lg-12
+        = f.input :address_1
+        = f.input :address_2
+        = f.input :city
+        = f.input :county
+        = f.input :postal_code
+        = f.input :country_code, as: 'country', label: 'Country', iso_codes: true
+        = f.input :latitude
+        = f.input :longitude
+        = f.input :zoom
+        = f.input :address_notes
+
+  %fieldset
+    %legend Capabilities
+    .row
+      .col-lg-12
+        = f.input :tools_list
+
+  %fieldset
+    %legend Contact information
+    .row
+      .col-lg-12
+        = f.input :phone
+        = f.input :email
+
+  %fieldset
+    %legend Notes
+    .row
+      .col-lg-12
+        = f.input :application_notes
+
+  %fieldset
+    %legend Referee status
+    .row
+      .col-lg-12
+        = f.input :is_referee
+
+
+  .row
+    .col-lg-12
       = f.submit 'save', class: 'btn btn-success'
