@@ -1,6 +1,7 @@
 = render "backstage/header"
 = title "Editing #{@lab}"
 = simple_form_for [:backstage, @lab] do |f|
+  = render "form_errors", resource: @lab
 
   .edit-lab
 
