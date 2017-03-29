@@ -28,6 +28,6 @@ class Backstage::Users::RolesController < Backstage::BackstageController
   end
 
   def find_user
-    @user = User.friendly.find(params[:user_id])
+    @user = User.find(params[:user_id])
   end
 end
