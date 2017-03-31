@@ -1,4 +1,5 @@
 discourse_enabled: false
+discourse_endpoint: 'http://example.com'
 GEONAMES_USERNAME: fablabs
 url: 'http://localhost:3000'
 S3_BUCKET: s3-bucket
