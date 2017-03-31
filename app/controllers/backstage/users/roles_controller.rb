@@ -12,13 +12,13 @@ class Backstage::Users::RolesController < Backstage::BackstageController
 
   def create
     @user.add_role(params[:role][:name])
-    redirect_to [:backstage, @user, :roles], notice: 'Role created'
+    redirect_to [:backstage, @user, :roles], notice: 'Added role'
   end
 
   def destroy
     @role = @user.roles.find(params[:id])
-    @role.destroy
-    redirect_to [:backstage, @user, :roles], notice: 'Role destroyed'
+    @user.remove_role(@role.name)
+    redirect_to [:backstage, @user, :roles], notice: 'Removed role'
   end
 
   private
