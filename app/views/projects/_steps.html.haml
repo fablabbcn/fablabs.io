@@ -1,22 +1,28 @@
-.heading
-  = icon('chevron-right')
-  Step #{step.position}
-= simple_format(markdown(step.title))
-= simple_format(markdown(step.description))
+.steps
+  %h4
+    %span
+      = icon('chevron-right')
+    %span
+      Step #{step.position}
+    %span= ":"
+    %span
+      #{step.title}
 
-- if step.links.length > 0
-  .heading
-    = icon('link')
-    Links & Media
-  %ul.lab-links
-    - step.links.each do |link|
+  = simple_format(markdown(step.description))
 
-      %li.step-link
-        = link_to link.url do
-          - container = player link.url
-          - if container
-            .flex-video
-              = raw container
-          - else
-            = fa_icon 'link'
-            %span.url{itemprop: "sameAs"}= link.url
+  - if step.links.length > 0
+    .heading
+      = icon('link')
+      Links & Media
+    %ul.lab-links
+      - step.links.each do |link|
+
+        %li.step-link
+          = link_to link.url do
+            - container = player link.url
+            - if container
+              .flex-video
+                = raw container
+            - else
+              = fa_icon 'link'
+              %span.url{itemprop: "sameAs"}= link.url

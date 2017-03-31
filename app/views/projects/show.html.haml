@@ -9,14 +9,14 @@
 .row.project-description
   .col-lg-8
     - if @project.description.present?
-      .heading
+      .h3
         = icon('file-text-o')
         Description
       .box
         = simple_format(markdown(@project.description))
 
     - if @project.documents.present?
-      .heading
+      .h3
         = icon('picture-o')
         Images
       .box
@@ -28,7 +28,7 @@
                   = image_tag document.photo.thumb("250x250>").url
 
     - unless @project.steps.empty?
-      .heading
+      .h3
         = icon('cog')
         Steps
       .box
@@ -36,14 +36,14 @@
           = render 'steps', { :step => step }
 
     - if @project.scope.present?
-      .heading
+      .h3
         = icon('asterisk')
         Scope
       .box
         = simple_format(markdown(@project.scope))
 
     - if @project.faq.present?
-      .heading
+      .h3
         = icon('question')
         FAQ
       .box
