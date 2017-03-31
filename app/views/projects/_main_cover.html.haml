@@ -20,7 +20,7 @@
             = link_to icon('star-o'), user_grades_path(current_user, project_id: @project.id, stars: 3), class: 'star', method: :post
             = link_to icon('star-o'), user_grades_path(current_user, project_id: @project.id, stars: 4), class: 'star', method: :post
             = link_to icon('star-o'), user_grades_path(current_user, project_id: @project.id, stars: 5), class: 'star', method: :post
-        %ul
+        %ul.project-links
           %li
             = icon('code')
             = link_to @project.owner do

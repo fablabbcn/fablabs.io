@@ -297,3 +297,32 @@ form {
     margin: 10px;
   }
 }
+
+.project-contributors {
+    padding: 0px;
+}
+
+.lab-links, .lab-link {
+        padding: 0px;
+}
+
+.lab-link {
+    width: 100%;
+}
+.lab-link a {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.project-links, .taglist {
+    list-style-type: none;
+    padding: 0px;
+}
+.project-links li {
+    padding: 0px;
+}
+
+.share {
+    margin-top: 20px;
+}
