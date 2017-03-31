@@ -1,7 +1,8 @@
 .joined-on {
-  text-align: right;
+  text-align: left;
   color: #666;
   font-size: 0.8em;
+  padding-left: 15px;
 }
 
 .row {padding-top: 10px;}
@@ -49,4 +50,21 @@
     }
 
   }
+}
+
+.lab-links, .lab-link {
+    padding: 0px;
+}
+
+.employee, .works-at ul {
+    list-style-type: none;
+    padding:0px;
+}
+
+.works-at h5 {
+    padding-bottom: 5px;
+    border-bottom: 1px solid #CCC;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: rgb(204, 204, 204);
 }

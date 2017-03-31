@@ -4,27 +4,27 @@
       .pull-left= image_tag @user.avatar_url, class: 'avatar big'
       .media-body
         .row
-          .col-lg-4.text-right.right
+          .col-lg-6.left= title @user
+        .row
+          .joined-on
+            %em
+              Joined #{time_ago_in_words(@user.created_at)} ago.
+        .row
+          .col-lg-4
             - if current_or_null_user == @user
               = link_to settings_path, class: 'button tiny' do
                 = fa_icon "edit", text: "Edit Profile"
-
-          .col-lg-6.left= title @user
         .row
           .col-lg-8
             = simple_format @user.bio
-          .col-lg-4
-            .joined-on
-              %em
-                Joined #{time_ago_in_words(@user.created_at)} ago.
         .row
           .col-lg-12
             = render "links", links: @user.links
         .row
-          .col-lg-12
+          .col-lg-12.works-at
             - if @user.employees.with_approved_state.any?
+              %h5 Works at:
               %ul
-                Works at:
                 - @user.employees.with_approved_state.each do |employee|
                   = content_tag_for :li, employee do
                     = link_to employee.lab, employee.lab
@@ -40,9 +40,6 @@
       %ul#project-container.large-block-grid-1
         - if @user.created_projects.any? or @user.projects.any?
           = render @user.created_projects | @user.projects
-
-
-
   .col-lg-6
     %h5
     = icon('signal')
