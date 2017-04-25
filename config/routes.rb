@@ -1,6 +1,6 @@
 Fablabs::Application.routes.draw do
   get "discourse/sso"
-  get "discourse/embed"
+  get "discuss" => 'discourse#embed'
   resources :pages, only: [:show]
   use_doorkeeper
   require 'sidekiq/web'
