@@ -56,9 +56,10 @@ GIT
 
 GIT
   remote: git://github.com/nathanvda/cocoon.git
-  revision: bd8c4a232568cd79dfbec1f9709d3c8a9098ee4b
+  revision: 2102520fdbb7e20bcfc02dfed826508602078606
+  tag: v1.2.7
   specs:
-    cocoon (1.2.5)
+    cocoon (1.2.7)
 
 GIT
   remote: git://github.com/norman/friendly_id.git
@@ -621,4 +622,4 @@ RUBY VERSION
    ruby 2.1.9p490
 
 BUNDLED WITH
-   1.14.4
+   1.14.6
