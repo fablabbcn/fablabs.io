@@ -20,7 +20,7 @@ RUN mkdir -p $APPROOT/tmp/pids
 #RUN gem update --system
 
 # Prevent bundler warnings; ensure that the bundler version executed is >= that which created Gemfile.lock
-#RUN gem install bundler
+RUN gem install bundler
 
 # Finish establishing our Ruby environment
 #RUN gem install nokogiri
