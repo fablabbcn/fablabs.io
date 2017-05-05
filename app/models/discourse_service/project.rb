@@ -18,5 +18,9 @@ This is the general thread for discussing the project; the thread is also visibl
     def category
       Figaro.env.discourse_project_category
     end
+
+    def creator
+      @entity.owner
+    end
   end
 end

@@ -18,5 +18,9 @@ This is the general thread for discussing the lab; the thread is also visible on
     def category
       Figaro.env.discourse_lab_category
     end
+
+    def creator
+      @entity.creator
+    end
   end
 end

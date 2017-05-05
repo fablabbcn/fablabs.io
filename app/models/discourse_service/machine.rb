@@ -18,5 +18,9 @@ This is the general thread for discussing the machine; the thread is also visibl
     def category
       Figaro.env.discourse_machine_category
     end
+
+    def creator
+      nil
+    end
   end
 end
