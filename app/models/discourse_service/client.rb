@@ -45,7 +45,6 @@ module DiscourseService
       else
         raise 'unkown verb'
       end
-
     end
 
     def merge_parameters(parameters = {})
