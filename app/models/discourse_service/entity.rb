@@ -25,7 +25,9 @@ module DiscourseService
     end
 
     def entity_params
-      {title: name, raw: description, category: category}
+      params = {title: name, raw: description, category: category}
+      params[:api_username] = creator.username if creator
+      params
     end
   end
 end
