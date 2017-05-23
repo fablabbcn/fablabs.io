@@ -7,7 +7,8 @@ RUN apt-get update -qq && apt-get install -y \
   libqt4-dev \
   libqtwebkit-dev \
   postgresql-client \
-  nodejs
+  nodejs \
+  npm
 
 
 ENV APPROOT /fablabs
@@ -30,10 +31,15 @@ ENV NOKOGIRI_USE_SYSTEM_LIBRARIES 1
 #RUN gem install capybara-webkit -v '1.10.1'
 
 #RUN gem install kgio -v '2.9.2' --platform=ruby --verbose
-ADD $APPROOT/Gemfile Gemfile
-ADD $APPROOT/Gemfile.lock Gemfile.lock
+ADD Gemfile Gemfile
+ADD Gemfile.lock Gemfile.lock
 RUN bundle install
 
 # Copy the Rails application into place
 COPY . $APPROOT
 
+RUN npm install -g bower
+RUN echo '{ "allow_root": true }' > /root/.bowerrc
+RUN ln -s `which nodejs` /usr/bin/node
+
+#RUN /usr/local/bin/bower install
