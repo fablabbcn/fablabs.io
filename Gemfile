@@ -40,6 +40,8 @@ gem 'bourbon'
 gem "cocoon"
 gem "pg_search"
 gem "pg"#,'0.17.1'
+gem 'delayed_job'
+gem 'delayed_job_active_record'
 gem 'simple_form'#, '3.0.1'
 gem 'countries', require: 'countries/global'
 gem 'country_select'
