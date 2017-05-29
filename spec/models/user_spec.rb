@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe User do
+describe User, type: :model do
 
   let(:user) { FactoryGirl.create(:user) }
   let(:lab) { FactoryGirl.create(:lab)}
@@ -133,7 +133,7 @@ describe User do
   it "has .applied_to?" do
     expect(user.applied_to? lab).to be_false
     employee = FactoryGirl.create(:employee, user: user, lab: lab)
-    expect(user.applied_to? lab).to be_true
+    expect(user.applied_to? lab).to be true
   end
 
   describe ".employed_by?" do

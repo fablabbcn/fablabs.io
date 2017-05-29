@@ -26,7 +26,8 @@ If you are a Fab labs entusiast and/or you would like to contribute to the proje
 `bower install`
 
 #### Setup environment variables
-`export GEONAMES_USERNAME="username_here" # http://www.geonames.org/login`
+
+`cp ./config/application.example.yml ./config/application.yml`
 
 #### create & setup database
 

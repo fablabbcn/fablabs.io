@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Brand do
+describe Brand, type: :model do
   it { should validate_presence_of(:name) }
 
   it "is valid" do

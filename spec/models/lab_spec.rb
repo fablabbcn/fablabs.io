@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Lab do
+describe Lab, type: :model do
 
   let(:lab) { FactoryGirl.create(:lab) }
 
@@ -61,7 +61,7 @@ describe Lab do
 
   it "has capabilities bitmask" do
     lab = FactoryGirl.create(:lab, capabilities: [:cnc_milling, :laser])
-    expect(lab.capabilities?(:cnc_milling, :laser)).to be_true
+    expect(lab.capabilities?(:cnc_milling, :laser)).to be true
   end
 
   it "has search_for" do
@@ -254,7 +254,7 @@ describe Lab do
     it "has needs_admin?" do
       lab = FactoryGirl.create(:lab, workflow_state: :approved)
       User.with_role(:admin, lab).delete_all
-      expect(lab.needs_admin?).to be_true
+      expect(lab.needs_admin?).to be true
       expect(@superadmin).to have_role(:superadmin)
       @user.add_role :admin, lab
       expect(lab.needs_admin?).to be_false

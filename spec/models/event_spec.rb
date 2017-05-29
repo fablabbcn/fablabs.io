@@ -48,7 +48,7 @@ describe Event do
     it "has bitmask" do
       expect(event.tags?(:open_days)).to be_false
       event.tags << :open_days#, :workshops]
-      expect(event.tags?(:open_days)).to be_true
+      expect(event.tags?(:open_days)).to be true
     end
 
   end

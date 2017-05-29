@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Academic do
+describe Academic, type: :model do
   it { should belong_to(:user) }
   it { should belong_to(:lab) }
   it { should belong_to(:approver) }
