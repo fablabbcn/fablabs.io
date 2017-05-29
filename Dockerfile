@@ -42,4 +42,4 @@ RUN npm install -g bower
 RUN echo '{ "allow_root": true }' > /root/.bowerrc
 RUN ln -s `which nodejs` /usr/bin/node
 
-#RUN /usr/local/bin/bower install
+RUN /usr/local/bin/bower install
