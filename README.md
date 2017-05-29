@@ -35,3 +35,7 @@ If you are a Fab labs entusiast and/or you would like to contribute to the proje
 #### Run the rails server
 
 `rails server`
+
+#### Run Redis server for worker tasks
+
+`redis-server`
