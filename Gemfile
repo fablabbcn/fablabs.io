@@ -37,7 +37,7 @@ gem 'ancestry', github: 'stefankroes/ancestry'
 gem 'geocoder', github: 'alexreisner/geocoder'
 gem 'workflow', github: 'geekq/workflow'
 gem 'bourbon'
-gem "cocoon", github: 'nathanvda/cocoon'
+gem "cocoon", github: 'nathanvda/cocoon', :tag => 'v1.2.7'
 gem "pg_search"
 gem "pg",'0.17.1'
 gem 'simple_form', '3.0.1'
