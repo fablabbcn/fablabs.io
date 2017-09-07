@@ -131,7 +131,7 @@ describe User, type: :model do
   end
 
   it "has .applied_to?" do
-    expect(user.applied_to? lab).to be_false
+    expect(user.applied_to? lab).to be false
     employee = FactoryGirl.create(:employee, user: user, lab: lab)
     expect(user.applied_to? lab).to be true
   end

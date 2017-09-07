@@ -257,7 +257,7 @@ describe Lab, type: :model do
       expect(lab.needs_admin?).to be true
       expect(@superadmin).to have_role(:superadmin)
       @user.add_role :admin, lab
-      expect(lab.needs_admin?).to be_false
+      expect(lab.needs_admin?).to be false
     end
 
     it "has .admins" do
