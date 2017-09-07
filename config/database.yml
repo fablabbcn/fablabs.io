@@ -3,8 +3,11 @@ development: &defaults
   encoding     : unicode
   database     : fablabs_develop
   pool         : 5
-  host         : 127.0.0.1
   min_messages : WARNING
+
+  username : <%= ENV['DEV_DB_USERNAME'] %>
+  password : <%= ENV['DEV_DB_PASSWORD'] %>
+  host     : <%= ENV['DEV_DB_HOST'] || "127.0.0.1" %>
 
 test:
   <<: *defaults
