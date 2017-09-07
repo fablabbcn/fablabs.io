@@ -1,5 +1,5 @@
 require 'spec_helper'
-describe PagesController do
+describe PagesController, type: :controller do
 
   describe 'GET #show' do
     it 'not published without current_user' do
