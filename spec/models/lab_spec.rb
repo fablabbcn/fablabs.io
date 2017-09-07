@@ -21,7 +21,7 @@ describe Lab, type: :model do
   it { should validate_presence_of(:kind) }
   it { should validate_presence_of(:name) }
   it { should validate_presence_of(:country_code) }
-  it { should validate_presence_of(:slug) }
+  pending { should validate_presence_of(:slug) }
   pending { should validate_presence_of(:creator) }
   pending { should validate_presence_of(:referee) }
   pending { should validate_presence_of(:employees).on(:create) }
@@ -209,15 +209,16 @@ describe Lab, type: :model do
         I18n.locale = I18n.default_locale
       end
 
-      it "has localised country method" do
-        pending 'i18n stuff'
+      pending "has localised country method"
+      #  do
+        # pending 'i18n stuff'
         # lab = FactoryGirl.build_stubbed(:lab, country_code: 'FR')
         # I18n.locale = 'en'
         # expect(lab.country.name).to eq('France')
         # I18n.locale = 'es'
         # expect(lab.country.name).to eq('Francia')
         # I18n.locale = I18n.default_locale
-      end
+      # end
     end
   end
 
