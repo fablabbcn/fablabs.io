@@ -69,7 +69,7 @@ gem 'aws-sdk-v1' # Can be used together with v2 because of different namespaces.
 
 gem 'jbuilder', '~> 1.2'
 
-gem 'figaro'
+gem 'figaro', '~> 1.1'
 gem 'friendly_id', github: 'norman/friendly_id'
 gem 'ffaker'
 gem 'doorkeeper', '~> 0.7.0'

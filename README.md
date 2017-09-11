@@ -16,3 +16,5 @@ If you are a Fab labs entusiast and/or you would like to contribute to the proje
  * You need to set some environment variables in order to let the server run smoothly. If you don't want to be constantly resetting those variable, we recommend using the package [figaro](https://www.belighted.com/blog/figaro) in order to keep track of those things. The environment variables that you need to set are 'GEONAMES_USERNAME', 'DEV_DB_USERNAME', 'DEV_DB_PASSWORD', 'S3_BUCKET', 'S3_KEY', 'S3_SECRET', 'S3_REGION'
  * Run `rails server`
 
+## Running tests
+ * Once you have everything up and running, you can run the test suite by running `bundle exec rake` in the terminal. 
