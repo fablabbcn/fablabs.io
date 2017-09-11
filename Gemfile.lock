@@ -556,7 +556,7 @@ DEPENDENCIES
   dragonfly-s3_data_store
   factory_girl_rails
   ffaker
-  figaro (~> 1.1)
+  figaro
   font-awesome-rails!
   font-awesome-sass (~> 4.3.0)
   friendly_id!
