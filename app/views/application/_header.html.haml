@@ -33,7 +33,7 @@
           = link_to t("views.header.projects"), projects_path
 
       %ul.nav.navbar-nav.navbar-right
-        %li= link_to 'Discuss', Figaro.env.discourse_endpoint
+        -# %li= link_to 'Discuss', Figaro.env.discourse_endpoint
         - if current_user
           %li.dropdown
             = link_to current_user do
