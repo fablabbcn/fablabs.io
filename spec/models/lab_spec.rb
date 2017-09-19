@@ -45,8 +45,6 @@ describe Lab do
     expect{ FactoryGirl.create(:lab, slug: 'Uniqueslug') }.to raise_error(ActiveRecord::RecordInvalid)
   end
 
-
-
   it "has Kinds" do
     expect(Lab::Kinds).to eq(%w(mini_fab_lab fab_lab supernode mobile))
   end
@@ -67,8 +65,8 @@ describe Lab do
   end
 
   it "has ancestry" do
-    dad = FactoryGirl.create(:comment)
-    child = FactoryGirl.create(:comment, parent: dad)
+    dad = FactoryGirl.create(:lab)
+    child = FactoryGirl.create(:lab, parent: dad)
     expect(dad.children).to include(child)
   end
 
