@@ -46,9 +46,16 @@ describe Lab do
   end
 
   it "only allows alphanumerics in slug" do
-    ['no-SLUG', 'sm', 'N*tthis', 'no no no'].each do |slug|
+    ['no-SLUG','N*tthis', 'no no no'].each do |slug|
       expect{FactoryGirl.create(:lab, slug: slug)}.to raise_error(ActiveRecord::RecordInvalid)
     end
+  end
+
+  it "only allows slugs longer than two characters" do
+    ['to', 'o', 'sm', 'al', 'l', ''].each do |slug|
+      expect{FactoryGirl.create(:lab, slug: slug)}.to raise_error(ActiveRecord::RecordInvalid)
+    end
+    expect(FactoryGirl.create(:lab, slug: 'acceptable').slug).to eq("acceptable")
   end
 
   it "has Kinds" do
