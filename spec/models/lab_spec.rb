@@ -45,18 +45,7 @@ describe Lab do
     expect{ FactoryGirl.create(:lab, slug: 'Uniqueslug') }.to raise_error(ActiveRecord::RecordInvalid)
   end
 
-  it "only allows alphanumerics in slug" do
-    ['no-SLUG','N*tthis', 'no no no'].each do |slug|
-      expect{FactoryGirl.create(:lab, slug: slug)}.to raise_error(ActiveRecord::RecordInvalid)
-    end
-  end
 
-  it "only allows slugs longer than two characters" do
-    ['to', 'o', 'sm', 'al', 'l', ''].each do |slug|
-      expect{FactoryGirl.create(:lab, slug: slug)}.to raise_error(ActiveRecord::RecordInvalid)
-    end
-    expect(FactoryGirl.create(:lab, slug: 'acceptable').slug).to eq("acceptable")
-  end
 
   it "has Kinds" do
     expect(Lab::Kinds).to eq(%w(mini_fab_lab fab_lab supernode mobile))
@@ -88,7 +77,27 @@ describe Lab do
   end
 
   describe "slug" do
-    pending "validates uniqueness of slug"
+
+    it "only allows alphanumerics in slug" do
+      ['no-SLUG','N*tthis', 'no no no'].each do |slug|
+        expect{FactoryGirl.create(:lab, slug: slug)}.to raise_error(ActiveRecord::RecordInvalid)
+      end
+    end
+
+    it "only allows slugs longer than two characters" do
+      ['to', 'o', 'sm', 'al', 'l', ''].each do |slug|
+        expect{FactoryGirl.create(:lab, slug: slug)}.to raise_error(ActiveRecord::RecordInvalid)
+      end
+      expect(FactoryGirl.create(:lab, slug: 'acceptable').slug).to eq("acceptable")
+    end
+
+    it "validates uniqueness of slug" do
+      ['slugswhich', 'areincluded', 'already'].each do |slug|
+        FactoryGirl.create(:lab, slug: slug)
+      end
+      expect{FactoryGirl.create(:lab, slug: 'slugswhich')}.to raise_error(ActiveRecord::RecordInvalid)
+      expect(FactoryGirl.create(:lab, slug: 'butthisoneisnew').slug).to eq("butthisoneisnew")
+    end
 
     pending "auto creates slug" do
       expect(FactoryGirl.build(:lab, name: "Fab Lab Disney").slug).to eq('fablabdisney')
