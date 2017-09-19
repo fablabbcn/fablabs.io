@@ -206,10 +206,13 @@ describe Lab do
     end
 
     describe "country" do
+      after(:each) do
+        I18n.locale = I18n.default_locale
+      end
+
       it "has .country" do
         I18n.locale = 'en'
         expect(FactoryGirl.build_stubbed(:lab, country_code: 'es').country.to_s).to eq('Spain')
-        I18n.locale = I18n.default_locale
       end
 
       it "has .country_list_for labs" do
@@ -220,7 +223,6 @@ describe Lab do
         expect(Lab.country_list_for Lab.all).to eq([['Egypt', 'eg', 1], ['France', 'fr', 2]])
         I18n.locale = 'de'
         expect(Lab.country_list_for Lab.all).to eq([['Ägypten', 'eg', 1], ['Frankreich', 'fr', 2]])
-        I18n.locale = I18n.default_locale
       end
 
       it "has localised country method" do
@@ -230,7 +232,6 @@ describe Lab do
         # expect(lab.country.name).to eq('France')
         # I18n.locale = 'es'
         # expect(lab.country.name).to eq('Francia')
-        # I18n.locale = I18n.default_locale
       end
     end
   end
