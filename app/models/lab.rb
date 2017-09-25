@@ -80,7 +80,7 @@ class Lab < ActiveRecord::Base
     end
   end
 
-  Kinds = %w(mini_fab_lab fab_lab supernode mobile)
+  Kinds = %w(mini_fab_lab fab_lab mobile)
 
   ACTIVITY_STATUS = [
     ACTIVITY_PLANNED  = 'planned'.freeze,
