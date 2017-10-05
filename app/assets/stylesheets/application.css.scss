@@ -10,7 +10,7 @@
  *
  *= require_self
  *= require Control.Loading.css
- *= require select2
+ *= require select2/dist/css/select2
  *= require taggd
  *= require intlTelInput
  *= require jquery.timepicker
@@ -19,7 +19,7 @@
  *= require trumbowyg/trumbowyg
  *= require_tree .
  *= require bootstrap/dist/css/bootstrap.min.css
- *= require bootstrap-datepicker
+ *= require bootstrap-datepicker/dist/css/bootstrap-datepicker
  *= require font-awesome
 
  */
