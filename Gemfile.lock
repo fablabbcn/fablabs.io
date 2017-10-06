@@ -218,9 +218,8 @@ GEM
       faraday (>= 0.7.4, < 1.0)
     ffaker (1.22.1)
     ffi (1.9.3)
-    figaro (0.7.0)
-      bundler (~> 1.0)
-      rails (>= 3, < 5)
+    figaro (1.1.1)
+      thor (~> 0.14)
     fog-aws (1.2.0)
       fog-core (~> 1.38)
       fog-json (~> 1.0)
@@ -622,4 +621,4 @@ RUBY VERSION
    ruby 2.1.9p490
 
 BUNDLED WITH
-   1.14.6
+   1.15.4
