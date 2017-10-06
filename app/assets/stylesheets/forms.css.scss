@@ -43,6 +43,19 @@ fieldset {
   }
 }
 
+fieldset p {
+    margin-bottom: 30px;
+}
+fieldset h5 {
+    margin-top: 20px;
+}
+label {
+    display: none !important;
+}
+.radio-inline label {
+    display: inline-block !important;
+}
+
 .fp {
   border: none !important;
   box-shadow: none !important;
