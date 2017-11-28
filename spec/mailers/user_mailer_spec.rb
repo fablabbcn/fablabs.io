@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe UserMailer do
+describe UserMailer, type: :mailer do
 
   let(:lab) { FactoryGirl.create(:lab) }
   let(:user) { FactoryGirl.create(:user) }

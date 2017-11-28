@@ -13,7 +13,7 @@ Fablabs::Application.routes.draw do
 
   resources :sessions
 
-  constraints subdomain: 'www' do
+  constraints subdomain: ['www', ''] do
     # resources :discussions
     get "activity" => "activities#index", :as => "activity"
     resources :featured_images

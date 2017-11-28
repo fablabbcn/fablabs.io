@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Activity do
+describe Activity, type: :model do
 
   it { should belong_to(:creator) }
   it { should belong_to(:actor) }

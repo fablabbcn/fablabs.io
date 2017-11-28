@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Event do
+RSpec.describe Event, type: :model do
   let(:event) { FactoryGirl.create(:event) }
 
   it { should belong_to(:lab) }
@@ -46,9 +46,9 @@ describe Event do
     end
 
     it "has bitmask" do
-      expect(event.tags?(:open_days)).to be_false
+      expect(event.tags?(:open_days)).to be false
       event.tags << :open_days#, :workshops]
-      expect(event.tags?(:open_days)).to be_true
+      expect(event.tags?(:open_days)).to be true
     end
 
   end

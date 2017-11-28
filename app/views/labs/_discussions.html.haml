@@ -2,7 +2,7 @@
 %ul.discussions
   - 5.times do
     = content_tag_for :li, Discussion.new do
-      .title= link_to Faker::Lorem.sentence
+      .title= link_to FFaker::Lorem.sentence
       .by by #{current_user} 4 days ago
 
 = link_to "All Discussions", "#"
