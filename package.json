@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "repository": "git@github.com:fablabbcn/fablabs.git",
-  "author": "Viktor Smari <viktorsmari@gmail.com>",
+  "author": "Fablabbcn <fablabbcn@fablabbcn.com>",
   "license": "MIT",
   "dependencies": {
     "bootstrap": "^3.3.7",
