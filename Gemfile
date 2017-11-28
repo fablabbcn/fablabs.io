@@ -1,4 +1,4 @@
-ruby '2.1.9'
+ruby '2.3.4'
 
 source 'https://rubygems.org'
 
@@ -23,7 +23,7 @@ gem 'twitter'
 gem 'sinatra', '>= 1.3.0', :require => nil
 gem 'sidekiq'
 gem 'nest'
-gem 'rails', '4.0.1'
+gem 'rails', '4.2.10'
 gem 'inherited_resources'
 gem 'timezone', '~> 1.0'
 gem 'bitmask_attributes'
@@ -40,7 +40,7 @@ gem 'bourbon'
 gem "cocoon", github: 'nathanvda/cocoon', :tag => 'v1.2.7'
 gem "pg_search"
 gem "pg",'0.17.1'
-gem 'simple_form', '3.0.1'
+gem 'simple_form'
 gem 'countries', require: 'countries/global'
 gem 'country_select'
 gem 'momentjs-rails'
@@ -62,7 +62,7 @@ gem 'jquery-rails'
 gem 'dragonfly', '~> 1.1.1'
 gem 'dragonfly-s3_data_store'
 
-gem "paperclip", "~> 4.2"
+gem "paperclip"
 # For paperclip/refile we need:
 gem 'aws-s3'
 gem 'aws-sdk-v1' # Can be used together with v2 because of different namespaces.
