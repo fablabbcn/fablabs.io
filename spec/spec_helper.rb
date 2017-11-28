@@ -30,6 +30,10 @@ RSpec.configure do |config|
   Zonebie.set_random_timezone
 
   config.include Features::SessionHelpers, type: :feature
+
+  #https://github.com/rspec/rspec-core/issues/1540
+  config.infer_spec_type_from_file_location!
+
   # Capybara.app_host = "fablabs.dev"
   # ## Mock Framework
   #
