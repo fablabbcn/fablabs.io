@@ -1,10 +1,13 @@
+# test
 APP_SERVER: ''
 CODECLIMATE_REPO_TOKEN: ''
 COUNTRY_CODE: ''
+
 DB_HOST: ''
 DB_NAME: ''
 DB_PASSWORD: ''
 DB_USERNAME: ''
+
 DEPLOY_USER: ''
 EMAIL_ADDRESS: ''
 EMAIL_AUTHENTICATION: ''
@@ -29,3 +32,6 @@ discourse_endpoint: ''
 discourse_api_key: ''
 discourse_api_username: ''
 discourse_lab_category: ''
+OPBEAT_ORG_ID: ''
+OPBEAT_APP_ID: ''
+OPBEAT_SECRET: ''

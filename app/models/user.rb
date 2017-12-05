@@ -59,7 +59,7 @@ class User < ActiveRecord::Base
   validates :password, presence: true, length: { minimum: 6 }, if: lambda{ !password.nil? }, on: :update
   validate :excluded_login
   def excluded_login
-    if !username.blank? and Fablabs::Application.config.banned_words.include?(username.downcase)
+    if !username.blank? and Fablabs::Application.config.try(:banned_words) and Fablabs::Application.config.banned_words.include?(username.downcase)
       errors.add(:username, "is reserved")
     end
   end
