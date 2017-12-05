@@ -45,12 +45,6 @@ describe Lab do
     expect{ FactoryGirl.create(:lab, slug: 'Uniqueslug') }.to raise_error(ActiveRecord::RecordInvalid)
   end
 
-  it "only allows alphanumerics in slug" do
-    ['no-SLUG', 'sm', 'N*tthis', 'no no no'].each do |slug|
-      expect{FactoryGirl.create(:lab, slug: slug)}.to raise_error(ActiveRecord::RecordInvalid)
-    end
-  end
-
   it "has Kinds" do
     expect(Lab::Kinds).to eq(%w(mini_fab_lab fab_lab supernode mobile))
   end
@@ -71,8 +65,8 @@ describe Lab do
   end
 
   it "has ancestry" do
-    dad = FactoryGirl.create(:comment)
-    child = FactoryGirl.create(:comment, parent: dad)
+    dad = FactoryGirl.create(:lab)
+    child = FactoryGirl.create(:lab, parent: dad)
     expect(dad.children).to include(child)
   end
 
@@ -81,7 +75,27 @@ describe Lab do
   end
 
   describe "slug" do
-    pending "validates uniqueness of slug"
+
+    it "only allows alphanumerics in slug" do
+      ['no-SLUG','N*tthis', 'no no no'].each do |slug|
+        expect{FactoryGirl.create(:lab, slug: slug)}.to raise_error(ActiveRecord::RecordInvalid)
+      end
+    end
+
+    it "only allows slugs longer than two characters" do
+      ['to', 'o', 'sm', 'al', 'l', ''].each do |slug|
+        expect{FactoryGirl.create(:lab, slug: slug)}.to raise_error(ActiveRecord::RecordInvalid)
+      end
+      expect(FactoryGirl.create(:lab, slug: 'acceptable').slug).to eq("acceptable")
+    end
+
+    it "validates uniqueness of slug" do
+      ['slugswhich', 'areincluded', 'already'].each do |slug|
+        FactoryGirl.create(:lab, slug: slug)
+      end
+      expect{FactoryGirl.create(:lab, slug: 'slugswhich')}.to raise_error(ActiveRecord::RecordInvalid)
+      expect(FactoryGirl.create(:lab, slug: 'butthisoneisnew').slug).to eq("butthisoneisnew")
+    end
 
     pending "auto creates slug" do
       expect(FactoryGirl.build(:lab, name: "Fab Lab Disney").slug).to eq('fablabdisney')
@@ -192,10 +206,13 @@ describe Lab do
     end
 
     describe "country" do
+      after(:each) do
+        I18n.locale = I18n.default_locale
+      end
+
       it "has .country" do
         I18n.locale = 'en'
         expect(FactoryGirl.build_stubbed(:lab, country_code: 'es').country.to_s).to eq('Spain')
-        I18n.locale = I18n.default_locale
       end
 
       it "has .country_list_for labs" do
@@ -206,7 +223,6 @@ describe Lab do
         expect(Lab.country_list_for Lab.all).to eq([['Egypt', 'eg', 1], ['France', 'fr', 2]])
         I18n.locale = 'de'
         expect(Lab.country_list_for Lab.all).to eq([['Ägypten', 'eg', 1], ['Frankreich', 'fr', 2]])
-        I18n.locale = I18n.default_locale
       end
 
       it "has localised country method" do
@@ -216,7 +232,6 @@ describe Lab do
         # expect(lab.country.name).to eq('France')
         # I18n.locale = 'es'
         # expect(lab.country.name).to eq('Francia')
-        # I18n.locale = I18n.default_locale
       end
     end
   end
