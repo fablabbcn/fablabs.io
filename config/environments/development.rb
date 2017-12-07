@@ -35,11 +35,8 @@ Fablabs::Application.configure do
 
 
   config.action_controller.perform_caching = false
-  config.cache_store = :dalli_store, 'memcached://localhost:11211/meta', { expires_in: 90.minutes }
-  config.action_dispatch.rack_cache = {
-    metastore:   'memcached://localhost:11211/meta',
-    entitystore: 'memcached://localhost:11211/body'
-  }
+  # Use docker memcached host if it is defined
+  config.cache_store = :dalli_store, (ENV['MEMCACHED_HOST'] || 'memcached://localhost:11211/'), { expires_in: 90.minutes }
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
