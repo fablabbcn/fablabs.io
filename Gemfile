@@ -48,6 +48,7 @@ gem 'active_model_serializers'
 gem 'stamp'
 gem 'sass-rails', '~> 4.0.0'
 gem 'sprockets-rails'
+gem 'sprockets','~> 2.11.0' # 2.12 errors on SASS files
 gem 'haml-rails'
 gem 'uglifier', '>= 1.3.0'
 gem 'font-awesome-sass', '~> 4.3.0'
