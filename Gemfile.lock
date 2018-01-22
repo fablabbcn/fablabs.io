@@ -160,9 +160,8 @@ GEM
     childprocess (0.3.9)
       ffi (~> 1.0, >= 1.0.11)
     chronic (0.10.2)
-    climate_control (0.0.3)
-      activesupport (>= 3.0)
-    cocaine (0.5.7)
+    climate_control (0.2.0)
+    cocaine (0.5.8)
       climate_control (>= 0.0.3, < 1.0)
     codeclimate-test-reporter (1.0.3)
       simplecov
@@ -313,7 +312,7 @@ GEM
     money (6.8.0)
       i18n (>= 0.6.4, <= 0.7.0)
       sixarm_ruby_unaccent (>= 1.1.1, < 2)
-    multi_json (1.12.1)
+    multi_json (1.13.1)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
     nest (1.1.2)
@@ -333,7 +332,7 @@ GEM
     paper_trail (3.0.0.rc2)
       activerecord (>= 3.0, < 5.0)
       activesupport (>= 3.0, < 5.0)
-    paperclip (4.3.0)
+    paperclip (4.3.7)
       activemodel (>= 3.2.0)
       activesupport (>= 3.2.0)
       cocaine (~> 0.5.5)
@@ -504,7 +503,7 @@ GEM
       json (~> 1.8)
       memoizable (~> 0.2.0)
       simple_oauth (~> 0.2.0)
-    tzinfo (0.3.52)
+    tzinfo (0.3.53)
     uglifier (2.3.2)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
@@ -622,4 +621,4 @@ RUBY VERSION
    ruby 2.1.9p490
 
 BUNDLED WITH
-   1.14.6
+   1.16.0
