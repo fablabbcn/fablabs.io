@@ -40,15 +40,15 @@ gem 'bourbon'
 gem "cocoon", github: 'nathanvda/cocoon', :tag => 'v1.2.7'
 gem "pg_search"
 gem "pg",'0.17.1'
-gem 'simple_form', '3.0.1'
+gem 'simple_form'#, '3.0.1'
 gem 'countries', require: 'countries/global'
 gem 'country_select'
 gem 'momentjs-rails'
 gem 'active_model_serializers'
 gem 'stamp'
-gem 'sass-rails', '~> 4.0.0'
+gem 'sass-rails', '~> 4.0.5'
 gem 'sprockets-rails'
-gem 'sprockets','~> 2.11.0' # 2.12 errors on SASS files
+gem 'sprockets'#,'~> 2.11.0' # 2.12 errors on SASS files
 gem 'haml-rails'
 gem 'uglifier', '>= 1.3.0'
 gem 'font-awesome-sass', '~> 4.3.0'
