@@ -28,6 +28,21 @@ Run tests with:
 `bundle exec rake`
 
 
+#### Starting with docker-compose
+
+1. Start the project:  
+`docker-compose up web app`
+
+1. Create database (only the first time):  
+`docker-compose exec app rake db:setup`
+
+1. Add this to your `/etc/hosts`:
+
+    `127.0.0.1   www.fablabs.dev`
+
+1. Visit [http://www.fablabs.dev:3000](http://www.fablabs.dev:3000)
+
+
 #### Pull requests
 
 All PRs are tested on Travis. Make sure the tests run fine.

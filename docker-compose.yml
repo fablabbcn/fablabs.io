@@ -1,0 +1,72 @@
+version: '2.2'
+
+services:
+  redis:
+    image: redis:latest
+    hostname: redis
+    ports:
+      - "6379:6379"
+
+  # service configuration for Postgres
+  db:
+    # use the preferred version of the official Postgres image
+    # see https://hub.docker.com/_/postgres/
+    image: postgres
+    hostname: db1
+    # persist the database between containers by storing it in a volume
+    volumes:
+      - fablabs-postgres:/var/lib/postgresql/data
+      - ./dump:/dump
+
+  # service configuration for our dockerized Rails app
+  app:
+    env_file: .env
+    # use the Dockerfile next to this file
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/fablabs
+    depends_on:
+      - db
+      - redis
+      - memcached
+    # expose the port we configured Puma to bind to (should expose only internally)
+    ports:
+      - "3000:3000"
+    command: rails s
+
+  worker:
+    env_file: .env
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes_from:
+      - app
+    command: bash -c "sleep 3 && bundle exec sidekiq -e $RAILS_ENV"
+    depends_on:
+      - app
+      - db
+
+  # service configuration for our web server
+  web:
+    env_file: .env
+    # set the build context to the root of the Rails app
+    build:
+      context: .
+      dockerfile: containers/Dockerfile-nginx
+    depends_on:
+      - app
+    volumes_from:
+      - app
+    # expose the port we configured Nginx to bind to (it is ok to expose externally)
+    ports:
+      - '80:80'
+
+  memcached:
+    image: memcached:1.5.3
+    ports:
+      - "11211:11211"
+
+volumes:
+  fablabs-postgres:
