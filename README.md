@@ -30,6 +30,9 @@ Run tests with:
 
 #### Starting with docker-compose
 
+1. Add all the secrets to an .env file
+
+
 1. Start the project:  
 `docker-compose up web app`
 
