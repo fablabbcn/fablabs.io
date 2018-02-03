@@ -52,8 +52,8 @@ class User < ActiveRecord::Base
   validates_acceptance_of :agree_policy_terms, :accept => true, on: :create
 
   validates_format_of :email, :with => /\A(.+)@(.+)\z/
-  validates :username, format: { :with => /\A[a-zA-Z0-9]+\z/ }, length: { minimum: 4, maximum: 30 }
-
+  validates :username, format: { :with => /\A[a-zA-Z0-9]+(\.)?[a-zA-Z0-9]+\z/ }, length: { minimum: 4, maximum: 50 }
+  
   validates :first_name, :last_name, :email, :username, presence: true
   validates_uniqueness_of :email, :username, case_sensitive: false
   validates :password, presence: true, length: { minimum: 6 }, if: lambda{ !password.nil? }, on: :update
