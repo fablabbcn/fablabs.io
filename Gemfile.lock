@@ -587,13 +587,13 @@ DEPENDENCIES
   quiet_assets
   rack-cache
   rack-cors
-  rails
+  rails (= 4.0.13)
   ransack!
   redcarpet
   rocket_pants (~> 1.0)
   rolify!
   rspec-rails
-  sass-rails (~> 4.0.2)
+  sass-rails (~> 4.0.5)
   sdoc
   selenium-webdriver
   shoulda-matchers
@@ -621,4 +621,4 @@ RUBY VERSION
    ruby 2.1.9p490
 
 BUNDLED WITH
-   1.16.0
+   1.16.1
