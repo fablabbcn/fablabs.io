@@ -17,9 +17,9 @@ If you are a Fab labs entusiast and/or you would like to contribute to the proje
 
 1. Add this to your `/etc/hosts`:
 
-    `127.0.0.1   www.fablabs.dev`
+    `127.0.0.1   www.fablabs.local`
 
-1. Visit [http://www.fablabs.dev:3000](http://www.fablabs.dev:3000)
+1. Visit [http://www.fablabs.local:3000](http://www.fablabs.local:3000)
 
 #### Tests
 
@@ -41,9 +41,9 @@ Run tests with:
 
 1. Add this to your `/etc/hosts`:
 
-    `127.0.0.1   www.fablabs.dev`
+    `127.0.0.1   www.fablabs.local`
 
-1. Visit [http://www.fablabs.dev:3000](http://www.fablabs.dev:3000)
+1. Visit [http://www.fablabs.local:3000](http://www.fablabs.local:3000)
 
 
 #### Pull requests

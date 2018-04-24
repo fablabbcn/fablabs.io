@@ -58,7 +58,7 @@ module Fablabs
     }
 
 
-    config.url = 'http://fablabs.dev'
+    config.url = 'http://fablabs.local'
 
     config.action_mailer.default_url_options = { host: "www.fablabs.io", protocol: "https" }
     config.action_mailer.delivery_method = :smtp
