@@ -7,6 +7,7 @@ before_script:
   - "cp config/database.travis.yml config/database.yml"
   - "psql -c 'create database fablabs_test' -U postgres"
   - "npm install -g bower"
+  - "bundle config git.allow_insecure true"
 env:
   global:
     -
@@ -19,7 +20,7 @@ env:
 language: ruby
 cache: bundler
 rvm:
-  - "2.1.9"
+  - "2.3.1"
 script:
   - "bower install"
   - "bundle exec rake db:schema:load"
