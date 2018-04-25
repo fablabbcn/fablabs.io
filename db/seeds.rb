@@ -5,3 +5,81 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+unless Rails.env.development?
+  puts "No seeds for mode: #{Rails.env}"
+  exit
+end
+
+User.find_or_create_by_username(
+  username: 'user',
+  email: 'user@user.local',
+  password: 'password',
+  password_confirmation: 'password',
+  first_name: 'User',
+  last_name: 'Userson',
+  agree_policy_terms: true
+)
+
+Organization.create!(
+  name: Faker::Product.product,
+  slug: Faker::Product.letters(3),
+  address_1: Faker::Address.street_address,
+  description: Faker::Lorem.sentence,
+  county: "County",
+  country_code: "es",
+  kind: Organization::KINDS[0]
+)
+
+RefereeApprovalProcess.create!(
+  referred_lab_id: 2,
+  referee_lab_id: 2
+)
+
+# ActiveRecord::RecordInvalid: Validation failed: Referee approval processes can't be blank, 
+# Referee approval processes is the wrong length (should be 3 characters)
+Lab.create!(
+  name: "MyLab#{Lab.count}",
+  kind: Lab::Kinds[1],
+  country_code: 'IS',
+  address_1: 'MyStreet 24',
+  network: true,
+  tools: true,
+  programs: true,
+  workflow_state: 'approved',
+  #referee_id: 1
+)
+
+
+Brand.create!(
+  name: 'A Brand',
+  description: 'brand'
+)
+
+Thing.create!(
+  name: 'Something',
+  description: 'A thing',
+  brand: Brand.first,
+  #creator:
+)
+
+Facility.find_or_create_by(
+  lab: Lab.first,
+  thing: Thing.first
+)
+
+Employee.find_or_create_by(
+  user: User.first,
+  lab: Lab.first,
+  job_title: Faker::Job.title
+)
+
+Document.create!(
+
+)
+
+Event.create!(
+  name: 'myEvent',
+  description: 'some description',
+  lab: Lab.first
+)
