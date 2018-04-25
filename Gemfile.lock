@@ -468,7 +468,7 @@ GEM
     sitemap_generator (4.3.0)
       builder
     sixarm_ruby_unaccent (1.1.1)
-    skylight (1.0.0)
+    skylight (1.7.0)
       activesupport (>= 3.0.0)
     slim (2.0.2)
       temple (~> 0.6.6)
