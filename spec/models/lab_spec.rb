@@ -21,7 +21,7 @@ describe Lab do
   it { should validate_presence_of(:kind) }
   it { should validate_presence_of(:name) }
   it { should validate_presence_of(:country_code) }
-  it { should validate_presence_of(:slug) }
+  it { should validate_presence_of(:slug).with_message('is invalid') }
   pending { should validate_presence_of(:creator) }
   pending { should validate_presence_of(:referee) }
   pending { should validate_presence_of(:employees).on(:create) }

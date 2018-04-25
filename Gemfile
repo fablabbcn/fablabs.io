@@ -23,7 +23,7 @@ gem 'twitter'
 gem 'sinatra', '>= 1.3.0', :require => nil
 gem 'sidekiq'
 gem 'nest'
-gem 'rails', '4.0.13'
+gem 'rails', '~> 4.0.13'
 gem 'inherited_resources'
 gem 'timezone', '~> 1.0'
 gem 'bitmask_attributes'
@@ -46,7 +46,7 @@ gem 'country_select'
 gem 'momentjs-rails'
 gem 'active_model_serializers'
 gem 'stamp'
-gem 'sass-rails', '~> 4.0.5'
+gem 'sass-rails'#, '~> 4.0.5'
 gem 'sprockets-rails'
 gem 'sprockets'#,'~> 2.11.0' # 2.12 errors on SASS files
 gem 'haml-rails'
@@ -56,14 +56,14 @@ gem 'trumbowyg_rails', git: 'https://github.com/TikiTDO/trumbowyg_rails.git'
 
 gem 'database_cleaner', github: 'bmabey/database_cleaner'
 gem 'letter_opener'
-gem 'coffee-rails', '~> 4.0.0'
+gem 'coffee-rails'#, '~> 4.0.0'
 gem 'jquery-rails'
 
 
 gem 'dragonfly', '~> 1.1.1'
 gem 'dragonfly-s3_data_store'
 
-gem "paperclip", "~> 4.2"
+gem "paperclip"#, "~> 4.2"
 # For paperclip/refile we need:
 gem 'aws-s3'
 gem 'aws-sdk-v1' # Can be used together with v2 because of different namespaces.
@@ -71,7 +71,7 @@ gem 'aws-sdk-v1' # Can be used together with v2 because of different namespaces.
 gem 'jbuilder', '~> 1.2'
 
 gem 'figaro'
-gem 'friendly_id', github: 'norman/friendly_id'
+gem 'friendly_id', '~> 5.1.0'
 gem 'ffaker'
 gem 'doorkeeper'
 
