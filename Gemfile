@@ -23,7 +23,7 @@ gem 'twitter'
 gem 'sinatra', '>= 1.3.0', :require => nil
 gem 'sidekiq'
 gem 'nest'
-gem 'rails', '~> 4.0.13'
+gem 'rails', '>= 4.1.0'
 gem 'inherited_resources'
 gem 'timezone', '~> 1.0'
 gem 'bitmask_attributes'
@@ -97,6 +97,7 @@ group :test, :development do
 end
 
 group :test do
+  gem 'minitest'
   gem 'zonebie'
   gem "launchy"
   gem "capybara"
