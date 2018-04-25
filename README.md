@@ -38,6 +38,7 @@ Run tests with:
 
 1. Create database (only the first time):  
 `docker-compose exec app rake db:setup`
+`docker-compose exec app bower install`
 
 1. Add this to your `/etc/hosts`:
 
