@@ -16,7 +16,7 @@ gem "skylight"
 gem 'sitemap_generator'
 gem "rack-cache"
 gem 'simplecov', :require => false, :group => :test
-gem 'paper_trail', '>= 3.0.0.rc2'
+gem 'paper_trail'
 gem 'sort_alphabetical'
 gem 'rocket_pants', '~> 1.0'
 gem 'twitter'
