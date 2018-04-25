@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Discussion do
+describe Discussion, type: :model  do
   it { should belong_to(:discussable) }
   it { should belong_to(:creator) }
   it { should have_many(:comments) }

@@ -2,6 +2,7 @@ ruby '2.3.1'
 
 source 'https://rubygems.org'
 
+gem 'rspec', '~> 2.99.0'
 gem 'discourse_api'
 gem 'protected_attributes'
 gem 'hpricot'
@@ -23,7 +24,7 @@ gem 'twitter'
 gem 'sinatra', '>= 1.3.0', :require => nil
 gem 'sidekiq'
 gem 'nest'
-gem 'rails', '>= 4.1.0'
+gem 'rails', '~> 4.1.16'
 gem 'inherited_resources'
 gem 'timezone', '~> 1.0'
 gem 'bitmask_attributes'

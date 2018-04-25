@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Comment do
+describe Comment, type: :model  do
 
   it { should belong_to(:author)}
   it { should belong_to(:commentable)}

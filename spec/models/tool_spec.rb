@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Machine do
+describe Machine, type: :model  do
   it { should belong_to(:brand) }
   it { should have_many(:facilities) }
   it { should have_many(:discussions) }

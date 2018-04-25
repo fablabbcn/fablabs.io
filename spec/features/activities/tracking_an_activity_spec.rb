@@ -28,8 +28,8 @@ feature "Tracking an activity" do
     expect(page).to have_content("#{employee.user} was added as #{employee.job_title} at #{lab}")
   end
 
-  pending "employee applies"
-  pending "employee is removed"
-  pending "employee is updated"
+  skip "employee applies"
+  skip "employee is removed"
+  skip "employee is updated"
 
 end

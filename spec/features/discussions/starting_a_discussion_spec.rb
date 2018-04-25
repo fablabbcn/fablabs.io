@@ -4,7 +4,7 @@ feature "Starting a discussion" do
 
   given(:machine) { FactoryGirl.create(:machine) }
 
-  pending "as a user" do
+  skip "as a user" do
     sign_in
     visit machine_path(machine)
     click_link "Start a new Discussion"

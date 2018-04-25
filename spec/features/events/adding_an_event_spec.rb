@@ -15,7 +15,7 @@ feature "Adding an event" do
     expect(page.status_code).to eq(403)
   end
 
-  pending "as an admin" do
+  skip "as an admin" do
 
     sign_in_superadmin
     visit new_lab_event_path(lab)

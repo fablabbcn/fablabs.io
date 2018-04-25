@@ -9,7 +9,7 @@ describe "map" do
     expect(current_url).to include(map_labs_url)
   end
 
-  pending "shows approved labs", js: true do
+  skip "shows approved labs", js: true do
     lab = FactoryGirl.create(:lab)
     lab.approve!
     visit labs_path
@@ -17,7 +17,7 @@ describe "map" do
     expect(page).to have_css('.leaflet-marker-icon')
   end
 
-  pending "doesn't show unapproved labs", js: true do
+  skip "doesn't show unapproved labs", js: true do
     FactoryGirl.create(:lab)
     visit map_labs_path
     expect(page).to_not have_css('.leaflet-marker-icon')

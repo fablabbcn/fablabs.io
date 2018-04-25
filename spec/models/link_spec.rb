@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Link do
+describe Link, type: :model  do
 
   it { should belong_to(:linkable) }
   it { should validate_presence_of(:url) }

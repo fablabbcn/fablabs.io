@@ -1,8 +1,8 @@
 require 'spec_helper'
 
-describe Role do
+describe Role, type: :model  do
 
-  pending "doesn't allow :superadmin" do
+  skip "doesn't allow :superadmin" do
     user = FactoryGirl.create(:user)
     lab = FactoryGirl.create(:lab)
     user.add_role :superadmin

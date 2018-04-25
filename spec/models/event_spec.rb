@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Event do
+describe Event, type: :model  do
   let(:event) { FactoryGirl.create(:event) }
 
   it { should belong_to(:lab) }
@@ -10,7 +10,7 @@ describe Event do
   it { should validate_presence_of(:description) }
   it { should validate_presence_of(:lab) }
 
-  pending { should validate_presence_of(:starts_at) }
+  skip { should validate_presence_of(:starts_at) }
 
   # attr_accessor :all_day, :location, :time_zone
   # attr_writer :start_date, :start_time, :end_date, :end_time
@@ -46,9 +46,9 @@ describe Event do
     end
 
     it "has bitmask" do
-      expect(event.tags?(:open_days)).to be_false
+      expect(event.tags?(:open_days)).to be false
       event.tags << :open_days#, :workshops]
-      expect(event.tags?(:open_days)).to be_true
+      expect(event.tags?(:open_days)).to be true
     end
 
   end

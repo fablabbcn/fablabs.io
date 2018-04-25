@@ -2,7 +2,7 @@ require 'spec_helper'
 
 feature "Changing locale" do
 
-  pending "as a visitor" do
+  skip "as a visitor" do
     visit root_path
     click_link('locale-icon')
     expect(page).to have_content('Choose Your Language')
@@ -11,7 +11,7 @@ feature "Changing locale" do
     expect(page).to have_css('#locale-icon.es')
   end
 
-  pending "as a user" do
+  skip "as a user" do
     user = FactoryGirl.create(:user, locale: 'es')
     sign_in user
     click_link('locale-icon')
