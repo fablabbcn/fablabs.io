@@ -1,9 +1,9 @@
-ruby '2.1.9'
+ruby '2.3.1'
 
 source 'https://rubygems.org'
 
 gem 'discourse_api'
-
+gem 'protected_attributes'
 gem 'hpricot'
 gem 'premailer-rails'
 gem 'rack-cors', :require => 'rack/cors'
@@ -73,7 +73,7 @@ gem 'jbuilder', '~> 1.2'
 gem 'figaro'
 gem 'friendly_id', github: 'norman/friendly_id'
 gem 'ffaker'
-gem 'doorkeeper', '~> 0.7.0'
+gem 'doorkeeper'
 
 gem 'redcarpet'
 gem 'coderay'

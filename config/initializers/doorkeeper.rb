@@ -56,7 +56,8 @@ Doorkeeper.configure do
   # # The value can be any string. Use nil to disable this feature. When disabled, clients must provide a valid URL
   # # (Similar behaviour: https://developers.google.com/accounts/docs/OAuth2InstalledApp#choosingredirecturi)
   # #
-  test_redirect_uri nil#'urn:ietf:wg:oauth:2.0:oob'
+  #test_redirect_uri nil#'urn:ietf:wg:oauth:2.0:oob'
+  native_redirect_uri nil
 
   # # Under some circumstances you might want to have applications auto-approved,
   # # so that the user skips the authorization step.
