@@ -108,6 +108,7 @@ group :test do
   gem "pry"
   gem "pry-rescue"
   gem "pry-stack_explorer"
+  gem "test-unit"
 end
 
 group :development do
