@@ -11,15 +11,14 @@ unless Rails.env.development?
   exit
 end
 
-User.find_or_create_by_username(
-  username: 'user',
-  email: 'user@user.local',
-  password: 'password',
-  password_confirmation: 'password',
-  first_name: 'User',
-  last_name: 'Userson',
-  agree_policy_terms: true
-)
+User.find_or_create_by(username: 'user') do |user|
+  user.email = 'user@user.local'
+  user.password= 'password'
+  user.password_confirmation= 'password'
+  user.first_name= 'User'
+  user.last_name= 'Userson'
+  user.agree_policy_terms= true
+end
 
 Organization.create!(
   name: Faker::Product.product,
