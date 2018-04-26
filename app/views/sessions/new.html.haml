@@ -17,6 +17,7 @@
         = form_tag sessions_path do
           -# = simple_form_for :signin, { url: sessions_path } do
           = hidden_field_tag :goto, params[:goto]
+          = hidden_field_tag :authenticity_token, form_authenticity_token
           .row
             .col-md-6
               %i.fa.fa-user
