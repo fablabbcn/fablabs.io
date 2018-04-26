@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 20180425151018) do
   enable_extension "plpgsql"
   enable_extension "hstore"
 
-  create_table "academics", force: true do |t|
+  create_table "academics", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "lab_id"
     t.integer  "started_in"
@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(version: 20180425151018) do
   add_index "academics", ["approver_id"], name: "index_academics_on_approver_id", using: :btree
   add_index "academics", ["user_id", "lab_id"], name: "index_academics_on_user_id_and_lab_id", unique: true, using: :btree
 
-  create_table "activities", force: true do |t|
+  create_table "activities", force: :cascade do |t|
     t.integer  "creator_id"
     t.string   "action"
     t.integer  "trackable_id"
@@ -44,7 +44,7 @@ ActiveRecord::Schema.define(version: 20180425151018) do
   add_index "activities", ["creator_id"], name: "index_activities_on_creator_id", using: :btree
   add_index "activities", ["trackable_id", "trackable_type"], name: "index_activities_on_trackable_id_and_trackable_type", using: :btree
 
-  create_table "admin_applications", force: true do |t|
+  create_table "admin_applications", force: :cascade do |t|
     t.integer  "applicant_id"
     t.integer  "lab_id"
     t.text     "notes"
@@ -55,7 +55,7 @@ ActiveRecord::Schema.define(version: 20180425151018) do
 
   add_index "admin_applications", ["applicant_id", "lab_id"], name: "index_admin_applications_on_applicant_id_and_lab_id", using: :btree
 
-  create_table "brands", force: true do |t|
+  create_table "brands", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
     t.string   "workflow_state"
@@ -66,7 +66,7 @@ ActiveRecord::Schema.define(version: 20180425151018) do
 
   add_index "brands", ["creator_id"], name: "index_brands_on_creator_id", using: :btree
 
-  create_table "collaborations", force: true do |t|
+  create_table "collaborations", force: :cascade do |t|
     t.integer  "project_id"
     t.integer  "collaborator_id"
     t.datetime "last_collaboration"
@@ -77,7 +77,7 @@ ActiveRecord::Schema.define(version: 20180425151018) do
   add_index "collaborations", ["collaborator_id"], name: "index_collaborations_on_collaborator_id", using: :btree
   add_index "collaborations", ["project_id"], name: "index_collaborations_on_project_id", using: :btree
 
-  create_table "comments", force: true do |t|
+  create_table "comments", force: :cascade do |t|
     t.integer  "author_id"
     t.string   "ancestry"
     t.integer  "commentable_id"
@@ -91,7 +91,7 @@ ActiveRecord::Schema.define(version: 20180425151018) do
   add_index "comments", ["author_id"], name: "index_comments_on_author_id", using: :btree
   add_index "comments", ["commentable_id", "commentable_type"], name: "index_comments_on_commentable_id_and_commentable_type", using: :btree
 
-  create_table "contributions", force: true do |t|
+  create_table "contributions", force: :cascade do |t|
     t.integer  "project_id"
     t.integer  "contributor_id"
     t.datetime "last_contribution"
@@ -102,7 +102,7 @@ ActiveRecord::Schema.define(version: 20180425151018) do
   add_index "contributions", ["contributor_id"], name: "index_contributions_on_contributor_id", using: :btree
   add_index "contributions", ["project_id"], name: "index_contributions_on_project_id", using: :btree
 
-  create_table "coupons", force: true do |t|
+  create_table "coupons", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "description"
     t.string   "code",        null: false
@@ -114,7 +114,7 @@ ActiveRecord::Schema.define(version: 20180425151018) do
 
   add_index "coupons", ["user_id"], name: "index_coupons_on_user_id", using: :btree
 
-  create_table "discussions", force: true do |t|
+  create_table "discussions", force: :cascade do |t|
     t.string   "title"
     t.text     "body"
     t.integer  "discussable_id"
@@ -128,7 +128,7 @@ ActiveRecord::Schema.define(version: 20180425151018) do
   add_index "discussions", ["creator_id"], name: "index_discussions_on_creator_id", using: :btree
   add_index "discussions", ["discussable_id", "discussable_type"], name: "index_discussions_on_discussable_id_and_discussable_type", using: :btree
 
-  create_table "documents", force: true do |t|
+  create_table "documents", force: :cascade do |t|
     t.string   "type"
     t.string   "title"
     t.text     "description"
@@ -146,7 +146,7 @@ ActiveRecord::Schema.define(version: 20180425151018) do
 
   add_index "documents", ["documentable_id"], name: "index_documents_on_documentable_id", using: :btree
 
-  create_table "employees", force: true do |t|
+  create_table "employees", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "lab_id"
     t.integer  "ordinal"
@@ -167,7 +167,7 @@ ActiveRecord::Schema.define(version: 20180425151018) do
   add_index "employees", ["ordinal"], name: "index_employees_on_ordinal", using: :btree
   add_index "employees", ["user_id"], name: "index_employees_on_user_id", using: :btree
 
-  create_table "events", force: true do |t|
+  create_table "events", force: :cascade do |t|
     t.string   "type"
     t.string   "name"
     t.text     "description"
@@ -184,7 +184,7 @@ ActiveRecord::Schema.define(version: 20180425151018) do
   add_index "events", ["lab_id"], name: "index_events_on_lab_id", using: :btree
   add_index "events", ["tags"], name: "index_events_on_tags", using: :btree
 
-  create_table "facilities", force: true do |t|
+  create_table "facilities", force: :cascade do |t|
     t.integer  "lab_id"
     t.integer  "thing_id"
     t.text     "notes"
@@ -196,7 +196,7 @@ ActiveRecord::Schema.define(version: 20180425151018) do
   add_index "facilities", ["creator_id"], name: "index_facilities_on_creator_id", using: :btree
   add_index "facilities", ["lab_id", "thing_id"], name: "index_facilities_on_lab_id_and_thing_id", unique: true, using: :btree
 
-  create_table "favourites", force: true do |t|
+  create_table "favourites", force: :cascade do |t|
     t.integer  "project_id"
     t.integer  "user_id"
     t.datetime "created_at"
@@ -206,7 +206,7 @@ ActiveRecord::Schema.define(version: 20180425151018) do
   add_index "favourites", ["project_id"], name: "index_favourites_on_project_id", using: :btree
   add_index "favourites", ["user_id"], name: "index_favourites_on_user_id", using: :btree
 
-  create_table "featured_images", force: true do |t|
+  create_table "featured_images", force: :cascade do |t|
     t.string   "src"
     t.string   "name"
     t.string   "description"
@@ -219,7 +219,7 @@ ActiveRecord::Schema.define(version: 20180425151018) do
 
   add_index "featured_images", ["creator_id"], name: "index_featured_images_on_creator_id", using: :btree
 
-  create_table "grades", force: true do |t|
+  create_table "grades", force: :cascade do |t|
     t.integer  "project_id"
     t.integer  "user_id"
     t.integer  "stars"
@@ -230,7 +230,7 @@ ActiveRecord::Schema.define(version: 20180425151018) do
   add_index "grades", ["project_id"], name: "index_grades_on_project_id", using: :btree
   add_index "grades", ["user_id"], name: "index_grades_on_user_id", using: :btree
 
-  create_table "lab_organizations", force: true do |t|
+  create_table "lab_organizations", force: :cascade do |t|
     t.integer  "lab_id"
     t.integer  "organization_id"
     t.string   "workflow_state"
@@ -241,7 +241,7 @@ ActiveRecord::Schema.define(version: 20180425151018) do
   add_index "lab_organizations", ["lab_id"], name: "index_lab_organizations_on_lab_id", using: :btree
   add_index "lab_organizations", ["organization_id"], name: "index_lab_organizations_on_organization_id", using: :btree
 
-  create_table "labs", force: true do |t|
+  create_table "labs", force: :cascade do |t|
     t.string   "name"
     t.string   "slug"
     t.text     "description"
@@ -294,7 +294,7 @@ ActiveRecord::Schema.define(version: 20180425151018) do
   add_index "labs", ["referee_id"], name: "index_labs_on_referee_id", using: :btree
   add_index "labs", ["slug"], name: "index_labs_on_slug", unique: true, using: :btree
 
-  create_table "links", force: true do |t|
+  create_table "links", force: :cascade do |t|
     t.integer  "linkable_id"
     t.string   "linkable_type"
     t.integer  "ordinal"
@@ -309,7 +309,7 @@ ActiveRecord::Schema.define(version: 20180425151018) do
   add_index "links", ["creator_id"], name: "index_links_on_creator_id", using: :btree
   add_index "links", ["linkable_id", "linkable_type", "ordinal"], name: "index_links_on_linkable_id_and_linkable_type_and_ordinal", using: :btree
 
-  create_table "machineries", force: true do |t|
+  create_table "machineries", force: :cascade do |t|
     t.integer  "project_id"
     t.integer  "device_id"
     t.datetime "created_at"
@@ -319,7 +319,7 @@ ActiveRecord::Schema.define(version: 20180425151018) do
   add_index "machineries", ["device_id"], name: "index_machineries_on_device_id", using: :btree
   add_index "machineries", ["project_id"], name: "index_machineries_on_project_id", using: :btree
 
-  create_table "oauth_access_grants", force: true do |t|
+  create_table "oauth_access_grants", force: :cascade do |t|
     t.integer  "resource_owner_id",              null: false
     t.integer  "application_id",                 null: false
     t.string   "token",                          null: false
@@ -332,7 +332,7 @@ ActiveRecord::Schema.define(version: 20180425151018) do
 
   add_index "oauth_access_grants", ["token"], name: "index_oauth_access_grants_on_token", unique: true, using: :btree
 
-  create_table "oauth_access_tokens", force: true do |t|
+  create_table "oauth_access_tokens", force: :cascade do |t|
     t.integer  "resource_owner_id"
     t.integer  "application_id",    null: false
     t.string   "token",             null: false
@@ -347,7 +347,7 @@ ActiveRecord::Schema.define(version: 20180425151018) do
   add_index "oauth_access_tokens", ["resource_owner_id"], name: "index_oauth_access_tokens_on_resource_owner_id", using: :btree
   add_index "oauth_access_tokens", ["token"], name: "index_oauth_access_tokens_on_token", unique: true, using: :btree
 
-  create_table "oauth_applications", force: true do |t|
+  create_table "oauth_applications", force: :cascade do |t|
     t.string   "name",                                   null: false
     t.string   "uid",                                    null: false
     t.string   "secret",                                 null: false
@@ -359,7 +359,7 @@ ActiveRecord::Schema.define(version: 20180425151018) do
 
   add_index "oauth_applications", ["uid"], name: "index_oauth_applications_on_uid", unique: true, using: :btree
 
-  create_table "organizations", force: true do |t|
+  create_table "organizations", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
     t.integer  "creator_id"
@@ -396,7 +396,7 @@ ActiveRecord::Schema.define(version: 20180425151018) do
 
   add_index "organizations", ["slug"], name: "index_organizations_on_slug", unique: true, using: :btree
 
-  create_table "pages", force: true do |t|
+  create_table "pages", force: :cascade do |t|
     t.string   "title"
     t.string   "slug"
     t.text     "content"
@@ -408,7 +408,7 @@ ActiveRecord::Schema.define(version: 20180425151018) do
 
   add_index "pages", ["slug"], name: "index_pages_on_slug", using: :btree
 
-  create_table "projects", force: true do |t|
+  create_table "projects", force: :cascade do |t|
     t.string   "type"
     t.string   "title"
     t.text     "description"
@@ -432,7 +432,7 @@ ActiveRecord::Schema.define(version: 20180425151018) do
   add_index "projects", ["owner_id"], name: "index_projects_on_owner_id", using: :btree
   add_index "projects", ["slug"], name: "index_projects_on_slug", unique: true, using: :btree
 
-  create_table "recoveries", force: true do |t|
+  create_table "recoveries", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "key"
     t.string   "ip"
@@ -443,7 +443,7 @@ ActiveRecord::Schema.define(version: 20180425151018) do
 
   add_index "recoveries", ["user_id"], name: "index_recoveries_on_user_id", using: :btree
 
-  create_table "referee_approval_processes", force: true do |t|
+  create_table "referee_approval_processes", force: :cascade do |t|
     t.integer  "referred_lab_id"
     t.integer  "referee_lab_id"
     t.boolean  "approved"
@@ -454,7 +454,7 @@ ActiveRecord::Schema.define(version: 20180425151018) do
   add_index "referee_approval_processes", ["referee_lab_id"], name: "index_referee_approval_processes_on_referee_lab_id", using: :btree
   add_index "referee_approval_processes", ["referred_lab_id"], name: "index_referee_approval_processes_on_referred_lab_id", using: :btree
 
-  create_table "role_applications", force: true do |t|
+  create_table "role_applications", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "lab_id"
     t.string   "workflow_state"
@@ -465,7 +465,7 @@ ActiveRecord::Schema.define(version: 20180425151018) do
 
   add_index "role_applications", ["user_id", "lab_id"], name: "index_role_applications_on_user_id_and_lab_id", using: :btree
 
-  create_table "roles", force: true do |t|
+  create_table "roles", force: :cascade do |t|
     t.string   "name"
     t.integer  "resource_id"
     t.string   "resource_type"
@@ -476,7 +476,7 @@ ActiveRecord::Schema.define(version: 20180425151018) do
   add_index "roles", ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id", using: :btree
   add_index "roles", ["name"], name: "index_roles_on_name", using: :btree
 
-  create_table "steps", force: true do |t|
+  create_table "steps", force: :cascade do |t|
     t.string   "title"
     t.text     "description"
     t.integer  "position"
@@ -487,7 +487,7 @@ ActiveRecord::Schema.define(version: 20180425151018) do
 
   add_index "steps", ["project_id"], name: "index_steps_on_project_id", using: :btree
 
-  create_table "taggings", force: true do |t|
+  create_table "taggings", force: :cascade do |t|
     t.integer  "tag_id"
     t.integer  "taggable_id"
     t.string   "taggable_type"
@@ -507,14 +507,14 @@ ActiveRecord::Schema.define(version: 20180425151018) do
   add_index "taggings", ["tagger_id", "tagger_type"], name: "index_taggings_on_tagger_id_and_tagger_type", using: :btree
   add_index "taggings", ["tagger_id"], name: "index_taggings_on_tagger_id", using: :btree
 
-  create_table "tags", force: true do |t|
+  create_table "tags", force: :cascade do |t|
     t.string  "name"
     t.integer "taggings_count", default: 0
   end
 
   add_index "tags", ["name"], name: "index_tags_on_name", unique: true, using: :btree
 
-  create_table "things", force: true do |t|
+  create_table "things", force: :cascade do |t|
     t.string   "name"
     t.integer  "brand_id"
     t.text     "description"
@@ -537,7 +537,7 @@ ActiveRecord::Schema.define(version: 20180425151018) do
   add_index "things", ["id", "type", "inventory_item"], name: "index_things_on_id_and_type_and_inventory_item", using: :btree
   add_index "things", ["slug"], name: "index_things_on_slug", unique: true, using: :btree
 
-  create_table "users", force: true do |t|
+  create_table "users", force: :cascade do |t|
     t.string   "workflow_state"
     t.string   "first_name"
     t.string   "last_name"
@@ -585,14 +585,14 @@ ActiveRecord::Schema.define(version: 20180425151018) do
   add_index "users", ["fab10_coupon_code"], name: "index_users_on_fab10_coupon_code", unique: true, using: :btree
   add_index "users", ["slug"], name: "index_users_on_slug", unique: true, using: :btree
 
-  create_table "users_roles", id: false, force: true do |t|
+  create_table "users_roles", id: false, force: :cascade do |t|
     t.integer "user_id"
     t.integer "role_id"
   end
 
   add_index "users_roles", ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id", using: :btree
 
-  create_table "versions", force: true do |t|
+  create_table "versions", force: :cascade do |t|
     t.string   "item_type",  null: false
     t.integer  "item_id",    null: false
     t.string   "event",      null: false
