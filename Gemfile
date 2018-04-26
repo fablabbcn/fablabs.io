@@ -2,7 +2,7 @@ ruby '2.3.1'
 
 source 'https://rubygems.org'
 
-gem 'rspec', '~> 2.99.0'
+gem 'rspec'
 gem 'discourse_api'
 gem 'protected_attributes'
 gem 'hpricot'
