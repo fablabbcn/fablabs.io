@@ -14,7 +14,11 @@ class RefereeMailer < ActionMailer::Base
   end
 
   def lab_referee_mailer(action, message, recipient)
-    @referee = Lab.find(recipient)
+    @code = recipient
+    if recipient.respond_to?(:id) then 
+       @code = recipient.id
+    end
+    @referee = Lab.find(@code)
     users = (@referee.direct_admins + [@referee.creator]).compact.uniq.map { |u| u.email_string }
     users.join(", ")
     @user = (@referee.creator.nil? ? @referee.direct_admins.first : @referee.creator)

@@ -24,7 +24,7 @@ gem 'twitter'
 gem 'sinatra', '>= 1.3.0', :require => nil
 gem 'sidekiq'
 gem 'nest'
-gem 'rails', '~> 4.1.16'
+gem 'rails' 
 gem 'inherited_resources'
 gem 'timezone', '~> 1.0'
 gem 'bitmask_attributes'

@@ -18,7 +18,7 @@ class EmployeesController < ApplicationController
     authorize_action_for @employee
     if @employee.save
       track_activity @employee, @employee.user
-      AdminMailer.delay.employee_applied(@employee.id)
+      AdminMailer.employee_applied(@employee.id).deliver_now
       redirect_to lab_url(@lab), notice: "Thank you for applying"
     else
       render :new
@@ -44,7 +44,7 @@ class EmployeesController < ApplicationController
   def approve
     @employee = Employee.find(params[:id])
     if @employee.approve!
-      UserMailer.delay.employee_approved(@employee.id)
+      UserMailer.employee_approved(@employee.id).deliver_now
       track_activity @employee, @employee.user
       redirect_to lab_employees_url(@employee.lab), notice: 'Employee approved'
     else

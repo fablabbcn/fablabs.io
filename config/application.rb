@@ -5,7 +5,9 @@ require 'csv'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
-Bundler.require(:default, Rails.env)
+#Bundler.require(:default, Rails.env)
+
+Bundler.require(*Rails.groups)
 
 module Fablabs
   class Application < Rails::Application
@@ -76,6 +78,6 @@ module Fablabs
 
     config.autoload_paths += %W(#{config.root}/lib)
     config.assets.paths << Rails.root.join('vendor', 'assets', 'bower_components')
-
+    config.active_record.raise_in_transactional_callbacks = true
   end
 end

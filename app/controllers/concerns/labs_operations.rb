@@ -4,7 +4,7 @@ module LabsOperations
   def update_workflow_state
     if @lab.workflow_state == "more_info_needed"
       @lab.update_attributes workflow_state: "more_info_added"
-      RefereeMailer.delay.lab_more_info_added(@lab.id)
+      RefereeMailer.lab_more_info_added(@lab.id).deliver_now
       @lab.more_info_added
     end
   end
@@ -19,13 +19,13 @@ module LabsOperations
   end
 
   def lab_send_action(verbed)
-    UserMailer.delay.send("lab_#{verbed}", @lab.id)
+    UserMailer.send("lab_#{verbed}", @lab.id)
     mails_referees(verbed)
   end
 
   def sends_emails(action)
-    UserMailer.delay.send("lab_#{action}", @lab.id)
-    AdminMailer.delay.send("lab_#{action}", @lab.id)
+    UserMailer.send("lab_#{action}", @lab.id).deliver_now
+    AdminMailer.send("lab_#{action}", @lab.id).deliver_now
 
     mails_referees(action)
   end
@@ -34,14 +34,14 @@ module LabsOperations
     if @lab.referee_id
       @referee = @lab.referee
       message = "You are the unique referee for this lab, please take action"
-      RefereeMailer.delay.send("lab_#{action}", @lab.id, message, @referee.id)
+      RefereeMailer.send("lab_#{action}", @lab.id, message, @referee.id).deliver_now
     end
 
     if not @lab.referee_approval_processes.empty?
       message = "You are one of the lab referees, please take action"
       @lab.referee_approval_processes.each do |process|
         referee = process.referee_lab
-        RefereeMailer.delay.send("lab_#{action}", @lab.id, message, referee)
+        RefereeMailer.send("lab_#{action}", @lab.id, message, referee).deliver_now
       end
     end
 

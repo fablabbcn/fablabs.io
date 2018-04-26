@@ -1,6 +1,6 @@
 # require 'sidekiq/testing/inline'
 
-Fablabs::Application.configure do
+Rails.application.configure do
 
   # config.after_initialize do
   #   Bullet.enable = true

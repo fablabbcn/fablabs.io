@@ -1,4 +1,4 @@
-Fablabs::Application.routes.draw do
+Rails.application.routes.draw do
   get "discourse/sso"
   get "discuss" => 'discourse#embed'
   resources :pages, only: [:show]
@@ -90,8 +90,8 @@ Fablabs::Application.routes.draw do
     resources :search, only: [:index]
     resources :projects do
       collection do
-        get '/tags', to: :search
-        get '/lab/:slug', to: :search
+        get '/tags', action: :search
+        get '/lab/:slug', action: :search
         get :map
         get :embed
       end

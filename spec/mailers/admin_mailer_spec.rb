@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe AdminMailer do
+describe AdminMailer, type: :mailer do
   let!(:lab_admin) { FactoryGirl.create(:user) }
   let!(:referee) { FactoryGirl.create(:lab) }
   let!(:referee_employee) { FactoryGirl.create(:employee, user: lab_admin, lab: referee) }
