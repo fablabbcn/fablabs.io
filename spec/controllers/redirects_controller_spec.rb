@@ -1,5 +1,5 @@
 require 'spec_helper'
-describe RedirectsController do
+describe RedirectsController, type: :controller do
   describe 'GET #show' do
     it 'redirect to labs by id' do
       lab = FactoryGirl.create(:lab)

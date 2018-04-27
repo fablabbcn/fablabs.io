@@ -16,7 +16,7 @@ describe Link, type: :model  do
   it "has unique url" do
     lab = FactoryGirl.create(:lab)
     FactoryGirl.create(:link, url: 'facebook.com', linkable: lab)
-    expect{FactoryGirl.create(:link, url: 'facebook.com', linkable: lab)}.to raise_error
+    expect{FactoryGirl.create(:link, url: 'facebook.com', linkable: lab)}.to raise_error ActiveRecord::RecordInvalid
   end
 
   it "adds http when necessary" do

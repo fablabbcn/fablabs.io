@@ -19,26 +19,26 @@ gem "rack-cache"
 gem 'simplecov', :require => false, :group => :test
 gem 'paper_trail'
 gem 'sort_alphabetical'
-gem 'rocket_pants', '~> 1.0'
+gem 'rocket_pants'# '~> 1.0'
 gem 'twitter'
 gem 'sinatra', '>= 1.3.0', :require => nil
 gem 'sidekiq'
 gem 'nest'
 gem 'rails' 
 gem 'inherited_resources'
-gem 'timezone', '~> 1.0'
+gem 'timezone'#, '~> 1.0'
 gem 'bitmask_attributes'
-gem 'ransack', github: "ernie/ransack"
-gem 'authority', github: 'nathanl/authority'
-gem 'rolify', github: 'EppO/rolify'
-gem 'font-awesome-rails', github: 'bokmann/font-awesome-rails'
+gem 'ransack'#, github: "ernie/ransack"
+gem 'authority'#, github: 'nathanl/authority'
+gem 'rolify'#, github: 'EppO/rolify'
+gem 'font-awesome-rails'#, github: 'bokmann/font-awesome-rails'
 gem 'acts-as-taggable-on'
 gem 'kaminari'
-gem 'ancestry', github: 'stefankroes/ancestry'
-gem 'geocoder', github: 'alexreisner/geocoder'
-gem 'workflow', github: 'geekq/workflow'
+gem 'ancestry'#, github: 'stefankroes/ancestry'
+gem 'geocoder'#, github: 'alexreisner/geocoder'
+gem 'workflow'#, github: 'geekq/workflow'
 gem 'bourbon'
-gem "cocoon", github: 'nathanvda/cocoon', :tag => 'v1.2.7'
+gem "cocoon"#, github: 'nathanvda/cocoon', :tag => 'v1.2.7'
 gem "pg_search"
 gem "pg",'0.17.1'
 gem 'simple_form'#, '3.0.1'
@@ -51,17 +51,17 @@ gem 'sass-rails'#, '~> 4.0.5'
 gem 'sprockets-rails'
 gem 'sprockets'#,'~> 2.11.0' # 2.12 errors on SASS files
 gem 'haml-rails'
-gem 'uglifier', '>= 1.3.0'
-gem 'font-awesome-sass', '~> 4.3.0'
-gem 'trumbowyg_rails', git: 'https://github.com/TikiTDO/trumbowyg_rails.git'
+gem 'uglifier'#, '>= 1.3.0'
+gem 'font-awesome-sass'#, '~> 4.3.0'
+gem 'trumbowyg_rails'#, git: 'https://github.com/TikiTDO/trumbowyg_rails.git'
 
-gem 'database_cleaner', github: 'bmabey/database_cleaner'
+gem 'database_cleaner'#, github: 'bmabey/database_cleaner'
 gem 'letter_opener'
 gem 'coffee-rails'#, '~> 4.0.0'
 gem 'jquery-rails'
 
 
-gem 'dragonfly', '~> 1.1.1'
+gem 'dragonfly'#, '~> 1.1.1'
 gem 'dragonfly-s3_data_store'
 
 gem "paperclip"#, "~> 4.2"
@@ -69,10 +69,10 @@ gem "paperclip"#, "~> 4.2"
 gem 'aws-s3'
 gem 'aws-sdk-v1' # Can be used together with v2 because of different namespaces.
 
-gem 'jbuilder', '~> 1.2'
+gem 'jbuilder'#, '~> 1.2'
 
 gem 'figaro'
-gem 'friendly_id', '~> 5.1.0'
+gem 'friendly_id'#, '~> 5.1.0'
 gem 'ffaker'
 gem 'doorkeeper'
 
