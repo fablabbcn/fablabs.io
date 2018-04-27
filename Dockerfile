@@ -43,3 +43,6 @@ RUN echo '{ "allow_root": true }' > /root/.bowerrc
 RUN ln -s `which nodejs` /usr/bin/node
 
 RUN /usr/local/bin/bower install
+
+# OR call puma? prod is currently using unicorn
+CMD ["rails", "server", "-b", "0.0.0.0"]
