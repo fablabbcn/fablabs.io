@@ -9,6 +9,7 @@ sudo apt-get install -y \
   libqtwebkit-dev \
   postgresql-client \
   nodejs \
+  imagemagick \
   npm \
   git
 
