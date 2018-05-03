@@ -13,7 +13,6 @@ gem 'chronic'
 gem 'whenever', :require => false
 gem 'slim'
 gem 'dalli'
-gem "skylight"
 gem 'sitemap_generator'
 gem "rack-cache"
 gem 'simplecov', :require => false, :group => :test
