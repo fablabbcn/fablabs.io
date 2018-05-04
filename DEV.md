@@ -42,6 +42,12 @@ sudo ln -sf `which nodejs` /usr/bin/node
 
 bower install
 
+** Setup headless x server for end to end testing **
+
+gem install capybara-webit
+sudo apt-get install xvfb
+gem install headless
+
 
 ** Setup postgres access control **
 

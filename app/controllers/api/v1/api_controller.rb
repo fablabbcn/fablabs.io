@@ -2,9 +2,13 @@ class Api::V1::ApiController < RocketPants::Base
   version 1
   include AbstractController::Callbacks
   include ActionController::Head
-  include Doorkeeper::Helpers::Filter
+
 
 protected
+
+  def current_resource_owner
+    User.find(doorkeeper_token.resource_owner_id) if doorkeeper_token
+  end
 
   def current_user
     if doorkeeper_token

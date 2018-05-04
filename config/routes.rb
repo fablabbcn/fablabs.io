@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  use_doorkeeper
   get "discourse/sso"
   get "discuss" => 'discourse#embed'
   resources :pages, only: [:show]
