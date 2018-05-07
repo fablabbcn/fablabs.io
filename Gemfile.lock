@@ -438,6 +438,8 @@ GEM
       multi_json (~> 1.0)
       rubyzip (~> 1.0)
       websocket (~> 1.0.4)
+    sentry-raven (2.7.3)
+      faraday (>= 0.7.6, < 1.0)
     sexp_processor (4.11.0)
     shellany (0.0.1)
     shoulda-matchers (3.1.2)
@@ -607,6 +609,7 @@ DEPENDENCIES
   sass-rails
   sdoc
   selenium-webdriver
+  sentry-raven
   shoulda-matchers
   sidekiq
   simple_form

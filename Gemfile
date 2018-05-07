@@ -20,6 +20,7 @@ gem 'paper_trail'
 gem 'sort_alphabetical'
 gem 'rocket_pants'# '~> 1.0'
 gem 'twitter'
+gem "sentry-raven"
 gem 'sinatra', '>= 1.3.0', :require => nil
 gem 'sidekiq'
 gem 'nest'
