@@ -42,7 +42,7 @@ sudo ln -sf `which nodejs` /usr/bin/node
 bower install
 
 
-** Setup postgres access control **
+** Setup postgres and access control **
 
 Edit pg_hba.conf and change the local connections from md5 to trust
 
