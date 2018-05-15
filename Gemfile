@@ -13,7 +13,6 @@ gem 'chronic'
 gem 'whenever', :require => false
 gem 'slim'
 gem 'dalli'
-gem "skylight"
 gem 'sitemap_generator'
 gem "rack-cache"
 gem 'simplecov', :require => false, :group => :test
@@ -21,6 +20,7 @@ gem 'paper_trail'
 gem 'sort_alphabetical'
 gem 'rocket_pants'# '~> 1.0'
 gem 'twitter'
+gem "sentry-raven"
 gem 'sinatra', '>= 1.3.0', :require => nil
 gem 'sidekiq'
 gem 'nest'

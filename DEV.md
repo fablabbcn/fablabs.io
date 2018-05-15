@@ -9,6 +9,7 @@ sudo apt-get install -y \
   libqtwebkit-dev \
   postgresql-client \
   nodejs \
+  imagemagick \
   npm \
   git
 
@@ -21,6 +22,7 @@ sudo apt-get install -y \
 
 cd
 git clone https://github.com/fablabbcn/fablabs.io.git
+cd fablabs.io
 
 sudo gem install bundler
 
@@ -40,6 +42,16 @@ sudo npm install -g bower
 sudo ln -sf `which nodejs` /usr/bin/node
 
 bower install
+
+** Setup headless x server for end to end testing **
+
+### Requirements for webkit
+#### https://github.com/thoughtbot/capybara-webkit/wiki/Installing-Qt-and-compiling-capybara-webkit#debian--ubuntu
+sudo apt-get install qt5-default libqt5webkit5-dev gstreamer1.0-plugins-base gstreamer1.0-tools gstreamer1.0-x
+
+gem install capybara-webkit
+sudo apt-get install xvfb
+gem install headless
 
 
 ** Setup postgres and access control **

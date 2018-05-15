@@ -7,6 +7,7 @@ RUN apt-get update -qq && apt-get install -y \
   libqt4-dev \
   libqtwebkit-dev \
   postgresql-client \
+  imagemagick \
   nodejs \
   npm
 

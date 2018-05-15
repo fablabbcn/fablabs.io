@@ -59,7 +59,7 @@ namespace :csv do
             name: r['name'],
             slug: slugify(r['slug']),
 
-            workflow_state: 'approved',
+            #workflow_state: 'approved',
             # FIND DIFFERENT STATES
             workflow_state: get_state(r['state']),
             kind: r['kind'],

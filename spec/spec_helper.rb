@@ -8,6 +8,8 @@ require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
 require 'rspec/autorun'
 require 'capybara/rspec'
+#require 'headless'
+require 'capybara-webkit'
 # require 'sidekiq/testing'
 
 # Requires supporting ruby files with custom matchers and macros, etc,
@@ -25,6 +27,8 @@ Shoulda::Matchers.configure do |config|
     end
 end
 
+#Capybara.app_host = "www.fablabs.local"
+#Capybara.javascript_driver = :webkit
 
 
 RSpec.configure do |config|
@@ -38,8 +42,7 @@ RSpec.configure do |config|
   # If you prefer to use mocha, flexmock or RR, uncomment the appropriate line:
   #
   # config.mock_with :mocha
-  # config.mock_with :flexmock
-  # config.mock_with :rr
+  # config.mock_with :flexmock 
 
   config.expect_with :rspec do |c|
     c.syntax = :expect
@@ -74,7 +77,7 @@ RSpec.configure do |config|
 
   # http://railscasts.com/episodes/413-fast-tests
   #config.treat_symbols_as_metadata_keys_with_true_values = true
-  config.filter_run focus: true
+  config.filter_run focus: true 
   config.run_all_when_everything_filtered = true
   config.filter_run_excluding :slow unless ENV["SLOW_SPECS"]
   config.filter_run_excluding :ignore
@@ -84,6 +87,7 @@ RSpec.configure do |config|
   config.use_transactional_fixtures = true
 
   config.before(:suite) do
+    #Headless.new(:destroy_on_exit => false).start
     DatabaseCleaner.strategy = :transaction
     DatabaseCleaner.clean_with(:truncation)
   end
