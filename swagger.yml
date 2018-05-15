@@ -1,0 +1,310 @@
+swagger: "2.0"
+info:
+  description: "Improved Fablabs.io API v.3"
+  version: "1.0.0"
+  title: "Fablabs.io API"
+  termsOfService: "https://www.fablabs.io/tos"
+  contact:
+    email: "webmaster@fablabs.io"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: "api.fablabs.io"
+basePath: "/"
+tags:
+- name: "oauth"
+  description: "oAuth process API"
+- name: "user"
+  description: "User and profile management"
+- name: "labs"
+  description: "Fab Labs directory"
+- name: "organizations"
+  description: "Fab Lab Network organizations"
+- name: "machines"
+  description: "Machines used in fablabs"
+- name: "projects"
+  description: "Projects from the network"
+schemes:
+- "http"
+paths:
+  /oauth/token:
+    post:
+      tags:
+      - "oauth"
+      summary: >
+        Token Endpoint
+      description: >
+        Post here with authorization code for authorization code grant type or username and password for password grant type, or refresh token for refresh token type. This corresponds to the token endpoint, section 3.2 of the OAuth 2 RFC
+      consumes:
+      - "application/x-www-form-urlencoded"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "formData"
+        name: "client_id"
+        description: "Client ID Code"
+        required: true
+        type: string
+      - in: "formData"
+        name: "client_secret"
+        description: "Client secret Code"
+        required: true
+        type: string
+      - in: "formData"
+        name: "redirect_uri"
+        default: "urn:ietf:wg:oauth:2.0:oob"
+        description: "URL to redirect after Auth"
+        required: true
+        type: string
+      - in: "formData"
+        name: "code"
+        description: "token code"
+        required: true
+        type: string
+      - in: "formData"
+        name: "grant_type"
+        description: "Grant type"
+        required: true
+        type: string
+      responses:
+        200:
+          description: authorization_code object
+          schema:
+            type: object
+            properties:
+              access_token: 
+                type: string
+              token_type: 
+                type: string
+              expires_in: 
+                type: number 
+              refresh_token: 
+                type: string
+              scope: 
+                type: string
+            
+      
+  /oauth/authorize:
+    post:
+      tags:
+      - "oauth"
+      summary: >
+        Generate and return an authorization code
+      description: >
+        Will create and return an authorization code, then edirect to GET /oauth/authorize/:code with the authorization code.
+      operationId: "authorizePost"
+      consumes:
+      - "application/x-www-form-urlencoded"
+      produces:
+      - "application/html"
+      parameters:
+      - in: "formData"
+        name: "client_id"
+        description: "Client ID Code"
+        required: true
+        type: string
+      - in: "formData"
+        name: "client_secret"
+        description: "Client secret Code"
+        required: true
+        type: string
+      - in: "formData"
+        name: "redirect_uri"
+        default: "urn:ietf:wg:oauth:2.0:oob"
+        description: "URL to redirect after Auth"
+        required: true
+        type: string
+      - in: "formData"
+        name: "username"
+        description: "Username"
+        required: true
+        type: string
+      responses:
+        302:
+          description: "Redirect to /oauth/authorize/:code"
+    delete:
+      tags:
+      - "oauth"
+      summary: >
+        Revoke an authorization code
+      description: >
+        Will delete an authorization code
+      operationId: "authorizeDelete"
+      consumes:
+      - "application/x-www-form-urlencoded"
+      produces:
+      - "application/html"
+      parameters:
+      - in: "formData"
+        name: "client_id"
+        description: "Client ID Code"
+        required: true
+        type: string
+      - in: "formData"
+        name: "client_secret"
+        description: "Client secret Code"
+        required: true
+        type: string
+      - in: "formData"
+        name: "redirect_uri"
+        default: "urn:ietf:wg:oauth:2.0:oob"
+        description: "URL to redirect when done"
+        required: true
+        type: string
+      - in: "formData"
+        name: "access_token"
+        description: "Access token"
+        required: true
+        type: string
+      responses:
+        302:
+          description: "Redirect to :redirect_uri"
+          
+  /oauth/authorize/{code}:
+    get:
+      tags:
+        - "oauth"
+      summary: "Provides a page with the authorization code."
+      description: ""
+      operationId: "authorize"
+      consumes:
+        - "application/json"
+        - "application/xml"
+      produces:
+        - "application/html"
+      parameters:
+      - in: "path"
+        name: "code"
+        description: "Authorization Code"
+        required: true
+        type: string
+      responses:
+        200:
+          description: 'Authorization successful'
+          
+  /signin:
+    post:
+      tags:
+      - "user"
+      summary: "Login a user"
+      description: ""
+      operationId: "signIn"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Pet object that needs to be added to the store"
+        required: true
+        schema:
+          $ref: "#/definitions/Credentials"
+      responses:
+        405:
+          description: "Invalid input"
+securityDefinitions:
+  fablabs_auth:
+    type: "oauth2"
+    authorizationUrl: "https://fablabs.io/oauth/dialog"
+    flow: "implicit"
+    scopes:
+      write:pets: "modify pets in your account"
+      read:pets: "read your pets"
+  api_key:
+    type: "apiKey"
+    name: "api_key"
+    in: "header"
+definitions:
+  User:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      first_name:
+        type: "string"
+      last_name:
+        type: "string"
+      email:
+        type: "string"
+      username:
+        type: "string"
+      phone:
+        type: "string"
+      city:
+        type: "string"
+      country_code:
+        type: "string"
+      latitude:
+        type: "number"
+      longitute:
+        type: "number"
+      url:
+        type: "string"
+      dob:
+        type: "string"
+      bio:
+        type: "string"
+      locale: 
+        type: "string"
+      avatar_name:
+        type: "string"
+      avatar_id:
+        type: "string"
+  Lab:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      name:
+        type: "string"
+      slug:
+        type: "string"
+      description:
+        type: "string"
+      time_zone:
+        type: "string"
+      phone:
+        type: "string"
+      email:
+        type: "string"
+      address_1:
+        type: "string"
+      address_2:
+        type: "string"
+      city:
+        type: "string"
+      county:
+        type: "string"
+      postal_code:
+        type: "string"
+      country_code:
+        type: "string"
+      subregion:
+        type: "string"
+      region:
+        type: "string"
+      latitude:
+        type: "string"
+      longitude:
+        type: "string"
+      address_notes:
+        type: "string"
+      reverse_geocoded_address:
+        type: "string"
+  Credentials:
+    type: "object"
+    properties:
+      id: 
+        type: "integer"
+        format: "int64"
+      email:
+        type: "string"
+      username:
+        type: "string"
+      password:
+        type: "string"
