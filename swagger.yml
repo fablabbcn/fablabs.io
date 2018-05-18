@@ -24,8 +24,11 @@ tags:
   description: "Machines used in fablabs"
 - name: "projects"
   description: "Projects from the network"
+- name: "admin"
+  description: "Administrative functions"
 schemes:
 - "http"
+- "https"
 paths:
   /oauth/token:
     post:
@@ -182,120 +185,399 @@ paths:
         200:
           description: 'Authorization successful'
           
-  /signin:
+  /users:
+    get:
+      tags:
+      - "admin"
+      summary: "List all users"
+      description: ""
+      operationId: "listUsers"
+      consumes:
+      - "application/json"
+      - "application/vnd.api+json"
+      produces:
+      - "application/json"
+      - "application/vnd.api+json"
+      security: 
+        - OAuth2: [admin]
+      parameters:
+      - in: body
+        name: "body"
+        description: "Data for the user to create"
+        schema:
+            type: object
+      responses:
+        200:
+          description: 'Users list'
+          schema:
+            type: object
+            properties:
+              meta:
+                $ref: '#/definitions/MetaInfo'
+              data:
+                type: array
+                items:
+                  $ref: '#/definitions/User'
+              links:
+                type: object
+                $ref: '#/definitions/PaginationInfo'
+     
+    post:
+      tags:
+      - "admin"
+      summary: "Create a new user"
+      description: "Create a new user in the system. The user will receive a welcome email and will be able to set the password at first login"
+      operationId: "createUser"
+      consumes: 
+      - "application/json"
+      produces:
+      - "application/json"
+      security: 
+        - OAuth2: [admin]
+      parameters:
+      - in: body
+        name: "body"
+        description: "Data for the user to create"
+        required: true
+        schema:
+            type: object
+            required: ['first_name','last_name', 'username','emai']
+            properties:
+              first_name: 
+                type: string
+              last_name:
+                 type: string
+              username:
+                 type: string
+              email:
+                 type: string
+              phone:
+                  type: "string"
+              city:
+                  type: "string"
+              country_code:
+                  type: "string"
+              latitude:
+                  type: "number"
+              longitute:
+                  type: "number"
+              url:
+                  type: "string"
+              dob:
+                  type: "string"
+              bio:
+                  type: "string"
+              locale: 
+                  type: "string"
+              avatar_name:
+                  type: "string"
+              avatar_id:
+                  type: "string"
+      responses:
+        201: 
+          description: 'Created'
+        400:
+          $ref: '#/responses/BadRequest'
+  /users/me:
+    get:
+      tags:
+      - "user"
+      summary: "Read the current user's profile"
+      description: "This method allows to retrieve our user profile "
+      operationId: "currentUser"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      security: 
+        - OAuth2: [api]
+      responses:
+        200:
+          $ref: '#/responses/UserResponse'
+        400:
+          $ref: '#/responses/BadRequest'
+        404:
+          $ref: '#/responses/NotFound'
     post:
       tags:
       - "user"
-      summary: "Login a user"
-      description: ""
-      operationId: "signIn"
+      summary: "Update the current user's profile"
+      description: "This method allows to retrieve our user profile"
+      operationId: "updateUser"
       consumes:
       - "application/json"
-      - "application/xml"
+      - "application/vnd.api+json"
       produces:
-      - "application/xml"
       - "application/json"
+      - "application/vnd.api+json"
+      security: 
+        - OAuth2: [api]
       parameters:
-      - in: "body"
+      - in: body
         name: "body"
-        description: "Pet object that needs to be added to the store"
+        description: "Data for the user to create"
         required: true
         schema:
-          $ref: "#/definitions/Credentials"
+            type: object
+            required: ['first_name', 'last_name', 'username', 'email']
+            properties:
+              first_name: 
+                type: string
+              last_name:
+                 type: string
+              username:
+                type: string
+              email:
+                  type: string
+              phone:
+                  type: "string"
+              city:
+                  type: "string"
+              country_code:
+                  type: "string"
+              latitude:
+                  type: "number"
+              longitute:
+                  type: "number"
+              url:
+                  type: "string"
+              dob:
+                  type: "string"
+              bio:
+                  type: "string"
+              locale: 
+                  type: "string"
+              avatar_name:
+                  type: "string"
+              avatar_id:
+                  type: "string"
       responses:
-        405:
-          description: "Invalid input"
+        200:
+          description: "User profile updated"
+        400:
+          $ref: '#/responses/BadRequest'
+        404:
+          $ref: '#/responses/NotFound'
+  /users/{username}:
+    get:
+      tags:
+      - "admin"
+      summary: "Get a user by username"
+      description: "This method allows to get a specific user by username"
+      operationId: "getUser"
+      consumes:
+      - "application/json"
+      - "application/vnd.api+json"
+      produces:
+      - "application/json"
+      - "application/vnd.api+json"
+      security: 
+        - OAuth2: [admin]
+      parameters:
+      - in: path
+        name: "username"
+        description: "Username for the requested user"
+        required: true
+        type: string
+      responses:
+        200:
+          $ref: '#/responses/UserResponse'
+        400:
+          $ref: '#/responses/BadRequest'
+        404:
+          $ref: '#/responses/NotFound'
+  /users/search:
+    post:
+      tags:
+      - "admin"
+      summary: "Search for a user"
+      description: "This method allows to search for a specific user by username or email"
+      operationId: "searchUsers"
+      consumes:
+      - "application/json"
+      - "application/vnd.api+json"
+      produces:
+      - "application/json"
+      - "application/vnd.api+json"
+      security: 
+        - OAuth2: [admin]
+      parameters:
+      - in: body
+        name: "body"
+        description: "Username or email in a dictionary"
+        required: true
+        schema:
+            type: object
+            properties:
+               username:
+                 type: string
+               email:
+                 type: string
+                 
+      responses:
+        200:
+          $ref: '#/responses/UserResponse'
+        400:
+          $ref: '#/responses/BadRequest'
+        404:
+          $ref: '#/responses/NotFound'
+responses:
+  BadRequest:
+    description: >
+      Bad request: A required parameter is missing
+  NotFound:
+    description: >
+      Not found: The specified resource was not found
+    schema:
+      $ref: "#/definitions/APIError"
+  Unauthorized:
+    description: Unauthorized
+    schema:
+      $ref: "#/definitions/APIError"   
+  UserResponse:
+    description: User Profile
+    schema:
+            type: object
+            properties: 
+              data:
+                    $ref: '#/definitions/User'
+          
 securityDefinitions:
-  fablabs_auth:
-    type: "oauth2"
-    authorizationUrl: "https://fablabs.io/oauth/dialog"
-    flow: "implicit"
+  OAuth2:
+    type: oauth2
+    flow: accessCode
+    authorizationUrl: https://fablabs.io/oauth/authorize  
+    tokenUrl: https://fablabs.io/oauth/token
     scopes:
-      write:pets: "modify pets in your account"
-      read:pets: "read your pets"
+      api: 'read and write your data'
+      readonly: 'read only access to all data'
+      admin: 'admin only api'
   api_key:
     type: "apiKey"
-    name: "api_key"
+    name: "X-API-Key"
     in: "header"
 definitions:
+  PaginationInfo:
+    type: "object"
+    properties:
+      "self":
+        type: string
+        description: URL for this page in a paginated result
+      "first":
+        type:  string
+        description: URL of the first page in a paginated result
+      "last":
+        type: string
+        description: URL for the last page in a paginated result
+      "prev":
+        type: string
+        description: URL for the previous page in a paginated result
+      "next":
+        type: string
+        description: URL for the next page in a paginated result  
+  MetaInfo:
+    type: object
+    properties:
+      "total-pages": 
+        description: Total pages available in the listing
+        type: number
   User:
-    type: "object"
+    type: object
     properties:
-      id:
-        type: "integer"
-        format: "int64"
-      first_name:
+      "type": 
         type: "string"
-      last_name:
-        type: "string"
-      email:
-        type: "string"
-      username:
-        type: "string"
-      phone:
-        type: "string"
-      city:
-        type: "string"
-      country_code:
-        type: "string"
-      latitude:
-        type: "number"
-      longitute:
-        type: "number"
-      url:
-        type: "string"
-      dob:
-        type: "string"
-      bio:
-        type: "string"
-      locale: 
-        type: "string"
-      avatar_name:
-        type: "string"
-      avatar_id:
-        type: "string"
+        enum: ["user"]
+      "id":
+        type: string
+      attributes:
+        type: object
+        properties:
+          first_name:
+            type: "string"
+          last_name:
+            type: "string"
+          email:
+            type: "string"
+          username:
+            type: "string"
+          phone:
+            type: "string"
+          city:
+            type: "string"
+          country_code:
+            type: "string"
+          latitude:
+            type: "number"
+          longitute:
+            type: "number"
+          url:
+            type: "string"
+          dob:
+            type: "string"
+          bio:
+            type: "string"
+          locale: 
+            type: "string"
+          avatar_name:
+            type: "string"
+          avatar_id:
+            type: "string"
   Lab:
-    type: "object"
     properties:
-      id:
-        type: "integer"
-        format: "int64"
-      name:
+      "type": 
         type: "string"
-      slug:
-        type: "string"
-      description:
-        type: "string"
-      time_zone:
-        type: "string"
-      phone:
-        type: "string"
-      email:
-        type: "string"
-      address_1:
-        type: "string"
-      address_2:
-        type: "string"
-      city:
-        type: "string"
-      county:
-        type: "string"
-      postal_code:
-        type: "string"
-      country_code:
-        type: "string"
-      subregion:
-        type: "string"
-      region:
-        type: "string"
-      latitude:
-        type: "string"
-      longitude:
-        type: "string"
-      address_notes:
-        type: "string"
-      reverse_geocoded_address:
-        type: "string"
+        enum: ["lab"]
+      "id":
+        type: string
+      attributes:
+        type: "object"
+        properties:
+          name:
+            type: "string"
+          slug:
+            type: "string"
+          description:
+            type: "string"
+          time_zone:
+            type: "string"
+          phone:
+            type: "string"
+          email:
+            type: "string"
+          address_1:
+            type: "string"
+          address_2:
+            type: "string"
+          city:
+            type: "string"
+          county:
+            type: "string"
+          postal_code:
+            type: "string"
+          country_code:
+            type: "string"
+          subregion:
+            type: "string"
+          region:
+            type: "string"
+          latitude:
+            type: "string"
+          longitude:
+            type: "string"
+          address_notes:
+            type: "string"
+          reverse_geocoded_address:
+            type: "string"
+  APIError:
+    type: object
+    properties:
+      code:
+        type: string
+      message:
+        type: string
+    required:
+      - code
+      - message
   Credentials:
     type: "object"
     properties:
