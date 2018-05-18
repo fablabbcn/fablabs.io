@@ -286,12 +286,18 @@
         ],
         "parameters": [
           {
-            "in": "body",
-            "name": "body",
-            "description": "Data for the user to create",
-            "schema": {
-              "type": "object"
-            }
+            "in": "query",
+            "name": "page",
+            "description": "Results page",
+            "type": "number",
+            "default": 0
+          },
+          {
+            "in": "query",
+            "name": "page_size",
+            "description": "Results per page",
+            "type": "number",
+            "default": 10
           }
         ],
         "responses": {
@@ -643,6 +649,671 @@
           }
         }
       }
+    },
+    "/labs": {
+      "get": {
+        "tags": [
+          "labs"
+        ],
+        "summary": "List all labs",
+        "description": "This method allows to list labs",
+        "operationId": "listLabs",
+        "consumes": [
+          "application/json",
+          "application/vnd.api+json"
+        ],
+        "produces": [
+          "application/json",
+          "application/vnd.api+json"
+        ],
+        "security": [
+          {
+            "OAuth2": [
+              "api"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "sort",
+            "description": "Field for sorting",
+            "type": "string",
+            "enum": [
+              "id",
+              "name",
+              "city",
+              "country_code"
+            ],
+            "default": "id"
+          },
+          {
+            "in": "query",
+            "name": "sort_order",
+            "description": "Ascending or descending sorting order",
+            "type": "string",
+            "enum": [
+              "asc",
+              "desc"
+            ],
+            "default": "id"
+          },
+          {
+            "in": "query",
+            "name": "page",
+            "description": "Results page",
+            "type": "number",
+            "default": 0
+          },
+          {
+            "in": "query",
+            "name": "page_size",
+            "description": "Results per page",
+            "type": "number",
+            "default": 10
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Listings",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "meta": {
+                  "$ref": "#/definitions/MetaInfo"
+                },
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/LabExtract"
+                  }
+                },
+                "links": {
+                  "$ref": "#/definitions/PaginationInfo"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/responses/BadRequest"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "labs"
+        ],
+        "summary": "Create a new lab ",
+        "description": "This method allows to create a new lab",
+        "operationId": "createLab",
+        "consumes": [
+          "application/json",
+          "application/vnd.api+json"
+        ],
+        "produces": [
+          "application/json",
+          "application/vnd.api+json"
+        ],
+        "security": [
+          {
+            "OAuth2": [
+              "api"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "data to be updated",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "$ref": "#/definitions/LabAttributes"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/LabResponse"
+          },
+          "400": {
+            "$ref": "#/responses/BadRequest"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/labs/{id}": {
+      "get": {
+        "tags": [
+          "labs"
+        ],
+        "summary": "Get a lab by id",
+        "description": "This method allows to get a specific lab by id",
+        "operationId": "getLabById",
+        "consumes": [
+          "application/json",
+          "application/vnd.api+json"
+        ],
+        "produces": [
+          "application/json",
+          "application/vnd.api+json"
+        ],
+        "security": [
+          {
+            "OAuth2": [
+              "api"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "id for the requested lab",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/LabResponse"
+          },
+          "400": {
+            "$ref": "#/responses/BadRequest"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "labs"
+        ],
+        "summary": "Update a lab by id",
+        "description": "This method allows to update a specific lab by id",
+        "operationId": "updateLabById",
+        "consumes": [
+          "application/json",
+          "application/vnd.api+json"
+        ],
+        "produces": [
+          "application/json",
+          "application/vnd.api+json"
+        ],
+        "security": [
+          {
+            "OAuth2": [
+              "api"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "id for the requested lab",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "data to be updated",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "$ref": "#/definitions/LabAttributes"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/LabResponse"
+          },
+          "400": {
+            "$ref": "#/responses/BadRequest"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/labs/search": {
+      "get": {
+        "tags": [
+          "labs"
+        ],
+        "summary": "Search for labs",
+        "description": "This method allows to search labs by different fields",
+        "operationId": "searchLabs",
+        "consumes": [
+          "application/json",
+          "application/vnd.api+json"
+        ],
+        "produces": [
+          "application/json",
+          "application/vnd.api+json"
+        ],
+        "security": [
+          {
+            "OAuth2": [
+              "api"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "type",
+            "description": "Type of search",
+            "type": "string",
+            "enum": [
+              "fulltext",
+              "location"
+            ],
+            "default": "fulltext"
+          },
+          {
+            "in": "query",
+            "name": "q",
+            "description": "Query object, if type equals:\n- fulltext: the string to search.\n- location: use latitude:longitude instead\n",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "page",
+            "description": "Results page",
+            "type": "number",
+            "default": 0
+          },
+          {
+            "in": "query",
+            "name": "page_size",
+            "description": "Results per page",
+            "type": "number",
+            "default": 10
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Search Results",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "meta": {
+                  "$ref": "#/definitions/MetaInfo"
+                },
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/LabExtract"
+                  }
+                },
+                "links": {
+                  "$ref": "#/definitions/PaginationInfo"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/responses/BadRequest"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/projects": {
+      "get": {
+        "tags": [
+          "projects"
+        ],
+        "summary": "List all projects",
+        "description": "This method allows to list projects",
+        "operationId": "listProjects",
+        "consumes": [
+          "application/json",
+          "application/vnd.api+json"
+        ],
+        "produces": [
+          "application/json",
+          "application/vnd.api+json"
+        ],
+        "security": [
+          {
+            "OAuth2": [
+              "api"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "sort",
+            "description": "Field for sorting",
+            "type": "string",
+            "enum": [
+              "id",
+              "name",
+              "city",
+              "country_code"
+            ],
+            "default": "id"
+          },
+          {
+            "in": "query",
+            "name": "sort_order",
+            "description": "Ascending or descending sorting order",
+            "type": "string",
+            "enum": [
+              "asc",
+              "desc"
+            ],
+            "default": "id"
+          },
+          {
+            "in": "query",
+            "name": "page",
+            "description": "Results page",
+            "type": "number",
+            "default": 0
+          },
+          {
+            "in": "query",
+            "name": "page_size",
+            "description": "Results per page",
+            "type": "number",
+            "default": 10
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Listings",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "meta": {
+                  "$ref": "#/definitions/MetaInfo"
+                },
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/ProjectExtract"
+                  }
+                },
+                "links": {
+                  "$ref": "#/definitions/PaginationInfo"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/responses/BadRequest"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "projects"
+        ],
+        "summary": "Create a new project ",
+        "description": "This method allows to create a new project",
+        "operationId": "createProject",
+        "consumes": [
+          "application/json",
+          "application/vnd.api+json"
+        ],
+        "produces": [
+          "application/json",
+          "application/vnd.api+json"
+        ],
+        "security": [
+          {
+            "OAuth2": [
+              "api"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "data to be updated",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "$ref": "#/definitions/ProjectAttributes"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/ProjectResponse"
+          },
+          "400": {
+            "$ref": "#/responses/BadRequest"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/projects/{id}": {
+      "get": {
+        "tags": [
+          "projects"
+        ],
+        "summary": "Get a project by id",
+        "description": "This method allows to get a specific projects by id",
+        "operationId": "getProjectById",
+        "consumes": [
+          "application/json",
+          "application/vnd.api+json"
+        ],
+        "produces": [
+          "application/json",
+          "application/vnd.api+json"
+        ],
+        "security": [
+          {
+            "OAuth2": [
+              "api"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "id for the requested project",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/ProjectResponse"
+          },
+          "400": {
+            "$ref": "#/responses/BadRequest"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "projects"
+        ],
+        "summary": "Update a project by id",
+        "description": "This method allows to update a specific projects by id",
+        "operationId": "updateProjectById",
+        "consumes": [
+          "application/json",
+          "application/vnd.api+json"
+        ],
+        "produces": [
+          "application/json",
+          "application/vnd.api+json"
+        ],
+        "security": [
+          {
+            "OAuth2": [
+              "api"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "id for the requested projects",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "data to be updated",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "$ref": "#/definitions/ProjectAttributes"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/ProjectResponse"
+          },
+          "400": {
+            "$ref": "#/responses/BadRequest"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/projects/search": {
+      "get": {
+        "tags": [
+          "projects"
+        ],
+        "summary": "Search for projects",
+        "description": "This method allows to search projects by different fields",
+        "operationId": "searchProjects",
+        "consumes": [
+          "application/json",
+          "application/vnd.api+json"
+        ],
+        "produces": [
+          "application/json",
+          "application/vnd.api+json"
+        ],
+        "security": [
+          {
+            "OAuth2": [
+              "api"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "type",
+            "description": "Type of search",
+            "type": "string",
+            "enum": [
+              "fulltext"
+            ],
+            "default": "fulltext"
+          },
+          {
+            "in": "query",
+            "name": "q",
+            "description": "Query object, if type equals: - fulltext: the string to search.\n",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "page",
+            "description": "Results page",
+            "type": "number",
+            "default": 0
+          },
+          {
+            "in": "query",
+            "name": "page_size",
+            "description": "Results per page",
+            "type": "number",
+            "default": 10
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Search Results",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "meta": {
+                  "$ref": "#/definitions/MetaInfo"
+                },
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/ProjectExtract"
+                  }
+                },
+                "links": {
+                  "$ref": "#/definitions/PaginationInfo"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/responses/BadRequest"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          }
+        }
+      }
     }
   },
   "responses": {
@@ -668,6 +1339,28 @@
         "properties": {
           "data": {
             "$ref": "#/definitions/User"
+          }
+        }
+      }
+    },
+    "LabResponse": {
+      "description": "Lab Profile",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/definitions/Lab"
+          }
+        }
+      }
+    },
+    "ProjectResponse": {
+      "description": "Project profile",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/definitions/Project"
           }
         }
       }
@@ -736,7 +1429,8 @@
           ]
         },
         "id": {
-          "type": "string"
+          "type": "integer",
+          "format": "int64"
         },
         "attributes": {
           "type": "object",
@@ -790,7 +1484,104 @@
         }
       }
     },
-    "Lab": {
+    "ProjectExtract": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "project"
+          ]
+        },
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "attributes": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string"
+            },
+            "title": {
+              "type": "string"
+            },
+            "description": {
+              "type": "string"
+            },
+            "lab_id": {
+              "type": "number"
+            },
+            "cover": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "ProjectAttributes": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "lab_id": {
+          "type": "number"
+        },
+        "owner_id": {
+          "type": "number"
+        },
+        "cover": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        },
+        "faq": {
+          "type": "string"
+        },
+        "scope": {
+          "type": "string"
+        },
+        "community": {
+          "type": "string"
+        },
+        "lookingfor": {
+          "type": "string"
+        },
+        "slug": {
+          "type": "string"
+        }
+      }
+    },
+    "Project": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "project"
+          ]
+        },
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "attributes": {
+          "$ref": "#/definitions/ProjectAttributes"
+        }
+      }
+    },
+    "LabExtract": {
       "properties": {
         "type": {
           "type": "string",
@@ -799,7 +1590,8 @@
           ]
         },
         "id": {
-          "type": "string"
+          "type": "integer",
+          "format": "int64"
         },
         "attributes": {
           "type": "object",
@@ -813,52 +1605,89 @@
             "description": {
               "type": "string"
             },
-            "time_zone": {
-              "type": "string"
-            },
-            "phone": {
-              "type": "string"
-            },
-            "email": {
-              "type": "string"
-            },
-            "address_1": {
-              "type": "string"
-            },
-            "address_2": {
-              "type": "string"
-            },
             "city": {
-              "type": "string"
-            },
-            "county": {
-              "type": "string"
-            },
-            "postal_code": {
               "type": "string"
             },
             "country_code": {
               "type": "string"
-            },
-            "subregion": {
-              "type": "string"
-            },
-            "region": {
-              "type": "string"
-            },
-            "latitude": {
-              "type": "string"
-            },
-            "longitude": {
-              "type": "string"
-            },
-            "address_notes": {
-              "type": "string"
-            },
-            "reverse_geocoded_address": {
-              "type": "string"
             }
           }
+        }
+      }
+    },
+    "LabAttributes": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "slug": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "time_zone": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "address_1": {
+          "type": "string"
+        },
+        "address_2": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "county": {
+          "type": "string"
+        },
+        "postal_code": {
+          "type": "string"
+        },
+        "country_code": {
+          "type": "string"
+        },
+        "subregion": {
+          "type": "string"
+        },
+        "region": {
+          "type": "string"
+        },
+        "latitude": {
+          "type": "string"
+        },
+        "longitude": {
+          "type": "string"
+        },
+        "address_notes": {
+          "type": "string"
+        },
+        "reverse_geocoded_address": {
+          "type": "string"
+        }
+      }
+    },
+    "Lab": {
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "lab"
+          ]
+        },
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "attributes": {
+          "$ref": "#/definitions/LabAttributes"
         }
       }
     },
