@@ -1314,6 +1314,253 @@
           }
         }
       }
+    },
+    "/organizations": {
+      "get": {
+        "tags": [
+          "organizations"
+        ],
+        "summary": "List all organizations",
+        "description": "This method allows to list the organizations",
+        "operationId": "listOrganizations",
+        "consumes": [
+          "application/json",
+          "application/vnd.api+json"
+        ],
+        "produces": [
+          "application/json",
+          "application/vnd.api+json"
+        ],
+        "security": [
+          {
+            "OAuth2": [
+              "api"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "sort",
+            "description": "Field for sorting",
+            "type": "string",
+            "enum": [
+              "id",
+              "name",
+              "city",
+              "country_code"
+            ],
+            "default": "id"
+          },
+          {
+            "in": "query",
+            "name": "sort_order",
+            "description": "Ascending or descending sorting order",
+            "type": "string",
+            "enum": [
+              "asc",
+              "desc"
+            ],
+            "default": "id"
+          },
+          {
+            "in": "query",
+            "name": "page",
+            "description": "Results page",
+            "type": "number",
+            "default": 0
+          },
+          {
+            "in": "query",
+            "name": "page_size",
+            "description": "Results per page",
+            "type": "number",
+            "default": 10
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Listings",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "meta": {
+                  "$ref": "#/definitions/MetaInfo"
+                },
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/OrganizationExtract"
+                  }
+                },
+                "links": {
+                  "$ref": "#/definitions/PaginationInfo"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/responses/BadRequest"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "organizations"
+        ],
+        "summary": "Create a new organization ",
+        "description": "This method allows to create a new organization",
+        "operationId": "createOrganization",
+        "consumes": [
+          "application/json",
+          "application/vnd.api+json"
+        ],
+        "produces": [
+          "application/json",
+          "application/vnd.api+json"
+        ],
+        "security": [
+          {
+            "OAuth2": [
+              "api"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "data to be updated",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "$ref": "#/definitions/OrganizationAttributes"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "$ref": "#/responses/BadRequest"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/organizations/{id}": {
+      "get": {
+        "tags": [
+          "organizations"
+        ],
+        "summary": "Get an organization by id",
+        "description": "This method allows to get a specific organization by id",
+        "operationId": "getOrganizationsById",
+        "consumes": [
+          "application/json",
+          "application/vnd.api+json"
+        ],
+        "produces": [
+          "application/json",
+          "application/vnd.api+json"
+        ],
+        "security": [
+          {
+            "OAuth2": [
+              "api"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "id for the requested organization",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/OrganizationResponse"
+          },
+          "400": {
+            "$ref": "#/responses/BadRequest"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "organizations"
+        ],
+        "summary": "Update an organization by id",
+        "description": "This method allows to update a specific organization by id",
+        "operationId": "updateOrganizationById",
+        "consumes": [
+          "application/json",
+          "application/vnd.api+json"
+        ],
+        "produces": [
+          "application/json",
+          "application/vnd.api+json"
+        ],
+        "security": [
+          {
+            "OAuth2": [
+              "api"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "id for the requested organization",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "data to be updated",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "$ref": "#/definitions/OrganizationAttributes"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/OrganizationResponse"
+          },
+          "400": {
+            "$ref": "#/responses/BadRequest"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          }
+        }
+      }
     }
   },
   "responses": {
@@ -1361,6 +1608,17 @@
         "properties": {
           "data": {
             "$ref": "#/definitions/Project"
+          }
+        }
+      }
+    },
+    "OrganizationResponse": {
+      "description": "Organization profile",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/definitions/Organization"
           }
         }
       }
@@ -1560,6 +1818,135 @@
         },
         "slug": {
           "type": "string"
+        }
+      }
+    },
+    "OrganizationExtract": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "organization"
+          ],
+          "default": "organization"
+        },
+        "attributes": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "slug": {
+              "type": "string"
+            },
+            "kind": {
+              "type": "string"
+            },
+            "blurb": {
+              "type": "string"
+            },
+            "latitude": {
+              "type": "number"
+            },
+            "longitude": {
+              "type": "number"
+            },
+            "country_code": {
+              "type": "string"
+            },
+            "reverse_geocoded_address": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "OrganizationAttributes": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "creator_id": {
+          "type": "integer"
+        },
+        "slug": {
+          "type": "string"
+        },
+        "kind": {
+          "type": "string"
+        },
+        "blurb": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "latitude": {
+          "type": "number"
+        },
+        "longitude": {
+          "type": "number"
+        },
+        "address_1": {
+          "type": "string"
+        },
+        "address_2": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "county": {
+          "type": "string"
+        },
+        "postal_code": {
+          "type": "string"
+        },
+        "country_code": {
+          "type": "string"
+        },
+        "subregion": {
+          "type": "string"
+        },
+        "region": {
+          "type": "string"
+        },
+        "address_notes": {
+          "type": "string"
+        },
+        "reverse_geocoded_address": {
+          "type": "string"
+        }
+      }
+    },
+    "Organization": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "default": "organization",
+          "enum": [
+            "organization"
+          ]
+        },
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "attributes": {
+          "$ref": "#/definitions/OrganizationAttributes"
         }
       }
     },
