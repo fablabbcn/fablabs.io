@@ -663,6 +663,169 @@ paths:
           $ref: '#/responses/BadRequest'
         '404':
           $ref: '#/responses/NotFound'
+  /machines:
+    get:
+      tags:
+        - machines
+      summary: List all machines
+      description: This method allows to list machines
+      operationId: listMachines
+      consumes:
+        - application/json
+        - application/vnd.api+json
+      produces:
+        - application/json
+        - application/vnd.api+json
+      security:
+        - OAuth2:
+            - api
+      parameters:
+        - in: query
+          name: sort
+          description: Field for sorting
+          type: string
+          enum:
+            - id
+            - name
+            - city
+            - country_code
+          default: id
+        - in: query
+          name: sort_order
+          description: Ascending or descending sorting order
+          type: string
+          enum:
+            - asc
+            - desc
+          default: id
+        - in: query
+          name: page
+          description: Results page
+          type: number
+          default: 0
+        - in: query
+          name: page_size
+          description: Results per page
+          type: number
+          default: 10
+      responses:
+        '200':
+          description: Listings
+          schema:
+            type: object
+            properties:
+              meta:
+                $ref: '#/definitions/MetaInfo'
+              data:
+                type: array
+                items:
+                  $ref: '#/definitions/Machine'
+              links:
+                $ref: '#/definitions/PaginationInfo'
+        '400':
+          $ref: '#/responses/BadRequest'
+        '404':
+          $ref: '#/responses/NotFound'
+    post:
+      tags:
+        - machines
+      summary: 'Create a new machine '
+      description: This method allows to create a new machine
+      operationId: createMachine
+      consumes:
+        - application/json
+        - application/vnd.api+json
+      produces:
+        - application/json
+        - application/vnd.api+json
+      security:
+        - OAuth2:
+            - api
+      parameters:
+        - in: body
+          name: body
+          description: data to be updated
+          required: true
+          schema:
+            type: object
+            properties:
+              data:
+                $ref: '#/definitions/MachineAttributes'
+      responses:
+        '200':
+          $ref: '#/responses/MachineResponse'
+        '400':
+          $ref: '#/responses/BadRequest'
+        '404':
+          $ref: '#/responses/NotFound'
+  '/machines/{id}':
+    get:
+      tags:
+        - machines
+      summary: Get a machine by id
+      description: This method allows to get a specific machine by id
+      operationId: getMachineById
+      consumes:
+        - application/json
+        - application/vnd.api+json
+      produces:
+        - application/json
+        - application/vnd.api+json
+      security:
+        - OAuth2:
+            - api
+      parameters:
+        - in: path
+          name: id
+          description: id for the requested machine
+          required: true
+          type: integer
+          format: int64
+      responses:
+        '200':
+          $ref: '#/responses/MachineResponse'
+        '400':
+          $ref: '#/responses/BadRequest'
+        '404':
+          $ref: '#/responses/NotFound'
+    put:
+      tags:
+        - machines
+      summary: Update a machine by id
+      description: This method allows to update a specific machine by id
+      operationId: updateMachineById
+      consumes:
+        - application/json
+        - application/vnd.api+json
+      produces:
+        - application/json
+        - application/vnd.api+json
+      security:
+        - OAuth2:
+            - api
+      parameters:
+        - in: path
+          name: id
+          description: id for the requested machine
+          required: true
+          type: integer
+          format: int64
+        - in: body
+          name: body
+          description: data to be updated
+          required: true
+          schema:
+            type: object
+            properties:
+              data:
+                $ref: '#/definitions/MachineAttributes'
+      responses:
+        '200':
+          $ref: '#/responses/MachineResponse'
+        '400':
+          $ref: '#/responses/BadRequest'
+        '404':
+          $ref: '#/responses/NotFound'
   /projects:
     get:
       tags:
@@ -1075,6 +1238,13 @@ responses:
       properties:
         data:
           $ref: '#/definitions/Lab'
+  MachineResponse:
+    description: Machine Profile
+    schema:
+      type: object
+      properties:
+        data:
+          $ref: '#/definitions/Machine'
   ProjectResponse:
     description: Project profile
     schema:
@@ -1224,6 +1394,43 @@ definitions:
         type: string
       slug:
         type: string
+  Machine:
+    type: object
+    properties:
+      id: 
+        type: integer
+        format: int64
+      type:
+        type: string
+        enum: [machine]
+        default: "machine"
+      attributes:
+        type: object
+        properties:
+          name:
+            type: string
+          description:
+            type: string
+          brand:
+            type: object
+            properties:
+              id:
+                type: string
+              data:
+                type: object
+                properties:
+                  name:
+                    type: string
+  MachineAttributes:
+    type: object
+    properties:
+      name:
+        type: string
+      description:
+        type: string
+      brand_id:
+        type: string
+  
   OrganizationExtract:
     type: object
     properties:
@@ -1345,9 +1552,13 @@ definitions:
             type: string
           country_code:
             type: string
+          avatar:
+            type: string
   LabRelationships:
     type: object
     properties:
+      links:
+        $ref: '#/definitions/OneToManyRelationship'
       employees:
         $ref: '#/definitions/OneToManyRelationship'
       organizations:
@@ -1360,7 +1571,8 @@ definitions:
         $ref: '#/definitions/OneToManyRelationship'
       facilities:
         $ref: '#/definitions/OneToManyRelationship'
-      
+      events:
+        $ref: '#/definitions/OneToManyRelationship'
   LabAttributes:
     type: object
     properties:
@@ -1399,6 +1611,10 @@ definitions:
       address_notes:
         type: string
       reverse_geocoded_address:
+        type: string
+      avatar:
+        type: string
+      header:
         type: string
   Lab:
     properties:
