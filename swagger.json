@@ -2002,6 +2002,29 @@
         }
       }
     },
+    "LabRelationships": {
+      "type": "object",
+      "properties": {
+        "employees": {
+          "$ref": "#/definitions/OneToManyRelationship"
+        },
+        "organizations": {
+          "$ref": "#/definitions/OneToManyRelationship"
+        },
+        "machines": {
+          "$ref": "#/definitions/OneToManyRelationship"
+        },
+        "projects": {
+          "$ref": "#/definitions/OneToManyRelationship"
+        },
+        "discussions": {
+          "$ref": "#/definitions/OneToManyRelationship"
+        },
+        "facilities": {
+          "$ref": "#/definitions/OneToManyRelationship"
+        }
+      }
+    },
     "LabAttributes": {
       "type": "object",
       "properties": {
@@ -2075,6 +2098,12 @@
         },
         "attributes": {
           "$ref": "#/definitions/LabAttributes"
+        },
+        "relationships": {
+          "$ref": "#/definitions/LabRelationships"
+        },
+        "included": {
+          "$ref": "#/definitions/EmbeddedDocs"
         }
       }
     },
@@ -2092,6 +2121,54 @@
         "code",
         "message"
       ]
+    },
+    "EmbeddedDocs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "data": {
+            "type": "object"
+          },
+          "relationships": {
+            "type": "object"
+          }
+        }
+      }
+    },
+    "OneToManyRelationship": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "type": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "links": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          }
+        }
+      }
     },
     "Credentials": {
       "type": "object",
