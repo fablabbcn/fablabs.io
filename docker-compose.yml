@@ -32,7 +32,7 @@ services:
     # expose the port we configured Puma to bind to (should expose only internally)
     ports:
       - "3000:3000"
-    command: rails s
+    #command: rails s
 
   worker:
     env_file: .env
