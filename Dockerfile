@@ -36,14 +36,18 @@ ADD Gemfile Gemfile
 ADD Gemfile.lock Gemfile.lock
 RUN bundle install
 
-# Copy the Rails application into place
-COPY . $APPROOT
+ADD bower.json bower.json
 
 RUN npm install -g bower
 RUN echo '{ "allow_root": true }' > /root/.bowerrc
 RUN ln -s `which nodejs` /usr/bin/node
 
 RUN /usr/local/bin/bower install
+
+
+# Copy the Rails application into place
+COPY . $APPROOT
+
 
 # OR call puma? prod is currently using unicorn
 CMD ["rails", "server", "-b", "0.0.0.0"]
