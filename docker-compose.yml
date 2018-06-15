@@ -4,12 +4,14 @@ services:
   redis:
     image: redis:latest
     hostname: redis
+    restart: always
 
   # service configuration for Postgres
   db:
     # use the preferred version of the official Postgres image
     # see https://hub.docker.com/_/postgres/
     image: postgres
+    restart: always
     hostname: db1
     # persist the database between containers by storing it in a volume
     volumes:
@@ -20,7 +22,7 @@ services:
   app:
     env_file: .env
     # use the Dockerfile next to this file
-    build: 
+    build:
       context: .
       dockerfile: Dockerfile
     volumes:
@@ -32,6 +34,7 @@ services:
     # expose the port we configured Puma to bind to (should expose only internally)
     ports:
       - "3000:3000"
+    restart: always
     #command: rails s
 
   worker:
@@ -42,6 +45,7 @@ services:
     volumes_from:
       - app
     command: bash -c "sleep 3 && bundle exec sidekiq -e $RAILS_ENV"
+    restart: always
     depends_on:
       - app
       - db
@@ -57,12 +61,14 @@ services:
       - app
     volumes_from:
       - app
+    restart: always
     # expose the port we configured Nginx to bind to (it is ok to expose externally)
     ports:
       - '80:80'
 
   memcached:
     image: memcached:1.5.3
+    restart: always
     ports:
       - "11211:11211"
 
