@@ -66,4 +66,4 @@
       the Fab Labs list
     %dl
       %dt Format:
-      %dd= link_to "JSON", api_v0_labs_url(format: 'json'), class: 'btn btn-primary'
+      %dd= link_to "JSON", controller:'labs', action:'index', subdomain: 'api', format: :json, class: 'btn btn-primary'
