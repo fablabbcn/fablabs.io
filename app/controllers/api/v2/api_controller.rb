@@ -1,8 +1,11 @@
 class Api::V2::ApiController < RocketPants::Base
   version 2
-  include AbstractController::Callbacks
-  include ActionController::Head
 
+  include ActionController::Head
+  include Doorkeeper::Rails::Helpers
+  map_error! ActiveRecord::RecordNotFound, RocketPants::NotFound
+
+  before_action :doorkeeper_authorize!
 
 protected
 
