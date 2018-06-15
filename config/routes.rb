@@ -138,8 +138,8 @@ Rails.application.routes.draw do
 
   constraints subdomain: 'api' do
     get '/' => 'static#api'
-    namespace :api, path: '' do
-      namespace :v0 do
+    # root to: ''static#api'
+    api version: 0, module: "api/v0" do
         get 'me' => 'users#me'
         get 'users' => 'users#search'
         get 'labs/search' => 'labs#search'
@@ -158,45 +158,44 @@ Rails.application.routes.draw do
         resources :projects do
           get :map, on: :collection
         end
-      end
-      namespace :v1 do
-        get 'users' => 'users#search'
+    end
+    api version: 1, module: "api/v1" do
+      get 'users' => 'users#search'
 
-      end
-      namespace :v2 do
+    end
+    api version: 2, module: "api/v2" do
 
-        # admin routes
-        get 'users' => 'admin#list_users'
-        post 'users' => 'admin#create_user'
-        get 'users/:username' => 'admin#get_user'
-        post 'users/search' => 'admin#search_users'
+      # admin routes
+      get 'users' => 'admin#list_users'
+      post 'users' => 'admin#create_user'
+      get 'users/:username' => 'admin#get_user'
+      post 'users/search' => 'admin#search_users'
 
-        # user profile
-        get 'users/me' => 'user#current_user'
-        post 'users/me' => 'user#update_user'
-        # labs
-        get 'labs' => 'labs#index'
-        post 'labs' => 'labs#create'
-        get 'labs/:id' => 'labs#show'
-        put 'labs/:id' => 'labs#update'
-        get 'labs/search' => 'labs#search_labs'
-        get 'labs/:id/relationships/machines' => 'labs#get_lab_machines_by_id'
-        post 'labs/:id/relationships/machines' => 'labs#add_lab_machine_by_id'
+      # user profile
+      get 'users/me' => 'user#current_user'
+      post 'users/me' => 'user#update_user'
+      # labs
+      get 'labs' => 'labs#index'
+      post 'labs' => 'labs#create'
+      get 'labs/:id' => 'labs#show'
+      put 'labs/:id' => 'labs#update'
+      get 'labs/search' => 'labs#search_labs'
+      get 'labs/:id/relationships/machines' => 'labs#get_lab_machines_by_id'
+      post 'labs/:id/relationships/machines' => 'labs#add_lab_machine_by_id'
 
-        # projects
-        get 'projects' => 'projects#index'
-        post 'projects' => 'projects#create'
-        get 'projects/search' => 'projects#search_projects'
-        get 'projects/:id' => 'projects#show'
-        put 'projects/:id' => 'projects#update'
+      # projects
+      get 'projects' => 'projects#index'
+      post 'projects' => 'projects#create'
+      get 'projects/search' => 'projects#search_projects'
+      get 'projects/:id' => 'projects#show'
+      put 'projects/:id' => 'projects#update'
 
-        # organizations
-        get 'organizations' => 'organizations#index'
-        post 'organizations' => 'organizations#create'
-        get 'organizations/:id' => 'organizations#show'
-        put 'organizations/:id' => 'organizations#/update'
+      # organizations
+      get 'organizations' => 'organizations#index'
+      post 'organizations' => 'organizations#create'
+      get 'organizations/:id' => 'organizations#show'
+      put 'organizations/:id' => 'organizations#/update'
 
-      end
     end
   end
 
