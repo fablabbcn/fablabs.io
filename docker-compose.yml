@@ -27,6 +27,7 @@ services:
       dockerfile: Dockerfile
     volumes:
       - .:/fablabs
+      - /fablabs/tmp
     depends_on:
       - db
       - redis
@@ -42,6 +43,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    volumes:
+      - /fablabs/tmp
     volumes_from:
       - app
     command: bash -c "sleep 3 && bundle exec sidekiq -e $RAILS_ENV"
