@@ -41,3 +41,4 @@ class Api::V2::LabsController < Api::V2::ApiController
 
     render json: {"message" => "yes, it worked"}
   end
+end
