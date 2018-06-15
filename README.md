@@ -38,13 +38,23 @@ Run tests with:
 
 1. Create database (only the first time):  
 `docker-compose exec app rake db:setup`
-`docker-compose exec app bower install`
+`docker-compose exec app /usr/local/bin/bower install`
 
 1. Add this to your `/etc/hosts`:
 
     `127.0.0.1   www.fablabs.local`
+    `127.0.0.1   api.fablabs.local`
+    
+
 
 1. Visit [http://www.fablabs.local:3000](http://www.fablabs.local:3000)
+
+1. API is served on [http://api.fablabs.local:3000](http://api.fablabs.local:3000)
+
+1. Run tests with
+ 
+   
+    `docker-compose exec app rake spec`
 
 
 #### Pull requests
