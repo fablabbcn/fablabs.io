@@ -59,6 +59,9 @@ Doorkeeper.configure do
   #test_redirect_uri nil#'urn:ietf:wg:oauth:2.0:oob'
   native_redirect_uri nil
 
+  force_ssl_in_redirect_uri false
+
+
   # # Under some circumstances you might want to have applications auto-approved,
   # # so that the user skips the authorization step.
   # # For example if dealing with trusted a application.
