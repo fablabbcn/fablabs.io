@@ -46,7 +46,7 @@ RUN /usr/local/bin/bower install
 
 
 # Copy the Rails application into place
-COPY . $APPROOT
+#COPY . $APPROOT
 
 
 # OR call puma? prod is currently using unicorn
