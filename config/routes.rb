@@ -14,7 +14,7 @@ Rails.application.routes.draw do
 
   resources :sessions
 
-  constraints subdomain: 'www' do
+  constraints subdomain: /www|staging/ do
     # resources :discussions
     get "activity" => "activities#index", :as => "activity"
     resources :featured_images
