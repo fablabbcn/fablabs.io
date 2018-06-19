@@ -14,7 +14,8 @@ Rails.application.routes.draw do
 
   resources :sessions
 
-  constraints subdomain: 'www' do
+  #constraints subdomain: 'www' do
+  constraints(WWWSubdomain) do
     # resources :discussions
     get "activity" => "activities#index", :as => "activity"
     resources :featured_images
@@ -132,11 +133,16 @@ Rails.application.routes.draw do
       end
     end
 
+    use_doorkeeper do
+      controllers :applications => 'oauth/applications'
+    end
+
+
     root to: 'static#home'
 
   end
 
-  constraints subdomain: 'api' do
+  constraints(ApiSubdomain) do
     get '/' => 'static#api'
     # root to: ''static#api'
     api version: 0, module: "api/v0" do
