@@ -56,18 +56,17 @@ services:
   # service configuration for our web server
   web:
     env_file: .env
-    # set the build context to the root of the Rails app
-    build:
-      context: .
-      dockerfile: containers/Dockerfile-nginx
+    image: steveltn/https-portal
     depends_on:
       - app
-    volumes_from:
-      - app
+    environment:
+      DOMAINS: "${MY_DOMAIN}"
+      STAGE: "${MY_STAGE}" #local or production
     restart: always
     # expose the port we configured Nginx to bind to (it is ok to expose externally)
     ports:
-      - '80:80'
+      - 80:80
+      - 443:443
 
   memcached:
     image: memcached:1.5.3
