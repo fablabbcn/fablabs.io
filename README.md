@@ -30,7 +30,7 @@ Run tests with:
 
 #### Starting with docker-compose
 
-1. Add all the secrets to an .env file
+1. Add all the secrets to an .env file - Minimum example is in the env.example file
 
 
 1. Start the project:  
