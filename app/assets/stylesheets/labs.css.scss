@@ -449,23 +449,6 @@ ul.lab-links {
   }
 }
 
-.view-as {
-  overflow: hidden;
-  position: relative;
-  .a-map & {
-    margin-top: 20px;
-    z-index: 20;
-    pointer-events: none;
-  }
-  ul {
-    float: right;
-  }
-  a {
-    pointer-events: auto;
-  }
-  // background: rgba(#F2F2F2, 0.4);
-  // border-radius: 2px;
-}
 // .c-labs .nav li {
 //   & > a {
 //     padding: 7px 15px;
