@@ -124,6 +124,10 @@ body {
   text-size-adjust:none;
   text-rendering: optimizeLegibility;
   position: static;
+
+  font-family: 'Lato', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 #honeypot {

@@ -2,7 +2,7 @@
 - if flash.any?
   - flash.each do |name, msg|
     = content_tag :div, msg, class: flash_class(name)
-%nav.navbar.navbar-default
+%nav.navbar.navbar-custom
   .container
     .navbar-header
       %button.navbar-toggle.collapsed{"aria-controls" => "navbar", "aria-expanded" => "false", "data-target" => "#navbar", "data-toggle" => "collapse", :type => "button"}
@@ -12,7 +12,7 @@
         %span.icon-bar
 
       = link_to root_path, class: 'navbar-brand' do
-        = image_tag "circle-logo.png", id: 'logo'
+        🤖 Fablabs.io
 
     #navbar.collapse.navbar-collapse
 
@@ -31,9 +31,10 @@
           = link_to t("views.header.machines"), machines_path
         %li
           = link_to t("views.header.projects"), projects_path
+        %li
+          = link_to 'Discuss', Figaro.env.discourse_endpoint
 
       %ul.nav.navbar-nav.navbar-right
-        %li= link_to 'Discuss', Figaro.env.discourse_endpoint
         - if current_user
           %li.dropdown
             = link_to current_user do
@@ -75,5 +76,4 @@
                   = fa_icon "sign-out", text: t("views.header.signout", default: "Sign out")
 
         - else
-          %li= link_to t("views.header.signin", default: "Sign in"), signin_path
-          %li= link_to t("views.header.signup", default: "Sign up"), signup_path
+          %li= link_to t("views.header.signup", default: "Sign up"), signup_path, class: 'create-account'
