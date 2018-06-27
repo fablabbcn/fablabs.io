@@ -1,9 +1,7 @@
 Rails.application.routes.draw do
-  use_doorkeeper
   get "discourse/sso"
   get "discuss" => 'discourse#embed'
   resources :pages, only: [:show]
-  use_doorkeeper
   require 'sidekiq/web'
   require "admin_constraint"
   mount Sidekiq::Web, at: '/sidekiq', constraints: AdminConstraint.new

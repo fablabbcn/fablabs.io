@@ -3,6 +3,11 @@ Doorkeeper.configure do
   # Currently supported options are :active_record, :mongoid2, :mongoid3, :mongo_mapper
   orm :active_record
 
+
+
+  base_controller 'ApplicationController'
+
+
   # This block will be called to check whether the resource owner is authenticated or not.
   resource_owner_authenticator do
     # raise "Please configure doorkeeper resource_owner_authenticator block located in #{__FILE__}"
@@ -12,10 +17,12 @@ Doorkeeper.configure do
   end
 
   # If you want to restrict access to the web interface for adding oauth authorized applications, you need to declare the block below.
+  # FB: disabling the block below to allow users to access the outh/applications page
   admin_authenticator do
     # Put your admin authentication logic here.
     # Example implementation:
-    ((user = User.find_by(id: session[:user_id])) && user.has_role?(:superadmin)) || redirect_to(root_path)
+    # ((user = User.find_by(id: session[:user_id])) && user.has_role?(:superadmin)) || redirect_to(root_path)
+    User.find_by_id(session[:user_id]) || redirect_to(signin_url(goto: request.fullpath))
   end
 
   # Authorization Code expiration time (default 10 minutes).
@@ -32,7 +39,7 @@ Doorkeeper.configure do
   # Optional parameter :confirmation => true (default false) if you want to enforce ownership of
   # a registered application
   # Note: you must also run the rails g doorkeeper:application_owner generator to provide the necessary support
-  # enable_application_owner :confirmation => false
+  enable_application_owner :confirmation => true
 
   # Define access token scopes for your provider
   # For more information go to https://github.com/applicake/doorkeeper/wiki/Using-Scopes
