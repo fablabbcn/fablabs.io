@@ -60,6 +60,8 @@ RSpec.configure do |config|
   config.include Requests::AuthenticationHelpers
   config.include Requests::JsonHelpers, type: :request
 
+  config.include Rails.application.routes.url_helpers, type: :request
+
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   # config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
