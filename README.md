@@ -56,6 +56,11 @@ Run tests with:
    
     `docker-compose exec app rake spec`
 
+1. If you make changes to the code, rebuild the app and deploy the new image
+
+    `docker-compose build`
+    `docker-compose up -d`
+
 
 #### Pull requests
 
