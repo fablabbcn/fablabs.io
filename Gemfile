@@ -19,6 +19,7 @@ gem 'simplecov', :require => false, :group => :test
 gem 'paper_trail'
 gem 'sort_alphabetical'
 gem 'rocket_pants'# '~> 1.0'
+gem 'fast_jsonapi' # To support new v2 JSONAPI
 gem 'twitter'
 gem "sentry-raven"
 gem 'sinatra', '>= 1.3.0', :require => nil
