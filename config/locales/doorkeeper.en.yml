@@ -115,7 +115,7 @@ en:
     layouts:
       admin:
         nav:
-          oauth2_provider: 'OAuth2 Provider'
+          oauth2_provider: 'Fablabs.io Developer Console'
           applications: 'Applications'
           home: 'Home'
       application:
