@@ -1,68 +1,69 @@
 - title @machine.name
 
-- cache ["v3-machine-#{@machine.id}-#{I18n.locale}", Machine.last_updated_at] do
+.container
+  - cache ["v3-machine-#{@machine.id}-#{I18n.locale}", Machine.last_updated_at] do
+    .row
+      .col-lg-12
+        = render "breadcrumbs"
+    .row
+      .col-lg-8
+        .main
+          = @machine.brand
+          %h1= @machine
+
+          = simple_format(@machine.description)
+          - if @machine.photo.present?
+            = image_tag @machine.photo.thumb("800x800>").url
+
+      .col-lg-4.side
+
+        - if @machine.tags.length > 0
+          .heading Tags
+          %ul.taglist.list-unstyled
+            = icon('tags')
+            - @machine.tags.each do |tag|
+              %li.gray
+                %strong
+                  = link_to "##{tag}", machines_path(tag: tag)
+
+          - if @machine.inventory_item?
+            %ul.list-unstyled
+              %li
+                = link_to "http://fab.cba.mit.edu/about/fab/inv.html", class: "btn btn-primary", data: {toggle: "tooltip"}, title: "This is included in the Official Fab Lab hardware specification", style: "margin: 0" do
+                  = fa_icon "tag"
+                  Fab Lab Inventory Item
+
+        - if @machine.links.length > 0
+          .heading Useful Links
+          %ul.list-unstyled
+            - @machine.links.each do |link|
+              %li.machine-link
+                = link_to link.url do
+                  = fa_icon 'link'
+                  %span.url{itemprop: "sameAs"}= link.description
+
+        .heading Machine Revisions
+        %ol
+          - @machine.root.subtree.arrange_as_array.flatten.each do |node|
+            %li= (node == @machine) ? node : link_to(node, node)
+
+        .heading Available at
+        %ul.list-unstyled
+          - @machine.labs.each do |lab|
+            %li
+              = image_tag lab.avatar.thumb("90x90#").url, class: 'avatar tiny'
+              = link_to lab, lab
+
   .row
     .col-lg-12
-      = render "breadcrumbs"
+      - if current_or_null_user.can_update?(@machine)
+        = link_to "Edit", edit_machine_path(@machine), class: 'btn btn-primary'
+      - if current_or_null_user.can_delete?(@machine)
+        = link_to icon('trash-o'), @machine, method: :delete, class: 'btn btn-danger', data: { confirm: "Are you sure?" }
+
+
   .row
-    .col-lg-8
-      .main
-        = @machine.brand
-        %h1= @machine
-
-        = simple_format(@machine.description)
-        - if @machine.photo.present?
-          = image_tag @machine.photo.thumb("800x800>").url
-
-    .col-lg-4.side
-
-      - if @machine.tags.length > 0
-        .heading Tags
-        %ul.taglist.list-unstyled
-          = icon('tags')
-          - @machine.tags.each do |tag|
-            %li.gray
-              %strong
-                = link_to "##{tag}", machines_path(tag: tag)
-
-        - if @machine.inventory_item?
-          %ul.list-unstyled
-            %li
-              = link_to "http://fab.cba.mit.edu/about/fab/inv.html", class: "btn btn-primary", data: {toggle: "tooltip"}, title: "This is included in the Official Fab Lab hardware specification", style: "margin: 0" do
-                = fa_icon "tag"
-                Fab Lab Inventory Item
-
-      - if @machine.links.length > 0
-        .heading Useful Links
-        %ul.list-unstyled
-          - @machine.links.each do |link|
-            %li.machine-link
-              = link_to link.url do
-                = fa_icon 'link'
-                %span.url{itemprop: "sameAs"}= link.description
-
-      .heading Machine Revisions
-      %ol
-        - @machine.root.subtree.arrange_as_array.flatten.each do |node|
-          %li= (node == @machine) ? node : link_to(node, node)
-
-      .heading Available at
-      %ul.list-unstyled
-        - @machine.labs.each do |lab|
-          %li
-            = image_tag lab.avatar.thumb("90x90#").url, class: 'avatar tiny'
-            = link_to lab, lab
-
-.row
-  .col-lg-12
-    - if current_or_null_user.can_update?(@machine)
-      = link_to "Edit", edit_machine_path(@machine), class: 'btn btn-primary'
-    - if current_or_null_user.can_delete?(@machine)
-      = link_to icon('trash-o'), @machine, method: :delete, class: 'btn btn-danger', data: { confirm: "Are you sure?" }
-
-
-.row
-  .col-lg-12
-    - if @machine.discourse_id.present?
-      %h3 Discuss this Machine on discuss.fablabs.io
-      = comments_script(@machine.discourse_id)
+    .col-lg-12
+      - if @machine.discourse_id.present?
+        %h3 Discuss this Machine on discuss.fablabs.io
+        = comments_script(@machine.discourse_id)
