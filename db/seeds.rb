@@ -35,12 +35,96 @@ RefereeApprovalProcess.create!(
   referee_lab_id: 2
 )
 
-# ActiveRecord::RecordInvalid: Validation failed: Referee approval processes can't be blank, 
+# ActiveRecord::RecordInvalid: Validation failed: Referee approval processes can't be blank,
 # Referee approval processes is the wrong length (should be 3 characters)
 Lab.create!(
   name: "MyLab#{Lab.count}",
   kind: Lab::Kinds[1],
   country_code: 'IS',
+  address_1: 'MyStreet 24',
+  network: true,
+  tools: true,
+  programs: true,
+  workflow_state: 'approved',
+  #referee_id: 1
+)
+
+Lab.create!(
+  name: "MyLab#{Lab.count}",
+  kind: Lab::Kinds[1],
+  country_code: 'IS',
+  address_1: 'MyStreet 24',
+  network: true,
+  tools: true,
+  programs: true,
+  workflow_state: 'approved',
+  #referee_id: 1
+)
+
+Lab.create!(
+  name: "MyLab#{Lab.count}",
+  kind: Lab::Kinds[1],
+  country_code: 'IS',
+  address_1: 'MyStreet 24',
+  network: true,
+  tools: true,
+  programs: true,
+  workflow_state: 'approved',
+  #referee_id: 1
+)
+
+Lab.create!(
+  name: "MyLab#{Lab.count}",
+  kind: Lab::Kinds[1],
+  country_code: 'IS',
+  address_1: 'MyStreet 24',
+  network: true,
+  tools: true,
+  programs: true,
+  workflow_state: 'approved',
+  #referee_id: 1
+)
+
+Lab.create!(
+  name: "MyLab#{Lab.count}",
+  kind: Lab::Kinds[1],
+  country_code: 'IS',
+  address_1: 'MyStreet 24',
+  network: true,
+  tools: true,
+  programs: true,
+  workflow_state: 'approved',
+  #referee_id: 1
+)
+
+Lab.create!(
+  name: "MyLab#{Lab.count}",
+  kind: Lab::Kinds[1],
+  country_code: 'SE',
+  address_1: 'MyStreet 24',
+  network: true,
+  tools: true,
+  programs: true,
+  workflow_state: 'approved',
+  #referee_id: 1
+)
+
+Lab.create!(
+  name: "MyLab#{Lab.count}",
+  kind: Lab::Kinds[1],
+  country_code: 'ES',
+  address_1: 'MyStreet 24',
+  network: true,
+  tools: true,
+  programs: true,
+  workflow_state: 'approved',
+  #referee_id: 1
+)
+
+Lab.create!(
+  name: "MyLab#{Lab.count}",
+  kind: Lab::Kinds[1],
+  country_code: 'PT',
   address_1: 'MyStreet 24',
   network: true,
   tools: true,

@@ -125,9 +125,10 @@ body {
   text-rendering: optimizeLegibility;
   position: static;
 
-  font-family: 'Lato', sans-serif !important;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  &, * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
 }
 
 #honeypot {
@@ -170,7 +171,9 @@ h1 {
 }
 
 .avatar {
-  background-color: #FFF;
+  background-color: #d8d8d8;
+  border-radius: 4px;
+
   &.tiny {
     width: 30px;
     height: 30px;
@@ -180,8 +183,8 @@ h1 {
     height: 45px;
   }
   &.med {
-    width: 60px;
-    height: 60px;
+    width: 50px;
+    height: 50px;
   }
   &.big {
     width: 140px;
@@ -193,8 +196,31 @@ h1 {
   margin-bottom: 0;
 }
 
-.select2-container {
+.select2-container.select2-container--default {
   display: block !important;
+
+  .select2-selection--single {
+    height: 34px;
+    border-color: #E5E5E5;
+
+    .select2-selection__rendered {
+      line-height: 34px;
+      color: #666;
+      font-weight: bold;
+    }
+
+    .select2-selection__arrow {
+      height: 34px;
+    }
+  }
+
+  .select2-dropdown {
+    border-color: #E5E5E5;
+  }
+
+  .select2-results__option--highlighted[aria-selected] {
+    background-color: #81D7BE;
+  }
 }
 
 .lab-contact-details {
@@ -280,10 +306,6 @@ h3 {
     zoom: 1;
     overflow: hidden;
   }
-  .pull-left {
-    float: left !important;
-    margin-right: 10px;
-  }
 }
 
 .get-help {
@@ -342,5 +364,12 @@ h3 {
       color: #666;
       border-color: #F2F2F2;
     }
+  }
+}
+
+.container {
+  .row {
+    margin-left: 0;
+    margin-right: 0;
   }
 }
