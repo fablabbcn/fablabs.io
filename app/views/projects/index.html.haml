@@ -34,9 +34,6 @@
 .row
   .col-lg-12
     = paginate @projects
-    %div
-      = link_to "JSON", api_v0_projects_url(format: 'json'), class: 'btn btn-primary'
-      .hint CSV and XLSX (Excel) coming soon.
-    %div
+   %div
       = link_to map_projects_path, class: "map btn btn-primary" do
         = fa_icon "globe", text: t("views.projects.index.map", default: "Map")
