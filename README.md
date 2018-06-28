@@ -61,6 +61,13 @@ Run tests with:
     `docker-compose build`
     `docker-compose up -d`
 
+1. Backup your db at any time with the included script:
+
+    ```
+    ./scripts/docker-backup-db.sh
+    ```
+
+
 
 #### Pull requests
 
