@@ -408,6 +408,13 @@ h3 {
     display: block;
   }
 
+  .card-subtitle {
+    font-size: 14px;
+    line-height: 24px;
+    font-weight: 900;
+    color: #AAAAAA;
+  }
+
   .card-arrow {
     font-size: 32px;
     color: #81D7BE;
@@ -419,9 +426,20 @@ h3 {
   &.small {
     width: 230px;
     height: 325px;
+    margin: 12px;
 
     .card-image {
       height: 245px;
+    }
+
+    .card-title {
+      font-size: 18px;
+      line-height: 24px;
+      font-weight: 400
+    }
+
+    .card-arrow {
+      top: 24px;
     }
   }
 }

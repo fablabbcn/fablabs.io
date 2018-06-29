@@ -1,35 +1,17 @@
 - cache ["v2", project] do
-  .large-block-grid-3
-    = content_tag_for :div, project do
-      .owner-avatar
-        = link_to project.owner do
-          = image_tag project.owner.avatar_url, class: 'avatar'
+  = content_tag_for :div, project, class: 'card' do
+    - cover = project.project_cover
+    .card-image
+      = link_to project do
+        - if cover
+          = image_tag project.project_cover.thumb("310x330#").url, itemprop: "cover"
 
-      = render 'projects/small_cover', { :project => project }
+    .card-content
+      = link_to project, class: 'card-title', itemprop: 'title' do
+        = project.title
 
-      .project-description
-        %span.project-description-span
-          = truncate strip_tags(restricted_markdown(project.description)), :length => 120, :omission => "..."
-          = link_to "more", project
+      .card-subtitle
+        = time_tag(project.updated_at.to_date)
 
-      .project-baseline
-        %p
-          %span
-            = icon('code')
-            = link_to project.owner do
-              = project.owner.username
-
-          - if project.lab.present?
-            %span
-              = icon('map-marker')
-              = link_to project.lab do
-                = project.lab.name
-
-          - if (project.contributors.count > 0)
-            %span
-              = icon('users')
-              = project.contributors.count + 1
-
-          %span
-            = icon('clock-o')
-            = time_tag(project.updated_at.to_date)
+      = link_to project do
+        %i.card-arrow.fa.fa-arrow-right

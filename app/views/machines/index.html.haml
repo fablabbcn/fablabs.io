@@ -1,32 +1,19 @@
 - cache ["v1", Machine.last_updated_at] do
 - title "Machines"
 
-  .container
-    .row.top
-      .col-lg-12
-      %h2 Machines
-    .row.row-no-padding
-      .col-md-8.main-info
-        %p
-        All Fab Labs share common tools and processes in order to build a global network, a distributed laboratory for research and invention. Here you can find and add all the Machines available in the global Fab Lab Network, a global database of technologies locally available.
+  .subnavbar
+    .container.subnavbar-container
+      .subnavbar-section.subnavbar-section-center
+        .title Machines
 
-      .col-md-4
-        %h4 Expand the Network
-        %p Here you can add new Machines to the list.
+      .subnavbar-section.subnavbar-section-right
         - if current_user
-          = link_to new_machine_path, class: "btn btn-success" do
+          = link_to new_machine_path, class: "btn btn-primary" do
             = fa_icon "plus", text: t("views.labs.index.add_a_machine", default: "Add a new Machine")
         - else
-          = link_to new_machine_path, class: "btn btn-success", data: {toggle: "tooltip", placement: "bottom" }, title: "You need to be signed in to add a Machine" do
+          = link_to new_machine_path, class: "btn btn-primary", data: {toggle: "tooltip", placement: "bottom" }, title: "You need to be signed in to add a Machine" do
             = fa_icon "plus", text: t("views.labs.index.add_a_machine", default: "Add a new Machine")
 
-    .row.row-no-padding
-      .col-lg-12
-        = render "breadcrumbs"
-
-
-    - @machines.in_groups_of(4, false) do |group|
-      .row
-        - group.each do |machine|
-          .col-lg-3
-            = render 'machine', machine: machine
+  .container
+    .row
+      = render @machines
