@@ -172,7 +172,10 @@ h1 {
 
 .avatar {
   background-color: #d8d8d8;
-  border-radius: 4px;
+  border-radius: 50%;
+  border: 2px solid #ccc;
+  display: inline-block;
+  overflow: hidden;
 
   &.tiny {
     width: 30px;
@@ -225,11 +228,6 @@ h1 {
 
 .lab-contact-details {
   line-height: 1.2em;
-}
-
-.avatar {
-  border-radius: 50%;
-  border: 2px solid #ccc;
 }
 
 .no-bullets {
@@ -371,5 +369,59 @@ h3 {
   .row {
     margin-left: 0;
     margin-right: 0;
+  }
+}
+
+
+.card {
+  width: 310px;
+  height: 430px;
+  display: block;
+  background-color: #fff;
+  float: left;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+  margin: 20px;
+  border-radius: 4px;
+
+  .card-image {
+    width: 100%;
+    height: 330px;
+    background-color: #E5E5E5;
+    border-radius: 4px 4px 0px 0px;
+    overflow: hidden;
+  }
+
+  .card-content {
+    position: relative;
+    padding: 15px 20px;
+  }
+
+  .card-title {
+    font-size: 22px;
+    line-height: 40px;
+    font-weight: 900;
+    color: #666666;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: calc(100% - 30px);
+    display: block;
+  }
+
+  .card-arrow {
+    font-size: 32px;
+    color: #81D7BE;
+    position: absolute;
+    right: 20px;
+    top: 30px;
+  }
+
+  &.small {
+    width: 230px;
+    height: 325px;
+
+    .card-image {
+      height: 245px;
+    }
   }
 }
