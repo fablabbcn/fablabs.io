@@ -8,7 +8,6 @@
  * You're free to add application-wide styles to this file and they'll appear at the top of the
  * compiled file, but it's generally better to create a new file per style scope.
  *
- *= require_self
  *= require Control.Loading.css
  *= require select2
  *= require taggd
@@ -17,10 +16,11 @@
  *= require messenger
  *= require messenger-theme-flat
  *= require trumbowyg/trumbowyg
- *= require_tree .
  *= require bootstrap/dist/css/bootstrap.min.css
  *= require bootstrap-datepicker
  *= require font-awesome
+ *= require_self
+ *= require_tree .
 
  */
 
@@ -99,9 +99,6 @@ footer a.active {
   background-color: #D04657;
 }
 
-p {
-  font-family: 'Open Sans';
-}
 html {
   position: relative;
   min-height: 100%;
@@ -124,6 +121,7 @@ body {
   text-size-adjust:none;
   text-rendering: optimizeLegibility;
   position: static;
+  font-family: 'Lato', Arial, Helvetica, sans-serif;
 
   &, * {
     -webkit-font-smoothing: antialiased;
@@ -190,8 +188,8 @@ h1 {
     height: 50px;
   }
   &.big {
-    width: 140px;
-    height: 140px;
+    width: 118px;
+    height: 118px;
   }
 }
 
@@ -249,7 +247,6 @@ h1 {
 
 h4.modal-title {
   text-transform: uppercase;
-  font-family: 'Montserrat';
   font-weight: bold;
 }
 
@@ -440,6 +437,83 @@ h3 {
 
     .card-arrow {
       top: 24px;
+    }
+  }
+}
+
+.breadcrumb {
+  background-color: transparent;
+  border-radius: 0;
+
+  a,
+  >li+li:before {
+    color: #747474;
+  }
+}
+
+.text-large {
+  font-size: 22px;
+  line-height: 40px;
+  font-weight: 900;
+  color: #4A4A4A;
+}
+
+.text-medium {
+  font-size: 18px;
+  line-height: 24px;
+  font-weight: 400;
+  color: #666666;
+}
+
+.text-small {
+  font-size: 14px;
+  line-height: 24px;
+  color: #AAAAAA;
+}
+
+.page-intro {
+  .page-intro-image {
+    margin-right: 20px;
+    float: left;
+  }
+
+  .page-intro-content {
+    padding-top: 8px;
+    float: left;
+  }
+}
+
+.divider {
+  border-bottom: 1px solid #E5E5E5;
+  margin: 4px 0;
+}
+
+a {
+  color: #58BD9F;
+}
+
+.list-item-small-wrapper {
+  background-color: transparent;
+  margin: 8px 0;
+  display: flex;
+
+  .list-item-small-image {
+    width: 50px;
+    height: 50px;
+    border-radius: 4px;
+    background-color: #333;
+    flex-shrink: 0;
+    overflow: hidden;
+  }
+
+  .list-item-small-content {
+    padding: 2px 0px 0px 12px;
+    width: calc(100% - 50px);
+
+    * {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
   }
 }

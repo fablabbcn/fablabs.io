@@ -1,27 +1,20 @@
-.heading
-  = fa_icon "users", text: t("views.labs.show.people", default: "Employees")
-  - if current_or_null_user.can_update?(lab)
-    = link_to "edit", lab_employees_path(lab), id: "edit-employees"
+.text-large
+  = t("views.labs.show.people", default: "Employees")
+- if current_or_null_user.can_update?(lab)
+  = link_to "edit", lab_employees_path(lab), id: "edit-employees"
 
-- employees.in_groups_of(2, false).each do |group|
+- employees.in_groups_of(3, false).each do |group|
   .row
     - group.each do |employee|
       - cache ["v2", employee] do
-        .col-md-6
-          .person{itemscope: true, itemtype: "http://data-vocabulary.org/Person"}
-            .media
-              .pull-left
-                = image_tag employee.user.avatar_url, class: 'avatar med employee'
-              .media-body
-                = link_to employee.user, class: 'person-name' do
-                  %span.first_name{itemprop: "givenName"}= employee.user.first_name
-                  %span.last_name{itemprop: "familyName"}= employee.user.last_name
-                .person-details
-                  .person-role{itemprop: "jobTitle"}= employee.job_title
-                  - if employee.email.present?
-                    .email= mail_to employee.email, employee.email
-                  - if employee.phone.present?
-                    .phone{itemprop: "telephone"}= employee.phone
+        .col-md-4
+          .list-item-small-wrapper{itemscope: true, itemtype: "http://data-vocabulary.org/Person"}
+            = image_tag employee.user.avatar_url, class: 'list-item-small-image'
+            .list-item-small-content
+              = link_to employee.user, class: 'text-medium' do
+                %span.first_name{itemprop: "givenName"}= employee.user.first_name
+                %span.last_name{itemprop: "familyName"}= employee.user.last_name
+              .text-small{itemprop: "jobTitle"}= employee.job_title
 
 .row
   - if current_user

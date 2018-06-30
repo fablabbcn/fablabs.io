@@ -3,24 +3,43 @@
   %meta{content: @lab.description, property: "og:description"}/
 
 .container{itemscope: true, itemtype: "http://data-vocabulary.org/Organization"}
-  .stripe
-    .row
-      .col-lg-12
-        = render "breadcrumbs", lab: @lab
+  - if @lab.header.present?
+    = image_tag @lab.header.thumb("800x").url, class: 'big-picture', itemprop: "image"
 
-    .row.header
-      .col-lg-4.bio= render "bio", lab: @lab
-      .col-lg-8= render "minimap", lab: @lab if @lab.longitude
+  .row
+    = render "breadcrumbs", lab: @lab
 
-  .row.main
-    .col-lg-8.content
+  .row
+    .bio= render "bio", lab: @lab
+
+  .divider
+  .row
+    .col-lg-8
+      .text-large Lab Details
+    .col-lg-4
+      .text-large
+        = t('views.labs.show.nearby_labs')
+  .divider
+
+  .row
+    .col-lg-8
       .lab-description{itemprop: "description"}= simple_format @lab.description
-      - if @lab.header.present?
-        = image_tag @lab.header.thumb("800x").url, class: 'big-picture', itemprop: "image"
 
       - if current_or_null_user.can_read?(Event) and @events.length > 0
         = render("events", lab: @lab, events: @events)
 
+      - cache ["side-v2-#{I18n.locale}", @lab] do
+        = render "links", links: @lab.links
+        - if @lab.capabilities.length > 0
+          = render "capabilities", capabilities: @lab.capabilities
+
+    .col-lg-4.sidebar
+      = render "nearby", lab: @lab, nearby_labs: @nearby_labs
+
+  .divider
+
+  .row
+    .col-lg-12
       = render("employees", lab: @lab, employees: @employees)
 
       - if @machines.length > 0
@@ -29,17 +48,8 @@
       - if current_or_null_user.can_read?(Academic)
         = render("academics", lab: @lab, academics: @academics)
 
-
-    .col-lg-4.sidebar
-      = render "nearby", lab: @lab, nearby_labs: @nearby_labs
-      - cache ["side-v2-#{I18n.locale}", @lab] do
-        = render "links", links: @lab.links
-        - if @lab.capabilities.length > 0
-          = render "capabilities", capabilities: @lab.capabilities
-
-.row
-
-  .col-lg-12
-    - if @lab.discourse_id.present?
-      %h3 Discuss this Lab on discuss.fablabs.io
-      = comments_script(@lab.discourse_id)
+  .row
+    .col-lg-12
+      - if @lab.discourse_id.present?
+        %h3 Discuss this Lab on discuss.fablabs.io
+        = comments_script(@lab.discourse_id)

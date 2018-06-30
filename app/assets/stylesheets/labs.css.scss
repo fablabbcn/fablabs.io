@@ -324,19 +324,6 @@ li.lab-link {
   }
 }
 
-.content {
-  border-right: 1px solid #CCC;
-}
-.main {
-  padding-top: 20px;
-}
-.bio {
-  text-align: center;
-  .kind {
-    margin: 5px 0;
-  }
-}
-
 .lab {
   margin-bottom: 10px;
   background: #F1F1F1;
@@ -356,6 +343,9 @@ li.lab-link {
 
 ul.nearby-labs {
   list-style: none;
+  padding-left: 0;
+  margin: 12px 0 0;
+
   li {
     margin-bottom: 10px;
   }
@@ -433,23 +423,9 @@ ul.lab-links {
 //   }
 // }
 
-.breadcrumb {
-  background: none;
-  padding: 0 5px;
-  border-radius: none;
-  border-bottom: 1px solid #EEE;
-  padding-bottom: 5px;
-}
-
 .button-group {
   a.list { border-radius: 4px 0 0 4px; }
   a.map { border-radius: 0 4px 4px 0; }
-}
-
-.lab-phone, .lab-email {
-  &, span, a {
-    color: #AAA;
-  }
 }
 
 // .c-labs .nav li {
@@ -666,6 +642,23 @@ input#lab_name {
 .order-by {
   margin: 0;
 }
+
 ul.capabilities {
-  margin-left: 20px;
+  padding-left: 0;
+  list-style: none;
+  padding-top: 20px;
+  margin-bottom: 50px;
+
+  li {
+    border: 1px solid #979797;
+    border-radius: 4px;
+    color: #747474;
+    padding: 0 8px;
+    display: inline-block;
+    margin-bottom: 10px;
+  }
+
+  li + li {
+    margin-left: 10px;
+  }
 }

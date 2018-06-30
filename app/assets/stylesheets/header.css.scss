@@ -14,7 +14,6 @@ header {
   .has-form {
     padding: 10px;
   }
-  font-family: 'Open Sans';
   position: relative;
   z-index: 40;
   ul {
@@ -65,25 +64,6 @@ header {
   .nav > li > a:hover, .nav > li > a:focus {
     background: none !important;
   }
-  // .fablabs {
-  //   font-weight: bold;
-  //   color: #111;
-  //   font-size: 1.3em;
-  //   // text-shadow: 1px 1px 1px rgba(0,0,0,0.2);
-  //   font-family: 'Roboto Slab';
-  //   text-transform: lowercase;
-  //   .labs {
-  //     font-weight: normal;
-  //   }
-  //   .io {
-  //     // text-transform: uppercase;
-  //     display: inline;
-  //     font-size: 0.5em;
-  //     margin-left: -0.4em;
-  //     vertical-align: super;
-  //     // font-weight: normal;
-  //   }
-  // }
 
   .navbar-collapse {
     box-shadow: none !important;
