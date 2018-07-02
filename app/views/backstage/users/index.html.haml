@@ -1,45 +1,47 @@
-.row
-  .col-lg-12
-    = render "backstage/header"
-    = title "Users"
+= render "backstage/header"
 
-    .well
-      = search_form_for [:backstage, @q], builder: SimpleForm::FormBuilder do |f|
-        .row
-          .col-lg-3= f.input :first_name_cont, label: "First Name"
-          .col-lg-3= f.input :last_name_cont, label: 'Last name'
-          .col-lg-3= f.input :username_cont, label: 'Username'
-          .col-lg-3= f.input :email_cont, label: 'Email'
+.container
+  .row
+    .col-lg-12
+      = title "Users"
 
-        .row
-          .col-lg-3
-            = f.input :country_code_eq, as: 'country', label: 'Country', iso_codes: true, include_blank: 'ALL'
-          .col-lg-3
-            = f.input :workflow_state_eq, collection: User.workflow_spec.state_names, label: "State", include_blank: 'ALL'
-          .col-lg-3
-            = f.input :roles_name_eq, collection: Role::AVAILABLE, include_blank: 'ALL'
-          .col-lg-3
-            = f.submit "Filter", class: 'btn btn-success btn-lg'
+      .well
+        = search_form_for [:backstage, @q], builder: SimpleForm::FormBuilder do |f|
+          .row
+            .col-lg-3= f.input :first_name_cont, label: "First Name"
+            .col-lg-3= f.input :last_name_cont, label: 'Last name'
+            .col-lg-3= f.input :username_cont, label: 'Username'
+            .col-lg-3= f.input :email_cont, label: 'Email'
 
-    = page_entries_info @users
-    %table.table
-      %thead
-        %tr
-          %th= sort_link @q, :id, 'ID'
-          %th
-            Name
-            (#{sort_link @q, :first_name, "First"})
-            (#{sort_link @q, :last_name, "Last"})
-          %th= sort_link @q, :email, 'Email'
-          %th= sort_link @q, :created_at, "Joined"
-          %th Role
-      %tbody
-        - @users.each do |user|
+          .row
+            .col-lg-3
+              = f.input :country_code_eq, as: 'country', label: 'Country', iso_codes: true, include_blank: 'ALL'
+            .col-lg-3
+              = f.input :workflow_state_eq, collection: User.workflow_spec.state_names, label: "State", include_blank: 'ALL'
+            .col-lg-3
+              = f.input :roles_name_eq, collection: Role::AVAILABLE, include_blank: 'ALL'
+            .col-lg-3
+              = f.submit "Filter", class: 'btn btn-primary btn-lg'
+
+      = page_entries_info @users
+      %table.table
+        %thead
           %tr
-            %td= user.id
-            %td= link_to user, backstage_user_path(user)
-            %td= mail_to user.email, user.email
-            %td= user.created_at
-            %td= user.role_names
+            %th= sort_link @q, :id, 'ID'
+            %th
+              Name
+              (#{sort_link @q, :first_name, "First"})
+              (#{sort_link @q, :last_name, "Last"})
+            %th= sort_link @q, :email, 'Email'
+            %th= sort_link @q, :created_at, "Joined"
+            %th Role
+        %tbody
+          - @users.each do |user|
+            %tr
+              %td= user.id
+              %td= link_to user, backstage_user_path(user)
+              %td= mail_to user.email, user.email
+              %td= user.created_at
+              %td= user.role_names
 
-    = paginate @users
+      = paginate @users

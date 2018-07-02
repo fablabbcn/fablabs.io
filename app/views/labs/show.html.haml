@@ -25,9 +25,6 @@
     .col-lg-8
       .lab-description{itemprop: "description"}= simple_format @lab.description
 
-      - if current_or_null_user.can_read?(Event) and @events.length > 0
-        = render("events", lab: @lab, events: @events)
-
       - cache ["side-v2-#{I18n.locale}", @lab] do
         = render "links", links: @lab.links
         - if @lab.capabilities.length > 0
@@ -42,14 +39,20 @@
     .col-lg-12
       = render("employees", lab: @lab, employees: @employees)
 
-      - if @machines.length > 0
+  - if @machines.length > 0
+    .divider
+    .row
+      .col-lg-12
         = render("machines", lab: @lab, machines: @machines)
 
-      - if current_or_null_user.can_read?(Academic)
+  - if current_or_null_user.can_read?(Academic)
+    .divider
+    .row
+      .col-lg-12
         = render("academics", lab: @lab, academics: @academics)
 
-  .row
-    .col-lg-12
-      - if @lab.discourse_id.present?
+  - if @lab.discourse_id.present?
+    .row
+      .col-lg-12
         %h3 Discuss this Lab on discuss.fablabs.io
         = comments_script(@lab.discourse_id)

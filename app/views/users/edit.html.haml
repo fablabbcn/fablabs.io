@@ -1,3 +1,5 @@
+= render "backstage/header"
+
 .container
   .row
     .col-lg-12= title "Edit Your Settings"
@@ -35,4 +37,4 @@
         %fieldset
           = f.input :use_metric, :collection => [[true, 'Metric - cm/m/km'], [false, 'Imperial - in/ft/mi']], :label_method => :last, :value_method => :first, :as => :radio_buttons, :label => "Preferred units", :hint => "This doesn't update measurements on the site yet, but will do soon"
 
-        = f.submit "Update", class: 'btn btn-success'
+        = f.submit "Update", class: 'btn btn-primary'

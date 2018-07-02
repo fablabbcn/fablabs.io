@@ -33,7 +33,7 @@
                 = password_field_tag :password, nil, placeholder: 'Password', class: 'form-control'
             .row
               .col-md-12
-                .actions= submit_tag t("views.header.signin", default: "Sign in"), class: 'btn btn-success'
+                .actions= submit_tag t("views.header.signin", default: "Sign in"), class: 'btn btn-primary'
             .row
               .col-lg-12
                 = link_to "Forgot the password?", new_recovery_url(subdomain: 'www')

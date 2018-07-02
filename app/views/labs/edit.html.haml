@@ -1,6 +1,7 @@
-.row
-  .col-lg-12
-    = render "labs/breadcrumbs", lab: @lab
-.row
-  .col-lg-12= title "Editing #{@lab}"
-  .col-lg-12= render 'form', lab: @lab
+.container
+  .row
+    .col-lg-12
+      = render "labs/breadcrumbs", lab: @lab
+  .row
+    .col-lg-12= title "Editing #{@lab}"
+    .col-lg-12= render 'form', lab: @lab

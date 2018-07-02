@@ -1,3 +1,6 @@
+- if current_user
+  = render "backstage/header"
+
 .container
   .row
     .col-lg-12
@@ -32,18 +35,14 @@
                       \-
                       = employee.job_title
 
+  - if @user.created_projects.any? or @user.projects.any?
+    .row
+      .text-large
+        Contributions
+      = render @user.created_projects | @user.projects
+
   .row
-    .col-lg-6
-      %h5
-      = icon('plus-square')
-      Contributions
-      .projects
-        %ul#project-container.large-block-grid-1
-          - if @user.created_projects.any? or @user.projects.any?
-            = render @user.created_projects | @user.projects
-    .col-lg-6
-      %h5
-      = icon('signal')
+    .text-large
       Activity
-      .activity
-        %ul= render @user.activities.limit(10)
+    .activity
+      %ul= render @user.activities.limit(10)

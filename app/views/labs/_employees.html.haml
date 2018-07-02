@@ -23,7 +23,7 @@
         = fa_icon "check-square"
         = t("views.labs.show.applied", default: "Applied")
     - elsif current_user.can_create? @lab.employees.build
-      = link_to new_lab_employee_path(@lab), class: 'btn btn-success' do
+      = link_to new_lab_employee_path(@lab), class: 'btn btn-primary' do
         = fa_icon "check-square"
         = t("views.labs.show.i_work_here", default: "I work here")
   - else

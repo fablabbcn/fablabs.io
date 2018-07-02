@@ -39,7 +39,6 @@
           %li.dropdown
             = link_to current_user do
               = image_tag current_user.avatar_url, class: 'avatar tiny'
-              = t("views.header.me")
               - if current_or_null_user.has_role? :superadmin
                 = gem_count_tag Lab.with_unverified_state.size
               - else

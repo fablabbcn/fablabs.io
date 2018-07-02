@@ -1,8 +1,10 @@
-.row
-  .col-lg-12
-    = render "backstage/header"
-    = title "To approve labs"
+= render "backstage/header"
 
-    = render 'backstage/labs/labs', q: @q, url_form: [:backstage, :to_approve_labs], labs: @labs
+.container
+  .row
+    .col-lg-12
+      = title "To approve labs"
+
+      = render 'backstage/labs/labs', q: @q, url_form: [:backstage, :to_approve_labs], labs: @labs
 
 

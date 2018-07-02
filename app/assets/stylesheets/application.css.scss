@@ -33,10 +33,6 @@ a{
   cursor: pointer;
 }
 
-.navbar-nav .gem-count{
-  color: #333333;
-}
-
 #embed-logo {
   display: block;
   background: image_url("embed-logo.png");
@@ -283,12 +279,11 @@ h3 {
 }
 
 .gem-count {
-  // font-size: 0.7em;
-  // font-weight: bold;
-  background: #E84E61;
+  background: #FF7A72;
+  color: white;
   border-radius: 4px;
   padding: 2px 5px;
-  // border-radius: 5px;
+  margin-left: 8px;
 }
 
 .panel {
@@ -330,7 +325,7 @@ h3 {
 
 .iframe-embed-map {
     margin: 0 auto;
-    margin-top: 40px;
+    margin-top: -40px;
     margin-bottom: 40px;
     width: 100%;
 }

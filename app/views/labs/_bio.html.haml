@@ -22,7 +22,7 @@
   .pull-right
     - if current_or_null_user.can_update?(@lab)
       .dropdown
-        %button.btn.btn-success.btn-lg.dropdown-toggle{"aria-expanded" => "true", "aria-haspopup" => "true", "data-toggle" => "dropdown", :type => "button"}
+        %button.btn.btn-primary.btn-lg.dropdown-toggle{"aria-expanded" => "true", "aria-haspopup" => "true", "data-toggle" => "dropdown", :type => "button"}
           = fa_icon "edit", text: t('views.labs.show.manage_lab', default: "Manage Lab")
           %span.caret
         %ul.dropdown-menu

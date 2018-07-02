@@ -1,8 +1,4 @@
-.heading
-  = fa_icon "cogs"
+.text-large
   Machines
 
-- machines.in_groups_of(4, false) do |groups|
-  .row
-    - groups.each do |machine|
-      .col-md-3
+= render machines
