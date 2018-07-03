@@ -80,7 +80,8 @@ module Requests
 
       def _admin
         raise '"admin" variable in request tests is not defined' unless respond_to?(:admin) || admin.present?
-        user
+        admin.add_role :superadmin
+        admin
       end
       
       def _access_token

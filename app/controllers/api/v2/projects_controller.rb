@@ -12,27 +12,26 @@ class Api::V2::ProjectsController <  Api::V2::ApiController
   def map
      @projects,@pagination = paginate Project.joins(:collaborations).includes(:lab).references(:lab).collect { |p| {id: p.id, title: p.title, name: p.lab.name, latitude: p.lab.latitude, longitude: p.lab.longitude, kind: p.lab.kind_name}}
      options = {}
-     options[:meta] = {'total-pages' => @pagination['pages'] }
+     options[:meta] = {'total-pages' => @pagination[:pages] }
      options[:links] = @pagination
-     render_json ApiProjectSerializer.new(@labs, options).serialized_json
+     render_json ApiProjectSerializer.new(@projects, options).serialized_json
   end
 
   def index
-    # Your code here
-    @projects,@pagination = paginate Project.all.joins(:collaborations).includes(:lab).references(:lab)
+
+    @projects,@pagination = paginate Project.all.includes(:lab,:owner)
     options = {}
-    options[:meta] = {'total-pages' => @pagination['pages'] }
+    options[:meta] = {'total-pages' => @pagination[:pages] }
     options[:links] = @pagination
-    render_json ApiProjectSerializer.new(@labs, options).serialized_json
+    render_json ApiProjectSerializer.new(@projects, options).serialized_json
   end
 
   def search_projects
-    # Your code here
-    @labs,@pagination = paginate Project.where("slug LIKE ? or title LIKE ?", "%#{params[:q]}%", "%#{params[:q].capitalize}%")
-    options = {}
-    options[:meta] = {'total-pages' => @pagination['pages'] }
-    options[:links] = @pagination
 
+    @projects,@pagination = paginate Project.where("slug LIKE ? or title LIKE ?", "%#{params[:q]}%", "%#{params[:q].capitalize}%")
+    options = {}
+    options[:meta] = {'total-pages' => @pagination[:pages] }
+    options[:links] = @pagination
     render_json ApiProjectSerializer.new(@projects, options).serialized_json
   end
 

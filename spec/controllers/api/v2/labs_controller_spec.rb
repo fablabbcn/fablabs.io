@@ -89,34 +89,34 @@ describe Api::V2::LabsController, :type => :request do
   describe 'get labs#map' do
 
     context "When authenticated"
-    let!(:user) { FactoryGirl.create :user }
-    let!(:lab2) { FactoryGirl.create(:lab, 
-      workflow_state: 'approved', 
-      name: "Fab Lab Toscana",
-      latitude: 43.722,
-      longitude: 10.4017
-      ) 
-    }
-    let!(:lab) { FactoryGirl.create( :lab, 
-      workflow_state: 'approved', 
-      name: "Fab Lab BCN",
-      latitude: 41.385,
-      longitude: 2.173) }
+      let!(:user) { FactoryGirl.create :user }
+      let!(:lab2) { FactoryGirl.create(:lab, 
+        workflow_state: 'approved', 
+        name: "Fab Lab Toscana",
+        latitude: 43.722,
+        longitude: 10.4017
+        ) 
+      }
+      let!(:lab) { FactoryGirl.create( :lab, 
+        workflow_state: 'approved', 
+        name: "Fab Lab BCN",
+        latitude: 41.385,
+        longitude: 2.173) }
 
-    it "Allows to list labs coordinates as normal user" do
+      it "Allows to list labs coordinates as normal user" do
 
-      get_as_user "http://api.fablabs.dev/2/labs/map"
+        get_as_user "http://api.fablabs.dev/2/labs/map"
 
-      expect(response.status).to eq(200)
-      expect(response.content_type).to eq(Mime::JSON)
-      
-      expect(json["data"].size).to eq(2)
+        expect(response.status).to eq(200)
+        expect(response.content_type).to eq(Mime::JSON)
+        
+        expect(json["data"].size).to eq(2)
 
-      @labs = json["data"]
-      @labs.each do |lab|
-        expect(lab["type"]).to eq("lab")
-        expect(lab["attributes"].keys).to match_array(["latitude","longitude","name","id","slug","url"])
+        @labs = json["data"]
+        @labs.each do |lab|
+          expect(lab["type"]).to eq("lab")
+          expect(lab["attributes"].keys).to match_array(["latitude","longitude","name","id","slug","url"])
+        end
       end
-    end
   end
 end
