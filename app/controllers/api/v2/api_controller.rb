@@ -18,13 +18,17 @@ protected
 
     pagination = {
       self:     current,
-      prev:     (current > 1 ? (current - 1) : nil),
-      next:     (current == total ? nil : (current + 1)),
       per_page: per_page,
       pages:    total,
       count:    collection.total_count
     }
-
+    if current > 1 then
+      pagination[:prev] =  current - 1
+    end
+    if current != total then
+      pagination[:next] =  current + 1
+    end
+    
     return [
       collection,
       pagination
