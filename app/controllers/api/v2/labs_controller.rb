@@ -25,7 +25,7 @@ class Api::V2::LabsController < Api::V2::ApiController
 
     render_json not_implemented
   end
-
+ 
   def index
     @labs,@paginate = paginate Lab.with_approved_state.includes(:links)
     options = {}
@@ -35,9 +35,14 @@ class Api::V2::LabsController < Api::V2::ApiController
     render_json ApiLabsSerializer.new(@labs, options).serialized_json
   end
 
-  def search_labs
-    # Your code here
-    @labs,@paginate = paginate Lab.with_approved_state.where("slug LIKE ? or name LIKE ?", "%#{params[:q]}%", "%#{params[:q].capitalize}%")
+  def search
+    @kind = params[:type] || 'fulltext'
+    if @kind == 'fulltext' then
+      @labs,@paginate = paginate Lab.with_approved_state.where("slug LIKE ? or name LIKE ?", "%#{params[:q]}%", "%#{params[:q].capitalize}%")
+    else 
+      @lat,@lng = params['q'].split(':')
+      @labs,@paginate = paginate Lab.with_approved_state.near([@lat, @lng],100)
+    end
     options = {}
     options[:meta] = {'total-pages' => @paginate['pages'] }
     options[:links] = @paginate
