@@ -20,6 +20,17 @@ User.find_or_create_by(username: 'user') do |user|
   user.agree_policy_terms= true
 end
 
+User.find_or_create_by(username: 'admin') do |user|
+  user.email = 'admin@admin.local'
+  user.password= 'password'
+  user.password_confirmation= 'password'
+  user.first_name= 'Admin'
+  user.last_name= 'Adminerson'
+  user.agree_policy_terms= true
+  user.add_role :superadmin
+end
+
+
 Organization.create!(
   name: Faker::Product.product,
   slug: Faker::Product.letters(3),

@@ -53,6 +53,13 @@ Run tests with:
 
 1. API is served on [http://api.fablabs.local:3000](http://api.fablabs.local:3000)
 
+1. Add test users and data with
+
+    `docker-compose exec rake db:seed`
+
+    This will create a normal user (email=user@user.local, password=password) and an admin user
+    (email=admin@admin.local, password=password)
+
 1. Run tests with
  
    ` docker-compose exec app rake db:setup RAILS_ENV=test`
