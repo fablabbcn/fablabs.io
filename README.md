@@ -13,11 +13,14 @@ If you are a Fab labs entusiast and/or you would like to contribute to the proje
 
 1. `bower install`
 
+1. `rake db:setup`
+
 1. `rails s`
 
 1. Add this to your `/etc/hosts`:
 
     `127.0.0.1   www.fablabs.local`
+    `127.0.0.1   api.fablabs.local`
 
 1. Visit [http://www.fablabs.local:3000](http://www.fablabs.local:3000)
 
@@ -46,14 +49,13 @@ Run tests with:
     `127.0.0.1   api.fablabs.local`
     
 
-
 1. Visit [http://www.fablabs.local:3000](http://www.fablabs.local:3000)
 
 1. API is served on [http://api.fablabs.local:3000](http://api.fablabs.local:3000)
 
 1. Run tests with
  
-   
+   ` docker-compose exec app rake db:setup RAILS_ENV=test`
     `docker-compose exec app rake spec`
 
 1. If you make changes to the code, rebuild the app and deploy the new image
