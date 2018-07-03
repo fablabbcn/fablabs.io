@@ -85,7 +85,6 @@ class ProjectsController < ApplicationController
         :type,
         :title,
         :description,
-        :description,
         :scope,
         :faq,
         :lookingfor,
