@@ -15,7 +15,7 @@ class Api::V2::AdminController < Api::V2::ApiController
     error! :forbidden unless current_user.has_role? :superadmin
     @users,@paginate = paginate User.where("")
     options = {}
-    options[:meta] = {'total-pages' => @paginate['pages'] }
+    options[:meta] = {'total-pages' => @paginate[:pages] }
     options[:links] = @paginate
 
     render_json  ApiUserSerializer.new(@users, options).serialized_json 
@@ -27,7 +27,7 @@ class Api::V2::AdminController < Api::V2::ApiController
     @users,@paginate = paginate User.where("first_name LIKE ? or username LIKE ? or last_name LIKE ? or email LIKE ?", "%#{ params[:q].capitalize }%", "%#{ params[:q] }%", "%#{ params[:q].capitalize }%","%#{ params[:email] }%")
       # Your code here
     options = {}
-    options[:meta] = {'total-pages' => @paginate['pages'] }
+    options[:meta] = {'total-pages' => @paginate[:pages] }
     options[:links] = @paginate
   
     render_json  ApiUserSerializer.new(@users, options).serialized_json 
@@ -37,7 +37,7 @@ class Api::V2::AdminController < Api::V2::ApiController
   def get_user
     error! :forbidden unless current_user.has_role? :superadmin
     options = {}
-    @user = User.friendly.where("username = ?", params[:username]).first
+    @user = User.where("username = ? ", params[:username]).first
     render_json  ApiUserSerializer.new(@user, options).serialized_json
   end
 
