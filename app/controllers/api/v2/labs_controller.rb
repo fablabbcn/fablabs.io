@@ -9,7 +9,6 @@ class Api::V2::LabsController < Api::V2::ApiController
   # TODO
   def create
     render_json not_implemented
-
   end
 
 
@@ -48,6 +47,17 @@ class Api::V2::LabsController < Api::V2::ApiController
     options[:links] = @paginate
 
     render_json ApiLabsSerializer.new(@labs, options).serialized_json
+  end
+
+
+  def map
+    @map, @paginate = paginate Lab.with_approved_state.select(:latitude,:longitude,:slug,:name,:id).includes(:links)
+
+    options = {}
+    options[:meta] = {'total-pages' => @paginate['pages'] }
+    options[:links] = @paginate
+
+    render_json ApiMapSerializer.new(@map, options).serialized_json
   end
 
   # TODO

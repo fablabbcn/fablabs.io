@@ -183,11 +183,12 @@ Rails.application.routes.draw do
       get 'labs' => 'labs#index'
       post 'labs' => 'labs#create'
       get 'labs/search' => 'labs#search'
+      get 'labs/map' => 'labs#map'
       get 'labs/:id' => 'labs#show'
       put 'labs/:id' => 'labs#update'
       get 'labs/:id/relationships/machines' => 'labs#get_lab_machines_by_id'
       post 'labs/:id/relationships/machines' => 'labs#add_lab_machine_by_id'
-
+ 
       # projects
       get 'projects' => 'projects#index'
       post 'projects' => 'projects#create'

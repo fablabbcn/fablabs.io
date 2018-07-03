@@ -36,11 +36,8 @@ paths:
         - oauth
       summary: |
         Token Endpoint
-      description: >
-        Post here with authorization code for authorization code grant type or
-        username and password for password grant type, or refresh token for
-        refresh token type. This corresponds to the token endpoint, section 3.2
-        of the OAuth 2 RFC
+      description: |
+        Post here with authorization code for authorization code grant type or username and password for password grant type, or refresh token for refresh token type. This corresponds to the token endpoint, section 3.2 of the OAuth 2 RFC
       consumes:
         - application/x-www-form-urlencoded
       produces:
@@ -94,9 +91,8 @@ paths:
         - oauth
       summary: |
         Generate and return an authorization code
-      description: >
-        Will create and return an authorization code, then edirect to GET
-        /oauth/authorize/:code with the authorization code.
+      description: |
+        Will create and return an authorization code, then edirect to GET /oauth/authorize/:code with the authorization code.
       operationId: authorizePost
       consumes:
         - application/x-www-form-urlencoded
@@ -231,9 +227,7 @@ paths:
       tags:
         - admin
       summary: Create a new user
-      description: >-
-        Create a new user in the system. The user will receive a welcome email
-        and will be able to set the password at first login
+      description: Create a new user in the system. The user will receive a welcome email and will be able to set the password at first login
       operationId: createUser
       consumes:
         - application/json
@@ -671,6 +665,40 @@ paths:
           $ref: '#/responses/BadRequest'
         '404':
           $ref: '#/responses/NotFound'
+  /labs/map:
+    get:
+      tags:
+        - labs
+      summary: Get a listing of coordinates for labs
+      description: This method allows to show a map of labs 
+      operationId: mapLabs
+      consumes:
+        - application/json
+        - application/vnd.api+json
+      produces:
+        - application/json
+        - application/vnd.api+json
+      security:
+        - OAuth2:
+            - api
+      responses:
+        '200':
+          description:  Results listing
+          schema:
+            type: object
+            properties:
+              meta:
+                $ref: '#/definitions/MetaInfo'
+              data:
+                type: array
+                items:
+                  $ref: '#/definitions/LabMapExtract'
+              links:
+                $ref: '#/definitions/PaginationInfo'
+        '400':
+          $ref: '#/responses/BadRequest'
+        '404':
+          $ref: '#/responses/NotFound'  
   /labs/search:
     get:
       tags:
@@ -1204,7 +1232,7 @@ paths:
                 $ref: '#/definitions/OrganizationAttributes'
       responses:
         '201':
-          description: 'Created'
+          description: Created
         '400':
           $ref: '#/responses/BadRequest'
         '404':
@@ -1345,7 +1373,6 @@ paths:
           $ref: '#/responses/BadRequest'
         '404':
           $ref: '#/responses/NotFound'
-          
 responses:
   BadRequest:
     description: |
@@ -1412,7 +1439,6 @@ securityDefinitions:
     type: apiKey
     name: X-API-Key
     in: header
-    
 definitions:
   PaginationInfo:
     type: object
@@ -1536,13 +1562,14 @@ definitions:
   Machine:
     type: object
     properties:
-      id: 
+      id:
         type: integer
         format: int64
       type:
         type: string
-        enum: [machine]
-        default: "machine"
+        enum:
+          - machine
+        default: machine
       attributes:
         type: object
         properties:
@@ -1569,17 +1596,17 @@ definitions:
         type: string
       brand_id:
         type: string
-  
   OrganizationExtract:
     type: object
     properties:
-      id: 
+      id:
         type: integer
         format: int64
       type:
         type: string
-        enum: [organization]
-        default: "organization"
+        enum:
+          - organization
+        default: organization
       attributes:
         type: object
         properties:
@@ -1601,8 +1628,6 @@ definitions:
             type: string
           avatar:
             type: string
-            
-  
   OrganizationAttributes:
     type: object
     properties:
@@ -1650,7 +1675,6 @@ definitions:
         type: string
       header:
         type: string
-      
   Organization:
     type: object
     properties:
@@ -1680,6 +1704,27 @@ definitions:
         format: int64
       attributes:
         $ref: '#/definitions/ProjectAttributes'
+  LabMapExtract:
+    properties:
+      type:
+        type: string
+        enum:
+          - lab
+      id:
+        type: integer
+        format: int64
+      attributes:
+        type: object
+        properties:
+          name:
+            type: string
+          id:
+            type: integer
+            format: int64
+          latitude:
+            type: number
+          longitude:
+            type: number
   LabExtract:
     properties:
       type:
@@ -1711,7 +1756,6 @@ definitions:
         $ref: '#/definitions/OneToManyRelationship'
       links:
         $ref: '#/definitions/OneToManyRelationship'
-        
   LabRelationships:
     type: object
     properties:
@@ -1813,26 +1857,25 @@ definitions:
         relationships:
           type: object
   RelationshipLink:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            type: object
-            properties:
-              id:
-                type: string
-              type:
-                type: string
-        links:
-          type: array
-          items:
-            type: object
+    type: object
+    properties:
+      data:
+        type: array
+        items:
+          type: object
+          properties:
+            id:
+              type: string
+            type:
+              type: string
+      links:
+        type: array
+        items:
+          type: object
   OneToManyRelationship:
     type: array
     items:
       $ref: '#/definitions/RelationshipLink'
-      
   Credentials:
     type: object
     properties:
