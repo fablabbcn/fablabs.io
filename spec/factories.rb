@@ -110,7 +110,7 @@ FactoryGirl.define do
     url "http://www.fablabbcn.org/2013/10/elefab-2/"
   end
 
-  factory :user, aliases: [:creator, :author, :applicant, :actor, :approver,:owner] do
+  factory :user, aliases: [:admin, :creator, :author, :applicant, :actor, :approver,:owner] do
     sequence(:username) {|n| "user#{n}"}
     first_name "John"
     last_name "Rees"
@@ -119,6 +119,9 @@ FactoryGirl.define do
     password_confirmation "password"
     agree_policy_terms true
   end
+
+
+
 
   factory :recovery do
     user

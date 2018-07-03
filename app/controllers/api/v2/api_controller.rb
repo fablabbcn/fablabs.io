@@ -41,4 +41,15 @@ protected
     end
   end
 
+  def not_implemented
+    {
+      "errors": [
+        {
+          status: "500",
+          title: "Not implemented",
+          detail: "Apologies, this method is not yet implemented"
+        }
+      ] 
+    }
+  end
 end

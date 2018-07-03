@@ -172,12 +172,13 @@ Rails.application.routes.draw do
       # admin routes
       get 'users' => 'admin#list_users'
       post 'users' => 'admin#create_user'
-      get 'users/:username' => 'admin#get_user'
       post 'users/search' => 'admin#search_users'
+      get 'users/:username' => 'admin#get_user'
 
       # user profile
       get 'users/me' => 'user#current_user'
       post 'users/me' => 'user#update_user'
+
       # labs
       get 'labs' => 'labs#index'
       post 'labs' => 'labs#create'

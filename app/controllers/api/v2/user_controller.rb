@@ -8,8 +8,8 @@ class Api::V2::UserController < Api::V2::ApiController
   end
 
   def update_user
-    # Your code here
-
-    render json: {"message" => "yes, it worked"}
+    render_json not_implemented
   end
+
+
 end
