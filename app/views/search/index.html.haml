@@ -21,10 +21,6 @@
       .row
         %h4 Projects
         .projects= render @projects
-    - if @users.size > 0
-      .row
-        %h4 People
-        .users= render @users
     - if @results.empty?
       %p We could not find what you were looking for. Maybe you can try again.
 
