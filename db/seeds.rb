@@ -30,7 +30,7 @@ User.find_or_create_by(username: 'admin') do |user|
   user.add_role :superadmin
 end
 
-
+100.times do
 Organization.create!(
   name: Faker::Product.product,
   slug: Faker::Product.letters(3),
@@ -40,6 +40,7 @@ Organization.create!(
   country_code: "es",
   kind: Organization::KINDS[0]
 )
+end
 
 RefereeApprovalProcess.create!(
   referred_lab_id: 2,
@@ -48,7 +49,8 @@ RefereeApprovalProcess.create!(
 
 # ActiveRecord::RecordInvalid: Validation failed: Referee approval processes can't be blank, 
 # Referee approval processes is the wrong length (should be 3 characters)
-Lab.create!(
+100.times do 
+  Lab.create!(
   name: "MyLab#{Lab.count}",
   kind: Lab::Kinds[1],
   country_code: 'IS',
@@ -58,8 +60,8 @@ Lab.create!(
   programs: true,
   workflow_state: 'approved',
   #referee_id: 1
-)
-
+  )
+end
 
 Brand.create!(
   name: 'A Brand',
