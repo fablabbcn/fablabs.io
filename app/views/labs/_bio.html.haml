@@ -1,34 +1,37 @@
-= link_to lab do
-  = image_tag lab.avatar.thumb('300x300#').url, class: 'big avatar', itemprop: "logo"
+.row.page-intro
+  .page-intro-image
+    = link_to lab do
+      = image_tag lab.avatar.thumb('118x118#').url, class: 'big avatar', itemprop: "logo"
+  .page-intro-content
+    .text-large{itemprop: "name"}= lab.name
 
-= title lab
-.kind= "[#{lab.kind_name.humanize.titleize}]"
+    .microdata{itemprop: "url"}= lab_url(lab, { locale: nil })
 
-%span.microdata{itemprop: "url"}= lab_url(lab, { locale: nil })
-
-.lab-contact-details
-  .lab-address{itemprop: "address"}= lab.formatted_address
-  - if lab.phone.present?
-    .lab-phone
-      %span.fa.fa-phone
-      %span{itemprop: "telephone"}= lab.phone
-  - if lab.email.present?
-    .lab-email
-      %span.fa.fa-envelope
-      %span{itemprop: "email"}= mail_to lab.email, lab.email
-
-- if current_or_null_user.can_update?(@lab)
-  .dropdown
-    %button.btn.btn-success.btn-lg.dropdown-toggle{"aria-expanded" => "true", "aria-haspopup" => "true", "data-toggle" => "dropdown", :type => "button"}
-      = fa_icon "edit", text: t('views.labs.show.manage_lab', default: "Manage Lab")
-      %span.caret
-    %ul.dropdown-menu
-      %li
-        = link_to edit_lab_path(@lab) do
-          = fa_icon "edit", text: t('views.labs.show.edit_lab_details', default: "Edit Lab Details")
-      %li
-        = link_to lab_employees_path(@lab) do
-          = fa_icon "group", text: t('views.labs.show.edit_employee_list', default: "Edit Employee List")
-      %li
-        = link_to new_lab_event_path(@lab) do
-          = fa_icon "calendar", text: t('views.labs.show.add_event', default: "Add Event")
+    .lab-contact-details
+      .text-medium
+        .lab-address{itemprop: "address"}= lab.formatted_address
+      .text-small
+        - if lab.phone.present?
+          %span.lab-phone
+            %span.fa.fa-phone
+            %span{itemprop: "telephone"}= lab.phone
+        - if lab.email.present?
+          %span.lab-email
+            %span.fa.fa-envelope
+            %span{itemprop: "email"}= mail_to lab.email, lab.email
+  .pull-right
+    - if current_or_null_user.can_update?(@lab)
+      .dropdown
+        %button.btn.btn-primary.btn-lg.dropdown-toggle{"aria-expanded" => "true", "aria-haspopup" => "true", "data-toggle" => "dropdown", :type => "button"}
+          = fa_icon "edit", text: t('views.labs.show.manage_lab', default: "Manage Lab")
+          %span.caret
+        %ul.dropdown-menu
+          %li
+            = link_to edit_lab_path(@lab) do
+              = fa_icon "edit", text: t('views.labs.show.edit_lab_details', default: "Edit Lab Details")
+          %li
+            = link_to lab_employees_path(@lab) do
+              = fa_icon "group", text: t('views.labs.show.edit_employee_list', default: "Edit Employee List")
+          %li
+            = link_to new_lab_event_path(@lab) do
+              = fa_icon "calendar", text: t('views.labs.show.add_event', default: "Add Event")

@@ -4,5 +4,5 @@
   = f.simple_fields_for :links do |link|
     = render 'link_fields', f: link
   .links
-    = link_to_add_association f, :links, class: 'btn btn-success' do
+    = link_to_add_association f, :links, class: 'btn btn-primary' do
       = fa_icon "plus", text: 'Add another link'

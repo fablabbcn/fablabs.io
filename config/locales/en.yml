@@ -14,7 +14,7 @@ en:
 
   views:
     header:
-      search:               "Search.."
+      search:               "🔎  Search, anything"
       labs:                 "Labs"
       machines:             "Machines"
       me:                   "Me"

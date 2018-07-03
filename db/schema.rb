@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 20180627081011) do
     t.integer  "user_id"
     t.integer  "lab_id"
     t.integer  "started_in"
-    t.string   "type"
+    t.string   "type",        limit: 255
     t.integer  "approver_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -33,9 +33,9 @@ ActiveRecord::Schema.define(version: 20180627081011) do
 
   create_table "activities", force: :cascade do |t|
     t.integer  "creator_id"
-    t.string   "action"
+    t.string   "action",         limit: 255
     t.integer  "trackable_id"
-    t.string   "trackable_type"
+    t.string   "trackable_type", limit: 255
     t.datetime "created_at"
     t.integer  "actor_id"
   end
@@ -48,7 +48,7 @@ ActiveRecord::Schema.define(version: 20180627081011) do
     t.integer  "applicant_id"
     t.integer  "lab_id"
     t.text     "notes"
-    t.string   "workflow_state"
+    t.string   "workflow_state", limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -56,9 +56,9 @@ ActiveRecord::Schema.define(version: 20180627081011) do
   add_index "admin_applications", ["applicant_id", "lab_id"], name: "index_admin_applications_on_applicant_id_and_lab_id", using: :btree
 
   create_table "brands", force: :cascade do |t|
-    t.string   "name"
+    t.string   "name",           limit: 255
     t.text     "description"
-    t.string   "workflow_state"
+    t.string   "workflow_state", limit: 255
     t.integer  "creator_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -79,9 +79,9 @@ ActiveRecord::Schema.define(version: 20180627081011) do
 
   create_table "comments", force: :cascade do |t|
     t.integer  "author_id"
-    t.string   "ancestry"
+    t.string   "ancestry",         limit: 255
     t.integer  "commentable_id"
-    t.string   "commentable_type"
+    t.string   "commentable_type", limit: 255
     t.text     "body"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -104,8 +104,8 @@ ActiveRecord::Schema.define(version: 20180627081011) do
 
   create_table "coupons", force: :cascade do |t|
     t.integer  "user_id"
-    t.string   "description"
-    t.string   "code",        null: false
+    t.string   "description", limit: 255
+    t.string   "code",        limit: 255, null: false
     t.integer  "value"
     t.datetime "redeemed_at"
     t.datetime "created_at"
@@ -115,12 +115,12 @@ ActiveRecord::Schema.define(version: 20180627081011) do
   add_index "coupons", ["user_id"], name: "index_coupons_on_user_id", using: :btree
 
   create_table "discussions", force: :cascade do |t|
-    t.string   "title"
+    t.string   "title",            limit: 255
     t.text     "body"
     t.integer  "discussable_id"
-    t.string   "discussable_type"
+    t.string   "discussable_type", limit: 255
     t.integer  "creator_id"
-    t.string   "workflow_state"
+    t.string   "workflow_state",   limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -129,19 +129,19 @@ ActiveRecord::Schema.define(version: 20180627081011) do
   add_index "discussions", ["discussable_id", "discussable_type"], name: "index_discussions_on_discussable_id_and_discussable_type", using: :btree
 
   create_table "documents", force: :cascade do |t|
-    t.string   "type"
-    t.string   "title"
+    t.string   "type",               limit: 255
+    t.string   "title",              limit: 255
     t.text     "description"
-    t.string   "image_file_name"
-    t.string   "image_content_type"
+    t.string   "image_file_name",    limit: 255
+    t.string   "image_content_type", limit: 255
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
     t.integer  "documentable_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "documentable_type"
-    t.string   "photo_uid"
-    t.string   "photo_name"
+    t.string   "documentable_type",  limit: 255
+    t.string   "photo_uid",          limit: 255
+    t.string   "photo_name",         limit: 255
   end
 
   add_index "documents", ["documentable_id"], name: "index_documents_on_documentable_id", using: :btree
@@ -150,13 +150,13 @@ ActiveRecord::Schema.define(version: 20180627081011) do
     t.integer  "user_id"
     t.integer  "lab_id"
     t.integer  "ordinal"
-    t.string   "job_title"
-    t.string   "email"
-    t.string   "phone"
+    t.string   "job_title",      limit: 255
+    t.string   "email",          limit: 255
+    t.string   "phone",          limit: 255
     t.text     "description"
     t.date     "started_on"
     t.date     "finished_on"
-    t.string   "workflow_state"
+    t.string   "workflow_state", limit: 255
     t.integer  "creator_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -168,8 +168,8 @@ ActiveRecord::Schema.define(version: 20180627081011) do
   add_index "employees", ["user_id"], name: "index_employees_on_user_id", using: :btree
 
   create_table "events", force: :cascade do |t|
-    t.string   "type"
-    t.string   "name"
+    t.string   "type",        limit: 255
+    t.string   "name",        limit: 255
     t.text     "description"
     t.integer  "lab_id"
     t.integer  "creator_id"
@@ -207,11 +207,11 @@ ActiveRecord::Schema.define(version: 20180627081011) do
   add_index "favourites", ["user_id"], name: "index_favourites_on_user_id", using: :btree
 
   create_table "featured_images", force: :cascade do |t|
-    t.string   "src"
-    t.string   "name"
-    t.string   "description"
-    t.string   "url"
-    t.string   "workflow_state"
+    t.string   "src",            limit: 255
+    t.string   "name",           limit: 255
+    t.string   "description",    limit: 255
+    t.string   "url",            limit: 255
+    t.string   "workflow_state", limit: 255
     t.integer  "creator_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -233,7 +233,7 @@ ActiveRecord::Schema.define(version: 20180627081011) do
   create_table "lab_organizations", force: :cascade do |t|
     t.integer  "lab_id"
     t.integer  "organization_id"
-    t.string   "workflow_state"
+    t.string   "workflow_state",  limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -242,24 +242,24 @@ ActiveRecord::Schema.define(version: 20180627081011) do
   add_index "lab_organizations", ["organization_id"], name: "index_lab_organizations_on_organization_id", using: :btree
 
   create_table "labs", force: :cascade do |t|
-    t.string   "name"
-    t.string   "slug"
+    t.string   "name",                     limit: 255
+    t.string   "slug",                     limit: 255
     t.text     "description"
-    t.string   "ancestry"
+    t.string   "ancestry",                 limit: 255
     t.integer  "creator_id"
-    t.string   "workflow_state"
+    t.string   "workflow_state",           limit: 255
     t.integer  "capabilities"
-    t.string   "time_zone"
-    t.string   "phone"
-    t.string   "email"
-    t.string   "address_1"
-    t.string   "address_2"
-    t.string   "city"
-    t.string   "county"
-    t.string   "postal_code"
-    t.string   "country_code"
-    t.string   "subregion"
-    t.string   "region"
+    t.string   "time_zone",                limit: 255
+    t.string   "phone",                    limit: 255
+    t.string   "email",                    limit: 255
+    t.string   "address_1",                limit: 255
+    t.string   "address_2",                limit: 255
+    t.string   "city",                     limit: 255
+    t.string   "county",                   limit: 255
+    t.string   "postal_code",              limit: 255
+    t.string   "country_code",             limit: 255
+    t.string   "subregion",                limit: 255
+    t.string   "region",                   limit: 255
     t.float    "latitude"
     t.float    "longitude"
     t.integer  "zoom"
@@ -270,21 +270,21 @@ ActiveRecord::Schema.define(version: 20180627081011) do
     t.text     "tools_list"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "blurb"
+    t.string   "blurb",                    limit: 255
     t.integer  "referee_id"
-    t.boolean  "network",                  default: false
-    t.boolean  "programs",                 default: false
-    t.boolean  "tools",                    default: false
-    t.boolean  "charter",                  default: false
-    t.boolean  "public",                   default: false
-    t.string   "discourse_id"
+    t.boolean  "network",                              default: false
+    t.boolean  "programs",                             default: false
+    t.boolean  "tools",                                default: false
+    t.boolean  "charter",                              default: false
+    t.boolean  "public",                               default: false
+    t.string   "discourse_id",             limit: 255
     t.text     "discourse_errors"
-    t.boolean  "is_referee",               default: false
-    t.string   "avatar_uid"
-    t.string   "avatar_name"
-    t.string   "header_uid"
-    t.string   "header_name"
-    t.string   "activity_status"
+    t.boolean  "is_referee",                           default: false
+    t.string   "avatar_uid",               limit: 255
+    t.string   "avatar_name",              limit: 255
+    t.string   "header_uid",               limit: 255
+    t.string   "header_name",              limit: 255
+    t.string   "activity_status",          limit: 255
     t.date     "activity_start_at"
     t.date     "activity_inaugurated_at"
     t.date     "activity_closed_at"
@@ -296,11 +296,11 @@ ActiveRecord::Schema.define(version: 20180627081011) do
 
   create_table "links", force: :cascade do |t|
     t.integer  "linkable_id"
-    t.string   "linkable_type"
+    t.string   "linkable_type",  limit: 255
     t.integer  "ordinal"
-    t.string   "url"
-    t.string   "description"
-    t.string   "workflow_state"
+    t.string   "url",            limit: 255
+    t.string   "description",    limit: 255
+    t.string   "workflow_state", limit: 255
     t.integer  "creator_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -322,25 +322,25 @@ ActiveRecord::Schema.define(version: 20180627081011) do
   create_table "oauth_access_grants", force: :cascade do |t|
     t.integer  "resource_owner_id",              null: false
     t.integer  "application_id",                 null: false
-    t.string   "token",                          null: false
+    t.string   "token",             limit: 255,  null: false
     t.integer  "expires_in",                     null: false
     t.string   "redirect_uri",      limit: 2048, null: false
     t.datetime "created_at",                     null: false
     t.datetime "revoked_at"
-    t.string   "scopes"
+    t.string   "scopes",            limit: 255
   end
 
   add_index "oauth_access_grants", ["token"], name: "index_oauth_access_grants_on_token", unique: true, using: :btree
 
   create_table "oauth_access_tokens", force: :cascade do |t|
     t.integer  "resource_owner_id"
-    t.integer  "application_id",    null: false
-    t.string   "token",             null: false
-    t.string   "refresh_token"
+    t.integer  "application_id",                null: false
+    t.string   "token",             limit: 255, null: false
+    t.string   "refresh_token",     limit: 255
     t.integer  "expires_in"
     t.datetime "revoked_at"
-    t.datetime "created_at",        null: false
-    t.string   "scopes"
+    t.datetime "created_at",                    null: false
+    t.string   "scopes",            limit: 255
   end
 
   add_index "oauth_access_tokens", ["refresh_token"], name: "index_oauth_access_tokens_on_refresh_token", unique: true, using: :btree
@@ -348,9 +348,9 @@ ActiveRecord::Schema.define(version: 20180627081011) do
   add_index "oauth_access_tokens", ["token"], name: "index_oauth_access_tokens_on_token", unique: true, using: :btree
 
   create_table "oauth_applications", force: :cascade do |t|
-    t.string   "name",                                   null: false
-    t.string   "uid",                                    null: false
-    t.string   "secret",                                 null: false
+    t.string   "name",         limit: 255,               null: false
+    t.string   "uid",          limit: 255,               null: false
+    t.string   "secret",       limit: 255,               null: false
     t.string   "redirect_uri", limit: 2048,              null: false
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -363,48 +363,48 @@ ActiveRecord::Schema.define(version: 20180627081011) do
   add_index "oauth_applications", ["uid"], name: "index_oauth_applications_on_uid", unique: true, using: :btree
 
   create_table "organizations", force: :cascade do |t|
-    t.string   "name"
+    t.string   "name",                     limit: 255
     t.text     "description"
     t.integer  "creator_id"
-    t.string   "slug"
-    t.string   "kind"
-    t.string   "blurb"
-    t.string   "phone"
-    t.string   "email"
+    t.string   "slug",                     limit: 255
+    t.string   "kind",                     limit: 255
+    t.string   "blurb",                    limit: 255
+    t.string   "phone",                    limit: 255
+    t.string   "email",                    limit: 255
     t.text     "application_notes"
-    t.string   "discourse_id"
-    t.string   "discourse_errors"
-    t.string   "workflow_state"
+    t.string   "discourse_id",             limit: 255
+    t.string   "discourse_errors",         limit: 255
+    t.string   "workflow_state",           limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "geojson"
     t.float    "latitude"
     t.float    "longitude"
     t.integer  "zoom"
-    t.string   "address_1"
-    t.string   "address_2"
-    t.string   "city"
-    t.string   "county"
-    t.string   "postal_code"
-    t.string   "country_code"
-    t.string   "subregion"
-    t.string   "region"
+    t.string   "address_1",                limit: 255
+    t.string   "address_2",                limit: 255
+    t.string   "city",                     limit: 255
+    t.string   "county",                   limit: 255
+    t.string   "postal_code",              limit: 255
+    t.string   "country_code",             limit: 255
+    t.string   "subregion",                limit: 255
+    t.string   "region",                   limit: 255
     t.text     "address_notes"
     t.text     "reverse_geocoded_address"
-    t.string   "avatar_uid"
-    t.string   "avatar_name"
-    t.string   "header_uid"
-    t.string   "header_name"
+    t.string   "avatar_uid",               limit: 255
+    t.string   "avatar_name",              limit: 255
+    t.string   "header_uid",               limit: 255
+    t.string   "header_name",              limit: 255
   end
 
   add_index "organizations", ["slug"], name: "index_organizations_on_slug", unique: true, using: :btree
 
   create_table "pages", force: :cascade do |t|
-    t.string   "title"
-    t.string   "slug"
+    t.string   "title",      limit: 255
+    t.string   "slug",       limit: 255
     t.text     "content"
-    t.integer  "position",   default: 0
-    t.boolean  "published",  default: false
+    t.integer  "position",               default: 0
+    t.boolean  "published",              default: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -412,23 +412,23 @@ ActiveRecord::Schema.define(version: 20180627081011) do
   add_index "pages", ["slug"], name: "index_pages_on_slug", using: :btree
 
   create_table "projects", force: :cascade do |t|
-    t.string   "type"
-    t.string   "title"
+    t.string   "type",             limit: 255
+    t.string   "title",            limit: 255
     t.text     "description"
     t.integer  "lab_id"
     t.integer  "owner_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "status"
-    t.string   "version"
+    t.string   "status",           limit: 255
+    t.string   "version",          limit: 255
     t.text     "faq"
     t.text     "scope"
     t.text     "community"
     t.text     "lookingfor"
-    t.string   "cover"
-    t.string   "discourse_id"
+    t.string   "cover",            limit: 255
+    t.string   "discourse_id",     limit: 255
     t.text     "discourse_errors"
-    t.string   "slug"
+    t.string   "slug",             limit: 255
   end
 
   add_index "projects", ["lab_id"], name: "index_projects_on_lab_id", using: :btree
@@ -437,9 +437,9 @@ ActiveRecord::Schema.define(version: 20180627081011) do
 
   create_table "recoveries", force: :cascade do |t|
     t.integer  "user_id"
-    t.string   "key"
-    t.string   "ip"
-    t.string   "workflow_state"
+    t.string   "key",            limit: 255
+    t.string   "ip",             limit: 255
+    t.string   "workflow_state", limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -460,7 +460,7 @@ ActiveRecord::Schema.define(version: 20180627081011) do
   create_table "role_applications", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "lab_id"
-    t.string   "workflow_state"
+    t.string   "workflow_state", limit: 255
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -469,9 +469,9 @@ ActiveRecord::Schema.define(version: 20180627081011) do
   add_index "role_applications", ["user_id", "lab_id"], name: "index_role_applications_on_user_id_and_lab_id", using: :btree
 
   create_table "roles", force: :cascade do |t|
-    t.string   "name"
+    t.string   "name",          limit: 255
     t.integer  "resource_id"
-    t.string   "resource_type"
+    t.string   "resource_type", limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -480,7 +480,7 @@ ActiveRecord::Schema.define(version: 20180627081011) do
   add_index "roles", ["name"], name: "index_roles_on_name", using: :btree
 
   create_table "steps", force: :cascade do |t|
-    t.string   "title"
+    t.string   "title",       limit: 255
     t.text     "description"
     t.integer  "position"
     t.integer  "project_id"
@@ -493,9 +493,9 @@ ActiveRecord::Schema.define(version: 20180627081011) do
   create_table "taggings", force: :cascade do |t|
     t.integer  "tag_id"
     t.integer  "taggable_id"
-    t.string   "taggable_type"
+    t.string   "taggable_type", limit: 255
     t.integer  "tagger_id"
-    t.string   "tagger_type"
+    t.string   "tagger_type",   limit: 255
     t.string   "context",       limit: 128
     t.datetime "created_at"
   end
@@ -511,28 +511,28 @@ ActiveRecord::Schema.define(version: 20180627081011) do
   add_index "taggings", ["tagger_id"], name: "index_taggings_on_tagger_id", using: :btree
 
   create_table "tags", force: :cascade do |t|
-    t.string  "name"
-    t.integer "taggings_count", default: 0
+    t.string  "name",           limit: 255
+    t.integer "taggings_count",             default: 0
   end
 
   add_index "tags", ["name"], name: "index_tags_on_name", unique: true, using: :btree
 
   create_table "things", force: :cascade do |t|
-    t.string   "name"
+    t.string   "name",             limit: 255
     t.integer  "brand_id"
     t.text     "description"
-    t.string   "workflow_state"
-    t.string   "ancestry"
+    t.string   "workflow_state",   limit: 255
+    t.string   "ancestry",         limit: 255
     t.integer  "creator_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "type"
-    t.boolean  "inventory_item",   default: false
-    t.string   "discourse_id"
+    t.string   "type",             limit: 255
+    t.boolean  "inventory_item",               default: false
+    t.string   "discourse_id",     limit: 255
     t.text     "discourse_errors"
-    t.string   "photo_uid"
-    t.string   "photo_name"
-    t.string   "slug"
+    t.string   "photo_uid",        limit: 255
+    t.string   "photo_name",       limit: 255
+    t.string   "slug",             limit: 255
   end
 
   add_index "things", ["brand_id"], name: "index_things_on_brand_id", using: :btree
@@ -541,48 +541,48 @@ ActiveRecord::Schema.define(version: 20180627081011) do
   add_index "things", ["slug"], name: "index_things_on_slug", unique: true, using: :btree
 
   create_table "users", force: :cascade do |t|
-    t.string   "workflow_state"
-    t.string   "first_name"
-    t.string   "last_name"
-    t.string   "email"
-    t.string   "username"
-    t.string   "password_digest"
-    t.string   "phone"
-    t.string   "city"
-    t.string   "country_code"
+    t.string   "workflow_state",        limit: 255
+    t.string   "first_name",            limit: 255
+    t.string   "last_name",             limit: 255
+    t.string   "email",                 limit: 255
+    t.string   "username",              limit: 255
+    t.string   "password_digest",       limit: 255
+    t.string   "phone",                 limit: 255
+    t.string   "city",                  limit: 255
+    t.string   "country_code",          limit: 255
     t.float    "latitude"
     t.float    "longitude"
-    t.string   "url"
+    t.string   "url",                   limit: 255
     t.date     "dob"
     t.text     "bio"
-    t.string   "locale"
-    t.string   "time_zone"
-    t.boolean  "use_metric",            default: true
-    t.string   "email_validation_hash"
+    t.string   "locale",                limit: 255
+    t.string   "time_zone",             limit: 255
+    t.boolean  "use_metric",                        default: true
+    t.string   "email_validation_hash", limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "fab10_coupon_code"
-    t.integer  "fab10_cost",            default: 50000
+    t.string   "fab10_coupon_code",     limit: 255
+    t.integer  "fab10_cost",                        default: 50000
     t.datetime "fab10_claimed_at"
     t.integer  "fab10_attendee_id"
     t.boolean  "fab10_email_sent"
-    t.string   "vimeo"
-    t.string   "flickr"
-    t.string   "youtube"
-    t.string   "drive"
-    t.string   "dropbox"
-    t.string   "twitter"
-    t.string   "facebook"
-    t.string   "web"
-    t.string   "github"
-    t.string   "bitbucket"
-    t.string   "googleplus"
-    t.string   "instagram"
-    t.boolean  "agree_policy_terms",    default: false
-    t.string   "avatar_uid"
-    t.string   "avatar_name"
-    t.string   "discourse_id"
-    t.string   "slug"
+    t.string   "vimeo",                 limit: 255
+    t.string   "flickr",                limit: 255
+    t.string   "youtube",               limit: 255
+    t.string   "drive",                 limit: 255
+    t.string   "dropbox",               limit: 255
+    t.string   "twitter",               limit: 255
+    t.string   "facebook",              limit: 255
+    t.string   "web",                   limit: 255
+    t.string   "github",                limit: 255
+    t.string   "bitbucket",             limit: 255
+    t.string   "googleplus",            limit: 255
+    t.string   "instagram",             limit: 255
+    t.boolean  "agree_policy_terms",                default: false
+    t.string   "avatar_uid",            limit: 255
+    t.string   "avatar_name",           limit: 255
+    t.string   "discourse_id",          limit: 255
+    t.string   "slug",                  limit: 255
   end
 
   add_index "users", ["fab10_coupon_code"], name: "index_users_on_fab10_coupon_code", unique: true, using: :btree
@@ -596,10 +596,10 @@ ActiveRecord::Schema.define(version: 20180627081011) do
   add_index "users_roles", ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id", using: :btree
 
   create_table "versions", force: :cascade do |t|
-    t.string   "item_type",  null: false
-    t.integer  "item_id",    null: false
-    t.string   "event",      null: false
-    t.string   "whodunnit"
+    t.string   "item_type",  limit: 255, null: false
+    t.integer  "item_id",                null: false
+    t.string   "event",      limit: 255, null: false
+    t.string   "whodunnit",  limit: 255
     t.text     "object"
     t.datetime "created_at"
   end

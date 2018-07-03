@@ -14,7 +14,6 @@ header {
   .has-form {
     padding: 10px;
   }
-  font-family: 'Open Sans';
   position: relative;
   z-index: 40;
   ul {
@@ -65,25 +64,6 @@ header {
   .nav > li > a:hover, .nav > li > a:focus {
     background: none !important;
   }
-  // .fablabs {
-  //   font-weight: bold;
-  //   color: #111;
-  //   font-size: 1.3em;
-  //   // text-shadow: 1px 1px 1px rgba(0,0,0,0.2);
-  //   font-family: 'Roboto Slab';
-  //   text-transform: lowercase;
-  //   .labs {
-  //     font-weight: normal;
-  //   }
-  //   .io {
-  //     // text-transform: uppercase;
-  //     display: inline;
-  //     font-size: 0.5em;
-  //     margin-left: -0.4em;
-  //     vertical-align: super;
-  //     // font-weight: normal;
-  //   }
-  // }
 
   .navbar-collapse {
     box-shadow: none !important;
@@ -154,5 +134,138 @@ header {
         margin-left: -3px;
       }
     }
+  }
+}
+
+.navbar.navbar-custom {
+  width: 100%;
+  background-color: white;
+  border-bottom: 1px solid #E5E5E5;
+  margin-bottom: 0;
+
+  .container {
+
+  }
+
+  .navbar-toggle {
+    margin-top: 23px;
+
+    .icon-bar {
+      background-color: #111;
+    }
+  }
+
+
+  .navbar-brand {
+    height: 80px;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 80px;
+    color: black;
+    display: flex;
+    align-items: center;
+  }
+
+  .navbar-form {
+    @media (min-width: 768px) {
+      margin: 15px;
+    }
+
+    #search-box {
+      border-radius: 4px;
+      border: 1px solid #E5E5E5;
+      height: 50px;
+      font-size: 14px;
+      padding-left: 15px;
+      box-shadow: 0 6px 10px rgba(0,0,0,0.05);
+      outline-color: #e5e5e5;
+
+      @media (min-width: 768px) {
+        width: 400px;
+      }
+    }
+  }
+
+  .navbar-nav {
+    .dropdown-toggle {
+      padding: 0;
+    }
+    > li {
+      > a {
+        color: #666666;
+        font-size: 15px;
+        font-weight: bold;
+
+        @media (min-width: 768px) {
+          padding: 0 10px;
+          height: 80px;
+          display: flex;
+          align-items: center;
+        }
+
+        &:hover {
+          color: #111111;
+          background-color: initial;
+        }
+      }
+
+      .create-account {
+        height: 36px;
+        text-decoration: none;
+        background-color: #81D7BE;
+        color: white;
+        padding: 6px 12px;
+        border-radius: 4px;
+        line-height: 24px;
+        font-size: 14px;
+        font-weight: bold;
+        border: none;
+        margin: 22px 10px;
+
+        &:hover {
+          color: white;
+          background-color: #81D7BE;
+        }
+      }
+    }
+  }
+}
+
+.subnavbar {
+  border-bottom: 1px solid #E5E5E5;
+  margin-bottom: 40px;
+
+  .subnavbar-container {
+    display: flex;
+  }
+
+  .subnavbar-section {
+    padding: 12px 20px;
+  }
+
+  .subnavbar-section-left {
+    padding-left: 0;
+    border-right: 1px solid #E5E5E5;
+  }
+
+  .subnavbar-section-center {
+    flex: 1;
+  }
+
+  .subnavbar-section-right {
+    padding-right: 0;
+    border-left: 1px solid #E5E5E5;
+  }
+
+  #labs_country_selector {
+    width: 140px;
+  }
+
+  .title {
+    font-weight: bold;
+    font-size: 22px;
+    color: #111111;
+    line-height: 34px;
   }
 }

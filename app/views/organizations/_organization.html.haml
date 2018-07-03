@@ -1,11 +1,13 @@
-= content_tag_for :div, organization, class: 'media', itemscope: true, itemtype: "http://data-vocabulary.org/Organization" do
-  .img.pull-left
+= content_tag_for :div, organization, class: 'card', itemscope: true, itemtype: "http://data-vocabulary.org/Organization" do
+  .card-image
     = link_to organization do
-      = image_tag organization.avatar.thumb("100x100#").url, class: 'med avatar', itemprop: "logo"
+      = image_tag organization.avatar.thumb("310x330#").url, itemprop: "logo"
 
-  .media-body
-    = link_to organization, class: 'name' do
-      %span.name{itemprop: "name"}= organization.name
+  .card-content
+    = link_to organization, class: 'card-title', itemprop: 'name' do
+      = organization.name
     %span.url.microdata{itemprop: "url"}= organization_url(organization, {locale: nil})
     .organization-location
-    %p.organization-blurb.truncate{itemprop: "description"}= organization.description
+
+    = link_to organization do
+      %i.card-arrow.fa.fa-arrow-right

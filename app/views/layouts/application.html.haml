@@ -3,7 +3,7 @@
   = render 'head'
   %body{ class: body_classes }
     = render "application/header"
-    #main.container
+    #main
       = yield
     = render 'footer'
     - if current_user

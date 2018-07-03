@@ -1,98 +1,100 @@
-.row
-  .col-lg-12
-    = render "backstage/header"
-    = title @lab
-    %table.table
-      %tr
-        %th State
-        %td
-          = @lab.current_state
-          - @lab.current_state.events.keys.each do |event|
-            - if current_user.is_referee? or current_user.is_unique_referee?
-              - if ['referee_approves', 'request_more_info', 'referee_requests_admin_approval', 'referee_rejects'].include? event.to_s
-                = button_to "#{event.capitalize.to_s.tr('_', ' ')}", {controller: 'labs', action: event}, method: :patch, class: 'btn btn-success', id: 'event'
-            - if current_user.has_role? :superadmin
-              - if ['approve', 'request_more_info', 'reject', 'remove'].include? event.to_s
-                = button_to "#{event.capitalize.to_s.tr('_', ' ')}", {controller: 'labs', action: event}, method: :patch, class: 'btn btn-success', id: 'event'
-      - if @lab.referee.present?
-        %tr
-          %th Referee
-          %td= @lab.referee
-      - if @lab.referee_approval_processes.present?
-        %tr
-          %th Referees
-        - @lab.referee_approval_processes.each do |c|
-          - if c.referee_lab.present? and c.id
-            %tr
-              %th
-                = image_tag c.referee_lab.avatar.thumb("90x90#").url, class: 'avatar tiny'
-              %td
-                = link_to link_to c.referee_lab, c.referee_lab
-                = c.action
+= render "backstage/header"
 
-      %tr
-        %th Avatar
-        %td= image_tag @lab.avatar.url, class: 'avatar med'
+.container
+  .row
+    .col-lg-12
+      = title @lab
+      %table.table
+        %tr
+          %th State
+          %td
+            = @lab.current_state
+            - @lab.current_state.events.keys.each do |event|
+              - if current_user.is_referee? or current_user.is_unique_referee?
+                - if ['referee_approves', 'request_more_info', 'referee_requests_admin_approval', 'referee_rejects'].include? event.to_s
+                  = button_to "#{event.capitalize.to_s.tr('_', ' ')}", {controller: 'labs', action: event}, method: :patch, class: 'btn btn-primary', id: 'event'
+              - if current_user.has_role? :superadmin
+                - if ['approve', 'request_more_info', 'reject', 'remove'].include? event.to_s
+                  = button_to "#{event.capitalize.to_s.tr('_', ' ')}", {controller: 'labs', action: event}, method: :patch, class: 'btn btn-primary', id: 'event'
+        - if @lab.referee.present?
+          %tr
+            %th Referee
+            %td= @lab.referee
+        - if @lab.referee_approval_processes.present?
+          %tr
+            %th Referees
+          - @lab.referee_approval_processes.each do |c|
+            - if c.referee_lab.present? and c.id
+              %tr
+                %th
+                  = image_tag c.referee_lab.avatar.thumb("90x90#").url, class: 'avatar tiny'
+                %td
+                  = link_to link_to c.referee_lab, c.referee_lab
+                  = c.action
 
-      - if @lab.header.present?
         %tr
-          %th Header
-          %td= image_tag @lab.header.url, class: 'avatar med'
-      %tr
-        %th Slug
-        %td= @lab.slug
-      %tr
-        %th Creator
-        %td= link_to @lab.creator, @lab.creator
-      - if @lab.application_notes.present?
+          %th Avatar
+          %td= image_tag @lab.avatar.url, class: 'avatar med'
+
+        - if @lab.header.present?
+          %tr
+            %th Header
+            %td= image_tag @lab.header.url, class: 'avatar med'
         %tr
-          %th Application Notes
-          %td= @lab.application_notes
-      %tr
-        %th Description
-        %td= @lab.description
-      - if @lab.links.any?
+          %th Slug
+          %td= @lab.slug
         %tr
-          %th URLS
+          %th Creator
+          %td= link_to @lab.creator, @lab.creator
+        - if @lab.application_notes.present?
+          %tr
+            %th Application Notes
+            %td= @lab.application_notes
+        %tr
+          %th Description
+          %td= @lab.description
+        - if @lab.links.any?
+          %tr
+            %th URLS
+            %td
+              %ul
+                - @lab.links.each do |link|
+                  %li= link_to link.url, link.url
+        - if @lab.phone.present?
+          %tr
+            %th Phone
+            %td= @lab.phone
+        - if @lab.email.present?
+          %tr
+            %th Email
+            %td= mail_to @lab.email, @lab.email
+        %tr
+          %th Address
+          %td= @lab.formatted_address
+        - if @lab.address_notes.present?
+          %tr
+            %th Address Notes
+            %td= @lab.address_notes
+        %tr
+          %th Employees
           %td
             %ul
-              - @lab.links.each do |link|
-                %li= link_to link.url, link.url
-      - if @lab.phone.present?
+              - @lab.employees.each do |employee|
+                = content_tag_for :li, employee do
+                  = link_to employee.user, employee.user
+                  = employee.job_title
         %tr
-          %th Phone
-          %td= @lab.phone
-      - if @lab.email.present?
+          %th Created At
+          %td= @lab.created_at
         %tr
-          %th Email
-          %td= mail_to @lab.email, @lab.email
-      %tr
-        %th Address
-        %td= @lab.formatted_address
-      - if @lab.address_notes.present?
+          %th Updated At
+          %td= @lab.updated_at
         %tr
-          %th Address Notes
-          %td= @lab.address_notes
-      %tr
-        %th Employees
-        %td
-          %ul
-            - @lab.employees.each do |employee|
-              = content_tag_for :li, employee do
-                = link_to employee.user, employee.user
-                = employee.job_title
-      %tr
-        %th Created At
-        %td= @lab.created_at
-      %tr
-        %th Updated At
-        %td= @lab.updated_at
-      %tr
-        %th Discourse sync
-        %td
-          = @lab.discourse_id
-          %pre
-            = @lab.discourse_errors
-    - if current_user.has_role? :superadmin
-      = link_to edit_backstage_lab_path(@lab), class: 'btn btn-success' do
-        = fa_icon "edit", text: "Edit Lab"
+          %th Discourse sync
+          %td
+            = @lab.discourse_id
+            %pre
+              = @lab.discourse_errors
+      - if current_user.has_role? :superadmin
+        = link_to edit_backstage_lab_path(@lab), class: 'btn btn-primary' do
+          = fa_icon "edit", text: "Edit Lab"

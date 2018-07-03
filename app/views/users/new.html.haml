@@ -1,56 +1,57 @@
-.row
-  .col-lg-12
-    = title t("views.header.signup", default: "Sign up")
+.container
+  .row
+    .col-lg-12
+      = title t("views.header.signup", default: "Sign up")
 
-  .col-lg-12
-    %h2 Welcome to FabLabs.io
-    %p
-      Fablabs.io is the online social network of the international Fab Lab community, and it is an exchange platform for people, labs, projects, machines, events and groups that operate around the Fab Lab Network, which collaboration and communication tools in order to align interests and to expand the global scale of this community.
-    %p
-      The Fab Lab Network is an open, creative community of fabricators, artists, scientists, engineers, educators, students, amateurs, professionals, ages 5 to 75+, located in more than 40 countries in approximately 1000 Fab Labs. Fablabs.io is the official platform for the Fab Lab Network, where Fab Labs are mapped, knowledge is shared, projects are developed and where the community discuss these topics. You can read more about Fab Labs here.
-    %p
-      By using Fablabs.io all Fab Labs are mapped and connected globally, and their knowledge and technical and design innovations become embedded in the larger ecosystem of the Fab Lab Network, which is an open, creative community of fabricators, artists, scientists, engineers, educators, students, amateurs, and professionals located in more than 75 countries.
-    %p
-      Once you join you'll be able to add your Fab Lab to the list, participate in discussions with all the Fab Labs and users, upload projects, and so on.
-    %p
-      You can read more about Fablabs.io on our
-      = succeed "," do
-        %a{:href => "/about"} About page
-      and on the
-      = succeed "." do
-        %a{:href => "http://fabfoundation.org/"} Fab Foundation website
+    .col-lg-12
+      %h2 Welcome to FabLabs.io
+      %p
+        Fablabs.io is the online social network of the international Fab Lab community, and it is an exchange platform for people, labs, projects, machines, events and groups that operate around the Fab Lab Network, which collaboration and communication tools in order to align interests and to expand the global scale of this community.
+      %p
+        The Fab Lab Network is an open, creative community of fabricators, artists, scientists, engineers, educators, students, amateurs, professionals, ages 5 to 75+, located in more than 40 countries in approximately 1000 Fab Labs. Fablabs.io is the official platform for the Fab Lab Network, where Fab Labs are mapped, knowledge is shared, projects are developed and where the community discuss these topics. You can read more about Fab Labs here.
+      %p
+        By using Fablabs.io all Fab Labs are mapped and connected globally, and their knowledge and technical and design innovations become embedded in the larger ecosystem of the Fab Lab Network, which is an open, creative community of fabricators, artists, scientists, engineers, educators, students, amateurs, and professionals located in more than 75 countries.
+      %p
+        Once you join you'll be able to add your Fab Lab to the list, participate in discussions with all the Fab Labs and users, upload projects, and so on.
+      %p
+        You can read more about Fablabs.io on our
+        = succeed "," do
+          %a{:href => "/about"} About page
+        and on the
+        = succeed "." do
+          %a{:href => "http://fabfoundation.org/"} Fab Foundation website
 
 
-  .col-lg-12.left
-    = simple_form_for @user do |f|
-      = render "form_errors", resource: @user
-      = hidden_field_tag :goto, params[:goto]
+    .col-lg-12.left
+      = simple_form_for @user do |f|
+        = render "form_errors", resource: @user
+        = hidden_field_tag :goto, params[:goto]
 
-      %fieldset
-        .row
-          .col-lg-3.your-name
-            = f.label :first_name, "Your Name"
-          .col-lg-4
-            = f.input :first_name, autofocus: true, placeholder: 'First Name', label: false
-          .col-lg-4.left
-            = f.input :last_name, placeholder: 'Last Name', label: false
+        %fieldset
+          .row
+            .col-lg-3.your-name
+              = f.label :first_name, "Your Name"
+            .col-lg-4
+              = f.input :first_name, autofocus: true, placeholder: 'First Name', label: false
+            .col-lg-4.left
+              = f.input :last_name, placeholder: 'Last Name', label: false
 
-        = f.input :username, autocapitalize: "off", autocorrect: "off", hint: "Alphanumeric characters only please (a-z0-9)"
-        = f.input :email, autocapitalize: "off", autocorrect: "off"
-        .row
-          .col-lg-6
-            = f.input :password
-          .col-lg-6
-            = f.input :password_confirmation
-        -# .row
-        -#   .col-lg-12
-        -# = f.input :country_code, as: 'string', value: [current_country.alpha2.downcase], label: 'Country', iso_codes: true
+          = f.input :username, autocapitalize: "off", autocorrect: "off", hint: "Alphanumeric characters only please (a-z0-9)"
+          = f.input :email, autocapitalize: "off", autocorrect: "off"
+          .row
+            .col-lg-6
+              = f.input :password
+            .col-lg-6
+              = f.input :password_confirmation
+          -# .row
+          -#   .col-lg-12
+          -# = f.input :country_code, as: 'string', value: [current_country.alpha2.downcase], label: 'Country', iso_codes: true
 
-        #honeypot
-          %p You have now completed the form. The following field is a #{link_to "honeypot", "http://en.wikipedia.org/wiki/Honeypot_(computing)"} to prevent bots. Please ignore it and submit the form. Apologies for the inconvenience.
-          = label_tag 'name', 'IGNORE'
-          = text_field_tag 'name', nil, alt: "This field is to prevent bots. Please leave it blank.", placeholder: "LEAVE BLANK TO PROVE YOU ARE HUMAN"
+          #honeypot
+            %p You have now completed the form. The following field is a #{link_to "honeypot", "http://en.wikipedia.org/wiki/Honeypot_(computing)"} to prevent bots. Please ignore it and submit the form. Apologies for the inconvenience.
+            = label_tag 'name', 'IGNORE'
+            = text_field_tag 'name', nil, alt: "This field is to prevent bots. Please leave it blank.", placeholder: "LEAVE BLANK TO PROVE YOU ARE HUMAN"
 
-        = f.input :agree_policy_terms, as: :boolean, label: "Please read and agree to our <a href='/cookie-policy'>Cookie</a>, <a href='/privacy-policy'>Privacy</a> and <a href='/tos'>Terms of Service (TOS)</a> policies".html_safe
+          = f.input :agree_policy_terms, as: :boolean, label: "Please read and agree to our <a href='/cookie-policy'>Cookie</a>, <a href='/privacy-policy'>Privacy</a> and <a href='/tos'>Terms of Service (TOS)</a> policies".html_safe
 
-        = f.submit t("views.header.signup", default: "Sign Up"), class: 'btn btn-success'
+          = f.submit t("views.header.signup", default: "Sign Up"), class: 'btn btn-primary'
