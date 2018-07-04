@@ -1,4 +1,6 @@
 class Api::V2::ProjectsController <  Api::V2::ApiController
+  before_action :doorkeeper_authorize!
+
   #TODO
   def create
     render_json not_implemented

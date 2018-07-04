@@ -1,5 +1,8 @@
 class Api::V2::OrganizationsController < Api::V2::ApiController
 
+  before_action :doorkeeper_authorize!
+
+
   def create
     render_json not_implemented
 
@@ -11,8 +14,8 @@ class Api::V2::OrganizationsController < Api::V2::ApiController
   end
 
   def show
-    render_json not_implemented
-
+    @organization = Organization.friendly.find(params[:id])
+    expose @organization
   end
 
   def index
