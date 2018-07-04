@@ -1,9 +1,11 @@
 class Api::V2::UserController < Api::V2::ApiController
+  before_action :doorkeeper_authorize! # Requires access token for all actions
 
-  before_action :dorkeeper_authorize!
-  def current_user
+
+  def me
     # Your code here
-    expose current_user
+    
+    render_json ApiUserSerializer.new(current_user,{}).serialized_json
     #render json: {"message" => "yes, it worked"}
   end
 

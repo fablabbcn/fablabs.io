@@ -32,4 +32,13 @@ describe Api::V2::UserController, :type => :request do
     # expect(response.parsed_body).to eq({error:"Not authorized"})
   end
 
+  it "Does allow to get the current user profile" do
+    get_as_user 'http://api.fablabs.dev/2/users/me'
+    expect(response.status).to eq(200)
+    expect(response.content_type).to eq(Mime::JSON)
+    expect(json["data"]["attributes"]["username"]).to eq(user.username)
+    # expect(response.parsed_body).to eq({error:"Not authorized"})
+  end
+
+
 end
