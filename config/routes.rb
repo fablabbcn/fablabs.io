@@ -141,6 +141,13 @@ Rails.application.routes.draw do
   end
 
   constraints(ApiSubdomain) do
+
+    use_doorkeeper do
+      controllers :applications => 'oauth/applications'
+    end
+
+
+
     get '/' => 'static#api'
     # root to: ''static#api'
     api version: 0, module: "api/v0", as: "api_v0" do
