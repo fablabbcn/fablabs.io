@@ -76,6 +76,13 @@ Run tests with:
     ./scripts/docker-backup-db.sh
     ```
 
+#### API Documenation
+
+Take a look at the [developer guide](https://docs.fablabs.io) for information on how to 
+integrate Fablabs.io in your application.
+
+Check out also the [API Reference](https://docs.fablabs.io/swagger/index.html), 
+the [Examples](https://github.com/fablabbcn/examples.fablabs.io), and the [fablabs.js library](https://github.com/fablabbcn/fablabsjs).
 
 
 #### Pull requests
