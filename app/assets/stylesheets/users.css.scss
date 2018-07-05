@@ -22,34 +22,6 @@
   }
 }
 
-.activity {
-  padding-top: 10px;
-  padding-bottom: 10px;
-  background: #FFF;
-  ul {
-    li {
-      padding: 10px 10px 10px 10px;
-      font-size: 0.9em;
-      text-align: justify;
-      border: none;
-      span {
-        display: table-cell;
-      }
-      .fa {
-          color: #666;
-          font-size: 1.2em;
-          float: left;
-          padding-right: 10px;
-      }
-    }
-    li:nth-child(odd) {
-      background: #F5F5F5;
-      border-radius: 2px;
-    }
-
-  }
-}
-
 .lab-links, .lab-link {
     padding: 0px;
 }

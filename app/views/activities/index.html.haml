@@ -1,4 +1,5 @@
 .row
   .col-lg-12
     = title "Activity Feed"
-    %ul= render @activities
+    .vertical-timeline
+      = render @activities

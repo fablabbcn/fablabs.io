@@ -1,3 +1,6 @@
-= render "activities/#{activity.trackable_type.underscore}/#{activity.action}",
-          activity.trackable_type.underscore.to_sym => activity.trackable,
-          :activity => activity
+.vertical-timeline-block
+  .vertical-timeline-circle
+  .vertical-timeline-content
+    = render "activities/#{activity.trackable_type.underscore}/#{activity.action}",
+              activity.trackable_type.underscore.to_sym => activity.trackable,
+              :activity => activity
