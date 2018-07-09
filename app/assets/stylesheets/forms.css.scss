@@ -1,38 +1,24 @@
 .checkbox_container {
-  display: inline-block;
   padding: 10px;
+
+  label {
+    font-size: 16px;
+    line-height: 20px;
+  }
 }
 textarea {
   margin-bottom: 0;
 }
 
 fieldset {
-  border: 1px solid #c0c0c0 !important;
-  margin-bottom: 20px !important;
-  padding: 20px !important;
-  background: #FEFEFE !important;
-  fieldset {
-    padding: 5px !important;
-    background: none !important;
-    border: none !important;
-    legend {
-      // font-weight: normal;
-      // color: #AAA;
-      border: none;
-    }
-  }
-  legend {
-    border: 1px solid #ddd;
-    border-bottom: none;
-    width: auto;
-    background: #FEFEFE;
-    color: #111;
-    font-weight: bold;
-    text-transform: uppercase;
-    // font-size: 1.1em;
-    padding: 12px 20px 0px 20px;
-    margin-bottom: 36px;
-    border-radius: 4px 4px 0px 0px;
+  background: #FFFFFF;
+  box-shadow: 0 100px 75px 0 rgba(0,0,0,0.05), 0 10px 25px 0 rgba(0,0,0,0.05), 0 20px 50px 0 rgba(0,0,0,0.05);
+  border-radius: 0 0 6px 6px;
+  padding: 40px;
+  margin: 40px 0;
+
+  .question {
+    margin-bottom: 40px;
   }
 }
 
@@ -92,7 +78,18 @@ input.btn {
     color: #fff !important;
 }
 
-.radio {top: -5px;}
+.radio {
+  font-size: 16px;
+}
+
+.form-horizontal {
+  .radio {
+    padding-top: 0;
+  }
+  .radio-inline {
+    padding-top: 20px;
+  }
+}
 
 .input {
   margin-bottom: 30px;
@@ -120,5 +117,62 @@ label {
 }
 
 .form-header {
-  margin: 40px 0;
+  margin-bottom: 40px;
+}
+
+.select2-container.select2-container--default {
+  display: block !important;
+
+  .select2-selection--single,
+  .select2-selection--multiple {
+    height: 34px;
+    border-color: #E5E5E5;
+
+    .select2-selection__rendered {
+      line-height: 34px;
+      color: #666;
+      font-weight: bold;
+    }
+
+    .select2-selection__arrow {
+      height: 34px;
+    }
+  }
+
+  .select2-selection--multiple {
+    border-color: #E5E5E5;
+  }
+
+  .select2-dropdown {
+    border-color: #E5E5E5;
+  }
+
+  .select2-results__option--highlighted[aria-selected] {
+    background-color: #81D7BE;
+  }
+}
+
+fieldset {
+  .select2-container.select2-container--default {
+    .select2-selection--single,
+    .select2-selection--multiple {
+      height: 50px;
+      background-color: #F7F7F7;
+      border-color: #F7F7F7;
+
+      .select2-selection__rendered {
+        line-height: 50px;
+      }
+
+      .select2-selection__arrow {
+        height: 50px;
+        width: 50px;
+      }
+    }
+  }
+}
+
+.input-group-addon {
+  border-color: #D8D8D8;
+  background-color: #D8D8D8;
 }

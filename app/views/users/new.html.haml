@@ -1,13 +1,12 @@
 .container
-  .row
-    .col-lg-12.form-header
-      .text-large Welcome to fablabs.io
-      .text-medium
-        Once you join you'll be able to add your Fab Lab to the list, participate in discussions with all the Fab Labs and users, upload projects and more.
+  = simple_form_for @user do |f|
+    %fieldset
+      .form-header
+        .text-large Welcome to fablabs.io
+        .text-medium
+          Once you join you'll be able to add your Fab Lab to the list, participate in discussions with all the Fab Labs and users, upload projects and more.
 
-
-    .col-lg-12.left
-      = simple_form_for @user do |f|
+      .row
         = render "form_errors", resource: @user
         = hidden_field_tag :goto, params[:goto]
 
