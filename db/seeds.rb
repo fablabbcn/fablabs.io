@@ -47,10 +47,12 @@ RefereeApprovalProcess.create!(
   referee_lab_id: 2
 )
 
+
+
 # ActiveRecord::RecordInvalid: Validation failed: Referee approval processes can't be blank, 
 # Referee approval processes is the wrong length (should be 3 characters)
 100.times do 
-  Lab.create!(
+  @lab = Lab.create!(
   name: "MyLab#{Lab.count}",
   kind: Lab::Kinds[1],
   country_code: 'IS',
@@ -59,6 +61,8 @@ RefereeApprovalProcess.create!(
   tools: true,
   programs: true,
   workflow_state: 'approved',
+  latitude: 64.963,
+  longitude: 19.0208
   #referee_id: 1
   )
 end

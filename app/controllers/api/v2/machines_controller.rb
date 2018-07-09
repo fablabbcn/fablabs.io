@@ -1,7 +1,7 @@
 class Api::V2::MachinesController < Api::V2::ApiController
 
-  before_action :dorkeeper_authorize!
-  
+  before_action :doorkeeper_authorize!
+
   def create
     render_json not_implemented
 

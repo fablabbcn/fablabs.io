@@ -9,7 +9,7 @@ class Api::V2::LabsController < Api::V2::ApiController
 
   def show
     # Your code here
-    @lab = Lab.with_approved_state.includes(:links).find(params[:id])
+    @lab = Lab.with_approved_state.includes(:links,:machines).find(params[:id])
     render_json  ApiLabsSerializer.new(@lab, {}).serialized_json
   end
 
@@ -25,8 +25,9 @@ class Api::V2::LabsController < Api::V2::ApiController
   end
  
   def index
-    @labs,@paginate = paginate Lab.with_approved_state.includes(:links)
+    @labs,@paginate = paginate Lab.with_approved_state.includes(:links,:machines)
     options = {}
+    options[:include] = [:links, :machines, :'machines.brand',]
     options[:meta] = {'total-pages' => @paginate[:pages] }
     options[:links] = @paginate
 
@@ -36,12 +37,13 @@ class Api::V2::LabsController < Api::V2::ApiController
   def search
     @kind = params[:type] || 'fulltext'
     if @kind == 'fulltext' then
-      @labs,@paginate = paginate Lab.with_approved_state.where("slug LIKE ? or name LIKE ?", "%#{params[:q]}%", "%#{params[:q].capitalize}%")
+      @labs,@paginate = paginate Lab.with_approved_state.where("slug LIKE ? or name LIKE ?", "%#{params[:q]}%", "%#{params[:q].capitalize}%").includes(:links,:machines)
     else 
       @lat,@lng = params['q'].split(':')
-      @labs,@paginate = paginate Lab.with_approved_state.near([@lat, @lng],100)
+      @labs,@paginate = paginate Lab.with_approved_state.near([@lat, @lng],100).includes(:links,:machines)
     end
     options = {}
+    options[:include] = [:links, :machines, :'machines.brand',]
     options[:meta] = {'total-pages' => @paginate[:pages] }
     options[:links] = @paginate
 
@@ -50,12 +52,10 @@ class Api::V2::LabsController < Api::V2::ApiController
 
 
   def map
-    @map, @paginate = paginate Lab.with_approved_state.select(:latitude,:longitude,:slug,:name,:id).includes(:links)
-
+    @map, @paginate = paginate Lab.with_approved_state.select(:latitude,:longitude,:slug,:name,:id)
     options = {}
     options[:meta] = {'total-pages' => @paginate[:pages] }
     options[:links] = @paginate
-
     render_json ApiMapSerializer.new(@map, options).serialized_json
   end
 

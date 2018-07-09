@@ -26,6 +26,8 @@ describe Api::V2::LabsController, :type => :request do
     end
 
 
+
+    
   end
 
   describe 'get labs#search' do
@@ -50,12 +52,20 @@ describe Api::V2::LabsController, :type => :request do
         name: "Beach lab Sitges",
         latitude: 41.237,
         longitude: 1.805) }
+    let!(:facility) { FactoryGirl.create(:facility)}
+
+    
 
     it "Allows to search labs by name as normal user" do
+
+
+      lab2.facilities << facility
+
 
       get_as_user "http://api.fablabs.dev/2/labs/search",  
         {q: "toscana", type: "fulltext"}
 
+        
       expect(response.status).to eq(200)
       expect(response.content_type).to eq(Mime::JSON)
       
@@ -70,6 +80,8 @@ describe Api::V2::LabsController, :type => :request do
     it "Allows to search labs by location" do
       @lat = 41.385 # barcelona
       @lng =  2.173
+      lab3.facilities << facility
+
       get_as_user "http://api.fablabs.dev/2/labs/search?q=#{@lat}:#{@lng}&type=location"
 
       expect(response.status).to eq(200)

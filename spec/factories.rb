@@ -93,7 +93,7 @@ FactoryGirl.define do
 
   factory :facility do
     lab
-    machine
+    association :thing, factory: :machine
     notes "cool machine"
   end
 
