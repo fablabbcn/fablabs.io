@@ -5,13 +5,6 @@
 textarea {
   margin-bottom: 0;
 }
-.hint {
-  padding: 2px;
-  display: block;
-  color: #AAA;
-  font-size: 0.9em;
-  margin-bottom: 1em;
-}
 
 fieldset {
   border: 1px solid #c0c0c0 !important;
@@ -50,14 +43,23 @@ fieldset {
 }
 
 .input {
-  margin-bottom: 1em;
+  margin-bottom: 30px;
 }
 
 #main .field_with_errors {
-  border-bottom: 1px solid #E84E61;
-  label, abbr, & { color: #E84E61; }
-  background: #FAE8E8;
-  padding: 5px 0;
+  .error {
+    color: #F96716;
+    font-size: 12px;
+    text-decoration: underline;
+    padding: 4px 14px;
+    float: right;
+  }
+}
+
+.hint {
+  font-size: 12px;
+  padding: 4px 14px;
+  color: #AAA;
 }
 
 .bs-callout-warning {
@@ -95,3 +97,28 @@ input.btn {
 }
 
 .radio {top: -5px;}
+
+.form-control {
+  background-color: #F7F7F7;
+  border-color: #F7F7F7;
+  color: #141515;
+  height: 50px;
+  box-shadow: none;
+
+  &:focus {
+    border-color: #F7F7F7;
+    box-shadow: none;
+    outline: 1px solid #e5e5e5;
+  }
+}
+
+label {
+  font-size: 12px;
+  color: #94959C;
+  line-height: 24px;
+  font-weight: normal;
+}
+
+.form-header {
+  margin: 40px 0;
+}
