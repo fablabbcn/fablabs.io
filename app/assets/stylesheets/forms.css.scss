@@ -42,10 +42,6 @@ fieldset {
   background: none;
 }
 
-.input {
-  margin-bottom: 30px;
-}
-
 #main .field_with_errors {
   .error {
     color: #F96716;
@@ -97,6 +93,10 @@ input.btn {
 }
 
 .radio {top: -5px;}
+
+.input {
+  margin-bottom: 30px;
+}
 
 .form-control {
   background-color: #F7F7F7;

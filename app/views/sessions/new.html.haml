@@ -1,42 +1,30 @@
 - title "Sign in"
 .container
   .row
-    .col-lg-12
-      %h1
-        Sign in
+    .col-lg-12.form-header
+      .text-large Welcome to fablabs.io
+      .text-medium
+        Fablabs.io is the online social network of the international Fab Lab community, and it is an exchange platform for people, labs, projects, machines, events and groups that operate around the Fab Lab Network, which collaboration and communication tools in order to align interests and to expand the global scale of this community.
+
   .row
     .col-lg-12
-      %h2 Welcome to fablabs.io
-      %p
-        Fablabs.io is the online social network of the international Fab Lab community, and it is an exchange platform for people, labs, projects, machines, events and groups that operate around the Fab Lab Network, which collaboration and communication tools in order to align interests and to expand the global scale of this community.
-  .mainbox.col-lg-6.col-md-offset-3.col-sm-8.col-sm-offset-2
-    .panel.panel-info
-      .panel-heading
-        .panel-title Sign in
-      .panel-body
-        .signinpanel
-          = form_tag sessions_path do
-            -# = simple_form_for :signin, { url: sessions_path } do
-            = hidden_field_tag :goto, params[:goto]
-            = hidden_field_tag :authenticity_token, form_authenticity_token
-            .row
-              .col-md-6
-                %i.fa.fa-user
-                = label_tag :email_or_username, "Email or Username"
-              .col-md-6
-                = text_field_tag :email_or_username, params[:email_or_username], placeholder: 'Email or Username', autofocus: params[:email_or_username].blank?, autocapitalize: "off", autocorrect: "off", class: 'form-control'
-            .row
-              .col-md-6
-                %i.fa.fa-lock
-                = label_tag :password, nil
-              .col-md-6
-                = password_field_tag :password, nil, placeholder: 'Password', class: 'form-control'
-            .row
-              .col-md-12
-                .actions= submit_tag t("views.header.signin", default: "Sign in"), class: 'btn btn-primary'
-            .row
-              .col-lg-12
-                = link_to "Forgot the password?", new_recovery_url(subdomain: 'www')
-        .row
-          .col-lg-12
-            = link_to "Not yet a member? <strong>#{t('views.header.signup', default: 'Sign up')}</strong>".html_safe, signup_url(subdomain: 'www', goto: params[:goto])
+      = form_tag sessions_path do
+        -# = simple_form_for :signin, { url: sessions_path } do
+        = hidden_field_tag :goto, params[:goto]
+        = hidden_field_tag :authenticity_token, form_authenticity_token
+        .input
+          = label_tag :email_or_username, "Email or Username"
+          = text_field_tag :email_or_username, params[:email_or_username], placeholder: 'Email or Username', autofocus: params[:email_or_username].blank?, autocapitalize: "off", autocorrect: "off", class: 'form-control'
+        .input
+          = label_tag :password, nil
+          = password_field_tag :password, nil, placeholder: 'Password', class: 'form-control'
+
+    .row
+      .col-lg-12
+        = submit_tag t("views.header.signin", default: "Sign in"), class: 'btn btn-primary btn-lg pull-right'
+
+    .row
+      .col-lg-12
+        = link_to "Forgot the password?", new_recovery_url(subdomain: 'www')
+      .col-lg-12
+        = link_to "Not yet a member? <strong>#{t('views.header.signup', default: 'Sign up')}</strong>".html_safe, signup_url(subdomain: 'www', goto: params[:goto])
