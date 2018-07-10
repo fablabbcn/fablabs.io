@@ -125,7 +125,7 @@
     .address
       .question
         .text-medium Step 1
-        %p.hint Enter the lab's address in the textbox below. Then drag the map marker to pinpoint its exact position.
+        .text-small Enter the lab's address in the textbox below. Then drag the map marker to pinpoint its exact position.
         = f.input :geocomplete, input_html: { id: 'geocomplete', data: { latlng: "#{@lab.latitude}, #{@lab.longitude}"} }, label: false
       .question.step-2
         .text-medium Step 2

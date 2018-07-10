@@ -23,15 +23,15 @@
           = text_field_tag 'q', params[:q], class: 'form-control', autocomplete: 'off', placeholder: t("views.header.search"), id: 'search-box'
 
       %ul.nav.navbar-nav
-        %li
+        %li.navbar-link
           = link_to t("views.header.labs"), labs_path
-        %li
+        %li.navbar-link
           = link_to t("views.header.organizations"), organizations_path
-        %li
+        %li.navbar-link
           = link_to t("views.header.machines"), machines_path
-        %li
+        %li.navbar-link
           = link_to t("views.header.projects"), projects_path
-        %li
+        %li.navbar-link
           = link_to 'Discuss', Figaro.env.discourse_endpoint
 
       %ul.nav.navbar-nav.navbar-right
@@ -75,4 +75,7 @@
                   = fa_icon "sign-out", text: t("views.header.signout", default: "Sign out")
 
         - else
-          %li= link_to t("views.header.signup", default: "Sign up"), signup_path, class: 'create-account'
+          %li.navbar-btn
+            = link_to t("views.header.signin", default: "Sign in"), signin_path, class: 'btn btn-default'
+          %li.navbar-btn
+            = link_to t("views.header.signup", default: "Sign up"), signup_path, class: 'btn btn-primary'

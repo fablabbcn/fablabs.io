@@ -143,10 +143,6 @@ header {
   border-bottom: 1px solid #E5E5E5;
   margin-bottom: 0;
 
-  .container {
-
-  }
-
   .navbar-toggle {
     margin-top: 23px;
 
@@ -169,7 +165,7 @@ header {
 
   .navbar-form {
     @media (min-width: 768px) {
-      margin: 15px;
+      margin: 15px 0;
     }
 
     #search-box {
@@ -180,22 +176,29 @@ header {
       padding-left: 15px;
       box-shadow: 0 6px 10px rgba(0,0,0,0.05);
       outline-color: #e5e5e5;
+      background-color: white;
 
       @media (min-width: 768px) {
+        width: 300px;
+      }
+
+      @media (min-width: 1200px) {
         width: 400px;
       }
     }
   }
 
   .navbar-nav {
-    .dropdown-toggle {
-      padding: 0;
-    }
-    > li {
+    .navbar-link {
       > a {
         color: #666666;
         font-size: 15px;
         font-weight: bold;
+
+        &:hover {
+          color: #111111;
+          background-color: initial;
+        }
 
         @media (min-width: 768px) {
           padding: 0 10px;
@@ -203,30 +206,45 @@ header {
           display: flex;
           align-items: center;
         }
+      }
+    }
+
+    .navbar-btn {
+      margin-top: 23px;
+      margin-bottom: 23px;
+
+      > a {
+        height: initial;
+        padding: 6px 12px;
+      }
+
+      @media (max-width: 767px) {
+        margin: 10px 15px;
+      }
+    }
+
+    @media (min-width: 768px) {
+      .navbar-btn + .navbar-btn {
+        margin-left: 8px;
+      }
+    }
+
+    .dropdown {
+      a {
+        padding: 25px 0;
 
         &:hover {
-          color: #111111;
           background-color: initial;
         }
       }
+    }
 
-      .create-account {
-        height: 36px;
-        text-decoration: none;
-        background-color: #81D7BE;
-        color: white;
-        padding: 6px 12px;
-        border-radius: 4px;
-        line-height: 24px;
-        font-size: 14px;
-        font-weight: bold;
-        border: none;
-        margin: 22px 10px;
+    .dropdown-toggle {
+      padding: 30px 8px;
+      color: black;
 
-        &:hover {
-          color: white;
-          background-color: #81D7BE;
-        }
+      &:hover {
+        background-color: initial;
       }
     }
   }

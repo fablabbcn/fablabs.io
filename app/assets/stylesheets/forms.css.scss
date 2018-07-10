@@ -87,6 +87,7 @@ input.btn {
     padding-top: 0;
   }
   .radio-inline {
+    margin-left: 10px;
     padding-top: 20px;
   }
 }
@@ -153,6 +154,10 @@ label {
 }
 
 fieldset {
+  select {
+    width: 100%;
+  }
+
   .select2-container.select2-container--default {
     .select2-selection--single,
     .select2-selection--multiple {
