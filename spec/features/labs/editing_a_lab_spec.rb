@@ -27,13 +27,13 @@ feature "Editing a lab" do
     end
 
     scenario "with valid details" do
-      fill_in "Name", with: 'New Name'
+      fill_in "lab_name", with: 'New Name'
       click_button 'Update Lab'
       expect(page).to have_content("Lab was successfully updated")
     end
 
     scenario "with invalid details" do
-      fill_in "Name", with: ''
+      fill_in "lab_name", with: ''
       click_button 'Update Lab'
       expect(page).to have_css(".errors")
     end

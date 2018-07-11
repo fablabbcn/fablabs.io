@@ -2,6 +2,8 @@
   %meta{content: @lab.avatar.thumb("300x300").url, property: "og:image"}/
   %meta{content: @lab.description, property: "og:description"}/
 
+- content_for(:title, @lab)
+
 .container{itemscope: true, itemtype: "http://data-vocabulary.org/Organization"}
   - if @lab.header.present?
     = image_tag @lab.header.thumb("800x").url, class: 'big-picture', itemprop: "image"

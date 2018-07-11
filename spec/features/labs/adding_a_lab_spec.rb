@@ -53,7 +53,7 @@ feature "Adding a lab" do
       select 'as220labs', from: 'Referees'
       select 'fablabbcn', from: 'Referees'
       select 'fablabcascina', from: 'Referees'
-      fill_in 'Name', with: 'New Lab'
+      fill_in 'lab_name', with: 'New Lab'
       fill_in 'lab_description', with: 'An awesome place'
       fill_in 'lab_address_1', with: 'Mars'
       fill_in 'lab_links_attributes_0_url', with: 'http://www.newlab.com'
@@ -71,7 +71,7 @@ feature "Adding a lab" do
     end
 
     scenario "as a user with invalid details" do
-      fill_in 'Name', with: 'No details'
+      fill_in 'lab_name', with: 'No details'
       click_button 'Add Lab'
       expect(page).to have_css ".errors"
     end

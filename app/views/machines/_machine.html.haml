@@ -6,9 +6,9 @@
           = image_tag machine.photo.thumb("230x245>").url
 
     .card-content
-      .card-subtitle= machine.brand
-      .card-title= machine
-
       = link_to machine do
+        .card-subtitle= machine.brand
+        .card-title= machine
+
         %i.card-arrow.fa.fa-arrow-right
 

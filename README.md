@@ -36,10 +36,10 @@ Run tests with:
 1. Add all the secrets to an .env file - Minimum example is in the env.example file
 
 
-1. Start the project:  
+1. Start the project:
 `docker-compose up web app`
 
-1. Create database (only the first time):  
+1. Create database (only the first time):
 `docker-compose exec app rake db:setup`
 `docker-compose exec app /usr/local/bin/bower install`
 
@@ -47,7 +47,7 @@ Run tests with:
 
     `127.0.0.1   www.fablabs.local`
     `127.0.0.1   api.fablabs.local`
-    
+
 
 1. Visit [http://www.fablabs.local:3000](http://www.fablabs.local:3000)
 
@@ -55,13 +55,13 @@ Run tests with:
 
 1. Add test users and data with
 
-    `docker-compose exec rake db:seed`
+    `docker-compose exec app rake db:seed`
 
     This will create a normal user (email=user@user.local, password=password) and an admin user
     (email=admin@admin.local, password=password)
 
 1. Run tests with
- 
+
    ` docker-compose exec app rake db:setup RAILS_ENV=test`
     `docker-compose exec app rake spec`
 
@@ -78,10 +78,10 @@ Run tests with:
 
 #### API Documenation
 
-Take a look at the [developer guide](https://docs.fablabs.io) for information on how to 
+Take a look at the [developer guide](https://docs.fablabs.io) for information on how to
 integrate Fablabs.io in your application.
 
-Check out also the [API Reference](https://docs.fablabs.io/swagger/index.html), 
+Check out also the [API Reference](https://docs.fablabs.io/swagger/index.html),
 the [Examples](https://github.com/fablabbcn/examples.fablabs.io), and the [fablabs.js library](https://github.com/fablabbcn/fablabsjs).
 
 

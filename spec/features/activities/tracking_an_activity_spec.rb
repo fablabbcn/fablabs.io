@@ -6,7 +6,7 @@ feature "Tracking an activity" do
   scenario "admin updates a lab" do
     sign_in_superadmin
     visit edit_lab_path(lab)
-    fill_in "Name", with: "New name"
+    fill_in "lab_name", with: "New name"
     click_button "Update"
     visit activity_path
     expect(page).to have_content("#{User.last} updated New name")
