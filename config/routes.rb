@@ -141,9 +141,16 @@ Rails.application.routes.draw do
   end
 
   constraints(ApiSubdomain) do
+
+    use_doorkeeper do
+      controllers :applications => 'oauth/applications'
+    end
+
+
+
     get '/' => 'static#api'
     # root to: ''static#api'
-    api version: 0, module: "api/v0" do
+    api version: 0, module: "api/v0", as: "api_v0" do
         get 'me' => 'users#me'
         get 'users' => 'users#search'
         get 'labs/search' => 'labs#search'
@@ -163,30 +170,31 @@ Rails.application.routes.draw do
           get :map, on: :collection
         end
     end
-    api version: 1, module: "api/v1" do
+    api version: 1, module: "api/v1", as: "api_v1" do
       get 'users' => 'users#search'
 
     end
-    api version: 2, module: "api/v2" do
+    api version: 2, module: "api/v2", as: "api_v2" do
 
       # admin routes
       get 'users' => 'admin#list_users'
       post 'users' => 'admin#create_user'
-      get 'users/:username' => 'admin#get_user'
-      post 'users/search' => 'admin#search_users'
-
       # user profile
-      get 'users/me' => 'user#current_user'
+      get 'users/me' => 'user#me'
       post 'users/me' => 'user#update_user'
+      post 'users/search' => 'admin#search_users'
+      get 'users/:username' => 'admin#get_user'
+
       # labs
       get 'labs' => 'labs#index'
       post 'labs' => 'labs#create'
+      get 'labs/search' => 'labs#search'
+      get 'labs/map' => 'labs#map'
       get 'labs/:id' => 'labs#show'
       put 'labs/:id' => 'labs#update'
-      get 'labs/search' => 'labs#search_labs'
       get 'labs/:id/relationships/machines' => 'labs#get_lab_machines_by_id'
       post 'labs/:id/relationships/machines' => 'labs#add_lab_machine_by_id'
-
+ 
       # projects
       get 'projects' => 'projects#index'
       post 'projects' => 'projects#create'

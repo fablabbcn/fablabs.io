@@ -1001,6 +1001,59 @@
         }
       }
     },
+    "/labs/map": {
+      "get": {
+        "tags": [
+          "labs"
+        ],
+        "summary": "Get a listing of coordinates for labs",
+        "description": "This method allows to show a map of labs",
+        "operationId": "mapLabs",
+        "consumes": [
+          "application/json",
+          "application/vnd.api+json"
+        ],
+        "produces": [
+          "application/json",
+          "application/vnd.api+json"
+        ],
+        "security": [
+          {
+            "OAuth2": [
+              "api"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Results listing",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "meta": {
+                  "$ref": "#/definitions/MetaInfo"
+                },
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/LabMapExtract"
+                  }
+                },
+                "links": {
+                  "$ref": "#/definitions/PaginationInfo"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/responses/BadRequest"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          }
+        }
+      }
+    },
     "/labs/search": {
       "get": {
         "tags": [
@@ -2509,6 +2562,38 @@
         },
         "attributes": {
           "$ref": "#/definitions/ProjectAttributes"
+        }
+      }
+    },
+    "LabMapExtract": {
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "lab"
+          ]
+        },
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "attributes": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "id": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "latitude": {
+              "type": "number"
+            },
+            "longitude": {
+              "type": "number"
+            }
+          }
         }
       }
     },

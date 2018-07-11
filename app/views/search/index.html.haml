@@ -1,7 +1,7 @@
 - title "Search"
 .container
   .row
-    .content
+    .col-lg-8.content
       .row
         .col-lg-12
           -# %dl.sub-nav.right.order-by
@@ -22,10 +22,6 @@
         .row
           %h4 Projects
           .projects= render @projects
-      - if @users.size > 0
-        .row
-          %h4 People
-          .users= render @users
       - if @results.empty?
         %p We could not find what you were looking for. Maybe you can try again.
 

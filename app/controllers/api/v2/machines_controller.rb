@@ -1,26 +1,24 @@
 class Api::V2::MachinesController < Api::V2::ApiController
 
-  def create
-    # Your code here
+  before_action :doorkeeper_authorize!
 
-    render json: {"message" => "yes, it worked"}
+  def create
+    render_json not_implemented
+
   end
 
   def show
-    # Your code here
+    render_json not_implemented
 
-    render json: {"message" => "yes, it worked"}
   end
 
   def index
-    # Your code here
+    render_json not_implemented
 
-    render json: {"message" => "yes, it worked"}
   end
 
   def update
-    # Your code here
+    render_json not_implemented
 
-    render json: {"message" => "yes, it worked"}
   end
 end
