@@ -3,7 +3,9 @@ class OrganizationsController < ApplicationController
   before_filter :require_login, only: [:new, :create, :update, :edit]
 
   def index
-    @organizations = Organization.page(params[:page]).approved
+    @organizations = Organization.approved
+      .order(order: :asc).order(name: :asc)
+      .page(params[:page])
   end
 
   def new
