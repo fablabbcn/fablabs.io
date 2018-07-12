@@ -142,6 +142,21 @@ feature "Approving a lab" do
     expect(updated_lab.workflow_state).to eq("need_more_info")
   end
 
+  scenario "referees approves a lab" do
+    new_lab = FactoryGirl.create(:lab, referee: referee)
+    new_lab.referee_approval_processes.create(referee_lab: as220)
+    new_lab.referee_approval_processes.create(referee_lab: bcn)
+    new_lab.referee_approval_processes.create(referee_lab: cascina)
+
+    sign_in lab_admin_bcn
+    expect(lab_admin_bcn.is_referee?).to eq(true)
+    visit backstage_lab_path(new_lab)
+    click_button "Approve"
+    expect(page).to have_content("Lab approved")
+    updated_lab = Lab.find(new_lab.id)
+    expect(updated_lab.workflow_state).to eq("approved")
+  end
+
   scenario "referees requests admin approval" do
     new_lab = FactoryGirl.create(:lab, referee: referee)
     new_lab.referee_approval_processes.create(referee_lab: as220)
