@@ -1,7 +1,7 @@
 = simple_form_for project, html: { multipart: true} do |f|
   = render "form_errors", resource: project
   %fieldset
-    %legend Core
+    .text-large Core
     .row
       .col-lg-12
         .col-lg-4
@@ -32,43 +32,43 @@
         (MD) to style text and include videos and images. Please see
         = link_to "MD-basics", "https://help.github.com/articles/markdown-basics/"
         for more info.
-  .row
-    .col-lg-12
-      %fieldset
-        %legend Description
-        = f.input :description
-        Here you can describe your project to the world.
-        \
+    %fieldset
+      .text-large Description
+      = f.input :description
+      Here you can describe your project to the world.
+      \
 
-      %fieldset.taglist
-        %legend Tags
+    %fieldset
+      .text-large Tags
+      .taglist
         = render 'tag_list', { :f => f, :project => project }
 
-      %fieldset
-        %legend Steps
-        %p.hint Add a project step to the documentation.
-        = f.simple_fields_for :steps do |step|
-          = render 'step_fields', f: step
-        .steps
-          = link_to_add_association f, :steps, class: 'button tiny' do
-            = fa_icon "plus", text: 'Add another step'
+    %fieldset
+      .text-large Steps
+      %p.hint Add a project step to the documentation.
+      = f.simple_fields_for :steps do |step|
+        = render 'step_fields', f: step
+      .steps
+        = link_to_add_association f, :steps, class: 'btn btn-primary' do
+          Add another step
 
-      %fieldset
-        %legend Scope
-        = f.input :scope
-        This section can be used to describe the scope of your project and what
-        you would like to accomplish.
-        \
-      %fieldset
-        %legend FAQ
-        = f.input :faq
-        This section can be used to answer some FAQ about your project.
-        \
-      %fieldset
-        %legend Media
-        = render 'media', { :f => f, :project => project }
-        \
+    %fieldset
+      .text-large Scope
+      = f.input :scope
+      This section can be used to describe the scope of your project and what
+      you would like to accomplish.
+      \
+    %fieldset
+      .text-large FAQ
+      = f.input :faq
+      This section can be used to answer some FAQ about your project.
+      \
+    %fieldset
+      .text-large Media
+      = render 'media', { :f => f, :project => project }
+      \
 
-  = render 'form_links', f: f
+    %fieldset
+      = render 'form_links', f: f
 
   = f.submit class: 'btn btn-primary'

@@ -36,6 +36,6 @@
       = render 'link_fields', f: link
     .links
       = link_to_add_association f, :links, class: 'btn btn-primary' do
-        = fa_icon "plus", text: 'Add another link'
+        Add link
 
   = f.submit (machine.new_record? ? 'New Machine' : 'Update Machine'), class: 'btn btn-primary'
