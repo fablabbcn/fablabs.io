@@ -44,5 +44,6 @@
   .row
     .text-large
       Activity
-    .activity
-      %ul= render @user.activities.limit(10)
+    .activity.vertical-timeline
+      = puts @user.activities
+      = render @user.activities
