@@ -70,6 +70,7 @@ Rails.application.routes.draw do
           patch :remove
           patch :referee_approves
           patch :referee_rejects
+          get   :request_more_info, to: 'labs#edit_request_more_info'
           patch :request_more_info
           patch :referee_requests_admin_approval
           patch :admin_approves

@@ -1,0 +1,21 @@
+= render "backstage/header"
+
+.container
+  = title "Editing #{@lab}"
+  = simple_form_for [:backstage, @lab], url: request_more_info_backstage_lab_path do |f|
+    = render "form_errors", resource: @lab
+
+    .edit-lab
+
+    %fieldset
+      %legend
+        Approval process
+      .row
+        .col-lg-12
+          %p
+            = f.input :improve_approval_application,
+              input_html: { value: improve_approval_application_default_value(@lab) }
+
+    .row
+      .col-lg-12
+        = f.submit 'save', class: 'btn btn-primary'

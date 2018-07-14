@@ -19,7 +19,7 @@ module LabsOperations
   end
 
   def lab_send_action(verbed)
-    UserMailer.send("lab_#{verbed}", @lab.id)
+    UserMailer.send("lab_#{verbed}", @lab.id).deliver_now
     mails_referees(verbed)
   end
 

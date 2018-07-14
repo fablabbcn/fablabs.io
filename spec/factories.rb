@@ -7,6 +7,7 @@ FactoryGirl.define do
     sequence(:slug) { |n| "fablab#{n}" }
     description { Faker::Lorem.sentence }
     address_1 { Faker::Address.street_address }
+    improve_approval_application { Faker::Lorem.sentence }
     county "County"
     country_code "es"
     network true
