@@ -127,7 +127,7 @@ feature "Approving a lab" do
     sign_out lab_admin_as220
   end
 
-  scenario "referees requests more info" do
+  scenario "referees edit form to request more info" do
     new_lab = FactoryGirl.create(:lab, referee: referee)
     new_lab.referee_approval_processes.create(referee_lab: as220)
     new_lab.referee_approval_processes.create(referee_lab: bcn)
@@ -137,6 +137,19 @@ feature "Approving a lab" do
     expect(lab_admin_bcn.is_referee?).to eq(true)
     visit backstage_lab_path(new_lab)
     click_button "Request more info"
+    expect(page).to have_content("Improve approval application")
+  end
+
+  scenario "referees requests more info" do
+    new_lab = FactoryGirl.create(:lab, referee: referee)
+    new_lab.referee_approval_processes.create(referee_lab: as220)
+    new_lab.referee_approval_processes.create(referee_lab: bcn)
+    new_lab.referee_approval_processes.create(referee_lab: cascina)
+
+    sign_in lab_admin_bcn
+    expect(lab_admin_bcn.is_referee?).to eq(true)
+    visit request_more_info_backstage_lab_path(new_lab)
+    click_button "save"
     expect(page).to have_content("Lab requested more info")
     updated_lab = Lab.find(new_lab.id)
     expect(updated_lab.workflow_state).to eq("need_more_info")
@@ -173,12 +186,11 @@ feature "Approving a lab" do
     sign_out lab_admin_as220
 
     sign_in lab_admin_bcn
+
     expect(lab_admin_bcn.is_referee?).to eq(true)
     visit backstage_lab_path(new_lab)
     click_button "Request more info"
-    expect(page).to have_content("Lab requested more info")
-    updated_lab = Lab.find(new_lab.id)
-    expect(updated_lab.workflow_state).to eq("need_more_info")
+    expect(page).to have_content("Improve approval application")
 
     updated_lab.update_attributes(workflow_state: :more_info_added)
     updated_lab.employees.update_all(workflow_state: :more_info_added)

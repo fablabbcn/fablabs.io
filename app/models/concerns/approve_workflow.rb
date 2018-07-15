@@ -15,6 +15,7 @@ module ApproveWorkflow
       end
       state :need_more_info do
         event :lab_adds_info, transition_to: :more_info_added
+        event :request_more_info, transition_to: :need_more_info
         event :approve, transition_to: :approved
         event :reject, transition_to: :rejected
         event :remove, transition_to: :removed
