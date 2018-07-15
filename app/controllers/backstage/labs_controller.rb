@@ -38,9 +38,6 @@ class Backstage::LabsController < Backstage::BackstageController
       remove
       referee_approves
       referee_rejects
-      approve
-      reject
-      remove
       referee_requests_admin_approval
       need_more_info
     ).each do |verb|
