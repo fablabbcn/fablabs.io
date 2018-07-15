@@ -23,6 +23,12 @@ module LabsOperations
     mails_referees(verbed)
   end
 
+  def lab_log_workflow_action(verb)
+    @lab.approval_workflow_logs.create!(lab_id:         @lab.id,
+                                        user_id:        current_user.id,
+                                        workflow_state: verb)
+  end
+
   def sends_emails(action)
     UserMailer.send("lab_#{action}", @lab.id).deliver_now
     AdminMailer.send("lab_#{action}", @lab.id).deliver_now

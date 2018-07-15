@@ -59,6 +59,8 @@ class User < ActiveRecord::Base
   has_many :grades
   has_many :projects, :through => :grades
 
+  has_many :approval_workflow_logs
+
   validates_acceptance_of :agree_policy_terms, :accept => true, on: :create
 
   validates_format_of :email, :with => /\A(.+)@(.+)\z/

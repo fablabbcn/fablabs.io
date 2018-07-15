@@ -64,6 +64,8 @@ class Lab < ActiveRecord::Base
   has_many :referees, through: :referee_approval_processes, source: :referee_lab
   has_many :referred_labs, through: :referee_approval_processes, source: :referred_lab
 
+  has_many :approval_workflow_logs
+
   validates_presence_of :name, :country_code, :slug#, :creator
   validates_presence_of :address_1, :kind, on: :create
 

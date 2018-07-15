@@ -46,6 +46,7 @@ class Backstage::LabsController < Backstage::BackstageController
       @lab = Lab.friendly.find(params[:id])
       if @lab.send("#{verb}!", current_user)
         lab_send_action("#{verbed}")
+        lab_log_workflow_action(verb)
         redirect_to backstage_labs_path, notice: "Lab #{verbed.tr('_', ' ')}"
       else
         redirect_to backstage_lab_path(@lab), notice: "Could not #{verb} lab"
@@ -61,6 +62,7 @@ class Backstage::LabsController < Backstage::BackstageController
 
       if @lab.send("#{action_name}!", current_user)
         lab_send_action("#{verbed}")
+        lab_log_workflow_action(action_name)
         redirect_to backstage_labs_path, notice: "Lab #{verbed.tr('_', ' ')}"
       end
     else
