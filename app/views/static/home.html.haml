@@ -1,146 +1,128 @@
 - title t("views.home.welcome")
 
-#homepage-map
-  .filter
-  #homepage-search
-    %p= t("views.home.show_me_fab_labs", default: "Show me Fab Labs")
-    = link_to labs_path, class: 'btn btn-primary btn-lg ' do
-      = fa_icon "globe"
-      = t("views.home.around_the_world")
+.homepage
+  .row
+    .homepage-header
+      .container
+        .col-xs-12
+          .homepage-header-content
+            .text-small
+              = t("views.home.welcome")
+            .text-large.text-primary
+              = t("views.home.whats_a_fab_lab")
+            .text-medium
+              = t("views.home.fab_labs_description", fab_foundation: (link_to "Fab Foundation", "http://www.fabfoundation.org") ).html_safe
 
-.whats-a-fab-lab.stripe
+          .homepage-card
+            .text-small
+              = t("views.home.lab_card.subtitle", default: "Profile")
+            .text-large
+              = t("views.home.lab_card.title", default: "I’m a Fablab")
+            .text-medium
+              = t("views.home.lab_card.description", default: "Each lab has its own profile page which can be maintained and updated by its staff")
+
+            =image_tag ("home/lab-illustration.png"), :class => "homepage-card-image"
+
+            = link_to new_lab_path, class: 'homepage-card-cta' do
+              = t("views.home.lab_card.cta", default: "Register your lab")
+              %i.fa.fa-arrow-right
+
+          .homepage-card
+            .text-small
+              = t("views.home.person_card.subtitle", default: "Explore")
+            .text-large
+              = t("views.home.person_card.title", default: "I’m a Person")
+            .text-medium
+              = t("views.home.person_card.description", default: "An interactive map showing the location of all the Fab Labs around the world")
+
+            =image_tag ("home/person-illustration.png"), :class => "homepage-card-image"
+
+            = link_to signup_path, class: 'homepage-card-cta' do
+              = t("views.home.person_card.cta", default: "Register an account")
+              %i.fa.fa-arrow-right
+
   .container
+    .homepage-quote.text-primary
+      .homepage-divider
+      = t("views.home.quote", default: "Because all Fab Labs share common tools and processes, the program is building a global network, a distributed laboratory for research and invention.")
+
+  .visible-lg-block
+    .homepage-circles
+      .homepage-circle.homepage-circle-1
+      .homepage-circle.homepage-circle-2
+      .homepage-circle.homepage-circle-3
+      .homepage-circle.homepage-circle-4
+      .homepage-circle.homepage-circle-5
+      .homepage-circle.homepage-circle-6
+      .homepage-circle.homepage-circle-7
+      .homepage-circle.homepage-circle-8
+      .homepage-circles-content.homepage-info-section
+        .homepage-divider-small
+        .text-large
+          = t("views.home.fablabs-section.title", default: "All Fab Labs share common tools and processes.")
+        .text-medium
+          = t("views.home.fablabs-section.description", default: "In order to build a global network, a distributed laboratory for research and invention.")
+        = link_to labs_path, class: 'homepage-small-cta text-medium text-primary' do
+          = t("views.home.fablabs-section.cta", default: "Learn more")
+          %i.fa.fa-arrow-right
+
+  .hidden-lg.container
     .row
-      .col-lg-12
-        %h2= t("views.home.whats_a_fab_lab")
-        %p= t("views.home.fab_labs_description", fab_foundation: (link_to "Fab Foundation", "http://www.fabfoundation.org") ).html_safe
+      .col-xs-12
+        .homepage-divider-small
+        .text-large
+          = t("views.home.fablabs-section.title", default: "All Fab Labs share common tools and processes.")
+        .text-medium
+          = t("views.home.fablabs-section.description", default: "In order to build a global network, a distributed laboratory for research and invention.")
+        = link_to labs_path, class: 'homepage-small-cta text-medium text-primary' do
+          = t("views.home.fablabs-section.cta", default: "Learn more")
+          %i.fa.fa-arrow-right
 
-
-#frostis-lab= image_tag "https://i.imgur.com/KFS2V4n.jpg", id: "img"
-.credit{style: 'background: #F0F0F0'}
-  .container
-    .row
-      .col-lg-12.text-right
-        .photo-from
-          Concept and photo from
-          = link_to "Fab Lab Vestmannaeyjar", "/vestmannaeyjar"\
-          ,
-          = link_to "Iceland", "/labs?country=is"
-
-.whos-it-for.stripe
-  .container
-    .row
-      .col-lg-12
-        %h2= t("views.home.who_is_it_for")
-
-      .col-lg-12
-        .row.collapse.case-studies
-          .col-lg-6.case-study
-            .media
-              .pull-left= image_tag "home-icons/enthusiast.png", style: 'width: 100px'
-              .media-body
-                %p
-                  I'm an
-                  %strong ENTHUSIAST
-                  and I want to participate with the global Fab Lab Network. Find labs near me, see what's happening in the labs around the world and maybe one day open my own!
-
-          .col-lg-6.case-study
-            .media
-              .pull-left= image_tag "home-icons/manager.png", style: 'width: 100px'
-              .media-body
-                %p
-                  I'm a
-                  %strong FAB LAB MANAGER
-                  and I want to add my lab to the network. Then I'll be able to share information and knowledge from my lab and interact with fellow users of the site.
-
-    .row
-      .col-lg-12{style: "text-align: center"}
-        = link_to signup_path, class: 'btn btn-lg btn-primary' do
-          .glyphicon.glyphicon-check
-          Sign up
-
-
-.stripe.what-can-you-do
-  .container
-    .features
+  .homepage-fablabs-section
+    .container
       .row
-        .col-lg-12
-          %h2= t("views.home.what_can_i_do")
+        .col-sm-5
+          .homepage-info-section
+            .homepage-divider-small
+            .text-large
+              = t("views.home.fablabs-section.title", default: "Global league of fab labs for local purposes.")
+            .text-medium
+              = t("views.home.fablabs-section.description", default: "In order to build a global network, a distributed laboratory for research and invention.")
+            = link_to labs_path, class: 'homepage-small-cta text-medium text-primary' do
+              = t("views.home.fablabs-section.cta", default: "See the full list")
+              %i.fa.fa-arrow-right
+        .col-sm-7
+          =image_tag ("home/fablabs-logos.png"), :class => "homepage-fablabs-logos"
+
+
+  .homepage-cards-footer
+    .container
       .row
-        .col-lg-4
-          = link_to labs_path do
-            .row
-              .col-md-4= image_tag "home-icons/profile.png"
-              .col-md-8
-                %h3= t("views.home.lab_profiles")
-                %p Each lab has its own profile page which can be maintained and updated by its staff
+        .col-xs-12
+          .homepage-card
+            .text-small
+              = t("views.home.lab_card.subtitle", default: "Profile")
+            .text-large
+              = t("views.home.lab_card.title", default: "I’m a Fablab")
+            .text-medium
+              = t("views.home.lab_card.description", default: "Each lab has its own profile page which can be maintained and updated by its staff")
 
-        .col-lg-4
-          = link_to map_labs_path do
-            .row
-              .col-md-4= image_tag "home-icons/map.png"
-              .col-md-8
-                %h3= t("views.home.world_map")
-                %p An interactive map showing the location of all the Fab Labs around the world
+            =image_tag ("home/lab-illustration.png"), :class => "homepage-card-image"
 
-        .col-lg-4
-          = link_to machines_path do
-            .row
-              .col-md-4= image_tag "home-icons/machines.png"
-              .col-md-8
-                %h3= t("views.home.machines")
-                %p A growing directory/wiki of all of the tools used and recommended by Fab Labs
+            = link_to new_lab_path, class: 'homepage-card-cta' do
+              = t("views.home.lab_card.cta", default: "Register your lab")
+              %i.fa.fa-arrow-right
 
-      .row.coming-next
-        .col-lg-12
-          %h2= t("views.home.whats_coming_next")
+          .homepage-card
+            .text-small
+              = t("views.home.person_card.subtitle", default: "Explore")
+            .text-large
+              = t("views.home.person_card.title", default: "I’m a Person")
+            .text-medium
+              = t("views.home.person_card.description", default: "An interactive map showing the location of all the Fab Labs around the world")
 
-        .col-lg-4
-          .row
-            .col-md-4= image_tag "home-icons/clock.png"
-            .col-md-8
-              %h3= t("views.home.features.opening_hours")
-              %p See at a glance when labs will be open and available for use
+            =image_tag ("home/person-illustration.png"), :class => "homepage-card-image"
 
-        .col-lg-4
-          .row
-            .col-md-4= image_tag "home-icons/calendar.png"
-            .col-md-8
-              %h3= t("views.home.features.events")
-              %p A calendar of all upcoming events within the global Fab Lab Network
-
-        .col-lg-4
-          .row
-            .col-md-4= image_tag "home-icons/discussions.png"
-            .col-md-8
-              %h3= t("views.home.features.discussions")
-              %p You will have a places to discuss general, lab-specific and tool-specific topics
-
-      .row.coming-next
-        .col-lg-4
-          .row
-            .col-md-4= image_tag "home-icons/api.png"
-            .col-md-8
-              %h3= t("views.home.features.developer_api")
-              %p A REST-based API that can be used to fetch and change data on the platform
-
-        .col-lg-4
-          .row
-            .col-md-4= image_tag "home-icons/localisation.png"
-            .col-md-8
-              %h3= t("views.home.features.localisation")
-              %p We want the platform to be translated and localised for everyone. More details to follow
-        .col-lg-4
-          .row
-            .col-md-4= image_tag "home-icons/activity.png"
-            .col-md-8
-              %h3= t("views.home.features.activity_feeds")
-              %p See what you've missed while you were away, and what's happening right now
-
-      .row
-        .col-lg-12
-          %h2= t("views.home.beyond_that")
-          .row
-            .col-md-4= image_tag "home-icons/help.png"
-            .col-md-8
-              %p We've got lots of ideas that we hope to implement but if you have any suggestions or problems with the site, please click the ? icon at the bottom right of any page.
+            = link_to signup_path, class: 'homepage-card-cta' do
+              = t("views.home.person_card.cta", default: "Register an account")
+              %i.fa.fa-arrow-right

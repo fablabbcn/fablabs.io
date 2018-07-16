@@ -451,7 +451,9 @@ h3 {
   margin: 4px 0;
 }
 
-a {
+a,
+.text-primary,
+a.text-primary {
   color: #58BD9F;
 
   &:hover {
