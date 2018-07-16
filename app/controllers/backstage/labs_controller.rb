@@ -1,4 +1,6 @@
 class Backstage::LabsController < Backstage::BackstageController
+  skip_before_action :require_admin, only: :show
+
   include LabsOperations
 
   def index

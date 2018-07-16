@@ -1,4 +1,5 @@
-= render "backstage/header"
+- if current_user.present?
+  = render "backstage/header"
 
 .container
   .row
@@ -9,39 +10,43 @@
           %th State
           %td
             = @lab.current_state
-            - @lab.current_state.events.keys.each do |event|
-              - if current_user.is_referee? || current_user.is_unique_referee? || current_user.has_role?(:superadmin)
-                - if 'request_more_info' == event.to_s
-                  = button_to "#{event.capitalize.to_s.tr('_', ' ')}",
-                    { controller: 'labs', action: event },
-                    method: :get,
-                    class:  'btn btn-primary',
-                    id:     'event'
 
-              - if current_user.is_referee? or current_user.is_unique_referee?
-                - if ['referee_approves', 'referee_requests_admin_approval', 'referee_rejects'].include? event.to_s
-                  = button_to "#{event.capitalize.to_s.tr('_', ' ')}", {controller: 'labs', action: event}, method: :patch, class: 'btn btn-primary', id: 'event'
-              - if current_user.has_role? :superadmin
-                - if ['approve', 'reject', 'remove'].include? event.to_s
-                  = button_to "#{event.capitalize.to_s.tr('_', ' ')}", {controller: 'labs', action: event}, method: :patch, class: 'btn btn-primary', id: 'event'
+            - if current_user.present?
+              - @lab.current_state.events.keys.each do |event|
+                - if current_user.is_referee? || current_user.is_unique_referee? || current_user.has_role?(:superadmin)
+                  - if 'request_more_info' == event.to_s
+                    = button_to "#{event.capitalize.to_s.tr('_', ' ')}",
+                      { controller: 'labs', action: event },
+                      method: :get,
+                      class:  'btn btn-primary',
+                      id:     'event'
+
+                - if current_user.is_referee? or current_user.is_unique_referee?
+                  - if ['referee_approves', 'referee_requests_admin_approval', 'referee_rejects'].include? event.to_s
+                    = button_to "#{event.capitalize.to_s.tr('_', ' ')}", {controller: 'labs', action: event}, method: :patch, class: 'btn btn-primary', id: 'event'
+                - if current_user.has_role? :superadmin
+                  - if ['approve', 'reject', 'remove'].include? event.to_s
+                    = button_to "#{event.capitalize.to_s.tr('_', ' ')}", {controller: 'labs', action: event}, method: :patch, class: 'btn btn-primary', id: 'event'
+
         - if @lab.referee.present?
           %tr
             %th Referee
             %td= @lab.referee
 
-        - if current_user.has_role?(:superadmin) && @lab.approval_workflow_logs.present?
-          %tr
-            %th Workflow Approval Logs
+        - if current_user.present?
+          - if current_user.has_role?(:superadmin) && @lab.approval_workflow_logs.present?
+            %tr
+              %th Workflow Approval Logs
 
-            %td
-              %ul
-                - @lab.approval_workflow_logs.each do |log|
-                  - if log.user.present? and log.lab.present?
-                    %li= "#{link_to(log.user.full_name, log.user)} said <strong>#{log.workflow_state}</strong> on #{log.created_at}".html_safe
-                  - else
-                    %li
-                      = "#{log.user_id} said #{log.workflow_state} on #{log.created_at}"
-                      %small User name or lab name not shown because either one ore another does no longer exist
+              %td
+                %ul
+                  - @lab.approval_workflow_logs.each do |log|
+                    - if log.user.present? and log.lab.present?
+                      %li= "#{link_to(log.user.full_name, log.user)} said <strong>#{log.workflow_state}</strong> on #{log.created_at}".html_safe
+                    - else
+                      %li
+                        = "#{log.user_id} said #{log.workflow_state} on #{log.created_at}"
+                        %small User name or lab name not shown because either one ore another does no longer exist
 
         - if @lab.referee_approval_processes.present?
           %tr
@@ -118,6 +123,8 @@
             = @lab.discourse_id
             %pre
               = @lab.discourse_errors
-      - if current_user.has_role? :superadmin
-        = link_to edit_backstage_lab_path(@lab), class: 'btn btn-primary' do
-          = fa_icon "edit", text: "Edit Lab"
+
+      - if current_user.present?
+        - if current_user.has_role? :superadmin
+          = link_to edit_backstage_lab_path(@lab), class: 'btn btn-primary' do
+            = fa_icon "edit", text: "Edit Lab"
