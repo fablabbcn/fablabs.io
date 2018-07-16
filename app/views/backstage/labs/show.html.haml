@@ -28,6 +28,21 @@
           %tr
             %th Referee
             %td= @lab.referee
+
+        - if current_user.has_role?(:superadmin) && @lab.approval_workflow_logs.present?
+          %tr
+            %th Workflow Approval Logs
+
+            %td
+              %ul
+                - @lab.approval_workflow_logs.each do |log|
+                  - if log.user.present? and log.lab.present?
+                    %li= "#{link_to(log.user.full_name, log.user)} said <strong>#{log.workflow_state}</strong> on #{log.created_at}".html_safe
+                  - else
+                    %li
+                      = "#{log.user_id} said #{log.workflow_state} on #{log.created_at}"
+                      %small User name or lab name not shown because either one ore another does no longer exist
+
         - if @lab.referee_approval_processes.present?
           %tr
             %th Referees

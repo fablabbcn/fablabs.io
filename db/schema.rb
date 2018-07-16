@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180714171543) do
+ActiveRecord::Schema.define(version: 20180715172941) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,6 +54,18 @@ ActiveRecord::Schema.define(version: 20180714171543) do
   end
 
   add_index "admin_applications", ["applicant_id", "lab_id"], name: "index_admin_applications_on_applicant_id_and_lab_id", using: :btree
+
+  create_table "approval_workflow_logs", force: :cascade do |t|
+    t.string   "lab_id"
+    t.string   "user_id"
+    t.string   "workflow_state"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "approval_workflow_logs", ["lab_id"], name: "index_approval_workflow_logs_on_lab_id", using: :btree
+  add_index "approval_workflow_logs", ["user_id"], name: "index_approval_workflow_logs_on_user_id", using: :btree
+  add_index "approval_workflow_logs", ["workflow_state"], name: "index_approval_workflow_logs_on_workflow_state", using: :btree
 
   create_table "brands", force: :cascade do |t|
     t.string   "name",           limit: 255
