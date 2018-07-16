@@ -21,7 +21,7 @@ feature "Editing a lab" do
     visit backstage_labs_path
     click_link "iaac"
     click_link "Edit Lab"
-    fill_in "Name", with: "Valldaura"
+    fill_in "lab_name", with: "Valldaura"
     click_button "save"
     expect(page).to have_content("Lab updated")
     expect(page).to have_content("Valldaura")
@@ -30,7 +30,7 @@ feature "Editing a lab" do
   scenario "as an admin with invalid details" do
     sign_in_superadmin
     visit edit_backstage_lab_path(lab)
-    fill_in "Name", with: ""
+    fill_in "lab_name", with: ""
     click_button "save"
     expect(page).to have_css(".errors")
   end

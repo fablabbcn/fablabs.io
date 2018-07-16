@@ -1,5 +1,7 @@
-.row
-  .col-lg-12
-    = title "Edit #{@page.title}"
-    = render "backstage/header"
-    = render 'form', page: @page
+= render "backstage/header"
+
+.container
+  .row
+    .col-lg-12
+      = title "Edit #{@page.title}"
+      = render 'form', page: @page

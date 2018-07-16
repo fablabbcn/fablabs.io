@@ -324,27 +324,17 @@ li.lab-link {
   }
 }
 
-.content {
-  border-right: 1px solid #CCC;
-}
-.main {
-  padding-top: 20px;
-}
-.bio {
-  text-align: center;
-  .kind {
-    margin: 5px 0;
-  }
-}
 .lab {
-  background: white;
-  border-radius: 4px;
-  // border-top: 1px solid #EEE;
-  // border-left: 1px solid #EEE;
-  // border-bottom: 1px solid #DDD;
-  // border-right: 1px solid #DDD;
-  padding: 10px;
   margin-bottom: 10px;
+  background: #F1F1F1;
+  border-radius: 8px;
+  padding: 15px;
+
+  .arrow {
+    margin: 15px;
+    font-size: 20px;
+    color: #81D7BE;
+  }
 }
 
 .top {
@@ -353,6 +343,9 @@ li.lab-link {
 
 ul.nearby-labs {
   list-style: none;
+  padding-left: 0;
+  margin: 12px 0 0;
+
   li {
     margin-bottom: 10px;
   }
@@ -430,42 +423,11 @@ ul.lab-links {
 //   }
 // }
 
-.breadcrumb {
-  background: none;
-  padding: 0 5px;
-  border-radius: none;
-  border-bottom: 1px solid #EEE;
-  padding-bottom: 5px;
-}
-
 .button-group {
   a.list { border-radius: 4px 0 0 4px; }
   a.map { border-radius: 0 4px 4px 0; }
 }
 
-.lab-phone, .lab-email {
-  &, span, a {
-    color: #AAA;
-  }
-}
-
-.view-as {
-  overflow: hidden;
-  position: relative;
-  .a-map & {
-    margin-top: 20px;
-    z-index: 20;
-    pointer-events: none;
-  }
-  ul {
-    float: right;
-  }
-  a {
-    pointer-events: auto;
-  }
-  // background: rgba(#F2F2F2, 0.4);
-  // border-radius: 2px;
-}
 // .c-labs .nav li {
 //   & > a {
 //     padding: 7px 15px;
@@ -495,19 +457,23 @@ li.all {
     .lab {
       .lab-location {
         &, a {
-          color: #999;
+          color: #747474;
         }
-        margin-bottom: 0.3em;
-        font-size: 0.9em;
+        font-size: 13px;
+        line-height: 24px;
+        font-weight: 700;
       }
       a.name {
-        font-weight: bold;
+        margin-top: 2px;
+        font-weight: 700;
         display: block;
-        margin-bottom: 0.3em;
+        font-size: 18px;
+        line-height: 24px;
+        color: #4A4A4A;
       }
 
       .lab-description {
-        color: #444;
+        color: #747474;
         margin-bottom: 0;
         font-size: 0.9em;
       }
@@ -604,7 +570,7 @@ input#lab_name {
     max-width: none;
   }
   width: 95%;
-  height: 280px;
+  height: 584px;
   display: block;
   margin: 20px auto;
 }
@@ -676,6 +642,23 @@ input#lab_name {
 .order-by {
   margin: 0;
 }
+
 ul.capabilities {
-  margin-left: 20px;
+  padding-left: 0;
+  list-style: none;
+  padding-top: 20px;
+  margin-bottom: 50px;
+
+  li {
+    border: 1px solid #979797;
+    border-radius: 4px;
+    color: #747474;
+    padding: 0 8px;
+    display: inline-block;
+    margin-bottom: 10px;
+  }
+
+  li + li {
+    margin-left: 10px;
+  }
 }

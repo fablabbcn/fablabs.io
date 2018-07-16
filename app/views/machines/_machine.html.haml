@@ -1,8 +1,14 @@
 - cache ["v2", machine] do
-  = content_tag_for :div, machine do
-    = link_to machine do
-      - if machine.photo.present?
-        = image_tag machine.photo.thumb("200x200>").url
-      %span.machine-brand= machine.brand
-      %span.machine-name= machine
-      %span.machine-tags= machine.tags.map(&:name).join(',')
+  = content_tag_for :div, machine, class: 'card small' do
+    .card-image
+      = link_to machine do
+        - if machine.photo.present?
+          = image_tag machine.photo.thumb("230x245>").url
+
+    .card-content
+      = link_to machine do
+        .card-subtitle= machine.brand
+        .card-title= machine
+
+        %i.card-arrow.fa.fa-arrow-right
+

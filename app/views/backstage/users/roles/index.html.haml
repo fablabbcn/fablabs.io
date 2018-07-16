@@ -1,20 +1,22 @@
-.row
-  .col-lg-12
-    = render "backstage/header"
-    = title "User #{@user} roles"
+= render "backstage/header"
 
-    %table.table
-      %thead
-        %tr
-          %th Name
-          %th Actions
-      %tbody
-        - @roles.each do |role|
+.container
+  .row
+    .col-lg-12
+      = title "User #{@user} roles"
+
+      %table.table
+        %thead
           %tr
-            %td= role.name
-            %td
-              = link_to 'delete', [:backstage, @user, role], method: :delete, confirm: 'Are you sure?'
+            %th Name
+            %th Actions
+        %tbody
+          - @roles.each do |role|
+            %tr
+              %td= role.name
+              %td
+                = link_to 'delete', [:backstage, @user, role], method: :delete, confirm: 'Are you sure?'
 
-    = link_to 'Add role', [:new, :backstage, @user, :role], class: 'btn btn-success'
+      = link_to 'Add role', [:new, :backstage, @user, :role], class: 'btn btn-primary'
 
 

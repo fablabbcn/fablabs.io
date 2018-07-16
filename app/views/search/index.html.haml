@@ -1,32 +1,29 @@
 - title "Search"
-.row
-  .col-lg-8.content
-    .row
-      .col-lg-12
-        -# %dl.sub-nav.right.order-by
-        -#   %dt Order by:
-        -#   %dd= select_tag :order, ['title','title']
+.container
+  .row
+    .col-lg-8.content
+      .row
+        .col-lg-12
+          -# %dl.sub-nav.right.order-by
+          -#   %dt Order by:
+          -#   %dd= select_tag :order, ['title','title']
 
-    - if params[:query].present?
-      .search-results
-        -# %button.close{type: "button", data: { dismiss: "alert"}, aria: { hidden: true}} ×
-        = link_to "×", labs_path, class: 'close right'
-        #{pluralize @results.size, "search result"} for
-        %strong= params[:query]
-    - if @labs.size > 0
-      .row
-        %h4 Labs
-        .labs= render @labs
-    - if @projects.size > 0
-      .row
-        %h4 Projects
-        .projects= render @projects
-    - if @users.size > 0
-      .row
-        %h4 People
-        .users= render @users
-    - if @results.empty?
-      %p We could not find what you were looking for. Maybe you can try again.
+      - if params[:query].present?
+        .search-results
+          -# %button.close{type: "button", data: { dismiss: "alert"}, aria: { hidden: true}} ×
+          = link_to "×", labs_path, class: 'close right'
+          #{pluralize @results.size, "search result"} for
+          %strong= params[:query]
+      - if @labs.size > 0
+        .row
+          %h4 Labs
+          .labs= render @labs
+      - if @projects.size > 0
+        .row
+          %h4 Projects
+          .projects= render @projects
+      - if @results.empty?
+        %p We could not find what you were looking for. Maybe you can try again.
 
 
-  .col-lg-4
+    .col-lg-4

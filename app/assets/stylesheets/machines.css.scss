@@ -1,22 +1,3 @@
-.machine a span { display: block; }
-.machine-brand { font-size: 0.8em; }
-.machine-name {
-  font-weight: bold;
-    clear: both;
-  // font-weight: bold;
-  font-size: 0.9em;
-}
-.machine-tags {
-  position: absolute;
-  top: 5px;
-  left: 5px;
-  background: #FFF;
-  padding: 3px;
-  font-size: 0.5em;
-  font-weight: bold;
-  color: #444;
-}
-
 .c-machines.a-show {
   .main {
     background: #FFF;
@@ -32,19 +13,5 @@
     .lab-links {
       margin-left: 5px;
     }
-  }
-}
-
-.machine {
-  border-radius: 4px;
-  padding: 5px;
-  background: white;
-  position: relative;
-  // display: inline-block;
-  // margin-bottom: 5px;
-  // width: 150px;
-  // max-width: 100%;
-  img {
-    width: 100%;
   }
 }

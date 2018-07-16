@@ -14,7 +14,12 @@ module ApproveWorkflow
         event :remove, transition_to: :removed
       end
       state :need_more_info do
+        event :referee_approves, transition_to: :approved
+        event :referee_rejects, transition_to: :undecided
+        event :request_more_info, transition_to: :need_more_info
+        event :referee_requests_admin_approval, transition_to: :admin_approval
         event :lab_adds_info, transition_to: :more_info_added
+        event :request_more_info, transition_to: :need_more_info
         event :approve, transition_to: :approved
         event :reject, transition_to: :rejected
         event :remove, transition_to: :removed

@@ -1,122 +1,95 @@
 = simple_form_for lab, html: { class: 'form-horizontal' } do |f|
   = render 'form_errors', resource: lab
 
-  - if lab.workflow_state != "approved"
-    %fieldset
-      %legend
-        Important Information
-
-      .row
-        .col-lg-12
-          %h5
-            Please select 3 Referee Labs.
-          %p
-            Please choose 3 of the Referee Labs available and contact them, they will approve you after you have exchanged more information with them. The list of Referee Labs is limited to some Fab Labs with experience and a history of collaborating with the global Fab Lab Network, at the moment it is not possible to choose Referee Labs outside that list. It's not important that you already know them, it's important that you start a discussion with them. We are doing this so that the connections among the Labs (especially for new Labs) get strengthened.
-
-          = render 'referees', :f => f
-
-      .row
-        .col-lg-12
-          %h5
-            Please select a Parent Lab
-          %p
-            Is this Lab connected to another Lab? If so, which Lab?
-          = f.input :parent_id, as: 'select', collection: Lab.with_approved_state.order('name ASC'), input_html: { class: 'enhanced' }
-
   %fieldset
-    %legend Basic Details
+    .text-large
+      Adding Basic Details
 
-    = f.input :name, label: 'Fab Lab Name'
+    = f.input :name, label: 'Your fablab name'
 
-    %p
-      What kind of Fab Lab is your Lab?
-    - Lab::Kinds.each_with_index do |m, index|
-      .col-lg-2
-        .radio-inline
-          %span
-            = f.radio_button :kind, index
-            %label.radio{style: "width: 160px;"}
-              = m.humanize.titleize
+    .question
+      .text-medium
+        %strong More lab details:
+        %span What kind of Fab Lab is your Lab?
 
-    .row
-      .col-lg-12
-        %h5
-          Current status of your Lab
-        %p
-          Is this Lab already open, planned or closed?
+      .row
+        - Lab::Kinds.each_with_index do |m, index|
+          .col-lg-2
+            .radio-inline
+              %span
+                = f.radio_button :kind, index
+                %label.radio{style: "width: 160px;"}
+                  = m.humanize.titleize
 
-    .row
-      - Lab::ACTIVITY_STATUS.each do |status|
-        .col-lg-2
-          .radio-inline
-            %span
-              = f.radio_button :activity_status, status, class: 'activity-status-radio'
-              %label.radio{style: "width: 160px;"}
-                = status.humanize.titleize
+    .question
+      .text-medium
+        %strong Current status of your Lab:
+        %span Is this Lab already open, planned or closed?
 
-    .row
-      .col-lg-12
-        %h5
-          History of your Lab
-        %p
-          Please indicate these important dates in the history of your Lab:
-    .row
-      .col-lg-4
-        = f.input :activity_start_at, label: 'When did you start designing and planning your Lab?', as: 'string', input_html: {class: 'datepicker', "data-date-format" => "yyyy-mm-dd"}
-      .col-lg-4
-        = f.input :activity_inaugurated_at, label: 'When was the Lab officially inaugurated?', as: 'string', input_html: {class: 'datepicker' , "data-date-format" => "yyyy-mm-dd"}
-      .col-lg-4
-        = f.input :activity_closed_at, label: 'When was the Lab closed?', as: 'string', input_html: {class: 'datepicker' , "data-date-format" => "yyyy-mm-dd"}
+      .row
+        - Lab::ACTIVITY_STATUS.each do |status|
+          .col-lg-2
+            .radio-inline
+              %span
+                = f.radio_button :activity_status, status, class: 'activity-status-radio'
+                %label.radio{style: "width: 160px;"}
+                  = status.humanize.titleize
+
+    .question
+      .text-medium
+        %strong Lab history:
+        %span Please indicate these important dates in the history of your Lab:
+
+      = f.input :activity_start_at, label: 'When did you start designing and planning your Lab?', as: 'string', input_html: {class: 'datepicker', "data-date-format" => "yyyy-mm-dd"}
+      = f.input :activity_inaugurated_at, label: 'When was the Lab officially inaugurated?', as: 'string', input_html: {class: 'datepicker' , "data-date-format" => "yyyy-mm-dd"}
+      = f.input :activity_closed_at, label: 'When was the Lab closed?', as: 'string', input_html: {class: 'datepicker' , "data-date-format" => "yyyy-mm-dd"}
 
 
 
   %fieldset
-    %legend  What qualifies as a Fab Lab
-    %p
+    .text-large
+      What qualifies as a Fab Lab
+    .text-medium
       Fab Labs have a list of qualities and requirements that defines them.
       More information can be found
       %a{href: "http://www.fabfoundation.org/index.php/what-qualifies-as-a-fab-lab/index.html"} here.
 
-    .col-lg-2
-      .radio-inline
-        = f.radio_button :charter, 1
-        %label.radio{style: "width: 80%;"}
-          Charter: You need to agree with the
-          = succeed "." do
-            %a{:href => "http://fab.cba.mit.edu/about/charter/"} Fab Charter
+    .radio-inline
+      = f.radio_button :charter, 1
+      %label.radio
+        Charter: You need to agree with the
+        = succeed "." do
+          %a{:href => "http://fab.cba.mit.edu/about/charter/"} Fab Charter
 
-    .col-lg-2
-      .radio-inline
-        = f.radio_button :tools, 1
-        %label.radio{style: "width: 80%;"}
-          Tools: The submitted Fab Lab has a compatible set of tools related with the
-          = succeed "." do
-            %a{:href => "http://fab.cba.mit.edu/about/fab/inv.html"} official Fab Lab inventory.
+    .radio-inline
+      = f.radio_button :tools, 1
+      %label.radio
+        Tools: The submitted Fab Lab has a compatible set of tools related with the
+        = succeed "." do
+          %a{:href => "http://fab.cba.mit.edu/about/fab/inv.html"} official Fab Lab inventory
 
-    .col-lg-2
-      .radio-inline
-        = f.radio_button :network, 1
-        %label.radio{style: "width: 80%;"}
-          Network: The submitted Fab Lab commits to participate in the network activities: regional meetings, FABX conferences,
-          = succeed "." do
-            %a{:href => "https://discuss.fablabs.io/"} the Discuss section on FabLabs.io.
+    .radio-inline
+      = f.radio_button :network, 1
+      %label.radio
+        Network: The submitted Fab Lab commits to participate in the network activities: regional meetings, FABX conferences,
+        = succeed "." do
+          %a{:href => "https://discuss.fablabs.io/"} the Discuss section on FabLabs.io
 
-    .col-lg-2
-      .radio-inline
-        = f.radio_button :programs, 1
-        %label.radio{style: "width: 80%;"}
-          Programs: Our staff is (or will be) trained in the
-          %a{:href => "http://fabacademy.org/"} Fab Academy
-          or compatible programs.
+    .radio-inline
+      = f.radio_button :programs, 1
+      %label.radio
+        Programs: Our staff is (or will be) trained in the
+        %a{:href => "http://fabacademy.org/"} Fab Academy
+        or compatible programs
 
-    .col-lg-2
-      .radio-inline
-        = f.radio_button :public, 1
-        %label.radio{style: "width: 80%;"}
-          Access: Public access to the Fab Lab is essential.
+    .radio-inline
+      = f.radio_button :public, 1
+      %label.radio
+        Access: Public access to the Fab Lab is essential
 
   %fieldset
-    %legend Description
+    .text-large
+      Description
 
     = f.input :blurb, as: 'text', hint: 'A very brief overview of the lab, maybe include what it specializes in. <span id="description-count"></span> characters available.'.html_safe, input_html: { rows: 3, data: { limit: 200, counter: '#description-count'} }
 
@@ -128,7 +101,8 @@
         = f.input_field :slug, class: 'form-control'
 
   %fieldset
-    %legend Lab Images
+    .text-large
+      Lab Images
 
     .row
       .col-lg-3= image_tag @lab.avatar.url, class: 'avatar big'
@@ -136,7 +110,6 @@
         = f.input :avatar, as: :file, label: 'Avatar', hint: "This will be a square image next shown next to the lab name throughout the site"
         = f.hidden_field :retained_avatar
 
-    %hr/
     .row
       .col-lg-3
         - if @lab.header.present?
@@ -146,15 +119,17 @@
         = f.hidden_field :retained_header
 
   %fieldset
-    %legend Lab Location
+    .text-large
+      Lab Location
+
     .address
-      %fieldset
-        %legend Step 1
-        %p.hint Enter the lab's address in the textbox below. Then drag the map marker to pinpoint its exact position.
+      .question
+        .text-medium Step 1
+        .text-small Enter the lab's address in the textbox below. Then drag the map marker to pinpoint its exact position.
         = f.input :geocomplete, input_html: { id: 'geocomplete', data: { latlng: "#{@lab.latitude}, #{@lab.longitude}"} }, label: false
-      %fieldset.step-2
-        %legend Step 2
-        %p.hint Edit the details in the address fields below.
+      .question.step-2
+        .text-medium Step 2
+        .text-small Edit the details in the address fields below.
         .row
           .col-lg-6#map-holder
             #location-picker-map
@@ -169,26 +144,41 @@
             = f.input :latitude, as: :hidden, input_html: { data: {geo: "lat"}}
             = f.input :longitude, as: :hidden, input_html: { data: {geo: "lng"}}
             = f.input :zoom, as: :hidden
-        %hr/
+      .question
+        .text-medium Step 3
         = f.input :address_notes, hint: 'Any details that might be useful for someone trying to find the lab. For example, "Go up the stairs and through the red door".'
 
   %fieldset
-    %legend Lab Contact Details
+    .text-large
+      Lab Contact Details
     = f.input :phone, hint: "A general enquiries phone number for the lab", label: "Lab Phone Number"
     = f.input :email, hint: "A general enquiries email address for the lab", label: "Lab Email Address"
 
-  - if @lab.new_record?
-    %fieldset
-      %legend Your Role
-      %p.hint What is your association with this lab?
-      = f.simple_fields_for :employees do |e|
-        = e.input :job_title, placeholder: "e.g. Lab Manager"
-        = e.input :description, placeholder: "e.g. Coordinates Workshops and Events"
+    = render 'form_links', f: f
 
-  = render 'form_links', f: f
+    - if @lab.new_record?
+      .question
+        .text-medium
+          %strong Your Role
+        = f.simple_fields_for :employees do |e|
+          = e.input :job_title, placeholder: "e.g. Lab Manager"
+          = e.input :description, placeholder: "e.g. Coordinates Workshops and Events"
+
+    - if @lab.new_record?
+      .question
+        .text-medium
+          %strong Applications Notes
+        = f.input :application_notes
+
 
   %fieldset
-    %legend Capabilities
+    .text-large
+      Lab Technologies
+
+    .text-medium
+      %strong Add Capabilities:
+      %span Check all of the boxes that apply to this lab
+
     = f.input :capabilities, as: 'check_boxes', inline_label: true, item_wrapper_class: 'checkbox_container', label: false, collection: Lab::Capabilities.map{|f| [ I18n.t("capabilities.#{f}"), f]}, checked: f.object.capabilities, hint: "Check all of the boxes that apply to this lab"
 
     - @collection = Machine.includes(:brand)
@@ -203,9 +193,23 @@
 
     = f.input :tools_list, hint: "Please list any machines that you have so that we can add them to the directory.", input_html: { style: "height: 8em" }, placeholder: "e.g. Makerbot Industries - Makerbot 2"
 
-  - if @lab.new_record?
+  - if lab.workflow_state != "approved"
     %fieldset
-      %legend Anything else?
-      = f.input :application_notes
+      .text-large
+        Please select 3 Referee Labs
+      .text-medium
+        Please choose 3 of the Referee Labs available and contact them, they will approve you after you have exchanged more information with them. The list of Referee Labs is limited to some Fab Labs with experience and a history of collaborating with the global Fab Lab Network, at the moment it is not possible to choose Referee Labs outside that list. It's not important that you already know them, it's important that you start a discussion with them. We are doing this so that the connections among the Labs (especially for new Labs) get strengthened.
 
-  = f.submit (lab.new_record? ? 'Add Lab' : 'Update Lab'), class: 'btn btn-success btn-lg'
+      = render 'referees', :f => f
+
+      %br
+
+      .text-large
+        Please select a Parent Lab
+      .text-medium
+        Is this Lab connected to another Lab? If so, which Lab?
+
+      = f.input :parent_id, as: 'select', collection: Lab.with_approved_state.order('name ASC'), input_html: { class: 'enhanced' }
+
+
+  = f.submit (lab.new_record? ? 'Add Lab' : 'Update Lab'), class: 'btn btn-primary btn-lg'

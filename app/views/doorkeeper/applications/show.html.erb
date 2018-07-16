@@ -15,6 +15,8 @@
 
     <h4><%= t('.callback_urls') %>:</h4>
 
+
+
     <table>
       <% @application.redirect_uri.split.each do |uri| %>
         <tr>
@@ -22,11 +24,15 @@
             <code><%= uri %></code>
           </td>
           <td>
-            <%= link_to t('doorkeeper.applications.buttons.authorize'), oauth_authorization_path(client_id: @application.uid, redirect_uri: uri, response_type: 'code', scope: @application.scopes), class: 'btn btn-success', target: '_blank' %>
+            <%= link_to t('doorkeeper.applications.buttons.authorize'), oauth_authorization_path(client_id: @application.uid, redirect_uri: uri, response_type: 'code', scope: @application.scopes), class: 'btn btn-primary', target: '_blank' %>
           </td>
         </tr>
       <% end %>
     </table>
+
+    <h4>Personal access token:</h4>
+    <p><code id="access_token"><%= @token.token %></code></p>
+
   </div>
 
   <div class="col-md-4">

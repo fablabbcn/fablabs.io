@@ -1,17 +1,20 @@
 = simple_form_for machine do |f|
   %fieldset
-    %legend General
+    .text-large
+      General
     = render "form_errors", resource: machine
     = f.association :brand, hint: "Not in the list? #{link_to 'Add a new brand', new_brand_path}".html_safe
     = f.input :name
     = f.input :description
 
   %fieldset
-    %legend Facilities
+    .text-large
+      Facilities
     = render "facilities", :f => f
 
   %fieldset
-    %legend Media
+    .text-large
+      Media
     .row
       .col-lg-3
         - if machine.photo.present?
@@ -21,16 +24,18 @@
         = f.hidden_field :retained_photo
 
   %fieldset
-    %legend Tags
+    .text-large
+      Tags
     = f.input :tag_list
     = f.input :inventory_item, class: 'form-control'
 
   %fieldset
-    %legend Links
+    .text-large
+      Links
     = f.simple_fields_for :links do |link|
       = render 'link_fields', f: link
     .links
-      = link_to_add_association f, :links, class: 'btn btn-success' do
-        = fa_icon "plus", text: 'Add another link'
+      = link_to_add_association f, :links, class: 'btn btn-primary' do
+        Add link
 
-  = f.submit (machine.new_record? ? 'New Machine' : 'Update Machine'), class: 'btn btn-success'
+  = f.submit (machine.new_record? ? 'New Machine' : 'Update Machine'), class: 'btn btn-primary'

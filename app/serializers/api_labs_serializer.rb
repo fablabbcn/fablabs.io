@@ -31,6 +31,7 @@ class ApiLabsSerializer   < ApiV2Serializer
     # employees_attributes: [ :id, :job_title, :description ]
   
     has_many :links
+    has_many :machines, serializer: ApiMachineSerializer
   
     attribute :kind_name do | object |
       Lab::Kinds[object.kind]

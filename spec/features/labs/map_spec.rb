@@ -4,7 +4,7 @@ describe "map" do
 
   it "has map page" do
     visit labs_path
-    click_link "Map"
+    click_link "Map view"
     expect(page).to have_title("Map")
     expect(current_url).to include(map_labs_url)
   end
@@ -13,7 +13,7 @@ describe "map" do
     lab = FactoryGirl.create(:lab)
     lab.approve!
     visit labs_path
-    click_link "Map"
+    click_link "Map view"
     expect(page).to have_css('.leaflet-marker-icon')
   end
 

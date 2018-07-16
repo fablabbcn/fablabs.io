@@ -16,7 +16,7 @@
       .col-lg-4
         = f.input :workflow_state_eq, collection: Lab.workflow_spec.state_names, label: "State", include_blank: 'ALL'
       .col-lg-3
-        = f.submit "Filter", class: 'btn btn-success btn-lg'
+        = f.submit "Filter", class: 'btn btn-primary btn-lg'
 
 = page_entries_info @labs
 %table.table

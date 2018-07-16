@@ -34,70 +34,6 @@ ol.orbit-bullets {
   // position: relative;
 }
 
-.project {
-  background: #F5F5F5;
-  border: 1px solid #D9D9D9;
-  height: 250px;
-  border-radius: 4px;
-  margin-top: 50px;
-  div {
-    padding: 0px;
-    margin: 0px;
-  }
-  .owner-avatar {
-    position: absolute;
-    padding: 5px;
-    img {
-        width: 40px;
-    }
-  }
-
-  .project-title {
-    height: 120px;
-    padding-top: 40px;
-    text-align: center;
-    text-shadow: 0px 1px 2px rgba(255, 255, 255, 0.8);
-    font-weight: bold;
-    color: #4D4D4D;
-    background-repeat: no-repeat;
-    background-size: cover;
-    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1) inset;
-    border-bottom: 1px solid #D9D9D9;
-    a {
-      color: #4F4F4F;
-      background-color: #fff;
-      opacity: 0.8;
-      filter: alpha(opacity=80); /* For IE8 and earlier */
-      -moz-opacity: 0.8;
-      padding: 10px;
-      border: 1px solid #D9D9D9;
-      border-radius: 3px;
-      span {
-        height: 40px;
-      }
-    }
-  }
-  .project-description {
-    height: 90px;
-    padding: 10px;
-    span {
-      a {
-        float: right;
-      }
-    }
-  }
-
-  .project-baseline {
-    padding: 10px;
-    height: 30px;
-    p { font-size: 0.6rem;
-      span {
-        padding-right: 10px;
-      }
-    }
-  }
-}
-
 .main-project {
   color: #4D4D4D;
   background-repeat: no-repeat;
@@ -158,11 +94,6 @@ ul.taglist li.gray {
 }
 
 form {
-  label {
-    font-size: 0.8em;
-    padding-bottom: 10px;
-  }
-
   ul.taglist-form li {
     padding: 15px;
     label {
@@ -289,12 +220,6 @@ form {
     filter: alpha(opacity=0);
     -moz-opacity: 0;
     filter:progid:DXImageTransform.Microsoft.Alpha(opacity=0);
-  }
-
-  .step {
-    border: 1px solid #ddd;
-    padding: 10px;
-    margin: 10px;
   }
 }
 

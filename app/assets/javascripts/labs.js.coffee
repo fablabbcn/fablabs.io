@@ -22,7 +22,12 @@ toggleActivityDateFields = (status) ->
 
 
 ready = ->
-
+  $('#labs_country_selector').on 'change', (e) ->
+    country = e.target.value
+    if country
+      window.location = '/labs?country=' + country
+    else
+      window.location = '/labs'
 
   options = {
     valueNames: [ 'name', 'year' ]
