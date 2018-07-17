@@ -124,6 +124,20 @@
             %pre
               = @lab.discourse_errors
 
+            %div#discourse-comments
+
+            :plain
+              <script type="text/javascript">
+                DiscourseEmbed = { discourseUrl: '#{Figaro.env.discourse_endpoint}',
+                                   topicId:      "#{@lab.discourse_id}" };
+
+                (function() {
+                  var d = document.createElement('script'); d.type = 'text/javascript'; d.async = true;
+                  d.src = DiscourseEmbed.discourseUrl + 'javascripts/embed.js';
+                  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(d);
+                })();
+              </script>
+
       - if current_user.present?
         - if current_user.has_role? :superadmin
           = link_to edit_backstage_lab_path(@lab), class: 'btn btn-primary' do
