@@ -38,7 +38,7 @@ services:
       - memcached
     # expose the port we configured Puma to bind to (should expose only internally)
     environment:
-      - RAILS_ENV=production
+      - RAILS_ENV=${RAILS_ENV}
       - AWS_BUCKET=${AWS_BUCKET}
       - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
       - AWS_SECRET=${AWS_SECRET}
