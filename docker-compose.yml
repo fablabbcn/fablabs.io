@@ -57,9 +57,6 @@ services:
       - DB_PASSWORD=${DB_PASSWORD}
       - DB_HOST=db
       - MEMCACHED_HOST=memcached://memcached:11211/
-      - OPBEAT_ORG_ID=${OPBEAT_ORG_ID}
-      - OPBEAT_APP_ID=${OPBEAT_APP_ID}
-      - OPBEAT_SECRET=${OPBEAT_SECRET}
       - SECRET_TOKEN=${SECRET_TOKEN}
       - REDIS_URL=redis://redis:6379/12
       - GEONAMES_USERNAME=${GEONAMES_USERNAME}

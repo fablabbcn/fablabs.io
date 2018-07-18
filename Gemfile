@@ -119,10 +119,6 @@ group :development do
   gem 'net-ssh'
 end
 
-group :production do
-  gem "opbeat"
-end
-
 # Use ActiveModel has_secure_password
 gem 'bcrypt-ruby'
 
