@@ -121,8 +121,10 @@
           %th Discourse sync
           %td
             = @lab.discourse_id
-            %pre
-              = @lab.discourse_errors
+
+            - if @lab.discourse_errors.present?
+              %pre
+                = @lab.discourse_errors
 
             = comments_script(@lab.discourse_id)
 
