@@ -9,7 +9,6 @@
   background-size: cover;
   background-position: center;
   padding-top: 90px;
-  margin-bottom: 290px;
 }
 
 .homepage-header-content {
@@ -37,7 +36,7 @@
   box-shadow: 0 2px 8px 0 rgba(0,0,0,0.10);
   padding: 26px 40px;
   max-width: 410px;
-  height: 460px;
+  height: 480px;
   float: left;
   margin-right: 80px;
   margin-bottom: 40px;
@@ -53,7 +52,8 @@
 }
 
 .homepage-card-image {
-  width: 100%;
+  width: 240px;
+  margin: 20px 45px;
 }
 
 .homepage-quote {
@@ -65,17 +65,15 @@
 }
 
 .homepage-divider {
-  background: #FF7A72;
   width: 160px;
-  border-bottom: 8px solid #68C5AA;
+  border-bottom: 8px solid #81D7BE;
   margin: auto;
   margin-bottom: 40px;
 }
 
 .homepage-divider-small {
-  background: #FF7A72;
   width: 80px;
-  border-bottom: 8px solid #68C5AA;
+  border-bottom: 8px solid #81D7BE;
   margin-bottom: 6px;
 }
 
