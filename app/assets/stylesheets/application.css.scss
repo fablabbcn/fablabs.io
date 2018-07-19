@@ -432,13 +432,16 @@ h3 {
 }
 
 a,
-.text-primary,
 a.text-primary {
-  color: #58BD9F;
+  color: #81D7BE;
 
   &:hover {
     color: #68C5AA;
   }
+}
+
+.text-primary {
+  color: #81D7BE;
 }
 
 .list-item-small-wrapper {
