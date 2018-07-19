@@ -34,7 +34,7 @@ module ProjectsOperations
     { id: project.id,
       title: project.title,
       name: project.lab.name,
-      kind: project.lab.kind_name,
+      kind: project.lab.kind,
       latitude: project.lab.latitude,
       longitude: project.lab.longitude,
       lab: lab_serializer(project),
@@ -48,7 +48,7 @@ module ProjectsOperations
         name: project.lab.name,
         latitude: project.lab.latitude,
         longitude: project.lab.longitude,
-        kind: project.lab.kind_name,
+        kind: project.lab.kind,
         _link: {
           :href => "/#{project.lab.slug}",
           :method => "GET",

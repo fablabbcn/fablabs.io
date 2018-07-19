@@ -44,7 +44,7 @@ feature "Adding a lab" do
     end
 
     scenario "as a user with valid details" do
-      choose "lab_kind_2"
+      choose "lab_kind_mini_fab_lab"
       choose "lab_tools_1"
       choose "lab_network_1"
       choose "lab_programs_1"

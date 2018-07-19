@@ -33,10 +33,6 @@ class ApiLabsSerializer   < ApiV2Serializer
     has_many :links
     has_many :machines, serializer: ApiMachineSerializer
   
-    attribute :kind_name do | object |
-      Lab::Kinds[object.kind]
-    end
-  
     attribute :url do | object |
         # url_for(controller: Api::V2::LabsController, action: :show, id:  object.id)
         "/2/labs/#{object.id}"   
