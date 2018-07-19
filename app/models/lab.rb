@@ -94,7 +94,10 @@ class Lab < ActiveRecord::Base
   bitmask :capabilities, as: Capabilities
 
   unless Rails.env.test?
-    validates :referee_approval_processes, presence: true, :length => { is: 3 }, unless: :is_approved?
+    validates :referee_approval_processes, presence: true,
+      length: { is:       3,
+                message:  "length is incorrect. In order to be approved you must select %{count} referees." },
+      unless: :is_approved?
   end
   # validates :employees, presence: true, on: :create
 

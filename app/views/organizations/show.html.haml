@@ -42,8 +42,8 @@
     .col-lg-4
       = render "links", links: @organization.links
 
-.row
-  .col-lg-12
-    - if @organization.discourse_id.present?
-      %h3 Discuss this Organization on discuss.fablabs.io
-      = comments_script(@organization.discourse_id)
+  .row
+    .col-lg-12
+      - if @organization.discourse_id.present?
+        %h3 Discuss this Organization on discuss.fablabs.io
+        = comments_script(@organization.discourse_id)

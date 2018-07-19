@@ -584,7 +584,6 @@ DEPENDENCIES
   momentjs-rails
   nest
   net-ssh
-  opbeat
   paper_trail
   paperclip
   pg (= 0.17.1)
@@ -635,4 +634,4 @@ RUBY VERSION
    ruby 2.3.1p112
 
 BUNDLED WITH
-   1.16.2
+   1.16.3

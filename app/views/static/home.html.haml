@@ -23,9 +23,9 @@
 
             =image_tag ("home/lab-illustration.png"), :class => "homepage-card-image"
 
-            = link_to new_lab_path, class: 'homepage-card-cta' do
+            = link_to new_lab_path, class: 'homepage-cta' do
               = t("views.home.lab_card.cta", default: "Register your lab")
-              %i.fa.fa-arrow-right
+              = image_tag ("icons/arrow-right.svg")
 
           .homepage-card
             .text-small
@@ -37,16 +37,16 @@
 
             =image_tag ("home/person-illustration.png"), :class => "homepage-card-image"
 
-            = link_to signup_path, class: 'homepage-card-cta' do
+            = link_to signup_path, class: 'homepage-cta' do
               = t("views.home.person_card.cta", default: "Register an account")
-              %i.fa.fa-arrow-right
+              = image_tag ("icons/arrow-right.svg")
 
   .container
     .homepage-quote.text-primary
       .homepage-divider
       = t("views.home.quote", default: "Because all Fab Labs share common tools and processes, the program is building a global network, a distributed laboratory for research and invention.")
 
-  .visible-lg-block
+  .visible-lg-block.container
     .homepage-circles
       .homepage-circle.homepage-circle-1
       .homepage-circle.homepage-circle-2
@@ -62,9 +62,9 @@
           = t("views.home.fablabs-section.title", default: "All Fab Labs share common tools and processes.")
         .text-medium
           = t("views.home.fablabs-section.description", default: "In order to build a global network, a distributed laboratory for research and invention.")
-        = link_to labs_path, class: 'homepage-small-cta text-medium text-primary' do
+        = link_to labs_path, class: 'homepage-cta' do
           = t("views.home.fablabs-section.cta", default: "Learn more")
-          %i.fa.fa-arrow-right
+          = image_tag ("icons/arrow-right.svg")
 
   .hidden-lg.container
     .row
@@ -74,9 +74,9 @@
           = t("views.home.fablabs-section.title", default: "All Fab Labs share common tools and processes.")
         .text-medium
           = t("views.home.fablabs-section.description", default: "In order to build a global network, a distributed laboratory for research and invention.")
-        = link_to labs_path, class: 'homepage-small-cta text-medium text-primary' do
+        = link_to labs_path, class: 'homepage-cta' do
           = t("views.home.fablabs-section.cta", default: "Learn more")
-          %i.fa.fa-arrow-right
+          = image_tag ("icons/arrow-right.svg")
 
   .homepage-fablabs-section
     .container
@@ -88,9 +88,9 @@
               = t("views.home.fablabs-section.title", default: "Global league of fab labs for local purposes.")
             .text-medium
               = t("views.home.fablabs-section.description", default: "In order to build a global network, a distributed laboratory for research and invention.")
-            = link_to labs_path, class: 'homepage-small-cta text-medium text-primary' do
+            = link_to labs_path, class: 'homepage-cta' do
               = t("views.home.fablabs-section.cta", default: "See the full list")
-              %i.fa.fa-arrow-right
+              = image_tag ("icons/arrow-right.svg")
         .col-sm-7
           =image_tag ("home/fablabs-logos.png"), :class => "homepage-fablabs-logos"
 
@@ -109,9 +109,9 @@
 
             =image_tag ("home/lab-illustration.png"), :class => "homepage-card-image"
 
-            = link_to new_lab_path, class: 'homepage-card-cta' do
+            = link_to new_lab_path, class: 'homepage-cta' do
               = t("views.home.lab_card.cta", default: "Register your lab")
-              %i.fa.fa-arrow-right
+              = image_tag ("icons/arrow-right.svg")
 
           .homepage-card
             .text-small
@@ -123,6 +123,6 @@
 
             =image_tag ("home/person-illustration.png"), :class => "homepage-card-image"
 
-            = link_to signup_path, class: 'homepage-card-cta' do
+            = link_to signup_path, class: 'homepage-cta' do
               = t("views.home.person_card.cta", default: "Register an account")
-              %i.fa.fa-arrow-right
+              = image_tag ("icons/arrow-right.svg")
