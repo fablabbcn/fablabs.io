@@ -5,6 +5,7 @@ FactoryGirl.define do
   factory :lab, aliases: [:linkable, :trackable] do
     sequence(:name) { |n| "Fab Lab #{n}" }
     sequence(:slug) { |n| "fablab#{n}" }
+    email { Faker::Internet.email }
     description { Faker::Lorem.sentence }
     address_1 { Faker::Address.street_address }
     improve_approval_application { Faker::Lorem.sentence }
