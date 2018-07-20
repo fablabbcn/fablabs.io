@@ -14,7 +14,7 @@ FactoryGirl.define do
     network true
     programs true
     tools true
-    kind 1
+    kind :fab_lab
     referee_id 1
     creator
   end

@@ -32,7 +32,7 @@ class LabSerializer < ActiveModel::Serializer
   has_many :links
 
   def kind_name
-    Lab::Kinds[object.kind]
+    kind
   end
 
   def url

@@ -4,10 +4,9 @@
       = image_tag organization.avatar.thumb("310x330#").url, itemprop: "logo"
 
   .card-content
-    = link_to organization, class: 'card-title', itemprop: 'name' do
-      = organization.name
-    %span.url.microdata{itemprop: "url"}= organization_url(organization, {locale: nil})
-    .organization-location
+    = link_to organization, itemprop: 'name' do
+      .card-title= organization.name
+      .card-subtitle= organization.kind.humanize.titleize
+      %span.url.microdata{itemprop: "url"}= organization_url(organization, {locale: nil})
 
-    = link_to organization do
-      %i.card-arrow.fa.fa-arrow-right
+      = image_tag ("icons/arrow-right.svg"), :class => "card-arrow"

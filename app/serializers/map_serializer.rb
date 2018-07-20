@@ -12,4 +12,8 @@ class MapSerializer < ActiveModel::Serializer
     lab_url(object)
   end
 
+  def kind_name
+    kind
+  end
+
 end

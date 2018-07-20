@@ -12,7 +12,7 @@ class Api::V2::ProjectsController <  Api::V2::ApiController
   end
 
   def map
-     @projects,@pagination = paginate Project.joins(:collaborations).includes(:lab).references(:lab).collect { |p| {id: p.id, title: p.title, name: p.lab.name, latitude: p.lab.latitude, longitude: p.lab.longitude, kind: p.lab.kind_name}}
+     @projects,@pagination = paginate Project.joins(:collaborations).includes(:lab).references(:lab).collect { |p| {id: p.id, title: p.title, name: p.lab.name, latitude: p.lab.latitude, longitude: p.lab.longitude, kind: p.lab.kind}}
      options = {}
      options[:meta] = {'total-pages' => @pagination[:pages] }
      options[:links] = @pagination
