@@ -18,7 +18,7 @@ describe Lab, type: :model  do
   it { should belong_to(:creator) }
   it { should belong_to(:referee) }
 
-  it { should validate_presence_of(:kind) }
+  it { should define_enum_for(:kind) }
   it { should validate_presence_of(:name) }
   it { should validate_presence_of(:country_code) }
   it { should validate_presence_of(:slug).with_message('is invalid') }
@@ -52,7 +52,7 @@ describe Lab, type: :model  do
   end
 
   it "has Kinds" do
-    expect(Lab::Kinds).to eq(%w(mini_fab_lab fab_lab supernode mobile))
+    expect(Lab::kinds.keys).to eq(%w(mini_fab_lab fab_lab mobile))
   end
 
   it "has Capabilities" do

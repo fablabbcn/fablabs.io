@@ -37,6 +37,8 @@ class Lab < ActiveRecord::Base
     [:name]
   end
 
+  enum kind: { mini_fab_lab: 0, fab_lab: 1, mobile: 3 }
+
   has_many :academics
   has_many :admin_applications
   has_many :events
@@ -67,7 +69,9 @@ class Lab < ActiveRecord::Base
   has_many :approval_workflow_logs
 
   validates_presence_of :name, :country_code, :slug#, :creator
-  validates_presence_of :address_1, :kind, on: :create
+  validates_presence_of :address_1, on: :create
+
+  validates_inclusion_of :kind, in: kinds.keys, on: :create
 
   validates_acceptance_of :network, :programs, :tools, :access, :chart, :accept => true, message: 'You must agree to our terms and conditions.', on: :create
 
@@ -81,8 +85,6 @@ class Lab < ActiveRecord::Base
       errors.add(:slug, "is reserved")
     end
   end
-
-  Kinds = %w(mini_fab_lab fab_lab supernode mobile)
 
   ACTIVITY_STATUS = [
     ACTIVITY_PLANNED  = 'planned'.freeze,
@@ -141,12 +143,8 @@ class Lab < ActiveRecord::Base
     end
   end
 
-  def kind_name
-    Kinds[ (kind >= 0 && kind <= 3) ? kind : 3 ]
-  end
-
   def active?
-    kind > 0
+    self.class::kinds[kind] > 0
   end
 
   def formatted_address
