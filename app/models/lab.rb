@@ -68,7 +68,7 @@ class Lab < ActiveRecord::Base
 
   has_many :approval_workflow_logs
 
-  validates_presence_of :name, :country_code, :slug#, :creator
+  validates_presence_of :name, :country_code, :slug, :email#, :creator
   validates_presence_of :address_1, on: :create
 
   validates_inclusion_of :kind, in: kinds.keys, on: :create
@@ -76,7 +76,7 @@ class Lab < ActiveRecord::Base
   validates_acceptance_of :network, :programs, :tools, :access, :chart, :accept => true, message: 'You must agree to our terms and conditions.', on: :create
 
   validates :slug, format: {:with => /\A[a-zA-Z0-9]+\z/ }, allow_nil: true, allow_blank: true, length: { minimum: 3 }
-  validates_format_of :email, :with => /\A(.+)@(.+)\z/, allow_blank: true
+  validates_format_of :email, :with => /\A(.+)@(.+)\z/
   validates_uniqueness_of :name, :slug, case_sensitive: false
   validate :excluded_slug
 
