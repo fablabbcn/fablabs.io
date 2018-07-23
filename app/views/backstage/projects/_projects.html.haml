@@ -14,7 +14,7 @@
     - @projects.each do |project|
       %tr
         %td= project.id
-        %td= link_to project.title
+        %td= link_to project.title, backstage_project_path(project)
         %td= link_to project.owner.full_name, project.owner
 
         - if current_user.has_role? :superadmin

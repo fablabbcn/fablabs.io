@@ -63,7 +63,7 @@ Rails.application.routes.draw do
       resources :my_labs, only: [:index]
       resources :my_projects, only: [:index]
       resources :to_approve_labs, only: [:index]
-      resources :projects, only: [:index]
+      resources :projects, only: [:index, :show]
       resources :labs do
         member do
           patch :approve
