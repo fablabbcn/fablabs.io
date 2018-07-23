@@ -1,0 +1,8 @@
+= render "backstage/header"
+
+.container
+  .row
+    .col-lg-12
+      = title "Projects"
+
+      = render 'backstage/projects/projects', projects: @projects

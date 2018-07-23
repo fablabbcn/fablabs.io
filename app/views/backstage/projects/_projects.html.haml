@@ -1,0 +1,25 @@
+= page_entries_info @projects
+
+%table.table
+  %thead
+    %tr
+      %th ID
+      %th Title
+      %th Owner
+
+      - if current_user.has_role? :superadmin
+        %th Actions
+
+  %tbody
+    - @projects.each do |project|
+      %tr
+        %td= project.id
+        %td= link_to project.title
+        %td= link_to project.owner.full_name, project.owner
+
+        - if current_user.has_role? :superadmin
+          %td
+            = link_to 'Edit', '#'
+            = link_to 'Delete', '#'
+
+= paginate @projects
