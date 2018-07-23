@@ -20,6 +20,8 @@
         - if current_user.has_role? :superadmin
           %td
             = link_to 'Edit', edit_backstage_project_path(project)
-            = link_to 'Delete', '#'
+            = link_to 'Delete', backstage_project_path(project),
+              method: :delete,
+              data: { confirm: 'Are you sure?' }
 
 = paginate @projects

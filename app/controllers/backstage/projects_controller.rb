@@ -1,5 +1,5 @@
 class Backstage::ProjectsController < Backstage::BackstageController
-  before_action :set_project, only: %i(show edit update)
+  before_action :set_project, only: %i(show edit update destroy)
 
   def index
     @projects = Project.all.includes(:owner).order(created_at: :desc)
@@ -18,6 +18,12 @@ class Backstage::ProjectsController < Backstage::BackstageController
     else
       render :edit
     end
+  end
+
+  def destroy
+    @project.destroy
+
+    redirect_to backstage_projects_path
   end
 
   private
