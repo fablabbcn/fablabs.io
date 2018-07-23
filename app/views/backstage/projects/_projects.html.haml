@@ -19,7 +19,7 @@
 
         - if current_user.has_role? :superadmin
           %td
-            = link_to 'Edit', '#'
+            = link_to 'Edit', edit_backstage_project_path(project)
             = link_to 'Delete', '#'
 
 = paginate @projects

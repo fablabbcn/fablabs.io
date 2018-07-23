@@ -1,0 +1,9 @@
+= render 'backstage/header'
+
+= simple_form_for @project, url: backstage_project_path(@project), method: :put,
+  html: { multipart: true} do |f|
+  = render 'form_errors', resource: @project
+
+  = debug(@project)
+
+  = f.submit class: 'btn btn-primary'
