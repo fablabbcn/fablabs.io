@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180715172941) do
+ActiveRecord::Schema.define(version: 20180724151054) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -598,6 +598,7 @@ ActiveRecord::Schema.define(version: 20180715172941) do
     t.string   "avatar_name",           limit: 255
     t.string   "discourse_id",          limit: 255
     t.string   "slug",                  limit: 255
+    t.string   "email_fallback"
   end
 
   add_index "users", ["fab10_coupon_code"], name: "index_users_on_fab10_coupon_code", unique: true, using: :btree

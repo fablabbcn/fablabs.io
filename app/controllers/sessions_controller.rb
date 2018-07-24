@@ -7,8 +7,9 @@ class SessionsController < ApplicationController
   end
 
   def create
-    user = User.where('email = :eu or username = :eu', eu: params[:email_or_username]).first
-    if user && user.authenticate(params[:password])
+    user = User.where('email = :eu or email_fallback = :eu or username = :eu', eu: params[:email_or_username]).first
+
+    if required_fields_present? && user && user.authenticate(params[:password])
       # cookies.permanent[:user_id] = { value: user.id, domain: '.fablabs.dev' }
       session[:user_id] = user.id
       # redirect_to URI.parse(params[:goto]).path, flash: { success: "Signed in!" }, only_path: true
@@ -28,4 +29,9 @@ class SessionsController < ApplicationController
     redirect_to root_url, flash: { success: "Signed out!" }
   end
 
+  private
+
+  def required_fields_present?
+    params[:email_or_username].present? && params[:password].present?
+  end
 end
