@@ -47,3 +47,12 @@
     .activity.vertical-timeline
       = puts @user.activities
       = render @user.activities
+
+  - if @user.username.present?
+    .row
+      %iframe{src: @user.discourse_profile_url,
+      frameborder: "0",
+      width:       '100%',
+      scrolling:   'yes',
+      height:      1500,
+      style:       'border: none'}
