@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180715172941) do
+ActiveRecord::Schema.define(version: 20180731154428) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -444,11 +444,13 @@ ActiveRecord::Schema.define(version: 20180715172941) do
     t.string   "discourse_id",     limit: 255
     t.text     "discourse_errors"
     t.string   "slug",             limit: 255
+    t.integer  "visibility",                   default: 1
   end
 
   add_index "projects", ["lab_id"], name: "index_projects_on_lab_id", using: :btree
   add_index "projects", ["owner_id"], name: "index_projects_on_owner_id", using: :btree
   add_index "projects", ["slug"], name: "index_projects_on_slug", unique: true, using: :btree
+  add_index "projects", ["visibility"], name: "index_projects_on_visibility", using: :btree
 
   create_table "recoveries", force: :cascade do |t|
     t.integer  "user_id"
@@ -598,6 +600,7 @@ ActiveRecord::Schema.define(version: 20180715172941) do
     t.string   "avatar_name",           limit: 255
     t.string   "discourse_id",          limit: 255
     t.string   "slug",                  limit: 255
+    t.string   "email_fallback"
   end
 
   add_index "users", ["fab10_coupon_code"], name: "index_users_on_fab10_coupon_code", unique: true, using: :btree
