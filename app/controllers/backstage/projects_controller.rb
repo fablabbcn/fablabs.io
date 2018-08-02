@@ -15,4 +15,12 @@ class Backstage::ProjectsController < ApplicationController
 
   alias visible visibility
   alias hidden  visibility
+
+  def destroy
+    @project = Project.find(params[:id])
+
+    @project.destroy
+
+    redirect_to :back
+  end
 end

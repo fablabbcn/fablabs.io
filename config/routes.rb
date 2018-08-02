@@ -62,7 +62,7 @@ Rails.application.routes.draw do
       resources :organizations, only: [:index]
       resources :my_labs, only: [:index]
       resources :my_projects, only: [:index]
-      resources :projects, only: [:index] do
+      resources :projects, only: [:index, :destroy] do
         patch :visible
         patch :hidden
       end

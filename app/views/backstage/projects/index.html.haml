@@ -16,6 +16,7 @@
               %th Lab
               %th Owner
               %th Visibility
+              %th Actions
           %tbody
             - @projects.each do |project|
               %tr
@@ -32,5 +33,9 @@
                     = "(#{link_to 'Hide', backstage_project_hidden_path(project.id), method: :patch})".html_safe
                   - elsif project.hidden?
                     = "(#{link_to 'Make visible', backstage_project_visible_path(project.id), method: :patch})".html_safe
+                %td
+                  - if current_user.has_role? :superadmin
+                    = link_to 'Delete', backstage_project_path(project.id),
+                      method: :delete, data: { confirm: 'Are you sure?' }
 
         = paginate @projects
