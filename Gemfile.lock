@@ -338,7 +338,7 @@ GEM
     rack (1.6.10)
     rack-cache (1.2)
       rack (>= 0.4)
-    rack-cors (0.2.9)
+    rack-cors (0.4.1)
     rack-protection (1.5.5)
       rack
     rack-test (0.6.3)
@@ -380,7 +380,7 @@ GEM
       ffi (>= 0.5.0, < 2)
     rdoc (3.12.2)
       json (~> 1.4)
-    redcarpet (3.3.0)
+    redcarpet (3.3.4)
     redis (2.2.2)
     redis-namespace (1.1.1)
       redis (< 3.0.0)
