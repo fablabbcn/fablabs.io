@@ -7,10 +7,16 @@ RUN apt-get update -qq && apt-get install -y \
   libqt4-dev \
   libqtwebkit-dev \
   postgresql-client \
-  imagemagick \
-  nodejs \
-  npm
+  imagemagick
 
+# Install NodeJS 10
+RUN curl -sL https://deb.nodesource.com/setup_10.x > setup_10.x
+RUN chmod +x setup_10.x
+RUN ./setup_10.x
+
+RUN apt install nodejs
+RUN /usr/bin/nodejs -v
+RUN npm -v
 
 ENV APPROOT /fablabs
 WORKDIR /$APPROOT
@@ -40,9 +46,8 @@ ADD bower.json bower.json
 
 RUN npm install -g bower
 RUN echo '{ "allow_root": true }' > /root/.bowerrc
-RUN ln -s `which nodejs` /usr/bin/node
 
-RUN /usr/local/bin/bower install
+RUN /usr/bin/bower install
 
 
 # Copy the Rails application into place

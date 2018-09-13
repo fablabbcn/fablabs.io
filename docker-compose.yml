@@ -17,10 +17,6 @@ services:
     volumes:
       - fablabs-postgres:/var/lib/postgresql/data
       - ./dump:/dump
-    environment:
-      - DB_NAME="fablabs"
-      - DB_USER="postgres"
-      - DB_PASSWORD=""
 
   # service configuration for our dockerized Rails app
   app:
@@ -37,29 +33,6 @@ services:
       - redis
       - memcached
     # This is temporary shit
-    environment:
-      - RAILS_ENV=development
-      - AWS_BUCKET=${AWS_BUCKET}
-      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
-      - AWS_SECRET=${AWS_SECRET}
-      - EMAIL_AUTHENTICATION=${EMAIL_AUTHENTICATION}
-      - EMAIL_ADDRESS=${EMAIL_ADDRESS}
-      - EMAIL_PORT=${EMAIL_PORT}
-      - EMAIL_DOMAIN=${EMAIL_DOMAIN}
-      - EMAIL_USERNAME=${EMAIL_USERNAME}
-      - EMAIL_PASSWORD=${EMAIL_PASSWORD}
-      - S3_BUCKET=${S3_BUCKET}
-      #- DEV_DB_USERNAME="postgres"
-      #- DEV_DB_PASSWORD="${DEV_DB_PASSWORD}"
-      - DEV_DB_HOST=db
-      - DB_NAME=fablabs
-      - DB_USERNAME=${DB_USERNAME}
-      - DB_PASSWORD=${DB_PASSWORD}
-      - DB_HOST=db
-      - MEMCACHED_HOST=memcached://memcached:11211/
-      - SECRET_TOKEN=${SECRET_TOKEN}
-      - REDIS_URL=redis://redis:6379/12
-      - GEONAMES_USERNAME=${GEONAMES_USERNAME}
     # expose the port we configured Puma to bind to (should expose only internally)
     ports:
       - "80:3000"
@@ -75,29 +48,6 @@ services:
       - /fablabs/tmp
     volumes_from:
       - app
-    environment:
-      - RAILS_ENV=production
-      - AWS_BUCKET=${AWS_BUCKET}
-      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
-      - AWS_SECRET=${AWS_SECRET}
-      - EMAIL_AUTHENTICATION=${EMAIL_AUTHENTICATION}
-      - EMAIL_ADDRESS=${EMAIL_ADDRESS}
-      - EMAIL_PORT=${EMAIL_PORT}
-      - EMAIL_DOMAIN=${EMAIL_DOMAIN}
-      - EMAIL_USERNAME=${EMAIL_USERNAME}
-      - EMAIL_PASSWORD=${EMAIL_PASSWORD}
-      - S3_BUCKET=${S3_BUCKET}
-      #- DEV_DB_USERNAME="postgres"
-      #- DEV_DB_PASSWORD="${DEV_DB_PASSWORD}"
-      - DEV_DB_HOST=db
-      - DB_NAME=fablabs
-      - DB_USERNAME=${DB_USERNAME}
-      - DB_PASSWORD=${DB_PASSWORD}
-      - DB_HOST=db
-      - MEMCACHED_HOST=memcached://memcached:11211/
-      - SECRET_TOKEN=${SECRET_TOKEN}
-      - REDIS_URL=redis://redis:6379/12
-      - GEONAMES_USERNAME=${GEONAMES_USERNAME}
 
     command: bash -c "sleep 3 && bundle exec sidekiq -e $RAILS_ENV"
     restart: always
