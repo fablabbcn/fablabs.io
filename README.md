@@ -37,16 +37,20 @@ Run tests with:
 
 
 1. Start the project:
-`docker-compose up web app`
+
+   `docker-compose up web app`
 
 1. Create database (only the first time):
-`docker-compose exec app rake db:setup`
-`docker-compose exec app /usr/local/bin/bower install`
+
+   `docker-compose exec app rake db:setup`
+
+   `docker-compose exec app /usr/local/bin/bower install`
 
 1. Add this to your `/etc/hosts`:
 
-    `127.0.0.1   www.fablabs.local`
-    `127.0.0.1   api.fablabs.local`
+   `127.0.0.1   www.fablabs.local`
+
+   `127.0.0.1   api.fablabs.local`
 
 
 1. Visit [http://www.fablabs.local:3000](http://www.fablabs.local:3000)
@@ -62,13 +66,15 @@ Run tests with:
 
 1. Run tests with
 
-   ` docker-compose exec app rake db:setup RAILS_ENV=test`
-    `docker-compose exec app rake spec`
+   `docker-compose exec app rake db:setup RAILS_ENV=test`
+
+   `docker-compose exec app rake spec`
 
 1. If you make changes to the code, rebuild the app and deploy the new image
 
-    `docker-compose build`
-    `docker-compose up -d`
+   `docker-compose build`
+
+   `docker-compose up -d`
 
 1. Backup your db at any time with the included script:
 
