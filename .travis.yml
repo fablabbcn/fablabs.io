@@ -26,8 +26,8 @@ matrix:
         matrix:
           - DB=postgresql
       cache: bundler
-      rvm:
-        - "2.3.1"
+      #rvm:
+        #- "2.3.1"
       script:
         - "bower install"
         - "bundle exec rake db:schema:load"
