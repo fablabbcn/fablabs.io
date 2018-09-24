@@ -1,4 +1,4 @@
-FROM ruby:2.3.1
+FROM ruby:2.3.7-stretch
 
 # Install essential Linux packages
 RUN apt-get update -qq && apt-get install -y \
@@ -8,8 +8,11 @@ RUN apt-get update -qq && apt-get install -y \
   libqtwebkit-dev \
   postgresql-client \
   imagemagick \
-  nodejs \
-  npm
+#  nodejs \
+  curl
+
+  
+RUN curl -sL deb.nodesource.com/setup_9.x | bash - && apt-get install nodejs
 
 
 ENV APPROOT /fablabs
@@ -40,9 +43,9 @@ ADD bower.json bower.json
 
 RUN npm install -g bower
 RUN echo '{ "allow_root": true }' > /root/.bowerrc
-RUN ln -s `which nodejs` /usr/bin/node
+#RUN ln -s `which nodejs` /usr/bin/node
 
-RUN /usr/local/bin/bower install
+RUN bower install
 
 
 # Copy the Rails application into place
