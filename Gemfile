@@ -2,6 +2,7 @@ ruby '2.3.7'
 
 source 'https://rubygems.org'
 
+gem 'puma'
 gem 'rspec'
 gem 'discourse_api'
 gem 'protected_attributes'

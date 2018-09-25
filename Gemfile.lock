@@ -336,6 +336,7 @@ GEM
       binding_of_caller (>= 0.7)
       pry (>= 0.9.11)
     public_suffix (3.0.2)
+    puma (3.12.0)
     quiet_assets (1.0.2)
       railties (>= 3.1, < 5.0)
     rack (1.6.10)
@@ -599,6 +600,7 @@ DEPENDENCIES
   pry-rails
   pry-rescue
   pry-stack_explorer
+  puma
   quiet_assets
   rack-cache
   rack-cors
@@ -635,7 +637,7 @@ DEPENDENCIES
   zonebie
 
 RUBY VERSION
-   ruby 2.3.1p112
+   ruby 2.3.7p456
 
 BUNDLED WITH
-   1.16.2
+   1.16.5

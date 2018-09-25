@@ -40,37 +40,17 @@ services:
     container_name: app
     environment:
       - VIRTUAL_HOST=test.fablabs.io,api.test.fablabs.io
-      - VIRTUAL_NETWORK=nginx-proxy
       - VIRTUAL_PORT=3000
       - LETSENCRYPT_HOST=test.fablabs.io,api.test.fablabs.io
       - LETSENCRYPT_EMAIL=fiore.basile@gmail.com
-      - RAILS_ENV=development
-      - AWS_BUCKET=${AWS_BUCKET}
-      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
-      - AWS_SECRET=${AWS_SECRET}
-      - EMAIL_AUTHENTICATION=${EMAIL_AUTHENTICATION}
-      - EMAIL_ADDRESS=${EMAIL_ADDRESS}
-      - EMAIL_PORT=${EMAIL_PORT}
-      - EMAIL_DOMAIN=${EMAIL_DOMAIN}
-      - EMAIL_USERNAME=${EMAIL_USERNAME}
-      - EMAIL_PASSWORD=${EMAIL_PASSWORD}
-      - S3_BUCKET=${S3_BUCKET}
-      #- DEV_DB_USERNAME="postgres"
-      #- DEV_DB_PASSWORD="${DEV_DB_PASSWORD}"
+      - RAILS_ENV=production
       - DEV_DB_HOST=db
       - DB_NAME=fablabs
-      - DB_USERNAME=${DB_USERNAME}
-      - DB_PASSWORD=${DB_PASSWORD}
       - DB_HOST=db
       - MEMCACHED_HOST=memcached://memcached:11211/
-      - OPBEAT_ORG_ID=${OPBEAT_ORG_ID}
-      - OPBEAT_APP_ID=${OPBEAT_APP_ID}
-      - OPBEAT_SECRET=${OPBEAT_SECRET}
-      - SECRET_TOKEN=${SECRET_TOKEN}
       - REDIS_URL=redis://redis:6379/12
-      - GEONAMES_USERNAME=${GEONAMES_USERNAME}
-    ports:
-      - "3000:3000"
+    expose:
+      - "3000"
     restart: always
     #command: rails s
 
@@ -83,6 +63,12 @@ services:
       - /fablabs/tmp
     volumes_from:
       - app
+    environment:
+      - RAILS_ENV=production
+      - DB_NAME=fablabs
+      - DB_USERNAME=${DB_USERNAME}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_HOST=db
     command: bash -c "sleep 3 && bundle exec sidekiq -e $RAILS_ENV"
     restart: always
     depends_on:
@@ -92,8 +78,8 @@ services:
   memcached:
     image: memcached:1.5.3
     restart: always
-    ports:
-      - "11211:11211"
+    expose:
+      - 11211
 
 
   nginx:
@@ -131,8 +117,9 @@ services:
       - "./volumes/proxy/certs:/etc/nginx/certs:rw"
     environment:
       # unset this for real certs
-      - ACME_CA_URI=https://acme-staging.api.letsencrypt.org/directory
+      #- ACME_CA_URI=https://acme-staging.api.letsencrypt.org/directory
       - NGINX_DOCKER_GEN_CONTAINER=nginx-gen
+      - NGINX_PROXY_CONTAINER=nginx
 
 volumes:
   fablabs-postgres:
