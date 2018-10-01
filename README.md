@@ -82,7 +82,7 @@ Run tests with:
     ./scripts/docker-backup-db.sh
     ```
 
-#### API Documenation
+#### API Documentation
 
 Take a look at the [developer guide](https://docs.fablabs.io) for information on how to
 integrate Fablabs.io in your application.
@@ -94,3 +94,7 @@ the [Examples](https://github.com/fablabbcn/examples.fablabs.io), and the [fabla
 #### Pull requests
 
 All PRs are tested on Travis. Make sure the tests run fine.
+
+#### License
+
+This project is licensed under the GNU Affero General Public License v3.0 (AGPL) - see the [LICENSE.md](https://github.com/fablabbcn/fablabs.io/blob/master/LICENSE) file for details. </br>
