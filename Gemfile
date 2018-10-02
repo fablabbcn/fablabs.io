@@ -23,9 +23,9 @@ gem 'fast_jsonapi' # To support new v2 JSONAPI
 gem 'twitter'
 gem "sentry-raven"
 gem 'sinatra', '>= 1.3.0', :require => nil
-gem 'sidekiq'
 gem 'nest'
 gem 'rails' 
+gem 'sidekiq'#, '~> 4' # Should sidekiq stay on the same major version as Rails?
 gem 'inherited_resources'
 gem 'timezone'#, '~> 1.0'
 gem 'bitmask_attributes'
