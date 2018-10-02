@@ -5,7 +5,7 @@
 
 .homepage-header {
   height: 545px;
-  background-image: url('/assets/home/header-background.jpg');
+  background-image: image_url('home/header-background.jpg');
   background-size: cover;
   background-position: center;
   padding-top: 90px;
@@ -91,7 +91,7 @@
 }
 
 .homepage-circle-2 {
-  background-image: url('/assets/home/lab.jpg');
+  background-image: image_url('home/lab.jpg');
   width: 252px;
   height: 252px;
   left: 393px;
@@ -99,7 +99,7 @@
 }
 
 .homepage-circle-3 {
-  background-image: url('/assets/home/person.jpg');
+  background-image: image_url('home/person.jpg');
   width: 408px;
   height: 408px;
   left: -30px;
@@ -123,7 +123,7 @@
 }
 
 .homepage-circle-6 {
-  background-image: url('/assets/home/machine.jpg');
+  background-image: image_url('home/machine.jpg');
   width: 252px;
   height: 252px;
   left: 461px;
