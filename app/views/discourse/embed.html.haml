@@ -1,30 +1,31 @@
 - title "Discuss"
-.row.top
-  %h2 Discuss
+.container
+  .row.top
+    %h2 Discuss
 
-.row.row-no-padding
-  .col-md-12
-    %p Here you can find all the members of the Fab Lab Network and discuss with them about Labs, Machines, Projects, Events, Organizations, Education, Research and  any feedback about Fablabs.io.
+  .row.row-no-padding
+    .col-md-12
+      %p Here you can find all the members of the Fab Lab Network and discuss with them about Labs, Machines, Projects, Events, Organizations, Education, Research and  any feedback about Fablabs.io.
 
-.row.row-no-padding
-  .col-lg-12#jitsi-row
-    %h3 Start a video call
-    %p
-      You can start a video call with other users, without the need for an external application or account.
-      %a#launch-jitsi.btn.btn-primary{:href => "#", :role => "button"} Launch the call
-    %p
-      %span#jitsi-url
+  .row.row-no-padding
+    .col-lg-12#jitsi-row
+      %h3 Start a video call
+      %p
+        You can start a video call with other users, without the need for an external application or account.
+        %a#launch-jitsi.btn.btn-primary{:href => "#", :role => "button"} Launch the call
+      %p
+        %span#jitsi-url
 
-    = javascript_include_tag 'https://meet.jit.si/external_api.js'
-    #jitsi-embed
+      = javascript_include_tag 'https://meet.jit.si/external_api.js'
+      #jitsi-embed
 
 
 
-.row.row-no-padding
-  .col-lg-12
-    %h3 Discuss in the forum
-    %p
-      Discuss with other users in the forum.
-    #jitsi-embed
-.row
-  %iframe{src: Figaro.env.discourse_endpoint, frameborder: "0", width: '100%', scrolling: 'yes', height: 1500, style: 'border: none'}
+  .row.row-no-padding
+    .col-lg-12
+      %h3 Discuss in the forum
+      %p
+        Discuss with other users in the forum.
+      #jitsi-embed
+  .row
+    %iframe{src: Figaro.env.discourse_endpoint, frameborder: "0", width: '100%', scrolling: 'yes', height: 1500, style: 'border: none'}
