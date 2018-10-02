@@ -76,6 +76,18 @@ Run tests with:
     ./scripts/docker-backup-db.sh
     ```
 
+#### Production notes
+
+If you are running in production:
+
+- you need to setup the SSL hosts and .env vars from the docker-compose.yml
+- you need to run the assets pipeline to update public/assets
+
+`docker-compose exec app rake tmp:clean`
+`docker-compose exec app rake assets:precompile`
+`docker-compose restart app`
+
+
 #### API Documenation
 
 Take a look at the [developer guide](https://docs.fablabs.io) for information on how to
