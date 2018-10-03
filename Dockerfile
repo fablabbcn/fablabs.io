@@ -1,4 +1,4 @@
-FROM ruby:2.3.7
+FROM ruby:2.3.7-stretch
 
 # Install essential Linux packages
 RUN apt-get update -qq && apt-get install -y \
@@ -7,8 +7,10 @@ RUN apt-get update -qq && apt-get install -y \
   libqt4-dev \
   libqtwebkit-dev \
   postgresql-client \
-  imagemagick
+  imagemagick \
+  curl
 
+  
 # Install NodeJS 10
 RUN curl -sL https://deb.nodesource.com/setup_10.x > setup_10.x
 RUN chmod +x setup_10.x
@@ -46,8 +48,7 @@ ADD bower.json bower.json
 
 RUN npm install -g bower
 RUN echo '{ "allow_root": true }' > /root/.bowerrc
-
-RUN /usr/bin/bower install
+RUN bower install
 
 
 # Copy the Rails application into place
@@ -57,4 +58,6 @@ RUN /usr/bin/bower install
 # OR call puma? prod is currently using unicorn
 #CMD ["rails", "server", "-b", "0.0.0.0"]
 
-CMD ["bash","-c","rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"]
+#CMD ["bash","-c","rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"]
+
+CMD ["bash","-c","bundle exec puma -C config/puma.rb"]

@@ -95,6 +95,18 @@ Check out also the [API Reference](https://docs.fablabs.io/swagger/index.html),
 the [Examples](https://github.com/fablabbcn/examples.fablabs.io), and the [fablabs.js library](https://github.com/fablabbcn/fablabsjs).
 
 
+## Production notes
+
+If you are running in production:
+
+- you need to setup the SSL hosts and .env vars from the docker-compose.yml
+- you need to run the assets pipeline to update public/assets
+
+`docker-compose exec app rake tmp:clean`
+`docker-compose exec app rake assets:precompile`
+`docker-compose restart app`
+
+
 ## Pull requests
 
 All PRs are tested on Travis. Make sure the tests run fine.

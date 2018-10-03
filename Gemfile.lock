@@ -327,8 +327,9 @@ GEM
     pry-stack_explorer (0.4.9.2)
       binding_of_caller (>= 0.7)
       pry (>= 0.9.11)
-    public_suffix (3.0.3)
-    quiet_assets (1.1.0)
+    public_suffix (3.0.2)
+    puma (3.12.0)
+    quiet_assets (1.0.2)
       railties (>= 3.1, < 5.0)
     rack (1.6.10)
     rack-cache (1.2)
@@ -586,6 +587,7 @@ DEPENDENCIES
   pry-rails
   pry-rescue
   pry-stack_explorer
+  puma
   quiet_assets
   rack-cache
   rack-cors
