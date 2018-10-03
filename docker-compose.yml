@@ -32,20 +32,19 @@ services:
       - db
       - redis
       - memcached
-    # This is temporary shit
-    # expose the port we configured Puma to bind to (should expose only internally)
     container_name: app
     environment:
-      - VIRTUAL_HOST=test.fablabs.io,api.test.fablabs.io
-      - VIRTUAL_PORT=3000
-      - LETSENCRYPT_HOST=test.fablabs.io,api.test.fablabs.io
-      - LETSENCRYPT_EMAIL=fiore.basile@gmail.com
       - RAILS_ENV=production
       - DEV_DB_HOST=db
       - DB_NAME=fablabs
       - DB_HOST=db
       - MEMCACHED_HOST=memcached://memcached:11211/
       - REDIS_URL=redis://redis:6379/12
+      - VIRTUAL_HOST=${VIRTUAL_HOST}
+      - VIRTUAL_PORT=${VIRTUAL_PORT}
+      - LETSENCRYPT_HOST=${LETSENCRYPT_HOST}
+      - LETSENCRYPT_EMAIL=${LETSENCRYPT_EMAIL}
+
     expose:
       - "3000"
     restart: always
