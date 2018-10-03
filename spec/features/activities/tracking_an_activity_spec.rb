@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 feature "Tracking an activity" do
-  given(:lab) { FactoryGirl.create(:lab) }
+  given(:lab) { FactoryBot.create(:lab) }
 
   scenario "admin updates a lab" do
     sign_in_superadmin
@@ -13,15 +13,15 @@ feature "Tracking an activity" do
   end
 
   scenario "user signs up" do
-    sign_up_as FactoryGirl.build(:user)
+    sign_up_as FactoryBot.build(:user)
     visit activity_path
     expect(page).to have_content("#{User.last} signed up")
   end
 
   scenario "employee is approved" do
     sign_in_superadmin
-    lab = FactoryGirl.create(:lab, workflow_state: 'approved')
-    employee = FactoryGirl.create(:employee, lab: lab)
+    lab = FactoryBot.create(:lab, workflow_state: 'approved')
+    employee = FactoryBot.create(:employee, lab: lab)
     visit lab_employees_path(lab)
     click_button "Approve"
     visit activity_path

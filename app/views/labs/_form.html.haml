@@ -13,13 +13,13 @@
         %span What kind of Fab Lab is your Lab?
 
       .row
-        - Lab::Kinds.each_with_index do |m, index|
+        - Lab::kinds.each do |value, index|
           .col-lg-2
             .radio-inline
               %span
-                = f.radio_button :kind, index
+                = f.radio_button :kind, value
                 %label.radio{style: "width: 160px;"}
-                  = m.humanize.titleize
+                  = value.humanize.titleize
 
     .question
       .text-medium

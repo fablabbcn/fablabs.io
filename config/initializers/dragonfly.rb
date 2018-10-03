@@ -16,7 +16,7 @@ Dragonfly.app.configure do
     bucket_name: Figaro.env.S3_BUCKET,
     access_key_id: Figaro.env.S3_KEY,
     secret_access_key: Figaro.env.S3_SECRET,
-    region: Figaro.env.S3_REGION
+    region: 'eu-west-1' #$Figaro.env.S3_REGION
 
   # datastore :file,
   #   root_path: Rails.root.join('public/system/dragonfly', Rails.env),

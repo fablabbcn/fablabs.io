@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe DiscourseService::Machine do
 
-  let(:machine){ FactoryGirl.create(:machine)}
+  let(:machine){ FactoryBot.create(:machine)}
   let(:discourse_machine) { DiscourseService::Machine.new(machine) }
 
   it '#name' do

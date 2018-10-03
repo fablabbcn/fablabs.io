@@ -1,10 +1,11 @@
 # Read about factories at https://github.com/thoughtbot/factory_girl
 
-FactoryGirl.define do
+FactoryBot.define do
 
   factory :lab, aliases: [:linkable, :trackable] do
     sequence(:name) { |n| "Fab Lab #{n}" }
     sequence(:slug) { |n| "fablab#{n}" }
+    email { Faker::Internet.email }
     description { Faker::Lorem.sentence }
     address_1 { Faker::Address.street_address }
     improve_approval_application { Faker::Lorem.sentence }
@@ -13,7 +14,7 @@ FactoryGirl.define do
     network true
     programs true
     tools true
-    kind 1
+    kind :fab_lab
     referee_id 1
     creator
   end

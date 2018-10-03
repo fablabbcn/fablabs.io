@@ -2,7 +2,7 @@ require 'spec_helper'
 
 feature "Starting a discussion" do
 
-  given(:machine) { FactoryGirl.create(:machine) }
+  given(:machine) { FactoryBot.create(:machine) }
 
   skip "as a user" do
     sign_in

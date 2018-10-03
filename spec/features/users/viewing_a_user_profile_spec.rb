@@ -2,7 +2,7 @@ require 'spec_helper'
 
 feature "Viewing a user profile" do
 
-  given(:user) { FactoryGirl.create(:user) }
+  given(:user) { FactoryBot.create(:user) }
 
   scenario "as a visitor" do
     visit user_path(user)

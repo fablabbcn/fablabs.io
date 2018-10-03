@@ -3,7 +3,7 @@ require 'spec_helper'
 feature "Requesting a recovery" do
 
   scenario "as a user, with a valid application" do
-    user = FactoryGirl.create(:user, email: 'john@bitsushi.com', username: 'johnrees')
+    user = FactoryBot.create(:user, email: 'john@bitsushi.com', username: 'johnrees')
     visit signin_path
     click_link "Forgot"
     fill_in :recovery_email_or_username, with: [user.email, user.username].sample

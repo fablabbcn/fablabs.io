@@ -148,7 +148,7 @@ ready = ->
           lab.marker.bindPopup("<a target='_top' href='#{lab.url}'>#{lab.name}</a>").addTo allLabs
           window.labs.push(lab)
           # Add class for styling the marker by category of lab
-          L.DomUtil.addClass lab.marker._icon, lab.kind_name
+          L.DomUtil.addClass lab.marker._icon, lab.kind
 
     # Create map
     L.mapbox.accessToken = 'pk.eyJ1IjoidG9tYXNkaWV6IiwiYSI6ImRTd01HSGsifQ.loQdtLNQ8GJkJl2LUzzxVg'

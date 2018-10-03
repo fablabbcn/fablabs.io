@@ -2,9 +2,9 @@
 
 # feature "Applying to be a student" do
 
-#   given(:lab) { FactoryGirl.create(:lab, workflow_state: 'approved') }
-#   given(:user) { FactoryGirl.create(:user, first_name: "Homer", last_name: "Simpson") }
-#   given(:academic) { FactoryGirl.create(:academic, user: user, lab: lab) }
+#   given(:lab) { FactoryBot.create(:lab, workflow_state: 'approved') }
+#   given(:user) { FactoryBot.create(:user, first_name: "Homer", last_name: "Simpson") }
+#   given(:academic) { FactoryBot.create(:academic, user: user, lab: lab) }
 
 #   scenario "as visitor" do
 #     visit lab_url(lab)
@@ -18,7 +18,7 @@
 #   end
 
 #   scenario "as a verified user" do
-#     admin = FactoryGirl.create(:user)
+#     admin = FactoryBot.create(:user)
 #     admin.add_role :superadmin
 #     user.verify!
 #     sign_in user

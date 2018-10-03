@@ -2,7 +2,7 @@ require 'spec_helper'
 
 feature "Adding an event" do
 
-  given(:lab) { FactoryGirl.create(:lab, workflow_state: 'approved') }
+  given(:lab) { FactoryBot.create(:lab, workflow_state: 'approved') }
 
   scenario "as a visitor" do
     visit new_lab_event_path(lab)

@@ -2,8 +2,8 @@ require 'spec_helper'
 
 feature "Listing events" do
 
-  given!(:past_event) { FactoryGirl.create(:event, starts_at: Time.zone.now - 1.week ) }
-  given!(:future_event) { FactoryGirl.create(:event, starts_at: Time.zone.now + 1.week ) }
+  given!(:past_event) { FactoryBot.create(:event, starts_at: Time.zone.now - 1.week ) }
+  given!(:future_event) { FactoryBot.create(:event, starts_at: Time.zone.now + 1.week ) }
 
   skip "future events are on index page" do
     sign_in_superadmin

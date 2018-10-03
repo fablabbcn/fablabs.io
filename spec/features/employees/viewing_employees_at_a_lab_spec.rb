@@ -2,9 +2,9 @@ require 'spec_helper'
 
 feature "Viewing employees at a lab" do
 
-  given(:lab) { FactoryGirl.create(:lab, workflow_state: 'approved') }
-  given(:user) { FactoryGirl.create(:user, first_name: "Homer", last_name: "Simpson") }
-  given(:employee) { FactoryGirl.create(:employee, user: user, lab: lab, job_title: "Nuclear Safety Inspector") }
+  given(:lab) { FactoryBot.create(:lab, workflow_state: 'approved') }
+  given(:user) { FactoryBot.create(:user, first_name: "Homer", last_name: "Simpson") }
+  given(:employee) { FactoryBot.create(:employee, user: user, lab: lab, job_title: "Nuclear Safety Inspector") }
 
   scenario "unverified employees" do
     employee.reload

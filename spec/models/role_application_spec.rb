@@ -8,7 +8,7 @@ describe RoleApplication do
   it { should validate_presence_of(:description) }
 
   it "is valid" do
-    expect(FactoryGirl.build(:role_application)).to be_valid
+    expect(FactoryBot.build(:role_application)).to be_valid
   end
 
 end

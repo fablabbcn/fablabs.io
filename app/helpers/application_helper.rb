@@ -61,7 +61,7 @@ module ApplicationHelper
   end
 
   def locale_link_to language, code
-    link_to language, {locale: code}, class: ('active' if I18n.locale.to_s == code)
+    link_to language, {locale: code}, class: ('text-primary' if I18n.locale.to_s == code)
   end
 
   def gem_count_tag(count)

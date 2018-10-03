@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Event, type: :model  do
-  let(:event) { FactoryGirl.create(:event) }
+  let(:event) { FactoryBot.create(:event) }
 
   it { should belong_to(:lab) }
   it { should belong_to(:creator) }
@@ -16,8 +16,8 @@ describe Event, type: :model  do
   # attr_writer :start_date, :start_time, :end_date, :end_time
 
   it "has upcoming scope" do
-    past = FactoryGirl.create(:event, starts_at: (Time.zone.now - 1.week))
-    future = FactoryGirl.create(:event, starts_at: (Time.zone.now + 1.week))
+    past = FactoryBot.create(:event, starts_at: (Time.zone.now - 1.week))
+    future = FactoryBot.create(:event, starts_at: (Time.zone.now + 1.week))
     expect(Event.upcoming).to include(future)
     expect(Event.upcoming).to_not include(past)
   end
@@ -28,13 +28,13 @@ describe Event, type: :model  do
   it "has end_date"
 
   it "has time_zone" do
-    expect(FactoryGirl.create(:event).time_zone).to eq('Madrid')
+    expect(FactoryBot.create(:event).time_zone).to eq('Madrid')
   end
 
   it "sets timezones"
 
   it "has to_s" do
-    expect(FactoryGirl.create(:event, name: 'open day').to_s).to eq('open day')
+    expect(FactoryBot.create(:event, name: 'open day').to_s).to eq('open day')
   end
 
   it "has all_day?"

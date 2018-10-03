@@ -11,7 +11,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180724151054) do
+ActiveRecord::Schema.define(version: 20180904121517) do
+
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -361,15 +362,16 @@ ActiveRecord::Schema.define(version: 20180724151054) do
   add_index "oauth_access_tokens", ["token"], name: "index_oauth_access_tokens_on_token", unique: true, using: :btree
 
   create_table "oauth_applications", force: :cascade do |t|
-    t.string   "name",         limit: 255,               null: false
-    t.string   "uid",          limit: 255,               null: false
-    t.string   "secret",       limit: 255,               null: false
-    t.string   "redirect_uri", limit: 2048,              null: false
+    t.string   "name",         limit: 255,                 null: false
+    t.string   "uid",          limit: 255,                 null: false
+    t.string   "secret",       limit: 255,                 null: false
+    t.string   "redirect_uri", limit: 2048,                null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "scopes",                    default: "", null: false
+    t.string   "scopes",                    default: "",   null: false
     t.integer  "owner_id"
     t.string   "owner_type"
+    t.boolean  "confidential",              default: true, null: false
   end
 
   add_index "oauth_applications", ["owner_id", "owner_type"], name: "index_oauth_applications_on_owner_id_and_owner_type", using: :btree
@@ -444,11 +446,13 @@ ActiveRecord::Schema.define(version: 20180724151054) do
     t.string   "discourse_id",     limit: 255
     t.text     "discourse_errors"
     t.string   "slug",             limit: 255
+    t.integer  "visibility",                   default: 1
   end
 
   add_index "projects", ["lab_id"], name: "index_projects_on_lab_id", using: :btree
   add_index "projects", ["owner_id"], name: "index_projects_on_owner_id", using: :btree
   add_index "projects", ["slug"], name: "index_projects_on_slug", unique: true, using: :btree
+  add_index "projects", ["visibility"], name: "index_projects_on_visibility", using: :btree
 
   create_table "recoveries", force: :cascade do |t|
     t.integer  "user_id"

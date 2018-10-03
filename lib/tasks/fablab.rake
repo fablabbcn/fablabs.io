@@ -30,4 +30,10 @@ namespace :fablab do
     main = Organization.find_by(name: 'Fab Foundation')
     main.update(order: 1) if main.present?
   end
+
+  desc 'Change labs with supernode kind to fab_lab kind'
+  task change_kind_to_supernode_labs: :environment do
+    labs = Lab.where(kind: 2)
+    labs.update_all(kind: :fab_lab)
+  end
 end

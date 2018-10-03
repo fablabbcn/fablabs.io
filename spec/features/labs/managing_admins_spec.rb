@@ -1,7 +1,7 @@
 # pending "managing admins" do
-#   let(:admin) { FactoryGirl.create(:user) }
-#   let(:lab) { FactoryGirl.create(:lab, creator: admin) }
-#   let(:user) { FactoryGirl.create(:user) }
+#   let(:admin) { FactoryBot.create(:user) }
+#   let(:lab) { FactoryBot.create(:lab, creator: admin) }
+#   let(:user) { FactoryBot.create(:user) }
 
 #   # it "can add an admin" do
 #   #   lab.approve!

@@ -2,7 +2,7 @@ require 'spec_helper'
 
 feature "Listing labs" do
 
-  let(:lab) { FactoryGirl.create(:lab, name: "iaac") }
+  let(:lab) { FactoryBot.create(:lab, name: "iaac") }
 
   scenario "as a visitor" do
     visit backstage_labs_path

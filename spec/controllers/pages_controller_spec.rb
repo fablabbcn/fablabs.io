@@ -3,7 +3,7 @@ describe PagesController, type: :controller do
 
   describe 'GET #show' do
     it 'not published without current_user' do
-      page = FactoryGirl.create(:page, published: false)
+      page = FactoryBot.create(:page, published: false)
 
       expect {
         get :show, id: page.slug
@@ -11,18 +11,18 @@ describe PagesController, type: :controller do
     end
 
     it 'published' do
-      page = FactoryGirl.create(:page, published: true)
+      page = FactoryBot.create(:page, published: true)
 
       get :show, id: page.slug
       expect(response).to be_success
     end
 
     it 'not published with non superadmin current_user' do
-      user = FactoryGirl.create(:user)
+      user = FactoryBot.create(:user)
       user.remove_role(:superadmin)
       session[:user_id] = user.id
 
-      page = FactoryGirl.create(:page, published: false)
+      page = FactoryBot.create(:page, published: false)
 
       expect {
         get :show, id: page.slug
@@ -30,11 +30,11 @@ describe PagesController, type: :controller do
     end
 
     it 'not published with superadmin current_user' do
-      user = FactoryGirl.create(:user)
+      user = FactoryBot.create(:user)
       user.add_role(:superadmin)
       session[:user_id] = user.id
 
-      page = FactoryGirl.create(:page, published: false)
+      page = FactoryBot.create(:page, published: false)
 
       get :show, id: page.slug
       expect(response).to be_success

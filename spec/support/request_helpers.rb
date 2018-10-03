@@ -85,15 +85,15 @@ module Requests
       end
       
       def _access_token
-        @_access_token ||= FactoryGirl.create(:access_token, application: _client_application, resource_owner_id: _user.id).token
+        @_access_token ||= FactoryBot.create(:access_token, application: _client_application, resource_owner_id: _user.id).token
       end
 
       def _admin_access_token
-        @_admin_access_token ||= FactoryGirl.create(:access_token, application: _client_application, resource_owner_id: _admin.id).token
+        @_admin_access_token ||= FactoryBot.create(:access_token, application: _client_application, resource_owner_id: _admin.id).token
       end
 
       def _client_application
-        @_client_application ||= try(:oauth_application) || FactoryGirl.create(:oauth_application)
+        @_client_application ||= try(:oauth_application) || FactoryBot.create(:oauth_application)
       end
      end
 end
