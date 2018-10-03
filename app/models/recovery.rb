@@ -1,6 +1,6 @@
 class RecoveryUserValidator < ActiveModel::Validator
   def validate(record)
-    unless User.where('email = :eu or username = :eu', eu: record.email_or_username).exists?
+    unless User.where('email = :eu or email_fallback = :eu or username = :eu', eu: record.email_or_username).exists?
       record.errors[:email_or_username] << "Sorry, we can't find a user with that username or email address"
     end
   end
@@ -35,7 +35,7 @@ class Recovery < ActiveRecord::Base
 private
 
   def associate_user
-    self.user = User.where('email = :eu or username = :eu', eu: email_or_username).first
+    self.user = User.where('email = :eu or email_fallback = :eu or username = :eu', eu: email_or_username).first
   end
 
 end
