@@ -15,7 +15,7 @@ feature "Adding a project" do
 
   feature "as a verified user" do
 
-    given(:user) { FactoryGirl.create(:user) }
+    given(:user) { FactoryBot.create(:user) }
 
     background do
       user.verify!
@@ -25,7 +25,7 @@ feature "Adding a project" do
     end
 
     scenario "as a user with valid details" do
-      user = FactoryGirl.create(:user)
+      user = FactoryBot.create(:user)
       fill_in 'project_title', with: 'My fab project'
       fill_in 'project_description', with: 'An awesome project'
       click_button 'Create Project'
@@ -34,7 +34,7 @@ feature "Adding a project" do
     end
 
     scenario "add project steps" do
-      user = FactoryGirl.create(:user)
+      user = FactoryBot.create(:user)
       fill_in 'project_title', with: 'My fab project'
       fill_in 'project_description', with: 'An awesome project'
       click_link 'Add another step'

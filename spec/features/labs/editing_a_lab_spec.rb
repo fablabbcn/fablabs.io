@@ -2,8 +2,8 @@ require 'spec_helper'
 
 feature "Editing a lab" do
 
-  given(:user) { FactoryGirl.create(:user) }
-  given(:lab) { FactoryGirl.create(:lab, workflow_state: 'approved') }
+  given(:user) { FactoryBot.create(:user) }
+  given(:lab) { FactoryBot.create(:lab, workflow_state: 'approved') }
 
   scenario "as a visitor" do
     visit edit_lab_path(lab)

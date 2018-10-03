@@ -3,13 +3,13 @@ require 'spec_helper'
 describe "Listing labs" do
 
   it "approved labs are on index page" do
-    lab = FactoryGirl.create(:lab, workflow_state: 'approved', name: "Fab Lab BCN")
+    lab = FactoryBot.create(:lab, workflow_state: 'approved', name: "Fab Lab BCN")
     visit labs_path
     expect(page).to have_link "Fab Lab BCN"
   end
 
   it "unapproved labs are not on the index page" do
-    lab = FactoryGirl.create(:lab, name: "A Lab")
+    lab = FactoryBot.create(:lab, name: "A Lab")
     visit labs_path
     expect(page).to_not have_link "A Lab"
   end
@@ -28,7 +28,7 @@ feature "Searching Labs" do
   end
 
   scenario "finds labs that match a query in the name" do
-    lab = FactoryGirl.create(:lab, workflow_state: 'approved', name: "The string asdf")
+    lab = FactoryBot.create(:lab, workflow_state: 'approved', name: "The string asdf")
     visit labs_path
     expect(page).to have_text "The string asdf"
     fill_in 'search-box', with: 'The string asdf' # 
@@ -38,7 +38,7 @@ feature "Searching Labs" do
   end
 
   scenario "finds labs that match a query in the slug" do
-    lab = FactoryGirl.create(:lab, workflow_state: 'approved', name: "something that doesn't match", slug: "thestringasdf")
+    lab = FactoryBot.create(:lab, workflow_state: 'approved', name: "something that doesn't match", slug: "thestringasdf")
     visit labs_path
     expect(page).to have_text "something that doesn't match"
     fill_in 'search-box', with: 'asdf' # 
@@ -48,7 +48,7 @@ feature "Searching Labs" do
   end
 
   scenario "does not find labs that match neither name nor slug" do
-    lab = FactoryGirl.create(:lab, workflow_state: 'approved', name: "something that doesn't match", slug: "thisdoesnotmatcheither")
+    lab = FactoryBot.create(:lab, workflow_state: 'approved', name: "something that doesn't match", slug: "thisdoesnotmatcheither")
     visit labs_path
     fill_in 'search-box', with: 'asdf' # 
     form = find '.navbar-form' # find the form

@@ -1,32 +1,40 @@
----
-addons:
-  code_climate:
-    repo_token: fda6f4f9bf2387705b47cd6135429a29a11ae9c5927afe01a18ee3e33c47246a
-before_script:
-  - "cp config/application.travis.yml config/application.yml"
-  - "cp config/database.travis.yml config/database.yml"
-  - "psql -c 'create database fablabs_test' -U postgres"
-  - "npm install -g bower"
-  - "bundle config git.allow_insecure true"
-env:
-  global:
-    -
-      secure: MlhI/NpTblhwPavClDAl87CxpPrgys3/EbmMLTQnq9zHBc8YbpnCeQ92eMs6NAMdh64090BOcbxSgph4aAKqdd5QoX7VU07sduEaaIkSaFQ26jN4rrc2iS6dHRFIGND6mZ2hmvrmw5zGvMYLTdP7vaTyjNzCDIZCmtOxcLJ4jCk=
-    - OPBEAT_ORG_ID=org_id
-    - OPBEAT_APP_ID=app_id
-    - OPBEAT_SECRET=secret
-  matrix:
-    - DB=postgresql
-language: ruby
-cache: bundler
-rvm:
-  - "2.3.1"
-script:
-  - "bower install"
-  - "bundle exec rake db:schema:load"
-  - "bundle exec rake db:test:prepare"
-  - "bundle exec rake"
-  - "bundle exec codeclimate-test-reporter"
-services:
-  - redis-server
-sudo: false
+matrix:
+  include:
+    - language: python
+      python: 2.7
+      services:
+        - docker
+      install:
+        - docker images
+      script:
+        - docker build -t app .
+
+    - language: ruby
+      addons:
+        code_climate:
+          repo_token: fda6f4f9bf2387705b47cd6135429a29a11ae9c5927afe01a18ee3e33c47246a
+      before_script:
+        - "cp config/application.travis.yml config/application.yml"
+        - "cp config/database.travis.yml config/database.yml"
+        - "psql -c 'create database fablabs_test' -U postgres"
+        - "npm install -g bower"
+        - "bundle config git.allow_insecure true"
+      env:
+        global:
+          -
+            secure: MlhI/NpTblhwPavClDAl87CxpPrgys3/EbmMLTQnq9zHBc8YbpnCeQ92eMs6NAMdh64090BOcbxSgph4aAKqdd5QoX7VU07sduEaaIkSaFQ26jN4rrc2iS6dHRFIGND6mZ2hmvrmw5zGvMYLTdP7vaTyjNzCDIZCmtOxcLJ4jCk=
+        matrix:
+          - DB=postgresql
+      cache: bundler
+      #rvm:
+        #- "2.3.1"
+      script:
+        - "bower install"
+        - "bundle exec rake db:schema:load"
+        - "bundle exec rake db:test:prepare"
+        - "bundle exec rake"
+        - "bundle exec codeclimate-test-reporter"
+      services:
+        - redis-server
+      sudo: false
+

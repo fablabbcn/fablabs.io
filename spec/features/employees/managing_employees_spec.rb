@@ -2,12 +2,12 @@ require 'spec_helper'
 
 feature "Managing employees" do
 
-  given(:lab) { FactoryGirl.create(:lab, workflow_state: 'approved') }
-  given(:user) { FactoryGirl.create(:user, first_name: "Homer", last_name: "Simpson") }
-  given(:employee) { FactoryGirl.create(:employee, user: user, lab: lab, job_title: "Nuclear Safety Inspector") }
+  given(:lab) { FactoryBot.create(:lab, workflow_state: 'approved') }
+  given(:user) { FactoryBot.create(:user, first_name: "Homer", last_name: "Simpson") }
+  given(:employee) { FactoryBot.create(:employee, user: user, lab: lab, job_title: "Nuclear Safety Inspector") }
 
   scenario "unverified lab" do
-    superadmin = FactoryGirl.create(:user)
+    superadmin = FactoryBot.create(:user)
     superadmin.add_role :superadmin
     lab.remove(superadmin)
     sign_in_superadmin

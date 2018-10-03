@@ -4,10 +4,10 @@ describe Api::V2::ProjectsController, :type => :request do
     default_version 2
 
 
-    let!(:user) { FactoryGirl.create :user }
-    let!(:owner) { FactoryGirl.create :user }
-    let!(:lab) { FactoryGirl.create(:lab, name: "Fab Lab BCN", slug: "fablabbcn", workflow_state: :approved) }
-    let!(:project) { FactoryGirl.create(:project, owner: owner, lab: lab) }
+    let!(:user) { FactoryBot.create :user }
+    let!(:owner) { FactoryBot.create :user }
+    let!(:lab) { FactoryBot.create(:lab, name: "Fab Lab BCN", slug: "fablabbcn", workflow_state: :approved) }
+    let!(:project) { FactoryBot.create(:project, owner: owner, lab: lab) }
 
     describe 'GET projects#index' do
 

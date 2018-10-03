@@ -10,6 +10,11 @@
 
 # Ignore bundler config.
 /.bundle
+# Ignore certificates
+volumes/proxy/certs/accounts/*
+*.crt
+*.key
+*.pem
 
 # Ignore the default SQLite database.
 /db/*.sqlite3

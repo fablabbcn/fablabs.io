@@ -2,7 +2,7 @@ require 'spec_helper'
 
 feature "Adding a machine" do
 
-  given(:machine) { FactoryGirl.create(:machine, name: 'Shopbot') }
+  given(:machine) { FactoryBot.create(:machine, name: 'Shopbot') }
 
   scenario "as a visitor" do
     machine.reload
@@ -12,7 +12,7 @@ feature "Adding a machine" do
 
   %w(unverified verified).each do |state|
     scenario "as a #{state} user" do
-      sign_in FactoryGirl.create(:user, workflow_state: state)
+      sign_in FactoryBot.create(:user, workflow_state: state)
       visit machines_path
       visit new_machine_path
     end

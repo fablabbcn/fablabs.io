@@ -3,8 +3,8 @@ require 'rails_helper'
 describe Api::V2::UserController, :type => :request do
   default_version 2
 
-  let!(:user) { FactoryGirl.create :user }
-  let!(:admin) { FactoryGirl.create :user }
+  let!(:user) { FactoryBot.create :user }
+  let!(:admin) { FactoryBot.create :user }
 
   context "When not authenticated"
   it "Does not allow to access a user profile as an anonymous user" do

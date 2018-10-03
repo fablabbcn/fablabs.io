@@ -9,7 +9,9 @@ Fab labs provide widespread access to modern means for invention. They began as 
 If you are a Fab labs entusiast and/or you would like to contribute to the project please feel free to get in touch by [opening a new issue](https://github.com/fablabbcn/fablabs/issues/new).
 
 
-#### Getting started
+## Getting started
+
+### Local development
 
 1. `bower install`
 
@@ -24,29 +26,35 @@ If you are a Fab labs entusiast and/or you would like to contribute to the proje
 
 1. Visit [http://www.fablabs.local:3000](http://www.fablabs.local:3000)
 
-#### Tests
+### Tests
 
 Run tests with:
 
 `bundle exec rake`
 
 
-#### Starting with docker-compose
+### Starting with docker-compose
 
-1. Add all the secrets to an .env file - Minimum example is in the env.example file
+1. Add all the secrets to an `.env` file - Minimum example is in the `env.example` file
 
 
 1. Start the project:
-`docker-compose up web app`
+
+   `docker-compose up web app`
 
 1. Create database (only the first time):
-`docker-compose exec app rake db:setup`
-`docker-compose exec app /usr/local/bin/bower install`
+
+   `docker-compose exec app rake db:setup`
+
+   If bower does not successfully install do:
+
+   `docker-compose exec app /usr/local/bin/bower install`
 
 1. Add this to your `/etc/hosts`:
 
-    `127.0.0.1   www.fablabs.local`
-    `127.0.0.1   api.fablabs.local`
+   `127.0.0.1   www.fablabs.local`
+
+   `127.0.0.1   api.fablabs.local`
 
 
 1. Visit [http://www.fablabs.local:3000](http://www.fablabs.local:3000)
@@ -62,13 +70,15 @@ Run tests with:
 
 1. Run tests with
 
-   ` docker-compose exec app rake db:setup RAILS_ENV=test`
-    `docker-compose exec app rake spec`
+   `docker-compose exec app rake db:setup RAILS_ENV=test`
+
+   `docker-compose exec app rake spec`
 
 1. If you make changes to the code, rebuild the app and deploy the new image
 
-    `docker-compose build`
-    `docker-compose up -d`
+   `docker-compose build`
+
+   `docker-compose up -d`
 
 1. Backup your db at any time with the included script:
 
@@ -76,7 +86,7 @@ Run tests with:
     ./scripts/docker-backup-db.sh
     ```
 
-#### API Documenation
+## API Documentation
 
 Take a look at the [developer guide](https://docs.fablabs.io) for information on how to
 integrate Fablabs.io in your application.
@@ -85,6 +95,34 @@ Check out also the [API Reference](https://docs.fablabs.io/swagger/index.html),
 the [Examples](https://github.com/fablabbcn/examples.fablabs.io), and the [fablabs.js library](https://github.com/fablabbcn/fablabsjs).
 
 
-#### Pull requests
+## Production notes
+
+If you are running in production:
+
+- you need to setup the SSL hosts and .env vars from the docker-compose.yml
+- you need to run the assets pipeline to update public/assets
+
+`docker-compose exec app bundle exec rake tmp:clear`
+`docker-compose exec app bundle exec rake assets:precompile`
+`docker-compose restart app`
+
+
+## Pull requests
 
 All PRs are tested on Travis. Make sure the tests run fine.
+
+## Versioning
+
+Currently using this tool to manually handle versioning: https://github.com/gregorym/bump
+
+Use this command to update the VERSION file + create a git tag
+
+`bump patch --tag`
+
+Then push the git tag with:
+
+`git push --tags`
+
+## License
+
+This project is licensed under the GNU Affero General Public License v3.0 (AGPL) - see the [LICENSE.md](https://github.com/fablabbcn/fablabs.io/blob/master/LICENSE) file for details. </br>

@@ -2,7 +2,7 @@ require 'spec_helper'
 
 feature "Editing a user" do
 
-  let(:user) { FactoryGirl.create(:user, first_name: "Eric", last_name: "Cartman") }
+  let(:user) { FactoryBot.create(:user, first_name: "Eric", last_name: "Cartman") }
 
   scenario "as a visitor" do
     visit edit_backstage_user_path(user)

@@ -1,5 +1,5 @@
 - cache ["v2", project] do
-  = content_tag_for :div, project, class: 'card small' do
+  = content_tag_for :div, project, class: 'card' do
     - cover = project.project_cover
     .card-image
       = link_to project do
@@ -7,11 +7,9 @@
           = image_tag project.project_cover.thumb("310x330#").url, itemprop: "cover"
 
     .card-content
-      = link_to project, class: 'card-title', itemprop: 'title' do
-        = project.title
-
-      .card-subtitle
-        = time_tag(project.updated_at.to_date)
-
       = link_to project do
-        %i.card-arrow.fa.fa-arrow-right
+        .card-title= project.title
+        .card-subtitle
+          = time_tag(project.updated_at.to_date)
+
+        = image_tag ("icons/arrow-right.svg"), :class => "card-arrow"

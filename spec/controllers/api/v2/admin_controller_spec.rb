@@ -17,7 +17,7 @@ describe Api::V2::AdminController, :type => :request do
     end
 
     context "When authenticated"
-    let!(:user) { FactoryGirl.create :user }
+    let!(:user) { FactoryBot.create :user }
 
     it "Does not allow to list users as normal user" do
       get_as_user 'http://api.fablabs.dev/2/users'

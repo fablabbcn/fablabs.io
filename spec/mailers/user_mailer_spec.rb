@@ -2,9 +2,9 @@ require "spec_helper"
 
 describe UserMailer, type: :mailer do
 
-  let(:lab) { FactoryGirl.create(:lab) }
-  let(:user) { FactoryGirl.create(:user) }
-  let(:employee) { FactoryGirl.create(:employee, user: user, lab: lab) }
+  let(:lab) { FactoryBot.create(:lab) }
+  let(:user) { FactoryBot.create(:user) }
+  let(:employee) { FactoryBot.create(:employee, user: user, lab: lab) }
 
   %w(
     submitted
@@ -54,7 +54,7 @@ describe UserMailer, type: :mailer do
   end
 
   it "account_recovery_instructions" do
-    recovery = FactoryGirl.create(:recovery, user: user, email_or_username: [user.email, user.username].sample)
+    recovery = FactoryBot.create(:recovery, user: user, email_or_username: [user.email, user.username].sample)
     mail = UserMailer.account_recovery_instructions(user.id)
     expect(mail.subject).to match("Account Recovery Instructions")
     expect(mail.to).to eq([user.email])

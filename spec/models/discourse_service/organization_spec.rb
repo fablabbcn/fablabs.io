@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe DiscourseService::Organization do
 
-  let(:organization){ FactoryGirl.create(:organization)}
+  let(:organization){ FactoryBot.create(:organization)}
   let(:discourse_organization) { DiscourseService::Organization.new(organization) }
 
   it '#name' do
