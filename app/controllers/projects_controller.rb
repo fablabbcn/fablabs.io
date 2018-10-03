@@ -71,7 +71,7 @@ class ProjectsController < ApplicationController
   end
 
   def map
-    @projects = Project.all
+    @projects = Project.all.visible
   end
 
   def mapdata
