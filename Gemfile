@@ -89,6 +89,8 @@ end
 group :development do
   gem 'bullet' #, github: 'flyerhzm/bullet'
   gem 'capistrano' #, '~> 2.15'#, group: :development
+  gem 'quiet_assets'
+  gem 'net-ssh'
 end
 
 group :test, :development do
@@ -115,10 +117,6 @@ group :test do
   gem "test-unit"
 end
 
-group :development do
-  gem 'quiet_assets'
-  gem 'net-ssh'
-end
 
 # Use ActiveModel has_secure_password
 gem 'bcrypt-ruby'
