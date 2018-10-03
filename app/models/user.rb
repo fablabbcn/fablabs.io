@@ -215,6 +215,12 @@ class User < ActiveRecord::Base
     DiscourseUserSyncWorker.perform_async(self.id)
   end
 
+  def discourse_profile_url
+    return '' if username.blank?
+
+    "#{Figaro.env.discourse_endpoint}/u/#{username}/summary"
+  end
+
   private
 
   def discourse_sync_if_needed
