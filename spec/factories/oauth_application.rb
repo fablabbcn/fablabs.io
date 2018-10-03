@@ -5,6 +5,6 @@ FactoryBot.define do
     sequence(:name) { |n| "application_name_#{n}" }
     # redirect_uri 'urn:ietf:wg:oauth:2.0:oob'
     owner
-    redirect_uri 'https://localhost:3000/'
+    redirect_uri { 'https://localhost:3000/' }
   end
 end

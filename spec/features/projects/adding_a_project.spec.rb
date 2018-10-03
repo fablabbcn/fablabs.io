@@ -45,5 +45,5 @@ feature "Adding a project" do
       expect(page).to have_content 'This is the description for the first step'
     end
 
-
+  end
 end
