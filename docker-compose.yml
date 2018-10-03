@@ -38,8 +38,8 @@ services:
       - VIRTUAL_PORT=${VIRTUAL_PORT}
       - LETSENCRYPT_HOST=${LETSENCRYPT_HOST}
       - LETSENCRYPT_EMAIL=${LETSENCRYPT_EMAIL}
-    expose:
-      - "3000"
+    ports:
+      - "3000:3000"
     restart: always
     #command: rails s
 
