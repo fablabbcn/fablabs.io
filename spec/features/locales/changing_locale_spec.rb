@@ -12,7 +12,7 @@ feature "Changing locale" do
   end
 
   skip "as a user" do
-    user = FactoryGirl.create(:user, locale: 'es')
+    user = FactoryBot.create(:user, locale: 'es')
     sign_in user
     click_link('locale-icon')
     click_link 'English'

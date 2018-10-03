@@ -15,14 +15,14 @@ feature "Adding a lab" do
 
   feature "as a verified user" do
     Capybara.javascript_driver = :webkit
-    given(:user) { FactoryGirl.create(:user, email: "creator@fablabfoundation.com") }
-    let!(:as220) { FactoryGirl.create(:lab, name: "AS220 Labs", slug: "as220labs", workflow_state: :approved, is_referee: true) }
-    let!(:bcn) { FactoryGirl.create(:lab, name: "Fab Lab BCN", slug: "fablabbcn", workflow_state: :approved, is_referee: true) }
-    let!(:cascina) { FactoryGirl.create(:lab, name: "Fab Lab Cascina", slug: "fablabcascina", workflow_state: :approved, is_referee: true) }
-    let!(:admin) { FactoryGirl.create(:user, email: "admin@fablabfoundation.com") }
-    let!(:referee_one) { FactoryGirl.create(:user, email:"referee@as220.org", first_name: "Referee", last_name: "AS220") }
-    let!(:referee_two) { FactoryGirl.create(:user, email:"referee@fablabbcn.org", first_name: "Referee", last_name: "BCN") }
-    let!(:referee_three) { FactoryGirl.create(:user, email:"referee@fablabcascina.org", first_name: "Referee", last_name: "Cascina") }
+    given(:user) { FactoryBot.create(:user, email: "creator@fablabfoundation.com") }
+    let!(:as220) { FactoryBot.create(:lab, name: "AS220 Labs", slug: "as220labs", workflow_state: :approved, is_referee: true) }
+    let!(:bcn) { FactoryBot.create(:lab, name: "Fab Lab BCN", slug: "fablabbcn", workflow_state: :approved, is_referee: true) }
+    let!(:cascina) { FactoryBot.create(:lab, name: "Fab Lab Cascina", slug: "fablabcascina", workflow_state: :approved, is_referee: true) }
+    let!(:admin) { FactoryBot.create(:user, email: "admin@fablabfoundation.com") }
+    let!(:referee_one) { FactoryBot.create(:user, email:"referee@as220.org", first_name: "Referee", last_name: "AS220") }
+    let!(:referee_two) { FactoryBot.create(:user, email:"referee@fablabbcn.org", first_name: "Referee", last_name: "BCN") }
+    let!(:referee_three) { FactoryBot.create(:user, email:"referee@fablabcascina.org", first_name: "Referee", last_name: "Cascina") }
 
     background do
       admin.add_role :superadmin

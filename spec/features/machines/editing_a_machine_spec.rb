@@ -2,7 +2,7 @@ require 'spec_helper'
 
 feature "Editing a machine" do
 
-  let(:machine) { FactoryGirl.create(:machine) }
+  let(:machine) { FactoryBot.create(:machine) }
 
   scenario "as a visitor" do
     visit machine_path(machine)
@@ -13,7 +13,7 @@ feature "Editing a machine" do
 
   %w(unverified verified).each do |state|
     scenario "as a #{state} user" do
-      sign_in FactoryGirl.create(:user, workflow_state: state)
+      sign_in FactoryBot.create(:user, workflow_state: state)
       visit machine_path(machine)
       visit edit_machine_path(machine)
     end

@@ -6,17 +6,17 @@ describe Api::V2::LabsController, :type => :request do
   describe 'GET labs#index' do
 
     context "When authenticated"
-    let!(:user) { FactoryGirl.create :user }
-    let!(:lab) { FactoryGirl.create(:lab, workflow_state: 'approved', name: "Fab Lab BCN") }
-    let!(:lab2) { FactoryGirl.create(:lab, name: "Fab Lab Toscana") }
-    
+    let!(:user) { FactoryBot.create :user }
+    let!(:lab) { FactoryBot.create(:lab, workflow_state: 'approved', name: "Fab Lab BCN") }
+    let!(:lab2) { FactoryBot.create(:lab, name: "Fab Lab Toscana") }
+
     it "Lists labs as normal user" do
       get_as_user 'http://api.fablabs.dev/2/labs'
       # expect(json['users']).to match_array([user_helper(user)])
-      
+
       expect(response.status).to eq(200)
       expect(response.content_type).to eq(Mime::JSON)
-      
+
       expect(json["data"].size).to eq(1)
 
       @lab = json["data"][0]
@@ -25,36 +25,32 @@ describe Api::V2::LabsController, :type => :request do
       # expect(response.parsed_body).to eq({error:"Not authorized"})
     end
 
-
-
-    
   end
 
   describe 'get labs#search' do
 
     context "When authenticated"
-    let!(:user) { FactoryGirl.create :user }
-    let!(:lab2) { FactoryGirl.create(:lab, 
-      workflow_state: 'approved', 
+    let!(:user) { FactoryBot.create :user }
+    let!(:lab2) { FactoryBot.create(:lab,
+      workflow_state: 'approved',
       name: "Fab Lab Toscana",
       latitude: 43.722,
       longitude: 10.4017
       ) 
     }
-    let!(:lab) { FactoryGirl.create( :lab, 
-      workflow_state: 'approved', 
+    let!(:lab) { FactoryBot.create( :lab,
+      workflow_state: 'approved',
       name: "Fab Lab BCN",
       latitude: 41.385,
       longitude: 2.173) }
-    
-    let!(:lab3) { FactoryGirl.create( :lab, 
-        workflow_state: 'approved', 
+
+    let!(:lab3) { FactoryBot.create( :lab,
+        workflow_state: 'approved',
         name: "Beach lab Sitges",
         latitude: 41.237,
         longitude: 1.805) }
-    let!(:facility) { FactoryGirl.create(:facility)}
+    let!(:facility) { FactoryBot.create(:facility)}
 
-    
 
     it "Allows to search labs by name as normal user" do
 
@@ -62,13 +58,12 @@ describe Api::V2::LabsController, :type => :request do
       lab2.facilities << facility
 
 
-      get_as_user "http://api.fablabs.dev/2/labs/search",  
+      get_as_user "http://api.fablabs.dev/2/labs/search",
         {q: "toscana", type: "fulltext"}
 
-        
       expect(response.status).to eq(200)
       expect(response.content_type).to eq(Mime::JSON)
-      
+
       expect(json["data"].size).to eq(1)
 
       @lab = json["data"][0]
@@ -86,7 +81,7 @@ describe Api::V2::LabsController, :type => :request do
 
       expect(response.status).to eq(200)
       expect(response.content_type).to eq(Mime::JSON)
-      
+
       expect(json["data"].size).to eq(2)
 
       @tmp_lab = json["data"][0]
@@ -101,16 +96,16 @@ describe Api::V2::LabsController, :type => :request do
   describe 'get labs#map' do
 
     context "When authenticated"
-      let!(:user) { FactoryGirl.create :user }
-      let!(:lab2) { FactoryGirl.create(:lab, 
-        workflow_state: 'approved', 
+      let!(:user) { FactoryBot.create :user }
+      let!(:lab2) { FactoryBot.create(:lab,
+        workflow_state: 'approved',
         name: "Fab Lab Toscana",
         latitude: 43.722,
         longitude: 10.4017
         ) 
       }
-      let!(:lab) { FactoryGirl.create( :lab, 
-        workflow_state: 'approved', 
+      let!(:lab) { FactoryBot.create( :lab,
+        workflow_state: 'approved',
         name: "Fab Lab BCN",
         latitude: 41.385,
         longitude: 2.173) }
@@ -121,7 +116,6 @@ describe Api::V2::LabsController, :type => :request do
 
         expect(response.status).to eq(200)
         expect(response.content_type).to eq(Mime::JSON)
-        
         expect(json["data"].size).to eq(2)
 
         @labs = json["data"]

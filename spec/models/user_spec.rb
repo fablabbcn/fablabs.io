@@ -2,8 +2,8 @@ require 'spec_helper'
 
 describe User, type: :model  do
 
-  let(:user) { FactoryGirl.create(:user) }
-  let(:lab) { FactoryGirl.create(:lab)}
+  let(:user) { FactoryBot.create(:user) }
+  let(:lab) { FactoryBot.create(:lab)}
 
   it { should have_one(:coupon) }
   it { should have_many(:academics) }
@@ -21,7 +21,7 @@ describe User, type: :model  do
   # it { should belong_to(:admin_applications) }
 
   it "is valid" do
-    expect(FactoryGirl.build(:user)).to be_valid
+    expect(FactoryBot.build(:user)).to be_valid
   end
 
   describe "states" do
@@ -50,17 +50,17 @@ describe User, type: :model  do
     it { should validate_presence_of(:email) }
 
     it "generates email_validation_hash" do
-      expect(FactoryGirl.create(:user).email_validation_hash).to be_present
+      expect(FactoryBot.create(:user).email_validation_hash).to be_present
     end
 
     it "validates uniqueness of email " do
       # http://stackoverflow.com/questions/17635189
-      FactoryGirl.create(:user, email: 'john@bitsushi.com')
-      expect{FactoryGirl.create(:user, email: 'JOHN@bitsushi.com')}.to raise_error(ActiveRecord::RecordInvalid)
+      FactoryBot.create(:user, email: 'john@bitsushi.com')
+      expect{FactoryBot.create(:user, email: 'JOHN@bitsushi.com')}.to raise_error(ActiveRecord::RecordInvalid)
     end
 
     it "should downcase email before creation" do
-      expect(FactoryGirl.create(:user, email: "UPPER@CASE.com").email).to eq("upper@case.com")
+      expect(FactoryBot.create(:user, email: "UPPER@CASE.com").email).to eq("upper@case.com")
     end
 
     it "generates new email_validation_hash when unverified" do
@@ -72,16 +72,16 @@ describe User, type: :model  do
     end
 
     it "has email_string" do
-      user = FactoryGirl.build(:user, first_name: "Bill", last_name: "Gates", email: "bill@microsoft.com")
+      user = FactoryBot.build(:user, first_name: "Bill", last_name: "Gates", email: "bill@microsoft.com")
       expect(user.email_string).to eq('Bill Gates <bill@microsoft.com>')
     end
 
     it "has admin_emails" do
-      superadmin = FactoryGirl.create(:user, email: "superadmin@gmail.com")
-      labadmin = FactoryGirl.create(:user, email: "admin@gmail.com")
-      user = FactoryGirl.create(:user, email: "user@gmail.com")
+      superadmin = FactoryBot.create(:user, email: "superadmin@gmail.com")
+      labadmin = FactoryBot.create(:user, email: "admin@gmail.com")
+      user = FactoryBot.create(:user, email: "user@gmail.com")
       superadmin.add_role :superadmin
-      labadmin.add_role :admin, FactoryGirl.create(:lab)
+      labadmin.add_role :admin, FactoryBot.create(:lab)
       expect(User.admin_emails).to eq([superadmin.email])
     end
 
@@ -90,25 +90,25 @@ describe User, type: :model  do
   describe "username" do
     it "cannot use username with reserved name" do
       %w(api labs users).each do |u|
-        expect{FactoryGirl.create(:user, username: u)}.to raise_error(ActiveRecord::RecordInvalid)
+        expect{FactoryBot.create(:user, username: u)}.to raise_error(ActiveRecord::RecordInvalid)
       end
     end
 
     it "only allows alphanumerics in username" do
       %w(wrong-username not_allowed).each do |u|
-        expect{FactoryGirl.create(:user, username: u)}.to raise_error(ActiveRecord::RecordInvalid)
+        expect{FactoryBot.create(:user, username: u)}.to raise_error(ActiveRecord::RecordInvalid)
       end
     end
 
     it "validates uniqueness of username" do
-      FactoryGirl.create(:user, username: 'john')
-      expect{FactoryGirl.create(:user, username: 'john')}.to raise_error(ActiveRecord::RecordInvalid)
+      FactoryBot.create(:user, username: 'john')
+      expect{FactoryBot.create(:user, username: 'john')}.to raise_error(ActiveRecord::RecordInvalid)
     end
   end
 
   describe "avatar_url" do
     it "has default avatar" do
-      user = FactoryGirl.build_stubbed(:user)
+      user = FactoryBot.build_stubbed(:user)
       expect(user.avatar_url).to include('gravatar')
       expect(user.avatar_url).to include('default-user-avatar')
     end
@@ -116,36 +116,36 @@ describe User, type: :model  do
 
   describe "locale" do
     it "has default locale" do
-      expect(FactoryGirl.build_stubbed(:user).default_locale).to eq(I18n.default_locale)
+      expect(FactoryBot.build_stubbed(:user).default_locale).to eq(I18n.default_locale)
     end
 
     it "has custom locale" do
-      expect(FactoryGirl.build_stubbed(:user, locale: 'fr').default_locale).to eq('fr')
+      expect(FactoryBot.build_stubbed(:user, locale: 'fr').default_locale).to eq('fr')
     end
   end
 
   it "has full_name" do
-    user = FactoryGirl.build_stubbed(:user, first_name: "Homer", last_name: "Simpson")
+    user = FactoryBot.build_stubbed(:user, first_name: "Homer", last_name: "Simpson")
     expect(user.full_name).to eq("Homer Simpson")
     expect(user.to_s).to eq("Homer Simpson")
   end
 
   it "has .applied_to?" do
     expect(user.applied_to? lab).to be false
-    employee = FactoryGirl.create(:employee, user: user, lab: lab)
+    employee = FactoryBot.create(:employee, user: user, lab: lab)
     expect(user.applied_to? lab).to be true
   end
 
   describe ".employed_by?" do
 
     it "includes approved employed users" do
-      employee = FactoryGirl.create(:employee, user: user, lab: lab)
+      employee = FactoryBot.create(:employee, user: user, lab: lab)
       employee.approve!
       expect(user).to be_employed_by(lab)
     end
 
     it "doesn't include unverified employed users" do
-      employee = FactoryGirl.create(:employee, user: user, lab: lab)
+      employee = FactoryBot.create(:employee, user: user, lab: lab)
       expect(user).to_not be_employed_by(lab)
     end
 
@@ -153,7 +153,7 @@ describe User, type: :model  do
 
   describe ".superadmin?" do
     it "is not superadmin" do
-      expect(FactoryGirl.build_stubbed(:user)).to_not have_role(:superadmin)
+      expect(FactoryBot.build_stubbed(:user)).to_not have_role(:superadmin)
       expect(user).to_not be_superadmin
     end
 
@@ -163,16 +163,16 @@ describe User, type: :model  do
     end
 
     it "is only superadmin if global admin" do
-      user.add_role :superadmin, FactoryGirl.create(:lab)
+      user.add_role :superadmin, FactoryBot.create(:lab)
       expect(user).to_not be_superadmin
     end
   end
 
   it "has recovery_key" do
     expect(user.recovery_key).to be_blank
-    recovery1 = FactoryGirl.create(:recovery, email_or_username: user.email)
+    recovery1 = FactoryBot.create(:recovery, email_or_username: user.email)
     expect(user.recovery_key).to eq(recovery1.key)
-    recovery2 = FactoryGirl.create(:recovery, email_or_username: user.email)
+    recovery2 = FactoryBot.create(:recovery, email_or_username: user.email)
     expect(user.recovery_key).to eq(recovery2.key)
   end
 

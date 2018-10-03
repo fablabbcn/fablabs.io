@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.feature "Login Process", type: :feature do
   before :each do
-    @user = FactoryGirl.create(:user, :password => 'password')
+    @user = FactoryBot.create(:user, :password => 'password')
   end	
 
 

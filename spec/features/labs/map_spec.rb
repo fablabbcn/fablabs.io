@@ -10,7 +10,7 @@ describe "map" do
   end
 
   skip "shows approved labs", js: true do
-    lab = FactoryGirl.create(:lab)
+    lab = FactoryBot.create(:lab)
     lab.approve!
     visit labs_path
     click_link "Map view"
@@ -18,7 +18,7 @@ describe "map" do
   end
 
   skip "doesn't show unapproved labs", js: true do
-    FactoryGirl.create(:lab)
+    FactoryBot.create(:lab)
     visit map_labs_path
     expect(page).to_not have_css('.leaflet-marker-icon')
   end

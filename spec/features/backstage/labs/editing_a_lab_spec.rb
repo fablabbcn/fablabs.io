@@ -2,7 +2,7 @@ require 'spec_helper'
 
 feature "Editing a lab" do
 
-  let(:lab) { FactoryGirl.create(:lab, name: "iaac") }
+  let(:lab) { FactoryBot.create(:lab, name: "iaac") }
 
   scenario "as a visitor" do
     visit edit_backstage_lab_path(lab)

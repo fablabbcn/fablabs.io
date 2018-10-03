@@ -2,10 +2,10 @@ require 'spec_helper'
 
 feature "Editing an employee" do
 
-  given(:lab) { FactoryGirl.create(:lab, workflow_state: "approved") }
-  given(:user) { FactoryGirl.create(:user) }
-  given(:employee) { FactoryGirl.create(:employee, lab: lab, user: user) }
-  given(:admin) { FactoryGirl.create(:user) }
+  given(:lab) { FactoryBot.create(:lab, workflow_state: "approved") }
+  given(:user) { FactoryBot.create(:user) }
+  given(:employee) { FactoryBot.create(:employee, lab: lab, user: user) }
+  given(:admin) { FactoryBot.create(:user) }
 
   scenario "as employee with valid data" do
     user.verify!

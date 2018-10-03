@@ -10,7 +10,7 @@ feature "Default locale" do
   end
 
   skip "as a user" do
-    user = FactoryGirl.create(:user, locale: 'es')
+    user = FactoryBot.create(:user, locale: 'es')
     sign_in user
     expect(page).to have_css('#locale-icon.es')
   end

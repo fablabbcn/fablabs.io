@@ -3,7 +3,7 @@ require 'spec_helper'
 describe "Visitor homepage" do
 
   it "has homepage" do
-    lab = FactoryGirl.create(:lab, name: 'verified', country_code: 'gb', workflow_state: 'approved')
+    lab = FactoryBot.create(:lab, name: 'verified', country_code: 'gb', workflow_state: 'approved')
     visit root_path
     expect(page).to have_content "Register your lab"
   end
@@ -15,19 +15,19 @@ describe "Visitor homepage" do
   end
 
   skip "does not show unverified labs" do
-    FactoryGirl.create(:lab, name: 'unverified')
+    FactoryBot.create(:lab, name: 'unverified')
     visit root_path
     expect(page).to_not have_link('unverified')
   end
 
   skip "shows verified labs" do
-    lab = FactoryGirl.create(:lab, name: 'verified', workflow_state: 'approved')
+    lab = FactoryBot.create(:lab, name: 'verified', workflow_state: 'approved')
     visit root_path
     expect(page).to have_link('verified')
   end
 
   skip "doesn't show verified labs from other country" do
-    lab = FactoryGirl.create(:lab, name: 'verified', country_code: 'za', workflow_state: 'approved')
+    lab = FactoryBot.create(:lab, name: 'verified', country_code: 'za', workflow_state: 'approved')
     visit root_path
     expect(page).to_not have_link('verified')
   end

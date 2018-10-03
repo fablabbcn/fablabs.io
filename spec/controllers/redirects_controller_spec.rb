@@ -2,7 +2,7 @@ require 'spec_helper'
 describe RedirectsController, type: :controller do
   describe 'GET #show' do
     it 'redirect to labs by id' do
-      lab = FactoryGirl.create(:lab)
+      lab = FactoryBot.create(:lab)
 
       get :show, id: lab.id
       path = lab_path(lab)
@@ -10,7 +10,7 @@ describe RedirectsController, type: :controller do
     end
 
     it 'redirect to labs by slug' do
-      lab = FactoryGirl.create(:lab)
+      lab = FactoryBot.create(:lab)
       get :show, id: lab.slug
       path = lab_path(lab)
       expect(response).to redirect_to(path)

@@ -137,10 +137,10 @@ GEM
     erubis (2.7.0)
     excon (0.54.0)
     execjs (2.0.2)
-    factory_girl (4.9.0)
+    factory_bot (4.11.1)
       activesupport (>= 3.0.0)
-    factory_girl_rails (4.9.0)
-      factory_girl (~> 4.9.0)
+    factory_bot_rails (4.11.1)
+      factory_bot (~> 4.11.1)
       railties (>= 3.0.0)
     faraday (0.9.2)
       multipart-post (>= 1.2, < 3)
@@ -554,7 +554,7 @@ DEPENDENCIES
   doorkeeper
   dragonfly
   dragonfly-s3_data_store
-  factory_girl_rails
+  factory_bot_rails
   fast_jsonapi
   ffaker
   figaro

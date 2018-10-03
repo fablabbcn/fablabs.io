@@ -2,7 +2,7 @@ require 'spec_helper'
 
 feature "Viewing a machine" do
 
-  given(:machine) { FactoryGirl.create(:machine) }
+  given(:machine) { FactoryBot.create(:machine) }
 
   scenario "as a visitor" do
     visit machine_path(machine)

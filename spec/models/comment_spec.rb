@@ -9,12 +9,12 @@ describe Comment, type: :model  do
   it { should validate_presence_of(:commentable)}
 
   it "is valid" do
-    expect(FactoryGirl.create(:comment)).to be_valid
+    expect(FactoryBot.create(:comment)).to be_valid
   end
 
   it "has ancestry" do
-    dad = FactoryGirl.create(:comment)
-    child = FactoryGirl.create(:comment, parent: dad)
+    dad = FactoryBot.create(:comment)
+    child = FactoryBot.create(:comment, parent: dad)
     expect(dad.children).to include(child)
   end
 
