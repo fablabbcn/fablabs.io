@@ -12,7 +12,7 @@ feature "Editing a user" do
   scenario "as a user" do
     sign_in
     visit edit_backstage_user_path(user)
-    expect(current_path).to eq(labs_path)
+    expect(current_path).to eq(root_path)
   end
 
   scenario "as an admin" do

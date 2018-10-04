@@ -2,10 +2,10 @@ require 'spec_helper'
 
 describe "User homepage" do
 
-  it "redirects to labs_path" do
-    sign_in
+  it "has homepage" do
+    lab = FactoryBot.create(:lab, name: 'verified', country_code: 'gb', workflow_state: 'approved')
     visit root_path
-    expect(current_path).to eq(labs_path)
+    expect(page).to have_content "Register your lab"
   end
 
 end

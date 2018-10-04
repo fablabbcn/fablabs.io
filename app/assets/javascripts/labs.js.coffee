@@ -128,7 +128,7 @@ ready = ->
     allLabs = new (L.LayerGroup)
     # Add markers to layer
     $.get "/labs/mapdata.json", (labs) ->
-      for lab in labs.labs
+      for lab in labs
         if lab.latitude and lab.longitude
           icon = L.divIcon({
             iconSize: null
