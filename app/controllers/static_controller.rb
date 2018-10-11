@@ -27,4 +27,13 @@ class StaticController < ApplicationController
     #   redirect_to request.referer, params: { locale: I18n.locale }
     # end
   end
+
+  def version
+    render json: {
+      env: Rails.env,
+      version: VERSION,
+      ruby: RUBY_VERSION,
+      rails: Rails::VERSION::STRING
+    }
+  end
 end

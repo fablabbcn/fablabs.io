@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'version', to: 'static#version'
   get "discourse/sso"
   get "discuss" => 'discourse#embed'
   resources :pages, only: [:show]
