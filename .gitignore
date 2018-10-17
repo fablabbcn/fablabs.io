@@ -7,6 +7,7 @@
 /app/assets/stylesheets/custom/
 /app/assets/images/custom/
 /vendor/assets/bower_components/
+/volumes/proxy/certs
 
 # Ignore bundler config.
 /.bundle
