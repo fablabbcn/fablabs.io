@@ -16,7 +16,7 @@ services:
     # persist the database between containers by storing it in a volume
     volumes:
       - fablabs-postgres:/var/lib/postgresql/data
-      - ./dump:/dump
+      #- ./dump:/dump
 
   # service configuration for our dockerized Rails app
   app:
