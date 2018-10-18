@@ -29,8 +29,11 @@ module ProjectsOperations
   end
 
   def search_projects(query)
-    Project.visible
-      .where("title LIKE ?", "%#{query}%") | filter_by_lab(query) | filter_by_tag(query)
+    if query
+      Project.visible.where("title LIKE ?", "%#{query}%") | filter_by_lab(query) | filter_by_tag(query)
+    else
+      Project.none
+    end
   end
 
   def hash_project(project)

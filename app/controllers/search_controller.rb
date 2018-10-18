@@ -8,9 +8,7 @@ class SearchController < ApplicationController
   def index
     @labs = search_labs(params[:q])
     @projects = search_projects(params[:q])
-    
-    @results = @labs + @projects   
-    
+    @results = @labs + @projects
     respond_to do |format|
       format.html
     end
