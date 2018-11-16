@@ -10,7 +10,7 @@ services:
   db:
     # use the preferred version of the official Postgres image
     # see https://hub.docker.com/_/postgres/
-    image: postgres
+    image: postgres:10
     restart: always
     hostname: db1
     # persist the database between containers by storing it in a volume
