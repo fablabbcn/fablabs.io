@@ -145,7 +145,7 @@ ready = ->
             })
             this.setIcon nicon
 
-          lab.marker.bindPopup("<a target='_top' href='#{lab.url}'>#{lab.name}</a>").addTo allLabs
+          lab.marker.bindPopup("<a target='_top' href='#{lab.slug}'>#{lab.name}</a>").addTo allLabs
           window.labs.push(lab)
           # Add class for styling the marker by category of lab
           #L.DomUtil.addClass lab.marker._icon, lab.kind
