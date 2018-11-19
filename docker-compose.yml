@@ -2,7 +2,7 @@ version: '2.2'
 
 services:
   redis:
-    image: redis:latest
+    image: redis:4
     hostname: redis
     restart: always
 
