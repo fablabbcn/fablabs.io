@@ -32,7 +32,7 @@ en:
         add_a_lab:          "Add Lab"
         add_a_machine:      "New Machine"
       show:
-        nearby_labs:        "nearby_labs"
+        nearby_labs:        "Nearby labs"
 
     home:
       welcome:              "Welcome"
