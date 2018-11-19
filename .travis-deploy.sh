@@ -8,4 +8,4 @@ eval "$(ssh-agent -s)"
 chmod 600 deploy_rsa
 ssh-add deploy_rsa
 
-ssh -oStrictHostKeyChecking=no -p$PORT $SERVER "cd fablabs.io; ./scripts/deploy.sh"
+ssh -oStrictHostKeyChecking=no -p$PORT $SERVER "pwd; cd fablabs.io; ./scripts/deploy.sh"
