@@ -45,7 +45,6 @@ RUN bower install
 COPY . $APPROOT
 
 # Precompile assets here, so we don't have to do it inside a container + restart
-RUN ls
 RUN bin/rake assets:precompile
 
 #CMD ["rails", "server", "-b", "0.0.0.0"]
