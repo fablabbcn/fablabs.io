@@ -10,7 +10,6 @@ RUN apt-get update -qq && apt-get install -y \
   imagemagick \
   curl
 
-  
 # Install NodeJS 10
 RUN curl -sL https://deb.nodesource.com/setup_10.x > setup_10.x
 RUN chmod +x setup_10.x
@@ -35,14 +34,13 @@ ADD Gemfile Gemfile
 ADD Gemfile.lock Gemfile.lock
 RUN bundle install
 
-# Bower
-ADD bower.json bower.json
-RUN npm install -g bower
-RUN echo '{ "allow_root": true }' > /root/.bowerrc
-RUN bower install
-
 # Copy the Rails application into place
 COPY . $APPROOT
+
+# Bower
+#ADD bower.json bower.json # Not needed if we already copied all files to the container
+RUN npm install -g bower
+RUN bower install --allow-root
 
 # Precompile assets here, so we don't have to do it inside a container + restart
 RUN bin/rake assets:precompile
