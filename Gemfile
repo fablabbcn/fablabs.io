@@ -88,7 +88,6 @@ end
 
 group :development do
   gem 'bullet' #, github: 'flyerhzm/bullet'
-  gem 'capistrano' #, '~> 2.15'#, group: :development
   gem 'quiet_assets'
   gem 'net-ssh'
 end
