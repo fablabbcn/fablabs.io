@@ -3,7 +3,12 @@ source 'https://rubygems.org'
 
 gem 'rails','~> 4'
 gem "pg",'0.19'
+# Gems blocking rails 5 update:
 gem 'sinatra', '>= 1.3.0', :require => nil
+gem 'rocket_pants'# '~> 1.0'
+gem 'protected_attributes'
+
+# Other Gem issues:
 gem 'font-awesome-sass', '~> 4.3.0' # https://fontawesome.com/how-to-use/on-the-web/setup/upgrading-from-version-4
 gem 'country_select', '1.2.0' # https://github.com/stefanpenner/country_select/blob/master/UPGRADING.md
 gem 'bourbon', '~> 4' # Breaks transition in header.css.scss and map.css.scss https://github.com/thoughtbot/bourbon/blob/master/CHANGELOG.md
@@ -45,12 +50,10 @@ gem 'momentjs-rails'
 gem 'nest'
 gem 'paper_trail'
 gem 'premailer-rails'
-gem 'protected_attributes'
 gem 'puma'
 gem 'rack-cors', :require => 'rack/cors'
 gem 'ransack'#, github: "ernie/ransack"
 gem 'redcarpet'
-gem 'rocket_pants'# '~> 1.0'
 gem 'rolify'#, github: 'EppO/rolify'
 gem 'rspec'
 gem 'sass-rails'#, '~> 4.0.5'
