@@ -1,10 +1,11 @@
 ruby '2.5.3'
 
 source 'https://rubygems.org'
-gem 'rails' 
+gem 'rails','~> 4'
+gem "pg",'0.19'
+gem 'sinatra', '>= 1.3.0', :require => nil
 
 gem "cocoon"#, github: 'nathanvda/cocoon', :tag => 'v1.2.7'
-gem "pg",'0.17.1'
 gem "pg_search"
 gem "rack-cache"
 gem "sentry-raven"
@@ -56,7 +57,6 @@ gem 'sass-rails'#, '~> 4.0.5'
 gem 'sidekiq'#, '~> 4' # Should sidekiq stay on the same major version as Rails?
 gem 'simple_form'#, '3.0.1'
 gem 'simplecov', :require => false, :group => :test
-gem 'sinatra', '>= 1.3.0', :require => nil
 gem 'sitemap_generator'
 gem 'slim'
 gem 'sort_alphabetical'
