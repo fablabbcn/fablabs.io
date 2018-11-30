@@ -1,8 +1,8 @@
 FactoryBot.define do
   factory :organization do
     sequence(:name) { |n| "Organization #{n}" }
-    description { Faker::Lorem.sentence }
-    address_1 { Faker::Address.street_address }
+    description { FFaker::Lorem.sentence }
+    address_1 { FFaker::Address.street_address }
     county { "County" }
     country_code { "es" }
     creator

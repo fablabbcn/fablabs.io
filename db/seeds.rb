@@ -32,10 +32,10 @@ end
 
 100.times do
 Organization.create!(
-  name: Faker::Product.product,
-  slug: Faker::Product.letters(3),
-  address_1: Faker::Address.street_address,
-  description: Faker::Lorem.sentence,
+  name: FFaker::Product.product,
+  slug: FFaker::Product.letters(3),
+  address_1: FFaker::Address.street_address,
+  description: FFaker::Lorem.sentence,
   county: "County",
   country_code: "es",
   kind: Organization::KINDS[0]
@@ -87,7 +87,7 @@ Facility.find_or_create_by(
 Employee.find_or_create_by(
   user: User.first,
   lab: Lab.first,
-  job_title: Faker::Job.title
+  job_title: FFaker::Job.title
 )
 
 Document.create!(
