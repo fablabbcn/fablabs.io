@@ -4,8 +4,8 @@ source 'https://rubygems.org'
 gem 'rails','~> 4'
 gem "pg",'0.19'
 gem 'sinatra', '>= 1.3.0', :require => nil
-gem 'font-awesome-sass', '~> 4.3.0'
-gem 'country_select', '1.2.0'
+gem 'font-awesome-sass', '~> 4.3.0' # https://fontawesome.com/how-to-use/on-the-web/setup/upgrading-from-version-4
+gem 'country_select', '1.2.0' # https://github.com/stefanpenner/country_select/blob/master/UPGRADING.md
 gem 'bourbon', '~> 4' # Breaks transition in header.css.scss and map.css.scss https://github.com/thoughtbot/bourbon/blob/master/CHANGELOG.md
 
 gem "cocoon"#, github: 'nathanvda/cocoon', :tag => 'v1.2.7'
