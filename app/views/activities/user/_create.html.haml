@@ -1,7 +1,10 @@
 - if user.present?
-  = content_tag_for :li, activity do
-    = icon('user')
-    %span
-      = link_to activity.creator, activity.creator, class: 'user'
-      signed up
-    %i #{time_ago_in_words(activity.created_at)} ago
+  .vertical-timeline-block
+    .vertical-timeline-circle
+    .vertical-timeline-content
+      = content_tag_for :div, activity do
+        .text-medium
+          = link_to activity.creator, activity.creator, class: 'user'
+          signed up
+        .text-small
+          %i #{time_ago_in_words(activity.created_at)} ago

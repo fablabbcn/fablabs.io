@@ -2,9 +2,9 @@ require 'spec_helper'
 
 feature "Applying to be an employee" do
 
-  given(:lab) { FactoryGirl.create(:lab, workflow_state: 'approved') }
-  given(:user) { FactoryGirl.create(:user, first_name: "Homer", last_name: "Simpson") }
-  given(:employee) { FactoryGirl.create(:employee, user: user, lab: lab, job_title: "Nuclear Safety Inspector") }
+  given(:lab) { FactoryBot.create(:lab, workflow_state: 'approved') }
+  given(:user) { FactoryBot.create(:user, first_name: "Homer", last_name: "Simpson") }
+  given(:employee) { FactoryBot.create(:employee, user: user, lab: lab, job_title: "Nuclear Safety Inspector") }
 
   scenario "as visitor" do
     visit lab_url(lab)
@@ -18,7 +18,7 @@ feature "Applying to be an employee" do
   end
 
   scenario "as a verified user" do
-    admin = FactoryGirl.create(:user)
+    admin = FactoryBot.create(:user)
     admin.add_role :superadmin
 
     user.verify!

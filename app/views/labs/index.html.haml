@@ -1,42 +1,24 @@
 - title "Labs"
-.row.top
-  %h2 Labs
-.row.row-no-padding
-  .col-md-6
-    %p
-    A Fab Lab is a technical prototyping platform for innovation and invention, providing stimulus for local entrepreneurship. A Fab Lab is also a platform for learning and innovation: a place to play, to create, to learn, to mentor, to invent. To be a Fab Lab means connecting to a global community of learners, educators, technologists, researchers, makers and innovators- -a knowledge sharing network that spans 30 countries and 24 time zones. Because all Fab Labs share common tools and processes, the program is building a global network, a distributed laboratory for research and invention. Here in this section you can explore the official list of Fab Labs.
-    %p
-    You can read more about Fab Labs on the Fab Foundation website
-    = succeed "." do
-      %a{:href => "http://fabfoundation.org/index.php/what-is-a-fab-lab/index.html"} here
-  .col-md-3
-    %h4 Expand the Network
-    %p Here you can add your Lab to the list.
-    - if current_user
-      = link_to new_lab_path, class: "btn btn-success" do
-        = fa_icon "plus", text: t("views.labs.index.add_a_lab", default: "Add a new Lab")
-    - else
-      = link_to new_lab_path, class: "btn btn-success", data: {toggle: "tooltip", placement: "bottom" }, title: "You need to be signed in to add a Lab" do
-        = fa_icon "plus", text: t("views.labs.index.add_a_lab", default: "Add a new Lab")
-  .col-md-3.list-map
-    %h4 Explore the Network
-    = render "header"
+.subnavbar
+  .container.subnavbar-container
+    .subnavbar-section.subnavbar-section-left.list-map
+      = render "header"
 
-.row.row-no-padding
-  .col-lg-12
-    %ol.breadcrumb
-      %li= link_to Lab.to_s.pluralize, labs_path
-      - if params[:country].present?
-        %li.active
-          = link_to labs_path(country: params[:country]) do
-            %span.flag{class: "flag-#{params[:country]}"}
-            = ISO3166::Country[params[:country]]
+    .subnavbar-section.subnavbar-section-center
+      - cache ["v1-countries-#{I18n.locale}-#{Digest::MD5.hexdigest([params.to_s].to_s)}", Lab.last_updated_at] do
+        = select_tag :labs_country_selector, options_for_select([[t("views.labs.index.all_countries", default: "All Countries"), ''], *@countries.map { |country,country_code,count| [country, country_code.upcase] }], params[:country] ? params[:country].upcase : '')
+
+    .subnavbar-section.subnavbar-section-right
+      - if current_user
+        = link_to new_lab_path, class: "btn btn-primary" do
+          = fa_icon "plus", text: t("views.labs.index.add_a_lab", default: "Add Lab")
       - else
-        %li.active= link_to t("views.labs.index.all_countries"), labs_path
+        = link_to new_lab_path, class: "btn btn-primary", data: {toggle: "tooltip", placement: "bottom" }, title: "You need to be signed in to add a Lab" do
+          = fa_icon "plus", text: t("views.labs.index.add_a_lab", default: "Add Lab")
 
-.row
-  - cache ["v2-labsindex-#{I18n.locale}-#{Digest::MD5.hexdigest([params.to_s].to_s)}", Lab.last_updated_at] do
-    .col-lg-8.content
+.container
+  .row
+    - cache ["v2-labsindex-#{I18n.locale}-#{Digest::MD5.hexdigest([params.to_s].to_s)}", Lab.last_updated_at] do
       - if params[:query].present?
         .search-results
           = link_to "×", labs_path, class: 'close right'
@@ -46,24 +28,10 @@
       .labs= render @labs
       = paginate @labs
 
-  .col-lg-4.sidebar-offcanvas
-    - cache ["v1-countries-#{I18n.locale}-#{Digest::MD5.hexdigest([params.to_s].to_s)}", Lab.last_updated_at] do
-      .heading
-        Filter by
-        %strong Country
-      .list-group
-        = link_to url_for(params.merge(country: nil, page: nil)), class: "list-group-item #{params[:country].blank? ? 'active' : ''}" do
-          = t("views.labs.index.all_countries", default: "All Countries")
-          %span.badge= @count
-
-        - @countries.each do |country,country_code,count|
-          = link_to url_for(params.merge(country: country_code, page: nil)), class: "list-group-item #{params[:country] == country_code ? 'active' : ''}" do
-            = country
-            %span.badge= count
-
+  .row
     .heading
       %strong Download
       the Fab Labs list
     %dl
       %dt Format:
-      %dd= link_to "JSON", api_v0_labs_url(format: 'json'), class: 'btn btn-primary'
+      %dd= link_to "JSON", controller:'labs', action:'index', subdomain: 'api', format: :json, class: 'btn btn-primary'

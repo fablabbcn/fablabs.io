@@ -1,7 +1,7 @@
 require 'spec_helper'
 
-describe Project do
-  let(:project) { FactoryGirl.create(:project) }
+describe Project, type: :model  do
+  let(:project) { FactoryBot.create(:project) }
 
   it { should have_many(:contributions) }
   it { should have_many(:contributors).through(:contributions) }

@@ -1,6 +1,6 @@
 require 'sidekiq/testing/inline'
 
-Fablabs::Application.configure do
+Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
   # The test environment is used exclusively to run your application's
@@ -17,12 +17,16 @@ Fablabs::Application.configure do
   config.eager_load = false
 
   # Configure static asset server for tests with Cache-Control for performance.
-  config.serve_static_assets  = true
+
+  config.serve_static_files = true
+  #config.serve_static_assets  = true
   config.static_cache_control = "public, max-age=3600"
 
   # Show full error reports and disable caching.
   config.consider_all_requests_local       = true
   config.action_controller.perform_caching = false
+
+  config.allow_concurrency = false
 
   # Raise exceptions instead of rendering exception templates.
   config.action_dispatch.show_exceptions = false
@@ -35,7 +39,10 @@ Fablabs::Application.configure do
   # ActionMailer::Base.deliveries array.
   config.action_mailer.delivery_method = :test
 
+  # Randomize the order test cases are executed.
+  config.active_support.test_order = :random
+
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr
-  config.action_mailer.default_url_options = { :host => "fablabs.dev" }
+  config.action_mailer.default_url_options = { :host => "fablabs.local" }
 end

@@ -1,7 +1,6 @@
 class StaticController < ApplicationController
 
   def home
-    return redirect_to labs_path if current_user
     # @nearby_labs = Lab.with_approved_state.where(country_code: current_country.alpha2.downcase).order("RANDOM()").limit(3)
     # @country_labs = @nearby_labs.exists?
     render layout: 'welcome'
@@ -27,5 +26,14 @@ class StaticController < ApplicationController
     # else
     #   redirect_to request.referer, params: { locale: I18n.locale }
     # end
+  end
+
+  def version
+    render json: {
+      env: Rails.env,
+      version: VERSION,
+      ruby: RUBY_VERSION,
+      rails: Rails::VERSION::STRING
+    }
   end
 end

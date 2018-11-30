@@ -34,7 +34,6 @@
 #= require_tree .
 #
 #
-
 initEvents = ->
 
   $('.datepicker').datepicker()

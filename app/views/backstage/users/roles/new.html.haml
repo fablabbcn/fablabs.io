@@ -1,8 +1,10 @@
-.row
-  .col-lg-12
-    = render "backstage/header"
-    = title "User #{@user} roles"
+= render "backstage/header"
 
-    = simple_form_for [:backstage, @user, @role] do |f|
-      = f.input :name, collection: Role::AVAILABLE, allow_blank: false, prompt: false
-      = f.submit 'save', class: 'btn btn-success'
+.container
+  .row
+    .col-lg-12
+      = title "User #{@user} roles"
+
+      = simple_form_for [:backstage, @user, @role] do |f|
+        = f.input :name, collection: Role::AVAILABLE, allow_blank: false, prompt: false
+        = f.submit 'save', class: 'btn btn-primary'

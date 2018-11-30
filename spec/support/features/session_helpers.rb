@@ -15,7 +15,7 @@ module Features
     end
 
     def sign_in(user = nil)
-      user ||= FactoryGirl.create(:user)
+      user ||= FactoryBot.create(:user)
       visit signin_path
       fill_in "Email or Username", with: [user.email,user.username].sample
       fill_in "Password", with: "password"
@@ -23,18 +23,18 @@ module Features
     end
 
     def sign_out(user = nil)
-      user ||= FactoryGirl.create(:user)
+      user ||= FactoryBot.create(:user)
       visit signout_path
     end
 
     def sign_in_admin_for resource
-      admin = FactoryGirl.create(:user)
+      admin = FactoryBot.create(:user)
       admin.add_role :admin, resource
       sign_in admin
     end
 
     def sign_in_superadmin
-      superadmin = FactoryGirl.create(:user)
+      superadmin = FactoryBot.create(:user)
       superadmin.add_role :superadmin
       sign_in superadmin
     end

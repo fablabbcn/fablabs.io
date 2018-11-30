@@ -1,37 +1,41 @@
-.row
-  .col-lg-12= title "Edit Your Settings"
-  .col-lg-12
-    = simple_form_for @user do |f|
-      %fieldset
-        = render "form_errors", resource: @user
-        .row
-          .col-lg-1
-            = f.label :first_name, "Name"
-          .col-lg-3
-            = f.input :first_name, label: false, placeholder: 'First'
-          .col-lg-3.left
-            = f.input :last_name, label: false, placeholder: 'Last'
+= render "backstage/header"
 
-        = f.input :username
-        = f.input :email
-        = f.input :phone
-        = f.input :country_code, as: 'country', priority: ([current_country.alpha2.downcase] if current_country), label: 'Country', iso_codes: true
+.container
+  .row
+    .col-lg-12= title "Edit Your Settings"
+    .col-lg-12
+      = simple_form_for @user do |f|
+        %fieldset
+          = render "form_errors", resource: @user
+          .row
+            .col-lg-1
+              = f.label :first_name, "Name"
+            .col-lg-3
+              = f.input :first_name, label: false, placeholder: 'First'
+            .col-lg-3.left
+              = f.input :last_name, label: false, placeholder: 'Last'
 
-        = f.input :bio
-        = f.input :url
+          = f.input :username
+          = f.input :email
+          = f.input :email_fallback
+          = f.input :phone
+          = f.input :country_code, as: 'country', priority: ([current_country.alpha2.downcase] if current_country), label: 'Country', iso_codes: true
 
-      %fieldset
-        = render 'form_links', f: f
+          = f.input :bio
+          = f.input :url
 
-      %fieldset
-        .row
-          .col-lg-3
-            = image_tag @user.avatar_url, class: 'avatar big'
-          .col-lg-9
-            = f.input :avatar, as: :file, label: 'Avatar', hint: "You can upload an avatar, otherwise we'll try and use your #{link_to 'gravatar', 'http://gravatar.com'}".html_safe
-            = f.hidden_field :retained_avatar
+        %fieldset
+          = render 'form_links', f: f
 
-      %fieldset
-        = f.input :use_metric, :collection => [[true, 'Metric - cm/m/km'], [false, 'Imperial - in/ft/mi']], :label_method => :last, :value_method => :first, :as => :radio_buttons, :label => "Preferred units", :hint => "This doesn't update measurements on the site yet, but will do soon"
+        %fieldset
+          .row
+            .col-lg-3
+              = image_tag @user.avatar_url, class: 'avatar big'
+            .col-lg-9
+              = f.input :avatar, as: :file, label: 'Avatar', hint: "You can upload an avatar, otherwise we'll try and use your #{link_to 'gravatar', 'http://gravatar.com'}".html_safe
+              = f.hidden_field :retained_avatar
 
-      = f.submit "Update", class: 'btn btn-success'
+        %fieldset
+          = f.input :use_metric, :collection => [[true, 'Metric - cm/m/km'], [false, 'Imperial - in/ft/mi']], :label_method => :last, :value_method => :first, :as => :radio_buttons, :label => "Preferred units", :hint => "This doesn't update measurements on the site yet, but will do soon"
+
+        = f.submit "Update", class: 'btn btn-primary'

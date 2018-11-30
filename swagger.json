@@ -1,0 +1,2850 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "Improved Fablabs.io API v.3",
+    "version": "1.0.0",
+    "title": "Fablabs.io API",
+    "termsOfService": "https://www.fablabs.io/tos",
+    "contact": {
+      "email": "webmaster@fablabs.io"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "host": "api.fablabs.io",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "oauth",
+      "description": "oAuth process API"
+    },
+    {
+      "name": "user",
+      "description": "User and profile management"
+    },
+    {
+      "name": "labs",
+      "description": "Fab Labs directory"
+    },
+    {
+      "name": "organizations",
+      "description": "Fab Lab Network organizations"
+    },
+    {
+      "name": "machines",
+      "description": "Machines used in fablabs"
+    },
+    {
+      "name": "projects",
+      "description": "Projects from the network"
+    },
+    {
+      "name": "admin",
+      "description": "Administrative functions"
+    }
+  ],
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "paths": {
+    "/oauth/token": {
+      "post": {
+        "tags": [
+          "oauth"
+        ],
+        "summary": "Token Endpoint\n",
+        "description": "Post here with authorization code for authorization code grant type or username and password for password grant type, or refresh token for refresh token type. This corresponds to the token endpoint, section 3.2 of the OAuth 2 RFC\n",
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "formData",
+            "name": "client_id",
+            "description": "Client ID Code",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "client_secret",
+            "description": "Client secret Code",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "redirect_uri",
+            "default": "urn:ietf:wg:oauth:2.0:oob",
+            "description": "URL to redirect after Auth",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "code",
+            "description": "token code",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "grant_type",
+            "description": "Grant type",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "authorization_code object",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "access_token": {
+                  "type": "string"
+                },
+                "token_type": {
+                  "type": "string"
+                },
+                "expires_in": {
+                  "type": "number"
+                },
+                "refresh_token": {
+                  "type": "string"
+                },
+                "scope": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/oauth/authorize": {
+      "post": {
+        "tags": [
+          "oauth"
+        ],
+        "summary": "Generate and return an authorization code\n",
+        "description": "Will create and return an authorization code, then edirect to GET /oauth/authorize/:code with the authorization code.\n",
+        "operationId": "authorizePost",
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/html"
+        ],
+        "parameters": [
+          {
+            "in": "formData",
+            "name": "client_id",
+            "description": "Client ID Code",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "client_secret",
+            "description": "Client secret Code",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "redirect_uri",
+            "default": "urn:ietf:wg:oauth:2.0:oob",
+            "description": "URL to redirect after Auth",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "username",
+            "description": "Username",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "302": {
+            "description": "Redirect to /oauth/authorize/:code"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "oauth"
+        ],
+        "summary": "Revoke an authorization code\n",
+        "description": "Will delete an authorization code\n",
+        "operationId": "authorizeDelete",
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/html"
+        ],
+        "parameters": [
+          {
+            "in": "formData",
+            "name": "client_id",
+            "description": "Client ID Code",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "client_secret",
+            "description": "Client secret Code",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "redirect_uri",
+            "default": "urn:ietf:wg:oauth:2.0:oob",
+            "description": "URL to redirect when done",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "access_token",
+            "description": "Access token",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "302": {
+            "description": "Redirect to :redirect_uri"
+          }
+        }
+      }
+    },
+    "/oauth/authorize/{code}": {
+      "get": {
+        "tags": [
+          "oauth"
+        ],
+        "summary": "Provides a page with the authorization code.",
+        "description": "",
+        "operationId": "authorize",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/html"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "code",
+            "description": "Authorization Code",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Authorization successful"
+          }
+        }
+      }
+    },
+    "/users": {
+      "get": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "List all users",
+        "description": "",
+        "operationId": "listUsers",
+        "consumes": [
+          "application/json",
+          "application/vnd.api+json"
+        ],
+        "produces": [
+          "application/json",
+          "application/vnd.api+json"
+        ],
+        "security": [
+          {
+            "OAuth2": [
+              "admin"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "page",
+            "description": "Results page",
+            "type": "number",
+            "default": 0
+          },
+          {
+            "in": "query",
+            "name": "page_size",
+            "description": "Results per page",
+            "type": "number",
+            "default": 10
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Users list",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "meta": {
+                  "$ref": "#/definitions/MetaInfo"
+                },
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/User"
+                  }
+                },
+                "links": {
+                  "type": "object",
+                  "$ref": "#/definitions/PaginationInfo"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "Create a new user",
+        "description": "Create a new user in the system. The user will receive a welcome email and will be able to set the password at first login",
+        "operationId": "createUser",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "OAuth2": [
+              "admin"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Data for the user to create",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "first_name",
+                "last_name",
+                "username",
+                "emai"
+              ],
+              "properties": {
+                "first_name": {
+                  "type": "string"
+                },
+                "last_name": {
+                  "type": "string"
+                },
+                "username": {
+                  "type": "string"
+                },
+                "email": {
+                  "type": "string"
+                },
+                "phone": {
+                  "type": "string"
+                },
+                "city": {
+                  "type": "string"
+                },
+                "country_code": {
+                  "type": "string"
+                },
+                "latitude": {
+                  "type": "number"
+                },
+                "longitute": {
+                  "type": "number"
+                },
+                "url": {
+                  "type": "string"
+                },
+                "dob": {
+                  "type": "string"
+                },
+                "bio": {
+                  "type": "string"
+                },
+                "locale": {
+                  "type": "string"
+                },
+                "avatar_name": {
+                  "type": "string"
+                },
+                "avatar_id": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "$ref": "#/responses/BadRequest"
+          }
+        }
+      }
+    },
+    "/users/me": {
+      "get": {
+        "tags": [
+          "user"
+        ],
+        "summary": "Read the current user's profile",
+        "description": "This method allows to retrieve our user profile ",
+        "operationId": "currentUser",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "OAuth2": [
+              "api"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/UserResponse"
+          },
+          "400": {
+            "$ref": "#/responses/BadRequest"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "user"
+        ],
+        "summary": "Update the current user's profile",
+        "description": "This method allows to retrieve our user profile",
+        "operationId": "updateUser",
+        "consumes": [
+          "application/json",
+          "application/vnd.api+json"
+        ],
+        "produces": [
+          "application/json",
+          "application/vnd.api+json"
+        ],
+        "security": [
+          {
+            "OAuth2": [
+              "api"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Data for the user to create",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "first_name",
+                "last_name",
+                "username",
+                "email"
+              ],
+              "properties": {
+                "first_name": {
+                  "type": "string"
+                },
+                "last_name": {
+                  "type": "string"
+                },
+                "username": {
+                  "type": "string"
+                },
+                "email": {
+                  "type": "string"
+                },
+                "phone": {
+                  "type": "string"
+                },
+                "city": {
+                  "type": "string"
+                },
+                "country_code": {
+                  "type": "string"
+                },
+                "latitude": {
+                  "type": "number"
+                },
+                "longitute": {
+                  "type": "number"
+                },
+                "url": {
+                  "type": "string"
+                },
+                "dob": {
+                  "type": "string"
+                },
+                "bio": {
+                  "type": "string"
+                },
+                "locale": {
+                  "type": "string"
+                },
+                "avatar_name": {
+                  "type": "string"
+                },
+                "avatar_id": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User profile updated"
+          },
+          "400": {
+            "$ref": "#/responses/BadRequest"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/users/{username}": {
+      "get": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "Get a user by username",
+        "description": "This method allows to get a specific user by username",
+        "operationId": "getUser",
+        "consumes": [
+          "application/json",
+          "application/vnd.api+json"
+        ],
+        "produces": [
+          "application/json",
+          "application/vnd.api+json"
+        ],
+        "security": [
+          {
+            "OAuth2": [
+              "admin"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "username",
+            "description": "Username for the requested user",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/UserResponse"
+          },
+          "400": {
+            "$ref": "#/responses/BadRequest"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/users/search": {
+      "post": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "Search for a user",
+        "description": "This method allows to search for a specific user by username or email",
+        "operationId": "searchUsers",
+        "consumes": [
+          "application/json",
+          "application/vnd.api+json"
+        ],
+        "produces": [
+          "application/json",
+          "application/vnd.api+json"
+        ],
+        "security": [
+          {
+            "OAuth2": [
+              "admin"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Username or email in a dictionary",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "username": {
+                  "type": "string"
+                },
+                "email": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/UserResponse"
+          },
+          "400": {
+            "$ref": "#/responses/BadRequest"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/labs": {
+      "get": {
+        "tags": [
+          "labs"
+        ],
+        "summary": "List all labs",
+        "description": "This method allows to list labs",
+        "operationId": "listLabs",
+        "consumes": [
+          "application/json",
+          "application/vnd.api+json"
+        ],
+        "produces": [
+          "application/json",
+          "application/vnd.api+json"
+        ],
+        "security": [
+          {
+            "OAuth2": [
+              "api"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "sort",
+            "description": "Field for sorting",
+            "type": "string",
+            "enum": [
+              "id",
+              "name",
+              "city",
+              "country_code"
+            ],
+            "default": "id"
+          },
+          {
+            "in": "query",
+            "name": "sort_order",
+            "description": "Ascending or descending sorting order",
+            "type": "string",
+            "enum": [
+              "asc",
+              "desc"
+            ],
+            "default": "id"
+          },
+          {
+            "in": "query",
+            "name": "page",
+            "description": "Results page",
+            "type": "number",
+            "default": 0
+          },
+          {
+            "in": "query",
+            "name": "page_size",
+            "description": "Results per page",
+            "type": "number",
+            "default": 10
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Listings",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "meta": {
+                  "$ref": "#/definitions/MetaInfo"
+                },
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/LabExtract"
+                  }
+                },
+                "links": {
+                  "$ref": "#/definitions/PaginationInfo"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/responses/BadRequest"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "labs"
+        ],
+        "summary": "Create a new lab ",
+        "description": "This method allows to create a new lab",
+        "operationId": "createLab",
+        "consumes": [
+          "application/json",
+          "application/vnd.api+json"
+        ],
+        "produces": [
+          "application/json",
+          "application/vnd.api+json"
+        ],
+        "security": [
+          {
+            "OAuth2": [
+              "api"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "data to be updated",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "$ref": "#/definitions/LabAttributes"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/LabResponse"
+          },
+          "400": {
+            "$ref": "#/responses/BadRequest"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/labs/{id}": {
+      "get": {
+        "tags": [
+          "labs"
+        ],
+        "summary": "Get a lab by id",
+        "description": "This method allows to get a specific lab by id",
+        "operationId": "getLabById",
+        "consumes": [
+          "application/json",
+          "application/vnd.api+json"
+        ],
+        "produces": [
+          "application/json",
+          "application/vnd.api+json"
+        ],
+        "security": [
+          {
+            "OAuth2": [
+              "api"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "id for the requested lab",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/LabResponse"
+          },
+          "400": {
+            "$ref": "#/responses/BadRequest"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "labs"
+        ],
+        "summary": "Update a lab by id",
+        "description": "This method allows to update a specific lab by id",
+        "operationId": "updateLabById",
+        "consumes": [
+          "application/json",
+          "application/vnd.api+json"
+        ],
+        "produces": [
+          "application/json",
+          "application/vnd.api+json"
+        ],
+        "security": [
+          {
+            "OAuth2": [
+              "api"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "id for the requested lab",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "data to be updated",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "$ref": "#/definitions/LabAttributes"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/LabResponse"
+          },
+          "400": {
+            "$ref": "#/responses/BadRequest"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/labs/{id}/relationships/machines": {
+      "get": {
+        "tags": [
+          "labs"
+        ],
+        "summary": "Get machines belonging to a lab by id",
+        "description": "This method allows to get machines belonging to a lab",
+        "operationId": "getLabMachinesById",
+        "consumes": [
+          "application/json",
+          "application/vnd.api+json"
+        ],
+        "produces": [
+          "application/json",
+          "application/vnd.api+json"
+        ],
+        "security": [
+          {
+            "OAuth2": [
+              "api"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "id for the requested lab",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/RelationshipResponse"
+          },
+          "400": {
+            "$ref": "#/responses/BadRequest"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "labs"
+        ],
+        "summary": "Add a machine to a lab by id",
+        "description": "This method allows to add a machine to a lab by id",
+        "operationId": "addLabMachineById",
+        "consumes": [
+          "application/json",
+          "application/vnd.api+json"
+        ],
+        "produces": [
+          "application/json",
+          "application/vnd.api+json"
+        ],
+        "security": [
+          {
+            "OAuth2": [
+              "api"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "id for the requested lab",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "data to be updated",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "$ref": "#/definitions/RelationshipLink"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/RelationshipResponse"
+          },
+          "400": {
+            "$ref": "#/responses/BadRequest"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/labs/map": {
+      "get": {
+        "tags": [
+          "labs"
+        ],
+        "summary": "Get a listing of coordinates for labs",
+        "description": "This method allows to show a map of labs",
+        "operationId": "mapLabs",
+        "consumes": [
+          "application/json",
+          "application/vnd.api+json"
+        ],
+        "produces": [
+          "application/json",
+          "application/vnd.api+json"
+        ],
+        "security": [
+          {
+            "OAuth2": [
+              "api"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Results listing",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "meta": {
+                  "$ref": "#/definitions/MetaInfo"
+                },
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/LabMapExtract"
+                  }
+                },
+                "links": {
+                  "$ref": "#/definitions/PaginationInfo"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/responses/BadRequest"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/labs/search": {
+      "get": {
+        "tags": [
+          "labs"
+        ],
+        "summary": "Search for labs",
+        "description": "This method allows to search labs by different fields",
+        "operationId": "searchLabs",
+        "consumes": [
+          "application/json",
+          "application/vnd.api+json"
+        ],
+        "produces": [
+          "application/json",
+          "application/vnd.api+json"
+        ],
+        "security": [
+          {
+            "OAuth2": [
+              "api"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "type",
+            "description": "Type of search",
+            "type": "string",
+            "enum": [
+              "fulltext",
+              "location"
+            ],
+            "default": "fulltext"
+          },
+          {
+            "in": "query",
+            "name": "q",
+            "description": "Query object, if type equals:\n- fulltext: the string to search.\n- location: use latitude:longitude instead\n",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "page",
+            "description": "Results page",
+            "type": "number",
+            "default": 0
+          },
+          {
+            "in": "query",
+            "name": "page_size",
+            "description": "Results per page",
+            "type": "number",
+            "default": 10
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Search Results",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "meta": {
+                  "$ref": "#/definitions/MetaInfo"
+                },
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/LabExtract"
+                  }
+                },
+                "links": {
+                  "$ref": "#/definitions/PaginationInfo"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/responses/BadRequest"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/machines": {
+      "get": {
+        "tags": [
+          "machines"
+        ],
+        "summary": "List all machines",
+        "description": "This method allows to list machines",
+        "operationId": "listMachines",
+        "consumes": [
+          "application/json",
+          "application/vnd.api+json"
+        ],
+        "produces": [
+          "application/json",
+          "application/vnd.api+json"
+        ],
+        "security": [
+          {
+            "OAuth2": [
+              "api"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "sort",
+            "description": "Field for sorting",
+            "type": "string",
+            "enum": [
+              "id",
+              "name",
+              "city",
+              "country_code"
+            ],
+            "default": "id"
+          },
+          {
+            "in": "query",
+            "name": "sort_order",
+            "description": "Ascending or descending sorting order",
+            "type": "string",
+            "enum": [
+              "asc",
+              "desc"
+            ],
+            "default": "id"
+          },
+          {
+            "in": "query",
+            "name": "page",
+            "description": "Results page",
+            "type": "number",
+            "default": 0
+          },
+          {
+            "in": "query",
+            "name": "page_size",
+            "description": "Results per page",
+            "type": "number",
+            "default": 10
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Listings",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "meta": {
+                  "$ref": "#/definitions/MetaInfo"
+                },
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/Machine"
+                  }
+                },
+                "links": {
+                  "$ref": "#/definitions/PaginationInfo"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/responses/BadRequest"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "machines"
+        ],
+        "summary": "Create a new machine ",
+        "description": "This method allows to create a new machine",
+        "operationId": "createMachine",
+        "consumes": [
+          "application/json",
+          "application/vnd.api+json"
+        ],
+        "produces": [
+          "application/json",
+          "application/vnd.api+json"
+        ],
+        "security": [
+          {
+            "OAuth2": [
+              "api"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "data to be updated",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "$ref": "#/definitions/MachineAttributes"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/MachineResponse"
+          },
+          "400": {
+            "$ref": "#/responses/BadRequest"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/machines/{id}": {
+      "get": {
+        "tags": [
+          "machines"
+        ],
+        "summary": "Get a machine by id",
+        "description": "This method allows to get a specific machine by id",
+        "operationId": "getMachineById",
+        "consumes": [
+          "application/json",
+          "application/vnd.api+json"
+        ],
+        "produces": [
+          "application/json",
+          "application/vnd.api+json"
+        ],
+        "security": [
+          {
+            "OAuth2": [
+              "api"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "id for the requested machine",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/MachineResponse"
+          },
+          "400": {
+            "$ref": "#/responses/BadRequest"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "machines"
+        ],
+        "summary": "Update a machine by id",
+        "description": "This method allows to update a specific machine by id",
+        "operationId": "updateMachineById",
+        "consumes": [
+          "application/json",
+          "application/vnd.api+json"
+        ],
+        "produces": [
+          "application/json",
+          "application/vnd.api+json"
+        ],
+        "security": [
+          {
+            "OAuth2": [
+              "api"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "id for the requested machine",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "data to be updated",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "$ref": "#/definitions/MachineAttributes"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/MachineResponse"
+          },
+          "400": {
+            "$ref": "#/responses/BadRequest"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/projects": {
+      "get": {
+        "tags": [
+          "projects"
+        ],
+        "summary": "List all projects",
+        "description": "This method allows to list projects",
+        "operationId": "listProjects",
+        "consumes": [
+          "application/json",
+          "application/vnd.api+json"
+        ],
+        "produces": [
+          "application/json",
+          "application/vnd.api+json"
+        ],
+        "security": [
+          {
+            "OAuth2": [
+              "api"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "sort",
+            "description": "Field for sorting",
+            "type": "string",
+            "enum": [
+              "id",
+              "name",
+              "city",
+              "country_code"
+            ],
+            "default": "id"
+          },
+          {
+            "in": "query",
+            "name": "sort_order",
+            "description": "Ascending or descending sorting order",
+            "type": "string",
+            "enum": [
+              "asc",
+              "desc"
+            ],
+            "default": "id"
+          },
+          {
+            "in": "query",
+            "name": "page",
+            "description": "Results page",
+            "type": "number",
+            "default": 0
+          },
+          {
+            "in": "query",
+            "name": "page_size",
+            "description": "Results per page",
+            "type": "number",
+            "default": 10
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Listings",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "meta": {
+                  "$ref": "#/definitions/MetaInfo"
+                },
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/ProjectExtract"
+                  }
+                },
+                "links": {
+                  "$ref": "#/definitions/PaginationInfo"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/responses/BadRequest"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "projects"
+        ],
+        "summary": "Create a new project ",
+        "description": "This method allows to create a new project",
+        "operationId": "createProject",
+        "consumes": [
+          "application/json",
+          "application/vnd.api+json"
+        ],
+        "produces": [
+          "application/json",
+          "application/vnd.api+json"
+        ],
+        "security": [
+          {
+            "OAuth2": [
+              "api"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "data to be updated",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "$ref": "#/definitions/ProjectAttributes"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/ProjectResponse"
+          },
+          "400": {
+            "$ref": "#/responses/BadRequest"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/projects/{id}": {
+      "get": {
+        "tags": [
+          "projects"
+        ],
+        "summary": "Get a project by id",
+        "description": "This method allows to get a specific projects by id",
+        "operationId": "getProjectById",
+        "consumes": [
+          "application/json",
+          "application/vnd.api+json"
+        ],
+        "produces": [
+          "application/json",
+          "application/vnd.api+json"
+        ],
+        "security": [
+          {
+            "OAuth2": [
+              "api"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "id for the requested project",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/ProjectResponse"
+          },
+          "400": {
+            "$ref": "#/responses/BadRequest"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "projects"
+        ],
+        "summary": "Update a project by id",
+        "description": "This method allows to update a specific projects by id",
+        "operationId": "updateProjectById",
+        "consumes": [
+          "application/json",
+          "application/vnd.api+json"
+        ],
+        "produces": [
+          "application/json",
+          "application/vnd.api+json"
+        ],
+        "security": [
+          {
+            "OAuth2": [
+              "api"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "id for the requested projects",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "data to be updated",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "$ref": "#/definitions/ProjectAttributes"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/ProjectResponse"
+          },
+          "400": {
+            "$ref": "#/responses/BadRequest"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/projects/search": {
+      "get": {
+        "tags": [
+          "projects"
+        ],
+        "summary": "Search for projects",
+        "description": "This method allows to search projects by different fields",
+        "operationId": "searchProjects",
+        "consumes": [
+          "application/json",
+          "application/vnd.api+json"
+        ],
+        "produces": [
+          "application/json",
+          "application/vnd.api+json"
+        ],
+        "security": [
+          {
+            "OAuth2": [
+              "api"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "type",
+            "description": "Type of search",
+            "type": "string",
+            "enum": [
+              "fulltext"
+            ],
+            "default": "fulltext"
+          },
+          {
+            "in": "query",
+            "name": "q",
+            "description": "Query object, if type equals: - fulltext: the string to search.\n",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "page",
+            "description": "Results page",
+            "type": "number",
+            "default": 0
+          },
+          {
+            "in": "query",
+            "name": "page_size",
+            "description": "Results per page",
+            "type": "number",
+            "default": 10
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Search Results",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "meta": {
+                  "$ref": "#/definitions/MetaInfo"
+                },
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/ProjectExtract"
+                  }
+                },
+                "links": {
+                  "$ref": "#/definitions/PaginationInfo"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/responses/BadRequest"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/organizations": {
+      "get": {
+        "tags": [
+          "organizations"
+        ],
+        "summary": "List all organizations",
+        "description": "This method allows to list the organizations",
+        "operationId": "listOrganizations",
+        "consumes": [
+          "application/json",
+          "application/vnd.api+json"
+        ],
+        "produces": [
+          "application/json",
+          "application/vnd.api+json"
+        ],
+        "security": [
+          {
+            "OAuth2": [
+              "api"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "sort",
+            "description": "Field for sorting",
+            "type": "string",
+            "enum": [
+              "id",
+              "name",
+              "city",
+              "country_code"
+            ],
+            "default": "id"
+          },
+          {
+            "in": "query",
+            "name": "sort_order",
+            "description": "Ascending or descending sorting order",
+            "type": "string",
+            "enum": [
+              "asc",
+              "desc"
+            ],
+            "default": "id"
+          },
+          {
+            "in": "query",
+            "name": "page",
+            "description": "Results page",
+            "type": "number",
+            "default": 0
+          },
+          {
+            "in": "query",
+            "name": "page_size",
+            "description": "Results per page",
+            "type": "number",
+            "default": 10
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Listings",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "meta": {
+                  "$ref": "#/definitions/MetaInfo"
+                },
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/OrganizationExtract"
+                  }
+                },
+                "links": {
+                  "$ref": "#/definitions/PaginationInfo"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/responses/BadRequest"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "organizations"
+        ],
+        "summary": "Create a new organization ",
+        "description": "This method allows to create a new organization",
+        "operationId": "createOrganization",
+        "consumes": [
+          "application/json",
+          "application/vnd.api+json"
+        ],
+        "produces": [
+          "application/json",
+          "application/vnd.api+json"
+        ],
+        "security": [
+          {
+            "OAuth2": [
+              "api"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "data to be updated",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "$ref": "#/definitions/OrganizationAttributes"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "$ref": "#/responses/BadRequest"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/organizations/{id}": {
+      "get": {
+        "tags": [
+          "organizations"
+        ],
+        "summary": "Get an organization by id",
+        "description": "This method allows to get a specific organization by id",
+        "operationId": "getOrganizationsById",
+        "consumes": [
+          "application/json",
+          "application/vnd.api+json"
+        ],
+        "produces": [
+          "application/json",
+          "application/vnd.api+json"
+        ],
+        "security": [
+          {
+            "OAuth2": [
+              "api"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "id for the requested organization",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/OrganizationResponse"
+          },
+          "400": {
+            "$ref": "#/responses/BadRequest"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "organizations"
+        ],
+        "summary": "Update an organization by id",
+        "description": "This method allows to update a specific organization by id",
+        "operationId": "updateOrganizationById",
+        "consumes": [
+          "application/json",
+          "application/vnd.api+json"
+        ],
+        "produces": [
+          "application/json",
+          "application/vnd.api+json"
+        ],
+        "security": [
+          {
+            "OAuth2": [
+              "api"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "id for the requested organization",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "data to be updated",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "$ref": "#/definitions/OrganizationAttributes"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/OrganizationResponse"
+          },
+          "400": {
+            "$ref": "#/responses/BadRequest"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/organizations/{id}/relationships/labs": {
+      "get": {
+        "tags": [
+          "organizations"
+        ],
+        "summary": "Get labs belonging to an organization by id",
+        "description": "This method allows to get a specific organization's labs by id",
+        "operationId": "getOrganizationLabsById",
+        "consumes": [
+          "application/json",
+          "application/vnd.api+json"
+        ],
+        "produces": [
+          "application/json",
+          "application/vnd.api+json"
+        ],
+        "security": [
+          {
+            "OAuth2": [
+              "api"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "id for the requested organization",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/RelationshipResponse"
+          },
+          "400": {
+            "$ref": "#/responses/BadRequest"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "organizations"
+        ],
+        "summary": "Add a lab to an organization by id",
+        "description": "This method allows to update a specific organization's labs by id",
+        "operationId": "updateOrganizationLabById",
+        "consumes": [
+          "application/json",
+          "application/vnd.api+json"
+        ],
+        "produces": [
+          "application/json",
+          "application/vnd.api+json"
+        ],
+        "security": [
+          {
+            "OAuth2": [
+              "api"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "id for the requested organization",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "data to be updated",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "$ref": "#/definitions/RelationshipLink"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/RelationshipResponse"
+          },
+          "400": {
+            "$ref": "#/responses/BadRequest"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          }
+        }
+      }
+    }
+  },
+  "responses": {
+    "BadRequest": {
+      "description": "Bad request: A required parameter is missing\n"
+    },
+    "NotFound": {
+      "description": "Not found: The specified resource was not found\n",
+      "schema": {
+        "$ref": "#/definitions/APIError"
+      }
+    },
+    "Unauthorized": {
+      "description": "Unauthorized",
+      "schema": {
+        "$ref": "#/definitions/APIError"
+      }
+    },
+    "UserResponse": {
+      "description": "User Profile",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/definitions/User"
+          }
+        }
+      }
+    },
+    "LabResponse": {
+      "description": "Lab Profile",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/definitions/Lab"
+          }
+        }
+      }
+    },
+    "MachineResponse": {
+      "description": "Machine Profile",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/definitions/Machine"
+          }
+        }
+      }
+    },
+    "ProjectResponse": {
+      "description": "Project profile",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/definitions/Project"
+          }
+        }
+      }
+    },
+    "OrganizationResponse": {
+      "description": "Organization profile",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/definitions/Organization"
+          }
+        }
+      }
+    },
+    "RelationshipResponse": {
+      "description": "Generic response for relationships",
+      "schema": {
+        "$ref": "#/definitions/RelationshipLink"
+      }
+    }
+  },
+  "securityDefinitions": {
+    "OAuth2": {
+      "type": "oauth2",
+      "flow": "accessCode",
+      "authorizationUrl": "https://fablabs.io/oauth/authorize",
+      "tokenUrl": "https://fablabs.io/oauth/token",
+      "scopes": {
+        "api": "read and write your data",
+        "readonly": "read only access to all data",
+        "admin": "admin only api"
+      }
+    },
+    "api_key": {
+      "type": "apiKey",
+      "name": "X-API-Key",
+      "in": "header"
+    }
+  },
+  "definitions": {
+    "PaginationInfo": {
+      "type": "object",
+      "properties": {
+        "self": {
+          "type": "string",
+          "description": "URL for this page in a paginated result"
+        },
+        "first": {
+          "type": "string",
+          "description": "URL of the first page in a paginated result"
+        },
+        "last": {
+          "type": "string",
+          "description": "URL for the last page in a paginated result"
+        },
+        "prev": {
+          "type": "string",
+          "description": "URL for the previous page in a paginated result"
+        },
+        "next": {
+          "type": "string",
+          "description": "URL for the next page in a paginated result"
+        }
+      }
+    },
+    "MetaInfo": {
+      "type": "object",
+      "properties": {
+        "total-pages": {
+          "description": "Total pages available in the listing",
+          "type": "number"
+        }
+      }
+    },
+    "User": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "user"
+          ]
+        },
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "attributes": {
+          "type": "object",
+          "properties": {
+            "first_name": {
+              "type": "string"
+            },
+            "last_name": {
+              "type": "string"
+            },
+            "email": {
+              "type": "string"
+            },
+            "username": {
+              "type": "string"
+            },
+            "phone": {
+              "type": "string"
+            },
+            "city": {
+              "type": "string"
+            },
+            "country_code": {
+              "type": "string"
+            },
+            "latitude": {
+              "type": "number"
+            },
+            "longitute": {
+              "type": "number"
+            },
+            "url": {
+              "type": "string"
+            },
+            "dob": {
+              "type": "string"
+            },
+            "bio": {
+              "type": "string"
+            },
+            "locale": {
+              "type": "string"
+            },
+            "avatar_name": {
+              "type": "string"
+            },
+            "avatar_id": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "ProjectExtract": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "project"
+          ]
+        },
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "attributes": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string"
+            },
+            "title": {
+              "type": "string"
+            },
+            "description": {
+              "type": "string"
+            },
+            "lab_id": {
+              "type": "number"
+            },
+            "cover": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "ProjectAttributes": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "lab_id": {
+          "type": "number"
+        },
+        "owner_id": {
+          "type": "number"
+        },
+        "cover": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        },
+        "faq": {
+          "type": "string"
+        },
+        "scope": {
+          "type": "string"
+        },
+        "community": {
+          "type": "string"
+        },
+        "lookingfor": {
+          "type": "string"
+        },
+        "slug": {
+          "type": "string"
+        }
+      }
+    },
+    "Machine": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "machine"
+          ],
+          "default": "machine"
+        },
+        "attributes": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "description": {
+              "type": "string"
+            },
+            "brand": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "data": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "MachineAttributes": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "brand_id": {
+          "type": "string"
+        }
+      }
+    },
+    "OrganizationExtract": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "organization"
+          ],
+          "default": "organization"
+        },
+        "attributes": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "slug": {
+              "type": "string"
+            },
+            "kind": {
+              "type": "string"
+            },
+            "blurb": {
+              "type": "string"
+            },
+            "latitude": {
+              "type": "number"
+            },
+            "longitude": {
+              "type": "number"
+            },
+            "country_code": {
+              "type": "string"
+            },
+            "reverse_geocoded_address": {
+              "type": "string"
+            },
+            "avatar": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "OrganizationAttributes": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "creator_id": {
+          "type": "integer"
+        },
+        "slug": {
+          "type": "string"
+        },
+        "kind": {
+          "type": "string"
+        },
+        "blurb": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "latitude": {
+          "type": "number"
+        },
+        "longitude": {
+          "type": "number"
+        },
+        "address_1": {
+          "type": "string"
+        },
+        "address_2": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "county": {
+          "type": "string"
+        },
+        "postal_code": {
+          "type": "string"
+        },
+        "country_code": {
+          "type": "string"
+        },
+        "subregion": {
+          "type": "string"
+        },
+        "region": {
+          "type": "string"
+        },
+        "address_notes": {
+          "type": "string"
+        },
+        "reverse_geocoded_address": {
+          "type": "string"
+        },
+        "avatar": {
+          "type": "string"
+        },
+        "header": {
+          "type": "string"
+        }
+      }
+    },
+    "Organization": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "default": "organization",
+          "enum": [
+            "organization"
+          ]
+        },
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "attributes": {
+          "$ref": "#/definitions/OrganizationAttributes"
+        },
+        "relationships": {
+          "$ref": "#/definitions/OrganizationRelationships"
+        },
+        "included": {
+          "$ref": "#/definitions/EmbeddedDocs"
+        }
+      }
+    },
+    "Project": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "project"
+          ]
+        },
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "attributes": {
+          "$ref": "#/definitions/ProjectAttributes"
+        }
+      }
+    },
+    "LabMapExtract": {
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "lab"
+          ]
+        },
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "attributes": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "id": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "latitude": {
+              "type": "number"
+            },
+            "longitude": {
+              "type": "number"
+            }
+          }
+        }
+      }
+    },
+    "LabExtract": {
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "lab"
+          ]
+        },
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "attributes": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "slug": {
+              "type": "string"
+            },
+            "description": {
+              "type": "string"
+            },
+            "city": {
+              "type": "string"
+            },
+            "country_code": {
+              "type": "string"
+            },
+            "avatar": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "OrganizationRelationships": {
+      "type": "object",
+      "properties": {
+        "labs": {
+          "$ref": "#/definitions/OneToManyRelationship"
+        },
+        "links": {
+          "$ref": "#/definitions/OneToManyRelationship"
+        }
+      }
+    },
+    "LabRelationships": {
+      "type": "object",
+      "properties": {
+        "links": {
+          "$ref": "#/definitions/OneToManyRelationship"
+        },
+        "employees": {
+          "$ref": "#/definitions/OneToManyRelationship"
+        },
+        "organizations": {
+          "$ref": "#/definitions/OneToManyRelationship"
+        },
+        "machines": {
+          "$ref": "#/definitions/OneToManyRelationship"
+        },
+        "projects": {
+          "$ref": "#/definitions/OneToManyRelationship"
+        },
+        "discussions": {
+          "$ref": "#/definitions/OneToManyRelationship"
+        },
+        "facilities": {
+          "$ref": "#/definitions/OneToManyRelationship"
+        },
+        "events": {
+          "$ref": "#/definitions/OneToManyRelationship"
+        }
+      }
+    },
+    "LabAttributes": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "slug": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "time_zone": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "address_1": {
+          "type": "string"
+        },
+        "address_2": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "county": {
+          "type": "string"
+        },
+        "postal_code": {
+          "type": "string"
+        },
+        "country_code": {
+          "type": "string"
+        },
+        "subregion": {
+          "type": "string"
+        },
+        "region": {
+          "type": "string"
+        },
+        "latitude": {
+          "type": "string"
+        },
+        "longitude": {
+          "type": "string"
+        },
+        "address_notes": {
+          "type": "string"
+        },
+        "reverse_geocoded_address": {
+          "type": "string"
+        },
+        "avatar": {
+          "type": "string"
+        },
+        "header": {
+          "type": "string"
+        }
+      }
+    },
+    "Lab": {
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "lab"
+          ]
+        },
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "attributes": {
+          "$ref": "#/definitions/LabAttributes"
+        },
+        "relationships": {
+          "$ref": "#/definitions/LabRelationships"
+        },
+        "included": {
+          "$ref": "#/definitions/EmbeddedDocs"
+        }
+      }
+    },
+    "APIError": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "code",
+        "message"
+      ]
+    },
+    "EmbeddedDocs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "data": {
+            "type": "object"
+          },
+          "relationships": {
+            "type": "object"
+          }
+        }
+      }
+    },
+    "RelationshipLink": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "type": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "links": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        }
+      }
+    },
+    "OneToManyRelationship": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/RelationshipLink"
+      }
+    },
+    "Credentials": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "email": {
+          "type": "string"
+        },
+        "username": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

@@ -2,8 +2,8 @@ require 'spec_helper'
 
 feature "Editing a lab" do
 
-  given(:user) { FactoryGirl.create(:user) }
-  given(:lab) { FactoryGirl.create(:lab, workflow_state: 'approved') }
+  given(:user) { FactoryBot.create(:user) }
+  given(:lab) { FactoryBot.create(:lab, workflow_state: 'approved') }
 
   scenario "as a visitor" do
     visit edit_lab_path(lab)
@@ -27,13 +27,13 @@ feature "Editing a lab" do
     end
 
     scenario "with valid details" do
-      fill_in "Name", with: 'New Name'
+      fill_in "lab_name", with: 'New Name'
       click_button 'Update Lab'
       expect(page).to have_content("Lab was successfully updated")
     end
 
     scenario "with invalid details" do
-      fill_in "Name", with: ''
+      fill_in "lab_name", with: ''
       click_button 'Update Lab'
       expect(page).to have_css(".errors")
     end

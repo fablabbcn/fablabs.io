@@ -14,7 +14,7 @@ en:
 
   views:
     header:
-      search:               "Search.."
+      search:               "🔎  Search, anything"
       labs:                 "Labs"
       machines:             "Machines"
       me:                   "Me"
@@ -32,7 +32,7 @@ en:
         add_a_lab:          "Add Lab"
         add_a_machine:      "New Machine"
       show:
-        nearby_labs:        "nearby_labs"
+        nearby_labs:        "Nearby labs"
 
     home:
       welcome:              "Welcome"
@@ -62,3 +62,27 @@ en:
         activity_feeds:     "Activity feeds"
 
       beyond_that:          "And beyond that?"
+
+      lab_card:
+        subtitle:           "Profile"
+        title:              "I’m a Fablab"
+        description:        "Each lab has its own profile page which can be maintained and updated by its staff"
+        cta:                "Register your lab"
+
+      person_card:
+        subtitle:           "Explore"
+        title:              "I’m a Person"
+        description:        "An interactive map showing the location of all the Fab Labs around the world"
+        cta:                "Register an account"
+
+      quote:                "Because all Fab Labs share common tools and processes, the program is building a global network, a distributed laboratory for research and invention."
+
+      fablabs-section:
+        title:              "Global league of fab labs for local purposes."
+        description:        "In order to build a global network, a distributed laboratory for research and invention."
+        cta:                "See the full list"
+
+      circles-section:
+        title:              "All Fab Labs share common tools and processes."
+        description:        "In order to build a global network, a distributed laboratory for research and invention."
+        cta:                "Learn more"

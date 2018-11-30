@@ -1,10 +1,10 @@
 require 'spec_helper'
 
-describe Role do
+describe Role, type: :model  do
 
-  pending "doesn't allow :superadmin" do
-    user = FactoryGirl.create(:user)
-    lab = FactoryGirl.create(:lab)
+  skip "doesn't allow :superadmin" do
+    user = FactoryBot.create(:user)
+    lab = FactoryBot.create(:lab)
     user.add_role :superadmin
     user.add_role :superadmin, lab
     expect(user.roles).to be_empty
@@ -12,7 +12,7 @@ describe Role do
   end
 
   it "allows :admin" do
-    user = FactoryGirl.create(:user)
+    user = FactoryBot.create(:user)
     user.add_role :superadmin
     expect(user.roles).to_not be_empty
     expect(Role.all).to_not be_empty

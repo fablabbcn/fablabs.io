@@ -2,7 +2,7 @@ require 'spec_helper'
 
 feature "Adding an event" do
 
-  given(:lab) { FactoryGirl.create(:lab, workflow_state: 'approved') }
+  given(:lab) { FactoryBot.create(:lab, workflow_state: 'approved') }
 
   scenario "as a visitor" do
     visit new_lab_event_path(lab)
@@ -15,7 +15,7 @@ feature "Adding an event" do
     expect(page.status_code).to eq(403)
   end
 
-  pending "as an admin" do
+  skip "as an admin" do
 
     sign_in_superadmin
     visit new_lab_event_path(lab)

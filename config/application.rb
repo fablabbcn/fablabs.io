@@ -5,7 +5,9 @@ require 'csv'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
-Bundler.require(:default, Rails.env)
+#Bundler.require(:default, Rails.env)
+
+Bundler.require(*Rails.groups)
 
 module Fablabs
   class Application < Rails::Application
@@ -20,10 +22,10 @@ module Fablabs
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
 
-    config.middleware.use Rack::Cors do
+    config.middleware.insert_before 0, "Rack::Cors" do
       allow do
         origins '*'
-        resource '*', :headers => :any, :methods => [:get, :post, :options]
+        resource '*', :headers => :any, :methods => [:get,:put, :post, :options]
       end
     end
 
@@ -58,7 +60,7 @@ module Fablabs
     }
 
 
-    config.url = 'http://fablabs.dev'
+    config.url = 'http://fablabs.local'
 
     config.action_mailer.default_url_options = { host: "www.fablabs.io", protocol: "https" }
     config.action_mailer.delivery_method = :smtp
@@ -73,9 +75,14 @@ module Fablabs
       :password => ENV['EMAIL_PASSWORD']
     }
 
+    if ENV['RAVEN_DSN_URL'].present?
+      Raven.configure do |config|
+        config.dsn = ENV['RAVEN_DSN_URL']
+      end
+    end
 
     config.autoload_paths += %W(#{config.root}/lib)
     config.assets.paths << Rails.root.join('vendor', 'assets', 'node_modules')
-
+    config.active_record.raise_in_transactional_callbacks = true
   end
 end

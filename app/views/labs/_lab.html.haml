@@ -3,7 +3,7 @@
     .img.pull-left
       = link_to lab do
         = image_tag lab.avatar.thumb('100x100#').url, class: 'med avatar', itemprop: "logo"
-    .media-body
+    .pull-left
       = link_to lab, class: 'name' do
         %span.name{itemprop: "name"}= lab
       %span.url.microdata{itemprop: "url"}= lab_url(lab, {locale: nil})
@@ -12,10 +12,6 @@
           = fa_icon "map-marker"
           %span.short_address{itemprop: "addressLocality"}= lab.short_address(!params[:country])
           %span.microdata.country{itemprop: "country"}= lab.country_code
-        - if lab.email.present?
-          = fa_icon "envelope-o"
-          %span.email= mail_to(lab.email, lab.email)
-        - if lab.phone.present?
-          = fa_icon "phone"
-          %span.telephone{itemprop: "telephone"}= lab.phone
-      %p.lab-blurb.truncate{itemprop: "description"}= lab.blurb
+    .pull-right
+      = link_to lab do
+        = image_tag ("icons/arrow-right.svg"), class: 'arrow'

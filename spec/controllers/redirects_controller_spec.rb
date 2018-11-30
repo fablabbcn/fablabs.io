@@ -1,18 +1,19 @@
 require 'spec_helper'
-describe RedirectsController do
+describe RedirectsController, type: :controller do
   describe 'GET #show' do
     it 'redirect to labs by id' do
-      lab = FactoryGirl.create(:lab)
+      lab = FactoryBot.create(:lab)
 
       get :show, id: lab.id
-      expect(response).to redirect_to(lab_path(lab))
+      path = lab_path(lab)
+      expect(response).to redirect_to(path)
     end
 
     it 'redirect to labs by slug' do
-      lab = FactoryGirl.create(:lab)
-
+      lab = FactoryBot.create(:lab)
       get :show, id: lab.slug
-      expect(response).to redirect_to(lab_path(lab))
+      path = lab_path(lab)
+      expect(response).to redirect_to(path)
     end
 
     it 'raise routing error' do

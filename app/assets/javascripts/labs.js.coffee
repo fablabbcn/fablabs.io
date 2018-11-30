@@ -22,7 +22,12 @@ toggleActivityDateFields = (status) ->
 
 
 ready = ->
-
+  $('#labs_country_selector').on 'change', (e) ->
+    country = e.target.value
+    if country
+      window.location = '/labs?country=' + country
+    else
+      window.location = '/labs'
 
   options = {
     valueNames: [ 'name', 'year' ]
@@ -123,7 +128,7 @@ ready = ->
     allLabs = new (L.LayerGroup)
     # Add markers to layer
     $.get "/labs/mapdata.json", (labs) ->
-      for lab in labs.labs
+      for lab in labs
         if lab.latitude and lab.longitude
           icon = L.divIcon({
             iconSize: null
@@ -140,10 +145,15 @@ ready = ->
             })
             this.setIcon nicon
 
-          lab.marker.bindPopup("<a target='_top' href='#{lab.url}'>#{lab.name}</a>").addTo allLabs
+          lab.marker.bindPopup("<a target='_top' href='#{lab.slug}'>#{lab.name}</a>").addTo allLabs
           window.labs.push(lab)
           # Add class for styling the marker by category of lab
-          L.DomUtil.addClass lab.marker._icon, lab.kind_name
+          #L.DomUtil.addClass lab.marker._icon, lab.kind
+          #lab.marker._icon.classList.add(lab.kind)
+          # NOTE: Hard coding all fablabs to use the same icon class because an issue has made
+          # some former supernode to become nil in the mapdata.json, resulting in no icon
+          # See issuse https://github.com/fablabbcn/fablabs.io/issues/449
+          lab.marker._icon.classList.add('fab_lab')
 
     # Create map
     L.mapbox.accessToken = 'pk.eyJ1IjoidG9tYXNkaWV6IiwiYSI6ImRTd01HSGsifQ.loQdtLNQ8GJkJl2LUzzxVg'

@@ -11,7 +11,7 @@ class UsersController < ApplicationController
 
     @user = User.new user_params
     if @user.save
-      UserMailer.delay.welcome(@user.id)
+      UserMailer.welcome(@user.id).deliver_now
       # cookies.permanent[:user_id] = { value: @user.id, domain: '.fablabs.dev' }
       session[:user_id] = @user.id
       track_activity @user
@@ -37,7 +37,7 @@ class UsersController < ApplicationController
     email_changed = (@user.email != user_params[:email])
     if @user.update_attributes user_params
       if email_changed
-        UserMailer.delay.verification(@user.id)
+        UserMailer.verification(@user.id).deliver_now
         @user.unverify!
       end
       redirect_to root_url, flash: { success: 'Settings updated' }
@@ -48,7 +48,7 @@ class UsersController < ApplicationController
 
   def resend_verification_email
     @user = current_user
-    UserMailer.delay.verification(@user.id)
+    UserMailer.verification(@user.id).deliver_now
     render 'sent_verification_email'
   end
 
@@ -78,6 +78,7 @@ private
       :first_name,
       :last_name,
       :email,
+      :email_fallback,
       :phone,
       :password,
       :password_confirmation,

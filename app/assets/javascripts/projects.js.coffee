@@ -45,8 +45,7 @@ triglify = (h, w) ->
 
   return image
 
-$(window).load ->
-
+load = ->
   if $(".radio")
     $(".radio").click ->
       val = $($($(this).parent()).children()[0]).is ':checked'
@@ -168,3 +167,5 @@ $(window).load ->
     map.addLayer(window.markers)
 
   return
+
+$(document).ready load

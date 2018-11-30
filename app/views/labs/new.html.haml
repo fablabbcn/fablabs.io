@@ -1,64 +1,68 @@
-.row
-  .col-lg-12
-    = title "Add a Lab"
-  .col-lg-12
-    .well.well-lg
-      %h2 Important
-      %p
-        We are in the process of improving the list of Fab Labs and the approval process, which may change in the future. Before adding a Lab sure to read the current approval process guidelines here:
-      %ol
-        %li
-          We have recently redesigned the Fab Lab approval process to minimise the waiting time for Labs to get approved.
-        %li
-          Each new Lab need to go through the referee approval process in order to get approved on the platform.
-        %li
-          Each Lab, need to select three Referee Labs during the application process. These are trusted Labs on our platform.
-          Please note that you can, but you do not have to necessarily select, labs close to you geographically.
-        %li
-          Referees might request more info about your Lab. In this case you will receive an email inviting you to add more content to some sections of the Lab form.
-        %li
-          Referees can also send a Lab for admin approval. In this case, it will be up to the platform admins to approve or not the new Lab.
-        %li
-          When submitted, is first assigned the "unverified" state. If one of the referee gives their first approval the Lab is moved into the "referee approval" state.
-        %li
-          If the Referee rejects, the Lab is moved to the "might need review" state. Being in one of the two states doesn't guarantee approval, nor means that the Lab will be rejected.
-        %li
-          The Lab will be rejected or approved depending on the vote of the Referees.
+.container
+  .row
+    .col-lg-12
+      = title "Add a Lab"
+    .col-lg-12
+      .well.well-lg
+        %h2 Important
+        %p
+          We are in the process of improving the list of Fab Labs and the approval process, which may change in the future. Before adding a Lab sure to read the current approval process guidelines here:
+        %ol
+          %li
+            We have recently redesigned the Fab Lab approval process to minimise the waiting time for Labs to get approved.
+          %li
+            Each new Lab need to go through the referee approval process in order to get approved on the platform.
+          %li
+            Each Lab, need to select three Referee Labs during the application process. These are trusted Labs on our platform.
+            Please note that you can, but you do not have to necessarily select, labs close to you geographically.
+          %li
+            Referees might request more info about your Lab. In this case you will receive an email inviting you to add more content to some sections of the Lab form.
+          %li
+            Referees can also send a Lab for admin approval. In this case, it will be up to the platform admins to approve or not the new Lab.
+          %li
+            When submitted, is first assigned the "unverified" state. If one of the referee gives their first approval the Lab is moved into the "referee approval" state.
+          %li
+            If the Referee rejects, the Lab is moved to the "might need review" state. Being in one of the two states doesn't guarantee approval, nor means that the Lab will be rejected.
+          %li
+            The Lab will be rejected or approved depending on the vote of the Referees.
 
-      %h2 F.A.Q.
-      %ol
-        %li
-          %strong How does the registration of a new Lab work?
-          In order to be listed on FabLabs.io, you have to fill the form below and discuss your ne Lab with 3 Referee Labs that you can choose in the form. Please fill the details of the form below and choose 3 of the Referee Labs available and contact them, they will approve you after you have exchanged more information with them. The list of Referee Labs is limited to some Fab Labs with experience and a history of collaborating with the global Fab Lab Network, at the moment it is not possible to choose Referee Labs outside that list. It's not important that you already know them, it's important that you start a discussion with them. We are doing this so that the connections among the Labs (especially for new Labs) get strengthened.
-        %li
-          %strong What is the average/ rough time-span for an new Lab to achieve the status of a "Fab Lab" on the list?
-          Referee Labs might be busy, so it depends also on their time. Please do not forget that being listed on FabLabs.io is not the only thing that makes your lab a Fab Lab, you need to interact with the global Fab Lab network continuously and not only when creating the application.
-        %li
-          %strong Are there multiple stages to complete the registration?
-          For the moment the process is simple, the important thing is to get in contact with the 3 Referee Labs you choose.
-        %li
-          %strong What can I do if I have problems with the registration process?
-          %p
-            You can ask for support to the administrators and the whole community in the Fablabs.io Discuss section. As soon as you create the application of a Fab Lab here, a new thread about your Lab will be created in the
-            = succeed "," do
-              %a{:href => "https://discuss.fablabs.io/c/labs"} Labs category
-            please get involved with the community and the administrators there.
-          %p
-            If you have technical issues, you can notify them
-            = succeed "." do
-              %a{:href => "https://github.com/fablabbcn/fablabs"} on the GitHub repository of Fablabs.io
-            Furthermore, in the
-            %a{:href => "https://discuss.fablabs.io/c/site-feedback"} Site feedback category
-            here we would also love to hear your ideas and suggestions regarding Fablabs.io, its features, development, how it works and how we can improve it.
-          %p
-            If these steps do not work for you and you need instead to contact the administrators of Fablabs.io, please write to
-            = succeed "." do
-              %a{:href => "mailto:webmasters@fablabs.io"} webmasters@fablabs.io
+        %h2 F.A.Q.
+        %ol
+          %li
+            %strong How does the registration of a new Lab work?
+            In order to be listed on FabLabs.io, you have to fill the form below and discuss your ne Lab with 3 Referee Labs that you can choose in the form. Please fill the details of the form below and choose 3 of the Referee Labs available and contact them, they will approve you after you have exchanged more information with them. The list of Referee Labs is limited to some Fab Labs with experience and a history of collaborating with the global Fab Lab Network, at the moment it is not possible to choose Referee Labs outside that list. It's not important that you already know them, it's important that you start a discussion with them. We are doing this so that the connections among the Labs (especially for new Labs) get strengthened.
+          %li
+            %strong What is the average/ rough time-span for an new Lab to achieve the status of a "Fab Lab" on the list?
+            Referee Labs might be busy, so it depends also on their time. Please do not forget that being listed on FabLabs.io is not the only thing that makes your lab a Fab Lab, you need to interact with the global Fab Lab network continuously and not only when creating the application.
+          %li
+            %strong Are there multiple stages to complete the registration?
+            For the moment the process is simple, the important thing is to get in contact with the 3 Referee Labs you choose.
+          %li
+            %strong What can I do if I have problems with the registration process?
+            %p
+              You can ask for support to the administrators and the whole community in the Fablabs.io Discuss section. As soon as you create the application of a Fab Lab here, a new thread about your Lab will be created in the
+              = succeed "," do
+                %a{:href => "https://discuss.fablabs.io/c/labs"} Labs category
+              please get involved with the community and the administrators there.
+            %p
+              If you have technical issues, you can notify them
+              = succeed "." do
+                %a{:href => "https://github.com/fablabbcn/fablabs"} on the GitHub repository of Fablabs.io
+              Furthermore, in the
+              %a{:href => "https://discuss.fablabs.io/c/site-feedback"} Site feedback category
+              here we would also love to hear your ideas and suggestions regarding Fablabs.io, its features, development, how it works and how we can improve it.
+            %p
+              If these steps do not work for you and you need instead to contact the administrators of Fablabs.io, please write to
+              = succeed "." do
+                %a{:href => "mailto:webmasters@fablabs.io"} webmasters@fablabs.io
 
-      %h3 Is your Lab already on the list?
-      %p To avoid duplicates please first check the list below to ensure that your Lab is not already in our database.
-      = select_tag :lab, options_for_select(Lab.order('name ASC').select(:name, :city, :county, :country_code).map{|l| "#{l} - #{l.short_address}"}), class: 'enhanced', include_blank: true, id: 'check-labs'
+      %fieldset
+        .form-header
+          .text-large
+            Is your Lab already on the list?
+          .text-medium
+            To avoid duplicates please first check the list below to ensure that your Lab is not already in our database.
 
-    %hr/
+        = select_tag :lab, options_for_select(Lab.order('name ASC').select(:name, :city, :county, :country_code).map{|l| "#{l} - #{l.short_address}"}), class: 'enhanced', include_blank: true, id: 'check-labs'
 
-    = render 'form', lab: @lab
+      = render 'form', lab: @lab

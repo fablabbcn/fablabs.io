@@ -2,7 +2,7 @@
 
 # describe Machine do
 
-#   let(:machine) { FactoryGirl.create(:machine, name: 'Shopbot') }
+#   let(:machine) { FactoryBot.create(:machine, name: 'Shopbot') }
 
 #   # describe :unauthenticated do
 #   #   it "has no index" do
@@ -14,7 +14,7 @@
 
 #   describe :user do
 #     before(:each) do
-#       @user = FactoryGirl.create(:user)
+#       @user = FactoryBot.create(:user)
 #       @user.verify!
 #       sign_in @user
 #     end
@@ -42,7 +42,7 @@
 
 #   describe :admin do
 #     before(:each) do
-#       @admin = FactoryGirl.create(:user)
+#       @admin = FactoryBot.create(:user)
 #       @admin.add_role :admin
 #       sign_in @admin
 #     end

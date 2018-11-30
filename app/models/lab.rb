@@ -37,6 +37,8 @@ class Lab < ActiveRecord::Base
     [:name]
   end
 
+  enum kind: { mini_fab_lab: 0, fab_lab: 1, mobile: 3 }
+
   has_many :academics
   has_many :admin_applications
   has_many :events
@@ -64,13 +66,17 @@ class Lab < ActiveRecord::Base
   has_many :referees, through: :referee_approval_processes, source: :referee_lab
   has_many :referred_labs, through: :referee_approval_processes, source: :referred_lab
 
-  validates_presence_of :name, :country_code, :slug#, :creator
-  validates_presence_of :address_1, :kind, on: :create
+  has_many :approval_workflow_logs
+
+  validates_presence_of :name, :country_code, :slug, :email#, :creator
+  validates_presence_of :address_1, on: :create
+
+  validates_inclusion_of :kind, in: kinds.keys, on: :create
 
   validates_acceptance_of :network, :programs, :tools, :access, :chart, :accept => true, message: 'You must agree to our terms and conditions.', on: :create
 
   validates :slug, format: {:with => /\A[a-zA-Z0-9]+\z/ }, allow_nil: true, allow_blank: true, length: { minimum: 3 }
-  validates_format_of :email, :with => /\A(.+)@(.+)\z/, allow_blank: true
+  validates_format_of :email, :with => /\A(.+)@(.+)\z/
   validates_uniqueness_of :name, :slug, case_sensitive: false
   validate :excluded_slug
 
@@ -79,8 +85,6 @@ class Lab < ActiveRecord::Base
       errors.add(:slug, "is reserved")
     end
   end
-
-  Kinds = %w(mini_fab_lab fab_lab supernode mobile)
 
   ACTIVITY_STATUS = [
     ACTIVITY_PLANNED  = 'planned'.freeze,
@@ -92,13 +96,16 @@ class Lab < ActiveRecord::Base
   bitmask :capabilities, as: Capabilities
 
   unless Rails.env.test?
-    validates :referee_approval_processes, presence: true, :length => { is: 3 }, unless: :is_approved?
+    validates :referee_approval_processes, presence: true,
+      length: { is:       3,
+                message:  "length is incorrect. In order to be approved you must select %{count} referees." },
+      unless: :is_approved?
   end
   # validates :employees, presence: true, on: :create
 
   accepts_nested_attributes_for :employees
 
-  scope :search_for, ->(q) { search_by_name(q) if q.present?}
+  scope :search_for, ->(q) { search_by_name(q) if q.present? }
   scope :in_country_code, ->(cc) { where(country_code: cc) if cc.present?}
   scope :approved_referees, -> { where(is_referee: true).order('name ASC') }
 
@@ -136,12 +143,8 @@ class Lab < ActiveRecord::Base
     end
   end
 
-  def kind_name
-    Kinds[ (kind >= 0 && kind <= 3) ? kind : 3 ]
-  end
-
   def active?
-    kind > 0
+    self.class::kinds[kind] > 0
   end
 
   def formatted_address

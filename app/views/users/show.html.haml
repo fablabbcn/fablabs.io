@@ -1,48 +1,58 @@
-.row
-  .col-lg-12
-    .media
-      .pull-left= image_tag @user.avatar_url, class: 'avatar big'
-      .media-body
-        .row
-          .col-lg-6.left= title @user
-        .row
-          .joined-on
-            %em
-              Joined #{time_ago_in_words(@user.created_at)} ago.
-        .row
-          .col-lg-4
-            - if current_or_null_user == @user
-              = link_to settings_path, class: 'button tiny' do
-                = fa_icon "edit", text: "Edit Profile"
-        .row
-          .col-lg-8
-            = simple_format @user.bio
-        .row
-          .col-lg-12
-            = render "links", links: @user.links
-        .row
-          .col-lg-12.works-at
-            - if @user.employees.with_approved_state.any?
-              %h5 Works at:
-              %ul
-                - @user.employees.with_approved_state.each do |employee|
-                  = content_tag_for :li, employee do
-                    = link_to employee.lab, employee.lab
-                    \-
-                    = employee.job_title
+- if current_user
+  = render "backstage/header"
 
-.row
-  .col-lg-6
-    %h5
-    = icon('plus-square')
-    Contributions
-    .projects
-      %ul#project-container.large-block-grid-1
-        - if @user.created_projects.any? or @user.projects.any?
-          = render @user.created_projects | @user.projects
-  .col-lg-6
-    %h5
-    = icon('signal')
-    Activity
-    .activity
-      %ul= render @user.activities.limit(10)
+.container
+  .row
+    .col-lg-12
+      .media
+        .pull-left= image_tag @user.avatar_url, class: 'avatar big'
+        .media-body
+          .row
+            .col-lg-6.left= title @user
+          .row
+            .joined-on
+              %em
+                Joined #{time_ago_in_words(@user.created_at)} ago.
+          .row
+            .col-lg-4
+              - if current_or_null_user == @user
+                = link_to settings_path, class: 'button tiny' do
+                  = fa_icon "edit", text: "Edit Profile"
+          .row
+            .col-lg-8
+              = simple_format @user.bio
+          .row
+            .col-lg-12
+              = render "links", links: @user.links
+          .row
+            .col-lg-12.works-at
+              - if @user.employees.with_approved_state.any?
+                %h5 Works at:
+                %ul
+                  - @user.employees.with_approved_state.each do |employee|
+                    = content_tag_for :li, employee do
+                      = link_to employee.lab, employee.lab
+                      \-
+                      = employee.job_title
+
+  - if @user.created_projects.any? or @user.projects.any?
+    .row
+      .text-large
+        Contributions
+      = render @user.created_projects | @user.projects
+
+  .row
+    .text-large
+      Activity
+    .activity.vertical-timeline
+      = puts @user.activities
+      = render @user.activities
+
+  - if @user.username.present?
+    .row
+      %iframe{src: @user.discourse_profile_url,
+      frameborder: "0",
+      width:       '100%',
+      scrolling:   'yes',
+      height:      1500,
+      style:       'border: none'}

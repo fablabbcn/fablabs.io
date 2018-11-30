@@ -15,14 +15,14 @@ feature "Adding a lab" do
 
   feature "as a verified user" do
     Capybara.javascript_driver = :webkit
-    given(:user) { FactoryGirl.create(:user, email: "creator@fablabfoundation.com") }
-    let!(:as220) { FactoryGirl.create(:lab, name: "AS220 Labs", slug: "as220labs", workflow_state: :approved, is_referee: true) }
-    let!(:bcn) { FactoryGirl.create(:lab, name: "Fab Lab BCN", slug: "fablabbcn", workflow_state: :approved, is_referee: true) }
-    let!(:cascina) { FactoryGirl.create(:lab, name: "Fab Lab Cascina", slug: "fablabcascina", workflow_state: :approved, is_referee: true) }
-    let!(:admin) { FactoryGirl.create(:user, email: "admin@fablabfoundation.com") }
-    let!(:referee_one) { FactoryGirl.create(:user, email:"referee@as220.org", first_name: "Referee", last_name: "AS220") }
-    let!(:referee_two) { FactoryGirl.create(:user, email:"referee@fablabbcn.org", first_name: "Referee", last_name: "BCN") }
-    let!(:referee_three) { FactoryGirl.create(:user, email:"referee@fablabcascina.org", first_name: "Referee", last_name: "Cascina") }
+    given(:user) { FactoryBot.create(:user, email: "creator@fablabfoundation.com") }
+    let!(:as220) { FactoryBot.create(:lab, name: "AS220 Labs", slug: "as220labs", workflow_state: :approved, is_referee: true) }
+    let!(:bcn) { FactoryBot.create(:lab, name: "Fab Lab BCN", slug: "fablabbcn", workflow_state: :approved, is_referee: true) }
+    let!(:cascina) { FactoryBot.create(:lab, name: "Fab Lab Cascina", slug: "fablabcascina", workflow_state: :approved, is_referee: true) }
+    let!(:admin) { FactoryBot.create(:user, email: "admin@fablabfoundation.com") }
+    let!(:referee_one) { FactoryBot.create(:user, email:"referee@as220.org", first_name: "Referee", last_name: "AS220") }
+    let!(:referee_two) { FactoryBot.create(:user, email:"referee@fablabbcn.org", first_name: "Referee", last_name: "BCN") }
+    let!(:referee_three) { FactoryBot.create(:user, email:"referee@fablabcascina.org", first_name: "Referee", last_name: "Cascina") }
 
     background do
       admin.add_role :superadmin
@@ -44,7 +44,7 @@ feature "Adding a lab" do
     end
 
     scenario "as a user with valid details" do
-      choose "lab_kind_2"
+      choose "lab_kind_mini_fab_lab"
       choose "lab_tools_1"
       choose "lab_network_1"
       choose "lab_programs_1"
@@ -53,7 +53,8 @@ feature "Adding a lab" do
       select 'as220labs', from: 'Referees'
       select 'fablabbcn', from: 'Referees'
       select 'fablabcascina', from: 'Referees'
-      fill_in 'Name', with: 'New Lab'
+      fill_in 'lab_name', with: 'New Lab'
+      fill_in 'lab_email', with: 'lab@fablabs.org'
       fill_in 'lab_description', with: 'An awesome place'
       fill_in 'lab_address_1', with: 'Mars'
       fill_in 'lab_links_attributes_0_url', with: 'http://www.newlab.com'
@@ -71,7 +72,7 @@ feature "Adding a lab" do
     end
 
     scenario "as a user with invalid details" do
-      fill_in 'Name', with: 'No details'
+      fill_in 'lab_name', with: 'No details'
       click_button 'Add Lab'
       expect(page).to have_css ".errors"
     end

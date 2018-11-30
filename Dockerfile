@@ -1,4 +1,4 @@
-FROM ruby:2.1.9
+FROM ruby:2.5.3-stretch
 
 # Install essential Linux packages
 RUN apt-get update -qq && apt-get install -y \
@@ -7,9 +7,16 @@ RUN apt-get update -qq && apt-get install -y \
   libqt4-dev \
   libqtwebkit-dev \
   postgresql-client \
-  nodejs \
-  npm
+  imagemagick \
+  curl
 
+# Install NodeJS 10
+RUN curl -sL https://deb.nodesource.com/setup_10.x > setup_10.x
+RUN chmod +x setup_10.x
+RUN ./setup_10.x
+RUN apt install nodejs
+RUN /usr/bin/nodejs -v
+RUN npm -v
 
 ENV APPROOT /fablabs
 WORKDIR /$APPROOT
@@ -20,17 +27,9 @@ RUN mkdir -p $APPROOT/tmp/pids
 # Update Gems
 #RUN gem update --system
 
-# Prevent bundler warnings; ensure that the bundler version executed is >= that which created Gemfile.lock
-RUN gem install bundler
-
-# Finish establishing our Ruby environment
-#RUN gem install nokogiri
-
+# Bundler
 ENV NOKOGIRI_USE_SYSTEM_LIBRARIES 1
-
-#RUN gem install capybara-webkit -v '1.10.1'
-
-#RUN gem install kgio -v '2.9.2' --platform=ruby --verbose
+RUN gem install bundler
 ADD Gemfile Gemfile
 ADD Gemfile.lock Gemfile.lock
 RUN bundle install
@@ -39,3 +38,11 @@ RUN bundle install
 COPY . $APPROOT
 
 RUN npm install
+
+# Precompile assets here, so we don't have to do it inside a container + restart
+RUN bin/rake assets:precompile
+
+#CMD ["rails", "server", "-b", "0.0.0.0"]
+#CMD ["bash","-c","rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"]
+
+CMD ["bash","-c","bundle exec puma -C config/puma.rb"]

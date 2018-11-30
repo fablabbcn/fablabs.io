@@ -15,7 +15,7 @@ class Api::V0::ProjectsController < Api::V0::ApiController
   end
 
   def map
-    respond_with Project.joins(:collaborations).includes(:lab).references(:lab).collect { |p| {id: p.id, title: p.title, name: p.lab.name, latitude: p.lab.latitude, longitude: p.lab.longitude, kind: p.lab.kind_name}}
+    respond_with Project.joins(:collaborations).includes(:lab).references(:lab).collect { |p| {id: p.id, title: p.title, name: p.lab.name, latitude: p.lab.latitude, longitude: p.lab.longitude, kind: p.lab.kind}}
   end
 
 end

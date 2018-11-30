@@ -2,17 +2,23 @@
 
   .container.footer-links
     .row
-      .col-xs-6
+      .col-md-4
+        =image_tag ("logo.svg"), :alt => "fablabs.io", :class => "footer-logo"
+        =image_tag ("logos/eu_flag_creative_europe.jpg"), :class => "img-responsive", :alt => "Co-funded by the Creative Europe programme of the European Union"
+
+      .col-md-4
         %ul
           %li= link_to "Labs List", labs_path
           %li= link_to "Labs Map", map_labs_path
           %li= link_to "About", about_path
+          %li= link_to "API Documentation", 'https://docs.fablabs.io/', target: '_blank'
           %li= link_to 'Discuss', 'https://discuss.fablabs.io/', target: '_blank'
           %li= link_to "The Fab Foundation", "http://www.fabfoundation.org"
           %li= link_to "Cookie Policy", "/cookie-policy"
           %li= link_to "Privacy Policy", "/privacy-policy"
           %li= link_to "Terms of Service", "/tos"
-      .col-xs-6
+
+      .col-md-4
         %ul.locales
           %li= locale_link_to "Deutsch", "de"
           %li= locale_link_to "English", "en"
@@ -22,12 +28,5 @@
           %li= locale_link_to "Nederlands", "nl"
           %li= locale_link_to "Português", "pt"
           %li= locale_link_to "日本語", "ja"
-
-  .container.footer-images
-    .row
-      .col-xs-6
-        %p.eu-credits
-          Co-funded by the Creative Europe programme of the European Union
-        =image_tag ("logos/eu_flag_creative_europe_co_funded_pos_[rgb]_left_300.jpg") , :class => "footer_logos img-responsive"
 
 = render "application/footer_scripts"

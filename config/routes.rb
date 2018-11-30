@@ -1,8 +1,8 @@
-Fablabs::Application.routes.draw do
+Rails.application.routes.draw do
+  get 'version', to: 'static#version'
   get "discourse/sso"
   get "discuss" => 'discourse#embed'
   resources :pages, only: [:show]
-  use_doorkeeper
   require 'sidekiq/web'
   require "admin_constraint"
   mount Sidekiq::Web, at: '/sidekiq', constraints: AdminConstraint.new
@@ -13,7 +13,8 @@ Fablabs::Application.routes.draw do
 
   resources :sessions
 
-  constraints subdomain: 'www' do
+  #constraints subdomain: 'www' do
+  constraints(WWWSubdomain) do
     # resources :discussions
     get "activity" => "activities#index", :as => "activity"
     resources :featured_images
@@ -62,6 +63,10 @@ Fablabs::Application.routes.draw do
       resources :organizations, only: [:index]
       resources :my_labs, only: [:index]
       resources :my_projects, only: [:index]
+      resources :projects, only: [:index, :destroy] do
+        patch :visible
+        patch :hidden
+      end
       resources :to_approve_labs, only: [:index]
       resources :labs do
         member do
@@ -70,6 +75,7 @@ Fablabs::Application.routes.draw do
           patch :remove
           patch :referee_approves
           patch :referee_rejects
+          get   :request_more_info, to: 'labs#edit_request_more_info'
           patch :request_more_info
           patch :referee_requests_admin_approval
           patch :admin_approves
@@ -90,8 +96,8 @@ Fablabs::Application.routes.draw do
     resources :search, only: [:index]
     resources :projects do
       collection do
-        get '/tags', to: :search
-        get '/lab/:slug', to: :search
+        get '/tags', action: :search
+        get '/lab/:slug', action: :search
         get :map
         get :embed
       end
@@ -131,14 +137,26 @@ Fablabs::Application.routes.draw do
       end
     end
 
+    use_doorkeeper do
+      controllers :applications => 'oauth/applications'
+    end
+
+
     root to: 'static#home'
 
   end
 
-  constraints subdomain: 'api' do
+  constraints(ApiSubdomain) do
+
+    use_doorkeeper do
+      controllers :applications => 'oauth/applications'
+    end
+
+
+
     get '/' => 'static#api'
-    namespace :api, path: '' do
-      namespace :v0 do
+    # root to: ''static#api'
+    api version: 0, module: "api/v0", as: "api_v0" do
         get 'me' => 'users#me'
         get 'users' => 'users#search'
         get 'labs/search' => 'labs#search'
@@ -157,11 +175,45 @@ Fablabs::Application.routes.draw do
         resources :projects do
           get :map, on: :collection
         end
-      end
-      namespace :v1 do
-        get 'users' => 'users#search'
+    end
+    api version: 1, module: "api/v1", as: "api_v1" do
+      get 'users' => 'users#search'
 
-      end
+    end
+    api version: 2, module: "api/v2", as: "api_v2" do
+
+      # admin routes
+      get 'users' => 'admin#list_users'
+      post 'users' => 'admin#create_user'
+      # user profile
+      get 'users/me' => 'user#me'
+      post 'users/me' => 'user#update_user'
+      post 'users/search' => 'admin#search_users'
+      get 'users/:username' => 'admin#get_user'
+
+      # labs
+      get 'labs' => 'labs#index'
+      post 'labs' => 'labs#create'
+      get 'labs/search' => 'labs#search'
+      get 'labs/map' => 'labs#map'
+      get 'labs/:id' => 'labs#show'
+      put 'labs/:id' => 'labs#update'
+      get 'labs/:id/relationships/machines' => 'labs#get_lab_machines_by_id'
+      post 'labs/:id/relationships/machines' => 'labs#add_lab_machine_by_id'
+ 
+      # projects
+      get 'projects' => 'projects#index'
+      post 'projects' => 'projects#create'
+      get 'projects/search' => 'projects#search_projects'
+      get 'projects/:id' => 'projects#show'
+      put 'projects/:id' => 'projects#update'
+
+      # organizations
+      get 'organizations' => 'organizations#index'
+      post 'organizations' => 'organizations#create'
+      get 'organizations/:id' => 'organizations#show'
+      put 'organizations/:id' => 'organizations#/update'
+
     end
   end
 

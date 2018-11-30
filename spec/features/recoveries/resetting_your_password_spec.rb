@@ -3,8 +3,8 @@ require 'spec_helper'
 feature "Resetting your password" do
 
   scenario "with a valid passowrd" do
-    user = FactoryGirl.create(:user)
-    recovery = FactoryGirl.create(:recovery, user: user, email_or_username: [user.email, user.username].sample)
+    user = FactoryBot.create(:user)
+    recovery = FactoryBot.create(:recovery, user: user, email_or_username: [user.email, user.username].sample)
     visit recovery_url(user.recovery_key)
     #expect(page).to_not have_link('Sign in')
     fill_in 'recovery_user_attributes_password', with: 'newpassword'
@@ -19,8 +19,8 @@ feature "Resetting your password" do
   end
 
   scenario "with an empty password" do
-    user = FactoryGirl.create(:user)
-    recovery = FactoryGirl.create(:recovery, user: user, email_or_username: [user.email, user.username].sample)
+    user = FactoryBot.create(:user)
+    recovery = FactoryBot.create(:recovery, user: user, email_or_username: [user.email, user.username].sample)
     visit recovery_url(user.recovery_key)
     #expect(page).to_not have_link('Sign in')
     click_button 'Reset Password'

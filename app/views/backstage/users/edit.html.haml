@@ -1,18 +1,19 @@
-.row
-  .col-lg-12
-    = title "Edit User #{@user}"
-    = simple_form_for [:backstage, @user] do |f|
+.container
+  .row
+    .col-lg-12
+      = title "Edit User #{@user}"
+      = simple_form_for [:backstage, @user] do |f|
 
-      = render "form_errors", resource: @user
+        = render "form_errors", resource: @user
 
-      = f.input :first_name
-      = f.input :last_name
-      = f.input :username
-      = f.input :email
-      = f.input :url
-      = f.input :dob, as: :date, end_year: Date.today.year - 120, start_year: Date.today.year - 3, include_blank: true, order: [:day, :month, :year]
-      = f.input :bio
-      = f.input :locale
-      = f.input :country_code
-      = f.input :use_metric
-      = f.submit 'save', class: 'btn btn-success'
+        = f.input :first_name
+        = f.input :last_name
+        = f.input :username
+        = f.input :email
+        = f.input :url
+        = f.input :dob, as: :date, end_year: Date.today.year - 120, start_year: Date.today.year - 3, include_blank: true, order: [:day, :month, :year]
+        = f.input :bio
+        = f.input :locale
+        = f.input :country_code
+        = f.input :use_metric
+        = f.submit 'save', class: 'btn btn-primary'

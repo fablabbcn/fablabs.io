@@ -1,0 +1,41 @@
+= render "backstage/header"
+
+.container
+  .row
+    .col-lg-12
+      = title "Projects"
+
+      = page_entries_info @projects
+
+      - if @projects.any?
+        %table.table
+          %thead
+            %tr
+              %th ID
+              %th Title
+              %th Lab
+              %th Owner
+              %th Visibility
+              %th Actions
+          %tbody
+            - @projects.each do |project|
+              %tr
+                %td= project.id
+                %td= project.title
+                %td
+                  - if project.lab.present?
+                    = link_to project.lab, backstage_lab_path(project.lab)
+                %td= link_to project.owner, project.owner
+                %td
+                  = project.visibility.capitalize
+
+                  - if project.visible?
+                    = "(#{link_to 'Hide', backstage_project_hidden_path(project.id), method: :patch})".html_safe
+                  - elsif project.hidden?
+                    = "(#{link_to 'Make visible', backstage_project_visible_path(project.id), method: :patch})".html_safe
+                %td
+                  - if current_user.has_role? :superadmin
+                    = link_to 'Delete', backstage_project_path(project.id),
+                      method: :delete, data: { confirm: 'Are you sure?' }
+
+        = paginate @projects

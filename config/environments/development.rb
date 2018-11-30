@@ -1,6 +1,6 @@
 # require 'sidekiq/testing/inline'
 
-Fablabs::Application.configure do
+Rails.application.configure do
 
   # config.after_initialize do
   #   Bullet.enable = true
@@ -19,6 +19,9 @@ Fablabs::Application.configure do
 
   # Settings specified here will take precedence over those in config/application.rb.
 
+
+  config.log_level = :debug
+
   # In the development environment your application's code is reloaded on
   # every request. This slows down response time but is perfect for development
   # since you don't have to restart the web server when you make code changes.
@@ -35,11 +38,8 @@ Fablabs::Application.configure do
 
 
   config.action_controller.perform_caching = false
-  config.cache_store = :dalli_store, 'memcached://localhost:11211/meta', { expires_in: 90.minutes }
-  config.action_dispatch.rack_cache = {
-    metastore:   'memcached://localhost:11211/meta',
-    entitystore: 'memcached://localhost:11211/body'
-  }
+  # Use docker memcached host if it is defined
+  config.cache_store = :dalli_store, (ENV['MEMCACHED_HOST']|| 'memcached://localhost:11211/'), { expires_in: 90.minutes }
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
@@ -58,5 +58,11 @@ Fablabs::Application.configure do
   # config.action_mailer.delivery_method = :smtp
 
   config.action_mailer.delivery_method = :letter_opener
-  config.action_mailer.default_url_options = { :host => "fablabs.dev" }
+  config.action_mailer.default_url_options = { :host => "www.fablabs.local" }
+
+
+  # Rocketpants
+
+  config.rocket_pants.header_metadata = true
+
 end

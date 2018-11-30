@@ -61,7 +61,7 @@ module ApplicationHelper
   end
 
   def locale_link_to language, code
-    link_to language, {locale: code}, class: ('active' if I18n.locale.to_s == code)
+    link_to language, {locale: code}, class: ('text-primary' if I18n.locale.to_s == code)
   end
 
   def gem_count_tag(count)
@@ -98,6 +98,7 @@ module ApplicationHelper
       when :success then "flash alert alert-success"
       when :error then "flash alert alert-danger"
       when :alert then "flash alert alert-warning"
+      else "flash alert"
     end
   end
 

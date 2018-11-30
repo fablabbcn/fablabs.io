@@ -71,7 +71,7 @@ class ProjectsController < ApplicationController
   end
 
   def map
-    @projects = Project.all
+    @projects = Project.all.visible
   end
 
   def mapdata
@@ -84,7 +84,6 @@ class ProjectsController < ApplicationController
       attributes = [
         :type,
         :title,
-        :description,
         :description,
         :scope,
         :faq,

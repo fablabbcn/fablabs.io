@@ -1,18 +1,22 @@
-%ul.nav.nav-pills
+.subnavbar
+  .container.subnavbar-container
+    .subnavbar-section.subnavbar-section-left
+      = link_to 'Profile', current_user, class: (controller_name == 'profile' ? 'btn btn-primary' : 'btn btn-default')
+      = link_to 'Settings', settings_path, class: (controller_name == 'settings' ? 'btn btn-primary' : 'btn btn-default')
 
-  - if current_user.is_referee? || current_user.is_unique_referee? || current_user.has_role?(:superadmin)
-    %li{class: ('active' if controller_name == "labs")}= link_to "Labs", backstage_labs_path
+    .subnavbar-section.subnavbar-section-center
+      - if current_user.is_referee? || current_user.is_unique_referee? || current_user.has_role?(:superadmin)
+        = link_to 'My labs', [:backstage, :my_labs], class: (controller_name == 'my_labs' ? 'btn btn-primary' : 'btn btn-default')
+        = link_to 'My projects', [:backstage, :my_projects], class: (controller_name == 'my_projects' ? 'btn btn-primary' : 'btn btn-default')
+        = link_to 'Labs', backstage_labs_path, class: (controller_name == 'labs' ? 'btn btn-primary' : 'btn btn-default')
 
-    %li{class: ('active' if controller_name == "my_labs")}
-      = link_to 'My labs', [:backstage, :my_labs]
-    %li{class: ('active' if controller_name == "my_projects")}
-      = link_to 'My projects', [:backstage, :my_projects]
-    %li{class: ('active' if controller_name == "to_approve_labs")}
-      = link_to 'My labs to approve', [:backstage, :to_approve_labs]
+      - if current_user.has_role? :superadmin
+        = link_to 'Projects', [:backstage, :projects], class: (controller_name == 'projects' ? 'btn btn-primary' : 'btn btn-default')
+        = link_to 'Orgs', backstage_organizations_path, class: (controller_name == 'organizations' ? 'btn btn-primary' : 'btn btn-default')
+        = link_to 'Employees', backstage_employees_path, class: (controller_name == 'employees' ? 'btn btn-primary' : 'btn btn-default')
+        = link_to 'Users', backstage_users_path, class: (controller_name == 'users' ? 'btn btn-primary' : 'btn btn-default')
+        = link_to 'Pages', backstage_pages_path, class: (controller_name == 'pages' ? 'btn btn-primary' : 'btn btn-default')
 
-  - if current_user.has_role? :superadmin
-    %li{class: ('active' if controller_name == "organizations")}= link_to "Orgs", backstage_organizations_path
-    %li{class: ('active' if controller_name == "employees")}= link_to "Employees", backstage_employees_path
-    %li{class: ('active' if controller_name == "users")}= link_to "Users", backstage_users_path
-    %li{class: ('active' if controller_name == "pages")}= link_to "Pages", backstage_pages_path
-%br
+    .subnavbar-section.subnavbar-section-right
+      - if current_user.is_referee? || current_user.is_unique_referee? || current_user.has_role?(:superadmin)
+        = link_to 'My labs to approve', [:backstage, :to_approve_labs], class: (controller_name == 'to_approve_labs' ? 'btn btn-primary' : 'btn btn-default')
