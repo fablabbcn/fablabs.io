@@ -6,7 +6,7 @@ gem "pg",'0.19'
 gem 'sinatra', '>= 1.3.0', :require => nil
 gem 'font-awesome-sass', '~> 4.3.0'
 gem 'country_select', '1.2.0'
-gem 'bourbon', '3.1.8'
+gem 'bourbon', '~> 4' # Breaks transition in header.css.scss and map.css.scss https://github.com/thoughtbot/bourbon/blob/master/CHANGELOG.md
 
 gem "cocoon"#, github: 'nathanvda/cocoon', :tag => 'v1.2.7'
 gem "pg_search"
