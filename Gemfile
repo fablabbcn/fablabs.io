@@ -1,9 +1,12 @@
 ruby '2.5.3'
-
 source 'https://rubygems.org'
+
 gem 'rails','~> 4'
 gem "pg",'0.19'
 gem 'sinatra', '>= 1.3.0', :require => nil
+gem 'font-awesome-sass', '~> 4.3.0'
+gem 'country_select', '1.2.0'
+gem 'bourbon', '3.1.8'
 
 gem "cocoon"#, github: 'nathanvda/cocoon', :tag => 'v1.2.7'
 gem "pg_search"
@@ -14,12 +17,10 @@ gem 'acts-as-taggable-on'
 gem 'ancestry'#, github: 'stefankroes/ancestry'
 gem 'authority'#, github: 'nathanl/authority'
 gem 'bitmask_attributes'
-gem 'bourbon'
 gem 'chronic'
 gem 'coderay'
 gem 'coffee-rails'#, '~> 4.0.0'
 gem 'countries', require: 'countries/global'
-gem 'country_select'
 gem 'dalli'
 gem 'database_cleaner'#, github: 'bmabey/database_cleaner'
 gem 'discourse_api'
@@ -30,7 +31,6 @@ gem 'fast_jsonapi' # To support new v2 JSONAPI
 gem 'ffaker'
 gem 'figaro'
 gem 'font-awesome-rails'#, github: 'bokmann/font-awesome-rails'
-gem 'font-awesome-sass'#, '~> 4.3.0'
 gem 'friendly_id'#, '~> 5.1.0'
 gem 'geocoder'#, github: 'alexreisner/geocoder'
 gem 'haml-rails'
@@ -115,7 +115,7 @@ end
 gem 'bcrypt-ruby'
 
 # gem 'foreman'
-gem 'unicorn'
+#gem 'unicorn'
 
 # Use unicorn as the app server
 # gem 'unicorn'
