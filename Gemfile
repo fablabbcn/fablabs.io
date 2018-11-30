@@ -82,7 +82,6 @@ end
 
 group :development do
   gem 'bullet' #, github: 'flyerhzm/bullet'
-  gem 'quiet_assets'
   gem 'net-ssh'
 end
 
