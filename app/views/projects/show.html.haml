@@ -1,67 +1,67 @@
 - title @project.title
+.container
+  .row
+    .col-lg-12
+      = render "breadcrumbs"
 
-.row
-  .col-lg-12
-    = render "breadcrumbs"
+  = render "main_cover"
+  .stripe
+  .row.project-description
+    .col-lg-8
+      - if @project.description.present?
+        .heading
+          = icon('file-text-o')
+          Description
+        .box
+          = simple_format(markdown(@project.description))
 
-= render "main_cover"
-.stripe
-.row.project-description
-  .col-lg-8
-    - if @project.description.present?
-      .heading
-        = icon('file-text-o')
-        Description
-      .box
-        = simple_format(markdown(@project.description))
+      - if @project.documents.present?
+        .heading
+          = icon('picture-o')
+          Images
+        .box
+          %ul.clearing-thumbs{data: { clearing: "" } }
+            - @project.documents.each do |document|
+              %li
+                - if document.photo.present?
+                  = link_to document.photo.thumb("1200x1200>").url, class: "image_link th [radius]" do
+                    = image_tag document.photo.thumb("250x250>").url
 
-    - if @project.documents.present?
-      .heading
-        = icon('picture-o')
-        Images
-      .box
-        %ul.clearing-thumbs{data: { clearing: "" } }
-          - @project.documents.each do |document|
-            %li
-              - if document.photo.present?
-                = link_to document.photo.thumb("1200x1200>").url, class: "image_link th [radius]" do
-                  = image_tag document.photo.thumb("250x250>").url
+      - unless @project.steps.empty?
+        .heading
+          = icon('cog')
+          Steps
+        .box
+          - @project.steps.order(position: :asc).each do |step|
+            = render 'steps', { :step => step }
 
-    - unless @project.steps.empty?
-      .heading
-        = icon('cog')
-        Steps
-      .box
-        - @project.steps.order(position: :asc).each do |step|
-          = render 'steps', { :step => step }
+      - if @project.scope.present?
+        .heading
+          = icon('asterisk')
+          Scope
+        .box
+          = simple_format(markdown(@project.scope))
 
-    - if @project.scope.present?
-      .heading
-        = icon('asterisk')
-        Scope
-      .box
-        = simple_format(markdown(@project.scope))
+      - if @project.faq.present?
+        .heading
+          = icon('question')
+          FAQ
+        .box
+          = simple_format(markdown(@project.faq))
 
-    - if @project.faq.present?
-      .heading
-        = icon('question')
-        FAQ
-      .box
-        = simple_format(markdown(@project.faq))
+    .col-lg-4
+      = render "collaborations"
+      = render "links", links: @project.links
+      = render "contributors"
 
-  .col-lg-4
-    = render "collaborations"
-    = render "links", links: @project.links
-    = render "contributors"
-
-.row
-  .col-lg-12
-    - if current_or_null_user.can_update?(@project)
-      = link_to icon('pencil'), edit_project_path(@project), class: 'btn btn-primary'
-    - if current_or_null_user.can_delete?(@project)
-      = link_to icon('trash-o'), @project, method: :delete, class: 'btn btn-danger', data: { confirm: "Are you sure?" }
-.row
-  .col-lg-12
-    - if @project.discourse_id.present?
-      %h3 Discuss this Project on discuss.fablabs.io
-      = comments_script(@project.discourse_id)
+  .row
+    .col-lg-12
+      - if current_or_null_user.can_update?(@project)
+        = link_to icon('pencil'), edit_project_path(@project), class: 'btn btn-primary'
+      - if current_or_null_user.can_delete?(@project)
+        = link_to icon('trash-o'), @project, method: :delete, class: 'btn btn-danger', data: { confirm: "Are you sure?" }
+  .row
+    .col-lg-12
+      - if @project.discourse_id.present?
+        %h3 Discuss this Project on discuss.fablabs.io
+        = comments_script(@project.discourse_id)
