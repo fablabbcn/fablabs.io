@@ -1,25 +1,26 @@
-.row
-  .col-lg-12
-    %ol.breadcrumb
-      %li= link_to 'Organizations', organizations_path
-      %li= link_to @organization.name, organizations_path(@organization)
-      %li.current #{@lab_organization.lab.name} state
+.container
+  .row
+    .col-lg-12
+      %ol.breadcrumb
+        %li= link_to 'Organizations', organizations_path
+        %li= link_to @organization.name, organizations_path(@organization)
+        %li.current #{@lab_organization.lab.name} state
 
 
-.row
-  .col-lg-12
-    %h1 #{@lab_organization.lab.name} in #{@organization.name} state
+  .row
+    .col-lg-12
+      %h1 #{@lab_organization.lab.name} in #{@organization.name} state
 
-    = render partial: 'labs/lab', locals: {lab: @lab_organization.lab}
+      = render partial: 'labs/lab', locals: {lab: @lab_organization.lab}
 
-.row
-  .col-lg-4
-    %dl
-      %dt Added at
-      %dd= @lab_organization.created_at
+  .row
+    .col-lg-4
+      %dl
+        %dt Added at
+        %dd= @lab_organization.created_at
 
-      %dt State
-      %dd= @lab_organization.workflow_state
-  .col-lg-8
-    - if @lab_organization.pending? && current_or_null_user == @lab_organization.lab.creator
-      = link_to 'Accept', accept_organization_lab_organization_path(@organization, @lab_organization), class: 'btn btn-primary', method: :post
+        %dt State
+        %dd= @lab_organization.workflow_state
+    .col-lg-8
+      - if @lab_organization.pending? && current_or_null_user == @lab_organization.lab.creator
+        = link_to 'Accept', accept_organization_lab_organization_path(@organization, @lab_organization), class: 'btn btn-primary', method: :post
