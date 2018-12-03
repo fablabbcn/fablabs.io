@@ -43,3 +43,4 @@ sitemap.x*
 .env
 config/application.yml
 node_modules
+.byebug_history

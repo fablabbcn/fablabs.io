@@ -4,9 +4,9 @@ class MapSerializer < ActiveModel::Serializer
       :name,
       :slug,
       :latitude,
-      :longitude,
-      :url,
-      :kind_name
+      :longitude
+      #:url,
+      #:kind_name
 
   def url
     lab_url(object)

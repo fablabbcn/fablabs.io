@@ -2,6 +2,27 @@ require 'spec_helper'
 
 describe "map" do
 
+  it "can load mapdata.json without errors" do
+
+    # TODO: use Factorybot to create this lab object
+    Lab.create!(
+      name: "MyLab",
+      kind: 'fab_lab',
+      country_code: 'IS',
+      address_1: 'MyStreet 24',
+      email: 'none@example.com',
+      network: true,
+      tools: true,
+      programs: true,
+      workflow_state: 'approved',
+      latitude: 64.963,
+      longitude: 19.0208
+    )
+
+    visit mapdata_labs_url
+    expect(page).to have_http_status(200)
+  end
+
   it "has map page" do
     visit labs_path
     click_link "Map view"
