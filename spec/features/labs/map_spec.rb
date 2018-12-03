@@ -5,6 +5,9 @@ describe "map" do
   it "can load mapdata.json without errors" do
 
     # TODO: use Factorybot to create this lab object
+    # It does not catch the error if map_serializer is like it was before 5f409af
+    # lab = Factorybot.create(:lab)
+    # Which resulted in the map to show up empty
     Lab.create!(
       name: "MyLab",
       kind: 'fab_lab',
