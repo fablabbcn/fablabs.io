@@ -1,0 +1,16 @@
+{
+  "name": "fablabs.io",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:fablabbcn/fablabs.io.git",
+  "author": "Viktor Smari <viktorsmari@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "bootstrap": "3.3.7",
+    "bootstrap-datepicker": "1.6.4",
+    "font-awesome": "4.7.0",
+    "leaflet-spin": "1.1.0",
+    "select2": "4.0.3",
+    "spin.js": "2.3.2"
+  }
+}

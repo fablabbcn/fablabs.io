@@ -37,10 +37,7 @@ RUN bundle install
 # Copy the Rails application into place
 COPY . $APPROOT
 
-# Bower
-#ADD bower.json bower.json # Not needed if we already copied all files to the container
-RUN npm install -g bower
-RUN bower install --allow-root
+RUN npm install
 
 # Precompile assets here, so we don't have to do it inside a container + restart
 RUN bin/rake assets:precompile

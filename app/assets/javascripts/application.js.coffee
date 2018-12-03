@@ -12,7 +12,7 @@
 #
 #= require jquery
 #= require jquery_ujs
-#= require bootstrap
+#= require bootstrap/dist/js/bootstrap
 #= require jquery.limit-1.2
 #= require Control.Loading.js
 #= require jquery.geocomplete
@@ -20,7 +20,7 @@
 #= require list
 #= require jquery.timepicker
 #= require underscore
-#= require select2
+#= require select2/dist/js/select2
 #= require messenger
 #= require messenger-theme-flat
 #= require placeholders
@@ -28,7 +28,7 @@
 #= require alerts
 #= require moment
 #= require trumbowyg/trumbowyg
-#= require bootstrap-datepicker
+#= require bootstrap-datepicker/dist/js/bootstrap-datepicker
 #= require spin.js/spin
 #= require leaflet-spin
 #= require_tree .
