@@ -16,4 +16,5 @@
 
   .container
     .row
-      = render @machines
+      .machines= render @machines
+      = paginate @machines
