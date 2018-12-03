@@ -5,10 +5,10 @@ FactoryBot.define do
   factory :lab, aliases: [:linkable, :trackable] do
     sequence(:name) { |n| "Fab Lab #{n}" }
     sequence(:slug) { |n| "fablab#{n}" }
-    email { Faker::Internet.email }
-    description { Faker::Lorem.sentence }
-    address_1 { Faker::Address.street_address }
-    improve_approval_application { Faker::Lorem.sentence }
+    email { FFaker::Internet.email }
+    description { FFaker::Lorem.sentence }
+    address_1 { FFaker::Address.street_address }
+    improve_approval_application { FFaker::Lorem.sentence }
     county { "County" }
     country_code { "es" }
     network { true }

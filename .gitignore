@@ -42,3 +42,4 @@ sitemap.x*
 .DS_Store
 .env
 config/application.yml
+node_modules

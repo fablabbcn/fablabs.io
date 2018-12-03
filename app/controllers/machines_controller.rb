@@ -15,6 +15,6 @@ class MachinesController < ThingsController
   end
 
   def collection
-    @machines ||= end_of_association_chain.includes(:brand, :tags)
+    @machines ||= end_of_association_chain.includes(:brand, :tags).page(params['page']).per(params['per'] || 20)
   end
 end

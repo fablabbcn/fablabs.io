@@ -82,7 +82,7 @@ module Fablabs
     end
 
     config.autoload_paths += %W(#{config.root}/lib)
-    config.assets.paths << Rails.root.join('vendor', 'assets', 'node_modules')
+    config.assets.paths << Rails.root.join('vendor', 'assets')
     config.active_record.raise_in_transactional_callbacks = true
   end
 end
