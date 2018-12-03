@@ -18,6 +18,7 @@
         .row
           %h4 Labs
           .labs= render @labs
+          = paginate @labs
       - if @projects.size > 0
         .row
           %h4 Projects
