@@ -15,7 +15,7 @@ describe Api::V2::LabsController, :type => :request do
       # expect(json['users']).to match_array([user_helper(user)])
 
       expect(response.status).to eq(200)
-      expect(response.content_type).to eq(Mime::JSON)
+      expect(response.content_type).to eq(Mime[:json])
 
       expect(json["data"].size).to eq(1)
 
@@ -62,7 +62,7 @@ describe Api::V2::LabsController, :type => :request do
         {q: "toscana", type: "fulltext"}
 
       expect(response.status).to eq(200)
-      expect(response.content_type).to eq(Mime::JSON)
+      expect(response.content_type).to eq(Mime[:json])
 
       expect(json["data"].size).to eq(1)
 
@@ -80,7 +80,7 @@ describe Api::V2::LabsController, :type => :request do
       get_as_user "http://api.fablabs.dev/2/labs/search?q=#{@lat}:#{@lng}&type=location"
 
       expect(response.status).to eq(200)
-      expect(response.content_type).to eq(Mime::JSON)
+      expect(response.content_type).to eq(Mime[:json])
 
       expect(json["data"].size).to eq(2)
 
@@ -115,7 +115,7 @@ describe Api::V2::LabsController, :type => :request do
         get_as_user "http://api.fablabs.dev/2/labs/map"
 
         expect(response.status).to eq(200)
-        expect(response.content_type).to eq(Mime::JSON)
+        expect(response.content_type).to eq(Mime[:json])
         expect(json["data"].size).to eq(2)
 
         @labs = json["data"]

@@ -2,7 +2,7 @@ class DiscourseController < ApplicationController
 
   layout 'application'
 
-  before_filter :require_login
+  before_action :require_login
 
   def sso
     secret = Figaro.env.discourse_sso_secret

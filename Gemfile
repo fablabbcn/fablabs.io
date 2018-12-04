@@ -1,12 +1,18 @@
 ruby '2.5.3'
 source 'https://rubygems.org'
 
-gem 'rails','~> 4'
-gem "pg",'0.19'
+gem 'rails','~> 5.0.1'
+gem "pg"#,'0.19'
 # Gems blocking rails 5 update:
-gem 'sinatra', '>= 1.3.0', :require => nil
-gem 'rocket_pants'# '~> 1.0'
-gem 'protected_attributes'
+#gem 'sinatra', '>= 1.3.0', :require => nil
+
+# Using community gems because official support does not cover Rails 5
+# Consider refactor not to use them or find alternatives.
+gem 'rocket_pants', git: 'https://github.com/parse/rocket_pants'
+gem 'protected_attributes_continued'
+
+#The `content_tag_for` method has been removed from Rails. To continue using it, add the `record_tag_helper` gem to your Gemfile:
+gem 'record_tag_helper'
 
 # Other Gem issues:
 gem 'font-awesome-sass', '~> 4.3.0' # https://fontawesome.com/how-to-use/on-the-web/setup/upgrading-from-version-4

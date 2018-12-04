@@ -3,7 +3,7 @@ class SearchController < ApplicationController
   include ProjectsOperations
   include UsersOperations
 
-  before_filter :require_login, except: :index
+  before_action :require_login, except: :index
 
   def index
     @labs = search_labs(params[:q]).page(params['page']).per(params['per'] || 10)

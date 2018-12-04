@@ -1,7 +1,7 @@
 
 class Oauth::ApplicationsController < Doorkeeper::ApplicationsController
 
-  before_filter :require_login
+  before_action :require_login
 
   def index
     @applications = current_user.oauth_applications

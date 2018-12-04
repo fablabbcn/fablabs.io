@@ -18,12 +18,12 @@ module Requests
 
   module AuthenticationHelpers
     def get_as_user(url, options = {})
-      get(url, options, _user_auth_headers)
+      get(url, params: options, headers:  _user_auth_headers)
 
     end
 
     def get_as_admin(url, options = {})
-      get(url, options, _admin_auth_headers)
+      get(url, params: options,  headers: _admin_auth_headers)
     end
 
     [:post, :put, :delete, :patch].each do |m|

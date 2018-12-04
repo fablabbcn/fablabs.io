@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
 
   before_action :set_locale
 
-  around_filter :user_time_zone, if: :current_user
+  around_action :user_time_zone, if: :current_user
 
 private
 

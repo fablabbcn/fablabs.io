@@ -1,5 +1,5 @@
 class Backstage::Users::RolesController < Backstage::BackstageController
-  before_filter :require_superadmin
+  before_action :require_superadmin
   before_action :find_user
 
   def index
