@@ -1,6 +1,6 @@
 class OrganizationsController < ApplicationController
 
-  before_filter :require_login, only: [:new, :create, :update, :edit]
+  before_action :require_login, only: [:new, :create, :update, :edit]
 
   def index
     @organizations = Organization.approved

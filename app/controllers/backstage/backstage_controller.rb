@@ -1,5 +1,5 @@
 class Backstage::BackstageController < ApplicationController
-  before_filter :require_admin
+  before_action :require_admin
 
 private
 

@@ -1,6 +1,6 @@
 class DiscussionsController < ApplicationController
 
-  before_filter :load_discussable
+  before_action :load_discussable
 
   def new
     @discussion = @discussable.discussions.new

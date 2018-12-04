@@ -1,7 +1,7 @@
 class ProjectsController < ApplicationController
   include ProjectsOperations
 
-  before_filter :require_login, except: [:index, :show, :search]
+  before_action :require_login, except: [:index, :show, :search]
 
   def index
     @projects = all_projects.page(params['page']).per(params['per'])

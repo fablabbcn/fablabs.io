@@ -12,7 +12,7 @@ describe Api::V2::AdminController, :type => :request do
     it "Does not allow to list users" do
       get 'http://api.fablabs.dev/2/users'
       expect(response.status).to eq(401)
-      expect(response.content_type).to eq(Mime::JSON)
+      expect(response.content_type).to eq(Mime[:json])
       # expect(response.parsed_body).to eq({error:"Not authorized"})
     end
 
@@ -23,7 +23,7 @@ describe Api::V2::AdminController, :type => :request do
       get_as_user 'http://api.fablabs.dev/2/users'
       # expect(json['users']).to match_array([user_helper(user)])
       expect(response.status).to eq(403)
-      expect(response.content_type).to eq(Mime::JSON)
+      expect(response.content_type).to eq(Mime[:json])
       # expect(response.parsed_body).to eq({error:"Not authorized"})
     end
 
@@ -35,7 +35,7 @@ describe Api::V2::AdminController, :type => :request do
       get_as_user 'http://api.fablabs.dev/2/users'
       # expect(json['users']).to match_array([user_helper(user)])
       expect(response.status).to eq(200)
-      expect(response.content_type).to eq(Mime::JSON)
+      expect(response.content_type).to eq(Mime[:json])
       # expect(response.parsed_body).to eq({error:"Not authorized"})
     end
 
