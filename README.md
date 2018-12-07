@@ -9,6 +9,10 @@ Fab labs provide widespread access to modern means for invention. They began as 
 If you are a Fab labs entusiast and/or you would like to contribute to the project please feel free to get in touch by [opening a new issue](https://github.com/fablabbcn/fablabs/issues/new).
 
 
+## Vote for features
+[![Feature Requests](http://feathub.com/fablabbcn/fablabs.io?format=svg)](http://feathub.com/fablabbcn/fablabs.io)
+
+
 ## Getting started
 
 ### Local development
