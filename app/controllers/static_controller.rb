@@ -33,7 +33,9 @@ class StaticController < ApplicationController
       env: Rails.env,
       version: VERSION,
       ruby: RUBY_VERSION,
-      rails: Rails::VERSION::STRING
+      rails: Rails::VERSION::STRING,
+      branch: GIT_BRANCH,
+      revision: GIT_REVISION
     }
   end
 end
