@@ -25,13 +25,6 @@ class Recovery < ActiveRecord::Base
     key
   end
 
-  def self.find_by_key key
-    select('recoveries.user_id, recoveries.key').
-    where(key: key).
-    from(Recovery.order('id DESC').group(:user_id, :key, :id).limit(1).as('recoveries')).
-    group([:user_id,:id,:key]).last
-  end
-
 private
 
   def associate_user
