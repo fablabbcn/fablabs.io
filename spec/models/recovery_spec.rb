@@ -22,7 +22,7 @@ describe Recovery, type: :model  do
   it "has find_by_key" do
     user = FactoryBot.create(:user)
     recovery = FactoryBot.create(:recovery, email_or_username: user.email)
-    expect(Recovery.find_by_key(recovery.key).user).to eq(recovery.user)
+    expect(Recovery.find_by(key: recovery.key).user).to eq(recovery.user)
   end
 
   it "associates user before_create" do
