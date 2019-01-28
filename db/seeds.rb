@@ -52,6 +52,7 @@ Organization.create!(
   description: FFaker::Lorem.sentence,
   county: "County",
   country_code: "es",
+  workflow_state: ['approved', 'pending', 'rejected'].sample,
   kind: Organization::KINDS[0]
 )
 end
@@ -81,6 +82,15 @@ RefereeApprovalProcess.create!(
   #referee_id: 1
   )
 end
+
+Project.create!(
+  title: "Project ",
+  owner: User.first
+)
+
+Machine.create!(
+  name: 'Machine '
+)
 
 Brand.create!(
   name: 'A Brand',
