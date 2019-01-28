@@ -17,7 +17,7 @@ If you are a Fab labs entusiast and/or you would like to contribute to the proje
 
 ### Local development
 
-1. `bower install`
+1. `npm i`
 
 1. `rake db:setup`
 
@@ -52,9 +52,9 @@ Run tests with:
 
    `docker-compose exec app rake db:setup`
 
-   If bower does not successfully install do:
+   If npm does not successfully install do:
 
-   `docker-compose exec app /usr/local/bin/bower install`
+   `docker-compose exec app npm i`
 
 1. Add this to your `/etc/hosts`:
 
