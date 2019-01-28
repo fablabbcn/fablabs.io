@@ -40,5 +40,11 @@ describe Api::V2::UserController, :type => :request do
     # expect(response.parsed_body).to eq({error:"Not authorized"})
   end
 
+  it "gets /0/users.json endpoint without errors" do
+    get_as_user 'http://api.fablabs.dev/0/users.json'
+    expect(response.status).to eq(200)
+    expect(response.content_type).to eq(Mime::JSON)
+    expect(json.first["first_name"]).to eq("John")
+  end
 
 end
