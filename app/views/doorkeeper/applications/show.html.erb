@@ -31,7 +31,7 @@
     </table>
 
     <h4>Personal access token:</h4>
-    <p><code id="access_token"><%= @token.token %></code></p>
+    <p><code id="access_token"><%= @token.token if @token %></code></p>
 
   </div>
 
