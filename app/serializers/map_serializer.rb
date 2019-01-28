@@ -2,7 +2,8 @@ class MapSerializer < ActiveModel::Serializer
 
   attributes :id,
       :name,
-      :slug,
+      # TODO: disabling slug because it breaks http://api.fablabs.local:3000/0/labs/map with 'missing attribute'
+      #:slug,
       :latitude,
       :longitude
       #:url,
