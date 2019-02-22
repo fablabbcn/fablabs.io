@@ -54,7 +54,8 @@ RefereeApprovalProcess.create!(
 100.times do
   @lab = Lab.create!(
   name: "MyLab#{Lab.count}",
-  kind: Lab::Kinds[1],
+  kind: Lab::KINDS[1],
+  email: "some@email.com",
   country_code: 'IS',
   address_1: 'MyStreet 24',
   network: true,
