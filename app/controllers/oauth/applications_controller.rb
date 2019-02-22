@@ -9,11 +9,11 @@ class Oauth::ApplicationsController < Doorkeeper::ApplicationsController
 
 
   def show
-    super
     @token =  Doorkeeper::AccessToken.find_or_create_by(:application_id => @application.id, :resource_owner_id => current_user.id)
     if @token.revoked? || @token.expired? then
       @token =  Doorkeeper::AccessToken.create(:application_id => @application.id, :resource_owner_id => current_user.id)
     end
+    super
   end
 
   # only needed if each application must have some owner
