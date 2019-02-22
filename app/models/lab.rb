@@ -5,6 +5,10 @@ class Lab < ActiveRecord::Base
   include ApproveWorkflow
   include LabApproveMethods
 
+
+  KINDS = [ 'mini_fab_lab', 'fab_lab', 'mobile']
+
+
   extend DragonflyValidations
 
   dragonfly_accessor :avatar do
