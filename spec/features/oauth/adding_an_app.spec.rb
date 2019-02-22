@@ -30,12 +30,14 @@ feature "Adding an oAuth app" do
             fill_in 'doorkeeper_application[name]', with: 'My fab project'
             click_button 'Submit'
             expect(page).to have_content('Whoops! Check your form for possible errors')
+            expect(page).to have_content("Can't be blank")
         end
 
         scenario "an authenticated user with missing app name" do
             fill_in 'doorkeeper_application[redirect_uri]', with: 'http://localhost:8080/oauth/callback'
             click_button 'Submit'
             expect(page).to have_content('Whoops! Check your form for possible errors')
+            expect(page).to have_content("Can't be blank")
         end
     end
 end
