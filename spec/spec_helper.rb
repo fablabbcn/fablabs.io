@@ -29,6 +29,11 @@ Shoulda::Matchers.configure do |config|
     end
 end
 
+def log_test(message)
+  Rails.logger.info(message)
+  puts message
+end
+
 #Capybara.app_host = "www.fablabs.local"
 #Capybara.javascript_driver = :webkit
 
