@@ -26,16 +26,16 @@ module LabsSearch
 
   def match_slug_country(query, country_code)
     Lab.where(
-      'slug LIKE ? or name LIKE ? or city LIKE ? or country_code LIKE ?',
+      'slug LIKE ? or name LIKE ? or city LIKE ? or country_code = ?',
       "%#{query}%",
       "%#{query.capitalize}%",
       "%#{query}%",
-      "%#{country_code}%"
+      country_code.to_s
     ).with_approved_state
   end
 
   def match_country(query)
     @country = ISO3166::Country.find_country_by_name(query)
-    @country&.gec
+    @country&.alpha2
   end
 end

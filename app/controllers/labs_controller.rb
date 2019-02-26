@@ -1,15 +1,17 @@
+# frozen_string_literal: true
+
 class LabsController < ApplicationController
   include LabsOperations
 
-  before_filter :require_login, except: [:index, :map, :show, :mapdata, :embed, :list]
-  after_filter :allow_iframe, only: [:embed, :list]
+  before_filter :require_login, except: %i[index map show mapdata embed list]
+  after_filter :allow_iframe, only: %i[embed list]
 
   # authorize_actions_for Lab, actions: { map: :read, manage_admins: :update}
 
   def embed
     @labs = Lab.with_approved_state
     # render :embed, layout: false
-    render layout: "embed"
+    render layout: 'embed'
   end
 
   def map
@@ -18,10 +20,11 @@ class LabsController < ApplicationController
 
   def list
     if params[:country]
-      params["country"].downcase!
+      # params["country"].downcase!
+      params['country'].upcase!
     end
-    @labs = Lab.with_approved_state.order('LOWER(name) ASC').in_country_code(params["country"]).page(params['page']).per(params['per'])
-    render layout: "embed"
+    @labs = Lab.with_approved_state.order('LOWER(name) ASC').in_country_code(params['country']).page(params['page']).per(params['per'])
+    render layout: 'embed'
   end
 
   def mapdata
@@ -31,12 +34,13 @@ class LabsController < ApplicationController
 
   def index
     if params[:country]
-      params["country"].downcase!
+      # params["country"].downcase!
+      params['country'].upcase!
     end
     all_labs = Lab.search_for(params[:query]).with_approved_state
     @countries = Lab.country_list_for all_labs
     @count = all_labs.size
-    @labs = all_labs.order('LOWER(name) ASC').in_country_code(params["country"]).page(params['page']).per(params['per'])
+    @labs = all_labs.order('LOWER(name) ASC').in_country_code(params['country']).page(params['page']).per(params['per'])
 
     respond_to do |format|
       format.html
@@ -57,8 +61,8 @@ class LabsController < ApplicationController
     @lab.employees.first.assign_attributes(user: current_user, lab: @lab)
     authorize_action_for @lab
     if @lab.save
-      sends_emails("submitted")
-      redirect_to labs_path, notice: "Thanks for adding your lab. We shall review your application and be in touch."
+      sends_emails('submitted')
+      redirect_to labs_path, notice: 'Thanks for adding your lab. We shall review your application and be in touch.'
     else
       # @lab.employees.build if @lab.employees.empty?
       @lab.links.build
@@ -70,7 +74,7 @@ class LabsController < ApplicationController
     begin
       @lab = with_approved_or_pending_state(params[:id])
     rescue ActiveRecord::RecordNotFound
-      return redirect_to root_path, notice: "Lab not found"
+      return redirect_to root_path, notice: 'Lab not found'
     end
     # @people = [@lab.creator]
     @employees = @lab.employees.includes(:user).active.order('employees.id ASC')
@@ -87,7 +91,7 @@ class LabsController < ApplicationController
     @lab = Lab.friendly.find(params[:id])
     authorize_action_for @lab
     @lab.delete
-    redirect_to labs_path, notice: "Lab deleted"
+    redirect_to labs_path, notice: 'Lab deleted'
   end
 
   def edit
@@ -102,7 +106,7 @@ class LabsController < ApplicationController
     if @lab.update_attributes lab_params
       track_activity @lab
       update_workflow_state
-      redirect_to lab_url(@lab), notice: "Lab was successfully updated"
+      redirect_to lab_url(@lab), notice: 'Lab was successfully updated'
     else
       @lab.links.build
       render :edit
@@ -113,18 +117,18 @@ class LabsController < ApplicationController
     @lab = Lab.friendly.find(params[:id])
     authorize_action_for @lab
     @admins = @lab.admins
-    @users = User.all# - User.with_role(:admin) - [current_user]
+    @users = User.all # - User.with_role(:admin) - [current_user]
   end
 
   def docs
     render template: "labs/docs/#{params[:page]}"
   end
 
-private
+  private
 
   def allow_iframe
-    response.headers.delete "X-Frame-Options"
-    # From http://jerodsanto.net/2013/12/rails-4-let-specific-actions-be-embedded-as-iframes/
+    response.headers.delete 'X-Frame-Options'
+    #  From http://jerodsanto.net/2013/12/rails-4-let-specific-actions-be-embedded-as-iframes/
   end
 
   def lab_params
@@ -162,12 +166,11 @@ private
       :network,
       :programs,
       :improve_approval_application,
-      capabilities: [ ],
-      facilities_attributes: [:id, :thing_id, '_destroy' ],
-      links_attributes: [ :id, :link_id, :url, '_destroy' ],
-      referee_approval_processes_attributes: [ :referee_lab_id, '_destroy' ],
-      employees_attributes: [ :id, :job_title, :description ]
+      capabilities: [],
+      facilities_attributes: [:id, :thing_id, '_destroy'],
+      links_attributes: [:id, :link_id, :url, '_destroy'],
+      referee_approval_processes_attributes: [:referee_lab_id, '_destroy'],
+      employees_attributes: %i[id job_title description]
     )
   end
-
 end
