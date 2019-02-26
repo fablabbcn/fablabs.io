@@ -17,18 +17,20 @@ module LabsSearch
 
   def match_slug(query)
     Lab.where(
-      'slug LIKE ? or name LIKE ? or city LIKE ?',
+      'slug LIKE ? or UPPER(name) LIKE UPPER(?) or UPPER(city) LIKE UPPER(?) or UPPER(county) LIKE UPPER(?)',
       "%#{query}%",
-      "%#{query.capitalize}%",
+      "%#{query}%",
+      "%#{query}%",
       "%#{query}%"
     ).with_approved_state
   end
 
   def match_slug_country(query, country_code)
     Lab.where(
-      'slug LIKE ? or name LIKE ? or city LIKE ? or country_code = ?',
+      'slug LIKE ? or UPPER(name) LIKE UPPER(?) or UPPER(city) LIKE UPPER(?) or UPPER(county) LIKE UPPER(?) or UPPER(country_code) = UPPER(?)',
       "%#{query}%",
-      "%#{query.capitalize}%",
+      "%#{query}%",
+      "%#{query}%",
       "%#{query}%",
       country_code.to_s
     ).with_approved_state
