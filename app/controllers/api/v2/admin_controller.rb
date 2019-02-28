@@ -39,13 +39,15 @@ class Api::V2::AdminController < Api::V2::ApiController
   def search_users
     # Your code here
     error! :forbidden unless current_user.has_role? :superadmin
-    @users, @paginate = paginate User.where(
-      'first_name LIKE ? or username LIKE ? or last_name LIKE ? or email LIKE ?',
-      "%#{params[:q].capitalize}%",
-      "%#{params[:q]}%",
-      "%#{params[:q].capitalize}%",
+    params[:username] ||= ''
+    params[:email] ||= ''
+
+    @users, @paginate = User.where(
+      'username LIKE ? or email LIKE ?',
+      "%#{params[:username]}%",
       "%#{params[:email]}%"
     )
+
     # Your code here
     options = {}
     options[:meta] = { 'total-pages' => @paginate[:pages] }

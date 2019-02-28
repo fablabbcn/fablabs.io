@@ -82,4 +82,33 @@ describe Api::V2::AdminController, type: :request do
       expect(attrs['id']).not_to be_falsy
     end
   end
+
+  describe 'POST users#search_users' do
+    context 'When not authenticated'
+    let!(:user) { FactoryBot.create :user }
+
+    it 'Does not allow to search users' do
+      post 'http://api.fablabs.dev/2/users/search', data: { 'username' => 'johnrees', 'email': 'test@example.com' }
+      expect(response.status).to eq(401)
+      expect(response.content_type).to eq(Mime::JSON)
+    end
+
+    context 'When not authenticated as admin'
+    it 'Does not allow to search users' do
+      post_as_user 'http://api.fablabs.dev/2/users/search', data: { 'username' => 'johnrees', 'email': 'test@example.com' }
+      expect(response.status).to eq(403)
+      expect(response.content_type).to eq(Mime::JSON)
+    end
+
+    context 'When authenticated as admin'
+    it 'Does allow to search users' do
+      user.add_role :superadmin
+      post_as_user 'http://api.fablabs.dev/2/users/search', data: { 'username' => user.username, 'email': user.email }
+      expect(response.status).to eq(200)
+      expect(response.content_type).to eq(Mime::JSON)
+
+      result = JSON.parse(response.body)
+      log_test(result['data'])
+    end
+  end
 end
