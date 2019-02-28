@@ -19,9 +19,10 @@ class LabsController < ApplicationController
   end
 
   def list
+    ## the country code is stored as lowercase in the db
     if params[:country]
-      # params["country"].downcase!
-      params['country'].upcase!
+      params['country'].downcase!
+      # params['country'].upcase!
     end
     @labs = Lab.with_approved_state.order('LOWER(name) ASC').in_country_code(params['country']).page(params['page']).per(params['per'])
     render layout: 'embed'
@@ -33,9 +34,10 @@ class LabsController < ApplicationController
   end
 
   def index
+    ## the country code is stored as lowercase in the db
     if params[:country]
-      # params["country"].downcase!
-      params['country'].upcase!
+      params['country'].downcase!
+      # params['country'].upcase!
     end
     all_labs = Lab.search_for(params[:query]).with_approved_state
     @countries = Lab.country_list_for all_labs
