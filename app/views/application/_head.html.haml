@@ -20,8 +20,7 @@
 
   = stylesheet_link_tag "//fonts.googleapis.com/css?family=Open+Sans:400|Montserrat"
   = stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true
-  = javascript_include_tag "//maps.googleapis.com/maps/api/js?sensor=false&libraries=places"
-
+  = javascript_include_tag "//maps.googleapis.com/maps/api/js?sensor=false&libraries=places&key=#{google_maps_api_key}"
   = javascript_include_tag "application", "data-turbolinks-track" => true
   %link{type: "text/plain", rel: "author", href: "/humans.txt"}
   = csrf_meta_tags
