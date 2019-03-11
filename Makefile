@@ -12,11 +12,14 @@ test: up
 	docker-compose exec app rake spec
 
 db/test:
-    docker-compose exec app "rake db:setup RAILS_ENV=test"
+    docker-compose exec app rake db:setup RAILS_ENV=test
 
 db/dev:
     docker-compose exec app rake db:setup
 	docker-compose exec app rake db:seed
+
+db/migrate:
+	docker-compose exec app rake db:migrate
 
 db/backup:
 	docker exec fablabsio_db_1 pg_dumpall -c -U postgres > dump_`date +%d-%m-%Y"_"%H_%M_%S`.sql
