@@ -4,4 +4,9 @@ class Document < ActiveRecord::Base
   extend DragonflyValidations
   dragonfly_accessor :photo
   dragonfly_validations :photo
+
+  def photo_url
+    self.photo && self.photo.url || nil
+  end
+
 end
