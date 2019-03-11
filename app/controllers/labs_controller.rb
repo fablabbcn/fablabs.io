@@ -55,6 +55,8 @@ class LabsController < ApplicationController
     @lab = current_user.created_labs.build
     @lab.employees.build
     @lab.links.build
+    @lab.kind = Lab::KINDS[0]
+    @lab.activity_status = Lab::ACTIVITY_STATUS[0]
     authorize_action_for @lab
   end
 
