@@ -126,6 +126,10 @@ module ApplicationHelper
     "#{Rails.env} c-#{controller_name} a-#{action_name} #{'backstage' if backstage?}"
   end
 
+  def google_maps_api_key
+    Fablabs::Application.config.google_maps_api_key
+  end
+
   def markdown(text)
     md = Redcarpet::Markdown.new(Redcarpet::Render::HTML,
                                  filter_html: true,
