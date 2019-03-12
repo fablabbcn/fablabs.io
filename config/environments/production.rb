@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Code is not reloaded between requests.
   config.cache_classes = true
-  config.banned_words = (YAML.load_file("#{Rails.root}/config/words.yml")||{}).map(&:values).flatten
+  config.banned_words = (YAML.load_file("#{Rails.root}/config/words.yml") || {}).map(&:values).flatten
 
   # Eager load code on boot. This eager loads most of Rails and
   # your application in memory, allowing both thread web servers
@@ -17,17 +19,17 @@ Rails.application.configure do
   # Enable Rack::Cache to put a simple HTTP cache in front of your application
   # Add `rack-cache` to your Gemfile before enabling this.
   # For large-scale production use, consider using a caching reverse proxy like nginx, varnish or squid.
-  config.action_controller.perform_caching = true 
-  config.cache_store = :dalli_store, ('memcached://memcached:11211/') , { expires_in: 15.minutes }
+  config.action_controller.perform_caching = true
+  config.cache_store = :dalli_store, 'memcached://memcached:11211/', { expires_in: 15.minutes }
   config.action_dispatch.rack_cache = true
   #  config.action_dispatch.rack_cache = {
-#    metastore:   'memcached://memcached:11211/meta',
-#    entitystore: 'memcached://memcached:11211/body'
-#  }
+  #    metastore:   'memcached://memcached:11211/meta',
+  #    entitystore: 'memcached://memcached:11211/body'
+  #  }
 
   # Disable Rails's static asset server (Apache or nginx will already do this).
   config.serve_static_files = true
-  #config.serve_static_assets = false
+  # config.serve_static_assets = false
 
   # Compress JavaScripts and CSS.
   config.assets.js_compressor = :uglifier
@@ -58,6 +60,9 @@ Rails.application.configure do
   # Use a different logger for distributed setups.
   # config.logger = ActiveSupport::TaggedLogging.new(SyslogLogger.new)
 
+  # Rotating logs
+  config.logger = ActiveSupport::Logger.new(config.log_file, 1, 20 * 1024 * 1024)
+
   # Use a different cache store in production.
   # config.cache_store = :dalli
 
@@ -66,7 +71,7 @@ Rails.application.configure do
 
   # Precompile additional assets.
   # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
-  #config.assets.precompile += %w( sessions.js )
+  # config.assets.precompile += %w( sessions.js )
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
