@@ -8,7 +8,7 @@ install: db/test db/dev
 rebuild:
 	docker-compose up -d --build
 
-test: up
+test: up db/test
 	docker-compose exec app rake spec
 
 db/test:
