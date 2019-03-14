@@ -17,7 +17,8 @@ class Api::V0::LabsController < Api::V0::ApiController
         :employees => { 
           :include => { 
             :user => {
-              :only => [ :user_id, :username, :first_name, :last_name]
+              :methods => :avatar_url,
+              :only => [ :user_id, :username, :first_name, :last_name, :avatar_url]
             },
           },
           :only => [:user, :job_title, :user_id]
