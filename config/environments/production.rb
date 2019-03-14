@@ -61,6 +61,7 @@ Rails.application.configure do
   # config.logger = ActiveSupport::TaggedLogging.new(SyslogLogger.new)
 
   # Rotating logs
+  config.log_file = '/fablabs/log/production.log'
   config.logger = ActiveSupport::Logger.new(config.log_file, 1, 20 * 1024 * 1024)
 
   # Use a different cache store in production.
