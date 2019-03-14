@@ -2,7 +2,7 @@ class ApiLabsSerializer   < ApiV2Serializer
     
  
     link :self do |object|
-        "/v2/labs/#{object.id}"
+        "/2/labs/#{object.id}"
     end
 
     set_type :lab
