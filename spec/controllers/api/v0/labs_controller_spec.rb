@@ -67,7 +67,7 @@ describe Api::V0::LabsController, type: :request do
 
       json_body = JSON.parse(response.body)
       expect(json_body['employees'].length).to eq(1)
-      expect(json_body['employees'][0]["username"]).to eq(@euser.username)      
+      expect(json_body['employees'][0]["user"]["username"]).to eq(@euser.username)      
     end
 
   end
