@@ -227,6 +227,20 @@ class Lab < ActiveRecord::Base
     DiscourseService::Lab.new(self).sync
   end
 
+  def avatar_url
+    if avatar_uid.present?
+      avatar.thumb('150x150#').url
+    else
+      default_url = "https://www.fablabs.io/default-lab-avatar.png"
+      if email.present?
+        gravatar_id = Digest::MD5.hexdigest(email.downcase)
+        "https://gravatar.com/avatar/#{gravatar_id}.png?s=150&d=#{CGI.escape(default_url)}"
+      else
+        default_url
+      end
+    end
+  end
+
   private
 
   def discourse_sync_if_needed

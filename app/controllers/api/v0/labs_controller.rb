@@ -24,8 +24,11 @@ class Api::V0::LabsController < Api::V0::ApiController
           },
           :only => [:user, :job_title, :user_id]
       },
-      :avatar_url => {},
-    }, :methods => :avatar_url)
+      
+    }, 
+    :methods => :avatar_url,
+    :exclude => [:phone]
+    )
   end
 
   def map
