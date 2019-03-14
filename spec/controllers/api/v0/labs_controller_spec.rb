@@ -66,6 +66,7 @@ describe Api::V0::LabsController, type: :request do
       expect(response.content_type).to eq(Mime::JSON)
 
       json_body = JSON.parse(response.body)
+      expect(json_body['avatar_url']).to eq(@lab.avatar_url)
       expect(json_body['employees'].length).to eq(1)
       expect(json_body['employees'][0]["user"]["username"]).to eq(@euser.username)      
       expect(json_body['employees'][0]["user"]["avatar_url"]).to eq(@euser.avatar_url)      
