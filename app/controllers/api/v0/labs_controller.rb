@@ -13,6 +13,7 @@ class Api::V0::LabsController < Api::V0::ApiController
   def show
     @lab = Lab.with_approved_state.includes(:links, :employees => [:user]).find(params[:id])
     render json: @lab.to_json(:include => {
+        
         :links => { :only => :url }, 
         :employees => { 
           :include => { 
@@ -22,8 +23,9 @@ class Api::V0::LabsController < Api::V0::ApiController
             },
           },
           :only => [:user, :job_title, :user_id]
-      }
-    })
+      },
+      :avatar_url => {},
+    }, :methods => :avatar_url)
   end
 
   def map
