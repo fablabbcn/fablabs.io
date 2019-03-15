@@ -11,7 +11,8 @@ namespace :export do
                 lab: {only: [:id, :name, :avatar_url]}, 
                 steps: {only: [:title, :description, :position, :links]}, 
                 links: {only: :url}, 
-                documents: { methods: :photo_url }
+                documents: { methods: :photo_url },
+                tags: {only: :name}
              }))
       end
     else
