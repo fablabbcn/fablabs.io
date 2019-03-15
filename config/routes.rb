@@ -50,6 +50,8 @@ Rails.application.routes.draw do
 
     get "signup" => "users#new", :as => "signup"
     get "settings" => "users#edit", :as => "settings"
+    get "change_password" => "users#change_password", :as => "password"
+    patch "update_password" => "users#update_password"
 
     get "resend_verification_email" => "users#resend_verification_email"
 
