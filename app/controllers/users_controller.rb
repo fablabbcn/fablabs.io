@@ -35,14 +35,35 @@ class UsersController < ApplicationController
     @user = current_user
     authorize_action_for @user
     email_changed = (@user.email != user_params[:email])
-    if @user.update_attributes user_params
-      if email_changed
-        UserMailer.verification(@user.id).deliver_now
-        @user.unverify!
+
+      if @user.update_attributes user_params
+        if email_changed
+          UserMailer.verification(@user.id).deliver_now
+          @user.unverify!
+        end
+        redirect_to root_url, flash: { success: 'Settings updated' }
+      else
+        render 'edit'
       end
-      redirect_to root_url, flash: { success: 'Settings updated' }
+  end
+
+
+  def change_password
+    @user = current_user
+    # authorize_action_for @user
+  end
+
+  def update_password
+    @user = current_user
+    if change_password_params[:password] == change_password_params[:password_confirmation] 
+      if @user.update_attributes change_password_params
+        redirect_to root_url, flash: {success: 'Password updated successfully'} 
+      else
+          render 'change_password'
+      end
     else
-      render 'edit'
+      @user.errors.add(:password_confirmation, "Passwords do not match")
+      render 'change_password'
     end
   end
 
@@ -88,6 +109,13 @@ private
       :bio,
       :url,
       links_attributes: [ :id, :link_id, :url, '_destroy' ]
+    )
+  end
+
+  def change_password_params
+    params.require(:user).permit(
+      :password,
+      :password_confirmation
     )
   end
 
