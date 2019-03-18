@@ -33,7 +33,7 @@ module MailchimpService
                 })
                 return res
             rescue => e
-                logger.error "MailchimpService::Client Failed to subscribe user: #{e.message} - #{e.raw_body}"
+                Rails.logger.error "MailchimpService::Client Failed to subscribe user: #{e.message} - #{e.raw_body}"
             end
             return nil
         end
@@ -46,7 +46,7 @@ module MailchimpService
            begin
                 return @gibbon.lists(@list_id).members()
             rescue => e
-                logger.error "MailchimpService::Client Failed to list members: #{e.message} - #{e.raw_body}"
+                Rails.logger.error "MailchimpService::Client Failed to list members: #{e.message} - #{e.raw_body}"
             end
             return nil
         end
@@ -62,7 +62,7 @@ module MailchimpService
                 })
                 return res
             rescue => e
-                logger.error "MailchimpService::Client Failed to unsubscribe user: #{e.message} - #{e.raw_body}"
+                Rails.logger.error "MailchimpService::Client Failed to unsubscribe user: #{e.message} - #{e.raw_body}"
             end
             return nil
         end
