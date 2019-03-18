@@ -12,7 +12,8 @@ require 'capybara/rspec'
 require 'capybara-webkit'
 # require 'sidekiq/testing'
 require 'pry-byebug'
-
+# mock support for api requests
+require 'webmock/rspec'
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.

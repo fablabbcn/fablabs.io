@@ -35,6 +35,12 @@ class UsersController < ApplicationController
     @user = current_user
     authorize_action_for @user
     email_changed = (@user.email != user_params[:email])
+    if email_changed
+      if Figaro.env.mailchimp_enabled == true
+        @client = MailchimpService::Client.instance
+        @client.unsubscribe(@user)
+      end
+    end
     if @user.update_attributes user_params
       if email_changed
         UserMailer.verification(@user.id).deliver_now
@@ -57,6 +63,10 @@ class UsersController < ApplicationController
       @user = User.with_unverified_state.find_by!(email_validation_hash: params[:id])
       if @user.verify!
         # cookies.permanent[:user_id] = { value: @user.id, domain: '.fablabs.dev' }
+        if Figaro.env.mailchimp_enabled
+          @client = MailchimpService::Client.instance
+          @client.subscribe(@user)
+        end
         session[:user_id] = @user.id
         redirect_to root_path, notice: "Thanks for verifying your email"
       end
