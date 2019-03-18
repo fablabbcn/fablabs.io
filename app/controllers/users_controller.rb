@@ -63,7 +63,7 @@ class UsersController < ApplicationController
       @user = User.with_unverified_state.find_by!(email_validation_hash: params[:id])
       if @user.verify!
         # cookies.permanent[:user_id] = { value: @user.id, domain: '.fablabs.dev' }
-        if Figaro.env.mailchimp_enabled == true
+        if Figaro.env.mailchimp_enabled
           @client = MailchimpService::Client.instance
           @client.subscribe(@user)
         end
