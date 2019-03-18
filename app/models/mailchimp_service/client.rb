@@ -13,7 +13,9 @@ module MailchimpService
         end
 
         def setOptions(options = {})
-            self.initialize(options)
+            @api_key = options[:api_key] || Figaro.env.mailchimp_api_key
+            @list_id = options[:list_id] || Figaro.env.mailchimp_list_id
+            @gibbon = Gibbon::Request.new(api_key: api_key, debug: true)
         end
 
         def subscribe(user)
