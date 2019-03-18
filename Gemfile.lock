@@ -111,6 +111,8 @@ GEM
       sixarm_ruby_unaccent (~> 1.1)
       unicode_utils (~> 1.4)
     country_select (1.2.0)
+    crack (0.4.3)
+      safe_yaml (~> 1.0.0)
     crass (1.0.4)
     css_parser (1.6.0)
       addressable
@@ -177,6 +179,9 @@ GEM
     friendly_id (5.2.4)
       activerecord (>= 4.0.0)
     geocoder (1.5.0)
+    gibbon (3.2.0)
+      faraday (>= 0.9.1)
+      multi_json (>= 1.11.0)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
     guard (2.15.0)
@@ -205,6 +210,7 @@ GEM
     has_scope (0.7.2)
       actionpack (>= 4.1)
       activesupport (>= 4.1)
+    hashdiff (0.3.8)
     hashie (2.1.2)
     hiredis (0.6.3)
     hpricot (0.8.6)
@@ -425,6 +431,7 @@ GEM
     ruby_parser (3.11.0)
       sexp_processor (~> 4.9)
     rubyzip (1.2.2)
+    safe_yaml (1.0.5)
     sass (3.7.2)
       sass-listen (~> 4.0.0)
     sass-listen (4.0.0)
@@ -513,6 +520,10 @@ GEM
     unf_ext (0.0.7.5)
     unicode_utils (1.4.0)
     uniform_notifier (1.12.1)
+    webmock (3.5.1)
+      addressable (>= 2.3.6)
+      crack (>= 0.3.2)
+      hashdiff
     whenever (0.10.0)
       chronic (>= 0.6.3)
     will_paginate (3.1.6)
@@ -560,6 +571,7 @@ DEPENDENCIES
   font-awesome-sass (~> 4.3.0)
   friendly_id
   geocoder
+  gibbon
   guard-rspec
   haml-rails
   hpricot
@@ -615,6 +627,7 @@ DEPENDENCIES
   trumbowyg_rails
   twitter
   uglifier
+  webmock
   whenever
   workflow
   zonebie
@@ -623,4 +636,4 @@ RUBY VERSION
    ruby 2.5.3p105
 
 BUNDLED WITH
-   1.17.1
+   1.17.2
