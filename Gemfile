@@ -78,6 +78,8 @@ gem "paperclip"#, "~> 4.2"
 gem 'aws-s3'
 gem 'aws-sdk-v1' # Can be used together with v2 because of different namespaces.
 
+gem 'gibbon'
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
@@ -97,6 +99,7 @@ group :test, :development do
 end
 
 group :test do
+  gem 'webmock'
   gem 'minitest'
   gem 'zonebie'
   gem "launchy"
