@@ -37,7 +37,7 @@ class UsersController < ApplicationController
     email_changed = (@user.email != user_params[:email])
     if email_changed
       if Figaro.env.mailchimp_enabled == true
-        @client = Mailchimp::Client.instance
+        @client = MailchimpService::Client.instance
         @client.unsubscribe(@user)
       end
     end
