@@ -9,12 +9,14 @@ module MailchimpService
         def initialize(options = {})
             @api_key = options[:api_key] || Figaro.env.mailchimp_api_key
             @list_id = options[:list_id] || Figaro.env.mailchimp_list_id
+            Rails.logger.info("MailchimpService::Client.initialize: #{@api_key}, #{list_id}")
             @gibbon = Gibbon::Request.new(api_key: api_key, debug: true)
         end
 
         def setOptions(options = {})
             @api_key = options[:api_key] || Figaro.env.mailchimp_api_key
             @list_id = options[:list_id] || Figaro.env.mailchimp_list_id
+            Rails.logger.info("MailchimpService::Client.setOptions: #{@api_key}, #{list_id}")
             @gibbon = Gibbon::Request.new(api_key: api_key, debug: true)
         end
 
