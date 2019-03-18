@@ -35,6 +35,12 @@ class UsersController < ApplicationController
     @user = current_user
     authorize_action_for @user
     email_changed = (@user.email != user_params[:email])
+    if email_changed
+      if Figaro.env.mailchimp_enabled == true
+        @client = Mailchimp::Client.instance
+        @client.unsubscribe(@user)
+      end
+    end
     if @user.update_attributes user_params
       if email_changed
         UserMailer.verification(@user.id).deliver_now
