@@ -29,5 +29,9 @@ module DiscourseService
       params[:api_username] = creator.username if creator
       params
     end
+
+    def creator
+      @entity.owner
+    end
   end
 end
