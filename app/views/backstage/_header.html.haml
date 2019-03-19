@@ -1,8 +1,9 @@
 .subnavbar
   .container.subnavbar-container
     .subnavbar-section.subnavbar-section-left
-      = link_to 'Profile', current_user, class: (controller_name == 'profile' ? 'btn btn-primary' : 'btn btn-default')
-      = link_to 'Settings', settings_path, class: (controller_name == 'settings' ? 'btn btn-primary' : 'btn btn-default')
+      = link_to 'Profile', current_user, class: (controller_name == 'users' && action_name == 'show' ? 'btn btn-primary' : 'btn btn-default')
+      = link_to 'Settings', settings_path, class: (controller_name == 'users' && action_name == 'edit' ? 'btn btn-primary' : 'btn btn-default')
+      = link_to 'Change password', password_path, class: (controller_name == 'users' && action_name =='change_password' ? 'btn btn-primary' : 'btn btn-default')
 
     .subnavbar-section.subnavbar-section-center
       - if current_user.is_referee? || current_user.is_unique_referee? || current_user.has_role?(:superadmin)
