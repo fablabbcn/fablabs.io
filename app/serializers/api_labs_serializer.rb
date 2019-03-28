@@ -30,8 +30,8 @@ class ApiLabsSerializer   < ApiV2Serializer
     # links_attributes: [ :id, :link_id, :url, '_destroy' ],
     #employees_attributes: [ :id, :job_title, :description ]
   
-    has_many :employees, serializer: EmployeeSerializer
-    has_many :links
+    # has_many :employees, serializer: EmployeeSerializer
+    has_many :links, serializer: ApiLinkSerializer
     has_many :machines, serializer: ApiMachineSerializer
   
     attribute :url do | object |

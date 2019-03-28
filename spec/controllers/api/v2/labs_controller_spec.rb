@@ -9,19 +9,23 @@ describe Api::V2::LabsController, :type => :request do
     let!(:user) { FactoryBot.create :user }
     let!(:lab) { FactoryBot.create(:lab, workflow_state: 'approved', name: "Fab Lab BCN") }
     let!(:lab2) { FactoryBot.create(:lab, name: "Fab Lab Toscana") }
-
+    let!(:link) { FactoryBot.create(:link, linkable: lab) }
+ 
     it "Lists labs as normal user" do
       get_as_user 'http://api.fablabs.dev/2/labs'
       # expect(json['users']).to match_array([user_helper(user)])
 
+
       expect(response.status).to eq(200)
       expect(response.content_type).to eq(Mime::JSON)
-
       expect(json["data"].size).to eq(1)
-
       @lab = json["data"][0]
-      expect(@lab["type"]).to eq("lab")
       expect(@lab["attributes"]["name"]).to eq(lab.name)
+
+      @included = json["included"]
+      expect(@included.length).to eq(1)
+      expect(json["included"][0]["attributes"]["url"]).to eq(link.url)
+
       # expect(response.parsed_body).to eq({error:"Not authorized"})
     end
 
