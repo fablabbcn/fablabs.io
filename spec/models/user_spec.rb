@@ -73,7 +73,7 @@ describe User, type: :model  do
 
     it "has email_string" do
       user = FactoryBot.build(:user, first_name: "Bill", last_name: "Gates", email: "bill@microsoft.com")
-      expect(user.email_string).to eq('Bill Gates <bill@microsoft.com>')
+      expect(user.email_string).to eq('"Bill Gates" <bill@microsoft.com>')
     end
 
     it "has admin_emails" do
