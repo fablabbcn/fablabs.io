@@ -63,7 +63,9 @@ class User < ActiveRecord::Base
 
   validates_acceptance_of :agree_policy_terms, :accept => true, on: :create
 
-  validates_format_of :email, :with => /\A(.+)@(.+)\z/
+  # validates_format_of :email, :with => /\A(.+)@(.+)\z/
+  validates :email, format: { with: URI::MailTo::EMAIL_REGEXP, message: "only allows valid emails" }
+
   validates_format_of :email_fallback, :with => /\A(.+)@(.+)\z/, allow_blank: true
 
   validates :username, format: { :with => /\A[a-zA-Z0-9]+(\.)?[a-zA-Z0-9]+\z/ }, length: { minimum: 4, maximum: 50 }
@@ -186,7 +188,7 @@ class User < ActiveRecord::Base
   end
 
   def email_string
-    "#{self} <#{self.email}>"
+    "\"#{self}\" <#{self.email}>"
   end
 
   def self.admin_emails
