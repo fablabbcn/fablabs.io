@@ -52,7 +52,7 @@ class Api::V2::LabsController < Api::V2::ApiController
 
 
   def map
-    @map, @paginate = paginate Lab.with_approved_state.select(:latitude,:longitude,:slug,:name,:id)
+    @map, @paginate = paginate Lab.with_approved_state.select(:latitude,:longitude,:slug,:name,:id, :kind)
     options = {}
     options[:meta] = {'total-pages' => @paginate[:pages] }
     options[:links] = @paginate

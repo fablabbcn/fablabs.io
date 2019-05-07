@@ -5,7 +5,7 @@ class LabSerializer < ActiveModel::Serializer
 
   attributes :id,
              :name,
-             #:kind_name,
+             :kind_name,
              :parent_id,
              :blurb,
              :description,
@@ -34,7 +34,7 @@ class LabSerializer < ActiveModel::Serializer
 
   # TODO: kind_name is breaking labs.json endpoint. Temporary comment out
   def kind_name
-    kind || Lab::KINDS[1]
+    object.kind || Lab::KINDS[1]
   end
 
   def url
