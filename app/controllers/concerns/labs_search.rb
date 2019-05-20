@@ -13,6 +13,8 @@ module LabsSearch
     end
   end
 
+
+
   private
 
   def match_slug(query)

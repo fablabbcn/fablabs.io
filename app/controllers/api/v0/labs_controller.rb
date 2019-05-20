@@ -32,7 +32,7 @@ class Api::V0::LabsController < Api::V0::ApiController
   end
 
   def map
-    respond_with Lab.select(:latitude,:longitude,:name,:id)
+    respond_with Lab.select(:latitude,:longitude,:name,:id, :slug, :kind)
       .with_approved_state.includes(:links),
       each_serializer: MapSerializer
   end
