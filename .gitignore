@@ -44,3 +44,5 @@ sitemap.x*
 config/application.yml
 node_modules
 .byebug_history
+yarn.lock
+export/
