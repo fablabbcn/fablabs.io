@@ -31,9 +31,9 @@
         %li.navbar-link
           = link_to t("views.header.machines"), machines_path
         %li.navbar-link
-          = link_to t("views.header.projects"), projects_path
+          = link_to t("views.header.projects"), 'https://projects.fablabs.io', target: "_blank"
         %li.navbar-link
-          = link_to 'Discuss', 'https://discuss.fablabs.io'
+          = link_to 'Discuss', 'https://discuss.fablabs.io', target: "_blank"
 
       %ul.nav.navbar-nav.navbar-right
         - if current_user

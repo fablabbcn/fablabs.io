@@ -1,11 +1,13 @@
-require File.expand_path('../boot', __FILE__)
+# frozen_string_literal: true
+
+require File.expand_path('boot', __dir__)
 
 require 'rails/all'
 require 'csv'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
-#Bundler.require(:default, Rails.env)
+# Bundler.require(:default, Rails.env)
 
 Bundler.require(*Rails.groups)
 
@@ -25,13 +27,13 @@ module Fablabs
     config.middleware.insert_before 0, Rack::Cors do
       allow do
         origins '*'
-        resource '*', :headers => :any, :methods => [:get,:put, :post, :options]
+        resource '*', headers: :any, methods: %i[get put post options]
       end
     end
 
     config.i18n.fallbacks = true
     config.i18n.enforce_available_locales = true
-    config.i18n.available_locales = [:en, :it, :de, :fr, :es, :ja, :nl, :pt]
+    config.i18n.available_locales = %i[en it de fr es ja nl pt]
     config.i18n.default_locale = :en
     # config.i18n.backend = I18n::Backend::KeyValue.new({})
 
@@ -45,7 +47,6 @@ module Fablabs
       g.fixture_replacement :factory_girl
     end
 
-
     #
     # Paperclip configuration options
     #
@@ -55,24 +56,25 @@ module Fablabs
         bucket: ENV['AWS_BUCKET'],
         access_key_id: ENV['AWS_ACCESS_KEY_ID'],
         secret_access_key: ENV['AWS_SECRET'],
-        s3_host_name: "s3-eu-west-1.amazonaws.com"
-      },
+        s3_host_name: 's3-eu-west-1.amazonaws.com'
+      }
     }
 
+    config.google_maps_api_key = ENV['GOOGLE_API_KEY']
 
     config.url = 'http://fablabs.local'
 
-    config.action_mailer.default_url_options = { host: "www.fablabs.io", protocol: "https" }
+    config.action_mailer.default_url_options = { host: 'www.fablabs.io', protocol: 'https' }
     config.action_mailer.delivery_method = :smtp
     config.action_mailer.perform_deliveries = true
     config.action_mailer.raise_delivery_errors = true
     config.action_mailer.smtp_settings = {
-      :authentication => ENV['EMAIL_AUTHENTICATION'],
-      :address => ENV['EMAIL_ADDRESS'],
-      :port => ENV['EMAIL_PORT'].to_i,
-      :domain => ENV['EMAIL_DOMAIN'],
-      :user_name => ENV['EMAIL_USERNAME'],
-      :password => ENV['EMAIL_PASSWORD']
+      authentication: ENV['EMAIL_AUTHENTICATION'],
+      address: ENV['EMAIL_ADDRESS'],
+      port: ENV['EMAIL_PORT'].to_i,
+      domain: ENV['EMAIL_DOMAIN'],
+      user_name: ENV['EMAIL_USERNAME'],
+      password: ENV['EMAIL_PASSWORD']
     }
 
     if ENV['RAVEN_DSN_URL'].present?
@@ -81,7 +83,7 @@ module Fablabs
       end
     end
 
-    config.autoload_paths += %W(#{config.root}/lib)
+    config.autoload_paths += %W[#{config.root}/lib]
     config.assets.paths << Rails.root.join('vendor', 'assets')
   end
 end

@@ -12,7 +12,8 @@ require 'capybara/rspec'
 require 'capybara-webkit'
 # require 'sidekiq/testing'
 require 'pry-byebug'
-
+# mock support for api requests
+require 'webmock/rspec'
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
@@ -27,6 +28,11 @@ Shoulda::Matchers.configure do |config|
     config.integrate do |with|
       with.test_framework :rspec
     end
+end
+
+def log_test(message)
+  Rails.logger.info(message)
+  puts message
 end
 
 #Capybara.app_host = "www.fablabs.local"

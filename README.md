@@ -106,6 +106,16 @@ the [Examples](https://github.com/fablabbcn/examples.fablabs.io), and the [fabla
 If you are running in production:
 
 - you need to setup the SSL hosts and .env vars from the docker-compose.yml
+
+- you must define Amazon S3 env vars, all thumbnails and images depend on this:
+
+```
+S3_BUCKET=your_fablabs.io
+S3_KEY=<amazon key>
+S3_SECRET=<amazon secret>
+S3_REGION=<amazon region code>
+```
+
 - you need to run the assets pipeline to update public/assets
 
 `docker-compose exec app bundle exec rake tmp:clear`

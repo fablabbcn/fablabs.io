@@ -5,6 +5,10 @@ class Lab < ActiveRecord::Base
   include ApproveWorkflow
   include LabApproveMethods
 
+
+  KINDS = [ 'mini_fab_lab', 'fab_lab', 'mobile']
+
+
   extend DragonflyValidations
 
   dragonfly_accessor :avatar do
@@ -221,6 +225,20 @@ class Lab < ActiveRecord::Base
 
   def discourse_sync
     DiscourseService::Lab.new(self).sync
+  end
+
+  def avatar_url
+    if avatar_uid.present?
+      avatar.thumb('150x150#').url
+    else
+      default_url = "https://www.fablabs.io/default-lab-avatar.png"
+      if email.present?
+        gravatar_id = Digest::MD5.hexdigest(email.downcase)
+        "https://gravatar.com/avatar/#{gravatar_id}.png?s=150&d=#{CGI.escape(default_url)}"
+      else
+        default_url
+      end
+    end
   end
 
   private

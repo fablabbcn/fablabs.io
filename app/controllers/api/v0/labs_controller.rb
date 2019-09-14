@@ -11,11 +11,28 @@ class Api::V0::LabsController < Api::V0::ApiController
   end
 
   def show
-    respond_with Lab.with_approved_state.includes(:links).find(params[:id])
+    @lab = Lab.with_approved_state.includes(:links, :employees => [:user]).find(params[:id])
+    render json: @lab.to_json(:include => {
+        
+        :links => { :only => :url }, 
+        :employees => { 
+          :include => { 
+            :user => {
+              :methods => :avatar_url,
+              :only => [ :user_id, :username, :first_name, :last_name, :avatar_url]
+            },
+          },
+          :only => [:user, :job_title, :user_id]
+      },
+      
+    }, 
+    :methods => :avatar_url,
+    :exclude => [:phone]
+    )
   end
 
   def map
-    respond_with Lab.select(:latitude,:longitude,:name,:id)
+    respond_with Lab.select(:latitude,:longitude,:name,:id, :slug, :kind)
       .with_approved_state.includes(:links),
       each_serializer: MapSerializer
   end

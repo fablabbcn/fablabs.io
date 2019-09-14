@@ -2,7 +2,7 @@ class ApiLabsSerializer   < ApiV2Serializer
     
  
     link :self do |object|
-        "/v2/labs/#{object.id}"
+        "/2/labs/#{object.id}"
     end
 
     set_type :lab
@@ -26,11 +26,12 @@ class ApiLabsSerializer   < ApiV2Serializer
     :email,
     :capabilities
     # :links,
-    # :employees
+    #:employees,
     # links_attributes: [ :id, :link_id, :url, '_destroy' ],
-    # employees_attributes: [ :id, :job_title, :description ]
+    #employees_attributes: [ :id, :job_title, :description ]
   
-    has_many :links
+    # has_many :employees, serializer: EmployeeSerializer
+    has_many :links, serializer: ApiLinkSerializer
     has_many :machines, serializer: ApiMachineSerializer
   
     attribute :url do | object |

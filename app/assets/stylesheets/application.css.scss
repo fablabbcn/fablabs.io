@@ -32,6 +32,13 @@ a{
   cursor: pointer;
 }
 
+// Remove when Bootstrap 4 is used:
+.mt-1{ margin-top: 0.25rem; }
+.mt-2{ margin-top: 0.5rem; }
+.mt-3{ margin-top: 1rem; }
+.mt-4{ margin-top: 1.5rem; }
+.mt-5{ margin-top: 3rem; }
+
 #embed-logo {
   display: block;
   background: image_url("embed-logo.png");

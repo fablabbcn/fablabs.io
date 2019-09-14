@@ -18,6 +18,9 @@
               - if current_or_null_user == @user
                 = link_to settings_path, class: 'button tiny' do
                   = fa_icon "edit", text: "Edit Profile"
+                %br
+                = link_to password_path, class: 'button tiny' do
+                  = fa_icon "key", text: "Change Password"
           .row
             .col-lg-8
               = simple_format @user.bio

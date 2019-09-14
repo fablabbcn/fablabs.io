@@ -159,6 +159,14 @@ describe Lab, type: :model  do
     end
   end
 
+  describe "avatar_url" do
+    it "contains a default avatar url" do
+      @avatar_url = FactoryBot.create(:lab).avatar_url 
+      expect(@avatar_url).to include('gravatar')
+      expect(@avatar_url).to include('default-lab-avatar')
+    end
+  end
+
   describe "address" do
 
     skip "get_time_zone" do
