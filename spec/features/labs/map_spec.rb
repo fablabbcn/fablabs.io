@@ -20,6 +20,7 @@ describe "map" do
       network: true,
       tools: true,
       programs: true,
+      activity_status: 'active',
       workflow_state: 'approved',
       latitude: 64.963,
       longitude: 19.0208

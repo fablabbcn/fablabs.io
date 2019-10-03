@@ -29,9 +29,10 @@ class LabsController < ApplicationController
   end
 
   def mapdata
-    @labs = Lab.with_approved_state.select(:id, :name, :slug, :latitude, :longitude, :kind)
+    @labs = Lab.with_approved_state
     render json: @labs, each_serializer: MapSerializer
   end
+
 
   def index
     ## the country code is stored as lowercase in the db

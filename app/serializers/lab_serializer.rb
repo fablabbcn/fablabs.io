@@ -23,7 +23,8 @@ class LabSerializer < ActiveModel::Serializer
              :address_notes,
              :phone,
              :email,
-             :capabilities
+             :capabilities,
+             :activity_status
   #:url
   # :links,
   # :employees

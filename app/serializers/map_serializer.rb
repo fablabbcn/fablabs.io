@@ -8,10 +8,15 @@ class MapSerializer < ActiveModel::Serializer
              :latitude,
              :longitude,
             #  :url,
-             :kind_name
+             :kind_name,
+             :status
 
   def url
     lab_url(object)
+  end
+
+  def status
+    object.activity_status || "unknown"
   end
 
   def kind_name
