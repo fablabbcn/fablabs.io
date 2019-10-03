@@ -13,6 +13,16 @@ private
     end
   end
 
+  def require_superadmin
+    if current_user
+      unless superadmin
+        return redirect_to root_url, notice: "Not authorized"
+      end
+    else
+      return redirect_to signin_url
+    end
+  end
+
   def superadmin
     current_user.has_role? :superadmin
   end
