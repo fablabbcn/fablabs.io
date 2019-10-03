@@ -6,4 +6,9 @@ class RedirectsController < ApplicationController
       raise ActionController::RoutingError.new("Path not found")
     end
   end
+
+  def projects
+    redirect_to 'https://projects.fablabs.io', status: 302
+  end
+
 end
