@@ -95,19 +95,25 @@ Rails.application.routes.draw do
     end
 
     get 'events' => 'events#main_index', as: 'events'
+    
     resources :search, only: [:index]
-    resources :projects do
-      collection do
-        get '/tags', action: :search
-        get '/lab/:slug', action: :search
-        get :map
-        get :embed
-      end
-      get 'mapdata', on: :collection
-      resources :steps do
-        resources :links
-      end
-    end
+    
+    # Disabling projects routes now implemented in projects.fablabs.io
+    # resources :projects do
+    #   collection do
+    #     get '/tags', action: :search
+    #     get '/lab/:slug', action: :search
+    #     get :map
+    #     get :embed
+    #   end
+    #   get 'mapdata', on: :collection
+    #   resources :steps do
+    #     resources :links
+    #   end
+    # end
+
+
+    
     resources :referee_approval_processes, only: [:destroy]
     resources :contributions, only: [:destroy]
     resources :collaborations, only: [:destroy]
@@ -229,4 +235,6 @@ Rails.application.routes.draw do
   # end
 
   get ':id' => 'redirects#show'
+
+  get 'projects' => 'redirects#projects'
 end
