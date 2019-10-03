@@ -77,6 +77,9 @@ Rails.application.routes.draw do
       #   patch :hidden
       # end
       resources :to_approve_labs, only: [:index]
+     
+     
+      get "manager" => "labs_manager#index"
 
 
       resources :labs do

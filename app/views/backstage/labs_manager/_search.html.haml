@@ -1,0 +1,21 @@
+.box
+  = search_form_for @p, url: [:backstage, :manager],  builder: SimpleForm::FormBuilder do |f|
+    .row
+      .col-lg-8
+        = f.input :name_cont, label: "Name / City"
+      .col-lg-4
+        = f.input :country_code_eq, label: "Country ", iso_codes: true, include_blank: 'ALL'
+    .row
+      .col-lg-3
+        = f.input :workflow_state_eq, collection: Lab.workflow_spec.state_names, label: "State", include_blank: 'ALL'
+      .col-lg-3
+        = f.label "Kind"
+        = f.select :kind_eq, options_for_select([['No kind', 2], ['Mini fablab', 0],['Fablab', 1], ['Mobile fablab', 3]]), label: "Kind", include_blank: "ALL"
+      .col-lg-3
+        = f.input :activity_status_eq, collection: Lab::ACTIVITY_STATUS, label: "Lab status", include_blank: 'ALL'
+      .col-lg-3
+        %br
+        = f.submit "Filter", class: 'btn btn-primary btn-lg'
+        %input.btn.btn-secondary.btn-lg(type="reset")
+  .well.code
+    = @sql

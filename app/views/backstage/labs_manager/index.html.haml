@@ -1,0 +1,11 @@
+= render "backstage/header"
+
+.container
+  .row
+    .col-lg-12
+      = title "Labs Manager"
+
+      = render 'backstage/labs_manager/search', p: @p, url_form: [:backstage, :manager], labs: @labs
+      = page_entries_info @labs, entry_name: "lab"
+      = render 'backstage/labs_manager/labs', p: @p, url_form: [:backstage, :manager], labs: @labs
+      = paginate @labs
