@@ -5,6 +5,6 @@ class Backstage::RedirectsController < Backstage::BackstageController
   end
 
   def myprojects
-    redirect_to 'https://projects.fablabs.io', status: 302
+    redirect_to 'https://projects.fablabs.io/@' + current_user.username , status: 302
   end
 end
