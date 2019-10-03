@@ -55,6 +55,8 @@ feature "Adding a lab" do
       select 'fablabcascina', from: 'Referees'
       fill_in 'lab_name', with: 'New Lab'
       fill_in 'lab_email', with: 'lab@fablabs.org'
+      fill_in 'lab_blurb', with: 'Some blurb'
+      fill_in 'lab_phone', with: '+39-39333333'
       fill_in 'lab_description', with: 'An awesome place'
       fill_in 'lab_address_1', with: 'Mars'
       fill_in 'lab_links_attributes_0_url', with: 'http://www.newlab.com'
