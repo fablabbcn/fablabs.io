@@ -35,6 +35,7 @@ matrix:
         - bundle exec codeclimate-test-reporter
       services:
         - redis-server
+        - postgresql
       sudo: false
       deploy:
         - provider: script
