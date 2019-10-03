@@ -23,4 +23,12 @@ describe RedirectsController, type: :controller do
       }.to raise_error(ActionController::RoutingError)
     end
   end
+
+  describe 'GET #projects' do
+    it 'redirects to projects.fablabs.io' do
+      get :projects
+      expect(response).to redirect_to('https://projects.fablabs.io')
+    end
+  end
+    
 end
