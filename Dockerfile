@@ -6,6 +6,7 @@ RUN apt-get update -qq && apt-get install -y \
   libpq-dev \
   libqt4-dev \
   libqtwebkit-dev \
+  libqtwebkit4 \
   postgresql-client \
   imagemagick \
   curl
