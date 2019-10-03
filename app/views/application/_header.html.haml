@@ -21,7 +21,7 @@
         .form-group
           - if params[:country].present?
             = hidden_field_tag 'country', params[:country]
-          = text_field_tag 'q', params[:q], class: 'form-control', autocomplete: 'off', placeholder: t("views.header.search"), id: 'search-box'
+          = text_field_tag 'query', params[:query], class: 'form-control', autocomplete: 'off', placeholder: t("views.header.search"), id: 'search-box'
 
       %ul.nav.navbar-nav
         %li.navbar-link
