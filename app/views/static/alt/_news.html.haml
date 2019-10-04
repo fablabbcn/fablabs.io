@@ -20,4 +20,4 @@
                                         = link_to lab do
                                             .text-center
                                                 = image_tag lab.avatar.thumb('96x96#').url, class: 'small avatar', itemprop: "logo"
-                                                .text-small.text-center{itemprop: "name",:style =>"white-space: nowrap"}= lab.name
+                                                .text-small.text-center{itemprop: "name",:style =>"white-space: nowrap"}= truncate(lab.name,length: 15)
