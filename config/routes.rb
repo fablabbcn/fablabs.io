@@ -163,9 +163,8 @@ Rails.application.routes.draw do
     end
 
 
-    get "/alt" => "static#alt"
 
-    root to: 'static#home'
+    root to: 'static#alt'
 
   end
 
