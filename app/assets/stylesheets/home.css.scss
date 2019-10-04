@@ -1,22 +1,24 @@
-
 .homepage {
-  background-color: #F2F2F2;
+  background-color: #f2f2f2;
 }
 
 .homepage-header {
   height: 545px;
-  background-image: image_url('home/header-background.jpg');
+  background-image: image_url("home/header-background.jpg");
   background-size: cover;
   background-position: center;
   padding-top: 90px;
 }
 
 .homepage-header-content {
-  background: rgba(255,255,255,0.90);
-  box-shadow: 0 0 0 1px rgba(50,50,93,0.01), 0 3px 6px 0 rgba(50,50,93,0.02), 0 15px 35px 0 rgba(50,50,93,0.03), 0 50px 100px 0 rgba(50,50,93,0.10);
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 0 0 1px rgba(50, 50, 93, 0.01),
+    0 3px 6px 0 rgba(50, 50, 93, 0.02), 0 15px 35px 0 rgba(50, 50, 93, 0.03),
+    0 50px 100px 0 rgba(50, 50, 93, 0.1);
   padding: 30px;
   max-width: 650px;
   margin-bottom: 40px;
+  height: 450px;
 }
 
 .homepage-cta {
@@ -33,7 +35,7 @@
 .homepage-card {
   position: relative;
   background: white;
-  box-shadow: 0 2px 8px 0 rgba(0,0,0,0.10);
+  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.1);
   padding: 26px 40px;
   max-width: 410px;
   height: 480px;
@@ -66,14 +68,14 @@
 
 .homepage-divider {
   width: 160px;
-  border-bottom: 8px solid #81D7BE;
+  border-bottom: 8px solid #81d7be;
   margin: auto;
   margin-bottom: 40px;
 }
 
 .homepage-divider-small {
   width: 80px;
-  border-bottom: 8px solid #81D7BE;
+  border-bottom: 8px solid #81d7be;
   margin-bottom: 6px;
 }
 
@@ -91,7 +93,7 @@
 }
 
 .homepage-circle-1 {
-  background: #81D7BE;
+  background: #81d7be;
   width: 50px;
   height: 50px;
   top: 0px;
@@ -99,7 +101,7 @@
 }
 
 .homepage-circle-2 {
-  background-image: image_url('home/lab.jpg');
+  background-image: image_url("home/lab.jpg");
   width: 252px;
   height: 252px;
   left: 393px;
@@ -107,7 +109,7 @@
 }
 
 .homepage-circle-3 {
-  background-image: image_url('home/person.jpg');
+  background-image: image_url("home/person.jpg");
   width: 408px;
   height: 408px;
   left: -30px;
@@ -115,7 +117,7 @@
 }
 
 .homepage-circle-4 {
-  background: #EB92B6;
+  background: #eb92b6;
   width: 30px;
   height: 30px;
   left: 466px;
@@ -123,7 +125,7 @@
 }
 
 .homepage-circle-5 {
-  background: #1799F7;
+  background: #1799f7;
   width: 61px;
   height: 61px;
   left: 574px;
@@ -131,7 +133,7 @@
 }
 
 .homepage-circle-6 {
-  background-image: image_url('home/machine.jpg');
+  background-image: image_url("home/machine.jpg");
   width: 252px;
   height: 252px;
   left: 461px;
@@ -139,7 +141,7 @@
 }
 
 .homepage-circle-7 {
-  background: #FF7A72;
+  background: #ff7a72;
   width: 124px;
   height: 124px;
   left: -30px;
@@ -147,7 +149,7 @@
 }
 
 .homepage-circle-8 {
-  background: #E9CEDE;
+  background: #e9cede;
   width: 49px;
   height: 49px;
   left: 280px;

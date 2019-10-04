@@ -1,3 +1,5 @@
+require 'httparty'
+
 class StaticController < ApplicationController
 
   def home
@@ -5,6 +7,24 @@ class StaticController < ApplicationController
     # @country_labs = @nearby_labs.exists?
     render layout: 'welcome'
   end
+
+  def alt
+    @projects = []
+    begin
+      @projects = recent_projects()
+    rescue Exception => error
+      puts error.inspect
+    end
+    @recent_labs = recent_labs()
+    @news = [
+      { :image_url => "news/fab15.jpg", :title => "FAB 15 Highlights", :url => "https://www.flickr.com/photos/fabfoundation/collections/72157710335192311/", :description => "FAB15 Egypt was a GREAT success. You can view all of the official photos from the FABulous week here."},
+      { :image_url => "news/fabacademy.jpg", :title => "Fab Academy 2020: Registrations open", :url => "https://fabacademy.org", :description => "We're happy to announce that Applications to become a Host Node for Fab Academy 2020 are Now Open." },
+      { :image_url => "news/fabricademy-2019.png", :title => "Fabricademy 2019-2020 Started!", :url => "https://textile-academy.org" , :description => "The new Fabricademy courses focus on sustainable textiles, fashion and wearables."},
+    ]    
+    render layout: 'welcome'
+
+  end
+
 
   def about; end
   def cookie_policy; end
@@ -38,4 +58,29 @@ class StaticController < ApplicationController
       revision: GIT_REVISION
     }
   end
+
+  private
+
+  helper_method :recent_projects
+  def recent_projects
+    response = HTTParty.get('https://wikifactory.com/api/fablabsio/projects')
+    json = JSON.parse(response.body)
+
+    projects = []
+    if json 
+      projects = json.select { |p|
+        p["image_url"] != nil
+      }
+      if projects.length > 6
+        projects = projects.slice(0,6)
+      end
+    end
+    return projects
+  end
+
+  helper_method :recent_labs
+  def recent_labs
+    Lab.with_approved_state.order("created_at DESC").limit(9)
+  end
+
 end

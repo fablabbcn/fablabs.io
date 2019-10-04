@@ -1,0 +1,11 @@
+- title t("views.home.welcome")
+
+.homepage.container-fluid
+  .row
+  = render 'static/alt/hero'
+  = render 'static/alt/features'
+  = render 'static/alt/projects', projects: @projects
+  = render 'static/alt/news'
+  = render 'static/alt/banner'
+  = render 'static/alt/events'
+
