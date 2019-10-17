@@ -112,6 +112,7 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
   gem "capybara-webkit"
+  gem 'rails-controller-testing'
   gem "guard-rspec"
   gem "shoulda-matchers"
   gem "codeclimate-test-reporter", require: nil
