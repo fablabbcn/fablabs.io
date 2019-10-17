@@ -1,0 +1,55 @@
+.homepage-header
+.container
+    .row{ :style => "margin-top: -300px"}
+        .col-xs-12.col-md-4
+            .homepage-header-content
+                .text-large.text-primary
+                    = t("views.alt.whats_a_fab_lab", default: "What is a Fablab?")
+                .text-medium
+                    = t("views.alt.fab_labs_description", default: "A Fab Lab, or digital fabrication laboratory, is a place to play, to create, to mentor and to invent: a place for learning and innovation.<br>Fab Labs provide access to the environment, the skills, the materials and the advanced technology to allow anyone anywhere to make (almost) anything.<br><br><a href='http://www.fabfoundation.org'>Learn more</a>", fab_foundation: (link_to "Fab Foundation", "http://www.fabfoundation.org") ).html_safe
+        .col-xs-12.col-md-4
+            .homepage-header-content
+                .text-large.text-primary
+                    = t("views.alt.how_to_start", default: "How to start a Fablab?")
+                .text-medium
+                    = t("views.alt.how_to_start_description", default: "Join the Fablab Network, an international movement in personal fabrication. The cheapest and fastest method to get a Fablab is to buy and assemble it yourself. This approach does require some expertise on hand to help you set up, install, debug and train. Alternatively, the Fab Foundation offers turnkey solutions for establishing new Fablabs around the globe. <br><br><a href='https://fabfoundation.org/getting-started/#fab-lab-questions'>Learn More</a></p>", fab_foundation: (link_to "Fab Foundation", "http://www.fabfoundation.org") ).html_safe
+        .col-xs-12.col-md-4
+            .homepage-header-content
+                .text-large.text-primary
+                    = t("views.home.find_a_fablab", default: "Find a Fablab")
+                .text-medium
+                    = t("views.alt.find_a_fablab_description", default: "The Fablab Network is an open, creative community of fabricators, artists, scientists, engineers, educators, students, amateurs and professionals located in more than 100 countries and 1,750 Fab Labs across the globe. Fablabs offer a wide range of educational programs for all age groups and professional digital fabrication services for various types of organizations.<br><a href='/labs/map'>Browse the Fablabs map</a>" ).html_safe
+    .row.homepage-boxes
+        .col-xs-12.col-md-6
+            .homepage-box
+                =image_tag ("home/lab-illustration.png"), :class => "homepage-box-image"
+                .text-small
+                    = t("views.alt.lab_card.subtitle", default: "Getting started")
+                .text-large
+                    = t("views.alt.lab_card.title", default: "Fablabs.io")
+                .text-medium
+                    = t("views.alt.lab_card.description", default: " Fablabs.io is a collection of online resources for the international Fab Lab community and is the current official list of Fab Labs that share the same principles, tools, and philosophy around the future of technology and its role in society.")
+                .homepage-spacer-lg
+
+                = link_to [:map, :labs], class: 'box-link' do
+                    = t("views.alt.lab_card.cta", default: "See the Fablabs Map")
+                    = image_tag ("icons/arrow-right.svg")
+        .col-xs-12.col-md-6
+            .homepage-box
+                =image_tag ("home/person-illustration.png"), :class => "homepage-box-image"
+                .text-small
+                    = t("views.alt.who_card.subtitle", default: "Who")
+                .text-large
+                    = t("views.alt.who_card.title", default: "Who is this platform for?")
+                .text-medium
+                    = t("views.alt.who_card.description", default: "This is a human based design platform mainly for fabbers but we welcome any maker, hacker, DIY and amateur in digital fabrication that wants to create, collaborate and share projects and knoledge")
+                .homepage-spacer-lg
+
+                = link_to signup_path, class: 'box-link' do
+                    = t("views.home.lab_card.cta", default: "Join the community")
+                    = image_tag ("icons/arrow-right.svg")
+        .col-xs-12
+            .container
+                .homepage-quote.text-primary
+                    .homepage-divider
+                    = t("views.home.quote2", default: "Because all Fab Labs share common tools and processes, the program is building a global network of distributed laboratories for research and invention.")

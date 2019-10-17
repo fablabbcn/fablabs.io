@@ -6,9 +6,9 @@ class SearchController < ApplicationController
   before_action :require_login, except: :index
 
   def index
-    @labs = search_labs(params[:q]).page(params['page']).per(params['per'] || 10)
-    @projects = search_projects(params[:q])
-    @results = @labs + @projects
+    @labs = search_labs(params[:query]).page(params['page']).per(params['per'] || 10)
+    #@projects = search_projects(params[:query])
+    @results = @labs # + @projects
     respond_to do |format|
       format.html
     end

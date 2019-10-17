@@ -3,8 +3,10 @@
   .container.footer-links
     .row
       .col-md-4
-        =image_tag ("logo.svg"), :alt => "fablabs.io", :class => "footer-logo"
-        =image_tag ("logos/eu_flag_creative_europe.jpg"), :class => "img-responsive", :alt => "Co-funded by the Creative Europe programme of the European Union"
+        %a{:href=> "https://distributeddesign.eu/", :target => "_blank"}=image_tag ("home/DDMP_Logo_EU_large_black.png"), :class => "img-responsive", :alt => "Co-funded by the Creative Europe programme of the European Union"
+        %br
+        %a{:href=> "https://fabfoundation.org/", :target => "_blank"}=image_tag ("home/fabfnd.png"), :alt => "Fab Foundation", :class => "img-responsive"
+        %br
 
       .col-md-4
         %ul
@@ -17,6 +19,7 @@
           %li= link_to "Cookie Policy", "/cookie-policy"
           %li= link_to "Privacy Policy", "/privacy-policy"
           %li= link_to "Terms of Service", "/tos"
+        %br
 
       .col-md-4
         %ul.locales

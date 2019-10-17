@@ -14,9 +14,13 @@ describe "map" do
       country_code: 'IS',
       address_1: 'MyStreet 24',
       email: 'none@example.com',
+      description: 'boh',
+      blurb: 'thanks',
+      phone: '+39323424324',
       network: true,
       tools: true,
       programs: true,
+      activity_status: 'active',
       workflow_state: 'approved',
       latitude: 64.963,
       longitude: 19.0208

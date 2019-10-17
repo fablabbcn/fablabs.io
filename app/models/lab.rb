@@ -80,6 +80,12 @@ class Lab < ActiveRecord::Base
   validates_acceptance_of :network, :programs, :tools, :access, :chart, :accept => true, message: 'You must agree to our terms and conditions.', on: :create
 
   validates :slug, format: {:with => /\A[a-zA-Z0-9]+\z/ }, allow_nil: true, allow_blank: true, length: { minimum: 3 }
+
+  validates_presence_of :blurb
+  validates_presence_of :description
+  validates_presence_of :phone
+  
+
   validates_format_of :email, :with => /\A(.+)@(.+)\z/
   validates_uniqueness_of :name, :slug, case_sensitive: false
   validate :excluded_slug

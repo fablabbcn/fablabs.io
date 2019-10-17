@@ -3,9 +3,15 @@
     = link_to lab do
       = image_tag lab.avatar.thumb('118x118#').url, class: 'big avatar', itemprop: "logo"
   .page-intro-content
+    - if @lab.activity_status == 'closed'
+      %span.tag CLOSED
+    - if @lab.activity_status == 'planned'
+      %span.tag PLANNED
     .text-large{itemprop: "name"}= lab.name
 
     .microdata{itemprop: "url"}= lab_url(lab, { locale: nil })
+
+    
 
     .lab-contact-details
       .text-medium

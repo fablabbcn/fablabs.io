@@ -1,0 +1,22 @@
+.row.homepage-features
+    .container
+        .row
+            .col-xs-12.col-md-5.homepage-join
+                .text-primary.text-large Join Fablabs.io
+                .text-medium Each lab has its own profile page which can be maintained and updated by its staff
+                .homepage-spacer
+                .btn.btn-primary.btn-lg Register today
+            .col-xs-12.col-md-1
+            .col-xs-12.col-md-6
+                .text-primary.title Key Features
+                .homepage-divider{:style => "margin-left:0px;"}
+                .homepage-features-list 
+                    %ul
+                        %li= t("views.home.feat1", default: "Update your profile and avatar")
+                        %li= t("views.home.feat2", default: "Add a new Fablab to the global directory")
+                        %li= t("views.home.feat3", default: "Create a network of Fablabs for your region")
+                        %li= t("views.home.feat4", default: "Upload a project made by you or your Fablab")
+                        %li= t("views.home.feat5", default: "Join the Fablab community discussion groups")
+                        %li= t("views.home.feat6", default: "Access FabCloud services for project development")
+                        -# %li= t("views.home.feat5", default: "Share your news and keep the network up to date")
+                        -# %li= t("views.home.feat6", default: "Look and post a job through the Fab Economy job board")

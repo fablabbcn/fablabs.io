@@ -48,6 +48,10 @@ Rails.application.routes.draw do
       end
     end
 
+    ## TODO: redirect old project urls to new project urls
+    get "projects" => "redirects#projects"
+    get "projects/:something" => "redirects#projects"
+
     get "signup" => "users#new", :as => "signup"
     get "settings" => "users#edit", :as => "settings"
     get "change_password" => "users#change_password", :as => "password"
@@ -64,12 +68,20 @@ Rails.application.routes.draw do
       resources :pages, expect: [:show]
       resources :organizations, only: [:index]
       resources :my_labs, only: [:index]
-      resources :my_projects, only: [:index]
-      resources :projects, only: [:index, :destroy] do
-        patch :visible
-        patch :hidden
-      end
+      get "projects" => "redirects#projects"
+      get "my_projects" => "redirects#myprojects"
+      
+      # resources :my_projects, only: [:index]
+      # resources :projects, only: [:index, :destroy] do
+      #   patch :visible
+      #   patch :hidden
+      # end
       resources :to_approve_labs, only: [:index]
+     
+     
+      get "manager" => "labs_manager#index"
+
+
       resources :labs do
         member do
           patch :approve
@@ -85,6 +97,7 @@ Rails.application.routes.draw do
           patch :add_more_info
         end
       end
+      
       root to: 'labs#index'
     end
 
@@ -95,19 +108,25 @@ Rails.application.routes.draw do
     end
 
     get 'events' => 'events#main_index', as: 'events'
+    
     resources :search, only: [:index]
-    resources :projects do
-      collection do
-        get '/tags', action: :search
-        get '/lab/:slug', action: :search
-        get :map
-        get :embed
-      end
-      get 'mapdata', on: :collection
-      resources :steps do
-        resources :links
-      end
-    end
+    
+    # Disabling projects routes now implemented in projects.fablabs.io
+    # resources :projects do
+    #   collection do
+    #     get '/tags', action: :search
+    #     get '/lab/:slug', action: :search
+    #     get :map
+    #     get :embed
+    #   end
+    #   get 'mapdata', on: :collection
+    #   resources :steps do
+    #     resources :links
+    #   end
+    # end
+
+
+    
     resources :referee_approval_processes, only: [:destroy]
     resources :contributions, only: [:destroy]
     resources :collaborations, only: [:destroy]
@@ -144,7 +163,8 @@ Rails.application.routes.draw do
     end
 
 
-    root to: 'static#home'
+
+    root to: 'static#alt'
 
   end
 
@@ -229,4 +249,6 @@ Rails.application.routes.draw do
   # end
 
   get ':id' => 'redirects#show'
+
+  get 'projects' => 'redirects#projects'
 end

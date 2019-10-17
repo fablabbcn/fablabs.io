@@ -16,6 +16,8 @@ FactoryBot.define do
     tools { true }
     kind { :fab_lab }
     referee_id { 1 }
+    blurb { FFaker::Lorem.sentence }
+    phone { FFaker::PhoneNumber.phone_number}
     creator
   end
 

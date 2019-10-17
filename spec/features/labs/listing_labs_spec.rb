@@ -26,12 +26,13 @@ end
 
 feature 'Searching Labs' do
   # We have to add the ability to submit the form without a submit button
+
   class Capybara::Session
     def submit(element)
       Capybara::RackTest::Form.new(driver, element.native).submit({})
     end
   end
-
+  
   scenario 'finds labs that match a query in the name' do
     lab = FactoryBot.create(:lab, workflow_state: 'approved', name: 'The string asdf')
     visit labs_path
