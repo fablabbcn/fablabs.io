@@ -34,7 +34,7 @@ services:
       - memcached
     container_name: app
     environment:
-      - SSL_POLICY=AWS-TLS-1-1-2017-01
+      - SSL_POLICY=AWS-TLS-1-2-2017-01
       - VIRTUAL_HOST=${VIRTUAL_HOST}
       - VIRTUAL_PORT=${VIRTUAL_PORT}
       - LETSENCRYPT_HOST=${LETSENCRYPT_HOST}
@@ -89,7 +89,7 @@ services:
     volumes_from:
       - nginx
     environment:
-      - SSL_POLICY=AWS-TLS-1-1-2017-01
+      - SSL_POLICY=AWS-TLS-1-2-2017-01
     entrypoint: /usr/local/bin/docker-gen -notify-sighup nginx -watch -wait 5s:30s /etc/docker-gen/templates/nginx.tmpl /etc/nginx/conf.d/default.conf
 
   letsencrypt-nginx-proxy-companion:
