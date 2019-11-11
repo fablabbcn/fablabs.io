@@ -109,6 +109,8 @@ RSpec.configure do |config|
   end
 
   config.before(:each) do
+    # TODO: Should we put this stub_request somewhere else?
+    WebMock.stub_request(:get, 'https://wikifactory.com/api/fablabsio/projects')
     DatabaseCleaner.start
   end
 
