@@ -77,7 +77,8 @@ gem 'trumbowyg_rails'#, git: 'https://github.com/TikiTDO/trumbowyg_rails.git'
 gem 'twitter'
 gem 'uglifier'#, '>= 1.3.0'
 gem 'whenever', :require => false
-gem 'workflow'#, github: 'geekq/workflow'
+gem 'workflow', '< 2'#, github: 'geekq/workflow'
+gem 'workflow-activerecord'
 
 gem "paperclip"#, "~> 4.2"
 # For paperclip/refile we need:
