@@ -4,14 +4,14 @@ describe RedirectsController, type: :controller do
     it 'redirect to labs by id' do
       lab = FactoryBot.create(:lab)
 
-      get :show, id: lab.id
+      get :show, params: { id: lab.id }
       path = lab_path(lab)
       expect(response).to redirect_to(path)
     end
 
     it 'redirect to labs by slug' do
       lab = FactoryBot.create(:lab)
-      get :show, id: lab.slug
+      get :show, params: { id: lab.slug }
       path = lab_path(lab)
       expect(response).to redirect_to(path)
     end
@@ -19,7 +19,7 @@ describe RedirectsController, type: :controller do
     it 'raise routing error' do
       raise_error
       expect{
-        get :show, id: 'nothing'
+        get :show, params: { id: 'nothing' }
       }.to raise_error(ActionController::RoutingError)
     end
   end
@@ -30,5 +30,4 @@ describe RedirectsController, type: :controller do
       expect(response).to redirect_to('https://projects.fablabs.io')
     end
   end
-    
 end

@@ -43,7 +43,7 @@ describe Api::V2::AdminController, type: :request do
     it 'Does not allow to create a user as anonymous' do
       post 'http://api.fablabs.dev/2/users'
       expect(response.status).to eq(401)
-      expect(response.content_type).to eq(Mime::JSON)
+      expect(response.content_type).to eq(Mime[:json])
     end
 
     context 'When not authenticated as admin'
@@ -52,7 +52,7 @@ describe Api::V2::AdminController, type: :request do
     it 'Does not allow to create a user as a regular user' do
       post_as_user 'http://api.fablabs.dev/2/users'
       expect(response.status).to eq(403)
-      expect(response.content_type).to eq(Mime::JSON)
+      expect(response.content_type).to eq(Mime[:json])
     end
 
     context 'When authenticated as admin'
@@ -69,7 +69,7 @@ describe Api::V2::AdminController, type: :request do
       }
       post_as_user 'http://api.fablabs.dev/2/users', data: user_dict
       expect(response.status).to eq(200)
-      expect(response.content_type).to eq(Mime::JSON)
+      expect(response.content_type).to eq(Mime[:json])
 
       result = JSON.parse(response.body)
       attrs = result['data']['attributes']
@@ -88,16 +88,16 @@ describe Api::V2::AdminController, type: :request do
     let!(:user) { FactoryBot.create :user }
 
     it 'Does not allow to search users as anonymous' do
-      post 'http://api.fablabs.dev/2/users/search', data: { 'username' => 'johnrees', 'email': 'test@example.com' }
+      post 'http://api.fablabs.dev/2/users/search', params: { data: { 'username' => 'johnrees', 'email': 'test@example.com' } }
       expect(response.status).to eq(401)
-      expect(response.content_type).to eq(Mime::JSON)
+      expect(response.content_type).to eq(Mime[:json])
     end
 
     context 'When not authenticated as admin'
     it 'Does not allow to search users as regular user' do
       post_as_user 'http://api.fablabs.dev/2/users/search', data: { 'username' => 'johnrees', 'email': 'test@example.com' }
       expect(response.status).to eq(403)
-      expect(response.content_type).to eq(Mime::JSON)
+      expect(response.content_type).to eq(Mime[:json])
     end
 
     context 'When authenticated as admin'
@@ -108,7 +108,7 @@ describe Api::V2::AdminController, type: :request do
       post_as_user 'http://api.fablabs.dev/2/users/search', data: { 'username' => 'blabla'}
 
       expect(response.status).to eq(200)
-      expect(response.content_type).to eq(Mime::JSON)
+      expect(response.content_type).to eq(Mime[:json])
       result = JSON.parse(response.body)
       items = result['data']
       meta = result['meta']
@@ -118,7 +118,7 @@ describe Api::V2::AdminController, type: :request do
       user.add_role :superadmin
       post_as_user 'http://api.fablabs.dev/2/users/search', data: { 'username' => user3.username }
       expect(response.status).to eq(200)
-      expect(response.content_type).to eq(Mime::JSON)
+      expect(response.content_type).to eq(Mime[:json])
       result = JSON.parse(response.body)
       items = result['data']
       meta = result['meta']
@@ -130,7 +130,7 @@ describe Api::V2::AdminController, type: :request do
       user.add_role :superadmin
       post_as_user 'http://api.fablabs.dev/2/users/search', data: { 'email' => user3.email}
       expect(response.status).to eq(200)
-      expect(response.content_type).to eq(Mime::JSON)
+      expect(response.content_type).to eq(Mime[:json])
       result = JSON.parse(response.body)
       items = result['data']
       meta = result['meta']

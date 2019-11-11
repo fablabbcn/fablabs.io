@@ -44,19 +44,19 @@ describe Api::V2::UserController, type: :request do
   it 'User profile includes the correct email_verified field' do
     get_as_user 'http://api.fablabs.dev/2/users/me'
     expect(response.status).to eq(200)
-    expect(response.content_type).to eq(Mime::JSON)
+    expect(response.content_type).to eq(Mime[:json])
     expect(json['data']['attributes']['email_verified']).to be_falsy
     user.verify!
     get_as_user 'http://api.fablabs.dev/2/users/me'
     expect(response.status).to eq(200)
-    expect(response.content_type).to eq(Mime::JSON)
+    expect(response.content_type).to eq(Mime[:json])
     expect(json['data']['attributes']['email_verified']).to be_truthy
   end
 
   it 'gets /0/users.json endpoint without errors' do
     get_as_user 'http://api.fablabs.dev/0/users.json?q=John'
     expect(response.status).to eq(200)
-    expect(response.content_type).to eq(Mime::JSON)
+    expect(response.content_type).to eq(Mime[:json])
     expect(json.first['first_name']).to eq('John')
   end
 end

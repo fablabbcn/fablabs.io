@@ -6,14 +6,14 @@ describe PagesController, type: :controller do
       page = FactoryBot.create(:page, published: false)
 
       expect {
-        get :show, id: page.slug
+        get :show, params: { id: page.slug }
       }.to raise_error(ActiveRecord::RecordNotFound)
     end
 
     it 'published' do
       page = FactoryBot.create(:page, published: true)
 
-      get :show, id: page.slug
+      get :show, params: { id: page.slug }
       expect(response).to be_success
     end
 
@@ -25,7 +25,7 @@ describe PagesController, type: :controller do
       page = FactoryBot.create(:page, published: false)
 
       expect {
-        get :show, id: page.slug
+        get :show, params: { id: page.slug }
       }.to raise_error(ActiveRecord::RecordNotFound)
     end
 
@@ -36,7 +36,7 @@ describe PagesController, type: :controller do
 
       page = FactoryBot.create(:page, published: false)
 
-      get :show, id: page.slug
+      get :show, params: { id: page.slug }
       expect(response).to be_success
     end
   end

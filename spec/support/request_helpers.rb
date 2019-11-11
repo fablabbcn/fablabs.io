@@ -31,7 +31,7 @@ module Requests
         opts = {} if opts.blank?
         opts = opts.to_json unless opts.values.any? { |v| v.class == Rack::Test::UploadedFile }
 
-        send(m, url, opts, _user_auth_headers)
+        send(m, url, params: opts, headers: _user_auth_headers )
       end
     end
 

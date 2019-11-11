@@ -45,14 +45,14 @@ describe Oauth::ApplicationsController, type: :controller do
    
         it "will redirect if not logged in" do
 
-            get :show, id: @app.id
+            get :show, params: { id: @app.id }
             path = signin_path
             expect(response).to redirect_to("/signin?goto=%2Foauth%2Fapplications%2F#{@app.id}")
         end
         it "will show an application detail if logged in" do
 
             session[:user_id] = @user.id
-            get :show, id: @app.id
+            get :show, params: { id: @app.id }
 
             status, headers, body = *response
 
@@ -64,7 +64,7 @@ describe Oauth::ApplicationsController, type: :controller do
 
             session[:user_id] = @anotherUser.id
             expect {
-            get :show, id: @app.id
+              get :show, params: { id: @app.id }
             }.to raise_error(ActiveRecord::RecordNotFound)
             #unauthorized
         end
