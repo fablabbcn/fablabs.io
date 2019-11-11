@@ -16,6 +16,8 @@ matrix:
           packages:
             - libqtwebkit-dev
             - libqtwebkit4
+      before_install:
+        - gem install bundler
       before_script:
         - cp config/application.travis.yml config/application.yml
         - cp config/database.travis.yml config/database.yml
