@@ -63,8 +63,10 @@ class StaticController < ApplicationController
 
   helper_method :recent_projects
   def recent_projects
-    response = HTTParty.get('https://wikifactory.com/api/fablabsio/projects')
-    json = JSON.parse(response.body)
+    begin
+      response = HTTParty.get('https://wikifactory.com/api/fablabsio/projects')
+      json = JSON.parse(response.body)
+
 
     projects = []
     if json 
@@ -76,6 +78,9 @@ class StaticController < ApplicationController
       end
     end
     return projects
+    rescue
+      return []
+    end
   end
 
   helper_method :recent_labs
