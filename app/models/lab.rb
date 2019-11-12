@@ -2,6 +2,7 @@ class Lab < ActiveRecord::Base
   include RocketPants::Cacheable
   include Authority::Abilities
   include Workflow
+  include WorkflowActiverecord
   include ApproveWorkflow
   include LabApproveMethods
 

@@ -13,6 +13,7 @@ class Employee < ActiveRecord::Base
   scope :active, -> { includes(:user).with_approved_state.references(:user) }
 
   include Workflow
+  include WorkflowActiverecord
   workflow do
     state :unverified do
       event :approve, transitions_to: :approved

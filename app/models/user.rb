@@ -26,6 +26,7 @@ class User < ActiveRecord::Base
   dragonfly_validations(:avatar)
 
   include Workflow
+  include WorkflowActiverecord
   include VerifyWorkflow
 
   rolify
