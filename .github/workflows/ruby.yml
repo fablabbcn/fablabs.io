@@ -1,6 +1,6 @@
 name: Ruby
 
-on: [push]
+on: [push, pull_request]
 
 jobs:
   build:
@@ -46,7 +46,6 @@ jobs:
       run: sudo apt-get install libpq-dev
     - name: Bundle and test
       run: |
-        ls
         pwd
         gem install bundler
         bundle config path vendor/bundle
