@@ -11,7 +11,7 @@ development: &defaults
 
 test:
   <<: *defaults
-  database     : fablabs_testdb
+  database     : <%= ENV['TEST_DB_NAME']  || 'fablabs_testdb' %>
 
 production:
   <<: *defaults
