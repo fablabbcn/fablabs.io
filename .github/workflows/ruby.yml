@@ -59,6 +59,7 @@ jobs:
         gem install bundler
         bundle config path vendor/bundle
         bundle install --jobs 4 --retry 3
+        cp config/application.example.yml config/application.yml
         RAILS_ENV=test bundle exec rails db:create
         RAILS_ENV=test bundle exec rails db:schema:load
         bundle exec rake
