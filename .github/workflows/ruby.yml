@@ -62,6 +62,7 @@ jobs:
         cp config/application.example.yml config/application.yml
         RAILS_ENV=test bundle exec rails db:create
         RAILS_ENV=test bundle exec rails db:schema:load
+        npm i
         bundle exec rake
       env:
         #Note: DATABASE_URL does not work in TEST env.
