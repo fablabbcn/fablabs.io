@@ -1,4 +1,4 @@
-ruby '2.5.3'
+ruby '2.5.5'
 source 'https://rubygems.org'
 
 gem 'rails','~> 4'
@@ -117,7 +117,7 @@ end
 
 
 # Use ActiveModel has_secure_password
-gem 'bcrypt-ruby'
+gem 'bcrypt'
 
 # gem 'foreman'
 #gem 'unicorn'
