@@ -32,7 +32,7 @@ jobs:
         ruby-version: 2.5.x
 
     - name: Cache gems
-      uses: actions/cache@preview
+      uses: actions/cache@v1
       with:
         path: vendor/bundle
         key: ${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}
