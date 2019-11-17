@@ -105,8 +105,6 @@ GEM
     chronic (0.10.2)
     climate_control (0.2.0)
     cocoon (1.2.14)
-    codeclimate-test-reporter (1.0.9)
-      simplecov (<= 0.13)
     coderay (1.1.2)
     coffee-rails (4.2.2)
       coffee-script (>= 2.2.0)
@@ -561,7 +559,6 @@ DEPENDENCIES
   capybara-webkit
   chronic
   cocoon
-  codeclimate-test-reporter
   coderay
   coffee-rails
   countries

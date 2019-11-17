@@ -115,7 +115,6 @@ group :test do
   gem 'rails-controller-testing'
   gem "guard-rspec"
   gem "shoulda-matchers"
-  gem "codeclimate-test-reporter", require: nil
   gem "pry"
   gem "pry-rescue"
   gem "pry-stack_explorer"
