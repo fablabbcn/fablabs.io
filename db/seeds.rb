@@ -78,7 +78,10 @@ RefereeApprovalProcess.create!(
     programs: true,
     workflow_state: 'approved',
     latitude: 64.963,
-    longitude: 19.0208
+    longitude: 19.0208,
+    description: 'bla',
+    phone: '01234',
+    blurb: 'bla'
     #referee_id: 1
   )
 end
