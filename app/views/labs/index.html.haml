@@ -25,7 +25,7 @@
           #{pluralize @labs.size, "search result"} for
           %strong= params[:query]
 
-      .labs= render @labs
+      .labs.col-12= render @labs
       = paginate @labs
 
   .row

@@ -2,14 +2,11 @@
 - if flash.any?
   - flash.each do |name, msg|
     = content_tag :div, msg, class: flash_class(name)
-%nav.navbar.navbar-custom
+%nav.navbar.navbar-custom.navbar-expand-lg
   .container
     .navbar-header
-      %button.navbar-toggle.collapsed{"aria-controls" => "navbar", "aria-expanded" => "false", "data-target" => "#navbar", "data-toggle" => "collapse", :type => "button"}
+      %button.navbar-toggler.collapsed{"aria-controls" => "navbar", "aria-expanded" => "false", "data-target" => "#navbar", "data-toggle" => "collapse", :type => "button"}
         %span.sr-only Toggle navigation
-        %span.icon-bar
-        %span.icon-bar
-        %span.icon-bar
 
       = link_to root_path, class: 'navbar-brand' do
         =image_tag ("logo.svg"), :alt => "fablabs.io"
@@ -18,7 +15,7 @@
     #navbar.collapse.navbar-collapse
 
       = form_tag '/search', class: 'navbar-form navbar-left', method: 'get' do
-        .form-group
+        .form-group.container-fluid.mb-0
           - if params[:country].present?
             = hidden_field_tag 'country', params[:country]
           = text_field_tag 'query', params[:query], class: 'form-control', autocomplete: 'off', placeholder: t("views.header.search"), id: 'search-box'
@@ -35,7 +32,7 @@
         %li.navbar-link
           = link_to 'Discuss', 'https://discuss.fablabs.io', target: "_blank"
 
-      %ul.nav.navbar-nav.navbar-right
+      %ul.nav.navbar-nav.ml-auto
         - if current_user
           %li.dropdown
             = link_to current_user do

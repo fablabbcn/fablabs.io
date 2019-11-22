@@ -1,11 +1,11 @@
 .row.homepage-projects
   .container
     .row
-      .col-xs-12
+      .col-12
         %h3.text-primary Recent Projects
     .row
       - @projects.each do |a|
-        .col-xs-12.col-md-4
+        .col-12.col-md-4
           .homepage-project-card
             %a{:href => 'https://projects.fablabs.io/search/' + a['slug']}=image_tag (a['image_url']), :class => "homepage-project-card-image", :target=>"_blank"
             .text-medium
@@ -13,7 +13,7 @@
             .text-small
               = raw a["description"]
     .row
-      .col-xs-12
+      .col-12
         %a{:href=>"https://projects.fablabs.io", :target=> "_blank"}
           %h4 
             %span See more projects
