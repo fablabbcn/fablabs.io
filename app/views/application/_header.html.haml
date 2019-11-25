@@ -9,15 +9,15 @@
       =image_tag ("logo.svg"), :alt => "fablabs.io"
 
     %button.mt-0.navbar-toggler{"aria-controls" => "navbar", "aria-expanded" => "false", "data-target" => "#navbar", "data-toggle" => "collapse", "aria-label" => "Toggle navigation", :type => "button"}
-      %i.fa.fa-bars.fa-2x
+      %i.fa.fa-bars.fa-lg
 
     #navbar.collapse.navbar-collapse
 
       = form_tag '/search', class: 'navbar-form navbar-left', method: 'get' do
-        .form-group.container-fluid.mb-0
+        .form-group.container-fluid.mb-0.mw-100
           - if params[:country].present?
             = hidden_field_tag 'country', params[:country]
-          = text_field_tag 'query', params[:query], class: 'form-control form-inline', autocomplete: 'off', placeholder: t("views.header.search"), id: 'search-box'
+          = text_field_tag 'query', params[:query], class: 'form-control', autocomplete: 'off', placeholder: t("views.header.search"), id: 'search-box'
 
       %ul.nav.navbar-nav.ml-auto
         %li.nav-item.active.navbar-link
@@ -39,7 +39,7 @@
 
       %ul.nav.navbar-nav.ml-auto
         - if current_user
-          %li.nav-item.dropdown
+          %li.dropdown
             = link_to current_user do
               = image_tag current_user.avatar_url, class: 'avatar tiny'
               - if current_or_null_user.has_role? :superadmin
@@ -79,6 +79,7 @@
 
         - else
           %li.navbar-btn
-            = link_to t("views.header.signin", default: "Sign in"), signin_path, class: 'btn btn-default'
+            = link_to t("views.header.signin", default: "Sign in"), signin_path, class: 'btn btn-default', style: 'width: 100%'
           %li.navbar-btn
-            = link_to t("views.header.signup", default: "Sign up"), signup_path, class: 'btn btn-primary'
+            = link_to t("views.header.signup", default: "Sign up"), signup_path, class: 'btn btn-primary', style: 'width: 100%'
+          %li.navbar-btn

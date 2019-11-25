@@ -178,10 +178,6 @@ header {
       outline-color: #e5e5e5;
       background-color: white;
 
-      @media (min-width: 768px) {
-        width: 240px;
-      }
-
       @media (min-width: 1200px) {
         width: 400px;
       }
@@ -223,7 +219,7 @@ header {
       }
     }
 
-    @media (min-width: 768px) {
+    @media (min-width: 1024px) {
       .navbar-btn + .navbar-btn {
         margin-left: 8px;
       }
