@@ -1,6 +1,6 @@
 class Backstage::PagesController < Backstage::BackstageController
 
-  before_filter :require_admin
+  before_action :require_admin
 
   def index
     @pages = Page.page(params[:page]).order('position asc')

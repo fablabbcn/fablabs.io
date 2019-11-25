@@ -22,36 +22,47 @@ jobs:
           - 5432/tcp
         # needed because the postgres container does not provide a healthcheck
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+
     steps:
     - uses: actions/checkout@v1
+
     - name: Set up Ruby
       uses: actions/setup-ruby@v1
       with:
         ruby-version: 2.5.x
+
     - name: Cache gems
-      uses: actions/cache@preview
+      uses: actions/cache@v1
       with:
         path: vendor/bundle
         key: ${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}
         restore-keys: |
           ${{ runner.os }}-gem-
+
     - name: Show available Ruby versions
       run: |
         ls $RUNNER_TOOL_CACHE/Ruby
         uname -a
         cat /etc/os-release
+
     - name: Setup PostgreSQL
       uses: Harmon758/postgresql-action@v1.0.0
+
     - name: Install required packages
-      run: sudo apt-get install libpq-dev
+      run: |
+        sudo apt-get install libpq-dev
+        sudo apt-get install g++ qt5-default libqt5webkit5-dev gstreamer1.0-plugins-base gstreamer1.0-tools gstreamer1.0-x
+
     - name: Bundle and test
       run: |
         pwd
         gem install bundler
         bundle config path vendor/bundle
         bundle install --jobs 4 --retry 3
+        cp config/application.example.yml config/application.yml
         RAILS_ENV=test bundle exec rails db:create
         RAILS_ENV=test bundle exec rails db:schema:load
+        npm i
         bundle exec rake
       env:
         #Note: DATABASE_URL does not work in TEST env.

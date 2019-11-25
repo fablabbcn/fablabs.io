@@ -1,5 +1,5 @@
 class Backstage::EmployeesController < Backstage::BackstageController
-  before_filter :require_admin
+  before_action :require_admin
 
   def index
     @q = Employee.search(params[:q])

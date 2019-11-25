@@ -3,8 +3,11 @@
 class LabsController < ApplicationController
   include LabsOperations
 
-  before_filter :require_login, except: %i[index map show mapdata embed list]
-  after_filter :allow_iframe, only: %i[embed list]
+  before_action :require_login, except: [:index, :map, :show, :mapdata, :embed, :list]
+  after_action :allow_iframe, only: [:embed, :list]
+
+  before_action :require_login, except: %i[index map show mapdata embed list]
+  after_action :allow_iframe, only: %i[embed list]
 
   # authorize_actions_for Lab, actions: { map: :read, manage_admins: :update}
 

@@ -20,7 +20,14 @@ User.find_or_create_by(username: 'user') do |user|
   user.first_name = 'User'
   user.last_name = 'Userson'
   user.agree_policy_terms = true
+  user.email_fallback = 'user2@user.local'
 end
+
+user = User.last
+Recovery.create(
+    user: user,
+    email_or_username: [user.email, user.username].sample
+)
 
 User.find_or_create_by(username: 'admin') do |user|
   user.email = 'admin@admin.local'
@@ -32,14 +39,22 @@ User.find_or_create_by(username: 'admin') do |user|
   user.add_role :superadmin
 end
 
+user = User.last
+Recovery.create(
+    user: user,
+    email_or_username: [user.email, user.username].sample
+)
+
+
 100.times do
   Organization.create!(
     name: FFaker::Product.product,
     slug: FFaker::Product.letters(3),
     address_1: FFaker::Address.street_address,
     description: FFaker::Lorem.sentence,
-    county: 'County',
-    country_code: 'es',
+    county: "County",
+    country_code: "es",
+    workflow_state: ['approved', 'pending', 'rejected'].sample,
     kind: Organization::KINDS[0]
   )
 end
@@ -54,8 +69,8 @@ RefereeApprovalProcess.create!(
 100.times do
   @lab = Lab.create!(
     name: "MyLab#{Lab.count}",
-    kind: Lab::KINDS[1],
-    email: 'some@email.com',
+    kind: 1,
+    email: FFaker::Internet.email,
     country_code: 'is',
     address_1: 'MyStreet 24',
     network: true,
@@ -63,10 +78,22 @@ RefereeApprovalProcess.create!(
     programs: true,
     workflow_state: 'approved',
     latitude: 64.963,
-    longitude: 19.0208
-    # referee_id: 1
+    longitude: 19.0208,
+    description: 'bla',
+    phone: '01234',
+    blurb: 'bla'
+    #referee_id: 1
   )
 end
+
+Project.create!(
+  title: "Project ",
+  owner: User.first
+)
+
+Machine.create!(
+  name: 'Machine '
+)
 
 Brand.create!(
   name: 'A Brand',
@@ -98,3 +125,4 @@ Event.create!(
   description: 'some description',
   lab: Lab.first
 )
+

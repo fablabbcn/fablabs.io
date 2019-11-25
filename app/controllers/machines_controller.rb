@@ -1,6 +1,6 @@
 class MachinesController < ThingsController
 
-  before_filter :require_login, except: [:index, :show, :search]
+  before_action :require_login, except: [:index, :show, :search]
 
   defaults :resource_class => Machine
 

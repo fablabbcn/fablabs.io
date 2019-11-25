@@ -1,5 +1,5 @@
 class Backstage::UsersController < Backstage::BackstageController
-  before_filter :require_admin
+  before_action :require_admin
 
   def index
     @q = User.search(params[:q])

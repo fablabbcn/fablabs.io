@@ -19,9 +19,11 @@
           %h4 Labs
           .labs= render @labs
           = paginate @labs
-   
+      - if @users.size > 0
+        .row
+          %h4 Users
+          .labs= render @users
       - if @results.empty?
         %p We could not find what you were looking for. Maybe you can try again.
-
 
     .col-lg-4

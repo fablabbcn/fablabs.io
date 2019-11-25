@@ -12,6 +12,8 @@ development: &defaults
 test:
   <<: *defaults
   database     : <%= ENV['TEST_DB_NAME']  || 'fablabs_testdb' %>
+  host         : <%= ENV['TEST_DB_HOST'] %>
+  username     : <%= ENV['TEST_DB_USERNAME'] %>
 
 production:
   <<: *defaults

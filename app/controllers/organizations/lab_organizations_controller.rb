@@ -1,7 +1,7 @@
 class Organizations::LabOrganizationsController < ApplicationController
 
-  before_filter :find_organization
-  before_filter :check_creator, only: [:new, :create]
+  before_action :find_organization
+  before_action :check_creator, only: [:new, :create]
 
   include LabsSearch
 

@@ -1,6 +1,6 @@
 class AcademicsController < ApplicationController
 
-  before_filter :require_login
+  before_action :require_login
 
   def new
     @lab = Lab.with_approved_state.friendly.find params[:lab_id]

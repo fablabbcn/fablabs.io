@@ -5,9 +5,15 @@ module InheritedResourcesWithAuthority
     inherit_resources
     authorize_actions_for :resource_class
 
-    alias_method_chain :resource, :authority
-    alias_method_chain :build_resource, :authority
-    alias_method_chain :update_resource, :authority
+    # TODO: alias_method_chain is deprecated. Use Module#prepend instead
+    alias_method :resource_without_authority, :resource
+    alias_method :resource, :resource_with_authority
+
+    alias_method :build_resource_without_authority, :build_resource
+    alias_method :build_resource, :build_resource_with_authority
+
+    alias_method :update_resource_without_authority, :update_resource
+    alias_method :update_resource, :update_resource_with_authority
   end
 
   protected

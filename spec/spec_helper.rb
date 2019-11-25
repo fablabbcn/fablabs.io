@@ -104,16 +104,14 @@ RSpec.configure do |config|
 
   config.before(:suite) do
     #Headless.new(:destroy_on_exit => false).start
-    DatabaseCleaner.strategy = :transaction
-    DatabaseCleaner.clean_with(:truncation)
   end
 
   config.before(:each) do
-    DatabaseCleaner.start
+    # TODO: Should we put this stub_request somewhere else?
+    WebMock.stub_request(:get, 'https://wikifactory.com/api/fablabsio/projects')
   end
 
   config.after(:each) do
-    DatabaseCleaner.clean
   end
 
   config.include(MailerMacros)

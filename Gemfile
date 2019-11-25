@@ -1,12 +1,20 @@
 ruby '2.5.5'
 source 'https://rubygems.org'
 
-gem 'rails','~> 4'
-gem "pg",'0.19'
+gem 'rails','~> 5.1.7'
+gem "pg"#,'0.19'
+gem 'workflow', '~> 2.0'#, github: 'geekq/workflow'
+gem 'workflow-activerecord', '>=4.1', '< 6.0'
 # Gems blocking rails 5 update:
-gem 'sinatra', '>= 1.3.0', :require => nil
-gem 'rocket_pants'# '~> 1.0'
-gem 'protected_attributes'
+#gem 'sinatra', '>= 1.3.0', :require => nil
+
+# Using community gems because official support does not cover Rails 5
+# Consider refactor not to use them or find alternatives.
+gem 'rocket_pants', git: 'https://github.com/parse/rocket_pants'
+gem 'protected_attributes_continued'
+
+#The `content_tag_for` method has been removed from Rails. To continue using it, add the `record_tag_helper` gem to your Gemfile:
+gem 'record_tag_helper'
 
 # Other Gem issues:
 gem 'font-awesome-sass', '~> 4.3.0' # https://fontawesome.com/how-to-use/on-the-web/setup/upgrading-from-version-4
@@ -27,7 +35,6 @@ gem 'coderay'
 gem 'coffee-rails'#, '~> 4.0.0'
 gem 'countries', require: 'countries/global'
 gem 'dalli'
-gem 'database_cleaner'#, github: 'bmabey/database_cleaner'
 gem 'discourse_api'
 gem 'doorkeeper'
 gem 'dragonfly'#, '~> 1.1.1'
@@ -52,7 +59,7 @@ gem 'paper_trail'
 gem 'premailer-rails'
 gem 'puma'
 gem 'rack-cors', :require => 'rack/cors'
-gem 'ransack'#, github: "ernie/ransack"
+gem 'ransack','<2'
 gem 'redcarpet'
 gem 'rolify'#, github: 'EppO/rolify'
 gem 'rspec'
@@ -70,8 +77,6 @@ gem 'timezone'#, '~> 1.0'
 gem 'trumbowyg_rails'#, git: 'https://github.com/TikiTDO/trumbowyg_rails.git'
 gem 'twitter'
 gem 'uglifier'#, '>= 1.3.0'
-gem 'whenever', :require => false
-gem 'workflow'#, github: 'geekq/workflow'
 
 gem "paperclip"#, "~> 4.2"
 # For paperclip/refile we need:
@@ -106,9 +111,9 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
   gem "capybara-webkit"
+  gem 'rails-controller-testing'
   gem "guard-rspec"
   gem "shoulda-matchers"
-  gem "codeclimate-test-reporter", require: nil
   gem "pry"
   gem "pry-rescue"
   gem "pry-stack_explorer"

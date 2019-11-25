@@ -21,7 +21,7 @@ class RecoveriesController < ApplicationController
   end
 
   def show
-    @recovery = Recovery.find_by_key(params[:id]) || raise(ActiveRecord::RecordNotFound)
+    @recovery = Recovery.find_by(key: params[:id]) || raise(ActiveRecord::RecordNotFound)
   end
 
   def update

@@ -2,6 +2,7 @@ class Lab < ActiveRecord::Base
   include RocketPants::Cacheable
   include Authority::Abilities
   include Workflow
+  include WorkflowActiverecord
   include ApproveWorkflow
   include LabApproveMethods
 
@@ -23,7 +24,7 @@ class Lab < ActiveRecord::Base
   resourcify
   has_ancestry
 
-  include PgSearch
+  include PgSearch::Model
   pg_search_scope :search_by_name, :against => [:name, :description, :reverse_geocoded_address]
 
   def self.to_csv(options = {})
