@@ -3,17 +3,13 @@
   - flash.each do |name, msg|
     = content_tag :div, msg, class: flash_class(name)
 
-%nav.navbar.navbar-custom.navbar-expand-lg
-  .container
-%nav.navbar.navbar-custom
+%nav.navbar.navbar-custom.navbar-expand-lg{:role => "navigation"}
   .container-fluid
-    .navbar-header
-      %button.navbar-toggler.collapsed{"aria-controls" => "navbar", "aria-expanded" => "false", "data-target" => "#navbar", "data-toggle" => "collapse", :type => "button"}
-        %span.sr-only Toggle navigation
+    = link_to root_path, class: 'navbar-brand' do
+      =image_tag ("logo.svg"), :alt => "fablabs.io"
 
-      = link_to root_path, class: 'navbar-brand' do
-        =image_tag ("logo.svg"), :alt => "fablabs.io"
-
+    %button.mt-0.navbar-toggler{"aria-controls" => "navbar", "aria-expanded" => "false", "data-target" => "#navbar", "data-toggle" => "collapse", "aria-label" => "Toggle navigation", :type => "button"}
+      %i.fa.fa-bars.fa-2x
 
     #navbar.collapse.navbar-collapse
 
@@ -21,21 +17,21 @@
         .form-group.container-fluid.mb-0
           - if params[:country].present?
             = hidden_field_tag 'country', params[:country]
-          = text_field_tag 'query', params[:query], class: 'form-control', autocomplete: 'off', placeholder: t("views.header.search"), id: 'search-box'
+          = text_field_tag 'query', params[:query], class: 'form-control form-inline', autocomplete: 'off', placeholder: t("views.header.search"), id: 'search-box'
 
-      %ul.nav.navbar-nav
-        %li.navbar-link
+      %ul.nav.navbar-nav.ml-auto
+        %li.nav-item.active.navbar-link
           = link_to t("views.header.labs"), labs_path
-        %li.navbar-link
+        %li.nav-item.active.navbar-link
           = link_to t("views.header.organizations"), organizations_path
-        %li.navbar-link
+        %li.nav-item.active.navbar-link
           = link_to t("views.header.machines"), machines_path
-        %li.navbar-link
+        %li.nav-item.active.navbar-link
           = link_to 'https://projects.fablabs.io', target: "_blank" do
             = t("views.header.projects")
             = '&nbsp;'.html_safe
             = fa_icon 'external-link'
-        %li.navbar-link
+        %li.nav-item.active.navbar-link
           = link_to 'https://discuss.fablabs.io', target: "_blank" do
             Discuss
             = '&nbsp;'.html_safe
@@ -43,7 +39,7 @@
 
       %ul.nav.navbar-nav.ml-auto
         - if current_user
-          %li.dropdown
+          %li.nav-item.dropdown
             = link_to current_user do
               = image_tag current_user.avatar_url, class: 'avatar tiny'
               - if current_or_null_user.has_role? :superadmin
