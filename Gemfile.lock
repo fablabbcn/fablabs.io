@@ -165,6 +165,7 @@ GEM
     ffi (1.11.1)
     figaro (1.1.1)
       thor (~> 0.14)
+    flatpickr (4.5.7.0)
     fog-aws (3.5.2)
       fog-core (~> 2.1)
       fog-json (~> 1.1)
@@ -570,6 +571,7 @@ DEPENDENCIES
   fast_jsonapi
   ffaker
   figaro
+  flatpickr
   font-awesome-rails
   font-awesome-sass (~> 4.3.0)
   friendly_id

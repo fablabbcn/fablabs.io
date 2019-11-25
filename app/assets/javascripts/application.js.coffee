@@ -18,6 +18,7 @@
 #= require jquery.geocomplete
 #= require cocoon
 #= require list
+#= require flatpickr
 #= require jquery.timepicker
 #= require underscore
 #= require select2/dist/js/select2

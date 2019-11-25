@@ -1,5 +1,6 @@
 = simple_form_for [@lab,@event] do |f|
   = render 'form_errors', resource: @event
+  = f.submit class: 'btn btn-primary'
   %fieldset
     = f.input :name, placeholder: "New Event"
     .row
@@ -8,15 +9,11 @@
       -# .col-lg-5
       -#   = f.input :ends_at
       .col-lg-2
-        = f.input :start_date, as: 'string', input_html: { placeholder: 'dd/mm/yy', class: 'datepicker', data: { date_format: 'dd/mm/yy' }}
-      .col-lg-2
-        = f.input :start_time, as: 'string', input_html: { class: 'timepicker' }
+        = f.input :starts_at, as: 'string', input_html: { placeholder: 'dd/mm/yy', class: 'flatpickr'}
       .col-lg-1
         to
       .col-lg-2
-        = f.input :end_date, as: 'string', input_html: { placeholder: 'dd/mm/yy', class: 'datepicker', data: { date_format: 'dd/mm/yy' }}
-      .col-lg-2
-        = f.input :end_time, as: 'string', input_html: { class: 'timepicker' }
+        = f.input :ends_at, as: 'string', input_html: { placeholder: 'dd/mm/yy', class: 'flatpickr'}
       .col-lg-3
         = f.time_zone_select :time_zone
 
@@ -31,3 +28,13 @@
   -# = f.input :ends_at
   -# = f.association :lab
   = f.submit class: 'btn btn-primary'
+
+/# TODO: Move this to the general JS file + remove bootstrap-timepicker and use flatpickr instead
+:javascript
+  document.addEventListener('DOMContentLoaded', function() {
+    flatpickr('.flatpickr', {
+      enableTime: true,
+      dateFormat: "Y-m-d H:i",
+      time_24hr: true
+    })
+  })

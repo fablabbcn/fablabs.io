@@ -42,6 +42,7 @@ gem 'dragonfly-s3_data_store'
 gem 'fast_jsonapi' # To support new v2 JSONAPI
 gem 'ffaker'
 gem 'figaro'
+gem 'flatpickr'
 gem 'font-awesome-rails'#, github: 'bokmann/font-awesome-rails'
 gem 'friendly_id'#, '~> 5.1.0'
 gem 'geocoder'#, github: 'alexreisner/geocoder'
