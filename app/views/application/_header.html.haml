@@ -39,7 +39,7 @@
 
       %ul.nav.navbar-nav.ml-auto
         - if current_user
-          %li.dropdown
+          %li.mr-2
             = link_to current_user do
               = image_tag current_user.avatar_url, class: 'avatar tiny'
               - if current_or_null_user.has_role? :superadmin
@@ -47,11 +47,10 @@
               - else
                 - if current_or_null_user.is_referee? or current_or_null_user.is_unique_referee?
                   = gem_count_tag current_or_null_user.referees_count
-          %li
-            %a.dropdown-toggle{data: {toggle: 'dropdown'}}
-              %span.caret
-            %ul.dropdown-menu
-              %li
+          %li.dropdown
+            %a.dropdown-toggle{:href => "#", "role" => "button", "data-toggle" => "dropdown", "data-target" => "#"}
+            %ul.dropdown-menu.dropdown-menu-right
+              %li.dropdown-item
                 = link_to settings_path do
                   = fa_icon "cog", text: t("views.header.settings")
               - if current_or_null_user.has_role? :superadmin
@@ -68,12 +67,12 @@
                       = t("views.header.backstage", default: "Backstage")
                       = gem_count_tag current_or_null_user.pending_referee_labs.count
 
-              %li.divider{:role => "separator"}
-              %li
+              %li.divider
+              %li.dropdown-item
                 = link_to oauth_applications_path do
                   = fa_icon "code", text: t("views.header.developer_console", default: "Developer Console")
-              %li.divider{:role => "separator"}
-              %li
+              %li.divider
+              %li.dropdown-item
                 = link_to signout_path do
                   = fa_icon "sign-out", text: t("views.header.signout", default: "Sign out")
 
