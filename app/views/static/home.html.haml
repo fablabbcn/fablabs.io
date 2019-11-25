@@ -8,7 +8,7 @@
           .homepage-header-content
             .text-small
               = t("views.home.welcome")
-            .text-large.text-primary
+            .text-large.text-primary-custom
               = t("views.home.whats_a_fab_lab")
             .text-medium
               = t("views.home.fab_labs_description", fab_foundation: (link_to "Fab Foundation", "http://www.fabfoundation.org") ).html_safe
@@ -42,7 +42,7 @@
               = image_tag ("icons/arrow-right.svg")
 
   .container
-    .homepage-quote.text-primary
+    .homepage-quote.text-primary-custom
       .homepage-divider
       = t("views.home.quote", default: "Because all Fab Labs share common tools and processes, the program is building a global network, a distributed laboratory for research and invention.")
 
