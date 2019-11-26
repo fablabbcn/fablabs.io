@@ -28,13 +28,13 @@ feature "Editing a lab" do
 
     scenario "with valid details" do
       fill_in "lab_name", with: 'New Name'
-      click_button 'Update Lab'
+      click_on 'Update Lab', match: :first
       expect(page).to have_content("Lab was successfully updated")
     end
 
     scenario "with invalid details" do
       fill_in "lab_name", with: ''
-      click_button 'Update Lab'
+      click_on 'Update Lab', match: :first
       expect(page).to have_css(".errors")
     end
 
