@@ -7,6 +7,8 @@
 
     .edit-lab
 
+    = f.submit 'Save', class: 'btn btn-primary'
+
     %fieldset
       %legend Basic Details
       .row
@@ -76,11 +78,11 @@
                 Please indicate these important dates in the history of your Lab:
           .row
             .col-lg-4
-              = f.input :activity_start_at, label: 'When did you start designing and planning your Lab?', as: 'string', input_html: {class: 'datepicker', "data-date-format" => "yyyy-mm-dd"}
+              = f.input :activity_start_at, label: 'When did you start designing and planning your Lab?', as: 'string', input_html: {class: 'flatpickr' }
             .col-lg-4
-              = f.input :activity_inaugurated_at, label: 'When was the Lab officially inaugurated?', as: 'string', input_html: {class: 'datepicker' , "data-date-format" => "yyyy-mm-dd"}
+              = f.input :activity_inaugurated_at, label: 'When was the Lab officially inaugurated?', as: 'string', input_html: {class: 'flatpickr' }
             .col-lg-4
-              = f.input :activity_closed_at, label: 'When was the Lab closed?', as: 'string', input_html: {class: 'datepicker' , "data-date-format" => "yyyy-mm-dd"}
+              = f.input :activity_closed_at, label: 'When was the Lab closed?', as: 'string', input_html: {class: 'flatpickr' }
 
     %fieldset
       %legend Location
@@ -125,4 +127,4 @@
 
     .row
       .col-lg-12
-        = f.submit 'save', class: 'btn btn-primary'
+        = f.submit 'Save', class: 'btn btn-primary'

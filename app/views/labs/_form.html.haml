@@ -1,6 +1,7 @@
 = simple_form_for lab, html: { class: 'form-horizontal' } do |f|
   = render 'form_errors', resource: lab
 
+  = f.submit (lab.new_record? ? 'Add Lab' : 'Update Lab'), class: 'btn btn-primary btn-lg'
   %fieldset
     .text-large
       Adding Basic Details
@@ -40,9 +41,9 @@
         %strong Lab history:
         %span Please indicate these important dates in the history of your Lab:
 
-      = f.input :activity_start_at, label: 'When did you start designing and planning your Lab?', as: 'string', input_html: {class: 'datepicker', "data-date-format" => "yyyy-mm-dd"}
-      = f.input :activity_inaugurated_at, label: 'When was the Lab officially inaugurated?', as: 'string', input_html: {class: 'datepicker' , "data-date-format" => "yyyy-mm-dd"}
-      = f.input :activity_closed_at, label: 'When was the Lab closed?', as: 'string', input_html: {class: 'datepicker' , "data-date-format" => "yyyy-mm-dd"}
+      = f.input :activity_start_at, label: 'When did you start designing and planning your Lab?', as: 'string', input_html: { class: 'flatpickr' }
+      = f.input :activity_inaugurated_at, label: 'When was the Lab officially inaugurated?', as: 'string', input_html: { class: 'flatpickr' }
+      = f.input :activity_closed_at, label: 'When was the Lab closed?', as: 'string', input_html: { class: 'flatpickr' }
 
 
 

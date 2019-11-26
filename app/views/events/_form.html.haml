@@ -9,11 +9,11 @@
       -# .col-lg-5
       -#   = f.input :ends_at
       .col-lg-2
-        = f.input :starts_at, as: 'string', input_html: { placeholder: 'dd/mm/yy', class: 'flatpickr'}
+        = f.input :starts_at, as: 'string', input_html: { placeholder: 'dd/mm/yy', class: 'flatpickr-time'}
       .col-lg-1
         to
       .col-lg-2
-        = f.input :ends_at, as: 'string', input_html: { placeholder: 'dd/mm/yy', class: 'flatpickr'}
+        = f.input :ends_at, as: 'string', input_html: { placeholder: 'dd/mm/yy', class: 'flatpickr-time'}
       .col-lg-3
         = f.time_zone_select :time_zone
 
@@ -30,11 +30,3 @@
   = f.submit class: 'btn btn-primary'
 
 /# TODO: Move this to the general JS file + remove bootstrap-timepicker and use flatpickr instead
-:javascript
-  document.addEventListener('DOMContentLoaded', function() {
-    flatpickr('.flatpickr', {
-      enableTime: true,
-      dateFormat: "Y-m-d H:i",
-      time_24hr: true
-    })
-  })
