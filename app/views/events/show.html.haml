@@ -4,8 +4,10 @@
       = render "breadcrumbs", event: @event
       = title @event
       - if @event.starts_at
-        = @event.starts_at.stamp("at 15:00 on Wednesday, 3rd October 2020")
-      %p created by #{link_to @event.creator, @event.creator}
+        %p= @event.starts_at.stamp("At 15:00 on Wednesday, 3rd October 2020")
+      - if @event.ends_at
+        %p= @event.ends_at.stamp("Until 15:00 on Wednesday, 3rd October 2020")
+      %p Created by #{link_to @event.creator, @event.creator}
       = simple_format @event.description
 
       = link_to "Edit Event", edit_lab_event_path(@event.lab, @event), class: 'btn btn-primary'

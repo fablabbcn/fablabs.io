@@ -102,7 +102,6 @@ GEM
     case_transform (0.2)
       activesupport
     childprocess (3.0.0)
-    chronic (0.10.2)
     climate_control (0.2.0)
     cocoon (1.2.14)
     coderay (1.1.2)
@@ -556,7 +555,6 @@ DEPENDENCIES
   byebug
   capybara
   capybara-webkit
-  chronic
   cocoon
   coderay
   coffee-rails
