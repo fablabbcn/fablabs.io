@@ -29,9 +29,10 @@
       = paginate @labs, theme: 'twitter-bootstrap-4', nav_class: "m-auto pt-3"
 
   .row
-    .heading
+    .heading.col-12
       %strong Download
       the Fab Labs list
     %dl
-      %dt Format:
-      %dd= link_to "JSON", controller:'labs', action:'index', subdomain: 'api', format: :json, class: 'btn btn-primary'
+      %dt.col-6 Format:
+      %dd.col-6
+        = link_to "JSON", controller:'labs', action:'index', subdomain: 'api', format: :json, class: 'btn btn-primary'
