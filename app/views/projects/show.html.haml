@@ -60,8 +60,3 @@
         = link_to icon('pencil'), edit_project_path(@project), class: 'btn btn-primary'
       - if current_or_null_user.can_delete?(@project)
         = link_to icon('trash-o'), @project, method: :delete, class: 'btn btn-danger', data: { confirm: "Are you sure?" }
-  .row
-    .col-lg-12
-      - if @project.discourse_id.present?
-        %h3 Discuss this Project on discuss.fablabs.io
-        = comments_script(@project.discourse_id)

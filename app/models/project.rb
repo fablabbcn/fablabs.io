@@ -6,7 +6,6 @@ class Project < ActiveRecord::Base
   enum visibility: { hidden: 0, visible: 1 }
 
   before_save :assign_to_lab, :strip_zeroes
-  after_save :discourse_sync_if_needed, if: Figaro.env.discourse_enabled
 
   self.authorizer_name = 'ProjectAuthorizer'
 
@@ -91,14 +90,6 @@ class Project < ActiveRecord::Base
     nil
   end
 
-  def async_discourse_sync
-    DiscourseProjectWorker.perform_async(self.id)
-  end
-
-  def discourse_sync
-    DiscourseService::Project.new(self).sync
-  end
-
   protected
 
   def total_grades
@@ -118,11 +109,4 @@ class Project < ActiveRecord::Base
   def strip_zeroes
     self.tag_list.remove("0")
   end
-
-  def discourse_sync_if_needed
-    if (changes.keys & ["name", "description"]).present?
-      async_discourse_sync
-    end
-  end
-
 end

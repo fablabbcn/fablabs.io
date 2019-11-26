@@ -91,7 +91,6 @@ class User < ActiveRecord::Base
   before_create { generate_token(:email_validation_hash) }
   before_create :downcase_email
 
-  after_save :discourse_sync_if_needed, if: Figaro.env.discourse_enabled
 
   def avatar_url
     if avatar_uid.present?
@@ -215,10 +214,6 @@ class User < ActiveRecord::Base
 
   def role_names
     roles.map(&:name).uniq.join(', ')
-  end
-
-  def async_discourse_sync
-    DiscourseUserSyncWorker.perform_async(self.id)
   end
 
   def discourse_profile_url
