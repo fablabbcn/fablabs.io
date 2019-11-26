@@ -14,12 +14,12 @@
     #navbar.collapse.navbar-collapse
 
       = form_tag '/search', class: 'navbar-form navbar-left', method: 'get' do
-        .form-group.container-fluid.mb-0.mw-100
+        .form-group.container-fluid.mb-0
           - if params[:country].present?
             = hidden_field_tag 'country', params[:country]
           = text_field_tag 'query', params[:query], class: 'form-control', autocomplete: 'off', placeholder: t("views.header.search"), id: 'search-box'
 
-      %ul.nav.navbar-nav.ml-auto
+      %ul.nav.navbar-nav
         %li.nav-item.active.navbar-link
           = link_to t("views.header.labs"), labs_path
         %li.nav-item.active.navbar-link

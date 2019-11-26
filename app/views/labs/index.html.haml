@@ -26,7 +26,7 @@
           %strong= params[:query]
 
       .labs.col-12= render @labs
-      = paginate @labs
+      = paginate @labs, theme: 'twitter-bootstrap-4', nav_class: "m-auto pt-3"
 
   .row
     .heading

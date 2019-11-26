@@ -476,10 +476,6 @@ a.text-primary-custom {
   }
 }
 
-.pagination-centered {
-  text-align: center;
-}
-
 .pagination {
   > li > a {
     color: #666;
@@ -493,26 +489,11 @@ a.text-primary-custom {
       color: #666;
     }
   }
+}
 
-  .current > a {
-    color: white;
+.page-item.active {
+  .page-link {
     background-color: #81D7BE;
     border-color: #81D7BE;
-
-    &:hover {
-      color: white;
-      border-color: #68C5AA;
-      background-color: #68C5AA;
-    }
-  }
-
-  .unavailable > a {
-    background-color: transparent;
-    border-color: transparent;
-
-    &:hover {
-      background-color: transparent;
-      border-color: transparent;
-    }
   }
 }

@@ -44,4 +44,4 @@
                 %td= link_to employee.lab, employee.lab
                 %td= employee.created_at.to_s(:short)
 
-      = paginate @employees
+      = paginate @employees, theme: 'twitter-bootstrap-4', nav_class: "m-auto pt-3"

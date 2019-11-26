@@ -26,5 +26,5 @@
                 \-
                 = link_to 'delete', [:backstage, page], method: 'delete', confirm: 'Are you sure?'
 
-      = paginate @pages
+      = paginate @pages, theme: 'twitter-bootstrap-4', nav_class: "m-auto pt-3"
       = link_to 'new page', [:new, :backstage, :page], class: 'btn btn-primary'

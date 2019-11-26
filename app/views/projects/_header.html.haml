@@ -1,5 +1,5 @@
 .view-as
-  .btn-group.btn-group-justified
+  .btn-group.w-100.d-flex{role: "group"}
     = link_to projects_path, class: "list btn btn-lg #{action_name == 'index' ? 'btn-primary' : 'btn-default'}" do
       = fa_icon "list", text: t("views.projects.index.list", default: "List")
     = link_to map_projects_path, class: "map btn btn-lg #{action_name == 'map' ? 'btn-primary' : 'btn-default'}" do

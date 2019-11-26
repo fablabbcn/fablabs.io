@@ -129,3 +129,6 @@ gem 'bcrypt'
 
 # Use unicorn as the app server
 # gem 'unicorn'
+
+gem 'kaminari'
+gem 'bootstrap4-kaminari-views'
