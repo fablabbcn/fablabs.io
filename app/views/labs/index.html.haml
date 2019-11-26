@@ -4,7 +4,7 @@
     .subnavbar-section.subnavbar-section-left.list-map
       = render "header"
 
-    .subnavbar-section.subnavbar-section-center
+    .subnavbar-section.subnavbar-section-center.select2-container.select2-container--default
       - cache ["v1-countries-#{I18n.locale}-#{Digest::MD5.hexdigest([params.to_s].to_s)}", Lab.last_updated_at] do
         = select_tag :labs_country_selector, options_for_select([[t("views.labs.index.all_countries", default: "All Countries"), ''], *@countries.map { |country,country_code,count| [country, country_code.upcase] }], params[:country] ? params[:country].upcase : '')
 

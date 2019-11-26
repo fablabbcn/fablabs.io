@@ -126,7 +126,7 @@ label {
 
   .select2-selection--single,
   .select2-selection--multiple {
-    height: 34px;
+    height: 100%;
     border-color: #E5E5E5;
 
     .select2-selection__rendered {
@@ -136,7 +136,7 @@ label {
     }
 
     .select2-selection__arrow {
-      height: 34px;
+      height: 100%;
     }
   }
 
