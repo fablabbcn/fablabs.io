@@ -1,5 +1,7 @@
 %ol.breadcrumb
-  %li= link_to Machine.to_s.pluralize, machines_path
+  %li.breadcrumb-item
+    = link_to Machine.to_s.pluralize, machines_path
   - if @machine
-    %li= link_to @machine.brand, machines_path
-    %li.active= link_to @machine, @machine
+    %li.breadcrumb-item
+      = link_to @machine.brand, machines_path
+    %li.breadcrumb-item.active= link_to @machine, @machine

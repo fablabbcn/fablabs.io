@@ -2,9 +2,11 @@
   .row
     .col-lg-12
       %ol.breadcrumb
-        %li= link_to 'Organizations', organizations_path
-        %li= link_to @organization.name, organizations_path(@organization)
-        %li.current #{@lab_organization.lab.name} state
+        %li.breadcrumb-item
+          = link_to 'Organizations', organizations_path
+        %li.breadcrumb-item
+          = link_to @organization.name, organizations_path(@organization)
+        %li.breadcrumb-item.current #{@lab_organization.lab.name} state
 
 
   .row
