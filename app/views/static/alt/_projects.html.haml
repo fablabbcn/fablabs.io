@@ -6,7 +6,7 @@
     .row
       - @projects.each do |a|
         .col-12.col-md-4
-          .homepage-project-card.container-fluid
+          .homepage-project-card.container
             %a{:href => 'https://projects.fablabs.io/search/' + a['slug']}=image_tag (a['image_url']), :class => "homepage-project-card-image", :target=>"_blank"
             .text-medium
               %a{:href => 'https://projects.fablabs.io/search/' + a['slug']}= a["title"]
@@ -16,7 +16,6 @@
       .col-12
         %a{:href=>"https://projects.fablabs.io", :target=> "_blank"}
           %h4
-            %br
             %span See more projects
             = image_tag ("icons/arrow-right.svg")
 

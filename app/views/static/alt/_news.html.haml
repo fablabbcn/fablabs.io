@@ -16,7 +16,7 @@
                         .homepage-lab-avatars
                             .row
                                 - @recent_labs.each do |lab|
-                                    .homepage-lab-avatar.col-xs-4.col-md-4
+                                    .homepage-lab-avatar.col-4
                                         = link_to lab do
                                             .text-center
                                                 = image_tag lab.avatar.thumb('96x96#').url, class: 'small avatar', itemprop: "logo"
