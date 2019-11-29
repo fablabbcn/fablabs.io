@@ -107,7 +107,7 @@
 
       = f.input :slug, hint: "This is the unique 'username' of the lab, it will be in the URL" do
         .input-group
-          %span.input-group-addon= "#{Rails.application.config.url}/"
+          %span.input-group-prepend= "#{Rails.application.config.url}/"
           = f.input_field :slug, class: 'form-control'
 
   %fieldset.col-12.mb-0
@@ -194,7 +194,7 @@
         %span Check all of the boxes that apply to this lab
 
         .radio-inline.form-group.form-check.mb-0.mt-3
-          = f.input :capabilities, as: 'check_boxes', inline_label: true, item_wrapper_class: 'checkbox_container mr-3', label: false, collection: Lab::Capabilities.map{|f| [ I18n.t("capabilities.#{f}"), f]}, checked: f.object.capabilities, hint: "Check all of the boxes that apply to this lab", input_html: { class: 'form-check-input' }
+          = f.input :capabilities, as: 'check_boxes', inline_label: true, item_wrapper_class: 'checkbox_container mr-3', label: false, collection: Lab::Capabilities.map{|f| [ I18n.t("capabilities.#{f}"), f]}, checked: f.object.capabilities, input_html: { class: 'form-check-input' }
 
       - @collection = Machine.includes(:brand)
       - @selected = @lab.machines.map{|u| u.id}.collect

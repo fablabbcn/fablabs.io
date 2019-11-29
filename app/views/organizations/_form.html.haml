@@ -1,80 +1,76 @@
-= simple_form_for organization, html: { class: 'form-horizontal'} do |f|
+= simple_form_for organization, html: { class: 'row'} do |f|
   - if current_user.has_role?(:superadmin)
-    %fieldset
-      %legend Superadmin options
-      = f.input :workflow_state, collection: Organization::WORKFLOW_STATES, include_blank: false
-      = f.input :geojson_file, as: :file
-      = f.input :zoom
+    %fieldset.col-12.mb-0
+      .form-header.pl-4.pr-4
+        .text-large Superadmin options
+        = f.input :workflow_state, collection: Organization::WORKFLOW_STATES, include_blank: false
+        = f.input :geojson_file, as: :file
+        = f.input :zoom
 
-  %fieldset
-    %legend Basic Details
-    = f.input :name
+  %fieldset.col-12.mb-0
+    .form-header.pl-4.pr-4
+      .text-large Basic Details
+      = f.input :name
+      = f.input :kind, collection: Organization::KINDS, include_blank: false
+      = f.input :email
+      = f.input :phone
 
-    .row
-      .col-lg-4
-        = f.input :kind, collection: Organization::KINDS, include_blank: false
-      .col-lg-4
-        = f.input :email
-      .col-lg-4
-        = f.input :phone
+  %fieldset.col-12.mb-0
+    .form-header.pl-4.pr-4
+      = f.input :blurb, as: :text, hint: 'A very brief overview of the organization, maybe include what it specializes in. <span id="description-count"></span> characters available.'.html_safe, input_html: { rows: 3, data: { limit: 200, counter: '#description-count'} }
 
-  %fieldset
-    %legend Description
-    = f.input :blurb, as: :text, hint: 'A very brief overview of the organization, maybe include what it specializes in. <span id="description-count"></span> characters available.'.html_safe, input_html: { rows: 3, data: { limit: 200, counter: '#description-count'} }
+      = f.input :description, hint: 'An in-depth description of the organization', input_html: { style: 'height: 8em' }
 
-    = f.input :description, hint: 'An in-depth description of the organization', input_html: { style: 'height: 8em' }
+  %fieldset.col-12.mb-0
+    .form-header.pl-4.pr-4
+      .text-large Organization Images
 
-
-  %fieldset
-    %legend Organization Images
-
-    .row
-      .col-lg-3= image_tag organization.avatar.thumb("300x300#").url, class: 'avatar big'
-      .col-lg-9
-        = f.input :avatar, as: :file, label: 'Avatar', hint: "This will be a square image next shown next to the organization name throughout the site"
-        = f.hidden_field :retained_avatar
+      .col-lg-3.p-2= image_tag organization.avatar.thumb("300x300#").url, class: 'avatar big'
+      = f.input :avatar, as: :file, label: 'Avatar', hint: "This will be a square image next shown next to the organization name throughout the site"
+      = f.hidden_field :retained_avatar
 
     %hr/
     .row
-      .col-lg-3
+      .col-lg-3.p-2
         - if organization.header.present?
           = image_tag organization.header.thumb("300x").url, class: 'avatar big'
-      .col-lg-9
+      .col-lg-9.pl-4.pr-4
         = f.input :header, as: :file, label: 'Photo', hint: "A single (large) photo of your organization. You will be able to add more photos soon."
         = f.hidden_field :retained_header
 
-  %fieldset
-    %legend Organization Location
-    .address
-      %fieldset
-        %legend Step 1
-        %p.hint Enter the organization's address in the textbox below. Then drag the map marker to pinpoint its exact position.
-        = f.input :geocomplete, input_html: { id: 'geocomplete', data: { latlng: "#{@organization.latitude}, #{@organization.longitude}"} }, label: false
-      %fieldset.step-2
-        %legend Step 2
-        %p.hint Edit the details in the address fields below.
-        .row
-          .col-lg-6#map-holder
-            #location-picker-map
-          .col-lg-6
-            = f.input :address_1, input_html: { data: {geo: "street_address"}}, label: 'Organization Address', placeholder: 'Address Line 1'
-            = f.input :address_2, label: false, placeholder: 'Address Line 2 (Optional)'
-            = f.input :city, input_html: { data: {geo: "locality"}}
-            = f.input :county, label: 'State/Province/County'
+  %fieldset.col-12.mb-0
+    .form-header.pl-4.pr-4
+      .text-large Organization Location
+      .address
+        %fieldset
+          .text-medium Step 1
+          = f.input :geocomplete, input_html: { id: 'geocomplete', data: { latlng: "#{@organization.latitude}, #{@organization.longitude}"}, class: 'mb-0 mt-3' }, label: false
+          %p.hint.p-0 Enter the organization's address in the textbox below. Then drag the map marker to pinpoint its exact position.
+        %fieldset.step-2
+          .text-medium Step 2
+          %p.hint.pl-0.pt-3 Edit the details in the address fields below.
+          .row
+            .col-lg-6#map-holder
+              #location-picker-map
+            .col-lg-6.p-0
+              = f.input :address_1, input_html: { data: {geo: "street_address"}}, label: 'Organization Address', placeholder: 'Address Line 1'
+              = f.input :address_2, label: false, placeholder: 'Address Line 2 (Optional)'
+              = f.input :city, input_html: { data: {geo: "locality"}}
+              = f.input :county, label: 'State/Province/County'
+              = f.input :postal_code, input_html: { data: {geo: "postal_code"}}
+              = f.input :country_code, as: 'country', label: 'Country', input_html: { data: {geo: "country_short"} }, wrapper_html: { class: 'boo'}, iso_codes: true#, input_html: { class: 'enhanced'}
+              = f.input :latitude, as: :hidden, input_html: { data: {geo: "lat"}}
+              = f.input :longitude, as: :hidden, input_html: { data: {geo: "lng"}}
+          %hr/
+          = f.input :address_notes, hint: 'Any details that might be useful for someone trying to find the organization. For example, "Go upstairs and through the red door".'
 
-            = f.input :postal_code, input_html: { data: {geo: "postal_code"}}
-            = f.input :country_code, as: 'country', label: 'Country', input_html: { data: {geo: "country_short"} }, wrapper_html: { class: 'boo'}, iso_codes: true#, input_html: { class: 'enhanced'}
-            = f.input :latitude, as: :hidden, input_html: { data: {geo: "lat"}}
-            = f.input :longitude, as: :hidden, input_html: { data: {geo: "lng"}}
-        %hr/
-        = f.input :address_notes, hint: 'Any details that might be useful for someone trying to find the organization. For example, "Go up the stairs and through the red door".'
+    %div.pl-4.pr-4
+      = render 'form_links', f: f
 
-  = render 'form_links', f: f
   - if organization.new_record?
-    %fieldset
-      %legend Anything else?
-      = f.input :application_notes
+    %fieldset.col-12
+      .form-header.pl-4.pr-4
+        .text-large Anything else?
+        = f.input :application_notes
 
-
-
-  = f.submit (organization.new_record? ? 'Add organization' : 'Update organization'), class: 'btn btn-primary'
+  = f.submit (organization.new_record? ? 'Add organization' : 'Update organization'), class: 'btn btn-primary btn-large'

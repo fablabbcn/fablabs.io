@@ -34,7 +34,7 @@
       - if @organization.lab_organizations.pending.present?
         %h4 Pending
         - @organization.lab_organizations.pending.each do |lab_organization|
-          %p.small.pull-right
+          %p.small.float-right
             = link_to 'state workflow', organization_lab_organization_path(@organization, lab_organization)
           = render partial: 'labs/lab', locals: {lab: lab_organization.lab}
       - if current_or_null_user == @organization.creator
