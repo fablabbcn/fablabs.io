@@ -54,14 +54,14 @@
                 = link_to settings_path do
                   = fa_icon "cog", text: t("views.header.settings")
               - if current_or_null_user.has_role? :superadmin
-                %li
+                %li.dropdown-item
                   = link_to backstage_root_path do
                     = fa_icon "gamepad"
                     = t("views.header.backstage", default: "Backstage")
                     = gem_count_tag Lab.with_unverified_state.size
               - else
                 - if current_or_null_user.is_referee? or current_or_null_user.is_unique_referee?
-                  %li
+                  %li.dropdown-item
                     = link_to backstage_root_path do
                       = fa_icon "gamepad"
                       = t("views.header.backstage", default: "Backstage")
