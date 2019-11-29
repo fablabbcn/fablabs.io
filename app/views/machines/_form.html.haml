@@ -1,40 +1,35 @@
 = simple_form_for machine, html: { class: 'row'} do |f|
   %fieldset.col-12.mb-0
-    .form-header.pl-4.pr-4
-      .text-large
-        General
-      = render "form_errors", resource: machine
-      = f.association :brand, hint: "Not in the list? #{link_to 'Add a new brand', new_brand_path}".html_safe
-      = f.input :name
-      = f.input :description
+    .text-large
+      General
+    = render "form_errors", resource: machine
+    = f.association :brand, hint: "Not in the list? #{link_to 'Add a new brand', new_brand_path}".html_safe
+    = f.input :name
+    = f.input :description
 
   %fieldset.col-12.mb-0
-    .form-header.pl-4.pr-4
-      .text-large
-        Facilities
-      = render "facilities", :f => f
+    .text-large
+      Facilities
+    = render "facilities", :f => f
 
   %fieldset.col-12.mb-0
-    .form-header.pl-4.pr-4
-      .text-large
-        Media
-      .row
-        .col-lg-3.p-2
-          - if machine.photo.present?
-            = image_tag machine.photo.thumb('150x150#').url, class: 'avatar big'
-        .col-lg-9.pl-4.pr-4
-          = f.input :photo, as: :file, label: 'Photo'
-          = f.hidden_field :retained_photo
+    .text-large
+      Media
+    .row
+      .col-lg-3.p-2
+        - if machine.photo.present?
+          = image_tag machine.photo.thumb('150x150#').url, class: 'avatar big'
+      .col-lg-9.pl-4.pr-4
+        = f.input :photo, as: :file, label: 'Photo'
+        = f.hidden_field :retained_photo
 
   %fieldset.col-12.mb-0
-    .form-header.pl-4.pr-4
-      .text-large
-        Tags
-      = f.input :tag_list
-      = f.input :inventory_item, class: 'form-control'
+    .text-large
+      Tags
+    = f.input :tag_list
+    = f.input :inventory_item, class: 'form-control'
 
   %fieldset.col-12
-    %div.pl-4.pr-4
-      = render 'form_links', f: f
+    = render 'form_links', f: f
 
   = f.submit (machine.new_record? ? 'New Machine' : 'Update Machine'), class: 'btn btn-primary btn-large'

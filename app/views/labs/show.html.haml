@@ -14,7 +14,7 @@
   .row
     .bio= render "bio", lab: @lab
 
-  .divider
+  .divider.mt-3
   .row
     .col-lg-8
       .text-large Lab Details
@@ -39,18 +39,18 @@
   .divider
 
   .row
-    .col-lg-12.mt-4
+    .col-lg-12
       = render("employees", lab: @lab, employees: @employees)
 
   - if @machines.length > 0
     .divider
-    .row
+    .row.mt-3
       .col-lg-12
         = render("machines", lab: @lab, machines: @machines)
 
   - if current_or_null_user.can_read?(Academic)
     .divider
-    .row
+    .row.mt-3
       .col-lg-12
         = render("academics", lab: @lab, academics: @academics)
 

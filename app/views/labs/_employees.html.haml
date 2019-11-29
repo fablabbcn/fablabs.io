@@ -16,7 +16,7 @@
                 %span.last_name{itemprop: "familyName"}= employee.user.last_name
               .text-small{itemprop: "jobTitle"}= employee.job_title
 
-.row.mt-4
+.row.mt-3.mb-3
   - if current_user
     - if current_user.applied_to?(@lab) and !current_user.employed_by?(@lab)
       = link_to new_lab_employee_path(@lab), class: 'btn disabled btn-default' do
