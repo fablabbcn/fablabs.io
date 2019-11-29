@@ -5,12 +5,11 @@
 .container{itemscope: true, itemtype: "http://data-vocabulary.org/Organization"}
   .stripe
     .row
-      .col-lg-12
-        %ol.breadcrumb
-          %li.breadcrumb-item
-            = link_to 'Organizations', organizations_path
-          %li.breadcrumb-item
-            = link_to @organization.name, organizations_path(@organization)
+      %ol.breadcrumb
+        %li.breadcrumb-item
+          = link_to 'Organizations', organizations_path
+        %li.breadcrumb-item
+          = link_to @organization.name, organizations_path(@organization)
 
 
     .row.header
