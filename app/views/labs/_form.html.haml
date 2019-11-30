@@ -2,13 +2,13 @@
   = render 'form_errors', resource: lab
 
   %fieldset.col-12.mb-0
-    .text-large.pl-4.pr-4
+    .text-large
       Adding Basic Details
 
     .pl-4.pr-4
       = f.input :name, label: 'Your fablab name'
 
-    .question.pl-4.pr-4
+    .question
       .text-medium
         %strong More lab details:
         %span What kind of Fab Lab is your Lab?
@@ -16,14 +16,13 @@
       .row
         - Lab::kinds.each do |value, index|
           .col-lg-2
-            .radio-inline
-              %span.form-group.form-check.mb-0.mt-3
-                %div.form-check-input.mt-0
-                  = f.radio_button :kind, value
-                %label.radio.form-check-label{style: "width: 160px;"}
-                  = value.humanize.titleize
+            %span.form-group.form-check.mb-0.mt-3
+              %div.form-check-input.mt-0
+                = f.radio_button :kind, value
+              %label.radio.form-check-label{style: "width: 160px;"}
+                = value.humanize.titleize
 
-    .question.pl-4.pr-4
+    .question
       .text-medium
         %strong Current status of your Lab:
         %span Is this Lab already open, planned or closed?
@@ -31,14 +30,13 @@
       .row
         - Lab::ACTIVITY_STATUS.each do |status|
           .col-lg-2
-            .radio-inline
-              %span.form-group.form-check.mb-0.mt-3
-                %div.form-check-input.mt-0
-                  = f.radio_button :activity_status, status, class: 'activity-status-radio'
-                %label.form-check-label.radio{style: "width: 160px;"}
-                  = status.humanize.titleize
+            %span.form-group.form-check.mb-0.mt-3
+              %div.form-check-input.mt-0
+                = f.radio_button :activity_status, status, class: 'activity-status-radio'
+              %label.form-check-label.radio{style: "width: 160px;"}
+                = status.humanize.titleize
 
-    .question.pl-4.pr-4
+    .question
       .text-medium
         %strong Lab history:
         %span Please indicate these important dates in the history of your Lab:
@@ -50,7 +48,7 @@
 
 
   %fieldset.col-12.mb-0
-    .text-large.pl-4.pr-4
+    .text-large
       What qualifies as a Fab Lab
     .text-medium.pl-4.pr-4
       Fab Labs have a list of qualities and requirements that defines them.
@@ -59,7 +57,7 @@
 
     .pl-4.pr-4
 
-      .radio-inline.form-group.form-check.mb-0.mt-3
+      .form-group.form-check.mb-0.mt-3
         %div.form-check-input.mt-0
           = f.radio_button :charter, 1
         %label.radio.form-check-label
@@ -67,7 +65,7 @@
           = succeed "." do
             %a{:href => "http://fab.cba.mit.edu/about/charter/"} Fab Charter
 
-      .radio-inline.form-group.form-check.mb-0.mt-3
+      .form-group.form-check.mb-0.mt-3
         %div.form-check-input.mt-0
           = f.radio_button :tools, 1
         %label.radio.form-check-label
@@ -75,7 +73,7 @@
           = succeed "." do
             %a{:href => "http://fab.cba.mit.edu/about/fab/inv.html"} official Fab Lab inventory
 
-      .radio-inline.form-group.form-check.mb-0.mt-3
+      .form-group.form-check.mb-0.mt-3
         %div.form-check-input.mt-0
           = f.radio_button :network, 1
         %label.radio.form-check-label
@@ -83,22 +81,22 @@
           = succeed "." do
             %a{:href => "https://discuss.fablabs.io/"} the Discuss section on FabLabs.io
 
-      .radio-inline.form-group.form-check.mb-0.mt-3
+      .form-group.form-check.mb-0.mt-3
         %div.form-check-input.mt-0
           = f.radio_button :programs, 1
-        %label.radio
+        %label.radio.form-check-label
           Programs: Our staff is (or will be) trained in the
           %a{:href => "http://fabacademy.org/"} Fab Academy
           or compatible programs
 
-      .radio-inline.form-group.form-check.mb-0.mt-3
+      .form-group.form-check.mb-0.mt-3
         %div.form-check-input.mt-0
           = f.radio_button :public, 1
         %label.radio.form-check-label
           Access: Public access to the Fab Lab is essential
 
   %fieldset.col-12.mb-0
-    .text-large.pl-4.pr-4
+    .text-large
       Description
     .pl-4.pr-4
       = f.input :blurb, as: 'text', hint: 'A very brief overview of the lab, maybe include what it specializes in. <span id="description-count"></span> characters available.'.html_safe, input_html: { rows: 3, data: { limit: 200, counter: '#description-count'} }
@@ -111,11 +109,11 @@
           = f.input_field :slug, class: 'form-control'
 
   %fieldset.col-12.mb-0
-    .text-large.pl-4.pr-4
+    .text-large
       Lab Images
 
     .row.pl-4.pr-4
-      .col-lg-3= image_tag @lab.avatar.url, class: 'avatar big'
+      .col-lg-3.mt-2= image_tag @lab.avatar.url, class: 'avatar big'
       .col-lg-9
         = f.input :avatar, as: :file, label: 'Avatar', hint: "This will be a square image next shown next to the lab name throughout the site"
         = f.hidden_field :retained_avatar
@@ -129,10 +127,10 @@
         = f.hidden_field :retained_header
 
   %fieldset.col-12.mb-0
-    .text-large.pl-4.pr-4
+    .text-large
       Lab Location
 
-    .address.pl-4.pr-4
+    .address
       .question
         .text-medium Step 1
         .text-small Enter the lab's address in the textbox below. Then drag the map marker to pinpoint its exact position.
@@ -159,16 +157,15 @@
         = f.input :address_notes, hint: 'Any details that might be useful for someone trying to find the lab. For example, "Go up the stairs and through the red door".'
 
   %fieldset.col-12.mb-0
-    .text-large.pl-4.pr-4
+    .text-large
       Lab Contact Details
     .pl-4.pr-4
       = f.input :phone, hint: "A general enquiries phone number for the lab", label: "Lab Phone Number"
       = f.input :email, hint: "A general enquiries email address for the lab", label: "Lab Email Address"
-
-      = render 'form_links', f: f
+    = render 'form_links', f: f
 
     - if @lab.new_record?
-      .question.pl-4.pr-4
+      .question
         .text-medium
           %strong Your Role
         = f.simple_fields_for :employees do |e|
@@ -176,21 +173,21 @@
           = e.input :description, placeholder: "e.g. Coordinates Workshops and Events"
 
     - if @lab.new_record?
-      .question.pl-4.pr-4
+      .question
         .text-medium
           %strong Applications Notes
         = f.input :application_notes
 
 
   %fieldset.col-12.mb-0
-    .text-large.pl-4.pr-4
+    .text-large
       Lab Technologies
 
     .text-medium.pl-4.pr-4
       %strong Add Capabilities:
       %span Check all of the boxes that apply to this lab
 
-      .radio-inline.form-group.form-check.mb-0.mt-3
+      .form-group.form-check.mb-0.mt-3
         = f.input :capabilities, as: 'check_boxes', inline_label: true, item_wrapper_class: 'checkbox_container mr-3', label: false, collection: Lab::Capabilities.map{|f| [ I18n.t("capabilities.#{f}"), f]}, checked: f.object.capabilities, input_html: { class: 'form-check-input' }
 
     - @collection = Machine.includes(:brand)
@@ -207,19 +204,17 @@
 
   - if lab.workflow_state != "approved"
     %fieldset.col-12
-      .text-large.pl-4.pr-4
+      .text-large
         Please select 3 Referee Labs
       .text-medium.pl-4.pr-4
         Please choose 3 of the Referee Labs available and contact them, they will approve you after you have exchanged more information with them. The list of Referee Labs is limited to some Fab Labs with experience and a history of collaborating with the global Fab Lab Network, at the moment it is not possible to choose Referee Labs outside that list. It's not important that you already know them, it's important that you start a discussion with them. We are doing this so that the connections among the Labs (especially for new Labs) get strengthened.
-      .pr-4.pl-4
         = render 'referees', :f => f
 
       %br
-      .text-large.pl-4.pr-4
+      .text-large
         Please select a Parent Lab
       .text-medium.pl-4.pr-4
         Is this Lab connected to another Lab? If so, which Lab?
-      .pr-4.pl-4
         = f.input :parent_id, as: 'select', collection: Lab.with_approved_state.order('name ASC'), input_html: { class: 'enhanced' }
 
 

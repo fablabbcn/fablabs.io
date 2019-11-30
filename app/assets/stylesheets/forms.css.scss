@@ -59,10 +59,6 @@ fieldset {
   }
 }
 
-.input .boolean{
-  margin-left: 20px;
-}
-
 .radio .form-control, .checkbox .form-control, .check_boxes .form-control{
   height: auto;
   width: auto;
@@ -80,16 +76,6 @@ input.btn {
 
 .radio {
   font-size: 16px;
-}
-
-.form-horizontal {
-  .radio {
-    padding-top: 0;
-  }
-  .radio-inline {
-    margin-left: 10px;
-    padding-top: 20px;
-  }
 }
 
 .input {
@@ -181,4 +167,8 @@ fieldset {
   border-color: #D8D8D8;
   background-color: #D8D8D8;
   align-items: center;
+}
+
+.simple_form div.text-large, div.question {
+  padding: 0px 20px;
 }

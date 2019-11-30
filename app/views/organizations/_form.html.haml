@@ -1,15 +1,15 @@
 = simple_form_for organization, html: { class: 'row'} do |f|
   - if current_user.has_role?(:superadmin)
     %fieldset.col-12.mb-0
+      .text-large Superadmin options
       .pl-4.pr-4
-        .text-large Superadmin options
         = f.input :workflow_state, collection: Organization::WORKFLOW_STATES, include_blank: false
         = f.input :geojson_file, as: :file
         = f.input :zoom
 
   %fieldset.col-12.mb-0
+    .text-large Basic Details
     .pl-4.pr-4
-      .text-large Basic Details
       = f.input :name
       = f.input :kind, collection: Organization::KINDS, include_blank: false
       = f.input :email
@@ -22,24 +22,23 @@
       = f.input :description, hint: 'An in-depth description of the organization', input_html: { style: 'height: 8em' }
 
   %fieldset.col-12.mb-0
+    .text-large Organization Images
     .pl-4.pr-4
-      .text-large Organization Images
-
       .col-lg-3.p-2= image_tag organization.avatar.thumb("300x300#").url, class: 'avatar big'
       = f.input :avatar, as: :file, label: 'Avatar', hint: "This will be a square image next shown next to the organization name throughout the site"
       = f.hidden_field :retained_avatar
 
-      %hr/
-      .row
-        .col-lg-3.p-2
-          - if organization.header.present?
-            = image_tag organization.header.thumb("300x").url, class: 'avatar big'
-        .col-lg-9
-          = f.input :header, as: :file, label: 'Photo', hint: "A single (large) photo of your organization. You will be able to add more photos soon."
-          = f.hidden_field :retained_header
+    %hr/
+    .row.pl-4.pr-4
+      .col-lg-3.p-2
+        - if organization.header.present?
+          = image_tag organization.header.thumb("300x").url, class: 'avatar big'
+      .col-lg-9
+        = f.input :header, as: :file, label: 'Photo', hint: "A single (large) photo of your organization. You will be able to add more photos soon."
+        = f.hidden_field :retained_header
 
   %fieldset.col-12.mb-0
-    .text-large.pl-4.pr-4 Organization Location
+    .text-large Organization Location
     .address.pl-4.pr-4
       %fieldset
         .text-medium Step 1
@@ -63,14 +62,12 @@
         %hr/
         = f.input :address_notes, hint: 'Any details that might be useful for someone trying to find the organization. For example, "Go upstairs and through the red door".'
 
-    .pl-4.pr-4
-      = render 'form_links', f: f
-      %p It can include blogs, social networks, video/photo sites etc.
+    = render 'form_links', f: f
+    %p.pl-4.pr-4 It can include blogs, social networks, video/photo sites etc.
 
   - if organization.new_record?
     %fieldset.col-12
-      .pl-4.pr-4
-        .text-large Anything else?
-        = f.input :application_notes
+      .text-large Anything else?
+      .pl-4.pr-4= f.input :application_notes
 
   = f.submit (organization.new_record? ? 'Add organization' : 'Update organization'), class: 'btn btn-primary btn-large'

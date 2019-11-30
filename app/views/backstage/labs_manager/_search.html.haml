@@ -1,4 +1,4 @@
-.box
+.box.well
   = search_form_for @p, url: [:backstage, :manager],  builder: SimpleForm::FormBuilder do |f|
     .row
       .col-lg-8
@@ -13,9 +13,8 @@
         = f.select :kind_eq, options_for_select([['No kind', 2], ['Mini fablab', 0],['Fablab', 1], ['Mobile fablab', 3]]), label: "Kind", include_blank: "ALL"
       .col-lg-3
         = f.input :activity_status_eq, collection: Lab::ACTIVITY_STATUS, label: "Lab status", include_blank: 'ALL'
-      .col-lg-3
-        %br
-        = f.submit "Filter", class: 'btn btn-primary btn-lg'
+      .col-lg-3.m-auto
+        = f.submit "Filter", class: 'btn btn-primary btn-lg mr-2'
         %input.btn.btn-secondary.btn-lg(type="reset")
-  .well.code
-    = @sql
+    .well.code.mt-3{ :style => "background-color: white;" }
+      = @sql

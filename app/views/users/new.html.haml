@@ -25,7 +25,7 @@
             = label_tag 'name', 'IGNORE'
             = text_field_tag 'name', nil, alt: "This field is to prevent bots. Please leave it blank.", placeholder: "LEAVE BLANK TO PROVE YOU ARE HUMAN"
 
-          .form-group
-            = f.input :agree_policy_terms, as: :boolean, label: "Please read and agree to our <a href='/cookie-policy'>Cookie</a>, <a href='/privacy-policy'>Privacy</a> and <a href='/tos'>Terms of Service (TOS)</a> policies".html_safe, input_html: { class: 'form-check-input ml-0' }
+          .form-group.form-check
+            = f.input :agree_policy_terms, as: :boolean, label: "Please read and agree to our <a href='/cookie-policy'>Cookie</a>, <a href='/privacy-policy'>Privacy</a> and <a href='/tos'>Terms of Service (TOS)</a> policies".html_safe, input_html: { class: 'form-check-input' }
 
           = f.submit t("views.header.signup", default: "Sign Up"), class: 'btn btn-primary btn-lg float-left'
