@@ -1,23 +1,23 @@
 = simple_form_for machine, html: { class: 'row'} do |f|
-  %fieldset.col-12.mb-0
+  %fieldset.col-12
     .text-large
       General
-    .pl-4.pr-4
+    .px-4
       = render "form_errors", resource: machine
       = f.association :brand, hint: "Not in the list? #{link_to 'Add a new brand', new_brand_path}".html_safe
       = f.input :name
       = f.input :description
 
-  %fieldset.col-12.mb-0
+  %fieldset.col-12
     .text-large
       Facilities
-    .pl-4.pr-4
+    .px-4
       = render "facilities", :f => f
 
-  %fieldset.col-12.mb-0
+  %fieldset.col-12
     .text-large
       Media
-    .row.pl-4.pr-4
+    .row.px-4
       .col-lg-3.p-2
         - if machine.photo.present?
           = image_tag machine.photo.thumb('150x150#').url, class: 'avatar big'
@@ -25,14 +25,14 @@
         = f.input :photo, as: :file, label: 'Photo'
         = f.hidden_field :retained_photo
 
-  %fieldset.col-12.mb-0
+  %fieldset.col-12
     .text-large
       Tags
-    .pl-4.pr-4
+    .px-4
       = f.input :tag_list
       = f.input :inventory_item, class: 'form-control'
 
-  %fieldset.col-12
+  %fieldset.col-12.mb-4
     = render 'form_links', f: f
 
   = f.submit (machine.new_record? ? 'New Machine' : 'Update Machine'), class: 'btn btn-primary btn-large'
