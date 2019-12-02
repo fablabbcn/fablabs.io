@@ -7,28 +7,25 @@
       = simple_form_for @user do |f|
         %fieldset
           = render "form_errors", resource: @user
-          .row
-            .col-lg-1
-              = f.label :first_name, "Name"
-            .col-lg-3
-              = f.input :first_name, label: false, placeholder: 'First'
-            .col-lg-3.left
-              = f.input :last_name, label: false, placeholder: 'Last'
+          .pl-4.pr-4
+            = f.label :first_name, "Name"
+            = f.input :first_name, label: false, placeholder: 'First Name'
+            = f.input :last_name, label: false, placeholder: 'Last Name'
 
-          = f.input :username
-          = f.input :email
-          = f.input :email_fallback
-          = f.input :phone
-          = f.input :country_code, as: 'country', priority: ([current_country.alpha2.downcase] if current_country), label: 'Country', iso_codes: true
+            = f.input :username
+            = f.input :email
+            = f.input :email_fallback
+            = f.input :phone
+            = f.input :country_code, as: 'country', priority: ([current_country.alpha2.downcase] if current_country), label: 'Country', iso_codes: true
 
-          = f.input :bio
-          = f.input :url
+            = f.input :bio
+            = f.input :url
 
         %fieldset
           = render 'form_links', f: f
 
         %fieldset
-          .row
+          .row.pl-4.pr-4
             .col-lg-3
               = image_tag @user.avatar_url, class: 'avatar big'
             .col-lg-9
@@ -36,6 +33,7 @@
               = f.hidden_field :retained_avatar
 
         %fieldset
-          = f.input :use_metric, :collection => [[true, 'Metric - cm/m/km'], [false, 'Imperial - in/ft/mi']], :label_method => :last, :value_method => :first, :as => :radio_buttons, :label => "Preferred units", :hint => "This doesn't update measurements on the site yet, but will do soon"
+          .pl-4.pr-4
+            = f.input :use_metric, :collection => [[true, 'Metric - cm/m/km'], [false, 'Imperial - in/ft/mi']], item_wrapper_class: 'form-check form-group', :label_method => :last, :value_method => :first, inline_label: true, :as => :radio_buttons, :label => "Preferred units", :hint => "This doesn't update measurements on the site yet, but will do soon", input_html: { class: 'form-check-input' }
 
         = f.submit "Update", class: 'btn btn-primary'
