@@ -55,45 +55,43 @@
       More information can be found
       %a{href: "http://www.fabfoundation.org/index.php/what-qualifies-as-a-fab-lab/index.html"} here.
 
-    .px-4
+    .form-group.form-check.mb-0.mt-3
+      %div.form-check-input.mt-0.px-4
+        = f.radio_button :charter, 1
+      %label.radio.form-check-label.px-4
+        Charter: You need to agree with the
+        = succeed "." do
+          %a{:href => "http://fab.cba.mit.edu/about/charter/"} Fab Charter
 
-      .form-group.form-check.mb-0.mt-3
-        %div.form-check-input.mt-0
-          = f.radio_button :charter, 1
-        %label.radio.form-check-label
-          Charter: You need to agree with the
-          = succeed "." do
-            %a{:href => "http://fab.cba.mit.edu/about/charter/"} Fab Charter
+    .form-group.form-check.mb-0.mt-3
+      %div.form-check-input.mt-0.px-4
+        = f.radio_button :tools, 1
+      %label.radio.form-check-label.px-4
+        Tools: The submitted Fab Lab has a compatible set of tools related with the
+        = succeed "." do
+          %a{:href => "http://fab.cba.mit.edu/about/fab/inv.html"} official Fab Lab inventory
 
-      .form-group.form-check.mb-0.mt-3
-        %div.form-check-input.mt-0
-          = f.radio_button :tools, 1
-        %label.radio.form-check-label
-          Tools: The submitted Fab Lab has a compatible set of tools related with the
-          = succeed "." do
-            %a{:href => "http://fab.cba.mit.edu/about/fab/inv.html"} official Fab Lab inventory
+    .form-group.form-check.mb-0.mt-3
+      %div.form-check-input.mt-0.px-4
+        = f.radio_button :network, 1
+      %label.radio.form-check-label.px-4
+        Network: The submitted Fab Lab commits to participate in the network activities: regional meetings, FABX conferences,
+        = succeed "." do
+          %a{:href => "https://discuss.fablabs.io/"} the Discuss section on FabLabs.io
 
-      .form-group.form-check.mb-0.mt-3
-        %div.form-check-input.mt-0
-          = f.radio_button :network, 1
-        %label.radio.form-check-label
-          Network: The submitted Fab Lab commits to participate in the network activities: regional meetings, FABX conferences,
-          = succeed "." do
-            %a{:href => "https://discuss.fablabs.io/"} the Discuss section on FabLabs.io
+    .form-group.form-check.mb-0.mt-3
+      %div.form-check-input.mt-0.px-4
+        = f.radio_button :programs, 1
+      %label.radio.form-check-label.px-4
+        Programs: Our staff is (or will be) trained in the
+        %a{:href => "http://fabacademy.org/"} Fab Academy
+        or compatible programs
 
-      .form-group.form-check.mb-0.mt-3
-        %div.form-check-input.mt-0
-          = f.radio_button :programs, 1
-        %label.radio.form-check-label
-          Programs: Our staff is (or will be) trained in the
-          %a{:href => "http://fabacademy.org/"} Fab Academy
-          or compatible programs
-
-      .form-group.form-check.mb-0.mt-3
-        %div.form-check-input.mt-0
-          = f.radio_button :public, 1
-        %label.radio.form-check-label
-          Access: Public access to the Fab Lab is essential
+    .form-group.form-check.mb-0.mt-3
+      %div.form-check-input.mt-0.px-4
+        = f.radio_button :public, 1
+      %label.radio.form-check-label.px-4
+        Access: Public access to the Fab Lab is essential
 
   %fieldset.col-12
     .text-large
