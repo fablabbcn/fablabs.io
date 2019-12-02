@@ -32,12 +32,9 @@ a{
   cursor: pointer;
 }
 
-// Remove when Bootstrap 4 is used:
-.mt-1{ margin-top: 0.25rem; }
-.mt-2{ margin-top: 0.5rem; }
-.mt-3{ margin-top: 1rem; }
-.mt-4{ margin-top: 1.5rem; }
-.mt-5{ margin-top: 3rem; }
+.text-primary {
+  color: #81D7BE !important;
+}
 
 #embed-logo {
   display: block;
@@ -439,16 +436,12 @@ h3 {
 }
 
 a,
-a.text-primary-custom {
+a.text-primary {
   color: #81D7BE;
 
   &:hover {
     color: #68C5AA;
   }
-}
-
-.text-primary-custom {
-  color: #81D7BE;
 }
 
 .list-item-small-wrapper {
