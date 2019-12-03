@@ -27,13 +27,12 @@
 @import "font-awesome-sprockets";
 @import "font-awesome";
 
-
 a{
   cursor: pointer;
 }
 
-.text-primary {
-  color: #81D7BE !important;
+.text-primary-custom {
+  color: #81D7BE;
 }
 
 #embed-logo {
@@ -402,7 +401,6 @@ h3 {
   font-size: 22px;
   line-height: 40px;
   font-weight: 900;
-  color: #4A4A4A;
 }
 
 .text-medium {

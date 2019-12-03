@@ -2,22 +2,21 @@
   %fieldset.col-12
     .text-large
       General
-    .px-4
-      = render "form_errors", resource: machine
-      = f.association :brand, hint: "Not in the list? #{link_to 'Add a new brand', new_brand_path}".html_safe
-      = f.input :name
-      = f.input :description
+
+    = render "form_errors", resource: machine
+    = f.association :brand, hint: "Not in the list? #{link_to 'Add a new brand', new_brand_path}".html_safe
+    = f.input :name
+    = f.input :description
 
   %fieldset.col-12
     .text-large
       Facilities
-    .px-4
-      = render "facilities", :f => f
+    = render "facilities", :f => f
 
   %fieldset.col-12
     .text-large
       Media
-    .row.px-4
+    .row
       .col-lg-3.p-2
         - if machine.photo.present?
           = image_tag machine.photo.thumb('150x150#').url, class: 'avatar big'
@@ -28,9 +27,9 @@
   %fieldset.col-12
     .text-large
       Tags
-    .px-4
-      = f.input :tag_list
-      = f.input :inventory_item, class: 'form-control'
+
+    = f.input :tag_list
+    = f.input :inventory_item, class: 'form-control'
 
   %fieldset.col-12.mb-4
     = render 'form_links', f: f

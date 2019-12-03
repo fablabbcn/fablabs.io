@@ -169,6 +169,6 @@ fieldset {
   align-items: center;
 }
 
-.simple_form div.text-large, div.question {
+.simple_form fieldset > * {
   padding: 0px 20px;
 }

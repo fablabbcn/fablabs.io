@@ -2,34 +2,36 @@
   - if current_user.has_role?(:superadmin)
     %fieldset.col-12
       .text-large Superadmin options
-      .px-4
-        = f.input :workflow_state, collection: Organization::WORKFLOW_STATES, include_blank: false
-        = f.input :geojson_file, as: :file
-        = f.input :zoom
+
+      = f.input :workflow_state, collection: Organization::WORKFLOW_STATES, include_blank: false
+      = f.input :geojson_file, as: :file
+      = f.input :zoom
 
   %fieldset.col-12
     .text-large Basic Details
-    .px-4
-      = f.input :name
-      = f.input :kind, collection: Organization::KINDS, include_blank: false
-      = f.input :email
-      = f.input :phone
+
+    = f.input :name
+    = f.input :kind, collection: Organization::KINDS, include_blank: false
+    = f.input :email
+    = f.input :phone
 
   %fieldset.col-12
-    .px-4
-      = f.input :blurb, as: :text, hint: 'A very brief overview of the organization, maybe include what it specializes in. <span id="description-count"></span> characters available.'.html_safe, input_html: { rows: 3, data: { limit: 200, counter: '#description-count'} }
 
-      = f.input :description, hint: 'An in-depth description of the organization', input_html: { style: 'height: 8em' }
+    = f.input :blurb, as: :text, hint: 'A very brief overview of the organization, maybe include what it specializes in. <span id="description-count"></span> characters available.'.html_safe, input_html: { rows: 3, data: { limit: 200, counter: '#description-count'} }
+
+    = f.input :description, hint: 'An in-depth description of the organization', input_html: { style: 'height: 8em' }
 
   %fieldset.col-12
     .text-large Organization Images
-    .px-4
-      .col-lg-3.p-2= image_tag organization.avatar.thumb("300x300#").url, class: 'avatar big'
-      = f.input :avatar, as: :file, label: 'Avatar', hint: "This will be a square image next shown next to the organization name throughout the site"
-      = f.hidden_field :retained_avatar
+    .row
+      .col-lg-3.p-2
+        = image_tag organization.avatar.thumb("300x300#").url, class: 'avatar big'
+      .col-lg-9
+        = f.input :avatar, as: :file, label: 'Avatar', hint: "This will be a square image next shown next to the organization name throughout the site"
+        = f.hidden_field :retained_avatar
 
     %hr/
-    .row.px-4
+    .row
       .col-lg-3.p-2
         - if organization.header.present?
           = image_tag organization.header.thumb("300x").url, class: 'avatar big'
@@ -39,12 +41,12 @@
 
   %fieldset.col-12
     .text-large Organization Location
-    .address.px-4
-      %fieldset
+    .address
+      .question
         .text-medium Step 1
         = f.input :geocomplete, input_html: { id: 'geocomplete', data: { latlng: "#{@organization.latitude}, #{@organization.longitude}"}, class: 'mb-0 mt-3' }, label: false
         %p.hint.p-0 Enter the organization's address in the textbox below. Then drag the map marker to pinpoint its exact position.
-      %fieldset.step-2
+      .question.step-2
         .text-medium Step 2
         %p.hint.pl-0.pt-3 Edit the details in the address fields below.
         .row
@@ -63,11 +65,11 @@
         = f.input :address_notes, hint: 'Any details that might be useful for someone trying to find the organization. For example, "Go upstairs and through the red door".'
 
     = render 'form_links', f: f
-    %p.px-4 It can include blogs, social networks, video/photo sites etc.
+    %p It can include blogs, social networks, video/photo sites etc.
 
   - if organization.new_record?
-    %fieldset.col-12
+    %fieldset.col-12.mb-4
       .text-large Anything else?
-      .px-4= f.input :application_notes
+      = f.input :application_notes
 
   = f.submit (organization.new_record? ? 'Add organization' : 'Update organization'), class: 'btn btn-primary btn-large'
