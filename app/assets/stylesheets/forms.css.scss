@@ -15,7 +15,7 @@ fieldset {
   box-shadow: 0 100px 75px 0 rgba(0,0,0,0.05), 0 10px 25px 0 rgba(0,0,0,0.05), 0 20px 50px 0 rgba(0,0,0,0.05);
   border-radius: 0 0 6px 6px;
   padding: 40px;
-  margin: 40px 0;
+  margin-top: 40px;
 
   .question {
     margin-bottom: 40px;
@@ -49,7 +49,7 @@ fieldset {
   color: #E84E61;
   background: #FAE8E8;
   padding: 20px 10px;
-  margin-bottom: 1em;
+  margin: 1em;
   ul, li {
     list-style: none;
   }
@@ -57,10 +57,6 @@ fieldset {
     font-weight: bold;
     font-size: 1.4em;
   }
-}
-
-.input .boolean{
-  margin-left: 20px;
 }
 
 .radio .form-control, .checkbox .form-control, .check_boxes .form-control{
@@ -80,16 +76,6 @@ input.btn {
 
 .radio {
   font-size: 16px;
-}
-
-.form-horizontal {
-  .radio {
-    padding-top: 0;
-  }
-  .radio-inline {
-    margin-left: 10px;
-    padding-top: 20px;
-  }
 }
 
 .input {
@@ -126,7 +112,7 @@ label {
 
   .select2-selection--single,
   .select2-selection--multiple {
-    height: 34px;
+    height: 100%;
     border-color: #E5E5E5;
 
     .select2-selection__rendered {
@@ -136,7 +122,7 @@ label {
     }
 
     .select2-selection__arrow {
-      height: 34px;
+      height: 100%;
     }
   }
 
@@ -177,7 +163,12 @@ fieldset {
   }
 }
 
-.input-group-addon {
+.input-group-prepend {
   border-color: #D8D8D8;
   background-color: #D8D8D8;
+  align-items: center;
+}
+
+.simple_form fieldset > * {
+  padding: 0px 20px;
 }

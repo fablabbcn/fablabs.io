@@ -15,7 +15,7 @@
       - academics.each do |academic|
         %li.person{itemscope: true, itemtype: "http://data-vocabulary.org/Person", data: {year: 2013}}
           .media
-            .pull-left
+            .float-left
               = image_tag academic.user.avatar_url, class: 'avatar med academic'
             .media-body
               = link_to academic.user, class: 'person-name name' do

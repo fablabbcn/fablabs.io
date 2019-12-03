@@ -6,25 +6,26 @@
         .text-medium
           Once you join you'll be able to add your Fab Lab to the list, participate in discussions with all the Fab Labs and users, upload projects and more.
 
-      .row
+      .row.px-0
         = render "form_errors", resource: @user
         = hidden_field_tag :goto, params[:goto]
+        .col-12
+          = f.label :first_name, "Your Name"
+          = f.input :first_name, autofocus: true, placeholder: 'First Name', label: false
+          = f.input :last_name, placeholder: 'Last Name', label: false
 
-        = f.label :first_name, "Your Name"
-        = f.input :first_name, autofocus: true, placeholder: 'First Name', label: false
-        = f.input :last_name, placeholder: 'Last Name', label: false
+          = f.input :username, autocapitalize: "off", autocorrect: "off", hint: "Alphanumeric characters only please (a-z0-9)"
+          = f.input :email, autocapitalize: "off", autocorrect: "off"
 
-        = f.input :username, autocapitalize: "off", autocorrect: "off", hint: "Alphanumeric characters only please (a-z0-9)"
-        = f.input :email, autocapitalize: "off", autocorrect: "off"
+          = f.input :password
+          = f.input :password_confirmation
 
-        = f.input :password
-        = f.input :password_confirmation
+          #honeypot
+            %p You have now completed the form. The following field is a #{link_to "honeypot", "http://en.wikipedia.org/wiki/Honeypot_(computing)"} to prevent bots. Please ignore it and submit the form. Apologies for the inconvenience.
+            = label_tag 'name', 'IGNORE'
+            = text_field_tag 'name', nil, alt: "This field is to prevent bots. Please leave it blank.", placeholder: "LEAVE BLANK TO PROVE YOU ARE HUMAN"
 
-        #honeypot
-          %p You have now completed the form. The following field is a #{link_to "honeypot", "http://en.wikipedia.org/wiki/Honeypot_(computing)"} to prevent bots. Please ignore it and submit the form. Apologies for the inconvenience.
-          = label_tag 'name', 'IGNORE'
-          = text_field_tag 'name', nil, alt: "This field is to prevent bots. Please leave it blank.", placeholder: "LEAVE BLANK TO PROVE YOU ARE HUMAN"
+          .form-check
+            = f.input :agree_policy_terms, as: :boolean, label: "Please read and agree to our <a href='/cookie-policy'>Cookie</a>, <a href='/privacy-policy'>Privacy</a> and <a href='/tos'>Terms of Service (TOS)</a> policies".html_safe, input_html: { class: 'form-check-input' }
 
-        = f.input :agree_policy_terms, as: :boolean, label: "Please read and agree to our <a href='/cookie-policy'>Cookie</a>, <a href='/privacy-policy'>Privacy</a> and <a href='/tos'>Terms of Service (TOS)</a> policies".html_safe
-
-        = f.submit t("views.header.signup", default: "Sign Up"), class: 'btn btn-primary btn-lg pull-right'
+          = f.submit t("views.header.signup", default: "Sign Up"), class: 'btn btn-primary btn-lg float-left'

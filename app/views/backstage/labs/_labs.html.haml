@@ -3,19 +3,19 @@
     = f.input :name_or_city_cont, label: "Name"
     .row
       .col-lg-3
-        = f.input :is_referee_true, as: :boolean, label: "Is referee"
+        = f.input :is_referee_true, as: :boolean, label: "Is referee", input_html: { class: 'form-check-input' }
       .col-lg-3
-        = f.input :discourse_id_not_null, as: :boolean, label: "With discourse ID"
+        = f.input :discourse_id_not_null, as: :boolean, label: "With discourse ID", input_html: { class: 'form-check-input' }
       .col-lg-3
-        = f.input :discourse_id_null, as: :boolean, label: "Without discourse ID"
+        = f.input :discourse_id_null, as: :boolean, label: "Without discourse ID", input_html: { class: 'form-check-input' }
       .col-lg-3
-        = f.input :discourse_errors_not_null, as: :boolean, label: "With discourse sync errors"
+        = f.input :discourse_errors_not_null, as: :boolean, label: "With discourse sync errors", input_html: { class: 'form-check-input' }
     .row
       .col-lg-4
         = f.input :country_code_eq, as: 'country', label: 'Country', iso_codes: true, include_blank: 'ALL'
       .col-lg-4
         = f.input :workflow_state_eq, collection: Lab.workflow_spec.state_names, label: "State", include_blank: 'ALL'
-      .col-lg-3
+      .col-lg-3.m-auto
         = f.submit "Filter", class: 'btn btn-primary btn-lg'
 
 = page_entries_info @labs
@@ -40,4 +40,4 @@
         %td= link_to lab.creator, lab.creator
         %td= lab.current_state
 
-= paginate @labs
+= paginate @labs, theme: 'twitter-bootstrap-4', nav_class: "m-auto pt-3"

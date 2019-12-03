@@ -2,48 +2,44 @@
 - if flash.any?
   - flash.each do |name, msg|
     = content_tag :div, msg, class: flash_class(name)
-%nav.navbar.navbar-custom
+
+%nav.navbar.navbar-custom.navbar-expand-lg{:role => "navigation"}
   .container-fluid
-    .navbar-header
-      %button.navbar-toggle.collapsed{"aria-controls" => "navbar", "aria-expanded" => "false", "data-target" => "#navbar", "data-toggle" => "collapse", :type => "button"}
-        %span.sr-only Toggle navigation
-        %span.icon-bar
-        %span.icon-bar
-        %span.icon-bar
+    = link_to root_path, class: 'navbar-brand' do
+      =image_tag ("logo.svg"), :alt => "fablabs.io"
 
-      = link_to root_path, class: 'navbar-brand' do
-        =image_tag ("logo.svg"), :alt => "fablabs.io"
-
+    %button.mt-0.navbar-toggler{"aria-controls" => "navbar", "aria-expanded" => "false", "data-target" => "#navbar", "data-toggle" => "collapse", "aria-label" => "Toggle navigation", :type => "button"}
+      %i.fa.fa-bars.fa-lg
 
     #navbar.collapse.navbar-collapse
 
       = form_tag '/search', class: 'navbar-form navbar-left', method: 'get' do
-        .form-group
+        .form-group.container-fluid.mb-0
           - if params[:country].present?
             = hidden_field_tag 'country', params[:country]
           = text_field_tag 'query', params[:query], class: 'form-control', autocomplete: 'off', placeholder: t("views.header.search"), id: 'search-box'
 
       %ul.nav.navbar-nav
-        %li.navbar-link
+        %li.nav-item.navbar-link
           = link_to t("views.header.labs"), labs_path
-        %li.navbar-link
+        %li.nav-item.navbar-link
           = link_to t("views.header.organizations"), organizations_path
-        %li.navbar-link
+        %li.nav-item.navbar-link
           = link_to t("views.header.machines"), machines_path
-        %li.navbar-link
+        %li.nav-item.navbar-link
           = link_to 'https://projects.fablabs.io', target: "_blank" do
             = t("views.header.projects")
             = '&nbsp;'.html_safe
             = fa_icon 'external-link'
-        %li.navbar-link
+        %li.nav-item.navbar-link
           = link_to 'https://discuss.fablabs.io', target: "_blank" do
             Discuss
             = '&nbsp;'.html_safe
             = fa_icon 'external-link'
 
-      %ul.nav.navbar-nav.navbar-right
+      %ul.nav.navbar-nav.ml-auto
         - if current_user
-          %li.dropdown
+          %li.mr-2
             = link_to current_user do
               = image_tag current_user.avatar_url, class: 'avatar tiny'
               - if current_or_null_user.has_role? :superadmin
@@ -51,38 +47,38 @@
               - else
                 - if current_or_null_user.is_referee? or current_or_null_user.is_unique_referee?
                   = gem_count_tag current_or_null_user.referees_count
-          %li
-            %a.dropdown-toggle{data: {toggle: 'dropdown'}}
-              %span.caret
-            %ul.dropdown-menu
-              %li
+          %li.dropdown
+            %a.dropdown-toggle{:href => "#", "role" => "button", "data-toggle" => "dropdown", "data-target" => "#"}
+            %ul.dropdown-menu.dropdown-menu-right
+              %li.dropdown-item
                 = link_to settings_path do
                   = fa_icon "cog", text: t("views.header.settings")
               - if current_or_null_user.has_role? :superadmin
-                %li
+                %li.dropdown-item
                   = link_to backstage_root_path do
                     = fa_icon "gamepad"
                     = t("views.header.backstage", default: "Backstage")
                     = gem_count_tag Lab.with_unverified_state.size
               - else
                 - if current_or_null_user.is_referee? or current_or_null_user.is_unique_referee?
-                  %li
+                  %li.dropdown-item
                     = link_to backstage_root_path do
                       = fa_icon "gamepad"
                       = t("views.header.backstage", default: "Backstage")
                       = gem_count_tag current_or_null_user.pending_referee_labs.count
 
-              %li.divider{:role => "separator"}
-              %li
+              %li.divider
+              %li.dropdown-item
                 = link_to oauth_applications_path do
                   = fa_icon "code", text: t("views.header.developer_console", default: "Developer Console")
-              %li.divider{:role => "separator"}
-              %li
+              %li.divider
+              %li.dropdown-item
                 = link_to signout_path do
                   = fa_icon "sign-out", text: t("views.header.signout", default: "Sign out")
 
         - else
           %li.navbar-btn
-            = link_to t("views.header.signin", default: "Sign in"), signin_path, class: 'btn btn-default'
+            = link_to t("views.header.signin", default: "Sign in"), signin_path, class: 'btn btn-default w-100'
           %li.navbar-btn
-            = link_to t("views.header.signup", default: "Sign up"), signup_path, class: 'btn btn-primary'
+            = link_to t("views.header.signup", default: "Sign up"), signup_path, class: 'btn btn-primary w-100'
+          %li.navbar-btn

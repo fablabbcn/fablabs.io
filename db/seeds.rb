@@ -79,9 +79,9 @@ RefereeApprovalProcess.create!(
     workflow_state: 'approved',
     latitude: 64.963,
     longitude: 19.0208,
-    description: 'bla',
-    phone: '01234',
-    blurb: 'bla'
+    description: 'This is a description of your lab',
+    phone: '0',
+    blurb: 'Promotional message'
     #referee_id: 1
   )
 end

@@ -15,4 +15,4 @@
             %th= link_to 'Edit', [:edit, project]
             %th= link_to 'View', project
 
-    = paginate @projects
+    = paginate @projects, theme: 'twitter-bootstrap-4', nav_class: "m-auto pt-3"

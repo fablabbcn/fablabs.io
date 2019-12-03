@@ -1,11 +1,11 @@
 .row.homepage-events
   .container
     .row
-      .col-xs-12
+      .col-12
         %h3.text-primary Fablab Network Events
     .row
       - @news.each do |a|
-        .col-xs-12.col-md-4
+        .col-12.col-md-4
           .homepage-event-card
             %a{:href => a[:url]}=image_tag (image_url(a[:image_url])), :class => "homepage-project-card-image", :target=>"_blank"
             .text-medium

@@ -11,7 +11,7 @@
         -# = simple_form_for :signin, { url: sessions_path } do
         = hidden_field_tag :goto, params[:goto]
         = hidden_field_tag :authenticity_token, form_authenticity_token
-        .input
+        .input.mr-3
           = label_tag :email_or_username, "Email or Username"
           = text_field_tag :email_or_username, params[:email_or_username],
             placeholder:    'Email or Username',
@@ -28,7 +28,7 @@
             class:       'form-control'
 
       .row
-        = submit_tag t("views.header.signin", default: "Sign in"), class: 'btn btn-primary btn-lg pull-right'
+        = submit_tag t("views.header.signin", default: "Sign in"), class: 'btn btn-primary btn-lg float-right'
 
       .row
         = link_to "Forgot the password?", new_recovery_url(subdomain: 'www')

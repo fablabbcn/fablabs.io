@@ -17,8 +17,8 @@
       - if @labs.size > 0
         .row
           %h4 Labs
-          .labs= render @labs
-          = paginate @labs
+          .labs.col-12= render @labs
+          = paginate @labs, theme: 'twitter-bootstrap-4', nav_class: "m-auto pt-3"
       - if @users.size > 0
         .row
           %h4 Users

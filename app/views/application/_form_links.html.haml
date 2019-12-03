@@ -1,10 +1,9 @@
 .question
-  .text-medium
+  .text-large.p-0
     %strong Links:
-    %span It can include blogs, social networks, video/photo sites etc.
 
   = f.simple_fields_for :links do |link|
     = render 'link_fields', f: link
-  .links
+  .links.mt-3
     = link_to_add_association f, :links, class: 'btn btn-default' do
       Add link

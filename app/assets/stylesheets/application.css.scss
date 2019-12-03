@@ -27,17 +27,9 @@
 @import "font-awesome-sprockets";
 @import "font-awesome";
 
-
 a{
   cursor: pointer;
 }
-
-// Remove when Bootstrap 4 is used:
-.mt-1{ margin-top: 0.25rem; }
-.mt-2{ margin-top: 0.5rem; }
-.mt-3{ margin-top: 1rem; }
-.mt-4{ margin-top: 1.5rem; }
-.mt-5{ margin-top: 3rem; }
 
 #embed-logo {
   display: block;
@@ -107,7 +99,7 @@ html {
 }
 
 #main {
-  h1,h2,h3,h4,h5,h6,legend {
+  h1,h2,h3,h4,h5,h6 {
     text-shadow: 1px 1px 1px #FFF;
   }
 }
@@ -305,6 +297,7 @@ h3 {
 }
 
 .btn {
+  margin: 3px;
   &.btn-primary {
     background-color: #81D7BE;
     color: white;
@@ -404,7 +397,6 @@ h3 {
   font-size: 22px;
   line-height: 40px;
   font-weight: 900;
-  color: #4A4A4A;
 }
 
 .text-medium {
@@ -447,7 +439,7 @@ a.text-primary {
 }
 
 .text-primary {
-  color: #81D7BE;
+  color: #81D7BE !important;
 }
 
 .list-item-small-wrapper {
@@ -476,10 +468,6 @@ a.text-primary {
   }
 }
 
-.pagination-centered {
-  text-align: center;
-}
-
 .pagination {
   > li > a {
     color: #666;
@@ -493,26 +481,23 @@ a.text-primary {
       color: #666;
     }
   }
+}
 
-  .current > a {
-    color: white;
+.page-item.active {
+  .page-link {
     background-color: #81D7BE;
     border-color: #81D7BE;
-
-    &:hover {
-      color: white;
-      border-color: #68C5AA;
-      background-color: #68C5AA;
-    }
-  }
-
-  .unavailable > a {
-    background-color: transparent;
-    border-color: transparent;
-
-    &:hover {
-      background-color: transparent;
-      border-color: transparent;
-    }
   }
 }
+
+.well {
+  min-height: 20px;
+  padding: 42px;
+  margin-bottom: 20px;
+  background-color: #f5f5f5;
+  border: 1px solid #e3e3e3;
+  border-radius: 6px;
+}
+
+
+

@@ -4,8 +4,7 @@
   .row
     .col-lg-12
       = title "Labs Manager"
-
       = render 'backstage/labs_manager/search', p: @p, url_form: [:backstage, :manager], labs: @labs
       = page_entries_info @labs, entry_name: "lab"
       = render 'backstage/labs_manager/labs', p: @p, url_form: [:backstage, :manager], labs: @labs
-      = paginate @labs
+      = paginate @labs, theme: 'twitter-bootstrap-4', nav_class: "m-auto pt-3"
