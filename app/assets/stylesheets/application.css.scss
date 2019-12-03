@@ -31,10 +31,6 @@ a{
   cursor: pointer;
 }
 
-.text-primary-custom {
-  color: #81D7BE;
-}
-
 #embed-logo {
   display: block;
   background: image_url("embed-logo.png");
@@ -442,6 +438,10 @@ a.text-primary {
   }
 }
 
+.text-primary {
+  color: #81D7BE !important;
+}
+
 .list-item-small-wrapper {
   background-color: transparent;
   margin: 8px 0;
@@ -498,4 +498,6 @@ a.text-primary {
   border: 1px solid #e3e3e3;
   border-radius: 6px;
 }
+
+
 
