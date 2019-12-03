@@ -1,9 +1,9 @@
 - cache ["v1-#{I18n.locale}", lab] do
   = content_tag_for :div, lab, class: 'media', itemscope: true, itemtype: "http://data-vocabulary.org/Organization" do
-    .img.float-left
+    .img
       = link_to lab do
         = image_tag lab.avatar.thumb('100x100#').url, class: 'med avatar', itemprop: "logo"
-    .float-left.ml-2
+    .ml-2
       = link_to lab, class: 'name' do
         %span.name{itemprop: "name"}= lab
       %span.url.microdata{itemprop: "url"}= lab_url(lab, {locale: nil})
