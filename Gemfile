@@ -52,6 +52,7 @@ gem 'inherited_resources'
 gem 'jbuilder'#, '~> 1.2'
 gem 'jquery-rails'
 gem 'kaminari'
+gem 'bootstrap4-kaminari-views'
 gem 'letter_opener'
 gem 'momentjs-rails'
 gem 'nest'
@@ -129,5 +130,3 @@ gem 'bcrypt'
 
 # Use unicorn as the app server
 # gem 'unicorn'
-
-gem 'bootstrap4-kaminari-views'
