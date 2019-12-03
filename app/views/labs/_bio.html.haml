@@ -25,7 +25,7 @@
           %span.lab-email
             %span.fa.fa-envelope
             %span{itemprop: "email"}= mail_to lab.email, lab.email
-  .float-right.ml-auto
+  .ml-auto
     - if current_or_null_user.can_update?(@lab)
       .dropdown
         %button.btn.btn-primary.btn-lg.dropdown-toggle{"aria-expanded" => "true", "aria-haspopup" => "true", "data-toggle" => "dropdown", :type => "button"}

@@ -20,18 +20,18 @@
           = text_field_tag 'query', params[:query], class: 'form-control', autocomplete: 'off', placeholder: t("views.header.search"), id: 'search-box'
 
       %ul.nav.navbar-nav
-        %li.nav-item.active.navbar-link
+        %li.nav-item.navbar-link
           = link_to t("views.header.labs"), labs_path
-        %li.nav-item.active.navbar-link
+        %li.nav-item.navbar-link
           = link_to t("views.header.organizations"), organizations_path
-        %li.nav-item.active.navbar-link
+        %li.nav-item.navbar-link
           = link_to t("views.header.machines"), machines_path
-        %li.nav-item.active.navbar-link
+        %li.nav-item.navbar-link
           = link_to 'https://projects.fablabs.io', target: "_blank" do
             = t("views.header.projects")
             = '&nbsp;'.html_safe
             = fa_icon 'external-link'
-        %li.nav-item.active.navbar-link
+        %li.nav-item.navbar-link
           = link_to 'https://discuss.fablabs.io', target: "_blank" do
             Discuss
             = '&nbsp;'.html_safe
@@ -78,7 +78,7 @@
 
         - else
           %li.navbar-btn
-            = link_to t("views.header.signin", default: "Sign in"), signin_path, class: 'btn btn-default', style: 'width: 100%'
+            = link_to t("views.header.signin", default: "Sign in"), signin_path, class: 'btn btn-default w-100'
           %li.navbar-btn
-            = link_to t("views.header.signup", default: "Sign up"), signup_path, class: 'btn btn-primary', style: 'width: 100%'
+            = link_to t("views.header.signup", default: "Sign up"), signup_path, class: 'btn btn-primary w-100'
           %li.navbar-btn

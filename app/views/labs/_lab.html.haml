@@ -12,6 +12,6 @@
           = fa_icon "map-marker"
           %span.short_address{itemprop: "addressLocality"}= lab.short_address(!params[:country])
           %span.microdata.country{itemprop: "country"}= lab.country_code
-    .float-right.ml-auto
+    .ml-auto
       = link_to lab do
         = image_tag ("icons/arrow-right.svg"), class: 'arrow'
