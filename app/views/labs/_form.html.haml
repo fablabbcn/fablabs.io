@@ -192,8 +192,7 @@
       %label{for: "facilities_attributes"}
         Machine
         = select_tag :facilities_attributes, options_from_collection_for_select(@collection, :id, :name, @selected), { multiple: true, size: 10, name: 'lab[facilities_attributes][][thing_id]', class: 'machine_selection_attributes'}
-    .px-4
-      = f.input :tools_list, hint: "Please list any machines that you have so that we can add them to the directory.", input_html: { style: "height: 8em" }, placeholder: "e.g. Makerbot Industries - Makerbot 2"
+    = f.input :tools_list, hint: "Please list any machines that you have so that we can add them to the directory.", input_html: { style: "height: 8em" }, placeholder: "e.g. Makerbot Industries - Makerbot 2"
 
   - if lab.workflow_state != "approved"
     %fieldset.col-12.mb-4
