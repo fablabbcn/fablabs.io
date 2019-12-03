@@ -6,7 +6,7 @@
         .text-medium
           Once you join you'll be able to add your Fab Lab to the list, participate in discussions with all the Fab Labs and users, upload projects and more.
 
-      .row
+      .row.px-0
         = render "form_errors", resource: @user
         = hidden_field_tag :goto, params[:goto]
         .col-12
