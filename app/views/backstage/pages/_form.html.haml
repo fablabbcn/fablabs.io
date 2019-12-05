@@ -1,7 +1,9 @@
 = simple_form_for [:backstage, page] do |f|
-  = f.input :title
-  = f.input :slug
-  = f.input :content, input_html: {class: 'trumbowyg'}
-  = f.input :position
-  = f.input :published
-  = f.submit 'save', class: 'btn btn-primary'
+  %fieldset.col-12
+    = f.input :title
+    = f.input :slug
+    = f.input :content, input_html: {class: 'trumbowyg'}
+    = f.input :position
+    .form-check.ml-4
+      = f.input :published, input_html: {class: 'form-check-input'}
+  = f.submit 'Save', class: 'btn btn-primary btn-lg mt-4'

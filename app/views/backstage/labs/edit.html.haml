@@ -7,10 +7,8 @@
 
     .edit-lab
 
-    = f.submit 'Save', class: 'btn btn-primary'
-
     %fieldset
-      %legend Basic Details
+      .text-large Basic Details
       .row
         .col-lg-12
           %h5
@@ -34,7 +32,7 @@
                     = value.humanize.titleize
 
     %fieldset
-      %legend
+      .text-large
         Approval process
       .row
         .col-lg-12
@@ -53,7 +51,7 @@
 
 
     %fieldset
-      %legend Status and history of your Lab
+      .text-large Status and history of your Lab
       .row
         .col-lg-12
           %h5
@@ -85,7 +83,7 @@
               = f.input :activity_closed_at, label: 'When was the Lab closed?', as: 'string', input_html: {class: 'flatpickr' }
 
     %fieldset
-      %legend Location
+      .text-large Location
       .row
         .col-lg-12
           = f.input :address_1
@@ -100,31 +98,28 @@
           = f.input :address_notes
 
     %fieldset
-      %legend Capabilities
+      .text-large Capabilities
       .row
         .col-lg-12
           = f.input :tools_list
 
     %fieldset
-      %legend Contact information
+      .text-large Contact information
       .row
         .col-lg-12
           = f.input :phone
           = f.input :email
 
     %fieldset
-      %legend Notes
+      .text-large Notes
       .row
         .col-lg-12
           = f.input :application_notes
 
     %fieldset
-      %legend Referee status
-      .row
-        .col-lg-12
-          = f.input :is_referee
+      .text-large Referee status
+      .form-check
+        = f.input :is_referee,
 
 
-    .row
-      .col-lg-12
-        = f.submit 'Save', class: 'btn btn-primary'
+    = f.submit 'Save', class: 'btn btn-primary btn-lg mt-4'
