@@ -12,12 +12,11 @@
  *= require select2/dist/css/select2
  *= require taggd
  *= require intlTelInput
- *= require jquery.timepicker
  *= require messenger
  *= require messenger-theme-flat
  *= require trumbowyg/trumbowyg
  *= require bootstrap/dist/css/bootstrap.min.css
- *= require bootstrap-datepicker/dist/css/bootstrap-datepicker
+ *= require flatpickr
  *= require_self
  *= require_tree .
 
