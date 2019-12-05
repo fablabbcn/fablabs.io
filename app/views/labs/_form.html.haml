@@ -1,7 +1,6 @@
 = simple_form_for lab, html: { class: 'row' } do |f|
   = render 'form_errors', resource: lab
 
-  = f.submit (lab.new_record? ? 'Add Lab' : 'Update Lab'), class: 'btn btn-primary btn-lg'
   %fieldset.col-12
     .text-large
       Adding Basic Details

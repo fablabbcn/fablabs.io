@@ -1,4 +1,5 @@
 %ul.breadcrumbs
-  %li= link_to Event.to_s.pluralize, lab_events_path(event.lab)
-  %li.class
+  %li.breadcrumb-item
+    = link_to Event.to_s.pluralize, lab_events_path(event.lab)
+  %li.breadcrumb-item
     = link_to event, [event.lab, event]
