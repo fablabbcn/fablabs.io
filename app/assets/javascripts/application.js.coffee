@@ -12,6 +12,7 @@
 #
 #= require jquery
 #= require jquery_ujs
+#= require popper.js/dist/umd/popper
 #= require bootstrap/dist/js/bootstrap
 #= require jquery.limit-1.2
 #= require Control.Loading.js
