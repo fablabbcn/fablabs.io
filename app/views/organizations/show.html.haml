@@ -19,7 +19,7 @@
           #organization-map{ data: {geojson: @organization.geojson, latitude: @organization.latitude, longitude: @organization.longitude, zoom: @organization.zoom}}
 
 
-  .row.main
+  .row.main.mt-3
     .col-lg-8.content
       .lab-description{itemprop: "description"}
         = simple_format @organization.description
@@ -43,7 +43,7 @@
     .col-lg-4
       = render "links", links: @organization.links
 
-  .row
+  .row.mt-5
     .col-lg-12
       - if @organization.discourse_id.present?
         %h3 Discuss this Organization on discuss.fablabs.io
