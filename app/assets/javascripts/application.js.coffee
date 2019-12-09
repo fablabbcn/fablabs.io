@@ -12,8 +12,7 @@
 #
 #= require jquery
 #= require jquery_ujs
-#= require popper.js/dist/umd/popper
-#= require bootstrap/dist/js/bootstrap
+#= require bootstrap/dist/js/bootstrap.bundle
 #= require jquery.limit-1.2
 #= require Control.Loading.js
 #= require jquery.geocomplete
