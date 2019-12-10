@@ -3,7 +3,7 @@
   -# = f.association :user
 
   %fieldset
-    %legend Role Details
+    .text-large Role Details
     = f.input :job_title, input_html: { placeholder: "e.g. Fab Lab Manager" }, autofocus: f.object.new_record?
     = f.input :description, as: 'string', label: 'Job description/responsibilities'
 
@@ -11,9 +11,9 @@
   -# = f.input :is_admin
 
   %fieldset
-    %legend Public Contact Details
+    .text-large Public Contact Details
     %p.hint These are optional, they will be listed publicly on #{employee.lab}'s page. We recommend that you at least add a direct email address if possible. It will be obfuscated in the source code to prevent SPAM bots from harvesting it.
     = f.input :email, label: "Direct Email"
     = f.input :phone, label: "Direct Phone Number"
 
-  = f.submit (f.object.new_record? ? "Send Application" : "Update"), class: 'btn btn-primary'
+  = f.submit (f.object.new_record? ? "Send Application" : "Update"), class: 'btn btn-primary btn-lg mt-4'

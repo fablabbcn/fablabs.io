@@ -68,8 +68,8 @@
     %p It can include blogs, social networks, video/photo sites etc.
 
   - if organization.new_record?
-    %fieldset.col-12.mb-4
+    %fieldset.col-12
       .text-large Anything else?
       = f.input :application_notes
 
-  = f.submit (organization.new_record? ? 'Add organization' : 'Update organization'), class: 'btn btn-primary btn-large'
+  = f.submit (organization.new_record? ? 'Add organization' : 'Update organization'), class: 'btn btn-primary btn-lg mt-4'

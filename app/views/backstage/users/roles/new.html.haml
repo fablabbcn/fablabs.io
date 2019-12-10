@@ -7,4 +7,4 @@
 
       = simple_form_for [:backstage, @user, @role] do |f|
         = f.input :name, collection: Role::AVAILABLE, allow_blank: false, prompt: false
-        = f.submit 'save', class: 'btn btn-primary'
+        = f.submit 'Save', class: 'btn btn-primary btn-lg'

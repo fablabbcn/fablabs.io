@@ -195,7 +195,7 @@
     = f.input :tools_list, hint: "Please list any machines that you have so that we can add them to the directory.", input_html: { style: "height: 8em" }, placeholder: "e.g. Makerbot Industries - Makerbot 2"
 
   - if lab.workflow_state != "approved"
-    %fieldset.col-12.mb-4
+    %fieldset.col-12
       .text-large
         Please select 3 Referee Labs
       .text-medium
@@ -210,4 +210,4 @@
         = f.input :parent_id, as: 'select', collection: Lab.with_approved_state.order('name ASC'), input_html: { class: 'enhanced' }
 
 
-  = f.submit (lab.new_record? ? 'Add Lab' : 'Update Lab'), class: 'btn btn-primary btn-lg'
+  = f.submit (lab.new_record? ? 'Add Lab' : 'Update Lab'), class: 'btn btn-primary btn-lg mt-4'

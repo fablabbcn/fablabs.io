@@ -35,4 +35,4 @@
         %fieldset
           = f.input :use_metric, :collection => [[true, 'Metric - cm/m/km'], [false, 'Imperial - in/ft/mi']], item_wrapper_class: 'form-check form-group', :label_method => :last, :value_method => :first, inline_label: true, :as => :radio_buttons, :label => "Preferred units", :hint => "This doesn't update measurements on the site yet, but will do soon", input_html: { class: 'form-check-input' }
 
-        = f.submit "Update", class: 'btn btn-primary'
+        = f.submit "Update", class: 'btn btn-primary btn-lg mt-4'
