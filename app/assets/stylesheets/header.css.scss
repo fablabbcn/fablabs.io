@@ -195,13 +195,10 @@ header {
           color: #111111;
           background-color: initial;
         }
-
-        @media (min-width: 360px) {
-          padding: 0 10px;
-          height: 80px;
-          display: flex;
-          align-items: center;
-        }
+        padding: 0 10px;
+        height: 80px;
+        display: flex;
+        align-items: center;
       }
     }
 
