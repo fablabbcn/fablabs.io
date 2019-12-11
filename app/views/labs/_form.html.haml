@@ -8,7 +8,7 @@
     = f.input :name, label: 'Your fablab name'
 
     .question
-      .text-medium
+      %h5
         %strong More lab details:
         %span What kind of Fab Lab is your Lab?
 
@@ -22,7 +22,7 @@
                 = value.humanize.titleize
 
     .question
-      .text-medium
+      %h5
         %strong Current status of your Lab:
         %span Is this Lab already open, planned or closed?
 
@@ -36,7 +36,7 @@
                 = status.humanize.titleize
 
     .question
-      .text-medium
+      %h5
         %strong Lab history:
         %span Please indicate these important dates in the history of your Lab:
 
@@ -49,7 +49,7 @@
   %fieldset.col-12
     .text-large
       What qualifies as a Fab Lab
-    .text-medium
+    %h5
       Fab Labs have a list of qualities and requirements that defines them.
       More information can be found
       %a{href: "http://www.fabfoundation.org/index.php/what-qualifies-as-a-fab-lab/index.html"} here.
@@ -126,11 +126,11 @@
 
     .address
       .question
-        .text-medium Step 1
+        %h5 Step 1
         .text-small Enter the lab's address in the textbox below. Then drag the map marker to pinpoint its exact position.
         = f.input :geocomplete, input_html: { id: 'geocomplete', data: { latlng: "#{@lab.latitude}, #{@lab.longitude}"} }, label: false
       .question.step-2
-        .text-medium Step 2
+        %h5 Step 2
         .text-small Edit the details in the address fields below.
         .row
           .col-lg-6#map-holder
@@ -147,7 +147,7 @@
             = f.input :longitude, as: :hidden, input_html: { data: {geo: "lng"}}
             = f.input :zoom, as: :hidden
       .question
-        .text-medium Step 3
+        %h5 Step 3
         = f.input :address_notes, hint: 'Any details that might be useful for someone trying to find the lab. For example, "Go up the stairs and through the red door".'
 
   %fieldset.col-12
@@ -159,7 +159,7 @@
 
     - if @lab.new_record?
       .question
-        .text-medium
+        %h5
           %strong Your Role
         = f.simple_fields_for :employees do |e|
           = e.input :job_title, placeholder: "e.g. Lab Manager"
@@ -167,7 +167,7 @@
 
     - if @lab.new_record?
       .question
-        .text-medium
+        %h5
           %strong Applications Notes
         = f.input :application_notes
 
@@ -176,7 +176,7 @@
     .text-large
       Lab Technologies
 
-    .text-medium
+    %h5
       %strong Add Capabilities:
       %span Check all of the boxes that apply to this lab
 
@@ -198,14 +198,14 @@
     %fieldset.col-12
       .text-large
         Please select 3 Referee Labs
-      .text-medium
+      %h5
         Please choose 3 of the Referee Labs available and contact them, they will approve you after you have exchanged more information with them. The list of Referee Labs is limited to some Fab Labs with experience and a history of collaborating with the global Fab Lab Network, at the moment it is not possible to choose Referee Labs outside that list. It's not important that you already know them, it's important that you start a discussion with them. We are doing this so that the connections among the Labs (especially for new Labs) get strengthened.
         = render 'referees', :f => f
 
       %br
       .text-large
         Please select a Parent Lab
-      .text-medium
+      %h5
         Is this Lab connected to another Lab? If so, which Lab?
         = f.input :parent_id, as: 'select', collection: Lab.with_approved_state.order('name ASC'), input_html: { class: 'enhanced' }
 

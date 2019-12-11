@@ -43,11 +43,11 @@
     .text-large Organization Location
     .address
       .question
-        .text-medium Step 1
+        %h5 Step 1
         = f.input :geocomplete, input_html: { id: 'geocomplete', data: { latlng: "#{@organization.latitude}, #{@organization.longitude}"}, class: 'mb-0 mt-3' }, label: false
         %p.hint.p-0 Enter the organization's address in the textbox below. Then drag the map marker to pinpoint its exact position.
       .question.step-2
-        .text-medium Step 2
+        %h5 Step 2
         %p.hint.pl-0.pt-3 Edit the details in the address fields below.
         .row
           .col-lg-6#map-holder
