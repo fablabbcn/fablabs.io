@@ -1,13 +1,13 @@
 .homepage-header
 .container
-    .row{ :style => "margin-top: -300px"}
-        .col-12.col-md-4.mb-4
+    .row.mb-4{ :style => "margin-top: -300px"}
+        .col-12.col-md-4
             .homepage-header-content
                 .text-large.text-primary
                     = t("views.alt.whats_a_fab_lab", default: "What is a Fablab?")
                 %h5
                     = t("views.alt.fab_labs_description", default: "A Fab Lab, or digital fabrication laboratory, is a place to play, to create, to mentor and to invent: a place for learning and innovation.<br>Fab Labs provide access to the environment, the skills, the materials and the advanced technology to allow anyone anywhere to make (almost) anything.<br><br><a href='http://www.fabfoundation.org'>Learn more</a>", fab_foundation: (link_to "Fab Foundation", "http://www.fabfoundation.org") ).html_safe
-        .col-12.col-md-4.mb-4
+        .col-12.col-md-4
             .homepage-header-content
                 .text-large.text-primary
                     = t("views.alt.how_to_start", default: "How to start a Fablab?")
@@ -19,8 +19,8 @@
                     = t("views.home.find_a_fablab", default: "Find a Fablab")
                 %h5
                     = t("views.alt.find_a_fablab_description", default: "The Fablab Network is an open, creative community of fabricators, artists, scientists, engineers, educators, students, amateurs and professionals located in more than 100 countries and 1,750 Fab Labs across the globe. Fablabs offer a wide range of educational programs for all age groups and professional digital fabrication services for various types of organizations.<br><br><a href='/labs/map'>Browse the Fablabs map</a>" ).html_safe
-    .row.homepage-boxes
-        .col-12.col-md-6.mb-4
+    .row.homepage-boxes.mb-4
+        .col-12.col-md-6
             .homepage-box
                 =image_tag ("home/lab-illustration.png"), :class => "homepage-box-image"
                 .text-small
