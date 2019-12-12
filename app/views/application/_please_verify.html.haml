@@ -1,7 +1,5 @@
 #please-verify
-  .row
-    .col-lg-12
-      Please check your inbox
-      %strong #{current_user.email}
-      and validate your email address.
-      %nbr= link_to("Resend Verification Email", resend_verification_email_path, data: { confirm: "It may take a few minutes to reach you. Before we send another, have you checked your spam folder?"})
+  Please check your inbox
+  %strong #{current_user.email}
+  and validate your email address.
+  %nbr= link_to("Resend Verification Email", resend_verification_email_path, data: { confirm: "It may take a few minutes to reach you. Before we send another, have you checked your spam folder?"})

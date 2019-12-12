@@ -194,10 +194,8 @@ h1 {
 }
 
 #please-verify {
-  width: 100%;
   background: #FFAB4A;
   padding: 10px;
-  position: relative;
   z-index: 20;
   text-align: center;
   a {
@@ -391,7 +389,7 @@ h5 {
 .text-small {
   font-size: 14px;
   line-height: 24px;
-  color: #AAAAAA;
+  color: #666;
 }
 
 .page-intro {
