@@ -65,7 +65,7 @@ feature "Adding a lab" do
       fill_in 'County', with: 'County'
       select 'United Kingdom', from: 'Country'
       fill_in 'Slug', with: 'newlab'
-      click_button 'Add Lab'
+      click_on 'Add Lab', match: :first
       expect(page).to have_content "Thanks"
       lab = Lab.last
       expect(lab.referee_approval_processes.count).to eq(3)
@@ -75,7 +75,7 @@ feature "Adding a lab" do
 
     scenario "as a user with invalid details" do
       fill_in 'lab_name', with: 'No details'
-      click_button 'Add Lab'
+      click_on 'Add Lab', match: :first
       expect(page).to have_css ".errors"
     end
 

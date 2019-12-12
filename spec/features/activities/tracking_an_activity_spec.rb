@@ -7,7 +7,7 @@ feature "Tracking an activity" do
     sign_in_superadmin
     visit edit_lab_path(lab)
     fill_in "lab_name", with: "New name"
-    click_button "Update"
+    click_on 'Update', match: :first
     visit activity_path
     expect(page).to have_content("#{User.last} updated New name")
   end
@@ -23,7 +23,7 @@ feature "Tracking an activity" do
     lab = FactoryBot.create(:lab, workflow_state: 'approved')
     employee = FactoryBot.create(:employee, lab: lab)
     visit lab_employees_path(lab)
-    click_button "Approve"
+    click_on 'Approve', match: :first
     visit activity_path
     expect(page).to have_content("#{employee.user} was added as #{employee.job_title} at #{lab}")
   end

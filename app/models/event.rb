@@ -20,8 +20,6 @@ class Event < ActiveRecord::Base
   Tags = %w(open_days workshops lectures social_party)
   bitmask :tags, as: Tags
 
-  before_save :set_timezones
-
   def time_zone
     'Madrid'
   end
@@ -47,13 +45,5 @@ class Event < ActiveRecord::Base
   end
 
 private
-
-  def set_timezones
-    if time_zone.present?
-      Chronic.time_class = ActiveSupport::TimeZone.new(time_zone)
-    end
-    self.starts_at = Chronic.parse( [start_date, start_time].join(' '), endian_precedence: :little)
-    self.ends_at = Chronic.parse( [end_date, end_time].join(' '), endian_precedence: :little)
-  end
 
 end
