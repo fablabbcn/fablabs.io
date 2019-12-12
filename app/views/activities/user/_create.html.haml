@@ -3,7 +3,7 @@
     .vertical-timeline-circle
     .vertical-timeline-content
       = content_tag_for :div, activity do
-        .text-medium
+        %h5
           = link_to activity.creator, activity.creator, class: 'user'
           signed up
         .text-small

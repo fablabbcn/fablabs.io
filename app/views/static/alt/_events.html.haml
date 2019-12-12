@@ -8,7 +8,7 @@
         .col-12.col-md-4
           .homepage-event-card
             %a{:href => a[:url]}=image_tag (image_url(a[:image_url])), :class => "homepage-project-card-image", :target=>"_blank"
-            .text-medium
+            %h5
               %a{:href => a[:url]}= a[:title]
             .text-small
               = raw a[:description]

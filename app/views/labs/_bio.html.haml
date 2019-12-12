@@ -14,7 +14,7 @@
     
 
     .lab-contact-details
-      .text-medium
+      %h5
         .lab-address{itemprop: "address"}= lab.formatted_address
       .text-small
         - if lab.phone.present?
@@ -28,16 +28,15 @@
   .ml-auto
     - if current_or_null_user.can_update?(@lab)
       .dropdown
-        %button.btn.btn-primary.btn-lg.dropdown-toggle{"aria-expanded" => "true", "aria-haspopup" => "true", "data-toggle" => "dropdown", :type => "button"}
+        %a.dropdown-toggle.btn.btn-primary.btn-lg{:href => "#", "role" => "button", "data-toggle" => "dropdown", "data-target" => "#"}
           = fa_icon "edit", text: t('views.labs.show.manage_lab', default: "Manage Lab")
-          %span.caret
         %ul.dropdown-menu
-          %li
+          %li.dropdown-item
             = link_to edit_lab_path(@lab) do
               = fa_icon "edit", text: t('views.labs.show.edit_lab_details', default: "Edit Lab Details")
-          %li
+          %li.dropdown-item
             = link_to lab_employees_path(@lab) do
               = fa_icon "group", text: t('views.labs.show.edit_employee_list', default: "Edit Employee List")
-          %li
+          %li.dropdown-item
             = link_to new_lab_event_path(@lab) do
               = fa_icon "calendar", text: t('views.labs.show.add_event', default: "Add Event")
