@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   get "signin" => "sessions#new", :as => "signin"
   get '/robots.txt' => 'robots#robots', :format => :txt
 
+  get "styleguide", to: "static#styleguide"
+
   resources :sessions
 
   #constraints subdomain: 'www' do
@@ -37,9 +39,7 @@ Rails.application.routes.draw do
 
     resources :users
     resources :machines
-
     resources :brands
-
     resources :comments, only: [:create]
 
     resources :recoveries do
@@ -70,17 +70,15 @@ Rails.application.routes.draw do
       resources :my_labs, only: [:index]
       get "projects" => "redirects#projects"
       get "my_projects" => "redirects#myprojects"
-      
+
       # resources :my_projects, only: [:index]
       # resources :projects, only: [:index, :destroy] do
       #   patch :visible
       #   patch :hidden
       # end
       resources :to_approve_labs, only: [:index]
-     
-     
-      get "manager" => "labs_manager#index"
 
+      get "manager" => "labs_manager#index"
 
       resources :labs do
         member do
@@ -97,7 +95,7 @@ Rails.application.routes.draw do
           patch :add_more_info
         end
       end
-      
+
       root to: 'labs#index'
     end
 
@@ -125,8 +123,6 @@ Rails.application.routes.draw do
     #   end
     # end
 
-
-    
     resources :referee_approval_processes, only: [:destroy]
     resources :contributions, only: [:destroy]
     resources :collaborations, only: [:destroy]
@@ -162,8 +158,6 @@ Rails.application.routes.draw do
       controllers :applications => 'oauth/applications'
     end
 
-
-
     root to: 'static#alt'
 
   end
@@ -173,8 +167,6 @@ Rails.application.routes.draw do
     use_doorkeeper do
       controllers :applications => 'oauth/applications'
     end
-
-
 
     get '/' => 'static#api'
     # root to: ''static#api'
