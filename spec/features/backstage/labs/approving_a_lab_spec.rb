@@ -149,7 +149,7 @@ feature "Approving a lab" do
     sign_in lab_admin_bcn
     expect(lab_admin_bcn.is_referee?).to eq(true)
     visit request_more_info_backstage_lab_path(new_lab)
-    click_button "save"
+    click_button "Save"
     expect(page).to have_content("Lab requested more info")
     updated_lab = Lab.find(new_lab.id)
     expect(updated_lab.workflow_state).to eq("need_more_info")
