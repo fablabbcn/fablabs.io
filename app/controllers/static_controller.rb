@@ -48,6 +48,9 @@ class StaticController < ApplicationController
     # end
   end
 
+  def styleguide
+  end
+
   def version
     render json: {
       env: Rails.env,

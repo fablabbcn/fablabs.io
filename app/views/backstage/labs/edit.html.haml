@@ -9,13 +9,13 @@
 
     %fieldset
       .text-large Basic Details
-      .text-medium
+      %h5
         Name, description and slug of your Lab
       = f.input :name
       = f.input :blurb
       = f.input :description
       = f.input :slug
-      .text-medium
+      %h5
         Kind of Lab
       .hint
         What kind of Fab Lab is your Lab?
@@ -31,7 +31,7 @@
     %fieldset
       .text-large
         Approval process
-      .text-medium
+      %h5
         Referee Labs
         .hint.px-0
           These are your Referee Labs. Please contact them in case you have any question regarding your approval process.
@@ -47,7 +47,7 @@
 
     %fieldset
       .text-large Status and history of your Lab
-      .text-medium
+      %h5
         Current status of your Lab
         .hint.px-0
           Is this Lab already open, planned or closed?
@@ -62,7 +62,7 @@
                   = status.humanize.titleize
 
 
-          .text-medium.mt-2
+          %h5.mt-2
             History of your Lab
           .hint.px-0
             Please indicate these important dates in the history of your Lab:

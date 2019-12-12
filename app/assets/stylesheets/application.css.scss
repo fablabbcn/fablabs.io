@@ -243,6 +243,13 @@ h3 {
   margin: 0 0 0.5em;
 }
 
+h5 {
+  font-size: 18px;
+  line-height: 24px;
+  font-weight: 400;
+  color: #666666;
+}
+
 .gem-count {
   background: #FF7A72;
   color: white;
@@ -323,24 +330,7 @@ h3 {
   }
 }
 
-.container {
-  .row {
-    margin-left: 0;
-    margin-right: 0;
-  }
-}
-
-
 .card {
-  width: 230px;
-  height: 325px;
-  display: block;
-  background-color: white;
-  float: left;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-  margin: 12px;
-  border-radius: 4px;
-
   .card-image {
     width: 100%;
     height: 245px;
@@ -396,13 +386,6 @@ h3 {
   font-size: 22px;
   line-height: 40px;
   font-weight: 900;
-}
-
-.text-medium {
-  font-size: 18px;
-  line-height: 24px;
-  font-weight: 400;
-  color: #666666;
 }
 
 .text-small {

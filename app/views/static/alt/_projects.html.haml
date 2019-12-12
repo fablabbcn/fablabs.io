@@ -5,10 +5,10 @@
         %h3.text-primary Recent Projects
     .row
       - @projects.each do |a|
-        .col-12.col-md-4
+        .col-12.col-md-4.mb-5
           .homepage-project-card.container
             %a{:href => 'https://projects.fablabs.io/search/' + a['slug']}=image_tag (a['image_url']), :class => "homepage-project-card-image", :target=>"_blank"
-            .text-medium
+            %h5
               %a{:href => 'https://projects.fablabs.io/search/' + a['slug']}= a["title"]
             .text-small
               = raw a["description"]
