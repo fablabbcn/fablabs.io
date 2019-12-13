@@ -53,9 +53,3 @@
     .row.mt-3
       .col-lg-12
         = render("academics", lab: @lab, academics: @academics)
-
-  - if @lab.discourse_id.present?
-    .row.mt-5
-      .col-lg-12
-        %h3 Discuss this Lab on discuss.fablabs.io
-        = comments_script(@lab.discourse_id)

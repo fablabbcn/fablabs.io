@@ -126,8 +126,6 @@
               %pre
                 = @lab.discourse_errors
 
-            = comments_script(@lab.discourse_id)
-
       - if current_user.present?
         - if current_user.has_role? :superadmin
           = link_to edit_backstage_lab_path(@lab), class: 'btn btn-primary btn-lg' do

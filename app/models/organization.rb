@@ -38,8 +38,6 @@ class Organization < ActiveRecord::Base
 
   scope :approved, -> {where(workflow_state: STATE_APPROVED)}
 
-  after_save :discourse_sync_if_needed, if: Figaro.env.discourse_enabled
-
   attr_accessor :geocomplete
 
   extend FriendlyId
@@ -60,14 +58,6 @@ class Organization < ActiveRecord::Base
     if value.present?
       self.geojson = value.read
     end
-  end
-
-  def async_discourse_sync
-    DiscourseOrganizationWorker.perform_async(self.id)
-  end
-
-  def discourse_sync
-    DiscourseService::Organization.new(self).sync
   end
 
   def formatted_address
@@ -95,12 +85,6 @@ class Organization < ActiveRecord::Base
   end
 
   private
-
-  def discourse_sync_if_needed
-    if (changes.keys & ["name", "description"]).present?
-      async_discourse_sync
-    end
-  end
 
   def truncate_blurb
     self.blurb = blurb[0...250].gsub(/\s+/, ' ').gsub(/\n/," ").strip if blurb_changed?
