@@ -38,4 +38,4 @@
                     = link_to 'Delete', backstage_project_path(project.id),
                       method: :delete, data: { confirm: 'Are you sure?' }
 
-        = paginate @projects
+        = paginate @projects, theme: 'twitter-bootstrap-4', nav_class: "m-auto pt-3"

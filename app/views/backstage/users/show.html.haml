@@ -56,4 +56,4 @@
                 = link_to '(edit)', [:backstage, @user, :roles]
               = @user.roles.map(&:name).join(', ')
 
-      = link_to "Edit User", edit_backstage_user_path(@user), class: 'btn btn-primary'
+      = link_to "Edit User", edit_backstage_user_path(@user), class: 'btn btn-primary btn-lg'

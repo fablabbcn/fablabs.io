@@ -3,17 +3,16 @@
 .container
   - cache ["v3-machine-#{@machine.id}-#{I18n.locale}", Machine.last_updated_at] do
     .row
-      .col-lg-12
-        = render "breadcrumbs"
+      = render "breadcrumbs"
     .row
       .col-lg-8
-        .main
-          = @machine.brand
-          %h1= @machine
 
-          = simple_format(@machine.description)
-          - if @machine.photo.present?
-            = image_tag @machine.photo.thumb("800x800>").url
+        = @machine.brand
+        %h1= @machine
+
+        = simple_format(@machine.description)
+        - if @machine.photo.present?
+          = image_tag @machine.photo.thumb("800x800>").url
 
       .col-lg-4.side
 

@@ -86,3 +86,5 @@ en:
         title:              "All Fab Labs share common tools and processes."
         description:        "In order to build a global network, a distributed laboratory for research and invention."
         cta:                "Learn more"
+  shared:
+    styleguide: Styleguide

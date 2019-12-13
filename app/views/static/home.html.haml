@@ -1,16 +1,16 @@
 - title t("views.home.welcome")
 
 .homepage.container-fluid
-  .row
-    .homepage-header
-      .container
-        .col-xs-12
+  .homepage-header
+    .container
+      .row
+        .col-12
           .homepage-header-content
             .text-small
               = t("views.home.welcome")
             .text-large.text-primary
               = t("views.home.whats_a_fab_lab")
-            .text-medium
+            %h5
               = t("views.home.fab_labs_description", fab_foundation: (link_to "Fab Foundation", "http://www.fabfoundation.org") ).html_safe
 
           .homepage-card
@@ -18,7 +18,7 @@
               = t("views.home.lab_card.subtitle", default: "Profile")
             .text-large
               = t("views.home.lab_card.title", default: "I’m a Fablab")
-            .text-medium
+            %h5
               = t("views.home.lab_card.description", default: "Each lab has its own profile page which can be maintained and updated by its staff")
 
             =image_tag ("home/lab-illustration.png"), :class => "homepage-card-image"
@@ -32,7 +32,7 @@
               = t("views.home.person_card.subtitle", default: "Explore")
             .text-large
               = t("views.home.person_card.title", default: "I’m a Person")
-            .text-medium
+            %h5
               = t("views.home.person_card.description", default: "An interactive map showing the location of all the Fab Labs around the world")
 
             =image_tag ("home/person-illustration.png"), :class => "homepage-card-image"
@@ -60,7 +60,7 @@
         .homepage-divider-small
         .text-large
           = t("views.home.fablabs-section.title", default: "All Fab Labs share common tools and processes.")
-        .text-medium
+        %h5
           = t("views.home.fablabs-section.description", default: "In order to build a global network, a distributed laboratory for research and invention.")
         = link_to labs_path, class: 'homepage-cta' do
           = t("views.home.fablabs-section.cta", default: "Learn more")
@@ -68,11 +68,11 @@
 
   .hidden-lg.container
     .row
-      .col-xs-12
+      .col-12
         .homepage-divider-small
         .text-large
           = t("views.home.fablabs-section.title", default: "All Fab Labs share common tools and processes.")
-        .text-medium
+        %h5
           = t("views.home.fablabs-section.description", default: "In order to build a global network, a distributed laboratory for research and invention.")
         = link_to labs_path, class: 'homepage-cta' do
           = t("views.home.fablabs-section.cta", default: "Learn more")
@@ -86,7 +86,7 @@
             .homepage-divider-small
             .text-large
               = t("views.home.fablabs-section.title", default: "Global league of fab labs for local purposes.")
-            .text-medium
+            %h5
               = t("views.home.fablabs-section.description", default: "In order to build a global network, a distributed laboratory for research and invention.")
             = link_to labs_path, class: 'homepage-cta' do
               = t("views.home.fablabs-section.cta", default: "See the full list")
@@ -98,13 +98,13 @@
   .homepage-cards-footer
     .container
       .row
-        .col-xs-12
+        .col-12
           .homepage-card
             .text-small
               = t("views.home.lab_card.subtitle", default: "Profile")
             .text-large
               = t("views.home.lab_card.title", default: "I’m a Fablab")
-            .text-medium
+            %h5
               = t("views.home.lab_card.description", default: "Each lab has its own profile page which can be maintained and updated by its staff")
 
             =image_tag ("home/lab-illustration.png"), :class => "homepage-card-image"
@@ -118,7 +118,7 @@
               = t("views.home.person_card.subtitle", default: "Explore")
             .text-large
               = t("views.home.person_card.title", default: "I’m a Person")
-            .text-medium
+            %h5
               = t("views.home.person_card.description", default: "An interactive map showing the location of all the Fab Labs around the world")
 
             =image_tag ("home/person-illustration.png"), :class => "homepage-card-image"

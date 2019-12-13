@@ -1,6 +1,6 @@
 - cache ["v1", project] do
   = content_tag_for :div, project, class: 'media', itemscope: true do
-    .img.pull-left
+    .img.float-left
       = link_to project.owner do
         = image_tag project.owner.avatar_url, class: 'avatar'
     .media-body

@@ -25,26 +25,19 @@ end
 
 user = User.last
 Recovery.create(
-    user: user,
-    email_or_username: [user.email, user.username].sample
+  user: user,
+  email_or_username: [user.email, user.username].sample
 )
 
-User.find_or_create_by(username: 'admin') do |user|
-  user.email = 'admin@admin.local'
-  user.password = 'password'
-  user.password_confirmation = 'password'
-  user.first_name = 'Admin'
-  user.last_name = 'Adminerson'
-  user.agree_policy_terms = true
-  user.add_role :superadmin
+User.find_or_create_by(username: 'admin') do |u|
+  u.email = 'admin@admin.local'
+  u.password = 'password'
+  u.password_confirmation = 'password'
+  u.first_name = 'Admin'
+  u.last_name = 'Adminerson'
+  u.agree_policy_terms = true
+  u.add_role :superadmin
 end
-
-user = User.last
-Recovery.create(
-    user: user,
-    email_or_username: [user.email, user.username].sample
-)
-
 
 100.times do
   Organization.create!(
@@ -79,9 +72,9 @@ RefereeApprovalProcess.create!(
     workflow_state: 'approved',
     latitude: 64.963,
     longitude: 19.0208,
-    description: 'bla',
-    phone: '01234',
-    blurb: 'bla'
+    description: 'This is a description of your lab',
+    phone: '0',
+    blurb: 'Promotional message'
     #referee_id: 1
   )
 end

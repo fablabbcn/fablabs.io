@@ -5,7 +5,7 @@
       = content_tag_for :div, activity do
         .text-large
           = link_to lab, lab
-        .text-medium
+        %h5
           = link_to activity.creator, activity.creator, class: 'user'
           = activity.actioned
           = lab

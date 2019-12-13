@@ -143,7 +143,7 @@ header {
   border-bottom: 1px solid #E5E5E5;
   margin-bottom: 0;
 
-  .navbar-toggle {
+  .navbar-toggler {
     margin-top: 23px;
 
     .icon-bar {
@@ -178,11 +178,7 @@ header {
       outline-color: #e5e5e5;
       background-color: white;
 
-      @media (min-width: 768px) {
-        width: 240px;
-      }
-
-      @media (min-width: 1200px) {
+      @media (min-width: 1152px) {
         width: 400px;
       }
     }
@@ -199,13 +195,10 @@ header {
           color: #111111;
           background-color: initial;
         }
-
-        @media (min-width: 768px) {
-          padding: 0 10px;
-          height: 80px;
-          display: flex;
-          align-items: center;
-        }
+        padding: 0 10px;
+        height: 80px;
+        display: flex;
+        align-items: center;
       }
     }
 
@@ -278,6 +271,7 @@ header {
 
   #labs_country_selector {
     width: 140px;
+    vertical-align: middle;
   }
 
   .title {

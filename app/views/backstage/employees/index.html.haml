@@ -5,7 +5,6 @@
     .col-lg-12
       = title "Employees"
 
-
       .well
         = search_form_for [:backstage, @q], builder: SimpleForm::FormBuilder do |f|
           .row
@@ -20,7 +19,7 @@
               = f.input :user_workflow_state_eq, collection: User.workflow_spec.state_names, label: "State", include_blank: 'ALL'
             .col-lg-3
               = f.input :user_roles_name_eq, collection: Role::AVAILABLE, include_blank: 'ALL'
-            .col-lg-3
+            .col-lg-3.m-auto
               = f.submit "Filter", class: 'btn btn-primary btn-lg'
 
 
@@ -44,4 +43,4 @@
                 %td= link_to employee.lab, employee.lab
                 %td= employee.created_at.to_s(:short)
 
-      = paginate @employees
+      = paginate @employees, theme: 'twitter-bootstrap-4', nav_class: "m-auto pt-3"
