@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
@@ -8,28 +6,23 @@ Rails.application.configure do
   config.banned_words = (YAML.load_file("#{Rails.root}/config/words.yml") || {}).map(&:values).flatten
 
   # Eager load code on boot. This eager loads most of Rails and
-  # your application in memory, allowing both thread web servers
+  # your application in memory, allowing both threaded web servers
   # and those relying on copy on write to perform better.
   # Rake tasks automatically ignore this option for performance.
   config.eager_load = true
 
   # Full error reports are disabled and caching is turned on.
   config.consider_all_requests_local       = false
-
-  # Enable Rack::Cache to put a simple HTTP cache in front of your application
-  # Add `rack-cache` to your Gemfile before enabling this.
-  # For large-scale production use, consider using a caching reverse proxy like nginx, varnish or squid.
   config.action_controller.perform_caching = true
-  config.cache_store = :dalli_store, 'memcached://memcached:11211/', { expires_in: 15.minutes }
-  config.action_dispatch.rack_cache = true
-  #  config.action_dispatch.rack_cache = {
-  #    metastore:   'memcached://memcached:11211/meta',
-  #    entitystore: 'memcached://memcached:11211/body'
-  #  }
 
-  # Disable Rails's static asset server (Apache or nginx will already do this).
-  config.serve_static_files = true
-  # config.serve_static_assets = false
+  # Attempt to read encrypted secrets from `config/secrets.yml.enc`.
+  # Requires an encryption key in `ENV["RAILS_MASTER_KEY"]` or
+  # `config/secrets.yml.key`.
+  config.read_encrypted_secrets = true
+
+  # Disable serving static files from the `/public` folder by default since
+  # Apache or NGINX already handles this.
+  config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present?
 
   # Compress JavaScripts and CSS.
   config.assets.js_compressor = :uglifier
@@ -38,20 +31,25 @@ Rails.application.configure do
   # Do not fallback to assets pipeline if a precompiled asset is missed.
   config.assets.compile = false
 
-  # Generate digests for assets URLs.
-  config.assets.digest = true
+  # `config.assets.precompile` and `config.assets.version` have moved to config/initializers/assets.rb
 
-  # Version of your assets, change this if you want to expire all your assets.
-  config.assets.version = '1.0'
+  # Enable serving of images, stylesheets, and JavaScripts from an asset server.
+  # config.action_controller.asset_host = 'http://assets.example.com'
 
   # Specifies the header that your server uses for sending files.
-  # config.action_dispatch.x_sendfile_header = "X-Sendfile" # for apache
-  # config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect' # for nginx
+  # config.action_dispatch.x_sendfile_header = 'X-Sendfile' # for Apache
+  # config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect' # for NGINX
+
+  # Mount Action Cable outside main process or domain
+  # config.action_cable.mount_path = nil
+  # config.action_cable.url = 'wss://example.com/cable'
+  # config.action_cable.allowed_request_origins = [ 'http://example.com', /http:\/\/example.*/ ]
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
-  config.force_ssl = false
+  # config.force_ssl = true
 
-  # Set to :debug to see everything in the log.
+  # Use the lowest log level to ensure availability of diagnostic information
+  # when problems arise.
   config.log_level = :debug
 
   # Prepend all log lines with the following tags.
@@ -65,14 +63,13 @@ Rails.application.configure do
   config.logger = ActiveSupport::Logger.new(config.log_file, 1, 20 * 1024 * 1024)
 
   # Use a different cache store in production.
-  # config.cache_store = :dalli
+  # config.cache_store = :mem_cache_store
+  # config.cache_store = :redis_cache_store, { url: ENV['REDIS_URL'] }
+  config.cache_store = :redis_store, { url: ENV['REDIS_URL'] }
 
-  # Enable serving of images, stylesheets, and JavaScripts from an asset server.
-  # config.action_controller.asset_host = "https://assets.fablabs.io"
-
-  # Precompile additional assets.
-  # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
-  # config.assets.precompile += %w( sessions.js )
+  # Use a real queuing backend for Active Job (and separate queues per environment)
+  # config.active_job.queue_adapter     = :resque
+  # config.active_job.queue_name_prefix = "fablabs_#{Rails.env}"
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
@@ -84,9 +81,6 @@ Rails.application.configure do
 
   # Send deprecation notices to registered listeners.
   config.active_support.deprecation = :notify
-
-  # Disable automatic flushing of the log to improve performance.
-  # config.autoflush_log = false
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new

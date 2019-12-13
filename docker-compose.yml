@@ -6,10 +6,7 @@ services:
     hostname: redis
     restart: always
 
-  # service configuration for Postgres
   db:
-    # use the preferred version of the official Postgres image
-    # see https://hub.docker.com/_/postgres/
     image: postgres:10
     restart: always
     hostname: db1
@@ -18,10 +15,8 @@ services:
       - fablabs-postgres:/var/lib/postgresql/data
       #- ./dump:/dump
 
-  # service configuration for our dockerized Rails app
   app:
     env_file: .env
-    # use the Dockerfile next to this file
     build:
       context: .
       dockerfile: Dockerfile
@@ -31,7 +26,6 @@ services:
     depends_on:
       - db
       - redis
-      - memcached
     container_name: app
     environment:
       - SSL_POLICY=AWS-TLS-1-2-2017-01
@@ -42,7 +36,6 @@ services:
     ports:
       - "3000:3000"
     restart: always
-    #command: rails s
 
   worker:
     env_file: .env
@@ -58,13 +51,6 @@ services:
     depends_on:
       - app
       - db
-
-  memcached:
-    image: memcached:1.5.3
-    restart: always
-    expose:
-      - 11211
-
 
   nginx:
     restart: always
