@@ -97,27 +97,27 @@ group :development do
 end
 
 group :test, :development do
-  gem 'pry-rails'
-  gem 'pry-byebug'
-  gem 'byebug'
   gem "rspec-rails"
+  gem 'byebug'
+  gem 'pry-byebug'
+  gem 'pry-rails'
   gem "factory_bot_rails"
 end
 
 group :test do
-  gem 'webmock'
-  gem 'minitest'
-  gem 'zonebie'
-  gem "launchy"
   gem "capybara"
-  gem "selenium-webdriver"
   gem "capybara-webkit"
-  gem 'rails-controller-testing'
   gem "guard-rspec"
-  gem "shoulda-matchers"
+  gem "launchy"
   gem "pry"
   gem "pry-rescue"
   gem "pry-stack_explorer"
+  gem "selenium-webdriver"
+  gem "shoulda-matchers"
+  gem 'minitest'
+  gem 'rails-controller-testing'
+  gem 'webmock'
+  gem 'zonebie'
   gem "test-unit"
 end
 
