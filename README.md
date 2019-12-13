@@ -120,12 +120,13 @@ S3_REGION=<amazon region code>
 `docker-compose exec app bundle exec rake assets:precompile`
 `docker-compose restart app`
 
-
 ## Pull requests
 
 All PRs are tested on Travis and Github Actions and Github Actions. Make sure the tests run fine.
 
-## Languages
+## Languages and translation
+
+The project is now on Crowdin https://crwd.in/fablabsio
 
 Use the `i18n-tasks normalize` before submitting language changes
 
