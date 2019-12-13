@@ -2,23 +2,24 @@
   = render 'form_errors', resource: @event
 
   %fieldset
+    = f.input :name, placeholder: "New Event"
     .row
-      .col-md-12
-        = f.input :name, placeholder: "New Event"
       .col-md-6
         = f.input :starts_at, as: 'string', input_html: { placeholder: 'dd/mm/yy', class: 'flatpickr-time'}
       .col-md-6
         = f.input :ends_at, as: 'string', input_html: { placeholder: 'dd/mm/yy', class: 'flatpickr-time'}
         -# f.time_zone_select :time_zone
-      .col-md-12
-        = f.input :all_day, as: 'boolean'
+    .form-check.my-0.mx-3
+      = f.input :all_day, as: 'boolean', input_html: {class: 'form-check-input'}
 
   %fieldset
-    = f.input :tags, as: 'check_boxes', collection: Event::Tags, checked: @event.tags
+    .row
+      .form-check.mb-0.mt-3.col-2
+        = f.input :tags, as: 'check_boxes',inline_label: true, item_wrapper_class: 'checkbox_container', collection: Event::Tags, checked: @event.tags, input_html: {class: 'form-check-input'}
     = f.input :location
     = f.input :description
 
   -# = f.input :starts_at, as: 'time'
   -# = f.input :ends_at
   -# = f.association :lab
-  = f.submit class: 'btn btn-primary btn-lg'
+  = f.submit class: 'btn btn-primary btn-lg mt-4'

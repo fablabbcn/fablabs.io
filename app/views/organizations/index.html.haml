@@ -13,7 +13,7 @@
           = fa_icon "plus", text: 'Add a new Organization'
 
 .container
-  .row
+  .row.mx-0
     #organizations-list
       .labs= render @organizations
     = paginate @organizations, theme: 'twitter-bootstrap-4', nav_class: "m-auto pt-3"

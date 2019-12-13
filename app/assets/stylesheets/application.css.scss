@@ -135,10 +135,6 @@ h1 {
   margin-top: 0;
   font-weight: bold;
 }
-.breadcrumbs li a {
-  text-transform: uppercase;
-  font-weight: normal;
-}
 
 .count {
   color: #AAA !important;
@@ -326,6 +322,15 @@ h5 {
       border-color: #F2F2F2;
     }
   }
+}
+
+.subpage-card {
+  width: 230px;
+  height: 325px;
+  float: left;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+  margin: 12px;
+  border-radius: 4px;
 }
 
 .card {

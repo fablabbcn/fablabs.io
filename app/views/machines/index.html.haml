@@ -15,6 +15,6 @@
             = fa_icon "plus", text: t("views.labs.index.add_a_machine", default: "Add a new Machine")
 
   .container
-    .row
+    .row.mx-0
       .machines= render @machines
       = paginate @machines, theme: 'twitter-bootstrap-4', nav_class: "m-auto pt-3"

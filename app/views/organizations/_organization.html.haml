@@ -1,4 +1,4 @@
-= content_tag_for :div, organization, class: 'card', itemscope: true, itemtype: "http://data-vocabulary.org/Organization" do
+= content_tag_for :div, organization, class: 'card subpage-card', itemscope: true, itemtype: "http://data-vocabulary.org/Organization" do
   .card-image
     = link_to organization do
       = image_tag organization.avatar.thumb("310x330#").url, itemprop: "logo"

@@ -57,11 +57,10 @@
                 %a{:href => "mailto:webmasters@fablabs.io"} webmasters@fablabs.io
 
       %fieldset.mb-0
-        .form-header
-          .text-large
-            Is your Lab already on the list?
-          %h5
-            To avoid duplicates please first check the list below to ensure that your Lab is not already in our database.
+        .text-large
+          Is your Lab already on the list?
+        %h5
+          To avoid duplicates please first check the list below to ensure that your Lab is not already in our database.
 
         = select_tag :lab, options_for_select(Lab.order('name ASC').select(:name, :city, :county, :country_code).map{|l| "#{l} - #{l.short_address}"}), class: 'enhanced', include_blank: true, id: 'check-labs'
 
