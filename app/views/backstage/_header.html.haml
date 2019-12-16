@@ -21,6 +21,7 @@
         = link_to 'Employees', backstage_employees_path, class: (controller_name == 'employees' ? 'btn btn-primary' : 'btn btn-default')
         = link_to 'Users', backstage_users_path, class: (controller_name == 'users' ? 'btn btn-primary' : 'btn btn-default')
         = link_to 'Pages', backstage_pages_path, class: (controller_name == 'pages' ? 'btn btn-primary' : 'btn btn-default')
+        = link_to 'Events', backstage_events_path, class: (controller_name == 'events' ? 'btn btn-primary' : 'btn btn-default')
 
     .subnavbar-section.subnavbar-section-right
       - if current_user.is_referee? || current_user.is_unique_referee? || current_user.has_role?(:superadmin)

@@ -1,42 +1,43 @@
-.row
-  .col-lg-12
-    = render "labs/breadcrumbs", lab: @lab
-.row
-  .col-lg-12
-    = title "Employees at #{@lab}"
+.container
+  .row
+    .col-lg-12
+      = render "labs/breadcrumbs", lab: @lab
+  .row
+    .col-lg-12
+      = title "Employees at #{@lab}"
 
-    .panel
-      %p
-        %strong Remember before you approve people
-        All employees will have FULL ADMIN RIGHTS for #{@lab}. Soon you will be able to edit this.
-    %table.table
-      %thead
-        %tr
-          %th Employee
-          %th Date Added
-          %th{colspan: 100} Actions
+      .panel
+        %p
+          %strong Remember before you approve people
+          All employees will have FULL ADMIN RIGHTS for #{@lab}. Soon you will be able to edit this.
+      %table.table
+        %thead
+          %tr
+            %th Employee
+            %th Date Added
+            %th{colspan: 100} Actions
 
-      - @lab.employees.order('id DESC').each do |employee|
-        %tr
-          %td
-            .user
-              %strong= link_to employee.user, employee.user
-            .job-title
-              %strong= employee.job_title
-            .description= employee.description
-            .phone= employee.phone
-            .email= mail_to employee.email, employee.email
+        - @lab.employees.order('id DESC').each do |employee|
+          %tr
+            %td
+              .user
+                %strong= link_to employee.user, employee.user
+              .job-title
+                %strong= employee.job_title
+              .description= employee.description
+              .phone= employee.phone
+              .email= mail_to employee.email, employee.email
 
-          %td= employee.created_at.to_s(:short)
-          %td.text-right
-            = link_to "Edit", edit_employee_path(employee), class: 'btn btn-primary'
-            = link_to "Remove", employee, method: :delete, class: 'btn btn-danger', data: { confirm: "Are you sure you want to remove #{employee.user} from #{@lab}? They will no longer be able to manage #{@lab}."}
-            - employee.current_state.events.keys.each do |event|
-              = button_to event.capitalize, {controller: 'employees', action: event, id: employee.id }, method: :patch, class: 'btn btn-danger'
+            %td= employee.created_at.to_s(:short)
+            %td.text-right
+              = link_to "Edit", edit_employee_path(employee), class: 'btn btn-primary'
+              = link_to "Remove", employee, method: :delete, class: 'btn btn-danger', data: { confirm: "Are you sure you want to remove #{employee.user} from #{@lab}? They will no longer be able to manage #{@lab}."}
+              - employee.current_state.events.keys.each do |event|
+                = button_to event.capitalize, {controller: 'employees', action: event, id: employee.id }, method: :patch, class: 'btn btn-danger'
 
-  -#   %h4 Approved Employees
-  -#   = render @lab.employees.active
+    -#   %h4 Approved Employees
+    -#   = render @lab.employees.active
 
-  -# .col-lg-6
-  -#   %h4 Unverified Employees
-  -#   = render @lab.employees.with_unverified_state
+    -# .col-lg-6
+    -#   %h4 Unverified Employees
+    -#   = render @lab.employees.with_unverified_state

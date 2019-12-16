@@ -64,10 +64,11 @@ Rails.application.routes.draw do
       resources :users do
         resources :roles, controller: 'users/roles', only: [:index, :new, :create, :destroy]
       end
-      resources :employees, only: :index
+      resources :employees, only: [:index]
       resources :pages, expect: [:show]
       resources :organizations, only: [:index]
       resources :my_labs, only: [:index]
+      resources :events, only: [:index]
       get "projects" => "redirects#projects"
       get "my_projects" => "redirects#myprojects"
 

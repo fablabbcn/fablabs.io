@@ -5,7 +5,8 @@
     .subnavbar-section.subnavbar-section-center
       .title Events
 
-    .subnavbar-section.subnavbar-section-right
+    -#TODO: choose lab before creating events
+    -#.subnavbar-section.subnavbar-section-right
       - if current_user
         = link_to events_path, class: "btn btn-primary" do
           = fa_icon "plus", text: "Add Event"
@@ -15,19 +16,8 @@
 
 .container
   .row.mx-0
-    - @events.each do |event|
-      .card.subpage-card.col-3
-        -#.card-image
-        -#- if event.photo.present?
-          -#= image_tag event.photo.thumb("300x245>").url
-        .card-content
-          .text-large
-            = link_to event, lab_event_path(event.lab, event)
-          .card-link
-            = link_to event.lab, event.lab
-          .text-small
-            = event.all_day? ? "All Day" : event.starts_at.stamp('wednesday, 12th November 2012, 15:30')
-        = image_tag ("icons/arrow-right.svg"), :class => "card-arrow"
-    -# = paginate @events, theme: 'twitter-bootstrap-4', nav_class: "m-auto pt-3"
+    .events= render @events
+  .row.mx-0
+    = paginate @events, theme: 'twitter-bootstrap-4', nav_class: "m-auto pt-3"
 
 

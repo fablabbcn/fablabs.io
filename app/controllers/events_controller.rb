@@ -3,6 +3,7 @@ class EventsController < ApplicationController
   def main_index
     @events = Event.upcoming.includes(:lab)
     authorize_action_for @events
+    @events = @events.order('starts_at ASC').page(params['page']).per(params['per'])
   end
 
   def edit

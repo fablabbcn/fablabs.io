@@ -36,6 +36,8 @@
             Discuss
             = '&nbsp;'.html_safe
             = fa_icon 'external-link'
+          %li.nav-item.navbar-link
+            = link_to t("views.header.events"), events_path
 
       %ul.nav.navbar-nav.ml-auto
         - if current_user
