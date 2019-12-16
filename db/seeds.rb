@@ -113,9 +113,12 @@ Employee.find_or_create_by(
 
 Document.create!
 
-Event.create!(
-  name: 'myEvent',
-  description: 'some description',
-  lab: Lab.first
-)
-
+10.times do |index|
+  Event.create!(
+    name: "Event name #{index}",
+    description: 'Some Description',
+    starts_at: 100.days.from_now,
+    ends_at: 101.days.from_now,
+    lab: Lab.all.sample
+  )
+end
