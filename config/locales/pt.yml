@@ -1,50 +1,50 @@
 ---
 pt:
+  capabilities:
+    circuit_production: Produção de circuitos
+    cnc_milling: Usinagem CNC
+    laser: Corte Laser/Gravação
+    precision_milling: Usinagem de precisão
+    three_d_printing: Impressão 3D
+    vinyl_cutting: Para quem é voltado o fablabs.io?
   views:
-    home:
-      features:
-        discussions: "Fórum"
-        events: "Eventos"
-        activity_feeds: "Feed de Atividades"
-        opening_hours: "Horários de Funcionamento"
-        developer_api: "Desenvolvedor API"
-        localisation: "Localização"
-      what_can_i_do: "O que posso fazer?"
-      machines: "Máquinas"
-      world_map: "Mapa Mundial"
-      fab_labs_description: "Fab Labs fornecem um acesso amplo aos meios modernos
-        de invenção. Eles começaram como um projeto de extensão do Center for Bits
-        and Atoms (CBA) do MIT, e se tornaram uma rede colaborativa e global. Você
-        pode encontrar mais informações sobre Fab Labs no site % {fab_foundation}.
-        A foto abaixo ilustra as instalações de um Fab Lab típico."
-      lab_profiles: "Perfil dos Laboratórios"
-      show_me_fab_labs: "Mostre-me Fab Labs"
-      whats_coming_next: "O que está por vir?"
-      beyond_that: "E além disso?"
-      around_the_world: "Ao redor do mundo"
-      who_is_it_for: "Para quem é voltado o fablabs.io?"
-      welcome: "Bem-vindo"
-      whats_a_fab_lab: "Sou novo aqui. O que é um Fab Lab?"
     header:
-      events: "Eventos"
-      me: "Me"
-      signup: "Registrar-se"
-      backstage: "Bastidores"
-      labs: "Laboratórios"
-      machines: "Maquinas"
-      settings: "Configurações"
-      signout: "Sair"
-      search_labs: "Procurar por Laboratórios..."
-      signin: "Entrar"
+      backstage: Bastidores
+      events: Eventos
+      labs: Laboratórios
+      machines: Maquinas
+      me: Me
+      search_labs: Procurar por Laboratórios...
+      settings: Configurações
+      signin: Entrar
+      signout: Sair
+      signup: Registrar-se
+    home:
+      around_the_world: Ao redor do mundo
+      beyond_that: E além disso?
+      fab_labs_description: Fab Labs fornecem um acesso amplo aos meios modernos de
+        invenção. Eles começaram como um projeto de extensão do Center for Bits and
+        Atoms (CBA) do MIT, e se tornaram uma rede colaborativa e global. Você pode
+        encontrar mais informações sobre Fab Labs no site % {fab_foundation}. A foto
+        abaixo ilustra as instalações de um Fab Lab típico.
+      features:
+        activity_feeds: Feed de Atividades
+        developer_api: Desenvolvedor API
+        discussions: Fórum
+        events: Eventos
+        localisation: Localização
+        opening_hours: Horários de Funcionamento
+      lab_profiles: Perfil dos Laboratórios
+      machines: Máquinas
+      show_me_fab_labs: Mostre-me Fab Labs
+      welcome: Bem-vindo
+      what_can_i_do: O que posso fazer?
+      whats_a_fab_lab: Sou novo aqui. O que é um Fab Lab?
+      whats_coming_next: O que está por vir?
+      who_is_it_for: Para quem é voltado o fablabs.io?
+      world_map: Mapa Mundial
     labs:
       index:
-        all_countries: "Todos Países"
-        map: "Mapas"
-        list: "Listar"
-  capabilities:
-    laser: "Corte Laser/Gravação"
-    vinyl_cutting: "Para quem é voltado o fablabs.io?"
-    precision_milling: "Usinagem de precisão"
-    three_d_printing: "Impressão 3D"
-    cnc_milling: "Usinagem CNC"
-    circuit_production: "Produção de circuitos"
+        all_countries: Todos Países
+        list: Listar
+        map: Mapas

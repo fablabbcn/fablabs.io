@@ -23,8 +23,6 @@ gem 'bourbon', '~> 4' # Breaks transition in header.css.scss and map.css.scss ht
 
 gem "cocoon"#, github: 'nathanvda/cocoon', :tag => 'v1.2.7'
 gem "pg_search"
-gem "rack-cache"
-gem "sentry-raven"
 gem 'active_model_serializers'
 gem 'acts-as-taggable-on'
 gem 'ancestry'#, github: 'stefankroes/ancestry'
@@ -42,14 +40,14 @@ gem 'fast_jsonapi' # To support new v2 JSONAPI
 gem 'ffaker'
 gem 'figaro'
 gem 'flatpickr'
-gem 'font-awesome-rails'#, github: 'bokmann/font-awesome-rails'
-gem 'friendly_id'#, '~> 5.1.0'
-gem 'geocoder'#, github: 'alexreisner/geocoder'
+gem 'font-awesome-rails'
+gem 'friendly_id'
+gem 'geocoder'
 gem 'haml-rails'
 gem 'hpricot'
 gem 'http_accept_language'
 gem 'inherited_resources'
-gem 'jbuilder'#, '~> 1.2'
+gem 'jbuilder'
 gem 'jquery-rails'
 gem 'kaminari'
 gem 'bootstrap4-kaminari-views'
@@ -59,14 +57,18 @@ gem 'nest'
 gem 'paper_trail'
 gem 'premailer-rails'
 gem 'puma'
-gem 'rack-cors', :require => 'rack/cors'
-gem 'ransack','<2'
+gem 'rack-cache'
+gem 'rack-cors', require: 'rack/cors'
+gem 'ransack', '<2'
 gem 'redcarpet'
-gem 'rolify'#, github: 'EppO/rolify'
+gem 'redis'
+gem 'redis-rails' # not needed in rails 5.2
+gem 'rolify'
 gem 'rspec'
 gem 'sass-rails'#, '~> 4.0.5'
-gem 'sidekiq'#, '~> 4' # Should sidekiq stay on the same major version as Rails?
-gem 'simple_form'#, '3.0.1'
+gem "sentry-raven"
+gem 'sidekiq'
+gem 'simple_form'
 gem 'simplecov', :require => false, :group => :test
 gem 'sitemap_generator'
 gem 'slim'
@@ -97,27 +99,27 @@ group :development do
 end
 
 group :test, :development do
-  gem 'pry-rails'
-  gem 'pry-byebug'
-  gem 'byebug'
   gem "rspec-rails"
+  gem 'byebug'
+  gem 'pry-byebug'
+  gem 'pry-rails'
   gem "factory_bot_rails"
 end
 
 group :test do
-  gem 'webmock'
-  gem 'minitest'
-  gem 'zonebie'
-  gem "launchy"
   gem "capybara"
-  gem "selenium-webdriver"
   gem "capybara-webkit"
-  gem 'rails-controller-testing'
   gem "guard-rspec"
-  gem "shoulda-matchers"
+  gem "launchy"
   gem "pry"
   gem "pry-rescue"
   gem "pry-stack_explorer"
+  gem "selenium-webdriver"
+  gem "shoulda-matchers"
+  gem 'minitest'
+  gem 'rails-controller-testing'
+  gem 'webmock'
+  gem 'zonebie'
   gem "test-unit"
 end
 
