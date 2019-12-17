@@ -1,0 +1,27 @@
+= render "backstage/header"
+
+.container
+  .row
+    .col-lg-12
+      = title "Events"
+
+      = page_entries_info @events
+      %table.table
+        %thead
+          %tr
+            %th Name
+            %th Lab
+            %th Creator
+            %th Start Date
+            %th End Date
+        %tbody
+          - @events.each do |event|
+            %tr
+              %td= link_to event, lab_event_path(event.lab, event)
+              %th= link_to event.lab, event.lab
+              %th= link_to event.creator, event.creator
+              %th= event.starts_at
+              %th= event.ends_at
+
+      = paginate @events, theme: 'twitter-bootstrap-4', nav_class: "m-auto pt-3"
+      -#TODO = link_to "Add Event", new_lab_event_path, class: 'btn btn-primary btn-lg mt-4'

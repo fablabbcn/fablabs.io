@@ -112,6 +112,13 @@
                   = link_to employee.user, employee.user
                   = employee.job_title
         %tr
+          %th Events
+          %td
+            %ul
+              - @lab.events.each do |event|
+                = content_tag_for :li, event do
+                  = link_to event
+        %tr
           %th Created At
           %td= @lab.created_at
         %tr
@@ -132,3 +139,7 @@
         - if current_user.has_role? :superadmin
           = link_to edit_backstage_lab_path(@lab), class: 'btn btn-primary btn-lg' do
             = fa_icon "edit", text: "Edit Lab"
+          = link_to lab_employees_path(@lab), class: 'btn btn-primary btn-lg' do
+            = fa_icon "group", text: t('views.labs.show.edit_employee_list', default: "Edit Employee List")
+          = link_to new_lab_event_path(@lab), class: 'btn btn-primary btn-lg' do
+            = fa_icon "calendar", text: t('views.labs.show.add_event', default: "Add Event")

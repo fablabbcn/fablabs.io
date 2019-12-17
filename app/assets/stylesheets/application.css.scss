@@ -12,12 +12,11 @@
  *= require select2/dist/css/select2
  *= require taggd
  *= require intlTelInput
- *= require jquery.timepicker
  *= require messenger
  *= require messenger-theme-flat
  *= require trumbowyg/trumbowyg
  *= require bootstrap/dist/css/bootstrap.min.css
- *= require bootstrap-datepicker/dist/css/bootstrap-datepicker
+ *= require flatpickr
  *= require_self
  *= require_tree .
 
@@ -135,10 +134,6 @@ h1 {
   font-weight: bold;
   margin-top: 0;
   font-weight: bold;
-}
-.breadcrumbs li a {
-  text-transform: uppercase;
-  font-weight: normal;
 }
 
 .count {
@@ -302,7 +297,6 @@ h5 {
 }
 
 .btn {
-  margin: 3px;
   &.btn-primary {
     background-color: #81D7BE;
     color: white;

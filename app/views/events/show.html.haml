@@ -1,10 +1,20 @@
-.row
-  .col-lg-12
-    = render "breadcrumbs", event: @event
-    - title @event
-    - if @event.starts_at
-      = @event.starts_at.stamp("at 15:00 on Wednesday, 3rd October 2020")
-    %p created by #{link_to @event.creator, @event.creator}
-    = simple_format @event.description
+.container
+  .row
+    .col-lg-12
+      = render "breadcrumbs", event: @event
+      = title @event
+      %br
+      .font-weight-bold
+        = @event.starts_at&.stamp('12th November 2012')
+        \-
+        = @event.ends_at&.stamp('12th November 2012')
+      .font-italic
+        = @event.starts_at&.stamp('15:30')
+        \-
+        = @event.ends_at&.stamp('15:30')
 
-    = link_to "Edit Event", edit_lab_event_path(@event.lab, @event), class: 'btn btn-primary'
+      %br
+      %p.font-italic Created by #{link_to @event.creator, @event.creator}
+      = simple_format @event.description
+
+      = link_to "Edit Event", edit_lab_event_path(@event.lab, @event), class: 'btn btn-primary btn-lg'

@@ -2,7 +2,8 @@ class EventsController < ApplicationController
 
   def main_index
     @events = Event.upcoming.includes(:lab)
-    authorize_action_for @events
+    #authorize_action_for @events
+    @events = @events.order('starts_at ASC').page(params['page']).per(params['per'])
   end
 
   def edit
@@ -13,12 +14,14 @@ class EventsController < ApplicationController
 
   def show
     @event = Event.find(params[:id])
-    authorize_action_for @event
+    #authorize_action_for @event
   end
 
   def index
-    @events = Event.upcoming.includes(:lab).order('starts_at ASC').group_by { |t| t.starts_at.beginning_of_day }#.where('starts_at > ?', Time.now)
-    authorize_action_for Event
+    @lab = Lab.friendly.find(params[:lab_id])
+    @events = @lab.events
+    #authorize_action_for @events
+    @events = @events.order('starts_at ASC').page(params['page']).per(params['per'])
   end
 
   def new

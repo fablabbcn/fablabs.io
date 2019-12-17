@@ -1,21 +1,23 @@
-.row
-  .col-lg-12
-    = title "Events"
+.container
+  .row
+    .col-lg-12
+      = title "Events"
 
-    .panel
-      %p This is a beta feature, and is only visible to superadmins.
+      .panel
+        %p This is a beta feature, and is only visible to superadmins.
 
-    %ul
-      - @events.each do |day, events|
-        %li
-          -# = day.stamp('wednesday, 12th November 2012')
-          %ul
-            - events.each do |event|
-              %li
-                = event.all_day? ? "All Day" : event.starts_at.stamp('15:30')
-                = event
-                -# = link_to event, event
-                \-
-                = link_to event.lab, event.lab
+      - @events.each do |event|
+        %ul
+          %li
+            .font-weight-bold
+              = event.starts_at&.stamp('12th November 2012')
+              \-
+              = event.ends_at&.stamp('12th November 2012')
+            .font-italic
+              = event.starts_at&.stamp('15:30')
+              \-
+              = event.ends_at&.stamp('15:30')
+            = link_to event, lab_event_path(event.lab, event)
+        = paginate @events, theme: 'twitter-bootstrap-4', nav_class: "m-auto pt-3"
 
-    = link_to "Add Event", new_lab_event_path, class: 'btn btn-primary'
+    = link_to "Add Event", new_lab_event_path, class: 'btn btn-primary btn-lg'

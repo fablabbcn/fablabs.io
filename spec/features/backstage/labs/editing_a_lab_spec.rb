@@ -22,7 +22,7 @@ feature "Editing a lab" do
     click_link "iaac"
     click_link "Edit Lab"
     fill_in "lab_name", with: "Valldaura"
-    click_button "Save"
+    click_on "Save", match: :first
     expect(page).to have_content("Lab updated")
     expect(page).to have_content("Valldaura")
   end
@@ -31,7 +31,7 @@ feature "Editing a lab" do
     sign_in_superadmin
     visit edit_backstage_lab_path(lab)
     fill_in "lab_name", with: ""
-    click_button "Save"
+    click_on "Save", match: :first
     expect(page).to have_css(".errors")
   end
 
