@@ -14,13 +14,13 @@ class EventsController < ApplicationController
 
   def show
     @event = Event.find(params[:id])
-    authorize_action_for @event
+    #authorize_action_for @event
   end
 
   def index
     @lab = Lab.friendly.find(params[:lab_id])
     @events = @lab.events
-    authorize_action_for @events
+    #authorize_action_for @events
     @events = @events.order('starts_at ASC').page(params['page']).per(params['per'])
   end
 
