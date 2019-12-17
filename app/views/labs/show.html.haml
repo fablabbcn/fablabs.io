@@ -42,6 +42,11 @@
     .col-lg-12
       = render("employees", lab: @lab, employees: @employees)
 
+  .divider
+  .row
+    .col-lg-12
+      = render("events", lab: @lab, events: @events)
+
   - if @machines.length > 0
     .divider
     .row.mt-3

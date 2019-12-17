@@ -112,6 +112,13 @@
                   = link_to employee.user, employee.user
                   = employee.job_title
         %tr
+          %th Events
+          %td
+            %ul
+              - @lab.events.each do |event|
+                = content_tag_for :li, event do
+                  = link_to event
+        %tr
           %th Created At
           %td= @lab.created_at
         %tr

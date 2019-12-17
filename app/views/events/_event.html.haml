@@ -8,6 +8,6 @@
     .card-link
       = link_to event.lab, event.lab
     .text-small
-      = event.all_day? ? "All Day" : event.starts_at.stamp('wednesday, 12th November 2012, 15:30')
+      = event.all_day? ? "All Day" : event.starts_at&.stamp('wednesday, 12th November 2012, 15:30')
   = link_to lab_event_path(event.lab, event) do
     = image_tag ("icons/arrow-right.svg"), :class => "card-arrow"
