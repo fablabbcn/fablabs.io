@@ -44,7 +44,7 @@ Run tests with:
 
 1. Start the project:
 
-   `docker-compose up web app`
+   `docker-compose up app`
 
 1. Create database (only the first time):
 
