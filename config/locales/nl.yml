@@ -1,50 +1,50 @@
 ---
 nl:
   capabilities:
-    three_d_printing: "3D printen"
-    precision_milling: "Precisie frezen"
-    vinyl_cutting: "Vinyl snijplotter"
-    laser: "Laser Snijden/Graveren"
-    cnc_milling: "CNC frezen"
-    circuit_production: "Printplaat productie"
+    circuit_production: Printplaat productie
+    cnc_milling: CNC frezen
+    laser: Laser Snijden/Graveren
+    precision_milling: Precisie frezen
+    three_d_printing: 3D printen
+    vinyl_cutting: Vinyl snijplotter
   views:
+    header:
+      backstage: Achter de schermen
+      events: Evenementen
+      labs: 'Labo''''s '
+      machines: Machines
+      me: Ik
+      search_labs: Zoek Labs...
+      settings: Instellingen
+      signin: 'Log in '
+      signout: 'Log uit '
+      signup: Aanmelden
     home:
-      world_map: "Wereldkaart"
-      lab_profiles: "Lab Profielen"
-      features:
-        localisation: "Locatie"
-        activity_feeds: "Activiteiten"
-        developer_api: "Ontwikkelaar API"
-        events: "Evenementen"
-        discussions: "Forum"
-        opening_hours: "Openingsuren"
-      who_is_it_for: "Voor wie is Fablabs.io ?"
-      show_me_fab_labs: "Toon de Fablabs"
-      whats_coming_next: "Wat komt er nog?"
-      fab_labs_description: "Fablabs verlenen een wijdverspreide toegang tot moderne
+      around_the_world: 'WereldWijd '
+      beyond_that: En verder?
+      fab_labs_description: Fablabs verlenen een wijdverspreide toegang tot moderne
         technieken voor uitvindingen. Het begon als een ''outreach project'' van MIT''s
         Center for Bits and Atoms en werd al snel een collaboratief globaal netwerk.
         Je kan meer informatie vinden op de website van %{fab_foundation}. De onderstaande
-        foto geeft weer wat voor faciliteiten je in een typisch Fablab vindt."
-      beyond_that: "En verder?"
-      machines: "Machines"
-      what_can_i_do: "Wat kan ik doen op deze website?"
-      whats_a_fab_lab: "Ik ben hier nieuw , wat is nu juist een Fablab"
-      around_the_world: "WereldWijd "
-      welcome: "Welkom"
-    header:
-      backstage: "Achter de schermen"
-      events: "Evenementen"
-      signup: "Aanmelden"
-      signout: "Log uit "
-      settings: "Instellingen"
-      signin: "Log in "
-      me: "Ik"
-      labs: "Labo''s "
-      machines: "Machines"
-      search_labs: "Zoek Labs..."
+        foto geeft weer wat voor faciliteiten je in een typisch Fablab vindt.
+      features:
+        activity_feeds: Activiteiten
+        developer_api: Ontwikkelaar API
+        discussions: Forum
+        events: Evenementen
+        localisation: Locatie
+        opening_hours: Openingsuren
+      lab_profiles: Lab Profielen
+      machines: Machines
+      show_me_fab_labs: Toon de Fablabs
+      welcome: Welkom
+      what_can_i_do: Wat kan ik doen op deze website?
+      whats_a_fab_lab: Ik ben hier nieuw , wat is nu juist een Fablab
+      whats_coming_next: Wat komt er nog?
+      who_is_it_for: Voor wie is Fablabs.io ?
+      world_map: Wereldkaart
     labs:
       index:
-        all_countries: "Alle Landen"
-        map: "Kaart"
-        list: "Lijst"
+        all_countries: Alle Landen
+        list: Lijst
+        map: Kaart

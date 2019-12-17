@@ -1,48 +1,47 @@
 ---
 fr:
   capabilities:
-    precision_milling: "Fraiseuse de précision"
-    laser: "Découpe/Gravure Laser"
-    three_d_printing: "Impression 3D"
-    circuit_production: "Production de C.I."
-    cnc_milling: "Fraiseuses à commande numérique"
-    vinyl_cutting: "Découpe Vinyle"
+    circuit_production: Production de C.I.
+    cnc_milling: Fraiseuses à commande numérique
+    laser: Découpe/Gravure Laser
+    precision_milling: Fraiseuse de précision
+    three_d_printing: Impression 3D
+    vinyl_cutting: Découpe Vinyle
   views:
     header:
-      search_labs: "Rechercher un Lab..."
-      machines: "Machines"
-      signup: "S''inscrire"
-      settings: "Paramètres"
-      events: "Évènements"
-      me: "Moi"
-      signin: "S''identifier"
-      signout: "Déconnexion"
-      backstage: "Coulisses"
+      backstage: Coulisses
+      events: Évènements
+      machines: Machines
+      me: Moi
+      search_labs: Rechercher un Lab...
+      settings: Paramètres
+      signin: S''identifier
+      signout: Déconnexion
+      signup: S''inscrire
+    home:
+      around_the_world: Autour du monde
+      beyond_that: Et ensuite?
+      fab_labs_description: Les Fab Labs fournissent un accès global aux moyens modernes
+        d''invention. Ils ont commencé comme un projet de sensibilisation du MIT Center
+        pour Bits and Atoms (CBA) et sont devenus un réseau global et collaboratif.
+        Vous pourrez trouver plus d''informations sur les Fab Labs sur %{fab_foundation}.
+        La photo annotée ci dessous illustre les installations d''un Fab Lab typique.
+      features:
+        activity_feeds: Flux d''activité
+        developer_api: API développeurs
+        discussions: Forum
+        events: Évènements
+        opening_hours: Horaires d''ouverture
+      machines: Équipements
+      show_me_fab_labs: Montrez moi les Fab Labs
+      welcome: Bienvenue
+      what_can_i_do: Que puis-je faire sur le site?
+      whats_a_fab_lab: Je suis nouveau ici, c''est quoi un Fab Lab?
+      whats_coming_next: A venir?
+      who_is_it_for: A qui est destiné Fablabs.io?
+      world_map: Carte du monde
     labs:
       index:
-        all_countries: "Tous les pays"
-        map: "Carte"
-        list: "Liste"
-    home:
-      who_is_it_for: "A qui est destiné Fablabs.io?"
-      features:
-        developer_api: "API développeurs"
-        discussions: "Forum"
-        activity_feeds: "Flux d''activité"
-        events: "Évènements"
-        opening_hours: "Horaires d''ouverture"
-      whats_a_fab_lab: "Je suis nouveau ici, c''est quoi un Fab Lab?"
-      beyond_that: "Et ensuite?"
-      fab_labs_description: "Les Fab Labs fournissent un accès global aux moyens
-        modernes d''invention. Ils ont commencé comme un projet de sensibilisation
-        du MIT Center pour Bits and Atoms (CBA) et sont devenus un réseau global et
-        collaboratif. Vous pourrez trouver plus d''informations sur les Fab Labs sur
-        %{fab_foundation}. La photo annotée ci dessous illustre les installations
-        d''un Fab Lab typique."
-      whats_coming_next: "A venir?"
-      show_me_fab_labs: "Montrez moi les Fab Labs"
-      welcome: "Bienvenue"
-      around_the_world: "Autour du monde"
-      machines: "Équipements"
-      world_map: "Carte du monde"
-      what_can_i_do: "Que puis-je faire sur le site?"
+        all_countries: Tous les pays
+        list: Liste
+        map: Carte
