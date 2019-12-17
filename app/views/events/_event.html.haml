@@ -1,13 +1,14 @@
-= content_tag_for :div, event, class: 'card subpage-card' do
+= content_tag_for :div, event, class: 'col-4 mb-3' do
   -#TODO.card-image
         -#- if event.photo.present?
           -#= image_tag event.photo.thumb("300x245>").url
-  .card-content
-    .text-large
-      = link_to event, lab_event_path(event.lab, event)
-    .card-link
-      = link_to event.lab, event.lab
-    .text-small
-      = event.all_day? ? "All Day" : event.starts_at&.stamp('wednesday, 12th November 2012, 15:30')
-  = link_to lab_event_path(event.lab, event) do
-    = image_tag ("icons/arrow-right.svg"), :class => "card-arrow"
+  .card.shadow.float-left.h-100.w-100
+    .card-content
+      .text-large
+        = link_to event, lab_event_path(event.lab, event)
+      .card-link
+        = link_to event.lab, event.lab
+      .text-small
+        = event.all_day? ? "All Day" : event.starts_at&.stamp('wednesday, 12th November 2012, 15:30')
+    = link_to lab_event_path(event.lab, event) do
+      = image_tag ("icons/arrow-right.svg"), :class => "card-arrow"

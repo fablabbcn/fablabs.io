@@ -15,9 +15,8 @@
           = fa_icon "plus", text: "Add Event"
 
 .container
-  .row.mx-0
-    .events= render @events
-  .row.mx-0
+  .row.events= render @events
+  .row
     = paginate @events, theme: 'twitter-bootstrap-4', nav_class: "m-auto pt-3"
 
 

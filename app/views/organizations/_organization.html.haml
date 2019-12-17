@@ -1,12 +1,13 @@
-= content_tag_for :div, organization, class: 'card subpage-card', itemscope: true, itemtype: "http://data-vocabulary.org/Organization" do
-  .card-image
-    = link_to organization do
-      = image_tag organization.avatar.thumb("310x330#").url, itemprop: "logo"
+= content_tag_for :div, organization, class: 'col-4 mb-3', itemscope: true, itemtype: "http://data-vocabulary.org/Organization" do
+  .card.shadow.float-left.h-100.w-100
+    .card-image
+      = link_to organization do
+        = image_tag organization.avatar.thumb("310x330#").url, itemprop: "logo"
 
-  .card-content
-    = link_to organization, itemprop: 'name' do
-      .card-title= organization.name
-      .card-subtitle= organization.kind.humanize.titleize
-      %span.url.microdata{itemprop: "url"}= organization_url(organization, {locale: nil})
+    .card-content
+      = link_to organization, itemprop: 'name' do
+        .card-title= organization.name
+        .card-subtitle= organization.kind.humanize.titleize
+        %span.url.microdata{itemprop: "url"}= organization_url(organization, {locale: nil})
 
-      = image_tag ("icons/arrow-right.svg"), :class => "card-arrow"
+        = image_tag ("icons/arrow-right.svg"), :class => "card-arrow"
