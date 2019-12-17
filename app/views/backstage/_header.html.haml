@@ -7,7 +7,7 @@
 
     .subnavbar-section.subnavbar-section-center
       - if current_user.is_referee? || current_user.is_unique_referee? || current_user.has_role?(:superadmin)
-        = link_to 'Labs', backstage_labs_path, class: (controller_name == 'labs' ? 'btn btn-primary' : 'btn btn-default')
+        = link_to 'Labs', backstage_labs_path, class: (controller_name == 'labs' ? 'btn btn-primary m-1' : 'btn btn-default m-1')
         = link_to 'My labs', [:backstage, :my_labs], class: (controller_name == 'my_labs' ? 'btn btn-primary' : 'btn btn-default')
         = link_to  [:backstage, :my_projects], class: (controller_name == 'my_projects' ? 'btn btn-primary' : 'btn btn-default'), target: '_blank' do
           My projects
@@ -21,7 +21,7 @@
         = link_to 'Employees', backstage_employees_path, class: (controller_name == 'employees' ? 'btn btn-primary' : 'btn btn-default')
         = link_to 'Users', backstage_users_path, class: (controller_name == 'users' ? 'btn btn-primary' : 'btn btn-default')
         = link_to 'Pages', backstage_pages_path, class: (controller_name == 'pages' ? 'btn btn-primary' : 'btn btn-default')
-        = link_to 'Events', backstage_events_path, class: (controller_name == 'events' ? 'btn btn-primary' : 'btn btn-default')
+        = link_to 'Events', backstage_events_path, class: (controller_name == 'events' ? 'btn btn-primary m-1' : 'btn btn-default m-1')
 
     .subnavbar-section.subnavbar-section-right
       - if current_user.is_referee? || current_user.is_unique_referee? || current_user.has_role?(:superadmin)
