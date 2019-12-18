@@ -25,4 +25,4 @@
         %dd= @lab_organization.workflow_state
     .col-lg-8
       - if @lab_organization.pending? && current_or_null_user == @lab_organization.lab.creator
-        = link_to 'Accept', accept_organization_lab_organization_path(@organization, @lab_organization), class: 'btn btn-primary btn-lg', method: :post
+        = link_to 'Accept', accept_organization_lab_organization_path(@organization, @lab_organization), class: 'btn btn-primary', method: :post
