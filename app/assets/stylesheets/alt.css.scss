@@ -1,100 +1,16 @@
-.homepage-boxes,
-.homepage-projects,
-.homepage-banner,
-.homepage-events,
-.homepage-news {
+.homepage-sections {
   padding-top: 64px;
   padding-bottom: 64px;
 }
 
-.homepage-banner {
-  background-color: #81d7be;
-  min-height: 400px;
-}
-
-.homepage-banner-figure {
-  margin: 0 auto;
-  margin-top: 64px;
-  background-image: image_url("home/wikifactory.jpg");
-  background-size: contain;
-  background-color: white;
-  background-repeat: no-repeat;
-  background-position: center center;
-  height: 600px;
-  width: 800px;
-
-  max-width: 90vw;
-  max-height: 50vh;
-  z-index: 99;
-}
-.homepage-figure {
-  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.1);
-}
-.homepage-banner-slogan {
-  //   background: white;
-  //   height: 400px;
-}
-.homepage-news {
-  background-color: white;
-}
 .homepage-features-list {
-  ul {
-    margin: 0;
-    padding: 0;
-  }
   li {
-    margin: 0px;
-    padding: 0;
-    padding-left: 0px;
-    margin-left: 0px;
     list-style-image: image_url("dot.png");
     list-style-position: inside;
     font-size: 18px;
     line-height: 32px;
     font-weight: 400;
     color: #666666;
-    margin-right: 32px;
-  }
-}
-
-.homepage-join {
-  margin-bottom: 32px;
-}
-
-.homepage-spacer {
-  height: 8px;
-}
-.homepage-spacer-lg {
-  height: 32px;
-}
-
-.homepage-box {
-  background: white;
-  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.1);
-  padding: 26px 40px;
-  width: 100%;
-  height: 100%;
-  margin-bottom: 60px;
-
-  margin-left: auto;
-  margin-right: auto;
-  // margin-bottom: 40px;
-  .homepage-cta {
-    margin: 20px 0;
-    text-align: center;
-    position: absolute;
-    bottom: 10px;
-    left: 0;
-    right: 0;
-  }
-
-  .box-link {
-    font-size: 18px;
-    padding-top: 32px;
-  }
-
-  .homepage-box-image {
-    height: 150px;
   }
 }
 
@@ -127,13 +43,4 @@
   margin-right: 80px;
   margin-bottom: 40px;
   overflow: hidden;
-}
-
-.homepage-project-card-image {
-  width: 100%;
-  margin: 20px auto;
-}
-
-.homepage-lab-avatar {
-  margin-bottom: 32px;
 }

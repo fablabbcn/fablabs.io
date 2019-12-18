@@ -1,17 +1,16 @@
-.row.bg-white.py-5
-    .container.my-4
+.row.bg-white.homepage-sections
+    .container
         .row
-            .col-12.col-md-5.homepage-join
+            .col-12.col-md-5
                 .text-primary.text-large Join Fablabs.io
                 %h5 Each lab has its own profile page which can be maintained and updated by its staff
-                .homepage-spacer
-                %a.button.btn.btn-primary.btn-lg{:href => "./signup"} Register today
+                %a.button.btn.btn-primary.btn-lg.mt-2{:href => "./signup"} Register today
             .col-12.col-md-1
             .col-12.col-md-6
                 .text-primary.h4.font-weight-bold Key Features
                 .homepage-divider{:style => "margin-left:0px;"}
-                .homepage-features-list 
-                    %ul
+                .homepage-features-list
+                    %ul.m-0.p-0
                         %li= t("views.home.feat1", default: "Update your profile and avatar")
                         %li= t("views.home.feat2", default: "Add a new Fablab to the global directory")
                         %li= t("views.home.feat3", default: "Create a network of Fablabs for your region")

@@ -1,13 +1,13 @@
-.row.homepage-projects
+.row.homepage-sections
   .container
     .row
       .col-12
-        %h3.text-primary Recent Projects
+        %h3.text-primary.font-weight-bold Recent Projects
     .row
       - @projects.each do |a|
         .col-md-6.col-lg-4.mb-5
           .homepage-project-card.container
-            %a{:href => 'https://projects.fablabs.io/search/' + a['slug']}=image_tag (a['image_url']), :class => "homepage-project-card-image", :target=>"_blank"
+            %a{:href => 'https://projects.fablabs.io/search/' + a['slug']}=image_tag (a['image_url']), :class => "card-img-top mb-4", :target=>"_blank"
             %h5
               %a{:href => 'https://projects.fablabs.io/search/' + a['slug']}= a["title"]
             .text-small

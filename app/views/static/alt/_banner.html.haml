@@ -1,12 +1,12 @@
-.row
-    .homepage-banner.col-12
+.row.homepage-sections.bg-primary
+    .col-12
         .container
             %h1.text-center New projects section
             %br
-            .homepage-figure
+            .shadow
                 %a{:href=>"https://projects.fablabs.io"}= image_tag image_url('home/wikifactory.jpg'), alt: 'projects.fablabs.io', class: 'img-fluid'
-            .homepage-spacer-lg
-            .text-center
+
+            .text-center.mt-5
                 %h5
                     %span New 
                     %a{:href=>"https://projects.fablabs.io",:style=>"color:white"} projects.fablabs.io
