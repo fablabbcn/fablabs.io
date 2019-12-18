@@ -1,6 +1,5 @@
 .homepage-sections {
-  padding-top: 64px;
-  padding-bottom: 64px;
+  padding: 64px 0px;
 }
 
 .homepage-features-list {
@@ -12,35 +11,4 @@
     font-weight: 400;
     color: #666666;
   }
-}
-
-.homepage-project-card {
-  background: white;
-  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.1);
-  padding: 26px 40px;
-  width: 100%;
-  height:100%;
-  margin-right: 80px;
-  margin-bottom: 40px;
-  overflow: hidden;
-
-  .homepage-cta {
-    margin: 20px 0;
-    text-align: center;
-    position: absolute;
-    bottom: 10px;
-    left: 0;
-    right: 0;
-  }
-}
-
-.homepage-event-card {
-  background: white;
-  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.1);
-  padding: 26px 40px;
-  width: 100%;
-  height: 360px;
-  margin-right: 80px;
-  margin-bottom: 40px;
-  overflow: hidden;
 }
