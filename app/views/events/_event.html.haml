@@ -3,7 +3,7 @@
         -#- if event.photo.present?
           -#= image_tag event.photo.thumb("300x245>").url
   .card.shadow.float-left.h-100.w-100
-    .card-content
+    .card-content.position-relative.px-4.py-3
       .text-large
         = link_to event, lab_event_path(event.lab, event)
       .card-link

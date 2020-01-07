@@ -132,8 +132,7 @@ h1 {
   font-size: 2.5em !important;
   line-height: 1.2 !important;
   font-weight: bold;
-  margin-top: 0;
-  font-weight: bold;
+  margin-top: 0px;
 }
 
 .count {
@@ -324,22 +323,8 @@ h5 {
 }
 
 .card {
-  .card-image {
-    width: 100%;
-    height: 245px;
-    background-color: white;
-    border-radius: 4px 4px 0px 0px;
-    overflow: hidden;
-  }
-
-  .card-content {
-    position: relative;
-    padding: 15px 20px;
-  }
-
   .card-title {
     font-size: 18px;
-    line-height: 24px;
     font-weight: 400;
     color: #666666;
     white-space: nowrap;
@@ -347,13 +332,6 @@ h5 {
     text-overflow: ellipsis;
     width: calc(100% - 30px);
     display: block;
-  }
-
-  .card-subtitle {
-    font-size: 14px;
-    line-height: 24px;
-    font-weight: 900;
-    color: #AAAAAA;
   }
 
   .card-arrow {

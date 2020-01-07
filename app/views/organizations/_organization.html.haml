@@ -1,13 +1,13 @@
 = content_tag_for :div, organization, class: 'col-4 mb-3', itemscope: true, itemtype: "http://data-vocabulary.org/Organization" do
   .card.shadow.float-left.h-100.w-100
-    .card-image
+    .card-img-top{ style: 'height: 250px;' }
       = link_to organization do
         = image_tag organization.avatar.thumb("310x330#").url, itemprop: "logo"
 
-    .card-content
+    .card-content.position-relative.px-4.py-3
       = link_to organization, itemprop: 'name' do
         .card-title= organization.name
-        .card-subtitle= organization.kind.humanize.titleize
+        .card-content.font-weight-bold.text-small= organization.kind.humanize.titleize
         %span.url.microdata{itemprop: "url"}= organization_url(organization, {locale: nil})
 
         = image_tag ("icons/arrow-right.svg"), :class => "card-arrow"
