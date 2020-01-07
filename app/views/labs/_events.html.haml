@@ -8,6 +8,7 @@
       - if event.starts_at
         \-
         = event.starts_at.stamp('Wed, 20th November')
-.row.mt-3.mb-3
-  = link_to lab_events_path(@lab), class: 'btn btn-primary' do
-    = "See all events"
+.container.mt-3.mb-3
+  .row
+    = link_to lab_events_path(@lab), class: 'btn btn-primary' do
+      = "See all events"
