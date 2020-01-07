@@ -216,18 +216,12 @@ h4.modal-title {
   max-width: 1100px;
 }
 
-.col-centered{
-  float: none;
-  margin: 0 auto;
-}
-
 a:hover {
   text-decoration: none;
 }
 
 .box {
-  padding-top: 20px;
-  padding-bottom: 20px;
+  padding: 20px 0;
   background: #FFF;
   margin-bottom: 20px;
 }
@@ -363,18 +357,6 @@ h5 {
   font-size: 14px;
   line-height: 24px;
   color: #666;
-}
-
-.page-intro {
-  .page-intro-image {
-    margin-right: 20px;
-    float: left;
-  }
-
-  .page-intro-content {
-    padding-top: 8px;
-    float: left;
-  }
 }
 
 .divider {

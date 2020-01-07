@@ -1,8 +1,8 @@
-.row.page-intro
-  .page-intro-image
+.row
+  .mr-4.float-left
     = link_to lab do
       = image_tag lab.avatar.thumb('118x118#').url, class: 'big avatar', itemprop: "logo"
-  .page-intro-content
+  .pt-2.float-left
     - if @lab.activity_status == 'closed'
       %span.tag CLOSED
     - if @lab.activity_status == 'planned'
@@ -18,7 +18,7 @@
         .lab-address{itemprop: "address"}= lab.formatted_address
       .text-small
         - if lab.phone.present?
-          %span.lab-phone
+          %span.lab-phone.mr-2
             %span.fa.fa-phone
             %span{itemprop: "telephone"}= lab.phone
         - if lab.email.present?
