@@ -4,6 +4,6 @@
 
   = f.simple_fields_for :links do |link|
     = render 'link_fields', f: link
-  .links.mt-3
+  .links
     = link_to_add_association f, :links, class: 'btn btn-default' do
       Add link

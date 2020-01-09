@@ -137,9 +137,9 @@
 
       - if current_user.present?
         - if current_user.has_role? :superadmin
-          = link_to edit_backstage_lab_path(@lab), class: 'btn btn-primary btn-lg' do
+          = link_to edit_backstage_lab_path(@lab), class: 'btn btn-primary' do
             = fa_icon "edit", text: "Edit Lab"
-          = link_to lab_employees_path(@lab), class: 'btn btn-primary btn-lg' do
+          = link_to lab_employees_path(@lab), class: 'btn btn-primary' do
             = fa_icon "group", text: t('views.labs.show.edit_employee_list', default: "Edit Employee List")
-          = link_to new_lab_event_path(@lab), class: 'btn btn-primary btn-lg' do
+          = link_to new_lab_event_path(@lab), class: 'btn btn-primary' do
             = fa_icon "calendar", text: t('views.labs.show.add_event', default: "Add Event")

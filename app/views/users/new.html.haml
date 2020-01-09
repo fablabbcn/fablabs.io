@@ -6,7 +6,7 @@
         %h5
           Once you join you'll be able to add your Fab Lab to the list, participate in discussions with all the Fab Labs and users, upload projects and more.
 
-      .row.px-0
+      .row
         = render "form_errors", resource: @user
         = hidden_field_tag :goto, params[:goto]
         .col-12
@@ -28,4 +28,4 @@
           .form-check
             = f.input :agree_policy_terms, as: :boolean, label: "Please read and agree to our <a href='/cookie-policy'>Cookie</a>, <a href='/privacy-policy'>Privacy</a> and <a href='/tos'>Terms of Service (TOS)</a> policies".html_safe, input_html: { class: 'form-check-input' }
 
-          = f.submit t("views.header.signup", default: "Sign Up"), class: 'btn btn-primary btn-lg float-left'
+          = f.submit t("views.header.signup", default: "Sign Up"), class: 'btn btn-primary btn-lg mb-3 float-left'

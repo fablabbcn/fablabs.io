@@ -1,14 +1,14 @@
 - cache ["v2", machine] do
   = content_tag_for :div, machine, class: 'col-4 mb-3' do
     .card.shadow.float-left.h-100.w-100
-      .card-image
+      .card-img-top{ style: 'height: 250px;' }
         = link_to machine do
           - if machine.photo.present?
             = image_tag machine.photo.thumb("230x245>").url
 
-      .card-content
+      .card-content.position-relative.px-4.py-3
         = link_to machine do
-          .card-subtitle= machine.brand
+          .card-content.font-weight-bold.text-small= machine.brand
           .card-title= machine
 
           = image_tag ("icons/arrow-right.svg"), :class => "card-arrow"

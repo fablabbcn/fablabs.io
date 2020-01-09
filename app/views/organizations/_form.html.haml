@@ -1,7 +1,7 @@
 = simple_form_for organization, html: { class: 'row'} do |f|
   - if current_user.has_role?(:superadmin)
     %fieldset.col-12
-      .text-large Superadmin options
+      .text-large Superadmin Options
 
       = f.input :workflow_state, collection: Organization::WORKFLOW_STATES, include_blank: false
       = f.input :geojson_file, as: :file

@@ -2,7 +2,7 @@
   = if false
     = content_tag_for :div, project, class: 'card' do
       - cover = project.project_cover
-      .card-image
+      .card-img-top{ style: 'height: 250px;' }
         = link_to project do
           - if cover
             = image_tag project.project_cover.thumb("310x330#").url, itemprop: "cover"
@@ -10,7 +10,7 @@
       .card-content
         = link_to project do
           .card-title= project.title
-          .card-subtitle
+          .card-content.font-weight-bold.text-small
             = time_tag(project.updated_at.to_date)
 
           = image_tag ("icons/arrow-right.svg"), :class => "card-arrow"

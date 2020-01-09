@@ -1,18 +1,19 @@
-.row
-  .selections
-    %ul
-      - @lab.referee_approval_processes.each do |c|
-        - if c.referee_lab.present? and c.id
-          %li
-            %span
-              = link_to icon('times'), referee_approval_process_path(c), method: :delete
-              = image_tag c.referee_lab.avatar.thumb('90x90#').url, class: 'avatar tiny'
+.container
+  .row
+    .selections
+      %ul
+        - @lab.referee_approval_processes.each do |c|
+          - if c.referee_lab.present? and c.id
+            %li
+              %span
+                = link_to icon('times'), referee_approval_process_path(c), method: :delete
+                = image_tag c.referee_lab.avatar.thumb('90x90#').url, class: 'avatar tiny'
 
 
-.row
-  - @selected = @lab.referee_approval_processes.map{|u| u.referee_lab_id}.collect
-  %label{for: "referee_approval_processes_attributes"}
-    Referees
+  .row
+    - @selected = @lab.referee_approval_processes.map{|u| u.referee_lab_id}.collect
+    %label{for: "referee_approval_processes_attributes"}
+      Referees
 
-  %br
-    = select_tag :referee_approval_processes_attributes, options_from_collection_for_select(Lab.approved_referees.collect, :id, :slug, @selected), { multiple: true, name: 'lab[referee_approval_processes_attributes][][referee_lab_id]', class: 'referee_approval form-control'}
+    %br
+      = select_tag :referee_approval_processes_attributes, options_from_collection_for_select(Lab.approved_referees.collect, :id, :slug, @selected), { multiple: true, name: 'lab[referee_approval_processes_attributes][][referee_lab_id]', class: 'referee_approval form-control'}
