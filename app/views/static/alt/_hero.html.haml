@@ -20,7 +20,7 @@
                 %h5
                     = t("views.alt.find_a_fablab_description", default: "The Fablab Network is an open, creative community of fabricators, artists, scientists, engineers, educators, students, amateurs and professionals located in more than 100 countries and 1,750 Fab Labs across the globe. Fablabs offer a wide range of educational programs for all age groups and professional digital fabrication services for various types of organizations.<br><br><a href='/labs/map'>Browse the Fablabs map</a>" ).html_safe
     .row.homepage-sections
-        .col-md-6.mb-4
+        .col-md-6.mb-5
             .card.shadow.w-100.h-100.p-5
                 =image_tag ("home/lab-illustration.png"), :class => "h-25 w-25 mb-1"
                 .text-small
@@ -34,7 +34,7 @@
                 = link_to [:map, :labs], class: 'pt-5 h5' do
                     = t("views.alt.lab_card.cta", default: "See the Fablabs Map")
                     = image_tag ("icons/arrow-right.svg")
-        .col-md-6.mb-4
+        .col-md-6.mb-5
             .card.shadow.w-100.h-100.p-5
                 =image_tag ("home/person-illustration.png"), :class => "h-25 w-25 mb-1"
                 .text-small

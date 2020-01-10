@@ -1,6 +1,6 @@
 = content_tag_for :div, organization, class: 'col-4 mb-3', itemscope: true, itemtype: "http://data-vocabulary.org/Organization" do
   .card.shadow.float-left.h-100.w-100
-    .card-img-top{ style: 'height: 250px;' }
+    .card-img-top
       = link_to organization do
         = image_tag organization.avatar.thumb("310x330#").url, itemprop: "logo"
 
