@@ -23,7 +23,7 @@
             - @machine.tags.each do |tag|
               %li.gray.list-inline-item.mb-0
                 %strong
-                  = link_to "##{tag}", machines_path(tag: tag)
+                  = link_to "##{tag}", machines_path(tag: tag.name)
 
           - if @machine.inventory_item?
             %ul.list-unstyled

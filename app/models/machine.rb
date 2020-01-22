@@ -21,4 +21,5 @@ class Machine < Thing
       async_discourse_sync
     end
   end
+
 end

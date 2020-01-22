@@ -15,7 +15,7 @@
               - if machine.tags.length > 0
                 - machine.tags.each do |tag|
                   %li.gray.list-inline-item.mb-0
-                    = link_to "##{tag}", machines_path(tag: tag)
+                    = link_to "##{tag}", machines_path(tag: tag.name)
 
       .subnavbar-section.subnavbar-section-right
         - if current_user
@@ -26,6 +26,13 @@
             = fa_icon "plus", text: t("views.labs.index.add_a_machine", default: "Add a new Machine")
 
   .container
-    .row.machines= render @machines
-    .row
-      = paginate @machines, theme: 'twitter-bootstrap-4', nav_class: "m-auto pt-3"
+    - if params[:tag].present?
+      .row.machines
+        = render @machines.tagged_with(params[:tag])
+      .row
+        = paginate @machines.tagged_with(params[:tag]), theme: 'twitter-bootstrap-4', nav_class: "m-auto pt-3"
+    - else
+      .row.machines
+        = render @machines
+      .row
+        = paginate @machines, theme: 'twitter-bootstrap-4', nav_class: "m-auto pt-3"

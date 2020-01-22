@@ -16,7 +16,7 @@
                 - machine.tags.limit(3).each do |tag|
                   %li.gray.list-inline-item.mb-0
                     %strong
-                      = link_to "##{tag}", machines_path(tag: tag)
+                      = link_to "##{tag}", machines_path(tag: tag.name)
 
               = link_to machine do
                 = image_tag ("icons/arrow-right.svg"), :class => "card-arrow"
