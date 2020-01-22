@@ -1,5 +1,5 @@
 - cache ["v2", machine] do
-  = content_tag_for :div, machine, class: 'col-4 mb-3' do
+  = content_tag_for :div, machine, class: 'col-12 col-md-4 mb-3' do
     .card.shadow.float-left.h-100.w-100
       .card-img-top
         = link_to machine do
@@ -10,6 +10,14 @@
         = link_to machine do
           .card-content.font-weight-bold.text-small= machine.brand
           .card-title= machine
+          .card-text.text-small
+            - if machine.tags.length > 0
+              %ul.taglist.list-unstyled.list-inline
+                - machine.tags.limit(3).each do |tag|
+                  %li.gray.list-inline-item.mb-0
+                    %strong
+                      = link_to "##{tag}", machines_path(tag: tag)
 
-          = image_tag ("icons/arrow-right.svg"), :class => "card-arrow"
+              = link_to machine do
+                = image_tag ("icons/arrow-right.svg"), :class => "card-arrow"
 

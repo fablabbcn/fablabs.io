@@ -3,8 +3,19 @@
 
   .subnavbar
     .container.subnavbar-container
-      .subnavbar-section.subnavbar-section-center
+      .subnavbar-section.subnavbar-section-left
         .title Machines
+
+      .subnavbar-section.subnavbar-section-center.d-flex.justify-content-start
+        .title
+          = icon('tags')
+          Tags:
+          %ul.taglist.list-unstyled.text-small.list-inline.mt-2
+            - @machines.each do |machine|
+              - if machine.tags.length > 0
+                - machine.tags.each do |tag|
+                  %li.gray.list-inline-item.mb-0
+                    = link_to "##{tag}", machines_path(tag: tag)
 
       .subnavbar-section.subnavbar-section-right
         - if current_user

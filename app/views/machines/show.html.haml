@@ -18,10 +18,10 @@
 
         - if @machine.tags.length > 0
           .heading Tags
-          %ul.taglist.list-unstyled
+          %ul.taglist.list-unstyled.text-small.list-inline
             = icon('tags')
             - @machine.tags.each do |tag|
-              %li.gray
+              %li.gray.list-inline-item.mb-0
                 %strong
                   = link_to "##{tag}", machines_path(tag: tag)
 

@@ -5,15 +5,6 @@
     .subnavbar-section.subnavbar-section-center
       .title Events
 
-    -#TODO: choose lab before creating events
-    -#.subnavbar-section.subnavbar-section-right
-      - if current_user
-        = link_to events_path, class: "btn btn-primary" do
-          = fa_icon "plus", text: "Add Event"
-      - else
-        = link_to events_path, class: "btn btn-primary", data: {toggle: "tooltip", placement: "bottom" }, title: "You need to be signed in to add an Event" do
-          = fa_icon "plus", text: "Add Event"
-
 .container
   .row.events= render @events
   .row
