@@ -28,8 +28,9 @@
     .text-large
       Tags
 
-    = f.input :tag_list
-    = f.input :inventory_item, class: 'form-control'
+    = f.input :tag_list, hint: 'Separate different tags with commas'
+    .form-check.ml-4
+      = f.input :inventory_item, input_html: { class: 'form-check-input' }
 
   %fieldset.col-12
     = render 'form_links', f: f
