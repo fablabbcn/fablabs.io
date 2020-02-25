@@ -98,6 +98,25 @@ integrate Fablabs.io in your application.
 Check out also the [API Reference](https://docs.fablabs.io/swagger/index.html),
 the [Examples](https://github.com/fablabbcn/examples.fablabs.io), and the [fablabs.js library](https://github.com/fablabbcn/fablabsjs).
 
+### Getting an API Token
+
+1. Login to fablabs.io
+2. Go to the [developer console](https://fablabs.io/oauth/applications/) (on the upper-right menu)
+3. Create a **New application**, or edit an existing one.
+4. Fill in the form, Redirect URI can be 'https://example.com'
+5. Submit
+
+Copy the **Personal access token**
+
+Verify the token is working with the following terminal command:
+
+```bash
+curl -X GET 'https://api.fablabs.io/2/me' -H 'Authorization: Bearer <your_personal_token>'
+```
+
+```bash
+curl -X GET 'https://api.fablabs.io/2/labs?page=0&per_page=100'  -H 'Authorization: Bearer <your_personal_token>'
+```
 
 ## Production notes
 
