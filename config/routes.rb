@@ -1,17 +1,18 @@
 Rails.application.routes.draw do
-  get 'version', to: 'static#version'
-  get "discourse/sso"
-  get "discuss" => 'discourse#embed'
-  resources :pages, only: [:show]
-  require 'sidekiq/web'
   require "admin_constraint"
+  require 'sidekiq/web'
   mount Sidekiq::Web, at: '/sidekiq', constraints: AdminConstraint.new
 
-  get "signout" => "sessions#destroy", :as => "signout"
-  get "signin" => "sessions#new", :as => "signin"
-  get '/robots.txt' => 'robots#robots', :format => :txt
+  get "discourse/sso"
+  get "discuss" => 'discourse#embed'
 
+  resources :pages, only: [:show]
+
+  get "signin" => "sessions#new", :as => "signin"
+  get "signout" => "sessions#destroy", :as => "signout"
   get "styleguide", to: "static#styleguide"
+  get '/robots.txt' => 'robots#robots', :format => :txt
+  get 'version', to: 'static#version'
 
   resources :sessions
 
@@ -107,9 +108,9 @@ Rails.application.routes.draw do
     end
 
     get 'events' => 'events#main_index', as: 'events'
-    
+
     resources :search, only: [:index]
-    
+
     # Disabling projects routes now implemented in projects.fablabs.io
     # resources :projects do
     #   collection do
@@ -136,6 +137,7 @@ Rails.application.routes.draw do
     end
 
     get "/labs/docs/:page" => "labs#docs"
+
     resources :labs do
       resources :events
       resources :admin_applications
@@ -171,6 +173,7 @@ Rails.application.routes.draw do
 
     get '/' => 'static#api'
     # root to: ''static#api'
+
     api version: 0, module: "api/v0", as: "api_v0" do
         get 'me' => 'users#me'
         get 'users' => 'users#search'
@@ -191,10 +194,11 @@ Rails.application.routes.draw do
           get :map, on: :collection
         end
     end
+
     api version: 1, module: "api/v1", as: "api_v1" do
       get 'users' => 'users#search'
-
     end
+
     api version: 2, module: "api/v2", as: "api_v2" do
 
       # admin routes
