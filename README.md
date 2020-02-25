@@ -111,7 +111,7 @@ Copy the **Personal access token**
 Verify the token is working with the following terminal command:
 
 ```bash
-curl -X GET 'https://api.fablabs.io/2/me' -H 'Authorization: Bearer <your_personal_token>'
+curl -X GET 'https://api.fablabs.io/0/me' -H 'Authorization: Bearer <your_personal_token>'
 ```
 
 ```bash
