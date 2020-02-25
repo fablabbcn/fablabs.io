@@ -19,7 +19,7 @@ jobs:
           POSTGRES_PASSWORD: postgres
           POSTGRES_USER: postgres
         ports:
-          - 5432/tcp
+          - 5432:5432
         # needed because the postgres container does not provide a healthcheck
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
 
@@ -45,20 +45,20 @@ jobs:
         uname -a
         cat /etc/os-release
 
-    - name: Setup PostgreSQL
-      uses: Harmon758/postgresql-action@v1.0.0
-
     - name: Install required packages
       run: |
         sudo apt-get install libpq-dev
         sudo apt-get install g++ qt5-default libqt5webkit5-dev gstreamer1.0-plugins-base gstreamer1.0-tools gstreamer1.0-x
 
-    - name: Bundle and test
+    - name: Bundle
       run: |
         pwd
         gem install bundler
         bundle config path vendor/bundle
         bundle install --jobs 4 --retry 3
+
+    - name: Test
+      run: |
         cp config/application.example.yml config/application.yml
         RAILS_ENV=test bundle exec rails db:create
         RAILS_ENV=test bundle exec rails db:schema:load
@@ -67,6 +67,7 @@ jobs:
       env:
         #Note: DATABASE_URL does not work in TEST env.
         TEST_DB_HOST: localhost
-        TEST_DB_USERNAME: postgres
         TEST_DB_NAME: postgres
+        TEST_DB_PASSWORD: postgres
+        TEST_DB_USERNAME: postgres
         PG_PORT: ${{ job.services.postgres.ports['5432'] }}
