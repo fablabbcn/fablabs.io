@@ -5,7 +5,7 @@ ready = ->
     longitude = $('#organization-map').data('longitude') || 0
     zoom = $('#organization-map').data('zoom') || 14
 
-    L.mapbox.accessToken = 'pk.eyJ1IjoidG9tYXNkaWV6IiwiYSI6ImRTd01HSGsifQ.loQdtLNQ8GJkJl2LUzzxVg'
+    L.mapbox.accessToken = 'pk.eyJ1IjoidG9tYXNkaWV6IiwiYSI6ImNpaWcyMHU0bjAwM2x2emt1cG5iMzE3bXIifQ.wWNloP12TwdfeKyLHaXpSA'
     map = L.mapbox.map('organization-map', 'mapbox.light', { scrollWheelZoom: false, zoomControl: false, loadingControl: true }).setView([latitude, longitude], zoom)
 
     L.geoJson(geojson, { style: L.mapbox.simplestyle.style }).addTo(map)

@@ -127,7 +127,7 @@ load = ->
     $(window).resize _.debounce(windowHeight,100)
     $('footer').css('margin-top', '800px')
 
-    L.mapbox.accessToken = 'pk.eyJ1IjoidG9tYXNkaWV6IiwiYSI6ImRTd01HSGsifQ.loQdtLNQ8GJkJl2LUzzxVg'
+    L.mapbox.accessToken = 'pk.eyJ1IjoidG9tYXNkaWV6IiwiYSI6ImNpaWcyMHU0bjAwM2x2emt1cG5iMzE3bXIifQ.wWNloP12TwdfeKyLHaXpSA'
     map = L.mapbox.map('map', 'mapbox.light', { scrollWheelZoom: true, zoomControl: false }).setView([
       50
       0
