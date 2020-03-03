@@ -1,16 +1,17 @@
 - title "Organizations"
-.subnavbar
-  .container.subnavbar-container
-    .subnavbar-section.subnavbar-section-center
-      .title Organizations
+.subnavbar.border-bottom
+  .container
+    .row
+      .col-md-8.border-right.py-4
+        .title Organizations
 
-    .subnavbar-section.subnavbar-section-right
-      - if current_user
-        = link_to new_organization_path, class: "btn btn-primary" do
-          = fa_icon "plus", text: 'Add a new Organization'
-      - else
-        = link_to new_organization_path, class: "btn btn-primary", data: {toggle: "tooltip", placement: "bottom" }, title: "You need to be signed in to add an Organization" do
-          = fa_icon "plus", text: 'Add a new Organization'
+      .col-md-4.py-4
+        - if current_user
+          = link_to new_organization_path, class: "btn btn-primary" do
+            = fa_icon "plus", text: 'Add a new Organization'
+        - else
+          = link_to new_organization_path, class: "btn btn-primary", data: {toggle: "tooltip", placement: "bottom" }, title: "You need to be signed in to add an Organization" do
+            = fa_icon "plus", text: 'Add a new Organization'
 
 .container
   .row.labs= render @organizations

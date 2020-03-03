@@ -244,30 +244,7 @@ header {
 }
 
 .subnavbar {
-  border-bottom: 1px solid #E5E5E5;
   margin-bottom: 40px;
-
-  .subnavbar-container {
-    display: flex;
-  }
-
-  .subnavbar-section {
-    padding: 12px 20px;
-  }
-
-  .subnavbar-section-left {
-    padding-left: 0;
-    border-right: 1px solid #E5E5E5;
-  }
-
-  .subnavbar-section-center {
-    flex: 1;
-  }
-
-  .subnavbar-section-right {
-    padding-right: 0;
-    border-left: 1px solid #E5E5E5;
-  }
 
   #labs_country_selector {
     width: 140px;

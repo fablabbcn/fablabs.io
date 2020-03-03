@@ -1,11 +1,11 @@
 - title "Projects"
 
-.subnavbar
-  .container.subnavbar-container
-    .subnavbar-section.subnavbar-section-center
+.container
+  .row
+    .col-4
       .title Projects
 
-    .subnavbar-section.subnavbar-section-right
+    .col-4
       - if current_user
         = link_to new_project_path, class: "btn btn-primary" do
           = fa_icon "plus", text: t("views.projects.index.new_project", default: "Add a new Project")

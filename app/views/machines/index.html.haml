@@ -1,12 +1,12 @@
 - cache ["v1", Machine.last_updated_at] do
 - title "Machines"
 
-  .subnavbar
-    .container.subnavbar-container
-      .subnavbar-section.subnavbar-section-left
+  .subnavbar.container-fluid.border-bottom
+    .row
+      .col-md-2.border-right.py-3
         .title Machines
 
-      .subnavbar-section.subnavbar-section-center.d-flex.justify-content-start
+      .col-md-6.border-right.py-3.d-flex.justify-content-start
         .title
           = icon('tags')
           Tags:
@@ -17,7 +17,7 @@
                   %li.gray.list-inline-item.mb-0
                     = link_to "##{tag}", machines_path(tag: tag.name)
 
-      .subnavbar-section.subnavbar-section-right
+      .col-md-4.border-right.py-3
         - if current_user
           = link_to new_machine_path, class: "btn btn-primary" do
             = fa_icon "plus", text: t("views.labs.index.add_a_machine", default: "Add a new Machine")
