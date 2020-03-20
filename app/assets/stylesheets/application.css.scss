@@ -15,11 +15,9 @@
  *= require messenger
  *= require messenger-theme-flat
  *= require trumbowyg/trumbowyg
- *= require bootstrap/dist/css/bootstrap.min.css
  *= require flatpickr
  *= require_self
  *= require_tree .
-
  */
 
 @import "common_vars";

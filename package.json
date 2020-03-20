@@ -6,7 +6,6 @@
   "author": "Viktor Smari <viktorsmari@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "bootstrap": "^4.4.1",
     "bootstrap-datepicker": "1.6.4",
     "font-awesome": "4.7.0",
     "leaflet-spin": "1.1.0",
