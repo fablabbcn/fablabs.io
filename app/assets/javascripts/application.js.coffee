@@ -12,7 +12,6 @@
 #
 #= require jquery
 #= require jquery_ujs
-#= require bootstrap/dist/js/bootstrap.bundle
 #= require jquery.limit-1.2
 #= require Control.Loading.js
 #= require jquery.geocomplete
