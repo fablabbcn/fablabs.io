@@ -7,11 +7,19 @@
 .fab_lab,
 .mobile,
 .mini_fab_lab,
+.icon_corona,
 .supernode {
   border: none;
   background-color: rgba(255, 255, 255, 0);
 }
 
+.icon_corona{
+  background-image: image_url("map-icons/corona70.png");
+  width: 70px !important;
+  height: 70px !important;
+  top: -70px;
+  left: -35px;
+}
 /* Single lab page */
 
 .lab-page.fab_lab {

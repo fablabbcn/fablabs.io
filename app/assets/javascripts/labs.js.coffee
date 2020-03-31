@@ -160,6 +160,8 @@ ready = ->
           # See issuse https://github.com/fablabbcn/fablabs.io/issues/449
           if lab.status == 'active'
             lab.marker._icon.classList.add('fab_lab')
+          else if lab.status == 'corona'
+            lab.marker._icon.classList.add('icon_corona')
           else
             lab.marker._icon.classList.add('mobile')
 
