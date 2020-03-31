@@ -1,6 +1,9 @@
 !!!
 %html{xmlns: "http://www.w3.org/1999/xhtml", "xmlns:fb" => "http://www.facebook.com/2008/fbml", "xmlns:og" => "http://ogp.me/ns#", :lang => "en"}
-  = render 'head'
+  %head
+    = render 'head'
+    = cookie_policy_script
+    
   %body{ class: body_classes }
     = render "application/header"
     #main

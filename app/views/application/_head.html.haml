@@ -1,32 +1,31 @@
-%head
-  %title= content_for?(:title) ? "#{yield(:title)} | FabLabs" : "FabLabs.io - The Fab Lab Network"
-  %base{:target => "_parent"}
-  %meta{ :charset => "utf-8" }
-  %meta{ name: "viewport", content: "width=device-width, initial-scale=1.0, user-scalable=no" }
-  %meta{content: (content_for?(:title) ? "#{yield(:title)} | FabLabs" : "FabLabs.io - The Fab Lab Network"), property: "og:title"}/
-  %meta{content: "FabLabs.io - The Fab Lab Network", property: "og:site_name"}/
-  %meta{content: request.url, property: "og:url"}/
-  - if content_for?(:meta)
-    = yield(:meta)
-  - else
-    %meta{content: "https://www.fablabs.io/logo.jpg", property: "og:image"}/
-    %meta{content: "A platform for connecting Fab Labs and their users from around the world.", property: "og:description"}/
-  %meta{content: "1349222175", property: "fb:admins"}/
+%title= content_for?(:title) ? "#{yield(:title)} | FabLabs" : "FabLabs.io - The Fab Lab Network"
+%base{:target => "_parent"}
+%meta{ :charset => "utf-8" }
+%meta{ name: "viewport", content: "width=device-width, initial-scale=1.0, user-scalable=no" }
+%meta{content: (content_for?(:title) ? "#{yield(:title)} | FabLabs" : "FabLabs.io - The Fab Lab Network"), property: "og:title"}/
+%meta{content: "FabLabs.io - The Fab Lab Network", property: "og:site_name"}/
+%meta{content: request.url, property: "og:url"}/
+- if content_for?(:meta)
+  = yield(:meta)
+- else
+  %meta{content: "https://www.fablabs.io/logo.jpg", property: "og:image"}/
+  %meta{content: "A platform for connecting Fab Labs and their users from around the world.", property: "og:description"}/
+%meta{content: "1349222175", property: "fb:admins"}/
 
-  %link{href: "https://stackpath.bootstrapcdn.com/bootstrap/4.4.0/css/bootstrap.min.css", rel: "stylesheet", integrity: "sha384-SI27wrMjH3ZZ89r4o+fGIJtnzkAnFs3E4qz9DIYioCQ5l9Rd/7UAa8DHcaL8jkWt", crossorigin: "anonymous"}
-  = javascript_include_tag "https://code.jquery.com/jquery-3.4.1.slim.min.js"
-  %script{src: "https://stackpath.bootstrapcdn.com/bootstrap/4.4.0/js/bootstrap.bundle.min.js", integrity: "sha384-Iep5TjrwnXOp2AdreAjhlprhxI5Ix8Y3I/zJd1tNQZQmonaE3i6fTdrvIG9YjOWl", crossorigin: "anonymous"}
-  %link{href: "https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css", rel: "stylesheet", integrity: "sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN", crossorigin: "anonymous"}
+%link{href: "https://stackpath.bootstrapcdn.com/bootstrap/4.4.0/css/bootstrap.min.css", rel: "stylesheet", integrity: "sha384-SI27wrMjH3ZZ89r4o+fGIJtnzkAnFs3E4qz9DIYioCQ5l9Rd/7UAa8DHcaL8jkWt", crossorigin: "anonymous"}
+= javascript_include_tag "https://code.jquery.com/jquery-3.4.1.slim.min.js"
+%script{src: "https://stackpath.bootstrapcdn.com/bootstrap/4.4.0/js/bootstrap.bundle.min.js", integrity: "sha384-Iep5TjrwnXOp2AdreAjhlprhxI5Ix8Y3I/zJd1tNQZQmonaE3i6fTdrvIG9YjOWl", crossorigin: "anonymous"}
+%link{href: "https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css", rel: "stylesheet", integrity: "sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN", crossorigin: "anonymous"}
 
-  %link{rel: "canonical", href: "#{request.url.split('?').first}"}
-  = javascript_include_tag "https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"
-  %link{rel: "stylesheet", href: "https://api.mapbox.com/mapbox.js/v3.0.1/mapbox.css"}
-  = javascript_include_tag "https://api.mapbox.com/mapbox.js/v3.0.1/mapbox.js"
+%link{rel: "canonical", href: "#{request.url.split('?').first}"}
+= javascript_include_tag "https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"
+%link{rel: "stylesheet", href: "https://api.mapbox.com/mapbox.js/v3.0.1/mapbox.css"}
+= javascript_include_tag "https://api.mapbox.com/mapbox.js/v3.0.1/mapbox.js"
 
-  = stylesheet_link_tag "//fonts.googleapis.com/css?family=Open+Sans:400|Montserrat"
-  = stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true
-  = javascript_include_tag "//maps.googleapis.com/maps/api/js?sensor=false&libraries=places&key=#{google_maps_api_key}"
-  = javascript_include_tag "application", "data-turbolinks-track" => true
-  %link{type: "text/plain", rel: "author", href: "/humans.txt"}
-  = csrf_meta_tags
-  = cookie_policy_script
+= stylesheet_link_tag "//fonts.googleapis.com/css?family=Open+Sans:400|Montserrat"
+= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true
+= javascript_include_tag "//maps.googleapis.com/maps/api/js?sensor=false&libraries=places&key=#{google_maps_api_key}"
+= javascript_include_tag "application", "data-turbolinks-track" => true
+%link{type: "text/plain", rel: "author", href: "/humans.txt"}
+= csrf_meta_tags
+
