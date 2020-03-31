@@ -5,6 +5,7 @@
     = render "application/header"
     #main
       = yield
+    = cookie_policy_script
     = render 'footer'
     - if current_user
       - # Automatic login on discourse
