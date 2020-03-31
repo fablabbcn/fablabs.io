@@ -41,7 +41,6 @@ Run tests with:
 
 1. Also copy `cp config/application.example.yml config/application.yml`
 
-
 1. Start the project:
 
    `docker-compose up app`

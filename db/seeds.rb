@@ -39,6 +39,7 @@ User.find_or_create_by(username: 'admin') do |u|
   u.add_role :superadmin
 end
 
+puts "Creating 100 organizations"
 100.times do
   Organization.create!(
     name: FFaker::Product.product,
@@ -59,6 +60,7 @@ RefereeApprovalProcess.create!(
 
 # ActiveRecord::RecordInvalid: Validation failed: Referee approval processes can't be blank,
 # Referee approval processes is the wrong length (should be 3 characters)
+puts "Creating 100 labs"
 100.times do
   @lab = Lab.create!(
     name: "MyLab#{Lab.count}",
@@ -70,8 +72,9 @@ RefereeApprovalProcess.create!(
     tools: true,
     programs: true,
     workflow_state: 'approved',
-    latitude: 64.963,
-    longitude: 19.0208,
+    activity_status: Lab::ACTIVITY_STATUS.sample,
+    latitude: rand(-40.5..80.05),
+    longitude: rand(-89.05..89.05),
     description: 'This is a description of your lab',
     phone: '0',
     blurb: 'Promotional message'
@@ -79,6 +82,7 @@ RefereeApprovalProcess.create!(
   )
 end
 
+puts "Creating projects and machines"
 Project.create!(
   title: "Project ",
   owner: User.first

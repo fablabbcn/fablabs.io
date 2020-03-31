@@ -145,7 +145,11 @@ ready = ->
             })
             this.setIcon nicon
 
-          lab.marker.bindPopup("<a target='_top' href='#{lab.slug}'>#{lab.name}</a>").addTo allLabs
+          lab.marker.bindPopup("<a target='_top' href='#{lab.slug}'>#{lab.name}</a> <br/>
+            <b>Status:</b> #{lab.status}<br/>
+            <b>Lat:</b> #{lab.latitude}<br/>
+            <b>Lng:</b> #{lab.longitude}<br/>
+            ").addTo allLabs
           window.labs.push(lab)
 
           # Add class for styling the marker by category of lab
@@ -154,10 +158,10 @@ ready = ->
           # NOTE: Hard coding all fablabs to use the same icon class because an issue has made
           # some former supernode to become nil in the mapdata.json, resulting in no icon
           # See issuse https://github.com/fablabbcn/fablabs.io/issues/449
-          if lab.status != 'active'
-            lab.marker._icon.classList.add('mobile')
-          else
+          if lab.status == 'active'
             lab.marker._icon.classList.add('fab_lab')
+          else
+            lab.marker._icon.classList.add('mobile')
 
     # Create map
     L.mapbox.accessToken = 'pk.eyJ1IjoidG9tYXNkaWV6IiwiYSI6ImNpaWcyMHU0bjAwM2x2emt1cG5iMzE3bXIifQ.wWNloP12TwdfeKyLHaXpSA'
