@@ -5,7 +5,6 @@
 // about supported directives.
 //
 //= require jquery
-//= require jquery_ujs
 //= require jquery.limit-1.2
 //= require Control.Loading.js
 //= require jquery.geocomplete
@@ -28,7 +27,7 @@
 
 document.addEventListener("DOMContentLoaded", function() {
 
-  $('[data-toggle="tooltip"]').tooltip();
+  //$('[data-toggle="tooltip"]').tooltip();
   $('textarea.trumbowyg').trumbowyg();
   $("select").select2();
 
