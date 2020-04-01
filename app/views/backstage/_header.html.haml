@@ -1,5 +1,5 @@
 .row.border-bottom.mb-4
-  .col-md-4.border-right.py-3
+  .col-md-4.border-right.py-3.text-right
     = link_to 'Profile', current_user, class: (controller_name == 'users' && action_name == 'show' ? 'btn btn-primary' : 'btn btn-default')
     = link_to 'Settings', settings_path, class: (controller_name == 'users' && action_name == 'edit' ? 'btn btn-primary' : 'btn btn-default')
     = link_to 'Change password', password_path, class: (controller_name == 'users' && action_name =='change_password' ? 'btn btn-primary' : 'btn btn-default')
