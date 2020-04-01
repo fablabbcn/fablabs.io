@@ -63,6 +63,17 @@ class StaticController < ApplicationController
     }
   end
 
+  def metrics
+    render json: {
+      labs: Lab.count,
+      organizations: Organization.count,
+      machines: Machine.count,
+      events: Event.count,
+      users: User.count,
+      employees: Employee.count
+    }
+  end
+
   private
 
   helper_method :recent_projects

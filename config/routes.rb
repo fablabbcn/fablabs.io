@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
   resources :pages, only: [:show]
 
+  get "metrics", to: "static#metrics"
   get "signin" => "sessions#new", :as => "signin"
   get "signout" => "sessions#destroy", :as => "signout"
   get "styleguide", to: "static#styleguide"
