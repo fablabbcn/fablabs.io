@@ -50,34 +50,28 @@
                 - if current_or_null_user.is_referee? or current_or_null_user.is_unique_referee?
                   = gem_count_tag current_or_null_user.referees_count
             %ul.dropdown-menu.dropdown-menu-right
-              %li.dropdown-item
-                = link_to current_user do
-                  = fa_icon "user", text: t("views.header.me")
-              %li.dropdown-item
-                = link_to settings_path do
-                  = fa_icon "cog", text: t("views.header.settings")
+              = link_to current_user, class: 'dropdown-item' do
+                = fa_icon "user", text: t("views.header.me")
+              = link_to settings_path, class: 'dropdown-item'  do
+                = fa_icon "cog", text: t("views.header.settings")
               - if current_or_null_user.has_role? :superadmin
-                %li.dropdown-item
-                  = link_to backstage_root_path do
-                    = fa_icon "gamepad"
-                    = t("views.header.backstage", default: "Backstage")
-                    = gem_count_tag Lab.with_unverified_state.size
+                = link_to backstage_root_path, class: 'dropdown-item' do
+                  = fa_icon "gamepad"
+                  = t("views.header.backstage", default: "Backstage")
+                  = gem_count_tag Lab.with_unverified_state.size
               - else
                 - if current_or_null_user.is_referee? or current_or_null_user.is_unique_referee?
-                  %li.dropdown-item
-                    = link_to backstage_root_path do
-                      = fa_icon "gamepad"
-                      = t("views.header.backstage", default: "Backstage")
-                      = gem_count_tag current_or_null_user.pending_referee_labs.count
+                  = link_to backstage_root_path, class: 'dropdown-item' do
+                    = fa_icon "gamepad"
+                    = t("views.header.backstage", default: "Backstage")
+                    = gem_count_tag current_or_null_user.pending_referee_labs.count
 
               %li.divider
-              %li.dropdown-item
-                = link_to oauth_applications_path do
-                  = fa_icon "code", text: t("views.header.developer_console", default: "Developer Console")
+              = link_to oauth_applications_path, class: 'dropdown-item'  do
+                = fa_icon "code", text: t("views.header.developer_console", default: "Developer Console")
               %li.divider
-              %li.dropdown-item
-                = link_to signout_path do
-                  = fa_icon "sign-out", text: t("views.header.signout", default: "Sign out")
+              = link_to signout_path, class: 'dropdown-item'  do
+                = fa_icon "sign-out", text: t("views.header.signout", default: "Sign out")
 
         - else
           %li.navbar-btn
