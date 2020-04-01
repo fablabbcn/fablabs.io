@@ -148,6 +148,12 @@ The project is now on Crowdin https://crwd.in/fablabsio
 
 Use the `i18n-tasks normalize` before submitting language changes
 
+## Styleguide
+
+There is a minimal styleguide on http://localhost:3000/styleguide
+
+Use it and update it if you add new reusable classes
+
 ## Versioning
 
 Currently using this tool to manually handle versioning: https://github.com/gregorym/bump
