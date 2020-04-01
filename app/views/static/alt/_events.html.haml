@@ -1,14 +1,13 @@
-.row.homepage-sections
-  .container
-    .row
-      .col-12
-        %h3.text-primary.font-weight-bold Fablab Network Events
-    .row
-      - @news.each do |a|
-        .col-12.col-md-4.mb-5
-          .card.shadow.p-4.w-100.h-100
-            %a{:href => a[:url]}=image_tag (image_url(a[:image_url])), :class => "card-img-top mb-4", :target=>"_blank"
-            %h5
-              %a{:href => a[:url]}= a[:title]
-            .text-small
-              = raw a[:description]
+.container
+  .row
+    .col-12
+      %h3.text-primary.font-weight-bold Fablab Network Events
+  .row
+    - @news.each do |a|
+      .col-12.col-md-4.mb-5
+        .card.shadow.p-4.w-100.h-100
+          %a{:href => a[:url]}=image_tag (image_url(a[:image_url])), :class => "card-img-top mb-4", :target=>"_blank"
+          %h5
+            %a{:href => a[:url]}= a[:title]
+          .text-small
+            = raw a[:description]

@@ -1,3 +1,4 @@
+@import "common_vars";
 .checkbox_container {
   padding: 10px;
 
@@ -131,7 +132,7 @@ label {
   }
 
   .select2-results__option--highlighted[aria-selected] {
-    background-color: #81D7BE;
+    background-color: $green;
   }
 }
 

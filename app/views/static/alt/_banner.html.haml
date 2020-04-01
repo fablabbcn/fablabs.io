@@ -1,13 +1,10 @@
-.row.homepage-sections.bg-primary
-    .col-12
-        .container
-            %h1.text-center New projects section
-            %br
-            .shadow
-                %a{:href=>"https://projects.fablabs.io"}= image_tag image_url('home/wikifactory.jpg'), alt: 'projects.fablabs.io', class: 'img-fluid'
-
-            .text-center.mt-5
-                %h5
-                    %span New 
-                    %a{:href=>"https://projects.fablabs.io",:style=>"color:white"} projects.fablabs.io
-                .text-large Collaborate on projects from Fablabs around the world
+.container
+  %h1.text-center New projects section
+  %br
+  .shadow
+    %a{:href=>"https://projects.fablabs.io"}= image_tag image_url('home/wikifactory.jpg'), alt: 'projects.fablabs.io', class: 'img-fluid'
+  .text-center.mt-5
+    %h5
+      %span New
+      %a{:href=>"https://projects.fablabs.io",:style=>"color:white"} projects.fablabs.io
+    .text-large Collaborate on projects from Fablabs around the world

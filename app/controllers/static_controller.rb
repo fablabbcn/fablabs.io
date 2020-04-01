@@ -10,6 +10,7 @@ class StaticController < ApplicationController
 
   def alt
     @projects = []
+    # TODO: Make the call to wikifactory async. Now it adds seconds delay.
     begin
       @projects = recent_projects()
     rescue Exception => error
