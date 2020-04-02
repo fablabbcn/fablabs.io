@@ -6,14 +6,14 @@
     - @projects.each do |a|
       .col-md-6.col-lg-4.mb-5
         .card.shadow.p-4.w-100.h-100
-          %a{:href => 'https://projects.fablabs.io/search/' + a['slug']}=image_tag (a['image_url']), :class => "card-img-top mb-4", :target=>"_blank"
+          %a{href: 'https://projects.fablabs.io/search?q=' + a['slug'], target: "_blank"}=image_tag (a['image_url']), class: "card-img-top mb-4"
           %h5
-            %a{:href => 'https://projects.fablabs.io/search/' + a['slug']}= a["title"]
+            %a{href: 'https://projects.fablabs.io/search?q=' + a['slug'], target: "_blank"}= a["title"]
           .text-small
             = raw a["description"]
   .row
     .col-12
-      %a{:href=>"https://projects.fablabs.io", :target=> "_blank"}
+      %a{href: "https://projects.fablabs.io", target: "_blank"}
         %h4
           %span See more projects
           = image_tag ("icons/arrow-right.svg")
