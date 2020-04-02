@@ -1,6 +1,4 @@
 class ThingsController < ApplicationController
-  # TODO: Do we need this file?
-  include InheritedResourcesWithAuthority
 
   # Currently no model is using these params.
   # Machine could use them
