@@ -82,17 +82,16 @@ class StaticController < ApplicationController
       response = HTTParty.get('https://wikifactory.com/api/fablabsio/projects')
       json = JSON.parse(response.body)
 
-
-    projects = []
-    if json 
-      projects = json.select { |p|
-        p["image_url"] != nil
-      }
-      if projects.length > 6
-        projects = projects.slice(0,6)
+      projects = []
+      if json
+        projects = json.select { |p|
+          p["image_url"] != nil
+        }
+        if projects.length > 6
+          projects = projects.slice(0,6)
+        end
       end
-    end
-    return projects
+      return projects
     rescue
       return []
     end
