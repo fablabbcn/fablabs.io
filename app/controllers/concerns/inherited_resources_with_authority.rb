@@ -5,6 +5,7 @@ module InheritedResourcesWithAuthority
     inherit_resources
     authorize_actions_for :resource_class
 
+    # TODO: Do we need this file?
     # TODO: alias_method_chain is deprecated. Use Module#prepend instead
     alias_method :resource_without_authority, :resource
     alias_method :resource, :resource_with_authority

@@ -2,6 +2,10 @@ class Machine < Thing
 
   after_save :discourse_sync_if_needed, if: Figaro.env.discourse_enabled
 
+  def should_generate_new_friendly_id?
+    slug.blank? || name_changed?
+  end
+
   def to_param
     slug
   end
