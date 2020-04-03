@@ -45,11 +45,11 @@ feature "Adding a lab" do
 
     scenario "as a user with valid details" do
       choose "lab_kind_mini_fab_lab"
-      choose "lab_tools_1"
-      choose "lab_network_1"
-      choose "lab_programs_1"
-      choose "lab_charter_1"
-      choose "lab_public_1"
+      check "lab_tools"
+      check "lab_network"
+      check "lab_programs"
+      check "lab_charter"
+      check "lab_public"
       select 'as220labs', from: 'Referees'
       select 'fablabbcn', from: 'Referees'
       select 'fablabcascina', from: 'Referees'

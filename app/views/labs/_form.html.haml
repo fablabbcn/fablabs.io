@@ -12,28 +12,14 @@
         %strong More lab details:
         %span What kind of Fab Lab is your Lab?
 
-      .row
-        - Lab::kinds.each do |value, index|
-          .col-lg-2
-            %span.form-check.mb-0.mt-3
-              %div.form-check-input.mt-0
-                = f.radio_button :kind, value
-              %label.radio.form-check-label{style: "width: 160px;"}
-                = value.humanize.titleize
+      = f.input :kind, as: :radio_buttons, collection: Lab::KINDS
 
     .question
       %h5
         %strong Current status of your Lab:
         %span Is this Lab already open, planned or closed?
 
-      .row
-        - Lab::ACTIVITY_STATUS.each do |status|
-          .col-lg-2
-            %span.form-check.mb-0.mt-3
-              %div.form-check-input.mt-0
-                = f.radio_button :activity_status, status, class: 'activity-status-radio'
-              %label.form-check-label.radio{style: "width: 160px;"}
-                = status.humanize.titleize
+      = f.input :activity_status, as: :radio_buttons, collection: Lab::ACTIVITY_STATUS
 
     .question
       %h5
@@ -56,7 +42,7 @@
 
     .form-check.mb-0.mt-3
       %div.form-check-input.mt-0.px-4
-        = f.radio_button :charter, 1
+        = f.check_box :charter
       %label.radio.form-check-label.px-4
         Charter: You need to agree with the
         = succeed "." do
@@ -64,7 +50,7 @@
 
     .form-check.mb-0.mt-3
       %div.form-check-input.mt-0.px-4
-        = f.radio_button :tools, 1
+        = f.check_box :tools
       %label.radio.form-check-label.px-4
         Tools: The submitted Fab Lab has a compatible set of tools related with the
         = succeed "." do
@@ -72,7 +58,7 @@
 
     .form-check.mb-0.mt-3
       %div.form-check-input.mt-0.px-4
-        = f.radio_button :network, 1
+        = f.check_box :network
       %label.radio.form-check-label.px-4
         Network: The submitted Fab Lab commits to participate in the network activities: regional meetings, FABX conferences,
         = succeed "." do
@@ -80,7 +66,7 @@
 
     .form-check.mb-0.mt-3
       %div.form-check-input.mt-0.px-4
-        = f.radio_button :programs, 1
+        = f.check_box :programs
       %label.radio.form-check-label.px-4
         Programs: Our staff is (or will be) trained in the
         %a{:href => "http://fabacademy.org/"} Fab Academy
@@ -88,7 +74,7 @@
 
     .form-check.mb-0.mt-3
       %div.form-check-input.mt-0.px-4
-        = f.radio_button :public, 1
+        = f.check_box :public
       %label.radio.form-check-label.px-4
         Access: Public access to the Fab Lab is essential
 

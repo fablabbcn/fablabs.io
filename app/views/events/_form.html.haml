@@ -14,7 +14,7 @@
 
   %fieldset
     .row
-      .form-check.mb-0.mt-3.col-2
+      .form-check.mb-0.mt-3.col-12
         = f.input :tags, as: 'check_boxes',inline_label: true, item_wrapper_class: 'checkbox_container mr-3', collection: Event::Tags, checked: @event.tags, input_html: {class: 'form-check-input'}
     = f.input :location
     = f.input :description
