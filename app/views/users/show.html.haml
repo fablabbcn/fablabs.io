@@ -26,12 +26,11 @@
               = employee.job_title
 
   - if @user.created_projects.any? or @user.projects.any?
-    .row
-      .text-large
-        Contributions
-      = render @user.created_projects | @user.projects
+    .text-large.text-left.text-lg-center
+      Contributions
+    = render @user.created_projects | @user.projects
 
-  .row
+  .row-disabled
     .text-large
       Activity
     .activity.vertical-timeline
