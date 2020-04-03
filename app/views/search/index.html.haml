@@ -9,20 +9,20 @@
           -#   %dd= select_tag :order, ['title','title']
 
       - if params[:query].present?
-        .search-results
+        .search-results.my-2.p-2.border
           -# %button.close{type: "button", data: { dismiss: "alert"}, aria: { hidden: true}} ×
           = link_to "×", labs_path, class: 'close right'
           #{pluralize @results.size, "search result"} for
           %strong= params[:query]
       - if @labs.size > 0
+        %h4 Labs
         .row
-          %h4 Labs
           .labs.col-12= render @labs
           = paginate @labs, theme: 'twitter-bootstrap-4', nav_class: "m-auto pt-3"
       - if @users.size > 0
-        .row
+        .user-results
           %h4 Users
-          .labs= render @users
+          .users= render @users
       - if @results.empty?
         %p We could not find what you were looking for. Maybe you can try again.
 

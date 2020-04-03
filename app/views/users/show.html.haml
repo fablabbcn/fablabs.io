@@ -2,8 +2,8 @@
   = render "backstage/header"
 
 .container.mt-3
-  .d-flex
-    = image_tag @user.avatar_url, class: 'avatar big'
+  .d-sm-flex.d-block
+    = image_tag @user.avatar_url, class: 'avatar big', style: 'margin-left:30px'
     .ml-3
       = title @user
       %em.d-block
