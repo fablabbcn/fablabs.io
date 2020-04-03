@@ -289,14 +289,14 @@ h5 {
 
 .btn {
   &.btn-primary {
-    background-color: #81D7BE;
+    background-color: $green;
     color: white;
-    border-color: #81D7BE;
+    border-color: $green;
     font-weight: bold;
 
     &:hover {
-      background-color: #68C5AA;
-      border-color: #68C5AA;
+      background-color: $green-hover;
+      border-color: $green-hover;
     }
   }
 
@@ -307,9 +307,7 @@ h5 {
     font-weight: bold;
 
     &:hover {
-      background-color: transparent;
-      color: #666;
-      border-color: #F2F2F2;
+      background-color: #eee;
     }
   }
 }
@@ -328,7 +326,7 @@ h5 {
 
   .card-arrow {
     font-size: 32px;
-    color: #81D7BE;
+    color: $green;
     position: absolute;
     right: 20px;
     top: 32px;
@@ -362,21 +360,26 @@ h5 {
   margin: 4px 0;
 }
 
+.text-red-1{ color: #fe7a73; }
+.text-red-2{ color: #E46D67; }
+.text-red-3{ color: #CB615C; }
+
 a,
 a.text-primary {
-  color: #81D7BE;
+  color: $green;
 
   &:hover {
-    color: #68C5AA;
+    color: $green-hover;
   }
 }
 
 .text-primary {
-  color: #81D7BE !important;
+  color: $green !important;
 }
 
+.bg-grey { background-color: #f2f2f2; }
 .bg-primary {
-  background-color: #81D7BE !important;
+  background-color: $green !important;
 }
 
 .list-item-small-wrapper {
@@ -422,8 +425,8 @@ a.text-primary {
 
 .page-item.active {
   .page-link {
-    background-color: #81D7BE;
-    border-color: #81D7BE;
+    background-color: $green;
+    border-color: $green;
   }
 }
 

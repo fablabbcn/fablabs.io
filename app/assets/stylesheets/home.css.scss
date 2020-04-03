@@ -1,6 +1,4 @@
-.homepage {
-  background-color: #f2f2f2;
-}
+@import "common_vars";
 
 .homepage-header {
   height: 545px;
@@ -61,14 +59,14 @@
 
 .homepage-divider {
   width: 160px;
-  border-bottom: 8px solid #81d7be;
+  border-bottom: 8px solid $green;
   margin: auto;
   margin-bottom: 40px;
 }
 
 .homepage-divider-small {
   width: 80px;
-  border-bottom: 8px solid #81d7be;
+  border-bottom: 8px solid $green;
   margin-bottom: 6px;
 }
 
@@ -86,7 +84,7 @@
 }
 
 .homepage-circle-1 {
-  background: #81d7be;
+  background: $green;
   width: 50px;
   height: 50px;
   top: 0px;

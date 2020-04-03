@@ -1,8 +1,7 @@
-= content_tag_for :div, organization, class: 'col-12 col-md-4 mb-3', itemscope: true, itemtype: "http://data-vocabulary.org/Organization" do
+= content_tag_for :div, organization, class: 'col-sm-6 col-md-4 col-xl-3 mb-3', itemscope: true, itemtype: "http://data-vocabulary.org/Organization" do
   .card.shadow.float-left.h-100.w-100
-    .card-img-top
-      = link_to organization do
-        = image_tag organization.avatar.thumb("310x330#").url, itemprop: "logo"
+    = link_to organization do
+      = image_tag organization.avatar.thumb("310x330#").url, itemprop: "logo", class:'card-img-top'
 
     .card-content.position-relative.px-4.py-3
       = link_to organization, itemprop: 'name' do

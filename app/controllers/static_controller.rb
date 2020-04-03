@@ -10,6 +10,7 @@ class StaticController < ApplicationController
 
   def alt
     @projects = []
+    # TODO: Make the call to wikifactory async. Now it adds seconds delay.
     begin
       @projects = recent_projects()
     rescue Exception => error
@@ -62,6 +63,17 @@ class StaticController < ApplicationController
     }
   end
 
+  def metrics
+    render json: {
+      labs: Lab.count,
+      organizations: Organization.count,
+      machines: Machine.count,
+      events: Event.count,
+      users: User.count,
+      employees: Employee.count
+    }
+  end
+
   private
 
   helper_method :recent_projects
@@ -70,17 +82,16 @@ class StaticController < ApplicationController
       response = HTTParty.get('https://wikifactory.com/api/fablabsio/projects')
       json = JSON.parse(response.body)
 
-
-    projects = []
-    if json 
-      projects = json.select { |p|
-        p["image_url"] != nil
-      }
-      if projects.length > 6
-        projects = projects.slice(0,6)
+      projects = []
+      if json
+        projects = json.select { |p|
+          p["image_url"] != nil
+        }
+        if projects.length > 6
+          projects = projects.slice(0,6)
+        end
       end
-    end
-    return projects
+      return projects
     rescue
       return []
     end

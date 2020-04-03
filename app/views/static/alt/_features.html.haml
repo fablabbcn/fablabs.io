@@ -1,21 +1,20 @@
-.row.bg-white.homepage-sections
-    .container
-        .row
-            .col-12.col-md-5.mb-4
-                .text-primary.text-large Join Fablabs.io
-                %h5 Each lab has its own profile page which can be maintained and updated by its staff
-                %a.button.btn.btn-primary.btn-lg.mt-2{:href => "./signup"} Register today
-            .col-12.col-md-1.mb-4
-            .col-12.col-md-6.mb-4
-                .text-primary.h4.font-weight-bold Key Features
-                .homepage-divider{:style => "margin-left:0px;"}
-                .homepage-features-list
-                    %ul.m-0.p-0
-                        %li= t("views.home.feat1", default: "Update your profile and avatar")
-                        %li= t("views.home.feat2", default: "Add a new Fablab to the global directory")
-                        %li= t("views.home.feat3", default: "Create a network of Fablabs for your region")
-                        %li= t("views.home.feat4", default: "Upload a project made by you or your Fablab")
-                        %li= t("views.home.feat5", default: "Join the Fablab community discussion groups")
-                        %li= t("views.home.feat6", default: "Access FabCloud services for project development")
-                        -# %li= t("views.home.feat5", default: "Share your news and keep the network up to date")
-                        -# %li= t("views.home.feat6", default: "Look and post a job through the Fab Economy job board")
+.container
+  .row.bg-white.p-5
+    .col-12.col-md-5.mb-4
+      .text-primary.text-large Join Fablabs.io
+      %h5 Each lab has its own profile page which can be maintained and updated by its staff
+      %a.button.btn.btn-primary.btn-lg.mt-2{:href => "./signup"} Register today
+    .col-12.col-md-1.mb-4
+    .col-12.col-md-6.mb-4
+      .text-primary.h4.font-weight-bold Key Features
+      .homepage-divider.ml-0
+      .homepage-features-list
+        %ul.m-0.p-0
+          %li= t("views.home.feat1", default: "Update your profile and avatar")
+          %li= t("views.home.feat2", default: "Add a new Fablab to the global directory")
+          %li= t("views.home.feat3", default: "Create a network of Fablabs for your region")
+          %li= t("views.home.feat4", default: "Upload a project made by you or your Fablab")
+          %li= t("views.home.feat5", default: "Join the Fablab community discussion groups")
+          %li= t("views.home.feat6", default: "Access FabCloud services for project development")
+          -# %li= t("views.home.feat5", default: "Share your news and keep the network up to date")
+          -# %li= t("views.home.feat6", default: "Look and post a job through the Fab Economy job board")

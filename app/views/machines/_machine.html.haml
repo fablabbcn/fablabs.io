@@ -1,7 +1,7 @@
 - cache ["v2", machine] do
-  = content_tag_for :div, machine, class: 'col-12 col-md-4 mb-3' do
+  = content_tag_for :div, machine, class: 'col-sm-6 col-md-4 col-xl-3 mb-3' do
     .card.shadow.float-left.h-100.w-100
-      .card-img-top
+      .card-img-top.text-center
         = link_to machine do
           - if machine.photo.present?
             = image_tag machine.photo.thumb("230x245>").url
