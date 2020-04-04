@@ -73,7 +73,9 @@ class Lab < ActiveRecord::Base
 
   has_many :approval_workflow_logs
 
-  before_validation :geocode, if: :my_address_changed?
+  # TODO: Reenable if needed and fix tests.
+  # Also decide which attribute changes should trigger a new lat/lng
+  #after_validation :geocode, if: :my_address_changed?
 
   validates_presence_of :name, :country_code, :slug, :email#, :creator
   validates_presence_of :address_1, on: :create
