@@ -2,7 +2,7 @@
   %li.breadcrumb-item
     = link_to Lab.to_s.pluralize, labs_path
   %li.breadcrumb-item
-    = link_to labs_path(country: lab.country_code) do
+    = link_to labs_path(q: {country_code_eq: lab.country_code}) do
       %span.flag{class: "flag-#{lab.country_code.downcase}"}
       = lab.country.name
       %span.microdata{itemprop: "country"}= lab.country_code

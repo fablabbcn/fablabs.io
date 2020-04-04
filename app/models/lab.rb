@@ -100,7 +100,6 @@ class Lab < ActiveRecord::Base
   ACTIVITY_STATUS = [
     ACTIVITY_PLANNED  = 'planned'.freeze,
     ACTIVITY_ACTIVE   = 'active'.freeze,
-    ACTIVITY_CORONA   = 'corona'.freeze,
     ACTIVITY_CLOSED   = 'closed'.freeze
   ].freeze
 

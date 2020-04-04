@@ -38,15 +38,11 @@ class LabsController < ApplicationController
 
 
   def index
-    ## the country code is stored as lowercase in the db
-    if params[:country]
-      params['country'].downcase!
-      # params['country'].upcase!
-    end
-    all_labs = Lab.with_approved_state.search_for(params[:query])
+    all_labs = Lab.with_approved_state
     @countries = Lab.country_list_for all_labs
-    @count = all_labs.size
-    @labs = all_labs.order('LOWER(name) ASC').in_country_code(params['country']).page(params['page']).per(params['per'])
+
+    @q = all_labs.ransack(params[:q])
+    @labs = @q.result(distinct: :true).page(params[:page]).per(params['per'])
 
     respond_to do |format|
       format.html

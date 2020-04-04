@@ -18,7 +18,7 @@ describe 'Listing labs' do
   it 'labs can be filtered by country code' do
     lab = FactoryBot.create(:lab, workflow_state: 'approved', name: 'USA Fab lab', country_code: 'us')
     lab = FactoryBot.create(:lab, workflow_state: 'approved', name: 'Spain Fab lab', country_code: 'sp')
-    visit labs_path(country: 'US')
+    visit labs_path(q: {country_code_eq: 'us'})
     expect(page).to have_link 'USA Fab lab'
     expect(page).to_not have_link 'Spain Fab lab'
   end
