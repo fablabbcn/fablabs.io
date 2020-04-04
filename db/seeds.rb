@@ -64,9 +64,9 @@ puts "Creating 100 labs"
 100.times do
   @lab = Lab.create!(
     name: "MyLab#{Lab.count}",
-    kind: 1,
+    kind: Lab::KINDS.sample,
     email: FFaker::Internet.email,
-    country_code: 'is',
+    country_code: ['is','es','us','gb','dk','de'].sample,
     address_1: 'MyStreet 24',
     network: true,
     tools: true,
