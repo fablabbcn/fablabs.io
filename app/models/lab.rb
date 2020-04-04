@@ -73,6 +73,8 @@ class Lab < ActiveRecord::Base
 
   has_many :approval_workflow_logs
 
+  before_validation :geocode, if: :my_address_changed?
+
   validates_presence_of :name, :country_code, :slug, :email#, :creator
   validates_presence_of :address_1, on: :create
 
@@ -85,7 +87,6 @@ class Lab < ActiveRecord::Base
   validates_presence_of :blurb
   validates_presence_of :description
   validates_presence_of :phone
-  
 
   validates_format_of :email, :with => /\A(.+)@(.+)\z/
   validates_uniqueness_of :name, :slug, case_sensitive: false
@@ -142,6 +143,10 @@ class Lab < ActiveRecord::Base
       lab.reverse_geocoded_address = Marshal.dump([geo.address,geo])
       lab.save
     end
+  end
+
+  def my_address_changed?
+    address_1_changed? || address_2_changed?
   end
 
   def nearby_labs same_country = true, max_distance = 1000
