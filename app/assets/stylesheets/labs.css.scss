@@ -4,11 +4,7 @@
 
 /* Common and default settings */
 
-.fab_lab,
-.mobile,
-.mini_fab_lab,
-.icon_corona,
-.supernode {
+.icon_custom {
   border: none;
   background-color: rgba(255, 255, 255, 0);
   width: 24px !important;
@@ -18,19 +14,15 @@
   left: -12px;
 }
 
-.fab_lab {
+.icon_fab_lab {
   background-image: image_url("map-icons/fab_lab.svg");
 }
 
-.mobile {
+.icon_mobile {
   background-image: image_url("map-icons/mobile.svg");
 }
 
-.mini_fab_lab {
-  background-image: image_url("map-icons/fab_lab.svg");
-}
-
-.supernode {
+.icon_supernode {
   background-image: image_url("map-icons/supernode.svg");
 }
 
@@ -38,17 +30,30 @@
   background-image: image_url("map-icons/corona.svg");
 }
 
-.lab-page.fab_lab,
-.lab-page.mobile,
-.lab-page.mini_fab_lab,
-.lab-page.supernode,
-.lab-page.icon_corona,
-.zoom4 .fab_lab, .zoom4 .mobile, .zoom4 .mini_fab_lab, .zoom4 .supernode, .zoom4 .icon_corona,
-.zoom5 .fab_lab, .zoom5 .mobile, .zoom5 .mini_fab_lab, .zoom5 .supernode, .zoom5 .icon_corona,
-.zoom6 .fab_lab, .zoom6 .mobile, .zoom6 .mini_fab_lab, .zoom6 .supernode, .zoom6 .icon_corona,
-.zoom7 .fab_lab, .zoom7 .mobile, .zoom7 .mini_fab_lab, .zoom7 .supernode, .zoom7 .icon_corona,
-.zoom8 .fab_lab, .zoom8 .mobile, .zoom8 .mini_fab_lab, .zoom8 .supernode, .zoom8 .icon_corona,
-.zoom9 .fab_lab, .zoom9 .mobile, .zoom9 .mini_fab_lab, .zoom9 .supernode, .zoom9 .icon_corona
+.zoom4 .icon_custom,
+.zoom5 .icon_custom,
+.zoom6 .icon_custom,
+.zoom7 .icon_custom,
+.zoom8 .icon_custom,
+.zoom9 .icon_custom
+{
+  width: 35px !important;
+  height: 35px !important;
+  background-repeat: no-repeat;
+  top: -35px;
+  left: -16px;
+}
+
+.zoom10 .icon_custom,
+.zoom11 .icon_custom,
+.zoom12 .icon_custom,
+.zoom13 .icon_custom,
+.zoom14 .icon_custom,
+.zoom15 .icon_custom,
+.zoom16 .icon_custom,
+.zoom17 .icon_custom,
+.zoom18 .icon_custom,
+.zoom19 .icon_custom
 {
   width: 50px !important;
   height: 50px !important;
@@ -57,23 +62,6 @@
   left: -35px;
 }
 
-.zoom10 .fab_lab, .zoom10 .mobile, .zoom10 .mini_fab_lab, .zoom10 .supernode, .zoom10 .icon_corona,
-.zoom11 .fab_lab, .zoom11 .mobile, .zoom11 .mini_fab_lab, .zoom11 .supernode, .zoom11 .icon_corona,
-.zoom12 .fab_lab, .zoom12 .mobile, .zoom12 .mini_fab_lab, .zoom12 .supernode, .zoom12 .icon_corona,
-.zoom13 .fab_lab, .zoom13 .mobile, .zoom13 .mini_fab_lab, .zoom13 .supernode, .zoom13 .icon_corona,
-.zoom14 .fab_lab, .zoom14 .mobile, .zoom14 .mini_fab_lab, .zoom14 .supernode, .zoom14 .icon_corona,
-.zoom15 .fab_lab, .zoom15 .mobile, .zoom15 .mini_fab_lab, .zoom15 .supernode, .zoom15 .icon_corona,
-.zoom16 .fab_lab, .zoom16 .mobile, .zoom16 .mini_fab_lab, .zoom16 .supernode, .zoom16 .icon_corona,
-.zoom17 .fab_lab, .zoom17 .mobile, .zoom17 .mini_fab_lab, .zoom17 .supernode, .zoom17 .icon_corona,
-.zoom18 .fab_lab, .zoom18 .mobile, .zoom18 .mini_fab_lab, .zoom18 .supernode, .zoom18 .icon_corona,
-.zoom19 .fab_lab, .zoom19 .mobile, .zoom19 .mini_fab_lab, .zoom19 .supernode, .zoom19 .icon_corona
-{
-  width: 35px !important;
-  height: 35px !important;
-  background-repeat: no-repeat;
-  top: -35px;
-  left: -16px;
-}
 
 $sea-blue: #98bcda;
 $sea-gray: #d7d7d7;

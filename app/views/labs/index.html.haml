@@ -10,7 +10,6 @@
           .input-group.mb-2
             = f.select(:country_code_eq, options_for_select(@countries.map { |a,b| [a, b]}, params[:q] ? params[:q][:country_code_eq] : '' ), { include_blank: 'Filter by Country' }, {class: 'form-control'})
           .input-group.mb-2
-            =# options_for_select(Lab::ACTIVITY_STATUS.map { |a,b| [a.upcase, a] })
             = f.select(:activity_status_eq, options_for_select(Lab::ACTIVITY_STATUS.map { |a,b| [a.upcase, a]}, params[:q] ? params[:q][:activity_status_eq] : ''), { include_blank: 'Filter by status' }, {class: 'form-control'})
           .input-group.mb-4
             = f.submit class: 'btn btn-primary', value: 'Filter'
