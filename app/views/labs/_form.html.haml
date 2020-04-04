@@ -1,3 +1,4 @@
+= javascript_include_tag "//maps.googleapis.com/maps/api/js?libraries=places&key=#{ENV['GOOGLE_MAPS_API']}"
 = simple_form_for lab, html: { class: 'row' } do |f|
   = render 'form_errors', resource: lab
 

@@ -1,0 +1,54 @@
+<div class="embed-responsive embed-responsive-1by1 mb-5">
+  <div id="sidemap" class="embed-responsive-item"> </div>
+</div>
+
+<script>
+  var map, infoWindow;
+  function initMap() {
+
+    infoWindow = new google.maps.InfoWindow;
+    var locations = <%= raw @labs.to_json %>
+    //console.log(locations)
+    var marker, i;
+
+    var image = {
+      scaledSize: new google.maps.Size(35, 35)
+    };
+
+    map = new google.maps.Map(document.getElementById('sidemap'), {
+      center: {lat: 20, lng: -40},
+      zoom: 3
+    });
+
+    for(var i in locations){
+      if (locations[i].activity_status === 'active'){
+        image.url = "<%= image_url('map-icons/fab_lab.svg') %>";
+      }else if (locations[i].activity_status === 'corona'){
+        image.url = "<%= image_url('map-icons/corona.svg') %>";
+      } else {
+        image.url = "<%= image_url('map-icons/mobile.svg') %>";
+      }
+
+      marker = new google.maps.Marker({
+        position: new google.maps.LatLng(locations[i].latitude, locations[i].longitude),
+        icon: image,
+        map: map
+      });
+
+      google.maps.event.addListener(marker, 'click', (function(marker, i) {
+        return function() {
+          infoWindow.setContent(
+            "<a href='/labs/" + locations[i].slug + "'>" + locations[i].name + "</a><br/>" +
+            "<p>Status: " + locations[i].activity_status + "</p>" +
+            locations[i].name
+          );
+          infoWindow.open(map, marker);
+        }
+      })(marker, i));
+
+    }
+
+  }
+
+</script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAPS_API'] %>&callback=initMap"> </script>

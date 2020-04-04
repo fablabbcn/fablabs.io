@@ -50,8 +50,6 @@ module Fablabs
       }
     }
 
-    config.google_maps_api_key = ENV['GOOGLE_API_KEY']
-
     config.url = 'http://fablabs.local'
 
     config.action_mailer.default_url_options = { host: 'www.fablabs.io', protocol: 'https' }
