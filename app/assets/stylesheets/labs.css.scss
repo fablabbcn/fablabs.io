@@ -4,281 +4,67 @@
 
 /* Common and default settings */
 
-.fab_lab,
-.mobile,
-.mini_fab_lab,
-.supernode {
+.icon_custom {
   border: none;
   background-color: rgba(255, 255, 255, 0);
-}
-
-/* Single lab page */
-
-.lab-page.fab_lab {
-  background-image: image_url("map-icons/fab_lab70.png");
-  width: 70px !important;
-  height: 70px !important;
-  top: -70px;
-  left: -35px;
-}
-
-.lab-page.mobile {
-  background-image: image_url("map-icons/mobile70.png");
-  width: 70px !important;
-  height: 70px !important;
-  top: -70px;
-  left: -35px;
-}
-
-.lab-page.mini_fab_lab {
-  background-image: image_url("map-icons/fab_lab70.png");
-  width: 70px !important;
-  height: 70px !important;
-  top: -70px;
-  left: -35px;
-}
-
-.lab-page.supernode {
-  background-image: image_url("map-icons/supernode70.png");
-  width: 70px !important;
-  height: 70px !important;
-  top: -70px;
-  left: -35px;
-}
-
-/* Default zoom */
-
-.fab_lab {
-  background-image: image_url("map-icons/fab_lab24.png");
   width: 24px !important;
   height: 24px !important;
+  background-repeat: no-repeat;
   top: -24px;
   left: -12px;
 }
 
-.mobile {
-  background-image: image_url("map-icons/mobile24.png");
-  width: 24px !important;
-  height: 24px !important;
-  top: -24px;
-  left: -12px;
+.icon_fab_lab {
+  background-image: image_url("map-icons/fab_lab.svg");
 }
 
-.mini_fab_lab {
-  background-image: image_url("map-icons/fab_lab24.png");
-  width: 24px !important;
-  height: 24px !important;
-  top: -24px;
-  left: -12px;
+.icon_mobile {
+  background-image: image_url("map-icons/mobile.svg");
 }
 
-.supernode {
-  background-image: image_url("map-icons/supernode24.png");
-  width: 24px !important;
-  height: 24px !important;
-  top: -24px;
-  left: -12px;
+.icon_supernode {
+  background-image: image_url("map-icons/supernode.svg");
 }
 
-/* Level 0 - 3 */
-
-.zoom0 .fab_lab,
-.zoom1 .fab_lab,
-.zoom2 .fab_lab,
-.zoom3 .fab_lab {
-  background-image: image_url("map-icons/fab_lab24.png");
-  width: 24px !important;
-  height: 24px !important;
-  top: -24px;
-  left: -12px;
+.icon_corona{
+  background-image: image_url("map-icons/corona.svg");
 }
 
-.zoom0 .mobile,
-.zoom1 .mobile,
-.zoom2 .mobile,
-.zoom3 .mobile {
-  background-image: image_url("map-icons/mobile24.png");
-  width: 24px !important;
-  height: 24px !important;
-  top: -24px;
-  left: -12px;
-}
-
-.zoom0 .mini_fab_lab,
-.zoom1 .mini_fab_lab,
-.zoom2 .mini_fab_lab,
-.zoom3 .mini_fab_lab {
-  background-image: image_url("map-icons/fab_lab24.png");
-  width: 24px !important;
-  height: 24px !important;
-  top: -24px;
-  left: -12px;
-}
-
-.zoom0 .supernode,
-.zoom1 .supernode,
-.zoom2 .supernode,
-.zoom3 .supernode {
-  background-image: image_url("map-icons/supernode24.png");
-  width: 24px !important;
-  height: 24px !important;
-  top: -24px;
-  left: -12px;
-}
-
-/* Level 4 - 6 */
-
-.zoom4 .fab_lab,
-.zoom5 .fab_lab,
-.zoom6 .fab_lab {
-  background-image: image_url("map-icons/fab_lab35.png");
+.zoom4 .icon_custom,
+.zoom5 .icon_custom,
+.zoom6 .icon_custom,
+.zoom7 .icon_custom,
+.zoom8 .icon_custom,
+.zoom9 .icon_custom
+{
   width: 35px !important;
   height: 35px !important;
+  background-repeat: no-repeat;
   top: -35px;
   left: -16px;
 }
 
-.zoom4 .mobile,
-.zoom5 .mobile,
-.zoom6 .mobile {
-  background-image: image_url("map-icons/mobile35.png");
-  width: 35px !important;
-  height: 35px !important;
-  top: -35px;
-  left: -16px;
-}
-
-.zoom4 .mini_fab_lab,
-.zoom5 .mini_fab_lab,
-.zoom6 .mini_fab_lab {
-  background-image: image_url("map-icons/fab_lab35.png");
-  width: 35px !important;
-  height: 35px !important;
-  top: -35px;
-  left: -16px;
-}
-
-.zoom4 .supernode,
-.zoom5 .supernode,
-.zoom6 .supernode {
-  background-image: image_url("map-icons/supernode35.png");
-  width: 35px !important;
-  height: 35px !important;
-  top: -35px;
-  left: -16px;
-}
-
-/* Level 7 - 9 */
-
-.zoom7 .fab_lab,
-.zoom8 .fab_lab,
-.zoom9 .fab_lab {
-  background-image: image_url("map-icons/fab_lab35.png");
-  width: 35px !important;
-  height: 35px !important;
-  top: -35px;
-  left: -18px;
-}
-
-.zoom7 .mobile,
-.zoom8 .mobile,
-.zoom9 .mobile {
-  background-image: image_url("map-icons/mobile35.png");
-  width: 35px !important;
-  height: 35px !important;
-  top: -35px;
-  left: -18px;
-}
-
-.zoom7 .mini_fab_lab,
-.zoom8 .mini_fab_lab,
-.zoom9 .mini_fab_lab {
-  background-image: image_url("map-icons/fab_lab35.png");
-  width: 35px !important;
-  height: 35px !important;
-  top: -35px;
-  left: -18px;
-}
-
-.zoom7 .supernode,
-.zoom8 .supernode,
-.zoom9 .supernode {
-  background-image: image_url("map-icons/supernode35.png");
-  width: 35px !important;
-  height: 35px !important;
-  top: -35px;
-  left: -18px;
-}
-
-/* Level 10 - 19 */
-
-.zoom10 .fab_lab,
-.zoom11 .fab_lab,
-.zoom12 .fab_lab,
-.zoom13 .fab_lab,
-.zoom14 .fab_lab,
-.zoom15 .fab_lab,
-.zoom16 .fab_lab,
-.zoom17 .fab_lab,
-.zoom18 .fab_lab,
-.zoom19 .fab_lab {
-  background-image: image_url("map-icons/fab_lab70.png");
-  width: 70px !important;
-  height: 70px !important;
+.zoom10 .icon_custom,
+.zoom11 .icon_custom,
+.zoom12 .icon_custom,
+.zoom13 .icon_custom,
+.zoom14 .icon_custom,
+.zoom15 .icon_custom,
+.zoom16 .icon_custom,
+.zoom17 .icon_custom,
+.zoom18 .icon_custom,
+.zoom19 .icon_custom,
+.zoom20 .icon_custom,
+.zoom21 .icon_custom,
+.zoom22 .icon_custom
+{
+  width: 50px !important;
+  height: 50px !important;
+  background-repeat: no-repeat;
   top: -70px;
   left: -35px;
 }
 
-.zoom10 .mobile,
-.zoom11 .mobile,
-.zoom12 .mobile,
-.zoom13 .mobile,
-.zoom14 .mobile,
-.zoom15 .mobile,
-.zoom16 .mobile,
-.zoom17 .mobile,
-.zoom18 .mobile,
-.zoom19 .mobile {
-  background-image: image_url("map-icons/mobile70.png");
-  width: 70px !important;
-  height: 70px !important;
-  top: -70px;
-  left: -35px;
-}
-
-.zoom10 .mini_fab_lab,
-.zoom11 .mini_fab_lab,
-.zoom12 .mini_fab_lab,
-.zoom13 .mini_fab_lab,
-.zoom14 .mini_fab_lab,
-.zoom15 .mini_fab_lab,
-.zoom16 .mini_fab_lab,
-.zoom17 .mini_fab_lab,
-.zoom18 .mini_fab_lab,
-.zoom19 .mini_fab_lab {
-  background-image: image_url("map-icons/fab_lab70.png");
-  width: 70px !important;
-  height: 70px !important;
-  top: -70px;
-  left: -35px;
-}
-
-.zoom10 .supernode,
-.zoom11 .supernode,
-.zoom12 .supernode,
-.zoom13 .supernode,
-.zoom14 .supernode,
-.zoom15 .supernode,
-.zoom16 .supernode,
-.zoom17 .supernode,
-.zoom18 .supernode,
-.zoom19 .supernode {
-  background-image: image_url("map-icons/supernode70.png");
-  width: 70px !important;
-  height: 70px !important;
-  top: -70px;
-  left: -35px;
-}
 
 $sea-blue: #98bcda;
 $sea-gray: #d7d7d7;

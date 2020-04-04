@@ -6,8 +6,13 @@
         = render "header"
 
       .col-md-4.py-4.border-right
-        - cache ["v1-countries-#{I18n.locale}-#{Digest::MD5.hexdigest([params.to_s].to_s)}", Lab.last_updated_at] do
-          = select_tag :labs_country_selector, options_for_select([[t("views.labs.index.all_countries", default: "All Countries"), ''], *@countries.map { |country,country_code,count| [country, country_code.upcase] }], params[:country] ? params[:country].upcase : '')
+        = search_form_for @q do |f|
+          .input-group.mb-2
+            = f.select(:country_code_eq, options_for_select(@countries.map { |a,b| [a, b]}, params[:q] ? params[:q][:country_code_eq] : '' ), { include_blank: 'Filter by Country' }, {class: 'form-control'})
+          .input-group.mb-2
+            = f.select(:activity_status_eq, options_for_select(Lab::ACTIVITY_STATUS.map { |a,b| [a.upcase, a]}, params[:q] ? params[:q][:activity_status_eq] : ''), { include_blank: 'Filter by status' }, {class: 'form-control'})
+          .input-group.mb-4
+            = f.submit class: 'btn btn-primary', value: 'Filter'
 
       .col-md-4.py-4
         - if current_user

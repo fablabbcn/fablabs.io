@@ -22,13 +22,6 @@ toggleActivityDateFields = (status) ->
 
 
 ready = ->
-  $('#labs_country_selector').on 'change', (e) ->
-    country = e.target.value
-    if country
-      window.location = '/labs?country=' + country
-    else
-      window.location = '/labs'
-
   options = {
     valueNames: [ 'name', 'year' ]
   }
@@ -159,9 +152,11 @@ ready = ->
           # some former supernode to become nil in the mapdata.json, resulting in no icon
           # See issuse https://github.com/fablabbcn/fablabs.io/issues/449
           if lab.status == 'active'
-            lab.marker._icon.classList.add('fab_lab')
+            lab.marker._icon.classList.add('icon_custom', 'icon_fab_lab')
+          else if lab.status == 'corona'
+            lab.marker._icon.classList.add('icon_custom', 'icon_corona')
           else
-            lab.marker._icon.classList.add('mobile')
+            lab.marker._icon.classList.add('icon_custom', 'icon_mobile')
 
     # Create map
     L.mapbox.accessToken = 'pk.eyJ1IjoidG9tYXNkaWV6IiwiYSI6ImNpaWcyMHU0bjAwM2x2emt1cG5iMzE3bXIifQ.wWNloP12TwdfeKyLHaXpSA'
