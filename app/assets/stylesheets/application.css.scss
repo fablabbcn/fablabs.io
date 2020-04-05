@@ -298,6 +298,14 @@ h5 {
       background-color: $green-hover;
       border-color: $green-hover;
     }
+    &:focus{
+      background-color: $green;
+      border-color: $green-hover;
+    }
+    &:active {
+      background-color: $green !important;
+      border-color: $green-hover !important;
+    }
   }
 
   &.btn-default {

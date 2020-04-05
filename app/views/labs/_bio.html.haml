@@ -29,16 +29,13 @@
             .ml-auto.mt-3
             - if current_or_null_user.can_update?(@lab)
               .dropdown
-                %a.dropdown-toggle.btn.btn-primary.btn-lg{:href => "#", "role" => "button", "data-toggle" => "dropdown", "data-target" => "#"}
+                %button.dropdown-toggle.btn.btn-primary.btn-lg{"role" => "button", "data-toggle" => "dropdown", "data-target" => "#"}
                   = fa_icon "edit", text: t('views.labs.show.manage_lab', default: "Manage Lab")
-                %ul.dropdown-menu
-                  %li.dropdown-item
-                    = link_to edit_lab_path(@lab) do
-                      = fa_icon "edit", text: t('views.labs.show.edit_lab_details', default: "Edit Lab Details")
-                  %li.dropdown-item
-                    = link_to lab_employees_path(@lab) do
-                      = fa_icon "group", text: t('views.labs.show.edit_employee_list', default: "Edit Employee List")
-                  %li.dropdown-item
-                    = link_to new_lab_event_path(@lab) do
-                      = fa_icon "calendar", text: t('views.labs.show.add_event', default: "Add Event")
+                .dropdown-menu
+                  = link_to edit_lab_path(@lab), class: 'dropdown-item' do
+                    = fa_icon "edit", text: t('views.labs.show.edit_lab_details', default: "Edit Lab Details")
+                  = link_to lab_employees_path(@lab), class: 'dropdown-item' do
+                    = fa_icon "group", text: t('views.labs.show.edit_employee_list', default: "Edit Employee List")
+                  = link_to new_lab_event_path(@lab), class: 'dropdown-item' do
+                    = fa_icon "calendar", text: t('views.labs.show.add_event', default: "Add Event")
 
