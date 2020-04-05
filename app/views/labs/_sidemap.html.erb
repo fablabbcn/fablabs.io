@@ -39,8 +39,10 @@
         return function() {
           infoWindow.setContent(
             "<a href='/labs/" + locations[i].slug + "'>" + locations[i].name + "</a><br/>" +
-            "<p>Status: " + locations[i].activity_status + "</p>" +
-            locations[i].name
+            "<b>Status: </b>" + locations[i].activity_status + "<br/>" +
+            "<b>Kind: </b>" + locations[i].kind + "<br/>" +
+            "<b>City: </b>" + locations[i].city + "<br/>" +
+            "<b>Phone: </b>" + locations[i].city + "<br/>"
           );
           infoWindow.open(map, marker);
         }
