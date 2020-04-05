@@ -20,7 +20,7 @@ Geocoder.configure(
   # Calculation options
   # units: :mi,                 # :km for kilometers or :mi for miles
   # distances: :linear          # :spherical or :linear
-  #google: { api_key: ENV['GOOGLE_MAPS_API'], },
+  #google: { api_key: ENV['GOOGLE_MAPS_API_KEY'], },
   nominatim: {
     http_headers: { "User-Agent" => "fablabs.io" },
   },
