@@ -12,7 +12,8 @@
           .input-group.mb-2
             = f.select(:activity_status_eq, options_for_select(Lab::ACTIVITY_STATUS.map { |a,b| [a.upcase, a]}, params[:q] ? params[:q][:activity_status_eq] : ''), { include_blank: 'Filter by status' }, {class: 'form-control'})
           .input-group.mb-4
-            = f.submit class: 'btn btn-primary', value: 'Filter'
+            = f.submit class: 'btn btn-primary ml-auto', value: 'Filter'
+        %p.text-right.m-0 Showing <strong>#{@labs.count}</strong> Labs
 
       .col-md-4.py-4
         - if current_user
