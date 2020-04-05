@@ -29,7 +29,7 @@
             .ml-auto.mt-3
             - if current_or_null_user.can_update?(@lab)
               .dropdown
-                %button.dropdown-toggle.btn.btn-primary.btn-lg{"role" => "button", "data-toggle" => "dropdown", "data-target" => "#"}
+                %button.dropdown-toggle.btn.btn-primary.btn-lg{"type": "button", "data-toggle": "dropdown"}
                   = fa_icon "edit", text: t('views.labs.show.manage_lab', default: "Manage Lab")
                 .dropdown-menu
                   = link_to edit_lab_path(@lab), class: 'dropdown-item' do
