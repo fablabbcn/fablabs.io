@@ -17,8 +17,31 @@
 
     map = new google.maps.Map(document.getElementById('sidemap'), {
       center: {lat: 20, lng: -40},
+      mapTypeId: "OSM",
+      mapTypeControl: false,
+      streetViewControl: false,
       zoom: 3
     });
+
+    // Define OSM map type pointing at the OpenStreetMap tile server
+    // https://wiki.openstreetmap.org/wiki/Google_Maps_Example
+    map.mapTypes.set("OSM", new google.maps.ImageMapType({
+      getTileUrl: function(coord, zoom) {
+        // "Wrap" x (longitude) at 180th meridian properly
+        // NB: Don't touch coord.x: because coord param is by reference, and changing its x property breaks something in Google's lib
+        var tilesPerGlobe = 1 << zoom;
+        var x = coord.x % tilesPerGlobe;
+        if (x < 0) {
+          x = tilesPerGlobe+x;
+        }
+        // Wrap y (latitude) in a like manner if you want to enable vertical infinite scrolling
+
+        return "https://tile.openstreetmap.org/" + zoom + "/" + x + "/" + coord.y + ".png";
+      },
+      tileSize: new google.maps.Size(256, 256),
+      name: "OpenStreetMap",
+      maxZoom: 18
+    }));
 
     for(var i in locations){
       if (locations[i].activity_status === 'active'){
@@ -41,8 +64,7 @@
             "<a href='/labs/" + locations[i].slug + "'>" + locations[i].name + "</a><br/>" +
             "<b>Status: </b>" + locations[i].activity_status + "<br/>" +
             "<b>Kind: </b>" + locations[i].kind + "<br/>" +
-            "<b>City: </b>" + locations[i].city + "<br/>" +
-            "<b>Phone: </b>" + locations[i].city + "<br/>"
+            "<b>City: </b>" + locations[i].city + "<br/>"
           );
           infoWindow.open(map, marker);
         }
