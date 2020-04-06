@@ -16,11 +16,12 @@
     };
 
     map = new google.maps.Map(document.getElementById('sidemap'), {
-      center: {lat: 20, lng: -40},
+      //center: {lat: 20, lng: -40},
+      center: {lat: parseFloat(locations[0].latitude), lng: parseFloat(locations[0].longitude)},
       mapTypeId: "OSM",
       mapTypeControl: false,
       streetViewControl: false,
-      zoom: 3
+      zoom: 4
     });
 
     // Define OSM map type pointing at the OpenStreetMap tile server
