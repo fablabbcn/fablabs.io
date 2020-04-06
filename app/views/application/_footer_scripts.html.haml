@@ -1,4 +1,5 @@
-= render 'analytics'
+- if Rails.env.production?
+  = render 'analytics'
 
 #get-help-text.modal.fade{"aria-labelledby" => "How can we help you?", :role => "dialog", :tabindex => "-1"}
   .modal-dialog{:role => "document"}
