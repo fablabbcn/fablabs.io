@@ -14,6 +14,15 @@
   left: -12px;
 }
 
+.icon_active {
+  background-image: image_url("map-icons/active.svg");
+}
+
+.icon_closed {
+  background-image: image_url("map-icons/closed.svg");
+}
+
+// Old names
 .icon_fab_lab {
   background-image: image_url("map-icons/fab_lab.svg");
 }

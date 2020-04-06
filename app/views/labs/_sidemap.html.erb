@@ -46,11 +46,11 @@
 
     for(var i in locations){
       if (locations[i].activity_status === 'active'){
-        image.url = "<%= image_url('map-icons/fab_lab.svg') %>";
+        image.url = "<%= image_url('map-icons/active.svg') %>";
       }else if (locations[i].activity_status === 'corona'){
         image.url = "<%= image_url('map-icons/corona.svg') %>";
       } else {
-        image.url = "<%= image_url('map-icons/mobile.svg') %>";
+        image.url = "<%= image_url('map-icons/closed.svg') %>";
       }
 
       marker = new google.maps.Marker({
