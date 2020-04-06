@@ -2,10 +2,10 @@
 .subnavbar.border-bottom
   .container
     .row
-      .col-md-4.py-4.border-right.list-map
+      .col-md-3.py-4.border-right.list-map
         = render "header"
 
-      .col-md-4.py-4.border-right
+      .col-md-5.py-4.border-right
         = search_form_for @q do |f|
           .input-group.mb-2
             = f.select(:country_code_eq, options_for_select(@countries.map { |a,b| [a, b]}, params[:q] ? params[:q][:country_code_eq] : '' ), { include_blank: 'Filter by Country' }, {class: 'form-control'})
@@ -35,8 +35,8 @@
           #{pluralize @labs.size, "search result"} for
           %strong= params[:query]
 
-      .labs.col-md-6= render @labs
-      .labs.col-md-6= render 'sidemap'
+      .labs.col-md-5= render @labs
+      .labs.col-md-7= render 'sidemap'
       = paginate @labs, theme: 'twitter-bootstrap-4', nav_class: "m-auto pt-3"
 
   .row

@@ -97,6 +97,8 @@ integrate Fablabs.io in your application.
 Check out also the [API Reference](https://docs.fablabs.io/swagger/index.html),
 the [Examples](https://github.com/fablabbcn/examples.fablabs.io), and the [fablabs.js library](https://github.com/fablabbcn/fablabsjs).
 
+The API docs are hosted in this repo: https://github.com/fablabbcn/docs.fablabs.io
+
 ### Getting an API Token
 
 1. Login to fablabs.io
