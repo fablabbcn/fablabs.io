@@ -6,12 +6,7 @@ class Lab < ActiveRecord::Base
   include ApproveWorkflow
   include LabApproveMethods
 
-
-  KINDS = [ 'mini_fab_lab', 'fab_lab', 'mobile']
-
-
   extend DragonflyValidations
-
   dragonfly_accessor :avatar do
     default 'public/default-lab-avatar.png'
   end
@@ -27,22 +22,21 @@ class Lab < ActiveRecord::Base
   include PgSearch::Model
   pg_search_scope :search_by_name, :against => [:name, :description, :reverse_geocoded_address]
 
-  def self.to_csv(options = {})
-    CSV.generate(options) do |csv|
-      csv << column_names
-      all.each do |lab|
-        csv << lab.attributes.values_at(*column_names)
-      end
-    end
-  end
-
   extend FriendlyId
   friendly_id :slug_candidates, use: :slugged
   def slug_candidates
     [:name]
   end
 
+  KINDS = [ 'mini_fab_lab', 'fab_lab', 'mobile']
   enum kind: { mini_fab_lab: 0, fab_lab: 1, mobile: 3 }
+
+  ACTIVITY_STATUS = [
+    'planned',
+    'active',
+    'corona',
+    'closed'
+  ].freeze
 
   has_many :academics
   has_many :admin_applications
@@ -99,13 +93,6 @@ class Lab < ActiveRecord::Base
       errors.add(:slug, "is reserved")
     end
   end
-
-  ACTIVITY_STATUS = [
-    ACTIVITY_PLANNED  = 'planned'.freeze,
-    ACTIVITY_ACTIVE   = 'active'.freeze,
-    ACTIVITY_CORONA   = 'corona'.freeze,
-    ACTIVITY_CLOSED   = 'closed'.freeze
-  ].freeze
 
   Capabilities = %w(three_d_printing cnc_milling circuit_production laser precision_milling vinyl_cutting)
   bitmask :capabilities, as: Capabilities
@@ -192,6 +179,15 @@ class Lab < ActiveRecord::Base
       end
     end
     return countries.sort_alphabetical_by(&:first)
+  end
+
+  def self.to_csv(options = {})
+    CSV.generate(options) do |csv|
+      csv << column_names
+      all.each do |lab|
+        csv << lab.attributes.values_at(*column_names)
+      end
+    end
   end
 
   def direct_admins
