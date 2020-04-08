@@ -64,13 +64,12 @@
             History of your Lab
           .hint.px-0
             Please indicate these important dates in the history of your Lab:
-          .row
-            .col-lg-4.pl-0
-              = f.input :activity_start_at, label: 'When did you start designing and planning your Lab?', as: 'string', input_html: {class: 'flatpickr' }
-            .col-lg-4.pl-0
-              = f.input :activity_inaugurated_at, label: 'When was the Lab officially inaugurated?', as: 'string', input_html: {class: 'flatpickr' }
-            .col-lg-4.pl-0
-              = f.input :activity_closed_at, label: 'When was the Lab closed?', as: 'string', input_html: {class: 'flatpickr' }
+          .row.pl-0.mx-0
+            = f.input :activity_start_at, label: 'When did you start designing and planning your Lab?', as: 'string', input_html: {class: 'flatpickr' }
+          .row.pl-0.mx-0
+            = f.input :activity_inaugurated_at, label: 'When was the Lab officially inaugurated?', as: 'string', input_html: {class: 'flatpickr' }
+          .row.pl-0.mx-0
+            = f.input :activity_closed_at, label: 'When was the Lab closed?', as: 'string', input_html: {class: 'flatpickr' }
 
     %fieldset
       .text-large Location
@@ -100,7 +99,7 @@
 
     %fieldset
       .text-large Referee status
-      .form-check.mx-4
+      .form-check
         = f.input :is_referee, input_html: { class: 'form-check-input' }
 
     = f.submit 'Save', class: 'btn btn-primary btn-lg mt-4'
