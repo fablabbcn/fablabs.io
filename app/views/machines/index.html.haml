@@ -1,29 +1,30 @@
 -# cache ["v1", Machine.last_updated_at] do
 - title "Machines"
 .no-cache
-  .subnavbar.container-fluid.border-bottom
-    .row
-      .col-md-2.border-right.py-3
-        .title Machines
+  .subnavbar.border-bottom
+    .container
+      .row
+        .col-md-3.border-right.py-4
+          .title Machines
 
-      .col-md-6.border-right.py-3.d-flex.justify-content-start
-        .title
-          = icon('tags')
-          Tags:
-          %ul.taglist.list-unstyled.text-small.list-inline.mt-2
-            - @machines.each do |machine|
-              - if machine.tags.length > 0
-                - machine.tags.each do |tag|
-                  %li.gray.list-inline-item.mb-0
-                    = link_to "##{tag}", machines_path(tag: tag.name)
+        .col-md-6.border-right.py-4.d-flex.justify-content-start
+          .title
+            = icon('tags')
+            Tags:
+            %ul.taglist.list-unstyled.text-small.list-inline.mt-2
+              - @machines.each do |machine|
+                - if machine.tags.length > 0
+                  - machine.tags.each do |tag|
+                    %li.gray.list-inline-item.mb-0
+                      = link_to "##{tag}", machines_path(tag: tag.name)
 
-      .col-md-4.border-right.py-3
-        - if current_user
-          = link_to new_machine_path, class: "btn btn-primary" do
-            = fa_icon "plus", text: t("views.labs.index.add_a_machine", default: "Add a new Machine")
-        - else
-          = link_to new_machine_path, class: "btn btn-primary", data: {toggle: "tooltip", placement: "bottom" }, title: "You need to be signed in to add a Machine" do
-            = fa_icon "plus", text: t("views.labs.index.add_a_machine", default: "Add a new Machine")
+        .col-md-3.py-4
+          - if current_user
+            = link_to new_machine_path, class: "btn btn-primary" do
+              = fa_icon "plus", text: t("views.labs.index.add_a_machine", default: "Add a new Machine")
+          - else
+            = link_to new_machine_path, class: "btn btn-primary", data: {toggle: "tooltip", placement: "bottom" }, title: "You need to be signed in to add a Machine" do
+              = fa_icon "plus", text: t("views.labs.index.add_a_machine", default: "Add a new Machine")
 
   .container
     - if params[:tag].present?

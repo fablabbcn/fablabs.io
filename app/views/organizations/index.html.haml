@@ -2,10 +2,10 @@
 .subnavbar.border-bottom
   .container
     .row
-      .col-md-8.border-right.py-4
+      .col-md-9.border-right.py-4
         .title Organizations
 
-      .col-md-4.py-4
+      .col-md-3.py-4
         - if current_user
           = link_to new_organization_path, class: "btn btn-primary" do
             = fa_icon "plus", text: 'Add a new Organization'

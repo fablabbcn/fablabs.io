@@ -5,7 +5,7 @@
       .col-md-3.py-4.border-right.list-map
         = render "header"
 
-      .col-md-5.py-4.border-right
+      .col-md-6.py-4.border-right
         = search_form_for @q do |f|
           .input-group.mb-2
             = f.select(:country_code_eq, options_for_select(@countries.map { |a,b| [a, b]}, params[:q] ? params[:q][:country_code_eq] : '' ), { include_blank: 'Filter by Country' }, {class: 'form-control'})
@@ -17,7 +17,7 @@
             = f.submit class: 'btn btn-primary ml-auto', value: 'Filter'
         %p.text-right.m-0 Showing <strong>#{@labs.count}</strong> Labs
 
-      .col-md-4.py-4
+      .col-md-3.py-4
         - if current_user
           = link_to new_lab_path, class: "btn btn-primary" do
             = fa_icon "plus", text: t("views.labs.index.add_a_lab", default: "Add Lab")
