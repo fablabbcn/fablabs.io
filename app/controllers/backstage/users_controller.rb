@@ -26,7 +26,7 @@ class Backstage::UsersController < Backstage::BackstageController
 
   def list
     @users = User.all.map { |e| "#{e.full_name} - #{e.email}" }
-    render text: @users.to_csv
+    render plain: @users.to_csv
   end
 
 private
