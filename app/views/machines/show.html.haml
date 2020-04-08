@@ -56,7 +56,7 @@
   .row
     .col-lg-12
       - if current_or_null_user.can_update?(@machine)
-        = link_to "Edit Machine", edit_machine_path(@machine), class: 'btn btn-primary'
+        = link_to "Edit", edit_machine_path(@machine), class: 'btn btn-primary'
       - if current_or_null_user.can_delete?(@machine)
         = link_to icon('trash-o'), @machine, method: :delete, class: 'btn btn-danger', data: { confirm: "Are you sure?" }
 

@@ -22,7 +22,7 @@ feature "Editing a machine" do
   scenario "as an admin" do
     sign_in_superadmin
     visit machine_path(machine)
-    click_link "Edit Machine"
+    click_link "Edit"
     fill_in "Name", with: "SHOP BOT"
     click_button "Update Machine"
     expect(page).to have_css("h1", text: "SHOP BOT")
