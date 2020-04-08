@@ -11,9 +11,12 @@
         = hidden_field_tag :goto, params[:goto]
         .col-12
           = f.label :first_name, "Your Name"
+        .col-md-6
           = f.input :first_name, autofocus: true, placeholder: 'First Name', label: false
+        .col-md-6
           = f.input :last_name, placeholder: 'Last Name', label: false
 
+        .col-12
           = f.input :username, autocapitalize: "off", autocorrect: "off", hint: "Alphanumeric characters only please (a-z0-9)"
           = f.input :email, autocapitalize: "off", autocorrect: "off"
 
