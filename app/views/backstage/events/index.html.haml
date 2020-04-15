@@ -17,7 +17,7 @@
         %tbody
           - @events.each do |event|
             %tr
-              %td= link_to event, lab_event_path(event.lab, event)
+              %td= link_to event, lab_event_path(event.lab, event) if event.lab.present?
               %th= link_to event.lab, event.lab
               %th= link_to event.creator, event.creator
               %th= event.starts_at
