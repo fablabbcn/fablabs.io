@@ -1,23 +1,18 @@
 .well
   = search_form_for @q, url: url_form, builder: SimpleForm::FormBuilder do |f|
     = f.input :name_or_city_cont, label: "Name"
-    .container
-      .row.pb-3
-        .col-lg-3.pl-0
-          = f.input :is_referee_true, as: :boolean, label: "Is referee", input_html: { class: 'form-check-input' }
-        .col-lg-3
-          =# f.input :discourse_id_not_null, as: :boolean, label: "With discourse ID", input_html: { class: 'form-check-input' }
-        .col-lg-3
-          =# f.input :discourse_id_null, as: :boolean, label: "Without discourse ID", input_html: { class: 'form-check-input' }
-        .col-lg-3.pr-0
-          =# f.input :discourse_errors_not_null, as: :boolean, label: "With discourse sync errors", input_html: { class: 'form-check-input' }
+    =# f.input :discourse_id_not_null, as: :select, collection: [:true, :false], include_blank: "Either one", label: "With discourse ID"
+    =# f.input :discourse_id_null, as: :select, collection: [:true, :false], include_blank: "Either one",label: "Without discourse ID"
+    =# f.input :discourse_errors_not_null, as: :select, collection: [:true, :false], include_blank: "Either one", label: "With discourse sync errors"
     .row
       .col-lg-4
         = f.input :country_code_eq, as: 'country', label: 'Country', iso_codes: true, include_blank: 'ALL'
       .col-lg-4
         = f.input :workflow_state_eq, collection: Lab.workflow_spec.state_names, label: "State", include_blank: 'ALL'
-      .col-lg-3.m-auto
-        = f.submit "Filter", class: 'btn btn-primary'
+      .col-lg-4.m-auto
+        = f.input :is_referee_true, as: :select, collection: [:true, :false], include_blank: "Either one"
+
+    = f.submit "Filter", class: 'btn btn-primary'
 
 = page_entries_info @labs
 %table.table
