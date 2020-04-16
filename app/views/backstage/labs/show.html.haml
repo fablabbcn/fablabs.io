@@ -119,6 +119,9 @@
                 = content_tag_for :li, event do
                   = link_to event
         %tr
+          %th Is a ref
+          %td= @lab.is_referee
+        %tr
           %th Created At
           %td= @lab.created_at
         %tr
