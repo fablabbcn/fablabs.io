@@ -25,6 +25,7 @@
     %tr
       %th= sort_link @q, :id, 'ID'
       %th= sort_link @q, :name, 'Name'
+      %th= sort_link @q, :is_referee
       %th Country
       %th
         Creator
@@ -37,6 +38,7 @@
       = content_tag_for :tr, lab, {class: lab.current_state} do
         %td= lab.id
         %td= link_to lab, backstage_lab_path(lab)
+        %td= lab.is_referee
         %td= lab.country
         %td= link_to lab.creator, lab.creator
         %td= lab.current_state
