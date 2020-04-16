@@ -9,11 +9,15 @@
         %thead
           %tr
             %th Name
+            %th Resource
+            %th Resource Type
             %th Actions
         %tbody
           - @roles.each do |role|
             %tr
               %td= role.name
+              %td= role.resource
+              %td= role.resource_type
               %td
                 = link_to 'delete', [:backstage, @user, role], method: :delete, confirm: 'Are you sure?'
 

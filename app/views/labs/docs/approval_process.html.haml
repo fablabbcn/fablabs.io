@@ -1,16 +1,8 @@
 - title "Labs"
-.row.top
-  .col-lg-8
-    %ul.breadcrumbs
-      %li= link_to Lab.to_s.pluralize, labs_path
-      %li.current= "Docs"
-  .col-lg-4
-    = render "header"
-
-.row
-  - cache ["v1-labsindex-#{I18n.locale}-#{Digest::MD5.hexdigest([params.to_s].to_s)}", Lab.last_updated_at] do
+.container
+  .row
     .col-lg-8.content
-      .row
+      .mt-5
         %p
           We have recently redesigned the fab lab approval process to minimise the waiting time
           for labs to get approved.
