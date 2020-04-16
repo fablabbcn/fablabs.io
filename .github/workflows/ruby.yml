@@ -26,10 +26,16 @@ jobs:
     steps:
     - uses: actions/checkout@v1
 
+    - name: Show available Ruby versions
+      run: |
+        ls $RUNNER_TOOL_CACHE/Ruby
+        uname -a
+        cat /etc/os-release
+
     - name: Set up Ruby
       uses: actions/setup-ruby@v1
       with:
-        ruby-version: 2.5.7
+        ruby-version: 2.5.8
 
     - name: Cache gems
       uses: actions/cache@v1
@@ -38,12 +44,6 @@ jobs:
         key: ${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}
         restore-keys: |
           ${{ runner.os }}-gem-
-
-    - name: Show available Ruby versions
-      run: |
-        ls $RUNNER_TOOL_CACHE/Ruby
-        uname -a
-        cat /etc/os-release
 
     - name: Install required packages
       run: |

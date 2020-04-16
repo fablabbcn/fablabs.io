@@ -1,4 +1,4 @@
-FROM ruby:2.5.7
+FROM ruby:2.6.6
 
 # Install essential Linux packages
 RUN apt-get update -qq && apt-get install -y \

@@ -660,7 +660,7 @@ DEPENDENCIES
   zonebie
 
 RUBY VERSION
-   ruby 2.5.7p206
+   ruby 2.6.6p146
 
 BUNDLED WITH
-   2.0.2
+   2.1.4
