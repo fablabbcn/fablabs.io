@@ -173,7 +173,7 @@ class LabsController < ApplicationController
       :programs,
       :improve_approval_application,
       capabilities: [],
-      facilities_attributes: [:id, :thing_id, '_destroy'],
+      machine_ids: [],
       links_attributes: [:id, :link_id, :url, '_destroy'],
       referee_approval_processes_attributes: [:referee_lab_id, '_destroy'],
       employees_attributes: %i[id job_title description]

@@ -9,13 +9,12 @@
       .col-md-6
         = f.input :ends_at, as: 'string', input_html: { placeholder: 'dd/mm/yy', class: 'flatpickr-time'}
         -# f.time_zone_select :time_zone
-    .form-check.my-0.mx-3
+    .form-check.px-3
       = f.input :all_day, as: 'boolean', input_html: {class: 'form-check-input'}
 
   %fieldset
-    .row
-      .form-check.mb-0.mt-3.col-12
-        = f.input :tags, as: 'check_boxes',inline_label: true, item_wrapper_class: 'checkbox_container mr-3', collection: Event::Tags, checked: @event.tags, input_html: {class: 'form-check-input'}
+    .form-check.mb-3.pb-3.px-3
+      = f.input :tags, as: 'check_boxes',inline_label: true, item_wrapper_class: 'checkbox_container mr-3', collection: Event::Tags, checked: @event.tags, input_html: {class: 'form-check-input'}
     = f.input :location
     = f.input :description
 
