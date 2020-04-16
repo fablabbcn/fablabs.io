@@ -178,7 +178,7 @@
         %h5
           %strong Add Machines:
       .mt-3.px-0.mx-4
-        = f.association :machines, wrapper_html: { class: 'w-100 overflow-hidden' }
+        = f.association :machines
     = f.input :tools_list, hint: "Please list any machines that you have so that we can add them to the directory.", input_html: { style: "height: 8em" }, placeholder: "e.g. Makerbot Industries - Makerbot 2"
   - if lab.workflow_state != "approved"
     %fieldset.col-12

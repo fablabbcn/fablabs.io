@@ -53,7 +53,7 @@
               = image_tag lab.avatar.thumb("90x90#").url, class: 'avatar tiny'
               = link_to lab, lab
 
-  .row
+  .row.mt-3
     .col-lg-12
       - if current_or_null_user.can_update?(@machine)
         = link_to "Edit", edit_machine_path(@machine), class: 'btn btn-primary'

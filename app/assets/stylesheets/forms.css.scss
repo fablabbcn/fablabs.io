@@ -136,30 +136,6 @@ label {
   }
 }
 
-fieldset {
-  select {
-    width: 100%;
-  }
-
-  .select2-container.select2-container--default {
-    .select2-selection--single,
-    .select2-selection--multiple {
-      height: 50px;
-      background-color: #F7F7F7;
-      border-color: #F7F7F7;
-
-      .select2-selection__rendered {
-        line-height: 50px;
-      }
-
-      .select2-selection__arrow {
-        height: 50px;
-        width: 50px;
-      }
-    }
-  }
-}
-
 .input-group-prepend {
   border-color: #D8D8D8;
   background-color: #D8D8D8;

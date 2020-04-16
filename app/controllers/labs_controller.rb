@@ -100,7 +100,6 @@ class LabsController < ApplicationController
 
   def edit
     @lab = Lab.friendly.find(params[:id])
-    @collection = Machine.includes(:brand)
     @lab.links.build
     authorize_action_for @lab
   end
