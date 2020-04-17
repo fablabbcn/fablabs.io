@@ -34,6 +34,7 @@
               (#{sort_link @q, :last_name, "Last"})
             %th= sort_link @q, :email, 'Email'
             %th= sort_link @q, :created_at, "Joined"
+            %th Labs
             %th Role
         %tbody
           - @users.each do |user|
@@ -42,6 +43,7 @@
               %td= link_to user, backstage_user_path(user)
               %td= mail_to user.email, user.email
               %td= user.created_at
+              %td= user.employees.count
               %td= user.role_names
 
       = paginate @users, theme: 'twitter-bootstrap-4', nav_class: "m-auto pt-3"

@@ -53,7 +53,12 @@
             %th Roles
             %td
               - if current_user.has_role?(:superadmin)
-                = link_to '(edit)', [:backstage, @user, :roles]
-              = @user.roles.map(&:name).join(', ')
+                = link_to '(edit roles)', [:backstage, @user, :roles]
+              - @user.roles.each do |role|
+                %ul.list-unstyled.mt-2
+                  %li
+                    = role.name
+                    @
+                    = role.resource&.name
 
       = link_to "Edit User", edit_backstage_user_path(@user), class: 'btn btn-primary'

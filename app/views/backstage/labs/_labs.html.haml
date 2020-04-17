@@ -22,6 +22,7 @@
       %th= sort_link @q, :name, 'Name'
       %th= sort_link @q, :is_referee
       %th Country
+      %th Nr of employees
       %th
         Creator
         = sort_link @q, 'creator_first_name', 'First'
@@ -35,6 +36,7 @@
         %td= link_to lab, backstage_lab_path(lab)
         %td{class: ('text-green' if lab.is_referee)}= lab.is_referee
         %td= lab.country
+        %td= lab.employees.count
         %td= link_to lab.creator, lab.creator
         %td= lab.current_state
 
