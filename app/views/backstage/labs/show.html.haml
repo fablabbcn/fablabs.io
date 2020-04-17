@@ -11,6 +11,9 @@
           %td
             = @lab.current_state
 
+        %tr
+          %th State actions
+          %td
             - if current_user.present?
               - @lab.current_state.events.keys.each do |event|
                 - if current_user.is_referee? || current_user.is_unique_referee? || current_user.has_role?(:superadmin)
@@ -18,15 +21,15 @@
                     = button_to "#{event.capitalize.to_s.tr('_', ' ')}",
                       { controller: 'labs', action: event },
                       method: :get,
-                      class:  'btn btn-primary',
+                      class:  'btn btn-primary m-1',
                       id:     'event'
 
                 - if current_user.is_referee? or current_user.is_unique_referee?
                   - if ['referee_approves', 'referee_requests_admin_approval', 'referee_rejects'].include? event.to_s
-                    = button_to "#{event.capitalize.to_s.tr('_', ' ')}", {controller: 'labs', action: event}, method: :patch, class: 'btn btn-primary', id: 'event'
+                    = button_to "#{event.capitalize.to_s.tr('_', ' ')}", {controller: 'labs', action: event}, method: :patch, class: 'btn btn-primary m-1', id: 'event'
                 - if current_user.has_role? :superadmin
                   - if ['approve', 'reject', 'remove'].include? event.to_s
-                    = button_to "#{event.capitalize.to_s.tr('_', ' ')}", {controller: 'labs', action: event}, method: :patch, class: 'btn btn-primary', id: 'event'
+                    = button_to "#{event.capitalize.to_s.tr('_', ' ')}", {controller: 'labs', action: event}, method: :patch, class: 'btn btn-primary m-1', id: 'event'
 
         - if @lab.referee.present?
           %tr
@@ -51,6 +54,7 @@
         - if @lab.referee_approval_processes.present?
           %tr
             %th Referees
+            %td
           - @lab.referee_approval_processes.each do |c|
             - if c.referee_lab.present? and c.id
               %tr
