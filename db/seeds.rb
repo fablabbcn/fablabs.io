@@ -48,7 +48,7 @@ puts "Creating 100 organizations"
     description: FFaker::Lorem.sentence,
     county: "County",
     country_code: "es",
-    workflow_state: ['approved', 'pending', 'rejected'].sample,
+    workflow_state: Lab.workflow_spec.state_names.sample.to_s,
     kind: Organization::KINDS[0]
   )
 end
@@ -109,11 +109,14 @@ Facility.find_or_create_by(
   thing: Thing.first
 )
 
-Employee.find_or_create_by(
-  user: User.first,
-  lab: Lab.first,
-  job_title: FFaker::Job.title
-)
+10.times do
+  Employee.find_or_create_by(
+    user: User.all.sample,
+    lab: Lab.all.sample,
+    description: 'Employee description',
+    job_title: FFaker::Job.title
+  )
+end
 
 Document.create!
 
