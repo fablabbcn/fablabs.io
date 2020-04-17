@@ -37,7 +37,7 @@
       = puts @user.activities
       = render @user.activities
 
-  - if @user.username.present?
+  - if false #@user.username.present? #hide discourse iframe for now
     .row
       %iframe{src: @user.discourse_profile_url,
       frameborder: "0",
