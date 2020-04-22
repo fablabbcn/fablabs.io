@@ -27,6 +27,8 @@
 
 
 .container-fluid
+  .row
+    = paginate @labs, theme: 'twitter-bootstrap-4', nav_class: "m-auto"
   .row.flex-column-reverse.flex-md-row
     - cache ["v2-labsindex-#{I18n.locale}-#{Digest::MD5.hexdigest([params.to_s].to_s)}", Lab.last_updated_at] do
       - if params[:query].present?
