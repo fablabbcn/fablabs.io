@@ -408,7 +408,7 @@ GEM
     redcarpet (3.5.0)
     redic (1.5.3)
       hiredis
-    redis (4.1.3)
+    redis (4.1.4)
     redis-actionpack (5.1.0)
       actionpack (>= 4.0, < 7)
       redis-rack (>= 1, < 3)
