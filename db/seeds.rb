@@ -48,7 +48,8 @@ puts "Creating 100 organizations"
     description: FFaker::Lorem.sentence,
     county: "County",
     country_code: "es",
-    workflow_state: Lab.workflow_spec.state_names.sample.to_s,
+    workflow_state: ['pending', 'approved', 'rejected'].sample,
+    #workflow_state: Lab.workflow_spec.state_names.sample,
     kind: Organization::KINDS[0]
   )
 end
