@@ -29,6 +29,7 @@
         = sort_link @q, 'creator_last_name', 'Last'
 
       %th= sort_link @q, :state, 'State'
+      %th= sort_link @q, :activity_status
   %tbody
     - @labs.each do |lab|
       = content_tag_for :tr, lab, {class: lab.current_state} do
@@ -39,5 +40,6 @@
         %td= lab.employees.count
         %td= link_to lab.creator, lab.creator
         %td= lab.current_state
+        %td= lab.activity_status
 
 = paginate @labs, theme: 'twitter-bootstrap-4', nav_class: "m-auto pt-3"
