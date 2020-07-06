@@ -115,7 +115,7 @@ class Lab < ActiveRecord::Base
   before_save :truncate_blurb
   before_save :get_time_zone unless Rails.env.test?
   after_save :save_roles
-  after_save :discourse_sync_if_needed, if: Figaro.env.discourse_enabled
+  after_save :discourse_sync_if_needed, if: -> { Figaro.env.discourse_enabled }
 
   attr_accessor :geocomplete
 

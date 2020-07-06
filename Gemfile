@@ -1,7 +1,7 @@
 ruby '2.6.6'
 source 'https://rubygems.org'
 
-gem 'rails','~> 5.1.7'
+gem 'rails','~> 5.2'
 gem "pg"
 gem 'workflow', '~> 2.0'#, github: 'geekq/workflow'
 gem 'workflow-activerecord', '>=4.1', '< 6.0'
@@ -16,7 +16,7 @@ gem 'record_tag_helper'
 
 # Other Gem issues:
 gem 'font-awesome-sass', '~> 4.3.0' # https://fontawesome.com/how-to-use/on-the-web/setup/upgrading-from-version-4
-gem 'country_select', '1.2.0' # https://github.com/stefanpenner/country_select/blob/master/UPGRADING.md
+gem 'country_select'#, '1.2.0' # https://github.com/stefanpenner/country_select/blob/master/UPGRADING.md
 gem 'bourbon', '~> 4' # Breaks transition in header.css.scss and map.css.scss https://github.com/thoughtbot/bourbon/blob/master/CHANGELOG.md
 
 gem "cocoon"#, github: 'nathanvda/cocoon', :tag => 'v1.2.7'
