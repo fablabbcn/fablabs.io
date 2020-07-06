@@ -5,9 +5,9 @@ class Backstage::LabsController < Backstage::BackstageController
 
   def index
     if current_user.has_role? :superadmin
-      @q = Lab.includes(:creator).search(params[:q])
+      @q = Lab.includes(:creator).ransack(params[:q])
     elsif current_user.is_referee? or current_user.is_unique_referee?
-      @q = Lab.includes(:creator).where("referee_id IN (?)",  current_user.admin_labs.map{ |u| u.resource_id }).search(params[:q])
+      @q = Lab.includes(:creator).where("referee_id IN (?)",  current_user.admin_labs.map{ |u| u.resource_id }).ransack(params[:q])
     end
 
     @q.sorts = 'id desc' if @q.sorts.empty?

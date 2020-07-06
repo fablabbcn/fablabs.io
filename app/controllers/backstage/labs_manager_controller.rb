@@ -3,7 +3,7 @@ class Backstage::LabsManagerController < Backstage::BackstageController
   include LabsSearch
   
   def index
-    @p = Lab.includes(:creator).search(params[:q])
+    @p = Lab.includes(:creator).ransack(params[:q])
     # @labs = search_labs_admin(name).page(params['page']).per(params['per'] || 10)
     @labs = @p.result.page(params['page']).per(params['per'] || 100)
     @sql = @p.result.to_sql

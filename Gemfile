@@ -2,11 +2,9 @@ ruby '2.6.6'
 source 'https://rubygems.org'
 
 gem 'rails','~> 5.1.7'
-gem "pg"#,'0.19'
+gem "pg"
 gem 'workflow', '~> 2.0'#, github: 'geekq/workflow'
 gem 'workflow-activerecord', '>=4.1', '< 6.0'
-# Gems blocking rails 5 update:
-#gem 'sinatra', '>= 1.3.0', :require => nil
 
 # Using community gems because official support does not cover Rails 5
 # Consider refactor not to use them or find alternatives.
@@ -59,14 +57,14 @@ gem 'premailer-rails'
 gem 'puma'
 gem 'rack-cache'
 gem 'rack-cors', require: 'rack/cors'
-gem 'ransack', '<2'
+gem 'ransack'
 gem 'redcarpet'
 gem 'redis'
 gem 'redis-rails' # not needed in rails 5.2
 gem 'rolify'
 gem 'rspec'
 gem 'sass-rails'#, '~> 4.0.5'
-gem "sentry-raven"
+gem 'sentry-raven'
 gem 'sidekiq'
 gem 'simple_form'
 gem 'simplecov', :require => false, :group => :test
@@ -123,12 +121,11 @@ group :test do
   gem "test-unit"
 end
 
-
 # Use ActiveModel has_secure_password
 gem 'bcrypt'
 
 # gem 'foreman'
-#gem 'unicorn'
+# gem 'unicorn'
 
 # Use unicorn as the app server
 # gem 'unicorn'
