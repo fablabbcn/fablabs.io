@@ -94,7 +94,9 @@
       Lab Images
 
     .row
-      .col-lg-3.mt-2= image_tag @lab.avatar.url, class: 'avatar big'
+      .col-lg-3.mt-2
+        - if @lab.avatar.present?
+          = image_tag @lab.avatar.url, class: 'avatar big'
       .col-lg-9
         = f.input :avatar, as: :file, label: 'Avatar', hint: "This will be a square image next shown next to the lab name throughout the site"
         = f.hidden_field :retained_avatar
