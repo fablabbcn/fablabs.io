@@ -78,6 +78,7 @@ puts "Creating 100 labs"
     longitude: rand(-89.05..89.05),
     description: 'This is a description of your lab',
     phone: '0',
+    is_referee: [true,false].sample,
     blurb: 'Promotional message'
     #referee_id: 1
   )
