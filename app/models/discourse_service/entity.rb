@@ -31,7 +31,7 @@ module DiscourseService
     end
 
     def creator
-      @entity.owner
+      @entity&.owner
     end
   end
 end
