@@ -95,7 +95,7 @@
 
     .row
       .col-lg-3.mt-2
-        - if @lab.avatar.present?
+        - if @lab&.avatar&.url&.present?
           = image_tag @lab.avatar.url, class: 'avatar big'
       .col-lg-9
         = f.input :avatar, as: :file, label: 'Avatar', hint: "This will be a square image next shown next to the lab name throughout the site"
@@ -103,7 +103,7 @@
 
     .row
       .col-lg-3
-        - if @lab.header.present?
+        - if @lab&.header&.url&.present?
           = image_tag @lab.header.url, class: 'avatar big'
       .col-lg-9
         = f.input :header, as: :file, label: 'Header', hint: "A single (large) photo of your lab. You will be able to add more photos soon."
