@@ -13,20 +13,29 @@ If you are a Fab labs entusiast and/or you would like to contribute to the proje
 
 ## Getting started
 
-### Local development
+The platform is build with [Ruby on Rails](https://rubyonrails.org/). We recommend reading their [guide](https://guides.rubyonrails.org/getting_started.html).
+
+You can develop locally, or by using docker-compose (advanced).
+
+1. Start by copying the 2 config files and edit as needed
+   - `cp .env.example .env`
+   - `cp config/application.example.yml config/application.yml`
+
+### Local development (recommended)
+
+We recommend using [rbenv](https://github.com/rbenv/rbenv) to handle different Ruby versions, and [nvm](https://github.com/nvm-sh/nvm) to handle Node versions.
+
+Install dependencies and create a database:
 
 1. `npm i`
+
+1. `bundle`
 
 1. `rake db:setup`
 
 1. `rails s`
 
-1. Add this to your `/etc/hosts`:
-
-    `127.0.0.1   www.fablabs.local`
-    `127.0.0.1   api.fablabs.local`
-
-1. Visit [http://www.fablabs.local:3000](http://www.fablabs.local:3000)
+1. Visit [http://localhost:3000](http://localhost:3000)
 
 ### Tests
 
@@ -35,11 +44,7 @@ Run tests with:
 `bundle exec rake`
 
 
-### Starting with docker-compose
-
-1. Add all the secrets to an `.env` file - Minimum example is in the `env.example` file
-
-1. Also copy `cp config/application.example.yml config/application.yml`
+### Using docker-compose (optional, for advanced users)
 
 1. Start the project:
 
@@ -142,7 +147,7 @@ S3_REGION=<amazon region code>
 
 ## Pull requests
 
-All PRs are tested on Travis and Github Actions and Github Actions. Make sure the tests run fine.
+All PRs are tested on Travis and Github Actions. Make sure the tests run.
 
 ## Languages and translation
 
