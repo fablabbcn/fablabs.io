@@ -28,6 +28,7 @@ feature "Editing a lab" do
 
     scenario "with valid details" do
       fill_in "lab_name", with: 'New Name'
+      select 'Iceland', from: "lab_country_code"
       click_on 'Update Lab', match: :first
       expect(page).to have_content("Lab was successfully updated")
     end
