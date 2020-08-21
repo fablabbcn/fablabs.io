@@ -1,0 +1,18 @@
+-# frozen_string_literal: true
+= simple_form_for(@job) do |f|
+  = f.error_notification
+  = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
+
+  .form-inputs
+    = f.input :title
+    = f.input :description
+    = f.input :apply_url
+    = f.input :is_featured
+    = f.input :is_verified
+    =# f.association :user
+    = f.input :min_salary
+    = f.input :max_salary
+    = f.input :country_code, as: 'country', label: 'Country', input_html: { data: {geo: "country_short"} }, wrapper_html: { class: 'boo'}, iso_codes: true#, input_html: { class: 'enhanced'}
+
+  .form-actions
+    = f.button :submit

@@ -1,0 +1,32 @@
+.container
+  %p#notice= notice
+
+  %p
+    %b Title:
+    = @job.title
+  %p
+    %b Description:
+    = @job.description
+  %p
+    %b Apply url:
+    = @job.apply_url
+  %p
+    %b Is featured:
+    = @job.is_featured
+  %p
+    %b Is verified:
+    = @job.is_verified
+  %p
+    %b User:
+    = @job.user
+  %p
+    %b Min salary:
+    = @job.min_salary
+  %p
+    %b Max salary:
+    = @job.max_salary
+  %p
+    %b Country code:
+    = @job.country_code
+
+  = link_to 'Edit', edit_job_path(@job)
