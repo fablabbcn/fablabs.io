@@ -22,6 +22,7 @@ feature "Editing a lab" do
     click_link "iaac"
     click_link "Edit Lab"
     fill_in "lab_name", with: "Valldaura"
+    select 'Iceland', from: "lab_country_code"
     click_on "Save", match: :first
     expect(page).to have_content("Lab updated")
     expect(page).to have_content("Valldaura")
