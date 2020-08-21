@@ -7,6 +7,7 @@ feature "Tracking an activity" do
     sign_in_superadmin
     visit edit_lab_path(lab)
     fill_in "lab_name", with: "New name"
+    select 'Iceland', from: "lab_country_code"
     click_on 'Update', match: :first
     visit activity_path
     expect(page).to have_content("#{User.last} updated New name")

@@ -6,7 +6,7 @@ class Project < ActiveRecord::Base
   enum visibility: { hidden: 0, visible: 1 }
 
   before_save :assign_to_lab, :strip_zeroes
-  after_save :discourse_sync_if_needed, if: Figaro.env.discourse_enabled
+  after_save :discourse_sync_if_needed, if: -> { Figaro.env.discourse_enabled }
 
   self.authorizer_name = 'ProjectAuthorizer'
 

@@ -92,7 +92,7 @@ class User < ActiveRecord::Base
   before_create { generate_token(:email_validation_hash) }
   before_create :downcase_email
 
-  after_save :discourse_sync_if_needed, if: Figaro.env.discourse_enabled
+  after_save :discourse_sync_if_needed, if: -> { Figaro.env.discourse_enabled }
 
   def avatar_url
     if avatar_uid.present?

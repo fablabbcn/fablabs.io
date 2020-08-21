@@ -38,7 +38,7 @@ class Organization < ActiveRecord::Base
 
   scope :approved, -> {where(workflow_state: STATE_APPROVED)}
 
-  after_save :discourse_sync_if_needed, if: Figaro.env.discourse_enabled
+  after_save :discourse_sync_if_needed, if: -> { Figaro.env.discourse_enabled }
 
   attr_accessor :geocomplete
 

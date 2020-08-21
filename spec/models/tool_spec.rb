@@ -12,7 +12,11 @@ describe Machine, type: :model  do
   end
 
   it "is taggable" do
-    machine = FactoryBot.create(:machine, tag_list: [:cheese, :salt_and_vinegar])
+    machine = FactoryBot.create(:machine)
+    machine.tag_list.add :cheese
+    machine.tag_list.add :salt_and_vinegar
+    machine.save
+    expect(machine.tag_list).to eq(['cheese', 'salt_and_vinegar'])
     expect(machine.tags.order(:name).map(&:name)).to eq(['cheese', 'salt_and_vinegar'])
   end
 
