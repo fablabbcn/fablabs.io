@@ -14,7 +14,7 @@ describe PagesController, type: :controller do
       page = FactoryBot.create(:page, published: true)
 
       get :show, params: { id: page.slug }
-      expect(response).to be_success
+      expect(response).to be_successful
     end
 
     it 'not published with non superadmin current_user' do
@@ -37,7 +37,7 @@ describe PagesController, type: :controller do
       page = FactoryBot.create(:page, published: false)
 
       get :show, params: { id: page.slug }
-      expect(response).to be_success
+      expect(response).to be_successful
     end
   end
 end

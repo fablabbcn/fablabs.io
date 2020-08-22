@@ -26,6 +26,8 @@ gem 'acts-as-taggable-on'
 gem 'ancestry'#, github: 'stefankroes/ancestry'
 gem 'authority'#, github: 'nathanl/authority'
 gem 'bitmask_attributes'
+gem 'bootsnap'
+gem 'bootstrap4-kaminari-views'
 gem 'coderay'
 gem 'coffee-rails'#, '~> 4.0.0'
 gem 'countries', require: 'countries/global'
@@ -48,7 +50,6 @@ gem 'inherited_resources'
 gem 'jbuilder'
 gem 'jquery-rails'
 gem 'kaminari'
-gem 'bootstrap4-kaminari-views'
 gem 'letter_opener'
 gem 'momentjs-rails'
 gem 'nest'
@@ -66,8 +67,8 @@ gem 'rspec'
 gem 'sass-rails'#, '~> 4.0.5'
 gem 'sentry-raven'
 gem 'sidekiq'
-gem 'simple_form'
 gem 'simplecov', :require => false, :group => :test
+gem 'simple_form'
 gem 'sitemap_generator'
 gem 'slim'
 gem 'sort_alphabetical'
@@ -97,28 +98,28 @@ group :development do
 end
 
 group :test, :development do
-  gem "rspec-rails"
   gem 'byebug'
+  gem 'factory_bot_rails'
   gem 'pry-byebug'
   gem 'pry-rails'
-  gem "factory_bot_rails"
+  gem 'rspec-rails'
 end
 
 group :test do
-  gem "capybara"
-  gem "capybara-webkit"
-  gem "guard-rspec"
-  gem "launchy"
-  gem "pry"
-  gem "pry-rescue"
-  gem "pry-stack_explorer"
-  gem "selenium-webdriver"
-  gem "shoulda-matchers"
+  gem 'capybara'
+  gem 'capybara-webkit'
+  gem 'guard-rspec'
+  gem 'launchy'
   gem 'minitest'
+  gem 'pry'
+  gem 'pry-rescue'
+  gem 'pry-stack_explorer'
   gem 'rails-controller-testing'
+  gem 'selenium-webdriver'
+  gem 'shoulda-matchers'
+  gem 'test-unit'
   gem 'webmock'
   gem 'zonebie'
-  gem "test-unit"
 end
 
 # Use ActiveModel has_secure_password
