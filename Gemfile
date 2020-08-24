@@ -61,7 +61,7 @@ gem 'rack-cors', require: 'rack/cors'
 gem 'ransack'
 gem 'redcarpet'
 gem 'redis'
-gem 'redis-rails' # not needed in rails 5.2
+#gem 'redis-rails' # not needed in rails 5.2
 gem 'rolify'
 gem 'rspec'
 gem 'sass-rails'#, '~> 4.0.5'
