@@ -2,9 +2,12 @@ version: '2.2'
 
 services:
   redis:
-    image: redis:5
+    image: redis:6
     hostname: redis
     restart: always
+    command: redis-server /usr/local/etc/redis/redis.conf
+    volumes:
+      - ./scripts/redis.conf:/usr/local/etc/redis/redis.conf
 
   db:
     image: postgres:10
