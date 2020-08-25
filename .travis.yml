@@ -28,6 +28,7 @@ matrix:
         - chmod +x ./cc-test-reporter
         - ./cc-test-reporter before-build
       env:
+        - FABLAB_URL=http://www.fablabs.local
         global:
           - secure: MlhI/NpTblhwPavClDAl87CxpPrgys3/EbmMLTQnq9zHBc8YbpnCeQ92eMs6NAMdh64090BOcbxSgph4aAKqdd5QoX7VU07sduEaaIkSaFQ26jN4rrc2iS6dHRFIGND6mZ2hmvrmw5zGvMYLTdP7vaTyjNzCDIZCmtOxcLJ4jCk=
         matrix:
