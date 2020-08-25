@@ -6,4 +6,4 @@ S3_BUCKET: s3-bucket
 S3_KEY: s3-key
 S3_SECRET: s3-secret
 S3_REGION: s3-region
-FALAB_URL: 'http://www.fablabs.local'
+FABLAB_URL: 'http://www.fablabs.local'
