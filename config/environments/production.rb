@@ -55,10 +55,7 @@ Rails.application.configure do
   config.log_level = :debug
 
   # Prepend all log lines with the following tags.
-  # config.log_tags = [ :subdomain, :uuid ]
-
-  # Use a different logger for distributed setups.
-  # config.logger = ActiveSupport::TaggedLogging.new(SyslogLogger.new)
+  # config.log_tags = [ :request_id ]
 
   # Rotating logs
   config.logger = ActiveSupport::Logger.new('log/production.log', 5, 20.megabytes)
@@ -89,8 +86,6 @@ Rails.application.configure do
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
-
-  config.url = 'https://www.fablabs.io'
 
   # Use a different logger for distributed setups.
   # require 'syslog/logger'
