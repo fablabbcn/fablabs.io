@@ -17,6 +17,10 @@ services:
     volumes:
       - fablabs-postgres:/var/lib/postgresql/data
       #- ./dump:/dump
+    #environment:
+      # NOTE: Postgres 9.5 stopped allowing connections without passwords.
+      # Enable this if needed.
+      #- POSTGRES_HOST_AUTH_METHOD=trust
 
   app:
     env_file: .env

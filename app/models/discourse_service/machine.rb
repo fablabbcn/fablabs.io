@@ -12,11 +12,11 @@ This is the general thread for discussing the machine; the thread is also visibl
     end
 
     def url
-      Rails.application.routes.url_helpers.machine_url(@entity, host: Figaro.env.url)
+      Rails.application.routes.url_helpers.machine_url(@entity, host: ENV['FABLAB_URL'])
     end
 
     def category
-      Figaro.env.discourse_machine_category
+      ENV['DISCOURSE_MACHINE_CATEGORY']
     end
 
     def creator

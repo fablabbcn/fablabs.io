@@ -10,11 +10,11 @@ module DiscourseService
     end
 
     def url
-      Rails.application.routes.url_helpers.organization_url(@entity, host: Figaro.env.url)
+      Rails.application.routes.url_helpers.organization_url(@entity, host: ENV['FABLAB_URL'])
     end
 
     def category
-      Figaro.env.discourse_organization_category
+      ENV['DISCOURSE_ORGANIZATION_CATEGORY']
     end
   end
 end

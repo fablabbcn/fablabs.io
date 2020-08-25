@@ -28,4 +28,4 @@
         Discuss with other users in the forum.
       #jitsi-embed
   .row
-    %iframe{src: Figaro.env.discourse_endpoint, frameborder: "0", width: '100%', scrolling: 'yes', height: 1500, style: 'border: none'}
+    %iframe{src: ENV['DISCOURSE_ENDPOINT'], frameborder: "0", width: '100%', scrolling: 'yes', height: 1500, style: 'border: none'}

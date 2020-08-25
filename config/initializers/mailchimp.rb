@@ -1,4 +1,4 @@
-if Figaro.env.mailchimp_enabled == true
+if ENV['MAILCHIMP_ENABLED'] == true
     @mailchimp_client = MailchimpService::Client.instance
-    @mailchimp_client.setOptions(api_key: Figaro.env.mailchimp_api_key, lab_id: Figaro.env.mailchimp_lab_id)
+    @mailchimp_client.setOptions(api_key: ENV['MAILCHIMP_API_KEY'], lab_id: ENV['MAILCHIMP_LAB_ID'])
 end

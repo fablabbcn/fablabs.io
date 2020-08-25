@@ -6,9 +6,9 @@ module DiscourseService
     attr_accessor :api_key, :api_username, :endpoint
 
     def initialize(options = {})
-      @api_key = options[:api_key] || Figaro.env.discourse_api_key
-      @api_username = options[:api_username] || Figaro.env.discourse_api_username
-      @endpoint = options[:endpoint] || Figaro.env.discourse_endpoint
+      @api_key = options[:api_key] || ENV['DISCOURSE_API_KEY']
+      @api_username = options[:api_username] || ENV['DISCOURSE_API_USERNAME']
+      @endpoint = options[:endpoint] || ENV['DISCOURSE_ENDPOINT']
     end
 
     def latest_topics

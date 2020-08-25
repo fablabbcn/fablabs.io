@@ -37,7 +37,7 @@ module ApplicationHelper
     %{
       <div id='discourse-comments'></div>
       <script type="text/javascript">
-        DiscourseEmbed = { discourseUrl: '#{Figaro.env.discourse_endpoint}',
+        DiscourseEmbed = { discourseUrl: "#{ENV['DISCOURSE_ENDPOINT']}",
                           topicId: #{discourse_id} };
 
         (function() {

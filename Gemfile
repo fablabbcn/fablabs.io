@@ -2,13 +2,14 @@ ruby '2.6.6'
 source 'https://rubygems.org'
 
 gem 'rails','~> 5.2'
-gem "pg"
 gem 'workflow', '~> 2.0'#, github: 'geekq/workflow'
 gem 'workflow-activerecord', '>=4.1', '< 6.0'
 
 # Using community gems because official support does not cover Rails 5
 # Consider refactor not to use them or find alternatives.
+# Gems hindering Rails 6 upgrade:
 gem 'rocket_pants', git: 'https://github.com/parse/rocket_pants'
+
 gem 'protected_attributes_continued'
 
 #The `content_tag_for` method has been removed from Rails. To continue using it, add the `record_tag_helper` gem to your Gemfile:
@@ -16,11 +17,8 @@ gem 'record_tag_helper'
 
 # Other Gem issues:
 gem 'font-awesome-sass', '~> 4.3.0' # https://fontawesome.com/how-to-use/on-the-web/setup/upgrading-from-version-4
-gem 'country_select'#, '1.2.0' # https://github.com/stefanpenner/country_select/blob/master/UPGRADING.md
 gem 'bourbon', '~> 4' # Breaks transition in header.css.scss and map.css.scss https://github.com/thoughtbot/bourbon/blob/master/CHANGELOG.md
 
-gem "cocoon"#, github: 'nathanvda/cocoon', :tag => 'v1.2.7'
-gem "pg_search"
 gem 'active_model_serializers'
 gem 'acts-as-taggable-on'
 gem 'ancestry'#, github: 'stefankroes/ancestry'
@@ -28,17 +26,19 @@ gem 'authority'#, github: 'nathanl/authority'
 gem 'bitmask_attributes'
 gem 'bootsnap'
 gem 'bootstrap4-kaminari-views'
+gem 'cocoon'
 gem 'coderay'
 gem 'coffee-rails'#, '~> 4.0.0'
+gem 'country_select'
 gem 'countries', require: 'countries/global'
 gem 'dalli'
 gem 'discourse_api'
 gem 'doorkeeper'
+gem 'dotenv-rails'
 gem 'dragonfly'#, '~> 1.1.1'
 gem 'dragonfly-s3_data_store'
 gem 'fast_jsonapi' # To support new v2 JSONAPI
 gem 'ffaker'
-gem 'figaro'
 gem 'flatpickr'
 gem 'font-awesome-rails'
 gem 'friendly_id'
@@ -54,6 +54,8 @@ gem 'letter_opener'
 gem 'momentjs-rails'
 gem 'nest'
 gem 'paper_trail'
+gem 'pg'
+gem 'pg_search'
 gem 'premailer-rails'
 gem 'puma'
 gem 'rack-cache'

@@ -5,7 +5,7 @@ class DiscourseController < ApplicationController
   before_action :require_login
 
   def sso
-    secret = Figaro.env.discourse_sso_secret
+    secret = ENV['DISCOURSE_SSO_SECRET']
     sso = SingleSignOn.parse(request.query_string, secret)
     sso.email = current_user.email
     sso.name = current_user.full_name
@@ -13,7 +13,7 @@ class DiscourseController < ApplicationController
     sso.external_id = current_user.id
     sso.sso_secret = secret
 
-    redirect_to sso.to_url("#{Figaro.env.discourse_endpoint}session/sso_login")
+    redirect_to sso.to_url("#{ENV['DISCOURSE_ENDPOINT']}session/sso_login")
   rescue => e
     Rails.logger.error(e.message)
     Rails.logger.error(e.backtrace)
