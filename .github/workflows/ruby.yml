@@ -59,7 +59,6 @@ jobs:
 
     - name: Test
       run: |
-        cp config/application.example.yml config/application.yml
         RAILS_ENV=test bundle exec rails db:create
         RAILS_ENV=test bundle exec rails db:schema:load
         npm i
@@ -71,3 +70,4 @@ jobs:
         TEST_DB_PASSWORD: postgres
         TEST_DB_USERNAME: postgres
         PG_PORT: ${{ job.services.postgres.ports['5432'] }}
+        FABLAB_URL: http://www.fablabs.local

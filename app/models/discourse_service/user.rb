@@ -2,14 +2,16 @@ module DiscourseService
   module User
     class << self
       def client
-        @client ||= DiscourseApi::Client.new(Figaro.env.discourse_endpoint,
-                                            Figaro.env.discourse_api_key,
-                                            Figaro.env.discourse_api_username)
+        @client ||= DiscourseApi::Client.new(
+          ENV['DISCOURSE_ENDPOINT'],
+          ENV['DISCOURSE_API_KEY'],
+          ENV['DISCOURSE_API_USERNAME']
+        )
       end
 
       def sync_sso(user)
         res = client.sync_sso(
-          sso_secret: Figaro.env.discourse_sso_secret,
+          sso_secret: ENV['DISCOURSE_SSO_SECRET'],
           name: user.full_name,
           username: user.username,
           email: user.email,

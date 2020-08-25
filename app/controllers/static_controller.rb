@@ -70,6 +70,7 @@ class StaticController < ApplicationController
       machines: Machine.count,
       events: Event.count,
       users: User.count,
+      projects: Project.count,
       employees: Employee.count
     }
   end

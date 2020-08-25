@@ -76,12 +76,6 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :email, :username, case_sensitive: false
   validates_uniqueness_of :email_fallback, allow_blank: true
   validates :password, presence: true, length: { minimum: 6 }, if: lambda{ !password.nil? }, on: :update
-  validate :excluded_login
-  def excluded_login
-    if !username.blank? and Fablabs::Application.config.banned_words.include?(username.downcase)
-      errors.add(:username, "is reserved")
-    end
-  end
 
   extend FriendlyId
   friendly_id :slug_candidates, use: :slugged
@@ -92,7 +86,7 @@ class User < ActiveRecord::Base
   before_create { generate_token(:email_validation_hash) }
   before_create :downcase_email
 
-  after_save :discourse_sync_if_needed, if: -> { Figaro.env.discourse_enabled }
+  after_save :discourse_sync_if_needed, if: -> { ENV['DISCOURSE_ENABLED'] }
 
   def avatar_url
     if avatar_uid.present?
@@ -225,7 +219,7 @@ class User < ActiveRecord::Base
   def discourse_profile_url
     return '' if username.blank?
 
-    "#{Figaro.env.discourse_endpoint}/u/#{username}/summary"
+    "#{ENV['DISCOURSE_ENDPOINT']}/u/#{username}/summary"
   end
 
   private

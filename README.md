@@ -17,9 +17,8 @@ The platform is build with [Ruby on Rails](https://rubyonrails.org/). We recomme
 
 You can develop locally, or by using docker-compose (advanced).
 
-1. Start by copying the 2 config files and edit as needed
+1. Start by creating the config file and edit as needed
    - `cp .env.example .env`
-   - `cp config/application.example.yml config/application.yml`
 
 ### Local development (recommended)
 

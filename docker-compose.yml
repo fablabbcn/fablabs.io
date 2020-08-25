@@ -2,9 +2,12 @@ version: '2.2'
 
 services:
   redis:
-    image: redis:5
+    image: redis:6
     hostname: redis
     restart: always
+    command: redis-server /usr/local/etc/redis/redis.conf
+    volumes:
+      - ./scripts/redis.conf:/usr/local/etc/redis/redis.conf
 
   db:
     image: postgres:10
@@ -14,6 +17,10 @@ services:
     volumes:
       - fablabs-postgres:/var/lib/postgresql/data
       #- ./dump:/dump
+    #environment:
+      # NOTE: Postgres 9.5 stopped allowing connections without passwords.
+      # Enable this if needed.
+      #- POSTGRES_HOST_AUTH_METHOD=trust
 
   app:
     env_file: .env

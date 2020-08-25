@@ -86,13 +86,6 @@ class Lab < ApplicationRecord
 
   validates_format_of :email, :with => /\A(.+)@(.+)\z/
   validates_uniqueness_of :name, :slug, case_sensitive: false
-  validate :excluded_slug
-
-  def excluded_slug
-    if !slug.blank? and Fablabs::Application.config.banned_words.include?(slug.downcase)
-      errors.add(:slug, "is reserved")
-    end
-  end
 
   Capabilities = %w(three_d_printing cnc_milling circuit_production laser precision_milling vinyl_cutting)
   bitmask :capabilities, as: Capabilities
@@ -115,7 +108,7 @@ class Lab < ApplicationRecord
   before_save :truncate_blurb
   before_save :get_time_zone unless Rails.env.test?
   after_save :save_roles
-  after_save :discourse_sync_if_needed, if: -> { Figaro.env.discourse_enabled }
+  after_save :discourse_sync_if_needed, if: -> { ENV['DISCOURSE_ENABLED'] }
 
   attr_accessor :geocomplete
 

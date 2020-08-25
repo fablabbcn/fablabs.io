@@ -12,11 +12,11 @@ This is the general thread for discussing the lab; the thread is also visible on
     end
 
     def url
-      "#{Figaro.env.url}/labs/#{@entity.slug}"
+      "#{ENV['FABLAB_URL']}/labs/#{@entity.slug}"
     end
 
     def category
-      Figaro.env.discourse_lab_category
+      ENV['DISCOURSE_LAB_CATEGORY']
     end
 
     def creator

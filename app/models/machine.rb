@@ -1,6 +1,6 @@
 class Machine < Thing
 
-  after_save :discourse_sync_if_needed, if: -> { Figaro.env.discourse_enabled }
+  after_save :discourse_sync_if_needed, if: -> { ENV['DISCOURSE_ENABLED'] }
 
   def to_param
     slug

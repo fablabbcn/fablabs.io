@@ -86,7 +86,7 @@
     = f.input :description, hint: 'An in-depth description of the lab', input_html: { style: 'height: 8em' }
     = f.input :slug, hint: "This is the unique 'username' of the lab, it will be in the URL" do
       .input-group
-        %span.input-group-prepend= "#{Rails.application.config.url}/"
+        %span.input-group-prepend.p-2= "https://fablabs.io/"
         = f.input_field :slug, class: 'form-control'
 
   %fieldset.col-12

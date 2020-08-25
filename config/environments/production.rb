@@ -3,7 +3,6 @@ Rails.application.configure do
 
   # Code is not reloaded between requests.
   config.cache_classes = true
-  config.banned_words = (YAML.load_file("#{Rails.root}/config/words.yml") || {}).map(&:values).flatten
 
   # Eager load code on boot. This eager loads most of Rails and
   # your application in memory, allowing both threaded web servers
@@ -55,18 +54,17 @@ Rails.application.configure do
   config.log_level = :debug
 
   # Prepend all log lines with the following tags.
-  # config.log_tags = [ :subdomain, :uuid ]
-
-  # Use a different logger for distributed setups.
-  # config.logger = ActiveSupport::TaggedLogging.new(SyslogLogger.new)
+  # config.log_tags = [ :request_id ]
 
   # Rotating logs
   config.logger = ActiveSupport::Logger.new('log/production.log', 5, 20.megabytes)
 
   # Use a different cache store in production.
   # config.cache_store = :mem_cache_store
-  # config.cache_store = :redis_cache_store, { url: ENV['REDIS_URL'] }
-  config.cache_store = :redis_store, { url: ENV['REDIS_URL'] }
+  # Using built in redis, since Rails 5.2:
+  config.cache_store = :redis_cache_store, { url: ENV['REDIS_URL'] }
+  # Old redis-rails setup (remove after testing):
+  # config.cache_store = :redis_store, { url: ENV['REDIS_URL'] }
 
   # Use a real queuing backend for Active Job (and separate queues per environment)
   # config.active_job.queue_adapter     = :resque
@@ -87,8 +85,6 @@ Rails.application.configure do
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
-
-  config.url = 'https://www.fablabs.io'
 
   # Use a different logger for distributed setups.
   # require 'syslog/logger'
