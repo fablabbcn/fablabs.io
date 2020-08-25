@@ -1,9 +1,0 @@
-discourse_enabled: false
-discourse_endpoint: 'http://example.com'
-GEONAMES_USERNAME: fablabs
-fablab_url: 'http://localhost:3000'
-S3_BUCKET: s3-bucket
-S3_KEY: s3-key
-S3_SECRET: s3-secret
-S3_REGION: s3-region
-FABLAB_URL: 'http://www.fablabs.local'
