@@ -3,12 +3,20 @@
   - if current_user
     = link_to 'New Job Posting', new_job_path, class: 'btn btn-primary my-4'
 
-  %h1 Jobs
+  %h1=link_to 'Jobs', jobs_url
 
   = search_form_for @q do |f|
-    = f.search_field :title_or_description_cont, placeholder: 'Search jobs', class: 'form-control my-2'
-    = f.select(:country_code_eq, options_for_select(@countries.map { |a,b| [a, b]}, params[:q] ? params[:q][:country_code_eq] : '' ), { include_blank: 'Filter by Country' }, {class: 'form-control my-2'})
-    = f.submit class: 'btn btn-primary my-2'
+    .row
+      .col-md-8
+        = f.label :title_or_description_or_tags_name_cont, 'Title or description'
+        = f.search_field :title_or_description_or_tags_name_cont, placeholder: 'Search jobs', class: 'form-control mb-3'
+        = f.label :tags_name_cont, 'Tags (comma seperated)'
+        = f.search_field :tags_name_cont, placeholder: 'cnc, 3dprint', class: 'form-control mb-2'
+      .col-md-4
+        = f.label :country_code_eq, 'Filter by country'
+        = f.select(:country_code_eq, options_for_select(@countries.map { |a,b| [a, b]}, params[:q] ? params[:q][:country_code_eq] : '' ), { include_blank: 'Filter by Country' }, {class: 'form-control my-2'})
+      .col
+        = f.submit class: 'btn btn-primary my-2 px-4'
 
 
   %table.table.table-hover
@@ -17,6 +25,7 @@
         %th Title
         %th Description
         %th Apply url
+        %th Tags
         %th= sort_link @q, :is_featured
         %th= sort_link @q, :is_verified
         %th Created by
@@ -32,6 +41,10 @@
           %td=link_to job.title, job
           %td= job.description
           %td=link_to job.apply_url, job.apply_url || ''
+          %td
+            - job.tag_list.each do |t|
+              =link_to t, jobs_path('q[tags_name_cont]': t), class: "badge badge-info"
+
           %td= job.is_featured
           %td= job.is_verified
           %td=link_to job.user, job.user || ''
