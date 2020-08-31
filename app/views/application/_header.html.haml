@@ -19,24 +19,24 @@
             = hidden_field_tag 'country', params[:country]
           = text_field_tag 'query', params[:query], class: 'form-control', autocomplete: 'off', placeholder: t("views.header.search"), id: 'search-box'
 
-      %ul.nav.navbar-nav
-        %li.nav-item.navbar-link
-          = link_to t("views.header.labs"), labs_path
-        %li.nav-item.navbar-link
-          = link_to t("views.header.organizations"), organizations_path
-        %li.nav-item.navbar-link
-          = link_to t("views.header.machines"), machines_path
-        %li.nav-item.navbar-link
-          = link_to t("views.header.jobs"), jobs_path
-        %li.nav-item.navbar-link
-          = link_to t("views.header.events"), events_path
-        %li.nav-item.navbar-link
-          = link_to 'https://projects.fablabs.io', target: "_blank" do
+      %ul.navbar-nav
+        %li.nav-item{class: ("active" if current_page?(labs_path)) }
+          = link_to t("views.header.labs"), labs_path, class: 'nav-link'
+        %li.nav-item{class: ("active" if current_page?(organizations_path)) }
+          = link_to t("views.header.organizations"), organizations_path, class: 'nav-link'
+        %li.nav-item{class: ("active" if current_page?(machines_path)) }
+          = link_to t("views.header.machines"), machines_path, class: 'nav-link'
+        %li.nav-item{class: ("active" if current_page?(jobs_path)) }
+          = link_to t("views.header.jobs"), jobs_path, class: 'nav-link'
+        %li.nav-item{class: ("active" if current_page?(events_path)) }
+          = link_to t("views.header.events"), events_path, class: 'nav-link'
+        %li.nav-item
+          = link_to 'https://projects.fablabs.io', target: "_blank", class: 'nav-link' do
             = t("views.header.projects")
             = '&nbsp;'.html_safe
             = fa_icon 'external-link'
-        %li.nav-item.navbar-link
-          = link_to 'https://discuss.fablabs.io', target: "_blank" do
+        %li.nav-item
+          = link_to 'https://discuss.fablabs.io', target: "_blank", class: 'nav-link' do
             Discuss
             = '&nbsp;'.html_safe
             = fa_icon 'external-link'
