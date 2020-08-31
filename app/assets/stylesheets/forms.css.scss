@@ -14,9 +14,9 @@ textarea {
 fieldset {
   background: #FFFFFF;
   box-shadow: 0 100px 75px 0 rgba(0,0,0,0.05), 0 10px 25px 0 rgba(0,0,0,0.05), 0 20px 50px 0 rgba(0,0,0,0.05);
-  border-radius: 0 0 6px 6px;
-  padding: 40px;
-  margin-top: 40px;
+  border: 1px solid #ddd;
+  padding: 20px;
+  margin-top: 20px;
 
   .question {
     margin-bottom: 40px;
@@ -84,24 +84,14 @@ input.btn {
 }
 
 .form-control {
-  background-color: #F7F7F7;
-  border-color: #F7F7F7;
-  color: #141515;
-  height: 50px;
-  box-shadow: none;
+}
 
-  &:focus {
-    border-color: #F7F7F7;
-    box-shadow: none;
-    outline: 1px solid $grey;
-  }
+.form-control::-webkit-input-placeholder {
+  color: #aaa;
 }
 
 label {
-  font-size: 15px;
-  color: #94959C;
-  line-height: 24px;
-  font-weight: normal;
+  color: #444;
 }
 
 .select2-container.select2-container--default {
