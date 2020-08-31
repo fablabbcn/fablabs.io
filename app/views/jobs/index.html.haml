@@ -1,25 +1,27 @@
-.container
-
-  - if current_user
-    = link_to 'New Job Posting', new_job_path, class: 'btn btn-primary my-4'
-
-  %h1=link_to 'Jobs', jobs_url
-
+.container-fluid.border-bottom.mb-5
   = search_form_for @q do |f|
     .row
-      .col-md-8
+      .col-md-3.border-right.py-4
+        = title 'Jobs'
+      .col-md-6.border-right.py-4
         = f.label :title_or_description_or_tags_name_cont, 'Title or description'
         = f.search_field :title_or_description_or_tags_name_cont, placeholder: 'Search jobs', class: 'form-control mb-3'
+
+        .mb-3
+          = f.label :country_code_eq, 'Filter by country'
+          = f.select(:country_code_eq, options_for_select(@countries.map { |a,b| [a, b]}, params[:q] ? params[:q][:country_code_eq] : '' ), { include_blank: 'All countries' }, {class: 'form-control my-3'})
+
         = f.label :tags_name_cont, 'Tags (comma seperated)'
-        = f.search_field :tags_name_cont, placeholder: 'cnc, 3dprint', class: 'form-control mb-2'
-      .col-md-4
-        = f.label :country_code_eq, 'Filter by country'
-        = f.select(:country_code_eq, options_for_select(@countries.map { |a,b| [a, b]}, params[:q] ? params[:q][:country_code_eq] : '' ), { include_blank: 'Filter by Country' }, {class: 'form-control my-2'})
-      .col
+        = f.search_field :tags_name_cont, placeholder: 'cnc, 3dprint', class: 'form-control mb-3'
+
         = f.submit class: 'btn btn-primary my-2 px-4'
+      .col-md-3.py-4
+        - if current_user
+          = link_to 'New Job Posting', new_job_path, class: 'btn btn-primary'
 
 
-  %table.table.table-hover
+.container-fluid
+  %table.table.table-hover.table-striped.border
     %thead
       %tr
         %th Title
