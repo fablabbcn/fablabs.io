@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :jobs
   require "admin_constraint"
   require 'sidekiq/web'
   mount Sidekiq::Web, at: '/sidekiq', constraints: AdminConstraint.new

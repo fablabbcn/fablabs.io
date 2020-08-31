@@ -1,0 +1,61 @@
+.container-fluid.border-bottom.mb-5
+  = search_form_for @q do |f|
+    .row
+      .col-md-3.border-right.py-4
+        = title 'Jobs'
+      .col-md-6.border-right.py-4
+        = f.label :title_or_description_or_tags_name_cont, 'Title or description'
+        = f.search_field :title_or_description_or_tags_name_cont, placeholder: 'Search jobs', class: 'form-control mb-3'
+
+        .mb-3
+          = f.label :country_code_eq, 'Filter by country'
+          = f.select(:country_code_eq, options_for_select(@countries.map { |a,b| [a, b]}, params[:q] ? params[:q][:country_code_eq] : '' ), { include_blank: 'All countries' }, {class: 'form-control my-3'})
+
+        = f.label :tags_name_cont, 'Tags (comma seperated)'
+        = f.search_field :tags_name_cont, placeholder: 'cnc, 3dprint', class: 'form-control mb-3'
+
+        = f.submit class: 'btn btn-primary my-2 px-4'
+      .col-md-3.py-4
+        - if current_user
+          = link_to 'New Job Posting', new_job_path, class: 'btn btn-primary'
+
+
+.container-fluid
+  %table.table.table-hover.table-striped.border
+    %thead
+      %tr
+        %th Title
+        %th Description
+        %th Apply url
+        %th Tags
+        %th= sort_link @q, :is_featured
+        %th= sort_link @q, :is_verified
+        %th Created by
+        %th= sort_link @q, :min_salary
+        %th= sort_link @q, :max_salary
+        %th= sort_link @q, :country_code
+        %th= sort_link @q, :created_at, 'Age'
+        %th
+
+    %tbody
+      - @jobs.each do |job|
+        %tr
+          %td=link_to job.title, job
+          %td= job.description
+          %td=link_to job.apply_url, job.apply_url || ''
+          %td
+            - job.tag_list.each do |t|
+              =link_to t, jobs_path('q[tags_name_cont]': t), class: "badge badge-info"
+
+          %td= job.is_featured
+          %td= job.is_verified
+          %td=link_to job.user, job.user || ''
+          %td= job.min_salary
+          %td= job.max_salary
+          %td= job.country
+          %td= time_ago_in_words(job.created_at, include_seconds: false)
+          %td
+            - if current_user == job.user
+              = link_to 'Edit', edit_job_path(job)
+
+  = paginate @jobs, theme: 'twitter-bootstrap-4', nav_class: "m-auto"

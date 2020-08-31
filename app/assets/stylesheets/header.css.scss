@@ -185,7 +185,13 @@ header {
   }
 
   .navbar-nav {
-    .navbar-link {
+    .active {
+      border-bottom: 2px solid #ccc;
+      a {
+        color: black !important;
+      }
+    }
+    .nav-item {
       > a {
         color: #666666;
         font-size: 15px;

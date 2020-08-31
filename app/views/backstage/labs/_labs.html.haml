@@ -1,4 +1,5 @@
-.well
+.container.mx-auto.well.m-3
+  = title "Labs"
   = search_form_for @q, url: url_form, builder: SimpleForm::FormBuilder do |f|
     = f.input :name_or_city_cont, label: "Name"
     =# f.input :discourse_id_not_null, as: :select, collection: [:true, :false], include_blank: "Either one", label: "With discourse ID"
@@ -14,8 +15,8 @@
 
     = f.submit "Filter", class: 'btn btn-primary'
 
-= page_entries_info @labs
-%table.table
+%p.m-3= page_entries_info @labs
+%table.table.table-hover
   %thead
     %tr
       %th= sort_link @q, :id, 'ID'
@@ -42,4 +43,4 @@
         %td= lab.current_state
         %td= lab.activity_status
 
-= paginate @labs, theme: 'twitter-bootstrap-4', nav_class: "m-auto pt-3"
+= paginate @labs, theme: 'twitter-bootstrap-4', nav_class: "m-auto p-3"

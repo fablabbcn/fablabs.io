@@ -1,4 +1,4 @@
-class Lab < ActiveRecord::Base
+class Lab < ApplicationRecord
   include RocketPants::Cacheable
   include Authority::Abilities
   include Workflow
@@ -156,22 +156,6 @@ class Lab < ActiveRecord::Base
 
   def to_s
     name
-  end
-
-  def country
-    ISO3166::Country[country_code]
-  end
-
-  def self.country_list_for labs
-    c = Hash.new(0)
-    labs.map{ |v| c[v[:country_code]] += 1 }
-    countries = []
-    c.each do |country_code, count|
-      if Country[country_code]
-        countries.push([Country[country_code].name, country_code, count])
-      end
-    end
-    return countries.sort_alphabetical_by(&:first)
   end
 
   def self.to_csv(options = {})

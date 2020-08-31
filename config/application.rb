@@ -74,5 +74,7 @@ module Fablabs
 
     config.autoload_paths += %W[#{config.root}/lib]
     config.assets.paths << Rails.root.join('vendor', 'assets')
+
+    config.app_generators.scaffold_controller = :scaffold_controller
   end
 end

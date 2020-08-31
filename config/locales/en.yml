@@ -12,6 +12,7 @@ en:
   views:
     header:
       events: Events
+      jobs: Jobs
       labs: Labs
       machines: Machines
       me: Me

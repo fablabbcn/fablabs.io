@@ -19,22 +19,24 @@
             = hidden_field_tag 'country', params[:country]
           = text_field_tag 'query', params[:query], class: 'form-control', autocomplete: 'off', placeholder: t("views.header.search"), id: 'search-box'
 
-      %ul.nav.navbar-nav
-        %li.nav-item.navbar-link
-          = link_to t("views.header.labs"), labs_path
-        %li.nav-item.navbar-link
-          = link_to t("views.header.organizations"), organizations_path
-        %li.nav-item.navbar-link
-          = link_to t("views.header.machines"), machines_path
-        %li.nav-item.navbar-link
-          = link_to t("views.header.events"), events_path
-        %li.nav-item.navbar-link
-          = link_to 'https://projects.fablabs.io', target: "_blank" do
+      %ul.navbar-nav
+        %li.nav-item{class: ("active" if current_page?(labs_path)) }
+          = link_to t("views.header.labs"), labs_path, class: 'nav-link'
+        %li.nav-item{class: ("active" if current_page?(organizations_path)) }
+          = link_to t("views.header.organizations"), organizations_path, class: 'nav-link'
+        %li.nav-item{class: ("active" if current_page?(machines_path)) }
+          = link_to t("views.header.machines"), machines_path, class: 'nav-link'
+        %li.nav-item{class: ("active" if current_page?(jobs_path)) }
+          = link_to t("views.header.jobs"), jobs_path, class: 'nav-link'
+        %li.nav-item{class: ("active" if current_page?(events_path)) }
+          = link_to t("views.header.events"), events_path, class: 'nav-link'
+        %li.nav-item
+          = link_to 'https://projects.fablabs.io', target: "_blank", class: 'nav-link' do
             = t("views.header.projects")
             = '&nbsp;'.html_safe
             = fa_icon 'external-link'
-        %li.nav-item.navbar-link
-          = link_to 'https://discuss.fablabs.io', target: "_blank" do
+        %li.nav-item
+          = link_to 'https://discuss.fablabs.io', target: "_blank", class: 'nav-link' do
             Discuss
             = '&nbsp;'.html_safe
             = fa_icon 'external-link'
@@ -51,27 +53,27 @@
                   = gem_count_tag current_or_null_user.referees_count
             %ul.dropdown-menu.dropdown-menu-right
               = link_to current_user, class: 'dropdown-item' do
-                = fa_icon "user", text: t("views.header.me")
+                = fa_icon "user", text: t("views.header.me"), class: 'fa-fw'
               = link_to settings_path, class: 'dropdown-item'  do
-                = fa_icon "cog", text: t("views.header.settings")
+                = fa_icon "cog", text: t("views.header.settings"), class: 'fa-fw'
               - if current_or_null_user.has_role? :superadmin
                 = link_to backstage_root_path, class: 'dropdown-item' do
-                  = fa_icon "gamepad"
+                  = fa_icon "gamepad", class: 'fa-fw'
                   = t("views.header.backstage", default: "Backstage")
                   = gem_count_tag Lab.with_unverified_state.size
               - else
                 - if current_or_null_user.is_referee? or current_or_null_user.is_unique_referee?
                   = link_to backstage_root_path, class: 'dropdown-item' do
-                    = fa_icon "gamepad"
+                    = fa_icon "gamepad", class: 'fa-fw'
                     = t("views.header.backstage", default: "Backstage")
                     = gem_count_tag current_or_null_user.pending_referee_labs.count
 
               %li.divider
               = link_to oauth_applications_path, class: 'dropdown-item'  do
-                = fa_icon "code", text: t("views.header.developer_console", default: "Developer Console")
+                = fa_icon "code", text: t("views.header.developer_console", default: "Developer Console"), class: 'fa-fw'
               %li.divider
               = link_to signout_path, class: 'dropdown-item'  do
-                = fa_icon "sign-out", text: t("views.header.signout", default: "Sign out")
+                = fa_icon "sign-out", text: t("views.header.signout", default: "Sign out"), class: 'fa-fw'
 
         - else
           %li.navbar-btn
