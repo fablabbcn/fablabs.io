@@ -49,9 +49,10 @@
 
   - if @machines.length > 0
     .divider
+    .text-large
+      Machines
     .row.mt-3
-      .col-lg-12
-        = render("machines", lab: @lab, machines: @machines)
+      = render("machines", lab: @lab, machines: @machines)
 
   - if current_or_null_user.can_read?(Academic)
     .divider
