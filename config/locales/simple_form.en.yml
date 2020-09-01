@@ -7,6 +7,8 @@ en:
       job:
         title: "Job title, example: 'Lab manager in Boston'"
         tag_list: "Comma separated, example: 'cnc, 3d printing'"
+        apply_url: If there is an external website handling application forms
+        country_code: Select the country from the list
     placeholders:
       job:
         tag_list: 'cnc, 3d printing'
