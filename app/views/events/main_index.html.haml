@@ -1,12 +1,8 @@
-- title "Events"
-
 .subnavbar.border-bottom
   .container
     .py-4.px-3
-      .title Events
+      = title "Events"
 .container
   .row.events= render @events
   .row
     = paginate @events, theme: 'twitter-bootstrap-4', nav_class: "m-auto pt-3"
-
-

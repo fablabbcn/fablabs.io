@@ -5,9 +5,9 @@
     = f.input :name, placeholder: "New Event"
     .row
       .col-md-6
-        = f.input :starts_at, as: 'string', input_html: { placeholder: 'dd/mm/yy', class: 'flatpickr-time'}
+        = f.input :starts_at, as: 'string', input_html: { placeholder: 'dd/mm/yy', class: 'flatpickr-time p-4'}
       .col-md-6
-        = f.input :ends_at, as: 'string', input_html: { placeholder: 'dd/mm/yy', class: 'flatpickr-time'}
+        = f.input :ends_at, as: 'string', input_html: { placeholder: 'dd/mm/yy', class: 'flatpickr-time p-4'}
         -# f.time_zone_select :time_zone
     .form-check.px-3
       = f.input :all_day, as: 'boolean', input_html: {class: 'form-check-input'}

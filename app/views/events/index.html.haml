@@ -1,23 +1,23 @@
-.container
-  .row
-    .col-lg-12
-      = title "Events"
+.container.mt-4
+  = title "Events"
 
-      .panel
-        %p This is a beta feature, and is only visible to superadmins.
+  - @events.each do |event|
+    %ul
+      %li
+        .font-weight-bold
+          = event.starts_at&.stamp('12th November 2012')
+          \-
+          = event.ends_at&.stamp('12th November 2012')
+        .font-italic
+          = event.starts_at&.stamp('15:30')
+          \-
+          = event.ends_at&.stamp('15:30')
+        .font-weight-bold
+        = link_to event, lab_event_path(event.lab, event)
+        - if event.lab
+          \-
+          = link_to event.lab, lab_path(event.lab, event.lab)
+    = paginate @events, theme: 'twitter-bootstrap-4', nav_class: "m-auto pt-3"
 
-      - @events.each do |event|
-        %ul
-          %li
-            .font-weight-bold
-              = event.starts_at&.stamp('12th November 2012')
-              \-
-              = event.ends_at&.stamp('12th November 2012')
-            .font-italic
-              = event.starts_at&.stamp('15:30')
-              \-
-              = event.ends_at&.stamp('15:30')
-            = link_to event, lab_event_path(event.lab, event)
-        = paginate @events, theme: 'twitter-bootstrap-4', nav_class: "m-auto pt-3"
-
+  - if current_user
     = link_to "Add Event", new_lab_event_path, class: 'btn btn-primary mt-4'
