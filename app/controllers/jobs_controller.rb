@@ -6,7 +6,7 @@ class JobsController < ApplicationController
   # GET /jobs.json
   def index
     @q = Job.all.ransack(params[:q])
-    @jobs = @q.result.page(params[:page])
+    @jobs = @q.result.order(created_at: :desc).page(params[:page])
 
     @countries = Job.country_list_for Job.all # should be only active jobs, not all
   end

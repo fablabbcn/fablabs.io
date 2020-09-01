@@ -42,7 +42,9 @@
         %tr
           %td=link_to job.title, job
           %td= job.description
-          %td=link_to job.apply_url, job.apply_url || ''
+          %td
+            - if job.apply_url.present?
+              =link_to 'Apply', job.apply_url, target: '_blank', class: 'btn btn-primary'
           %td
             - job.tag_list.each do |t|
               =link_to t, jobs_path('q[tags_name_cont]': t), class: "badge badge-info"

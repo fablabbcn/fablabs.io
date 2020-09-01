@@ -1,5 +1,15 @@
 en:
   simple_form:
+    labels:
+      job:
+        title: Title
+    hints:
+      job:
+        title: "Job title, example: 'Lab manager in Boston'"
+        tag_list: "Comma separated, example: 'cnc, 3d printing'"
+    placeholders:
+      job:
+        tag_list: 'cnc, 3d printing'
     'yes': 'Yes'
     'no': 'No'
     required:

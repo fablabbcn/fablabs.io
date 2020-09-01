@@ -5,7 +5,7 @@
 
   .form-inputs
     = f.input :title
-    = f.input :tag_list
+    = f.input :tag_list, input_html: { value: @job.tag_list.join(', ') }
     = f.input :description
     = f.input :apply_url
     = f.input :is_featured
