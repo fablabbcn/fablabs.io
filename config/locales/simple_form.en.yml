@@ -3,12 +3,22 @@ en:
     labels:
       job:
         title: Title
+      user:
+        first_name: First name
+        last_name: Last name
     hints:
       job:
         title: "Job title, example: 'Lab manager in Boston'"
         tag_list: "Comma separated, example: 'cnc, 3d printing'"
         apply_url: If there is an external website handling application forms
         country_code: Select the country from the list
+      user:
+        first_name: First name
+        last_name: Last name
+        username: Lowercase username
+        email: "One email address in the form of 'something@something.com'"
+        country_code: Select country from the list
+        url: URL to your personal website, if you have one
     placeholders:
       job:
         tag_list: 'cnc, 3d printing'
