@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
   //$('[data-toggle="tooltip"]').tooltip();
   $('textarea.trumbowyg').trumbowyg();
-  $("select").select2();
+  $("select").select2({ width: '100%' });
 
   // This flatpicker does not have the Time, HH:MM
   flatpickr('.flatpickr', {
