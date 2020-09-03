@@ -1,21 +1,25 @@
 .container-fluid.border-bottom.mb-5
   = search_form_for @q do |f|
     .row
-      .col-md-3.border-right.py-4
+      .col-md-2.border-right.text-center.py-4
         = title 'Jobs'
-      .col-md-6.border-right.py-4
-        = f.label :title_or_description_or_tags_name_cont, 'Title or description'
-        = f.search_field :title_or_description_or_tags_name_cont, placeholder: 'Search jobs', class: 'form-control mb-3'
+      .col-md-8.border-right.py-4
+        .row
+          .col-lg-4
+            = f.label :title_or_description_or_tags_name_cont, 'Title or description'
+            = f.search_field :title_or_description_or_tags_name_cont, placeholder: 'Search jobs', class: 'form-control mb-3'
 
-        .mb-3
-          = f.label :country_code_eq, 'Filter by country'
-          = f.select(:country_code_eq, options_for_select(@countries.map { |a,b| [a, b]}, params[:q] ? params[:q][:country_code_eq] : '' ), { include_blank: 'All countries' }, {class: 'form-control my-3'})
+          .col-lg-4.mb-3
+            = f.label :country_code_eq, 'Filter by country'
+            = f.select(:country_code_eq, options_for_select(@countries.map { |a,b| [a, b]}, params[:q] ? params[:q][:country_code_eq] : '' ), { include_blank: 'All countries' }, {class: 'form-control my-3'})
 
-        = f.label :tags_name_cont, 'Tags (comma seperated)'
-        = f.search_field :tags_name_cont, placeholder: 'cnc, 3dprint', class: 'form-control mb-3'
+          .col-lg-4
+            = f.label :tags_name_cont, 'Tags (comma seperated)'
+            = f.search_field :tags_name_cont, placeholder: 'cnc, 3dprint', class: 'form-control mb-3'
+          .col-lg-6
+            = f.submit class: 'btn btn-primary my-2 px-4 ml-auto'
 
-        = f.submit class: 'btn btn-primary my-2 px-4'
-      .col-md-3.py-4
+      .col-md-2.py-4
         - if current_user
           = link_to 'New Job Posting', new_job_path, class: 'btn btn-primary'
 
