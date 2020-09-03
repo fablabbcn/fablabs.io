@@ -26,8 +26,8 @@
           = link_to t("views.header.organizations"), organizations_path, class: 'nav-link'
         %li.nav-item{class: ("active" if current_page?(machines_path)) }
           = link_to t("views.header.machines"), machines_path, class: 'nav-link'
-        %li.nav-item{class: ("active" if current_page?(jobs_path)) }
-          = link_to t("views.header.jobs"), jobs_path, class: 'nav-link'
+        /%li.nav-item{class: ("active" if current_page?(jobs_path)) }
+        / = link_to t("views.header.jobs"), jobs_path, class: 'nav-link'
         %li.nav-item{class: ("active" if current_page?(events_path)) }
           = link_to t("views.header.events"), events_path, class: 'nav-link'
         %li.nav-item
