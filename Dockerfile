@@ -40,6 +40,9 @@ COPY . $APPROOT
 
 RUN npm install
 
+#Without yarn we cannot run rake assets:precompile'
+RUN npm install yarn -g
+
 # Precompile assets here, so we don't have to do it inside a container + restart
 RUN bin/rake assets:precompile
 
