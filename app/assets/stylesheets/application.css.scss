@@ -305,6 +305,21 @@ h5 {
       border-color: $green-hover !important;
     }
   }
+  &.btn-outline-primary {
+    background-color: white;
+    color: $green;
+    border-color: $green;
+    font-weight: bold;
+    &:hover {
+      background-color: $green;
+      border-color: $green;
+      color: white;
+    }
+    &:active {
+      background-color: $green !important;
+      border-color: $green !important;
+    }
+  }
 
   &.btn-default {
     background-color: transparent;
