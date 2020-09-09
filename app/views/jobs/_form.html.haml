@@ -11,6 +11,7 @@
     = f.input :apply_url
     %p.text-danger (Admins could mark some Job posts as 'featured' so they appear higher on the page, or in a different section?)
     = f.input :is_featured
+    %p.text-danger Do we want Admins to verify job posts? Or mark jobs created by verified users differently?
     = f.input :is_verified
     =# f.association :user
     %p.text-danger (Should we have the currency type in a select dropdown? Select between EUR,USD,GBP etc)

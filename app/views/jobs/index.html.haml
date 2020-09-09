@@ -32,12 +32,10 @@
         %th Description
         %th Apply url
         %th Tags
-        %th= sort_link @q, :is_featured
-        %th= sort_link @q, :is_verified
         %th Created by
         %th= sort_link @q, :min_salary
         %th= sort_link @q, :max_salary
-        %th= sort_link @q, :country_code
+        %th= sort_link @q, :country_code, 'Country'
         %th= sort_link @q, :created_at, 'Age'
         %th
 
@@ -48,13 +46,11 @@
           %td= job.description
           %td
             - if job.apply_url.present?
-              =link_to 'Apply', job.apply_url, target: '_blank', class: 'btn btn-primary'
+              =link_to 'Apply', job.apply_url, target: '_blank', class: 'btn btn-sm btn-outline-primary'
           %td
             - job.tag_list.each do |t|
               =link_to t, jobs_path('q[tags_name_cont]': t), class: "badge badge-info"
 
-          %td= job.is_featured
-          %td= job.is_verified
           %td=link_to job.user, job.user || ''
           %td= job.min_salary
           %td= job.max_salary
