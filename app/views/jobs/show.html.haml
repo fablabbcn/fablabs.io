@@ -1,4 +1,4 @@
-.container
+.container.mt-5
   %p#notice= notice
 
   %p
@@ -7,9 +7,6 @@
   %p
     %b Description:
     = @job.description
-  %p
-    %b Apply url:
-    = @job.apply_url
   %p
     %b Tags:
     = @job.tag_list
@@ -33,3 +30,7 @@
     = @job.country_code
 
   = link_to 'Edit', edit_job_path(@job)
+
+  .my-5
+    - if @job.apply_url.present?
+      =link_to 'Apply', @job.apply_url, target: '_blank', class: 'btn btn-primary'
