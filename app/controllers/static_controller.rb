@@ -12,7 +12,9 @@ class StaticController < ApplicationController
     @projects = []
     # TODO: Make the call to wikifactory async. Now it adds seconds delay.
     begin
-      @projects = recent_projects()
+      Rails.cache.fetch('frontpage-projects', expires_in: 1.hour) do
+        @projects = recent_projects()
+      end
     rescue Exception => error
       puts error.inspect
     end
@@ -88,9 +90,7 @@ class StaticController < ApplicationController
         projects = json.select { |p|
           p["image_url"] != nil
         }
-        if projects.length > 6
-          projects = projects.slice(0,6)
-        end
+        projects = projects.first(6)
       end
       return projects
     rescue
