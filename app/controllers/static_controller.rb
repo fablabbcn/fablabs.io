@@ -12,9 +12,7 @@ class StaticController < ApplicationController
     @projects = []
     # TODO: Make the call to wikifactory async. Now it adds seconds delay.
     begin
-      Rails.cache.fetch('frontpage-projects', expires_in: 1.hour) do
-        @projects = recent_projects()
-      end
+      @projects = recent_projects()
     rescue Exception => error
       puts error.inspect
     end
@@ -82,7 +80,11 @@ class StaticController < ApplicationController
   helper_method :recent_projects
   def recent_projects
     begin
-      response = HTTParty.get('https://wikifactory.com/api/fablabsio/projects')
+
+      response = Rails.cache.fetch('frontpage-projects', expires_in: 1.minute) do
+        HTTParty.get('https://wikifactory.com/api/fablabsio/projects')
+      end
+
       json = JSON.parse(response.body)
 
       projects = []
