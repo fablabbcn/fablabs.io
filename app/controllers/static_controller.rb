@@ -81,7 +81,7 @@ class StaticController < ApplicationController
   def recent_projects
     begin
 
-      response = Rails.cache.fetch('frontpage-projects', expires_in: 1.minute) do
+      response = Rails.cache.fetch('frontpage-projects', expires_in: 1.hours) do
         HTTParty.get('https://wikifactory.com/api/fablabsio/projects')
       end
 
