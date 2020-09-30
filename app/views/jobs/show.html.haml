@@ -1,6 +1,9 @@
 .container.mt-5
   %p#notice= notice
 
+  .mb-4
+    = link_to "Back to Jobs", jobs_url, class: 'btn btn-primary'
+
   %p
     %b Title:
     = @job.title
@@ -29,7 +32,7 @@
     %b Country code:
     = @job.country_code
 
-  = link_to 'Edit', edit_job_path(@job)
+  = link_to 'Edit', edit_job_path(@job), class: 'btn btn-primary'
 
   .my-5
     - if @job.apply_url.present?

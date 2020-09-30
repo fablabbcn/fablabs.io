@@ -1,4 +1,7 @@
 -# frozen_string_literal: true
+
+.mb-3
+  = link_to "Back to Jobs", jobs_url
 = simple_form_for(@job, html: { class: 'border shadow p-4' } ) do |f|
   = f.error_notification
   = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?

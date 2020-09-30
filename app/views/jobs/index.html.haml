@@ -14,8 +14,8 @@
             = f.select(:country_code_eq, options_for_select(@countries.map { |a,b| [a, b]}, params[:q] ? params[:q][:country_code_eq] : '' ), { include_blank: 'All countries' }, {class: 'form-control my-3'})
 
           .col-lg-4
-            = f.label :tags_name_cont, 'Tags (comma seperated)'
-            = f.search_field :tags_name_cont, placeholder: 'cnc, 3dprint', class: 'form-control mb-3'
+            = f.label :tags_id_eq, 'Filter by tags'
+            = f.select(:tags_id_eq, options_for_select(Job.all_tags.map { |a| [a.name, a.id]}, params[:q] ? params[:q][:tags_id_eq] : '' ), { include_blank: 'All tags' }, {class: 'form-control my-3'})
           .col-lg-6
             = f.submit class: 'btn btn-primary my-2 px-4 ml-auto'
 
