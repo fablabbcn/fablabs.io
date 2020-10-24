@@ -16,5 +16,5 @@
           = link_to new_lab_path, class: "btn btn-primary", data: {toggle: "tooltip", placement: "bottom" }, title: "You need to be signed in to add a Lab" do
             = fa_icon "plus", text: t("views.labs.index.add_a_lab", default: "Add Lab")
 
-.container
+.container-fluid
   = render 'sidemap', zoom_level: 2
