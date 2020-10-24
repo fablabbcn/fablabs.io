@@ -21,7 +21,7 @@
       mapTypeId: "OSM",
       mapTypeControl: false,
       streetViewControl: false,
-      zoom: 4
+      zoom: <%= defined?(zoom_level) ? zoom_level : 4 %>
     });
 
     // Define OSM map type pointing at the OpenStreetMap tile server
