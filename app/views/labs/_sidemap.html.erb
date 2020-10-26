@@ -1,5 +1,5 @@
-<div class="embed-responsive embed-responsive-4by3 mb-5">
-  <div id="sidemap" class="embed-responsive-item"> </div>
+<div class="border">
+  <div id="sidemap" class="" style="min-height:600px"> </div>
 </div>
 
 <script>
@@ -21,7 +21,7 @@
       mapTypeId: "OSM",
       mapTypeControl: false,
       streetViewControl: false,
-      zoom: 4
+      zoom: <%= defined?(zoom_level) ? zoom_level : 4 %>
     });
 
     // Define OSM map type pointing at the OpenStreetMap tile server

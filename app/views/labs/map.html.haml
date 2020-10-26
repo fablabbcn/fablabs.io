@@ -16,14 +16,5 @@
           = link_to new_lab_path, class: "btn btn-primary", data: {toggle: "tooltip", placement: "bottom" }, title: "You need to be signed in to add a Lab" do
             = fa_icon "plus", text: t("views.labs.index.add_a_lab", default: "Add Lab")
 
-.row.iframe-embed-map.row-no-padding
-  .col-12
-    %iframe{frameborder: "0",
-    height: "600",
-    marginheight: "0px",
-    marginwidth: "0px",
-    name: "labsMap",
-    scrolling: "no",
-    src: "embed",
-    style: "border: 0px #FFFFFF none;",
-    width: "100%"}
+.container-fluid
+  = render 'sidemap', zoom_level: 2
