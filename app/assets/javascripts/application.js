@@ -27,7 +27,6 @@
 
 document.addEventListener("DOMContentLoaded", function() {
 
-  //$('[data-toggle="tooltip"]').tooltip();
   $('textarea.trumbowyg').trumbowyg();
   $("select").select2({ width: '100%' });
 

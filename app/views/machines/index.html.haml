@@ -23,7 +23,7 @@
             = link_to new_machine_path, class: "btn btn-primary" do
               = fa_icon "plus", text: t("views.labs.index.add_a_machine", default: "Add a new Machine")
           - else
-            = link_to new_machine_path, class: "btn btn-primary", data: {toggle: "tooltip", placement: "bottom" }, title: "You need to be signed in to add a Machine" do
+            = link_to new_machine_path, class: "btn btn-primary", title: "You need to be signed in to add a Machine" do
               = fa_icon "plus", text: t("views.labs.index.add_a_machine", default: "Add a new Machine")
 
   .container

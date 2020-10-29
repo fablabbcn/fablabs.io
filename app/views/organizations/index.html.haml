@@ -10,7 +10,7 @@
           = link_to new_organization_path, class: "btn btn-primary" do
             = fa_icon "plus", text: 'Add a new Organization'
         - else
-          = link_to new_organization_path, class: "btn btn-primary", data: {toggle: "tooltip", placement: "bottom" }, title: "You need to be signed in to add an Organization" do
+          = link_to new_organization_path, class: "btn btn-primary", title: "You need to be signed in to add an Organization" do
             = fa_icon "plus", text: 'Add a new Organization'
 
 .container

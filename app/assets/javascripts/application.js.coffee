@@ -35,7 +35,6 @@
 initEvents = ->
 
   $('.datepicker').datepicker()
-  $('[data-toggle="tooltip"]').tooltip()
   $('textarea.trumbowyg').trumbowyg()
   # {append: "\n"}
   $("select").select2()
