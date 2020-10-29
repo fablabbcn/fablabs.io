@@ -11,8 +11,11 @@
     //console.log(locations)
     var marker, i;
 
+    // Allow different icon_sizes, but default to 35 if not defined.
+    var icon_size = <%= defined?(icon_size) ? icon_size : 35 %>
+
     var image = {
-      scaledSize: new google.maps.Size(35, 35)
+      scaledSize: new google.maps.Size(icon_size, icon_size)
     };
 
     map = new google.maps.Map(document.getElementById('sidemap'), {
