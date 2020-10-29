@@ -12,15 +12,25 @@
     var marker, i;
 
     // Allow different icon_sizes, but default to 35 if not defined.
-    var icon_size = <%= defined?(icon_size) ? icon_size : 35 %>
+    var icon_size = <%= defined?(icon_size) ? icon_size : 35 %>;
+    var center_lat = <%= defined?(center_lat) ? center_lat : 'undefined' %>;
+    var center_lng = <%= defined?(center_lng) ? center_lng : 'undefined' %>;
+
+    // If any of lat/lng are undefined, we default to first item location
+    if(typeof center_lat === 'undefined' || typeof center_lng === 'undefined'){
+      the_center = {lat: parseFloat(locations[0].latitude), lng: parseFloat(locations[0].longitude)}
+    } else {
+      the_center = {lat: center_lat, lng: center_lng}
+    }
+
+    //console.log(the_center);
 
     var image = {
       scaledSize: new google.maps.Size(icon_size, icon_size)
     };
 
     map = new google.maps.Map(document.getElementById('sidemap'), {
-      //center: {lat: 20, lng: -40},
-      center: {lat: parseFloat(locations[0].latitude), lng: parseFloat(locations[0].longitude)},
+      center: the_center,
       mapTypeId: "OSM",
       mapTypeControl: false,
       streetViewControl: false,
