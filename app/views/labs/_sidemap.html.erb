@@ -26,7 +26,7 @@
     //console.log(the_center);
 
     var image = {
-      scaledSize: new google.maps.Size(icon_size, icon_size)
+      scaledSize: new google.maps.Size(icon_size, icon_size * 1.24 )
     };
 
     map = new google.maps.Map(document.getElementById('sidemap'), {
@@ -59,16 +59,17 @@
 
     for(var i in locations){
       if (locations[i].activity_status === 'active'){
-        image.url = "<%= image_url('map-icons/active.svg') %>";
+        image.url = "<%= image_url('map-icons/active.png') %>";
       }else if (locations[i].activity_status === 'corona'){
-        image.url = "<%= image_url('map-icons/corona.svg') %>";
+        image.url = "<%= image_url('map-icons/corona.png') %>";
       } else {
-        image.url = "<%= image_url('map-icons/closed.svg') %>";
+        image.url = "<%= image_url('map-icons/closed.png') %>";
       }
 
       marker = new google.maps.Marker({
         position: new google.maps.LatLng(locations[i].latitude, locations[i].longitude),
         icon: image,
+        title: locations[i].name,
         map: map
       });
 
