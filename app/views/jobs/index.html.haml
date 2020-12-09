@@ -36,7 +36,7 @@
         %th= sort_link @q, :min_salary
         %th= sort_link @q, :max_salary
         %th= sort_link @q, :country_code, 'Country'
-        %th= sort_link @q, :created_at, 'Age'
+        %th= sort_link @q, :created_at, 'Created at'
         %th
 
     %tbody
@@ -55,7 +55,7 @@
           %td= job.min_salary
           %td= job.max_salary
           %td= job.country
-          %td= time_ago_in_words(job.created_at, include_seconds: false)
+          %td{title: job.created_at}= time_ago_in_words(job.created_at, include_seconds: false)
           %td
             - if current_user == job.user
               = link_to 'Edit', edit_job_path(job)
