@@ -20,7 +20,7 @@
             = f.submit class: 'btn btn-primary my-2 px-4 ml-auto'
 
       .col-md-2.py-4
-        - if current_user
+        - if current_user&.has_role?(:superadmin)
           = link_to 'New Job Posting', new_job_path, class: 'btn btn-primary'
 
 

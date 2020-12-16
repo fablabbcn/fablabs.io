@@ -12,6 +12,8 @@ en:
         tag_list: "Comma separated, example: 'cnc, 3d printing'"
         apply_url: If there is an external website handling application forms
         country_code: Select the country from the list
+        min_salary: The lower salary range (optional)
+        max_salary: The upper salary range (optional)
       user:
         first_name: First name
         last_name: Last name

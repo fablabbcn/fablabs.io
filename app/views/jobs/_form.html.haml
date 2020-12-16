@@ -6,18 +6,14 @@
   = f.error_notification
   = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
 
-  %p.text-danger (This is a prototype, things will change while still in development)
   .form-inputs
     = f.input :title
     = f.input :tag_list, input_html: { value: @job.tag_list.join(', ') }
     = f.input :description
     = f.input :apply_url
-    %p.text-danger (Admins could mark some Job posts as 'featured' so they appear higher on the page, or in a different section?)
-    = f.input :is_featured
-    %p.text-danger Do we want Admins to verify job posts? Or mark jobs created by verified users differently?
-    = f.input :is_verified
+    =# f.input :is_featured
+    =# f.input :is_verified
     =# f.association :user
-    %p.text-danger (Should we have the currency type in a select dropdown? Select between EUR,USD,GBP etc)
     = f.input :min_salary
     = f.input :max_salary
     = f.input :country_code, as: 'country', label: 'Country', input_html: { data: {geo: "country_short"} }, wrapper_html: { class: 'boo'}, iso_codes: true#, input_html: { class: 'enhanced'}

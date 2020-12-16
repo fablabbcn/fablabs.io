@@ -1,4 +1,7 @@
 .container
   %h1.my-4 New Job
 
-  = render 'form'
+  - if current_user.has_role?(:superadmin)
+    = render 'form'
+  - else
+    Only admins can create Jobs at the moment.
