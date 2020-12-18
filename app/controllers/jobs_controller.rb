@@ -5,6 +5,7 @@ class JobsController < ApplicationController
   # GET /jobs
   # GET /jobs.json
   def index
+    # TODO: we have a Job.recent method to show only posts updated_at within the last 90 days
     @q = Job.all.ransack(params[:q])
     @jobs = @q.result.order(created_at: :desc).page(params[:page])
 
