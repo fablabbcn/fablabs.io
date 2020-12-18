@@ -24,9 +24,9 @@
     %br
     = @job.max_salary
   %p
-    %b Country code:
+    %b Country:
     %br
-    = @job.country_code
+    = @job.country
 
   = link_to 'Edit', edit_job_path(@job), class: 'btn btn-primary' if current_user&.has_role?(:superadmin)
 
