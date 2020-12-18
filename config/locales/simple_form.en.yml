@@ -24,6 +24,7 @@ en:
     placeholders:
       job:
         tag_list: 'cnc, 3d printing'
+        apply_url: https://mysite.com/job-post
     'yes': 'Yes'
     'no': 'No'
     required:

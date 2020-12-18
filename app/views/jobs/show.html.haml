@@ -5,30 +5,27 @@
 
   %p
     %b Title:
+    %br
     = @job.title
   %p
     %b Description:
+    %br
     = @job.description
   %p
     %b Tags:
+    %br
     = @job.tag_list
   %p
-    %b Is featured:
-    = @job.is_featured
-  %p
-    %b Is verified:
-    = @job.is_verified
-  %p
-    %b User:
-    = @job.user
-  %p
     %b Min salary:
+    %br
     = @job.min_salary
   %p
     %b Max salary:
+    %br
     = @job.max_salary
   %p
     %b Country code:
+    %br
     = @job.country_code
 
   = link_to 'Edit', edit_job_path(@job), class: 'btn btn-primary' if current_user&.has_role?(:superadmin)

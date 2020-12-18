@@ -43,7 +43,7 @@
       - @jobs.each do |job|
         %tr
           %td=link_to job.title, job
-          %td= job.description
+          %td=link_to truncate(job.description), job
           %td
             - if job.apply_url.present?
               =link_to 'Apply', job.apply_url, target: '_blank', class: 'btn btn-sm btn-outline-primary'
