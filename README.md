@@ -1,7 +1,6 @@
 # FabLabs
 
 ![](https://github.com/fablabbcn/fablabs.io/workflows/Ruby/badge.svg)
-[![Build Status](https://travis-ci.org/fablabbcn/fablabs.io.png)](https://travis-ci.org/fablabbcn/fablabs.io)
 [![Code Climate](https://codeclimate.com/github/fablabbcn/fablabs.png)](https://codeclimate.com/github/fablabbcn/fablabs)
 [![Test Coverage](https://codeclimate.com/github/fablabbcn/fablabs/badges/coverage.svg)](https://codeclimate.com/github/fablabbcn/fablabs/coverage)
 
@@ -146,7 +145,7 @@ S3_REGION=<amazon region code>
 
 ## Pull requests
 
-All PRs are tested on Travis and Github Actions. Make sure the tests run.
+All PRs are tested on Github Actions. Make sure the tests run.
 
 ## Languages and translation
 
