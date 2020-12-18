@@ -82,7 +82,8 @@ jobs:
         port: ${{ secrets.PORT }}
         username: ${{ secrets.USERNAME }}
         script: |
-          whoami
-          ls -al
-        #script: "pwd; cd fablabs.io; ./scripts/deploy.sh"
-        #if: github.ref == 'refs/heads/master' && job.status == 'success'
+          pwd
+          cd fablabs.io
+          pwd
+          ./scripts/deploy.sh
+      if: github.ref == 'refs/heads/master' && job.status == 'success'
