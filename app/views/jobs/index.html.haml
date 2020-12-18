@@ -42,7 +42,7 @@
     %tbody
       - @jobs.each do |job|
         %tr
-          %td=link_to job.title, job
+          %td=link_to truncate(job.title), job
           %td=link_to truncate(job.description), job
           %td
             - if job.apply_url.present?
