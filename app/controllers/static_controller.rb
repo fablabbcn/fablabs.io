@@ -64,15 +64,20 @@ class StaticController < ApplicationController
   end
 
   def metrics
-    render json: {
-      labs: Lab.count,
-      organizations: Organization.count,
-      machines: Machine.count,
-      events: Event.count,
-      users: User.count,
-      projects: Project.count,
-      employees: Employee.count
-    }
+    the_json = Rails.cache.fetch('metrics', expires_in: 1.minute) do
+     {
+        labs: Lab.count,
+        approved_labs: Lab.with_approved_state.count,
+        organizations: Organization.count,
+        machines: Machine.count,
+        jobs: Job.count,
+        events: Event.count,
+        users: User.count,
+        projects: Project.count,
+        employees: Employee.count
+      }
+    end
+    render json: the_json
   end
 
   private
