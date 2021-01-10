@@ -1,0 +1,13 @@
+<div class="container">
+  <h1 class="text-center my-4">Statistics</h1>
+
+  <p>Users created per day</p>
+  <%= line_chart User.group_by_day(:created_at).count %>
+
+  <p class="mt-4">Labs created per day</p>
+  <%= line_chart Lab.group_by_day(:created_at).count %>
+
+  <p class="mt-4">Jobs created per day</p>
+  <%= line_chart Job.group_by_day(:created_at).count %>
+
+</div>

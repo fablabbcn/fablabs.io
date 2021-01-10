@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   get "signout" => "sessions#destroy", :as => "signout"
   get "styleguide", to: "static#styleguide"
   get '/robots.txt' => 'robots#robots', :format => :txt
+  get 'stats', to: 'static#stats'
   get 'version', to: 'static#version'
 
   resources :sessions

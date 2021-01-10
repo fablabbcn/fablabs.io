@@ -110,6 +110,7 @@ GEM
       json
     case_transform (0.2)
       activesupport
+    chartkick (3.4.2)
     childprocess (3.0.0)
     climate_control (0.2.0)
     cocoon (1.2.14)
@@ -207,6 +208,8 @@ GEM
       multi_json (>= 1.11.0)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
+    groupdate (5.2.1)
+      activesupport (>= 5)
     guard (2.16.2)
       formatador (>= 0.2.4)
       listen (>= 2.7, < 4.0)
@@ -577,6 +580,7 @@ DEPENDENCIES
   byebug
   capybara
   capybara-webkit
+  chartkick
   cocoon
   coderay
   coffee-rails
@@ -597,6 +601,7 @@ DEPENDENCIES
   friendly_id
   geocoder
   gibbon
+  groupdate
   guard-rspec
   haml-rails
   hpricot
@@ -663,4 +668,4 @@ RUBY VERSION
    ruby 2.6.6p146
 
 BUNDLED WITH
-   2.1.4
+   2.2.4
