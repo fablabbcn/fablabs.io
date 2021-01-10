@@ -13,7 +13,7 @@
 
     #navbar.collapse.navbar-collapse
 
-      = form_tag '/search', class: 'navbar-form navbar-left', method: 'get' do
+      = form_tag '/search', class: 'navbar-form', method: 'get' do
         .form-group.container-fluid.mb-0
           - if params[:country].present?
             = hidden_field_tag 'country', params[:country]
@@ -33,18 +33,15 @@
         %li.nav-item
           = link_to 'https://live.fablabs.io/', target: "_blank", class: 'nav-link' do
             Network
-            = '&nbsp;'.html_safe
-            = fa_icon 'external-link'
+            = fa_icon 'external-link', class: 'ml-1'
         %li.nav-item
           = link_to 'https://projects.fablabs.io', target: "_blank", class: 'nav-link' do
             = t("views.header.projects")
-            = '&nbsp;'.html_safe
-            = fa_icon 'external-link'
+            = fa_icon 'external-link', class: 'ml-1'
         %li.nav-item
           = link_to 'https://forum.fablabs.io', target: "_blank", class: 'nav-link' do
             Forum
-            = '&nbsp;'.html_safe
-            = fa_icon 'external-link'
+            = fa_icon 'external-link', class: 'ml-1'
 
       %ul.nav.navbar-nav.ml-auto
         - if current_user
@@ -62,10 +59,14 @@
               = link_to settings_path, class: 'dropdown-item'  do
                 = fa_icon "cog", text: t("views.header.settings"), class: 'fa-fw'
               - if current_or_null_user.has_role? :superadmin
+                %li.divider
                 = link_to backstage_root_path, class: 'dropdown-item' do
                   = fa_icon "gamepad", class: 'fa-fw'
                   = t("views.header.backstage", default: "Backstage")
                   = gem_count_tag Lab.with_unverified_state.size
+                = link_to stats_path, class: 'dropdown-item' do
+                  = fa_icon "line-chart", class: 'fa-fw'
+                  Statistics
               - else
                 - if current_or_null_user.is_referee? or current_or_null_user.is_unique_referee?
                   = link_to backstage_root_path, class: 'dropdown-item' do

@@ -7,6 +7,9 @@
   <p class="mt-4">Labs created per day</p>
   <%= line_chart Lab.group_by_day(:created_at).count %>
 
+  <p class="mt-4">Labs by country</p>
+  <%= pie_chart Lab.group(:country_code).count %>
+
   <p class="mt-4">Jobs created per day</p>
   <%= line_chart Job.group_by_day(:created_at).count %>
 

@@ -52,7 +52,7 @@ gem 'jbuilder'
 gem 'jquery-rails'
 gem 'kaminari'
 gem 'letter_opener'
-gem 'momentjs-rails'
+gem 'momentjs-rails' # Remove? It is already included with Chart.js bundle
 gem 'nest'
 gem 'paper_trail'
 gem 'pg'
