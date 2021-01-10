@@ -23,6 +23,9 @@
   %link{rel: "stylesheet", href: "https://api.mapbox.com/mapbox.js/v3.0.1/mapbox.css"}
   = javascript_include_tag "https://api.mapbox.com/mapbox.js/v3.0.1/mapbox.js"
 
+  <!-- Load chartkick via CDN, the Chart.bundle is still loaded in application.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/chartkick/2.3.0/chartkick.js" integrity="sha512-vb5WQQcLnuPF84N6gRb9OBxe9AvY+rb04YwZIf66g7GImHwUv/u/gILQGrHRdW9BLideA5cA4OZbrFyWjswIcA==" crossorigin="anonymous"></script>
+
   = stylesheet_link_tag "//fonts.googleapis.com/css?family=Open+Sans:400|Montserrat"
   = stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true
   = javascript_include_tag "application", "data-turbolinks-track" => true
