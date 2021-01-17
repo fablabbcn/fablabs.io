@@ -429,7 +429,7 @@ GEM
       json
     record_tag_helper (1.0.1)
       actionview (>= 5)
-    redcarpet (3.5.0)
+    redcarpet (3.5.1)
     redic (1.5.3)
       hiredis
     redis (4.1.4)
