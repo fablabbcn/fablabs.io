@@ -62,6 +62,7 @@ gem 'puma'
 gem 'rack-cache'
 gem 'rack-cors', require: 'rack/cors'
 gem 'ransack'
+gem 'recaptcha'
 gem 'redcarpet'
 gem 'redis'
 #gem 'redis-rails' # not needed in rails 5.2
