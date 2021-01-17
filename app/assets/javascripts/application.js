@@ -22,7 +22,6 @@
 //= require trumbowyg/trumbowyg
 //= require spin.js/spin
 //= require leaflet-spin
-//= require_tree .
 
 
 document.addEventListener("DOMContentLoaded", function() {

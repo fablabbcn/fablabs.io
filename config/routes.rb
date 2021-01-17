@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :jobs
+  ActiveAdmin.routes(self)
   require "admin_constraint"
   require 'sidekiq/web'
   mount Sidekiq::Web, at: '/sidekiq', constraints: AdminConstraint.new
@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get "discourse/sso"
   get "discuss" => 'discourse#embed'
 
+  resources :jobs
   resources :pages, only: [:show]
 
   get "metrics", to: "static#metrics"

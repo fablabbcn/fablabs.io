@@ -64,6 +64,9 @@
                   = fa_icon "gamepad", class: 'fa-fw'
                   = t("views.header.backstage", default: "Backstage")
                   = gem_count_tag Lab.with_unverified_state.size
+                = link_to admin_root_path, target: '_blank', class: 'dropdown-item' do
+                  = fa_icon "lock", class: 'fa-fw'
+                  Admin
                 = link_to stats_path, class: 'dropdown-item' do
                   = fa_icon "line-chart", class: 'fa-fw'
                   Statistics

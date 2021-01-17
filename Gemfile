@@ -20,6 +20,7 @@ gem 'font-awesome-sass', '~> 4.3.0' # https://fontawesome.com/how-to-use/on-the-
 gem 'bourbon', '~> 4' # Breaks transition in header.css.scss and map.css.scss https://github.com/thoughtbot/bourbon/blob/master/CHANGELOG.md
 
 gem 'active_model_serializers'
+gem 'activeadmin'
 gem 'acts-as-taggable-on'
 gem 'ancestry'#, github: 'stefankroes/ancestry'
 gem 'authority'#, github: 'nathanl/authority'
