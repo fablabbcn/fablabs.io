@@ -29,10 +29,9 @@ RUN mkdir -p $APPROOT/tmp/pids
 #RUN gem update --system
 
 # Bundler
-ENV NOKOGIRI_USE_SYSTEM_LIBRARIES 1
 RUN gem install bundler
-ADD Gemfile Gemfile
-ADD Gemfile.lock Gemfile.lock
+COPY Gemfile Gemfile
+COPY Gemfile.lock Gemfile.lock
 RUN bundle install
 
 # Copy the Rails application into place
