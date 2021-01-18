@@ -43,7 +43,8 @@ RUN npm install
 RUN npm install yarn -g
 
 # Precompile assets here, so we don't have to do it inside a container + restart
-RUN bin/rake assets:precompile
+#RUN bin/rake assets:precompile
+# Precompile started erroring 2021-01-18 - for now we precompile in scripts/deploy.sh
 
 #CMD ["rails", "server", "-b", "0.0.0.0"]
 #CMD ["bash","-c","rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"]
