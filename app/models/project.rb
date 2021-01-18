@@ -45,7 +45,7 @@ class Project < ActiveRecord::Base
   acts_as_taggable
 
   extend FriendlyId
-  friendly_id :slug_candidates, use: :slugged
+  friendly_id :slug_candidates, use: [:slugged, :finders]
   def slug_candidates
     [:title]
   end

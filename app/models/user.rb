@@ -1,7 +1,5 @@
 class User < ActiveRecord::Base
 
-  # TODO: friendly_id
-
   has_many :access_grants, class_name: "Doorkeeper::AccessGrant",
                            foreign_key: :resource_owner_id,
                            dependent: :delete_all # or :destroy if you need callbacks
@@ -78,7 +76,7 @@ class User < ActiveRecord::Base
   validates :password, presence: true, length: { minimum: 6 }, if: lambda{ !password.nil? }, on: :update
 
   extend FriendlyId
-  friendly_id :slug_candidates, use: :slugged
+  friendly_id :slug_candidates, use: [:slugged, :finders]
   def slug_candidates
     [:username]
   end

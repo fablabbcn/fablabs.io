@@ -23,7 +23,7 @@ class Lab < ApplicationRecord
   pg_search_scope :search_by_name, :against => [:name, :description, :reverse_geocoded_address]
 
   extend FriendlyId
-  friendly_id :slug_candidates, use: :slugged
+  friendly_id :slug_candidates, use: [:slugged, :finders]
   def slug_candidates
     [:name]
   end
