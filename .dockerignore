@@ -1,0 +1,6 @@
+README.md
+coverage/*
+log/*
+node_modules/
+scripts/
+tmp/*
