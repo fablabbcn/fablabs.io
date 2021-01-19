@@ -20,9 +20,7 @@ Rails.application.routes.draw do
 
   resources :sessions
 
-  #constraints subdomain: 'www' do
   constraints(WWWSubdomain) do
-    # resources :discussions
     get "activity" => "activities#index", :as => "activity"
     resources :featured_images
     resources :organizations, only: [:index, :show, :new, :create, :edit, :update] do
@@ -32,8 +30,6 @@ Rails.application.routes.draw do
         end
       end
     end
-
-    # resources :events
 
     get "verify_email(/:id)", to: "users#verify_email", as: "verify_email"
 
@@ -150,7 +146,6 @@ Rails.application.routes.draw do
       resources :academics
 
       get 'mapdata', on: :collection
-      # resources :discussions
       member do
         get :manage_admins
       end
@@ -176,7 +171,6 @@ Rails.application.routes.draw do
     end
 
     get '/' => 'static#api'
-    # root to: ''static#api'
 
     api version: 0, module: "api/v0", as: "api_v0" do
         get 'me' => 'users#me'
