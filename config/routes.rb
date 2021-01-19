@@ -38,7 +38,6 @@ Rails.application.routes.draw do
       get action => "static##{underscored}", as: underscored
     end
 
-    resources :users
     resources :machines
     resources :brands
     resources :comments, only: [:create]

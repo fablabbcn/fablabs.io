@@ -1,9 +1,13 @@
 class UsersController < ApplicationController
 
-  before_action :require_login, except: [:new, :create, :verify_email, :show]
+  before_action :require_login, except: [:new, :create, :verify_email, :show, :index]
 
   def new
     @user = User.new
+  end
+
+  def index
+    @users = User.order(:id).page(params[:page]).per(params[:per])
   end
 
   def create
