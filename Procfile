@@ -1,3 +1,3 @@
-redis: redis-server
-sidekiq: bundle exec sidekiq
+web: bundle exec rails server
+worker: bundle exec sidekiq
 # locale: bundle exec localeapp daemon
