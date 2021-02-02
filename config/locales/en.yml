@@ -8,7 +8,13 @@ en:
     three_d_printing: 3D printing
     vinyl_cutting: Vinyl cutting
   shared:
+    already_signed_in: You're already signed in
+    invalid_email_or_password: Invalid email or password
+    signed_in: Signed in.
+    signed_out: Signed out!
     styleguide: Styleguide
+    success_sign_up: Thanks for signing up. Please check your email to complete your
+      registration!
   views:
     header:
       events: Events

@@ -3,7 +3,7 @@ class SessionsController < ApplicationController
   layout 'application'
 
   def new
-    return redirect_to root_url, notice: "You're already signed in" if current_user
+    return redirect_to root_url, notice: t("shared.already_signed_in") if current_user
   end
 
   def create
@@ -13,9 +13,9 @@ class SessionsController < ApplicationController
       # cookies.permanent[:user_id] = { value: user.id, domain: '.fablabs.dev' }
       session[:user_id] = user.id
       # redirect_to URI.parse(params[:goto]).path, flash: { success: "Signed in!" }, only_path: true
-      redirect_to params[:goto], flash: { success: "Signed in!" }
+      redirect_to params[:goto], flash: { success: t("shared.signed_in") }
     else
-      flash.now[:error] = "Invalid email or password"
+      flash.now[:error] = t("shared.invalid_email_or_password")
       render "new"
     end
   end
@@ -26,7 +26,7 @@ class SessionsController < ApplicationController
     end
 
     session.delete(:user_id)
-    redirect_to root_url, flash: { success: "Signed out!" }
+    redirect_to root_url, flash: { success: t("shared.signed_out") }
   end
 
   private

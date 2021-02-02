@@ -99,6 +99,7 @@ end
 
 group :development do
   gem 'bullet' #, github: 'flyerhzm/bullet'
+  gem "i18n-tasks", "~> 0.9.33"
   gem 'net-ssh'
 end
 

@@ -21,9 +21,9 @@ class UsersController < ApplicationController
       track_activity @user
 
       if params[:goto]
-        redirect_to params[:goto], flash: { success: "Signed in!" }
+        redirect_to params[:goto], flash: { success: t("shared.signed_in") }
       else
-        redirect_to root_path, flash: { success: "Thanks for signing up. Please check your email to complete your registration." }
+        redirect_to root_path, flash: { success: t("shared.success_sign_up") }
       end
     else
       render 'new'
