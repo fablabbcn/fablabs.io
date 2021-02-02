@@ -14,6 +14,9 @@ class SessionsController < ApplicationController
       session[:user_id] = user.id
       # redirect_to URI.parse(params[:goto]).path, flash: { success: "Signed in!" }, only_path: true
       redirect_to params[:goto], flash: { success: t("shared.signed_in") }
+      # Update user IP
+      user.update!(last_sign_in_ip: user.current_sign_in_ip)
+      user.update!(current_sign_in_ip: request.remote_ip)
     else
       flash.now[:error] = t("shared.invalid_email_or_password")
       render "new"

@@ -30,6 +30,7 @@ ActiveAdmin.register User do
     column :slug
     column :email_fallback
     column :current_sign_in_ip
+    column :last_sign_in_ip
     actions
   end
 end

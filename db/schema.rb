@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_17_213339) do
+ActiveRecord::Schema.define(version: 2021_02_02_202603) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "hstore"
@@ -595,6 +595,8 @@ ActiveRecord::Schema.define(version: 2021_01_17_213339) do
     t.string "discourse_id", limit: 255
     t.string "slug", limit: 255
     t.string "email_fallback"
+    t.inet "current_sign_in_ip"
+    t.inet "last_sign_in_ip"
     t.index ["fab10_coupon_code"], name: "index_users_on_fab10_coupon_code", unique: true
     t.index ["slug"], name: "index_users_on_slug", unique: true
   end
