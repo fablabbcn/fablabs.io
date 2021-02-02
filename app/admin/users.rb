@@ -16,7 +16,8 @@ ActiveAdmin.register User do
   # end
 
   index do
-    column :id
+    selectable_column
+    id_column
     column :workflow_state
     column :first_name
     column :last_name
