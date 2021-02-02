@@ -3,18 +3,16 @@
 - if current_or_null_user.can_update?(lab)
   = link_to "edit", lab_employees_path(lab), id: "edit-employees"
 
-- employees.in_groups_of(3, false).each do |group|
-  .row
-    - group.each do |employee|
-      - cache ["v2", employee] do
-        .col-md-4
-          .list-item-small-wrapper{itemscope: true, itemtype: "http://data-vocabulary.org/Person"}
-            = image_tag employee.user.avatar_url, class: 'list-item-small-image'
-            .list-item-small-content
-              = link_to employee.user, class: 'text-medium' do
-                %span.first_name{itemprop: "givenName"}= employee.user.first_name
-                %span.last_name{itemprop: "familyName"}= employee.user.last_name
-              .text-small{itemprop: "jobTitle"}= employee.job_title
+.row.mt-3
+  - employees.each do |employee|
+    .col-md-4
+      .list-item-small-wrapper{itemscope: true, itemtype: "http://data-vocabulary.org/Person"}
+        = image_tag employee.user.avatar_url, class: 'list-item-small-image'
+        .list-item-small-content
+          = link_to employee.user, class: 'text-medium' do
+            %span.first_name{itemprop: "givenName"}= employee.user.first_name
+            %span.last_name{itemprop: "familyName"}= employee.user.last_name
+          .text-small{itemprop: "jobTitle"}= employee.job_title
 
 .container.mt-3.mb-3
   .row
