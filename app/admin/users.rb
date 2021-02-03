@@ -15,6 +15,31 @@ ActiveAdmin.register User do
   #   permitted
   # end
 
+  remove_filter :access_grants
+  remove_filter :access_tokens
+  remove_filter :oauth_applications
+  remove_filter :created_labs
+  remove_filter :created_organizations
+  remove_filter :recoveries
+  remove_filter :roles
+  remove_filter :role_applications
+  remove_filter :comments
+  remove_filter :employees
+  remove_filter :jobs
+  remove_filter :coupon
+  remove_filter :academics
+  remove_filter :links
+  remove_filter :created_projects
+  remove_filter :created_activities
+  remove_filter :created_events
+  remove_filter :activities
+  remove_filter :discussions
+  remove_filter :grades
+  remove_filter :projects
+  remove_filter :contributions
+  remove_filter :favourites
+  remove_filter :approval_workflow_logs
+
   index do
     selectable_column
     id_column
