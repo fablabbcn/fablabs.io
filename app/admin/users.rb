@@ -48,6 +48,9 @@ ActiveAdmin.register User do
     column :last_name
     column :email
     column :username
+    column :bio do |b|
+      truncate(b.bio, length: 100)
+    end
     column :locale
     column :time_zone
     column :created_at
