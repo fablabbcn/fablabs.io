@@ -209,13 +209,13 @@ describe Lab, type: :model  do
       end
 
       it "has .country_list_for labs" do
-        FactoryBot.create(:lab, country_code: 'eg')
-        FactoryBot.create(:lab, country_code: 'fr')
-        FactoryBot.create(:lab, country_code: 'fr')
+        FactoryBot.create(:lab, country_code: 'EG')
+        FactoryBot.create(:lab, country_code: 'FR')
+        FactoryBot.create(:lab, country_code: 'FR')
         I18n.locale = 'en'
-        expect(Lab.country_list_for Lab.all).to eq([['Egypt', 'eg', 1], ['France', 'fr', 2]])
+        expect(Lab.country_list_for Lab.all).to eq([['Egypt', 'EG', 1], ['France', 'FR', 2]])
         I18n.locale = 'de'
-        expect(Lab.country_list_for Lab.all).to eq([['Ägypten', 'eg', 1], ['Frankreich', 'fr', 2]])
+        expect(Lab.country_list_for Lab.all).to eq([['Ägypten', 'EG', 1], ['Frankreich', 'FR', 2]])
         I18n.locale = I18n.default_locale
       end
 
