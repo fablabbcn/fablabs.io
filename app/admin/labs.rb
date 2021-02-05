@@ -15,4 +15,21 @@ ActiveAdmin.register Lab do
   #   permitted
   # end
   
+  remove_filter :roles
+  remove_filter :academics
+  remove_filter :admin_applications
+  remove_filter :events
+  remove_filter :discussions
+  remove_filter :employees
+  remove_filter :links
+  remove_filter :role_applications
+  remove_filter :facilities
+  remove_filter :projects
+  remove_filter :documents
+  remove_filter :creator
+  remove_filter :referee
+  remove_filter :organizations
+  remove_filter :lab_organizations
+  remove_filter :referee_approval_processes
+  remove_filter :approval_workflow_logs
 end
