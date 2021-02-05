@@ -1,9 +1,10 @@
 class ApplicationRecord < ActiveRecord::Base
   self.abstract_class = true
 
-  def self.country_list_for labs
+  def self.country_list_for(labs)
     c = Hash.new(0)
-    labs.map{ |v| c[v[:country_code]] += 1 }
+    # upcase so we dont get duplicate labs. Country code ES != es
+    labs.map{ |v| c[v[:country_code].upcase] += 1 }
     countries = []
     c.each do |country_code, count|
       if Country[country_code]
