@@ -14,5 +14,9 @@ ActiveAdmin.register Doorkeeper::Application do
   #   permitted << :other if params[:action] == 'create' && current_user.admin?
   #   permitted
   # end
-  
+
+  remove_filter :access_grants
+  remove_filter :access_tokens
+  remove_filter :authorized_tokens
+  remove_filter :authorized_applications
 end
