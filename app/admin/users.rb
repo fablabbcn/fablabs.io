@@ -48,6 +48,7 @@ ActiveAdmin.register User do
     column :last_name
     column :email
     column :username
+    column :roles
     column :bio do |b|
       truncate(b.bio, length: 100)
     end
