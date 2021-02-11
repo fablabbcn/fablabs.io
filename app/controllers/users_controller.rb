@@ -14,6 +14,7 @@ class UsersController < ApplicationController
     return render plain: "Please go back and ensure that the 'ignore' field is EMPTY." if params[:name].present?
 
     @user = User.new user_params
+    @user.current_sign_in_ip = request.remote_ip
     if verify_recaptcha(model: @user) && @user.save
       UserMailer.welcome(@user.id).deliver_now
       # cookies.permanent[:user_id] = { value: @user.id, domain: '.fablabs.dev' }
