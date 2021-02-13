@@ -2,6 +2,8 @@ return unless File.exist?('BANNED_IPS.txt')
 
 BANNED_IPS = File.readlines('BANNED_IPS.txt', chomp: true)
 
+puts "---- Rack::Attack Blocking #{BANNED_IPS.length} IPs"
+
 Rack::Attack.blocklist('block multiple IPS') do |req|
   BANNED_IPS.include?(req.ip)
 end
