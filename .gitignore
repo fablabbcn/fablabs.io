@@ -50,3 +50,4 @@ export/
 .idea/
 
 deploy_history.txt
+BANNED_IPS.txt
