@@ -407,6 +407,8 @@ GEM
     puma (3.12.6)
     racc (1.5.2)
     rack (2.2.3)
+    rack-attack (6.5.0)
+      rack (>= 1.0, < 3)
     rack-cache (1.10.0)
       rack (>= 0.4)
     rack-cors (1.0.5)
@@ -673,6 +675,7 @@ DEPENDENCIES
   pry-rescue
   pry-stack_explorer
   puma
+  rack-attack
   rack-cache
   rack-cors
   rails (~> 5.2)
