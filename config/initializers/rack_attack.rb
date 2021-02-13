@@ -11,6 +11,7 @@ BANNED_IPS = %w[
   114.122.70.56
   178.162.222.161
   223.185.42.72
+  223.185.17.90
 ]
 
 Rack::Attack.blocklist('block multiple IPS') do |req|
