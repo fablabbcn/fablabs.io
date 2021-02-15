@@ -295,6 +295,8 @@ GEM
       railties (>= 5.0, < 6.1)
       responders (>= 2, < 4)
     interception (0.5)
+    invisible_captcha (1.1.0)
+      rails (>= 4.2)
     ipaddress (0.8.3)
     jbuilder (2.9.1)
       activesupport (>= 4.2.0)
@@ -654,6 +656,7 @@ DEPENDENCIES
   http_accept_language
   i18n-tasks (~> 0.9.33)
   inherited_resources
+  invisible_captcha
   jbuilder
   jquery-rails
   kaminari

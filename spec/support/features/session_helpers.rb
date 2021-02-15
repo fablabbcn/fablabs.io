@@ -11,6 +11,8 @@ module Features
       fill_in 'user_password', with: user.password
       fill_in 'user_password_confirmation', with: user.password_confirmation
       check 'user_agree_policy_terms'
+      InvisibleCaptcha.timestamp_threshold = 1
+      sleep InvisibleCaptcha.timestamp_threshold
       click_button 'Sign Up'
     end
 

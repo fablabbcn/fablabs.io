@@ -1,6 +1,12 @@
 class UsersController < ApplicationController
 
+  invisible_captcha only: [:create], honeypot: :subtitle, on_spam: :spam_callback
   before_action :require_login, except: [:new, :create, :verify_email, :show, :index]
+
+  def spam_callback
+    flash[:notice] = 'Signup failed. Are you a spammer?'
+    redirect_to root_path
+  end
 
   def new
     @user = User.new

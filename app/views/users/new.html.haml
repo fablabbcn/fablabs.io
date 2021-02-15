@@ -13,6 +13,7 @@
           = f.label :first_name, "Your Name"
         .col-md-6
           = f.input :first_name, autofocus: true, placeholder: 'First Name', label: false
+          = f.invisible_captcha :subtitle
         .col-md-6
           = f.input :last_name, placeholder: 'Last Name', label: false
 
