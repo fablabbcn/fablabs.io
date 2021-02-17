@@ -15,6 +15,10 @@ ActiveAdmin.register User do
   #   permitted
   # end
 
+  scope :all
+  scope :verified
+  scope :unverified
+
   remove_filter :access_grants
   remove_filter :access_tokens
   remove_filter :oauth_applications

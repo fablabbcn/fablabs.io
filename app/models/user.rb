@@ -75,6 +75,9 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :email_fallback, allow_blank: true
   validates :password, presence: true, length: { minimum: 6 }, if: lambda{ !password.nil? }, on: :update
 
+  scope :verified, -> { where(workflow_state: :verified) }
+  scope :unverified, -> { where(workflow_state: :unverified) }
+
   extend FriendlyId
   friendly_id :slug_candidates, use: [:slugged, :finders]
   def slug_candidates
