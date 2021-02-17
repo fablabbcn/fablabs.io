@@ -1,16 +1,29 @@
 <div class="container">
   <h1 class="text-center my-4">Statistics</h1>
 
-  <p>Users created per day</p>
+  <h2>Users</h2>
+  <p>Users created per day, last 30 days</p>
+  <%= line_chart User.group_by_day(:created_at, last: 30).count %>
+
+  <p>Users created per day (all time)</p>
   <%= line_chart User.group_by_day(:created_at).count %>
 
-  <p class="mt-4">Labs created per day</p>
+  <h2 class="mt-5">Labs</h2>
+  <p>Labs created per day</p>
   <%= line_chart Lab.group_by_day(:created_at).count %>
 
-  <p class="mt-4">Labs by country</p>
+  <p>Labs by country</p>
   <%= pie_chart Lab.group(:country_code).count %>
 
-  <p class="mt-4">Jobs created per day</p>
+  <h2 class="mt-4">Machines</h2>
+  <p>Created per day, last 30 days</p>
+  <%= line_chart Machine.group_by_day(:created_at, last: 30).count %>
+
+  <p>Created per day (all time)</p>
+  <%= line_chart Machine.group_by_day(:created_at).count %>
+
+  <h2>Jobs</h2>
+  <p>Jobs created per day</p>
   <%= line_chart Job.group_by_day(:created_at).count %>
 
 </div>
