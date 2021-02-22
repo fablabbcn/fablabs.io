@@ -21,6 +21,19 @@ class UsersController < ApplicationController
 
     @user = User.new user_params
     @user.current_sign_in_ip = request.remote_ip
+
+    if params[:'spam-math'].present?
+      if params[:'spam-math'].to_s != '8'
+        flash[:notice] = "Did you answer the spam question correctly? You answered: #{params[:'spam-math']}"
+        render 'new'
+        return
+      end
+    else
+      flash[:notice] = "Please answer the spam question!"
+      render 'new'
+      return
+    end
+
     if verify_recaptcha(model: @user) && @user.save
       UserMailer.welcome(@user.id).deliver_now
       # cookies.permanent[:user_id] = { value: @user.id, domain: '.fablabs.dev' }

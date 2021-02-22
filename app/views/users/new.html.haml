@@ -10,6 +10,8 @@
         = render "form_errors", resource: @user
         = hidden_field_tag :goto, params[:goto]
         .col-12
+          - flash.each do |type, msg|
+            %p.text-danger= msg
           = f.label :first_name, "Your Name"
         .col-md-6
           = f.input :first_name, autofocus: true, placeholder: 'First Name', label: false
@@ -31,6 +33,10 @@
 
           .my-3
             = f.input :agree_policy_terms, as: :boolean, label: "Please read and agree to our <a href='/cookie-policy'>Cookie</a>, <a href='/privacy-policy'>Privacy</a> and <a href='/tos'>Terms of Service (TOS)</a> policies".html_safe, input_html: { class: 'form-check-input' }
+
+          %h5 Spam prevention
+          <label> What is 5 plus 3</label>
+          <input type="text" class="form-control" name="spam-math" required="true" />
 
           .my-3
             = recaptcha_tags
