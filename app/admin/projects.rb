@@ -14,5 +14,24 @@ ActiveAdmin.register Project do
   #   permitted << :other if params[:action] == 'create' && current_user.admin?
   #   permitted
   # end
-  
+
+  remove_filter :lab
+  remove_filter :owner
+  remove_filter :contribution
+  remove_filter :contributors
+  remove_filter :links
+  remove_filter :collaborations
+  remove_filter :collaborators
+  remove_filter :machineries
+  remove_filter :devices
+  remove_filter :documents
+  remove_filter :steps
+  remove_filter :favourites
+  remove_filter :grades
+  remove_filter :users
+  remove_filter :taggings
+  remove_filter :base_tag
+  remove_filter :base_tag
+  remove_filter :tag_taggings
+  remove_filter :tags
 end
