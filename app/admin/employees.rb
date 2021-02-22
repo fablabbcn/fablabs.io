@@ -14,5 +14,7 @@ ActiveAdmin.register Employee do
   #   permitted << :other if params[:action] == 'create' && current_user.admin?
   #   permitted
   # end
-  
+
+  remove_filter :user
+  remove_filter :lab
 end

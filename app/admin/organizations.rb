@@ -15,4 +15,8 @@ ActiveAdmin.register Organization do
   #   permitted
   # end
   
+  remove_filter :labs
+  remove_filter :lab_organizations
+  remove_filter :links
+  remove_filter :creator
 end
