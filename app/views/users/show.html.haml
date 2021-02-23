@@ -14,7 +14,13 @@
         %br
         = link_to password_path, class: 'button tiny' do
           = fa_icon "key", text: "Change Password"
-      = simple_format @user.bio
+
+      .my-3.border.p-3
+        - if @user.created_at < 2.months.ago
+          = simple_format @user.bio
+        - else
+          %p Because of high amount of spam users, biography will only be shown after 2 months of activity.
+
       = render "links", links: @user.links
       - if @user.employees.with_approved_state.any?
         %h5.border-bottom Works at:
