@@ -36,7 +36,7 @@ module Features
     end
 
     def sign_in_superadmin
-      superadmin = FactoryBot.create(:user)
+      superadmin = FactoryBot.create(:user, created_at: 1.year.ago)
       superadmin.add_role :superadmin
       sign_in superadmin
     end
