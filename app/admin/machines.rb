@@ -15,5 +15,16 @@ ActiveAdmin.register Machine do
   #   permitted << :other if params[:action] == 'create' && current_user.admin?
   #   permitted
   # end
-  
+
+  remove_filter :brand
+  remove_filter :discussions
+  remove_filter :facilities
+  remove_filter :labs
+  remove_filter :links
+  remove_filter :documents
+  remove_filter :taggings
+  remove_filter :base_tags
+  remove_filter :tag_taggings
+  remove_filter :tags
+
 end
