@@ -14,7 +14,12 @@ ActiveAdmin.register Lab do
   #   permitted << :other if params[:action] == 'create' && current_user.admin?
   #   permitted
   # end
-  
+  scope :all
+  scope :approved
+  scope :approved_referees
+  scope :pending
+  scope :unverified
+
   remove_filter :roles
   remove_filter :academics
   remove_filter :admin_applications

@@ -103,6 +103,9 @@ class Lab < ApplicationRecord
   scope :search_for, ->(q) { search_by_name(q) if q.present? }
   scope :in_country_code, ->(cc) { where(country_code: cc) if cc.present?}
   scope :approved_referees, -> { where(is_referee: true).order('name ASC') }
+  scope :approved, -> { where(workflow_state: :approved) }
+  scope :pending, -> { where(workflow_state: :pending) }
+  scope :unverified, -> { where(workflow_state: :unverified) }
 
   before_save :downcase_email
   before_save :truncate_blurb
