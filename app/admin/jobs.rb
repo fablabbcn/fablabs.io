@@ -14,5 +14,11 @@ ActiveAdmin.register Job do
   #   permitted << :other if params[:action] == 'create' && current_user.admin?
   #   permitted
   # end
-  
+
+  remove_filter :user
+  remove_filter :taggings
+  remove_filter :base_tags
+  remove_filter :tag_taggings
+  remove_filter :tags
+
 end
