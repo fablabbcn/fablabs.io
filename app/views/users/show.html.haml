@@ -9,7 +9,7 @@
       %em.d-block
         Joined #{time_ago_in_words(@user.created_at)} ago.
       - if current_user&.has_role? :superadmin
-        = link_to 'Edit on /admin', admin_user_url(@user)
+        = link_to 'Edit on /admin', admin_user_url(@user), class: 'text-danger'
       - if current_or_null_user == @user
         = link_to settings_path, class: 'button tiny' do
           = fa_icon "edit", text: "Edit Profile"

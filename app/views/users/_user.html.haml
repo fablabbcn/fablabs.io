@@ -1,5 +1,6 @@
 = content_tag_for :div, user do
+  = image_tag user.avatar_url, class: 'avatar small mb-2'
   = link_to user, user
   - if current_user&.has_role? :superadmin
     \-
-    = link_to 'Edit on admin', admin_user_url(user)
+    = link_to 'Edit on /admin', admin_user_url(user), class: 'text-danger'
