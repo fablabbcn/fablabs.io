@@ -62,6 +62,11 @@ class Api::V2::AdminController < Api::V2::ApiController
     error! :forbidden unless current_user.has_role? :superadmin
     options = {}
     @user = User.where('username = ? ', params[:username]).first
+
+    if @user.blank? and params[:username].to_i.to_s == params[:username]
+        @user = User.where('id = ? ', params[:username]).first
+    end
+
     render_json ApiUserSerializer.new(@user, options).serialized_json
   end
 
