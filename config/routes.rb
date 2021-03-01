@@ -205,7 +205,7 @@ Rails.application.routes.draw do
       get 'users/me' => 'user#me'
       post 'users/me' => 'user#update_user'
       post 'users/search' => 'admin#search_users'
-      get 'users/:username' => 'admin#get_user'
+      get 'users/:slug' => 'admin#get_user'
 
       # labs
       get 'labs' => 'labs#index'
@@ -216,7 +216,7 @@ Rails.application.routes.draw do
       put 'labs/:id' => 'labs#update'
       get 'labs/:id/relationships/machines' => 'labs#get_lab_machines_by_id'
       post 'labs/:id/relationships/machines' => 'labs#add_lab_machine_by_id'
- 
+
       # projects
       get 'projects' => 'projects#index'
       post 'projects' => 'projects#create'
