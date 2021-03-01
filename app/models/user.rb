@@ -165,7 +165,7 @@ class User < ActiveRecord::Base
 
   def pending_referee_labs
     labs = RefereeApprovalProcess.where(referee_lab_id: admin_labs.map(&:resource_id)).map(&:referred_lab).uniq
-    labs.select{ |lab| lab if ['unverified', 'need_more_info', 'more_info_added'].include?(lab.workflow_state) }
+    labs.select{ |lab| lab if ['unverified', 'need_more_info', 'more_info_added'].include?(lab&.workflow_state) }
   end
 
   def referee_labs
