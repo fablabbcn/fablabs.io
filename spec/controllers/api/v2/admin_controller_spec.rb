@@ -38,6 +38,19 @@ describe Api::V2::AdminController, type: :request do
     end
   end
 
+  describe 'GET users#get_user' do
+    the_username = 'firstsecond'
+    let!(:user) { FactoryBot.create :user, username: the_username }
+
+    it 'returns a single user' do
+      user.add_role :superadmin
+      get_as_user "http://api.fablabs.dev/2/users/#{the_username}"
+      expect(response.status).to eq(200)
+      expect(response.content_type).to eq(Mime[:json])
+      expect(JSON.parse(response.body)['data']['attributes']['username']).to eq(the_username)
+    end
+  end
+
   describe 'POST users#create_user' do
     context 'When not authenticated'
     it 'Does not allow to create a user as anonymous' do
