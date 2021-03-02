@@ -41,14 +41,18 @@ class Api::V2::AdminController < Api::V2::ApiController
     error! :forbidden unless current_user.has_role? :superadmin
 
     data = params.require(:data).permit(:username, :email)
-    @username = data.fetch('username', '')
-    @email = data.fetch('email', '')
 
-    @users, @paginate = paginate User.where(
-      'UPPER(username) = UPPER(?) or UPPER(email) = UPPER(?)',
-      @username.to_s,
-      @email.to_s
-    )
+    @query = User.all
+
+    if data['username'].present?
+      @query = @query.where('UPPER(username) = UPPER(?)', data['username'].to_s)
+    end
+
+    if data['email'].present?
+      @query = @query.where('UPPER(email) = UPPER(?)', data['email'].to_s)
+    end
+
+    @users, @paginate = paginate @query
 
     # Your code hereda
     options = {}
