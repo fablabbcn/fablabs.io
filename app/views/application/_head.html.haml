@@ -33,3 +33,4 @@
   %link{type: "text/plain", rel: "author", href: "/humans.txt"}
   = csrf_meta_tags
 
+  = render 'hotjar' if Rails.env.production?
