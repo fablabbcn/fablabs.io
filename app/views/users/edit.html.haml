@@ -17,14 +17,15 @@
       = f.input :phone
       = f.input :country_code, as: 'country', priority: ([current_country.alpha2.downcase] if current_country), label: 'Country', iso_codes: true
 
-      - if @user.created_at < 2.months.ago
+      - if @user.passed_spam_period?
         = f.input :bio, input_html: { rows: 5 }
         = f.input :url
       - else
         %p Because of high amount of spam users, biography will only be available after 2 months of activity.
 
-    %fieldset
-      = render 'form_links', f: f
+    - if @user.passed_spam_period?
+      %fieldset
+        = render 'form_links', f: f
 
     %fieldset
       .row

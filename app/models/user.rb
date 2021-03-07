@@ -159,6 +159,10 @@ class User < ActiveRecord::Base
     return self.grades.where(project_id: project_id).first
   end
 
+  def passed_spam_period?
+    created_at < 2.months.ago
+  end
+
   def unique_referee_labs
     Lab.where("referee_id IN (?) AND workflow_state IN (?)", self.admin_labs.map{ |u| u.resource_id }, ['unverified', 'more_info_needed', 'more_info_added'])
   end

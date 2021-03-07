@@ -4,7 +4,7 @@
 .container.mt-3
   .d-block
     = image_tag @user.avatar_url, class: 'avatar big', style: 'margin-left:30px'
-    .ml-3
+    .ml-3.mt-2
       = title @user
       %em.d-block
         Joined #{time_ago_in_words(@user.created_at)} ago.
@@ -17,13 +17,16 @@
         = link_to password_path, class: 'button tiny' do
           = fa_icon "key", text: "Change Password"
 
-      .my-3.border.p-3
-        - if @user.created_at < 2.months.ago
-          = simple_format @user.bio
+      .my-3
+        - if @user.passed_spam_period?
+          - if @user.bio?
+            %h5 Bio
+            = simple_format @user.bio
         - else
           %p Because of high amount of spam users, biography will only be shown after 2 months of activity.
 
-      = render "links", links: @user.links
+      = render "links", links: @user.links if @user.passed_spam_period?
+
       - if @user.employees.with_approved_state.any?
         %h5.border-bottom Works at:
         %ul.list-unstyled
@@ -37,8 +40,7 @@
     .text-large.text-left.text-lg-center
       Contributions
     = render @user.created_projects | @user.projects
-
-  .row-disabled
+  .my-2
     .text-large.text-left.text-lg-center
       Activity
     .activity.vertical-timeline
