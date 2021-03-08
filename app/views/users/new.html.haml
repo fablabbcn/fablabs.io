@@ -4,7 +4,7 @@
   %p We are currently working on fixing the problem as soon as possible.
   %p If you are urging any assistance or are willing to receive a notification once the system is back up, please don’t hesitaste to write us at <a href="mailto:forum@fabfoundation.org">forum@fabfoundation.org</a>
 
-- if false
+- if Rails.env.test?
   = simple_form_for @user do |f|
     %fieldset
       .form-header
