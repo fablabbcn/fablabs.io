@@ -14,5 +14,6 @@ ActiveAdmin.register RefereeApprovalProcess do
   #   permitted << :other if params[:action] == 'create' && current_user.admin?
   #   permitted
   # end
-  
+  scope :all
+  scope :approved
 end

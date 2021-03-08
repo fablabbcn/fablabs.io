@@ -3,6 +3,8 @@ class RefereeApprovalProcess < ActiveRecord::Base
   belongs_to :referred_lab, class_name: 'Lab'
   # referee_lab and referred_lab need to be different
 
+  scope :approved, -> { where(approved: true) }
+
   def self.approval_ratio
     2/3
   end
