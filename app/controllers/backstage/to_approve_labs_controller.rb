@@ -1,6 +1,6 @@
 class Backstage::ToApproveLabsController < ApplicationController
-
   before_action :require_login
+
   def index
     @q = Lab.where(id: current_user.referee_labs.map(&:id)).ransack(params[:q])
 
