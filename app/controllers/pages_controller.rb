@@ -1,5 +1,9 @@
 class PagesController < ApplicationController
 
+  def index
+    @pages = Page.where(published: true).order(position: :asc)
+  end
+
   def show
     @page = Page.friendly.find(params[:id])
     unless @page.published?

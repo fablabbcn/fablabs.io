@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   get "discuss" => 'discourse#embed'
 
   resources :jobs
-  resources :pages, only: [:show]
+  resources :pages, only: [:index, :show]
 
   get "metrics", to: "static#metrics"
   get "signin" => "sessions#new", :as => "signin"
