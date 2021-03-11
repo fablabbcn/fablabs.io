@@ -7,13 +7,13 @@ en:
     precision_milling: Precision milling
     three_d_printing: 3D printing
     vinyl_cutting: Vinyl cutting
-  jobs:
-    index:
-      title: Jobs
-      new_job: New Job Posting
   events:
     index:
       title: Eventos
+  jobs:
+    index:
+      new_job: New Job Posting
+      title: Jobs
   labs:
     employees:
       applied: Applied

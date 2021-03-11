@@ -7,13 +7,13 @@ es:
     precision_milling: Fresado de precisión
     three_d_printing: Impresión 3D
     vinyl_cutting: Cortadora de vinilo
-  jobs:
-    index:
-      title: Trabajos
-      new_job: Crear trabajo
   events:
     index:
       title: Eventos
+  jobs:
+    index:
+      new_job: Crear trabajo
+      title: Trabajos
   labs:
     index:
       all_countries: Todos los países
