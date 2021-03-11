@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
 
-  def main_index
+  def index
     @events = Event.upcoming.includes(:lab)
     #authorize_action_for @events
     @events = @events.order('starts_at ASC').page(params['page']).per(params['per'])
@@ -17,7 +17,7 @@ class EventsController < ApplicationController
     #authorize_action_for @event
   end
 
-  def index
+  def index_old
     @lab = Lab.friendly.find(params[:lab_id])
     @events = @lab.events
     #authorize_action_for @events

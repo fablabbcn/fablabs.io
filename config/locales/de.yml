@@ -7,6 +7,11 @@ de:
     precision_milling: Präzisionsfräsen
     three_d_printing: 3D-Drucken
     vinyl_cutting: Schneideplotten
+  labs:
+    index:
+      all_countries: Alle Länder
+      list: Liste
+      map: Karte
   views:
     header:
       backstage: Backstage
@@ -43,8 +48,3 @@ de:
       whats_coming_next: Was kommt als Nächstes?
       who_is_it_for: Für wen ist fablabs.io gedacht?
       world_map: Weltkarte
-    labs:
-      index:
-        all_countries: Alle Länder
-        list: Liste
-        map: Karte

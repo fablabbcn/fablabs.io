@@ -106,7 +106,7 @@ Rails.application.routes.draw do
       end
     end
 
-    get 'events' => 'events#main_index', as: 'events'
+    get 'events' => 'events#index', as: 'events'
 
     resources :search, only: [:index]
 

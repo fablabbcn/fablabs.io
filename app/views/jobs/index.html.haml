@@ -2,7 +2,7 @@
   = search_form_for @q do |f|
     .row
       .col-md-2.border-right.text-center.py-4
-        = title 'Jobs'
+        = title t '.title'
       .col-md-8.border-right.py-4
         .row
           .col-lg-4
@@ -21,7 +21,7 @@
 
       .col-md-2.py-4
         - if current_user&.has_role?(:superadmin)
-          = link_to 'New Job Posting', new_job_path, class: 'btn btn-primary'
+          = link_to t('.new_job'), new_job_path, class: 'btn btn-primary'
 
 
 .container-fluid

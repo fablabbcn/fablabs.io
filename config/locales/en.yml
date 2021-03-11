@@ -7,6 +7,13 @@ en:
     precision_milling: Precision milling
     three_d_printing: 3D printing
     vinyl_cutting: Vinyl cutting
+  jobs:
+    index:
+      title: Jobs
+      new_job: New Job Posting
+  events:
+    index:
+      title: Eventos
   labs:
     employees:
       applied: Applied
@@ -77,6 +84,7 @@ en:
     important: Important
     invalid_email_or_password: Invalid email or password
     list_view: List view
+    map: Map
     map_view: Map view
     signed_in: Signed in.
     signed_out: Signed out!

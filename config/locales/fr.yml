@@ -7,6 +7,11 @@ fr:
     precision_milling: Fraiseuse de précision
     three_d_printing: Impression 3D
     vinyl_cutting: Découpe Vinyle
+  labs:
+    index:
+      all_countries: Tous les pays
+      list: Liste
+      map: Carte
   views:
     header:
       backstage: Coulisses
@@ -40,8 +45,3 @@ fr:
       whats_coming_next: A venir?
       who_is_it_for: A qui est destiné Fablabs.io?
       world_map: Carte du monde
-    labs:
-      index:
-        all_countries: Tous les pays
-        list: Liste
-        map: Carte

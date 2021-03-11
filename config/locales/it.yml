@@ -7,6 +7,11 @@ it:
     precision_milling: Fresatura di precisione
     three_d_printing: Stampa 3D
     vinyl_cutting: Taglio vinile
+  labs:
+    index:
+      all_countries: Tutti i paesi
+      list: Lista
+      map: Mappa
   views:
     header:
       backstage: Retroscena
@@ -43,8 +48,3 @@ it:
       whats_coming_next: Che cosa succederà prossimamente?
       who_is_it_for: A chi é rivolto fablabs.io?
       world_map: Mappa mondiale
-    labs:
-      index:
-        all_countries: Tutti i paesi
-        list: Lista
-        map: Mappa

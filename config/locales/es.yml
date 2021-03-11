@@ -7,10 +7,23 @@ es:
     precision_milling: Fresado de precisión
     three_d_printing: Impresión 3D
     vinyl_cutting: Cortadora de vinilo
+  jobs:
+    index:
+      title: Trabajos
+      new_job: Crear trabajo
+  events:
+    index:
+      title: Eventos
+  labs:
+    index:
+      all_countries: Todos los países
+      list: Lista
+      map: Mapa
   views:
     header:
       backstage: Entre bastidores
       events: Eventos
+      jobs: Trabajos
       labs: Labs
       machines: Máquinas
       me: Yo
@@ -44,8 +57,3 @@ es:
       whats_coming_next: Qué viene a continuación?
       who_is_it_for: Entonces para quién es fablabs.io?
       world_map: Mapa del mundo
-    labs:
-      index:
-        all_countries: Todos los países
-        list: Lista
-        map: Mapa

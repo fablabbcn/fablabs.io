@@ -7,6 +7,11 @@ pt:
     precision_milling: Usinagem de precisão
     three_d_printing: Impressão 3D
     vinyl_cutting: Para quem é voltado o fablabs.io?
+  labs:
+    index:
+      all_countries: Todos Países
+      list: Listar
+      map: Mapas
   views:
     header:
       backstage: Bastidores
@@ -43,8 +48,3 @@ pt:
       whats_coming_next: O que está por vir?
       who_is_it_for: Para quem é voltado o fablabs.io?
       world_map: Mapa Mundial
-    labs:
-      index:
-        all_countries: Todos Países
-        list: Listar
-        map: Mapas

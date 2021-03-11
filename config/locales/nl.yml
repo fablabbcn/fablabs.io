@@ -7,6 +7,11 @@ nl:
     precision_milling: Precisie frezen
     three_d_printing: 3D printen
     vinyl_cutting: Vinyl snijplotter
+  labs:
+    index:
+      all_countries: Alle Landen
+      list: Lijst
+      map: Kaart
   views:
     header:
       backstage: Achter de schermen
@@ -43,8 +48,3 @@ nl:
       whats_coming_next: Wat komt er nog?
       who_is_it_for: Voor wie is Fablabs.io ?
       world_map: Wereldkaart
-    labs:
-      index:
-        all_countries: Alle Landen
-        list: Lijst
-        map: Kaart
