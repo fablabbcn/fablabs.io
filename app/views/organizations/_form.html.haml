@@ -1,13 +1,13 @@
-= simple_form_for organization, html: { class: 'row'} do |f|
+= simple_form_for organization do |f|
   - if current_user.has_role?(:superadmin)
-    %fieldset.col-12
+    %fieldset
       .text-large Superadmin Options
 
       = f.input :workflow_state, collection: Organization::WORKFLOW_STATES, include_blank: false
       = f.input :geojson_file, as: :file
       = f.input :zoom
 
-  %fieldset.col-12
+  %fieldset
     .text-large Basic Details
 
     = f.input :name
@@ -15,13 +15,13 @@
     = f.input :email
     = f.input :phone
 
-  %fieldset.col-12
+  %fieldset
 
     = f.input :blurb, as: :text, hint: 'A very brief overview of the organization, maybe include what it specializes in. <span id="description-count"></span> characters available.'.html_safe, input_html: { rows: 3, data: { limit: 200, counter: '#description-count'} }
 
     = f.input :description, hint: 'An in-depth description of the organization', input_html: { style: 'height: 8em' }
 
-  %fieldset.col-12
+  %fieldset
     .text-large Organization Images
     .row
       .col-lg-3.p-2
@@ -39,7 +39,7 @@
         = f.input :header, as: :file, label: 'Photo', hint: "A single (large) photo of your organization. You will be able to add more photos soon."
         = f.hidden_field :retained_header
 
-  %fieldset.col-12
+  %fieldset
     .text-large Organization Location
     .address
       .question
@@ -68,7 +68,7 @@
     %p It can include blogs, social networks, video/photo sites etc.
 
   - if organization.new_record?
-    %fieldset.col-12
+    %fieldset
       .text-large Anything else?
       = f.input :application_notes
 

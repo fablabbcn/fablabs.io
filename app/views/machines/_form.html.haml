@@ -1,5 +1,5 @@
-= simple_form_for machine, html: { class: 'row'} do |f|
-  %fieldset.col-12
+= simple_form_for machine do |f|
+  %fieldset
     .text-large
       General
 
@@ -8,12 +8,12 @@
     = f.input :name
     = f.input :description
 
-  %fieldset.col-12
+  %fieldset
     .text-large
       Facilities
     = render "facilities", :f => f
 
-  %fieldset.col-12
+  %fieldset
     .text-large
       Media
     .row
@@ -24,7 +24,7 @@
         = f.input :photo, as: :file, label: 'Photo'
         = f.hidden_field :retained_photo
 
-  %fieldset.col-12
+  %fieldset
     .text-large
       Tags
 
@@ -32,7 +32,7 @@
     .form-check
       = f.input :inventory_item, input_html: { class: 'form-check-input' }
 
-  %fieldset.col-12
+  %fieldset
     = render 'form_links', f: f
 
   = f.submit (machine.new_record? ? 'New Machine' : 'Update Machine'), class: 'btn btn-primary btn-lg mt-4'
