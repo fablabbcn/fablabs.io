@@ -22,6 +22,7 @@
 //= require trumbowyg/trumbowyg
 //= require spin.js/spin
 //= require leaflet-spin
+//= require rails-ujs
 
 
 document.addEventListener("DOMContentLoaded", function() {
