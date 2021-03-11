@@ -30,12 +30,12 @@
             - if current_or_null_user.can_update?(@lab)
               .dropdown
                 %button.dropdown-toggle.btn.btn-primary{"type": "button", "data-toggle": "dropdown"}
-                  = fa_icon "edit", text: t('views.labs.show.manage_lab', default: "Manage Lab")
+                  = fa_icon "edit", text: t('.manage_lab', default: "Manage Lab")
                 .dropdown-menu
                   = link_to edit_lab_path(@lab), class: 'dropdown-item' do
-                    = fa_icon "edit", text: t('views.labs.show.edit_lab_details', default: "Edit Lab Details")
+                    = fa_icon "edit", text: t('.edit_lab_details', default: "Edit Lab Details")
                   = link_to lab_employees_path(@lab), class: 'dropdown-item' do
-                    = fa_icon "group", text: t('views.labs.show.edit_employee_list', default: "Edit Employee List")
+                    = fa_icon "group", text: t('.edit_employee_list', default: "Edit Employee List")
                   = link_to new_lab_event_path(@lab), class: 'dropdown-item' do
-                    = fa_icon "calendar", text: t('views.labs.show.add_event', default: "Add Event")
+                    = fa_icon "calendar", text: t('.add_event', default: "Add Event")
 

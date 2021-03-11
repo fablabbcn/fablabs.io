@@ -1,5 +1,5 @@
 .text-large
-  = t("views.labs.show.people", default: "Employees")
+  = t(".people", default: "Employees")
 - if current_or_null_user.can_update?(lab)
   = link_to "edit", lab_employees_path(lab), id: "edit-employees"
 
@@ -20,12 +20,12 @@
       - if current_user.applied_to?(@lab) and !current_user.employed_by?(@lab)
         = link_to new_lab_employee_path(@lab), class: 'btn disabled btn-default' do
           = fa_icon "check-square"
-          = t("views.labs.show.applied", default: "Applied")
+          = t(".applied", default: "Applied")
       - elsif current_user.can_create? @lab.employees.build
         = link_to new_lab_employee_path(@lab), class: 'btn btn-primary' do
           = fa_icon "check-square"
-          = t("views.labs.show.i_work_here", default: "I work here")
+          = t(".i_work_here", default: "I work here")
     - else
       = link_to new_lab_employee_path(@lab), class: 'btn btn-primary' do
         = fa_icon "check-square"
-        = t("views.labs.show.i_work_here", default: "I work here")
+        = t(".i_work_here", default: "I work here")

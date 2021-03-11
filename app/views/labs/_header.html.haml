@@ -1,6 +1,6 @@
 .view-as
   .btn-group
     = link_to labs_path, class: "list btn #{action_name == 'index' ? 'btn-primary' : 'btn-default'}" do
-      = t("views.labs.index.list", default: "List view")
+      = t("shared.list_view", default: "List view")
     = link_to map_labs_path, class: "map btn #{action_name == 'map' ? 'btn-primary' : 'btn-default'}" do
-      = t("views.labs.index.map", default: "Map view")
+      = t("shared.map_view", default: "Map view")

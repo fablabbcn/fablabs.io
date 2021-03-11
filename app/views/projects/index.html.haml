@@ -8,10 +8,10 @@
     .col-4
       - if current_user
         = link_to new_project_path, class: "btn btn-primary" do
-          = fa_icon "plus", text: t("views.projects.index.new_project", default: "Add a new Project")
+          = fa_icon "plus", text: t(".new_project", default: "Add a new Project")
       - else
         = link_to new_project_path, class: "btn btn-primary", title: "You need to be signed in to add a Project" do
-          = fa_icon "plus", text: t("views.labs.index.new_project", default: "Add a new Project")
+          = fa_icon "plus", text: t(".new_project", default: "Add a new Project")
 
 .container
   .row
