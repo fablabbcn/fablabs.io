@@ -67,7 +67,7 @@ puts "Creating 100 labs"
     name: "MyLab#{Lab.count}",
     kind: Lab::KINDS.sample,
     email: FFaker::Internet.email,
-    country_code: ['is','es','us','gb','dk','de'].sample,
+    country_code: ['IS','ES','US','GB','DK','DE','AR','CH','AU'].sample,
     address_1: 'MyStreet 24',
     network: true,
     tools: true,
