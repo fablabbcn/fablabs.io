@@ -202,6 +202,11 @@ class Lab < ApplicationRecord
     end
   end
 
+  def self.labs_in_continent(continent)
+    countries_in_continent = ISO3166::Country.find_all_countries_by_continent(continent).map(&:alpha2)
+    Lab.where(country_code: countries_in_continent)
+  end
+
   def self.last_updated_at
     self.select(:updated_at).order('updated_at DESC').first
   end
