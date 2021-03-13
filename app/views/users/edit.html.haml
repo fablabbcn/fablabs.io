@@ -14,6 +14,7 @@
       = f.input :username
       = f.input :email
       = f.input :email_fallback
+      = f.input :dob
       = f.input :phone
       = f.input :country_code, as: 'country', priority: ([current_country.alpha2.downcase] if current_country), label: 'Country', iso_codes: true
 
