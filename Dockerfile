@@ -11,7 +11,7 @@ RUN apt-get update -qq && apt-get install -y \
   imagemagick \
   curl
 
-# Install NodeJS 10
+# Install NodeJS
 RUN curl -sL https://deb.nodesource.com/setup_14.x > setup_14.x
 RUN chmod +x setup_14.x
 RUN ./setup_14.x
@@ -25,18 +25,12 @@ WORKDIR /$APPROOT
 # Create application home. App server will need the pids dir so just create everything in one shot
 RUN mkdir -p $APPROOT/tmp/pids
 
-# Update Gems
-#RUN gem update --system
+# Copy the Rails application into place
+COPY . $APPROOT
 
 # Bundler
 RUN gem install bundler
-COPY Gemfile Gemfile
-COPY Gemfile.lock Gemfile.lock
-COPY .ruby-version .ruby-version
 RUN bundle install
-
-# Copy the Rails application into place
-COPY . $APPROOT
 
 RUN npm install
 
@@ -47,7 +41,11 @@ RUN npm install yarn -g
 #RUN bin/rake assets:precompile
 # Precompile started erroring 2021-01-18 - for now we precompile in scripts/deploy.sh
 
-#CMD ["rails", "server", "-b", "0.0.0.0"]
-#CMD ["bash","-c","rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"]
+# Add a script to be executed every time the container starts.
+# TODO: use the entryscript to WAIT for the other containers, so the app survives restart?
+# Right now we have to start containers in correct order and wait for services to be ready
+COPY entrypoint.sh /usr/bin/
+RUN chmod +x /usr/bin/entrypoint.sh
+ENTRYPOINT ["entrypoint.sh"]
 
-CMD ["bash","-c","bundle exec puma -C config/puma.rb"]
+CMD [ "bin/rails", "server", "-p", "3000", "-b", "0.0.0.0" ]
