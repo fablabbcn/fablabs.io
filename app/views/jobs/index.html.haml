@@ -22,7 +22,8 @@
       .col-md-2.py-4
         - if current_user&.has_role?(:superadmin)
           = link_to t('.new_job'), new_job_path, class: 'btn btn-primary'
-
+        - else
+          = link_to t('.new_job'), "https://docs.google.com/forms/d/e/1FAIpQLSeSf0baoFfeEMZamGup9XhUv4LJTSn1vFRYea-n8ZgidYPPQQ/viewform", target:"_blank", class: 'btn btn-primary'
 
 .container-fluid
   %table.table.table-hover.table-striped.border
