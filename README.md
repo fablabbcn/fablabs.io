@@ -58,10 +58,10 @@ Run tests with:
 
 1. Add this to your `/etc/hosts`:
 
-   `127.0.0.1   www.fablabs.local`
-
-   `127.0.0.1   api.fablabs.local`
-
+   ```
+   127.0.0.1   www.fablabs.local
+   127.0.0.1   api.fablabs.local
+   ```
 
 1. Visit [http://www.fablabs.local:3000](http://www.fablabs.local:3000)
 
@@ -92,7 +92,7 @@ Run tests with:
     ./scripts/docker-backup-db.sh
     ```
 
-### Getting an API Token
+## Getting an API Token
 
 1. Login to fablabs.io
 2. Go to the [developer console](https://fablabs.io/oauth/applications/) (on the upper-right menu)
@@ -130,7 +130,9 @@ S3_REGION=<amazon region code>
 - you need to run the assets pipeline to update public/assets
 
 `docker-compose exec app bundle exec rake tmp:clear`
+
 `docker-compose exec app bundle exec rake assets:precompile`
+
 `docker-compose restart app`
 
 ## Pull requests
