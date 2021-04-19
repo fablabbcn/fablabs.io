@@ -1,4 +1,5 @@
-ruby '2.6.6'
+ruby File.read(".ruby-version").strip
+
 source 'https://rubygems.org'
 
 gem 'rails','~> 5.2'

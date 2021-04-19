@@ -1,4 +1,4 @@
-FROM ruby:2.6.6
+FROM ruby:2.6.7
 
 # Install essential Linux packages
 RUN apt-get update -qq && apt-get install -y \
@@ -32,6 +32,7 @@ RUN mkdir -p $APPROOT/tmp/pids
 RUN gem install bundler
 COPY Gemfile Gemfile
 COPY Gemfile.lock Gemfile.lock
+COPY .ruby-version .ruby-version
 RUN bundle install
 
 # Copy the Rails application into place
