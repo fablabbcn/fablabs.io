@@ -1,0 +1,145 @@
+is:
+  capabilities:
+    circuit_production: Circuit production
+    cnc_milling: CNC-Milling
+    laser: Leiser
+    precision_milling: Precision milling
+    three_d_printing: 3d prentun
+    vinyl_cutting: Vinyl cutting
+  events:
+    index:
+      title: Viðburðir
+  jobs:
+    index:
+      new_job: Ný atvinnuauglýsing
+      title: Atvinna
+  labs:
+    employees:
+      applied: Sótt um
+      i_work_here: Ég vinn hérna
+    index:
+      add_a_lab: Bæta við smiðju
+      all_countries: Öll lönd
+    new:
+      answer-1: In order to be listed on FabLabs.io, you have to fill the form below and discuss your ne Lab with 3 Referee Labs that you can choose in the form. Please fill the details of the form below and choose 3 of the Referee Labs available and contact them, they will approve you after you have exchanged more information with them. The list of Referee Labs is limited to some Fab Labs with experience and a history of collaborating with the global Fab Lab Network, at the moment it is not possible to choose Referee Labs outside that list. It's not important that you already know them, it's important that you start a discussion with them. We are doing this so that the connections among the Labs (especially for new Labs) get strengthened.
+      answer-2: Referee Labs might be busy, so it depends also on their time. Please do not forget that being listed on FabLabs.io is not the only thing that makes your lab a Fab Lab, you need to interact with the global Fab Lab network continuously and not only when creating the application.
+      answer-3: For the moment the process is simple, the important thing is to get in contact with the 3 Referee Labs you choose.
+      answer-4: You can ask for support to the administrators and the whole community in the Fablabs.io forum section. As soon as you create the application of a Fab Lab here, a new thread about your Lab will be created in the forum.
+      answer-5: If you have technical issues, you can report them on GitHub.
+      faq: F.A.Q
+      item-1: We have recently redesigned the Fab Lab approval process to minimise the waiting time for Labs to get approved.
+      item-2: Each new Lab need to go through the referee approval process in order to get approved on the platform.
+      item-3: Each Lab, need to select three Referee Labs during the application process. These are trusted Labs on our platform. Please note that you can, but you do not have to necessarily select, labs close to you geographically.
+      item-4: Referees might request more info about your Lab. In this case you will receive an email inviting you to add more content to some sections of the Lab form.
+      item-5: Referees can also send a Lab for admin approval. In this case, it will be up to the platform admins to approve or not the new Lab.
+      item-6: When submitted, is first assigned the "unverified" state. If one of the referee gives their first approval the Lab is moved into the "referee approval" state.
+      item-7: If the Referee rejects, the Lab is moved to the "might need review" state. Being in one of the two states doesn't guarantee approval, nor means that the Lab will be rejected.
+      item-8: The Lab will be rejected or approved depending on the vote of the Referees.
+      question-1: How does the registration of a new Lab work?
+      question-2: What is the average/ rough time-span for an new Lab to achieve the status of a "Fab Lab" on the list?
+      question-3: Are there multiple stages to complete the registration?
+      question-4: What can I do if I have problems with the registration process?
+      we_are_in_the_process: We are in the process of improving the list of Fab Labs and the approval process, which may change in the future. Before adding a Lab sure to read the current approval process guidelines below.
+    show:
+      nearby_labs: Nálægar smiðjur
+  machines:
+    index:
+      add_a_machine: Ný vél
+  projects:
+    new_project: Nýtt verkefni
+  shared:
+    add_event: Bæta við viðburði
+    already_signed_in: You're already signed in
+    edit_employee_list: Edit employee list
+    important: Mikilvægt
+    invalid_email_or_password: Vitlaust netfang eða lykilorð
+    list_view: List view
+    map: Kort
+    map_view: Map view
+    signed_in: Signed in.
+    signed_out: Signed out!
+    styleguide: Styleguide
+    success_sign_up: Thanks for signing up. Please check your email to complete your registration!
+  simple_form:
+    error_notification:
+      default_message: 'Please review the problems below:'
+    hints:
+      job:
+        apply_url: If there is an external website handling application forms
+        country_code: Select the country from the list
+        max_salary: The upper salary range (optional)
+        min_salary: The lower salary range (optional)
+        tag_list: 'Comma separated, example: ''cnc, 3d printing'''
+        title: 'Job title, example: ''Lab manager in Boston'''
+      user:
+        country_code: Select country from the list
+        email: One email address in the form of 'something@something.com'
+        first_name: First name
+        last_name: Last name
+        url: URL to your personal website, if you have one
+        username: Lowercase username
+    labels:
+      job:
+        title: Title
+      user:
+        dob: Date of birth
+        first_name: First name
+        last_name: Last name
+    'no': 'No'
+    placeholders:
+      job:
+        apply_url: https://mysite.com/job-post
+        tag_list: cnc, 3d printing
+    required:
+      mark: "*"
+      text: required
+    'yes': 'Yes'
+  views:
+    header:
+      events: Viðburðir
+      jobs: Atvinna
+      labs: Smiðjur
+      machines: Vélar
+      me: Ég
+      organizations: Samtök
+      projects: Verkefni
+      search: "Leita"
+      settings: Stillingar
+    home:
+      around_the_world: Umhverfis heiminn
+      beyond_that: Og lengra?
+      circles-section:
+        cta: Nánar
+        description: In order to build a global network, a distributed laboratory for research and invention.
+        title: All Fab Labs share common tools and processes.
+      fab_labs_description: Fab labs provide widespread access to modern means for invention. They began as an outreach project from MIT's Center for Bits and Atoms (CBA), and became into a collaborative and global network. You can find more information about Fab Labs on the <a href='www.fabfoundation.org'>Fab Foundation</a> Website. The annotated photo below illustrates the facilities of a typical Fab Lab.
+      fablabs-section:
+        cta: Sjá allan listann
+        description: In order to build a global network, a distributed laboratory for research and invention.
+        title: Global league of fab labs for local purposes.
+      features:
+        activity_feeds: Activity feeds
+        developer_api: Developer API
+        discussions: Umræður
+        events: Viðburðir
+        localisation: Localisation
+        opening_hours: Opnunartímar
+      lab_card:
+        cta: Skráðu smiðjuna þína
+        description: Hver einasta smiðja hefur sína eigin síðu sem starfsfólk getur uppfært
+        subtitle: Profile
+        title: Ég er Fablab
+      lab_profiles: Lab profiles
+      machines: Vélar
+      person_card:
+        cta: Stofna aðgang
+        description: An interactive map showing the location of all the Fab Labs around the world
+        subtitle: Skoða
+        title: Ég er persóna
+      quote: Because all Fab Labs share common tools and processes, the program is building a global network, a distributed laboratory for research and invention.
+      welcome: Velkomin
+      what_can_i_do: Hvað get ég gert?
+      whats_a_fab_lab: I'm new here. What's a Fab Lab?
+      whats_coming_next: Hvað kemur næst?
+      who_is_it_for: Who is fablabs.io for?
+      world_map: Heimskort
