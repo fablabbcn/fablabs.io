@@ -12,7 +12,7 @@ If you are a Fab labs entusiast and/or you would like to contribute to the proje
 
 ## Getting started
 
-The platform is build with [Ruby on Rails](https://rubyonrails.org/). We recommend reading their [guide](https://guides.rubyonrails.org/getting_started.html).
+The platform is built with [Ruby on Rails](https://rubyonrails.org/). We recommend reading the [guide](https://guides.rubyonrails.org/getting_started.html).
 
 You can develop locally, or by using docker-compose (advanced).
 
@@ -91,16 +91,6 @@ Run tests with:
     ```
     ./scripts/docker-backup-db.sh
     ```
-
-## API Documentation
-
-Take a look at the [developer guide](https://docs.fablabs.io) for information on how to
-integrate Fablabs.io in your application.
-
-Check out also the [API Reference](https://docs.fablabs.io/swagger/index.html),
-the [Examples](https://github.com/fablabbcn/examples.fablabs.io), and the [fablabs.js library](https://github.com/fablabbcn/fablabsjs).
-
-The API docs are hosted in this repo: https://github.com/fablabbcn/docs.fablabs.io
 
 ### Getting an API Token
 
