@@ -12,9 +12,9 @@ RUN apt-get update -qq && apt-get install -y \
   curl
 
 # Install NodeJS 10
-RUN curl -sL https://deb.nodesource.com/setup_10.x > setup_10.x
-RUN chmod +x setup_10.x
-RUN ./setup_10.x
+RUN curl -sL https://deb.nodesource.com/setup_14.x > setup_14.x
+RUN chmod +x setup_14.x
+RUN ./setup_14.x
 RUN apt install nodejs
 RUN /usr/bin/nodejs -v
 RUN npm -v
