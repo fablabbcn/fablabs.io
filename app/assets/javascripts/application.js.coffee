@@ -21,7 +21,6 @@
 #= require select2/dist/js/select2
 #= require messenger
 #= require messenger-theme-flat
-#= require placeholders
 #= require jquery.autosize
 #= require alerts
 #= require moment
