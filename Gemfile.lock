@@ -101,8 +101,6 @@ GEM
     bootstrap4-kaminari-views (1.0.1)
       kaminari (>= 0.13)
       rails (>= 3.1)
-    bourbon (7.0.0)
-      thor (~> 1.0)
     buftok (0.2.0)
     builder (3.2.4)
     bullet (6.1.4)
@@ -632,7 +630,6 @@ DEPENDENCIES
   bitmask_attributes
   bootsnap
   bootstrap4-kaminari-views
-  bourbon
   bullet
   byebug
   capybara
