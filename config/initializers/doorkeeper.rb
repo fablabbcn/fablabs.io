@@ -64,7 +64,6 @@ Doorkeeper.configure do
   # # (Similar behaviour: https://developers.google.com/accounts/docs/OAuth2InstalledApp#choosingredirecturi)
   # #
   #test_redirect_uri nil#'urn:ietf:wg:oauth:2.0:oob'
-  native_redirect_uri nil
 
   force_ssl_in_redirect_uri false
 
