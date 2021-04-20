@@ -1,8 +1,4 @@
 = render "application/please_verify" if current_user and current_user.unverified?
-- if flash.any?
-  - flash.each do |name, msg|
-    = content_tag :div, msg, class: flash_class(name)
-
 %nav.navbar.navbar-custom.navbar-expand-lg{:role => "navigation"}
   .container-fluid
     = link_to root_path, class: 'navbar-brand' do
@@ -93,3 +89,7 @@
           %li.navbar-btn
             = link_to t("views.header.signup", default: "Sign up"), signup_path, class: 'btn btn-primary w-100'
           %li.navbar-btn
+
+- if flash.any?
+  - flash.each do |name, msg|
+    = content_tag :div, msg, class: "#{flash_class(name)} m-3"

@@ -16,7 +16,6 @@
 //= require messenger
 //= require messenger-theme-flat
 //= require jquery.autosize
-//= require alerts
 //= require moment
 //= require trumbowyg/trumbowyg
 //= require spin.js/spin

@@ -101,7 +101,7 @@ module ApplicationHelper
     when :success then 'flash alert alert-success'
     when :error then 'flash alert alert-danger'
     when :alert then 'flash alert alert-warning'
-    else 'flash alert'
+    else 'alert alert-warning'
     end
   end
 

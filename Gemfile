@@ -19,7 +19,7 @@ gem 'record_tag_helper'
 # Other Gem issues:
 gem 'font-awesome-sass', '< 5' # https://fontawesome.com/how-to-use/on-the-web/setup/upgrading-from-version-4
 gem 'bourbon', '~> 4' # Breaks transition in header.css.scss and map.css.scss https://github.com/thoughtbot/bourbon/blob/master/CHANGELOG.md
-gem 'sass-rails', '~> 5' #sass 6 breaks: undefined_method start_with
+gem 'sass-rails', '~> 6' #sass 6 breaks: undefined_method start_with
 
 gem 'active_model_serializers'
 gem 'activeadmin'
@@ -32,7 +32,6 @@ gem 'bootstrap4-kaminari-views'
 gem 'chartkick'
 gem 'cocoon'
 gem 'coderay'
-gem 'coffee-rails'#, '~> 4.0.0'
 gem 'countries', require: 'countries/global'
 gem 'country_select'
 gem 'dalli'
