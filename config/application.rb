@@ -66,10 +66,8 @@ module Fablabs
       password: ENV['EMAIL_PASSWORD']
     }
 
-    if ENV['RAVEN_DSN_URL'].present?
-      Sentry.init do |config|
-        config.dsn = ENV['RAVEN_DSN_URL']
-      end
+    Sentry.init do |config|
+      config.dsn = ENV['RAVEN_DSN_URL']
     end
 
     config.autoload_paths += %W[#{config.root}/lib]
