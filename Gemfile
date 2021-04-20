@@ -18,7 +18,6 @@ gem 'record_tag_helper'
 
 # Other Gem issues:
 gem 'font-awesome-sass', '< 5' # https://fontawesome.com/how-to-use/on-the-web/setup/upgrading-from-version-4
-gem 'sass-rails', '~> 6' #sass 6 breaks: undefined_method start_with
 
 gem 'active_model_serializers'
 gem 'activeadmin'
@@ -72,6 +71,7 @@ gem 'redcarpet'
 gem 'redis'
 gem 'rolify'
 gem 'rspec'
+gem 'sass-rails'
 gem 'sentry-ruby'
 gem 'sentry-rails'
 gem 'sidekiq'

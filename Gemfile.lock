@@ -700,7 +700,7 @@ DEPENDENCIES
   rolify
   rspec
   rspec-rails
-  sass-rails (~> 6)
+  sass-rails
   sdoc
   selenium-webdriver
   sentry-rails
