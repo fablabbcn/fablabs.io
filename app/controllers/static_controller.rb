@@ -59,7 +59,8 @@ class StaticController < ApplicationController
       ruby: RUBY_VERSION,
       rails: Rails::VERSION::STRING,
       branch: GIT_BRANCH,
-      revision: GIT_REVISION
+      revision: GIT_REVISION,
+      message: GIT_MSG,
     }
   end
 
