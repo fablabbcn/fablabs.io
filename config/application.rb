@@ -67,7 +67,7 @@ module Fablabs
     }
 
     if ENV['RAVEN_DSN_URL'].present?
-      Raven.configure do |config|
+      Sentry.init do |config|
         config.dsn = ENV['RAVEN_DSN_URL']
       end
     end

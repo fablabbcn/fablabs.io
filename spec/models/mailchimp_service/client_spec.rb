@@ -29,7 +29,7 @@ describe MailchimpService::Client do
             'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
             'Authorization'=>'Basic YXBpa2V5OjEyMzQtdXMx',
             'Content-Type'=>'application/json',
-            'User-Agent'=>'Faraday v0.17.0'
+            'User-Agent'=>'Faraday v1.4.1'
              }
         stub_request(:put, "#{@api_root}/lists/#{list_id}/members/#{user_hash}").
           with(

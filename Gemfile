@@ -20,7 +20,6 @@ gem 'record_tag_helper'
 gem 'font-awesome-sass', '~> 4.3.0' # https://fontawesome.com/how-to-use/on-the-web/setup/upgrading-from-version-4
 gem 'bourbon', '~> 4' # Breaks transition in header.css.scss and map.css.scss https://github.com/thoughtbot/bourbon/blob/master/CHANGELOG.md
 gem 'sass-rails', '~> 5.0.7' #sass 6 breaks: undefined_method start_with
-gem 'gibbon', "3.3.1" # updating gibbon, updates faraday to 0.17.4 which fails 1 test
 
 gem 'active_model_serializers'
 gem 'activeadmin'
@@ -48,6 +47,7 @@ gem 'font-awesome-rails'
 gem 'friendly_id'
 gem 'groupdate' #used by chartkick
 gem 'geocoder'
+gem 'gibbon'
 gem 'haml-rails'
 gem 'hpricot'
 gem 'http_accept_language'
@@ -73,7 +73,8 @@ gem 'redcarpet'
 gem 'redis'
 gem 'rolify'
 gem 'rspec'
-gem 'sentry-raven'
+gem 'sentry-ruby'
+gem 'sentry-rails'
 gem 'sidekiq'
 gem 'simplecov', :require => false, :group => :test
 gem 'simple_form'
