@@ -81,7 +81,6 @@ header {
     border-radius: 4px;
     &:focus {
       width: 240px;
-      @include transition (width 0.1s ease-out);
       // transition: width 0.2s;
       // max-width: 100%;
     }

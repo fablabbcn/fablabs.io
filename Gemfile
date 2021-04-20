@@ -18,7 +18,6 @@ gem 'record_tag_helper'
 
 # Other Gem issues:
 gem 'font-awesome-sass', '< 5' # https://fontawesome.com/how-to-use/on-the-web/setup/upgrading-from-version-4
-gem 'bourbon', '~> 4' # Breaks transition in header.css.scss and map.css.scss https://github.com/thoughtbot/bourbon/blob/master/CHANGELOG.md
 gem 'sass-rails', '~> 6' #sass 6 breaks: undefined_method start_with
 
 gem 'active_model_serializers'
@@ -29,6 +28,7 @@ gem 'authority'#, github: 'nathanl/authority'
 gem 'bitmask_attributes'
 gem 'bootsnap'
 gem 'bootstrap4-kaminari-views'
+gem 'bourbon'
 gem 'chartkick'
 gem 'cocoon'
 gem 'coderay'
