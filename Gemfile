@@ -19,6 +19,8 @@ gem 'record_tag_helper'
 # Other Gem issues:
 gem 'font-awesome-sass', '~> 4.3.0' # https://fontawesome.com/how-to-use/on-the-web/setup/upgrading-from-version-4
 gem 'bourbon', '~> 4' # Breaks transition in header.css.scss and map.css.scss https://github.com/thoughtbot/bourbon/blob/master/CHANGELOG.md
+gem 'sass-rails', '~> 5.0.7' #sass 6 breaks: undefined_method start_with
+gem 'gibbon', "3.3.1" # updating gibbon, updates faraday to 0.17.4 which fails 1 test
 
 gem 'active_model_serializers'
 gem 'activeadmin'
@@ -69,10 +71,8 @@ gem 'ransack'
 gem 'recaptcha'
 gem 'redcarpet'
 gem 'redis'
-#gem 'redis-rails' # not needed in rails 5.2
 gem 'rolify'
 gem 'rspec'
-gem 'sass-rails'#, '~> 4.0.5'
 gem 'sentry-raven'
 gem 'sidekiq'
 gem 'simplecov', :require => false, :group => :test
@@ -80,7 +80,7 @@ gem 'simple_form'
 gem 'sitemap_generator'
 gem 'slim'
 gem 'sort_alphabetical'
-gem 'sprockets'#,'~> 2.11.0' # 2.12 errors on SASS files
+gem 'sprockets'
 gem 'sprockets-rails'
 gem 'stamp'
 gem 'timezone'#, '~> 1.0'
@@ -92,8 +92,6 @@ gem "paperclip"#, "~> 4.2"
 # For paperclip/refile we need:
 gem 'aws-s3'
 gem 'aws-sdk-v1' # Can be used together with v2 because of different namespaces.
-
-gem 'gibbon'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
