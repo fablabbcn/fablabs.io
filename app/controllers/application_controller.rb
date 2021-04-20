@@ -5,6 +5,8 @@ class ApplicationController < ActionController::Base
   # TODO enable crsf 
   # protect_from_forgery with: :exception
 
+  before_action :sentry_user_context, if: :current_user
+
   def require_login
     if current_user.nil?
       redirect_to signin_url(goto: request.path), flash: { error: "You must first sign in to access this page" }
@@ -77,4 +79,7 @@ private
     current_user.created_activities.create action: action, trackable: trackable, actor: actor
   end
 
+  def sentry_user_context
+    Sentry.set_user(email: current_user.email, id: current_user.id)
+  end
 end
