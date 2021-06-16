@@ -39,7 +39,7 @@ class LabsController < ApplicationController
 
   def index
     all_labs = Lab.with_approved_state
-    @countries = Lab.country_list_for all_labs
+    @countries = Lab.country_list_for(all_labs)
 
     @q = all_labs.ransack(params[:q])
     @labs = @q.result(distinct: :true).page(params[:page]).per(params['per'])

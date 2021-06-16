@@ -101,6 +101,7 @@ group :development do
   gem 'bullet' #, github: 'flyerhzm/bullet'
   gem "i18n-tasks", "~> 0.9.33"
   gem 'net-ssh'
+  gem 'web-console'
 end
 
 group :test, :development do
