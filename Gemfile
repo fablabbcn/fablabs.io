@@ -102,6 +102,7 @@ group :development do
   gem "i18n-tasks", "~> 0.9.33"
   gem 'net-ssh'
   gem 'web-console'
+  gem 'rack-mini-profiler'
 end
 
 group :test, :development do
