@@ -60,6 +60,9 @@ class Lab < ApplicationRecord
   has_many :organizations, through: :lab_organizations
   has_many :lab_organizations
 
+  has_many :lab_taggings
+  has_many :lab_tags, through: :lab_taggings
+
   has_many :referee_approval_processes, foreign_key: 'referred_lab_id', dependent: :destroy
   accepts_nested_attributes_for :referee_approval_processes
   has_many :referees, through: :referee_approval_processes, source: :referee_lab

@@ -18,6 +18,8 @@
   .row
     .col-lg-8
       .text-large Lab Details
+      %h5 Lab tags:
+      = render @lab.lab_taggings
     .col-lg-4
       .text-large
         = t('.nearby_labs')

@@ -24,6 +24,14 @@
 
     .question
       %h5
+        %strong Lab tags:
+      %p Select the appropriate lab tags
+
+      <br>
+      = f.association :lab_tags
+
+    .question
+      %h5
         %strong Lab history:
         %span Please indicate these important dates in the history of your Lab:
 

@@ -172,6 +172,7 @@ class LabsController < ApplicationController
       :network,
       :programs,
       :improve_approval_application,
+      lab_tag_ids: [],
       capabilities: [],
       machine_ids: [],
       links_attributes: [:id, :link_id, :url, '_destroy'],

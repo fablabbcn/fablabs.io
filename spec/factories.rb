@@ -1,6 +1,15 @@
 # Read about factories at https://github.com/thoughtbot/factory_girl
 
 FactoryBot.define do
+  factory :lab_tagging do
+    lab { nil }
+    lab_tag { nil }
+  end
+
+  factory :lab_tag do
+    name { "MyString" }
+  end
+
 
   factory :lab, aliases: [:linkable, :trackable] do
     sequence(:name) { |n| "Fab Lab #{n}" }

@@ -1,0 +1,2 @@
+class LabTag < ApplicationRecord
+end

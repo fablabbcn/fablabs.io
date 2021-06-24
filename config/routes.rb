@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get "discuss" => 'discourse#embed'
 
   resources :jobs
+  resources :lab_taggings
   resources :pages, only: [:index, :show]
 
   get "metrics", to: "static#metrics"
