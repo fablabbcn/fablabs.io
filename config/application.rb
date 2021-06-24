@@ -37,7 +37,6 @@ module Fablabs
       g.helper_specs false
       g.controller_specs true
       g.integration_specs true
-      g.fixture_replacement :factory_girl
     end
 
     #
