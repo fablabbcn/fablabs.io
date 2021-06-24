@@ -12,7 +12,8 @@
           .input-group.mb-2
             = f.select(:activity_status_eq, options_for_select(Lab::ACTIVITY_STATUS.map { |a,b| [a.upcase, a]}, params[:q] ? params[:q][:activity_status_eq] : ''), { include_blank: 'Filter by activity status' }, {class: 'form-control'})
           .input-group.mb-2
-            = f.select(:lab_tags_id_in, LabTag.pluck(:name, :id) , { include_blank: 'Filter by Lab tags' }, {class: 'form-control', multiple: true})
+            %label Filter by lab tags:
+            = f.select(:lab_tags_id_in, LabTag.pluck(:name, :id), { include_blank: 'Filter by Lab tags' }, {class: 'form-control', multiple: true})
 
           .input-group.mb-2.align-items-center
             %p.m-0.mr-1 Show:
