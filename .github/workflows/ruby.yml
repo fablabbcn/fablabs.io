@@ -86,4 +86,5 @@ jobs:
           cd fablabs.io
           pwd
           ./scripts/deploy.sh
-      if: github.ref == 'refs/heads/master' && job.status == 'success'
+      if: false # We do not have a staging server at the moment
+     #if: github.ref == 'refs/heads/master' && job.status == 'success'
