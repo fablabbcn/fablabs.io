@@ -459,7 +459,7 @@ GEM
     rb-fsevent (0.10.4)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
-    rdoc (6.3.0)
+    rdoc (6.3.2)
     recaptcha (5.7.0)
       json
     record_tag_helper (1.0.1)
