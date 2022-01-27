@@ -34,7 +34,7 @@ jobs:
         cat /etc/os-release
 
     - name: Set up Ruby
-      uses: actions/setup-ruby@v1
+      uses: ruby/setup-ruby@v1
       with:
         bundler-cache: true
 
