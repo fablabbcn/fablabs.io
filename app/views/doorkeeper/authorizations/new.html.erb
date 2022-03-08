@@ -1,5 +1,10 @@
 <header class="page-header" role="banner">
-  <h1><%= t('.title') %></h1>
+  <div class="text-center">
+    <%= link_to root_path do %>
+        <%= image_tag ("logo.svg"), :alt => "fablabs.io" %>
+    <% end %>
+  </div>
+  <h1 class="mt-3"><%= t('.title') %></h1>
 </header>
 
 <main role="main">
