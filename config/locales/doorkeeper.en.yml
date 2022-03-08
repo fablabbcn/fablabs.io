@@ -16,6 +16,9 @@ en:
               forbidden_uri: 'is forbidden by the server.'
 
   doorkeeper:
+    scopes:
+      public: 'Access your public information (including email)'
+
     applications:
       confirmations:
         destroy: 'Are you sure?'
