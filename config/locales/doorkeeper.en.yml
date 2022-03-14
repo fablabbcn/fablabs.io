@@ -17,7 +17,7 @@ en:
 
   doorkeeper:
     scopes:
-      public: 'Access your public information (including email)'
+      public: 'Access your public profile (including email)'
 
     applications:
       confirmations:
@@ -58,8 +58,9 @@ en:
         title: 'An error has occurred'
       new:
         title: 'Authorization required'
-        prompt: 'Authorize %{client_name} to use your account?'
+        prompt: 'The %{client_name} app is requesting access to your account?'
         able_to: 'This application will be able to'
+        redirect_to: 'Authorizing will redirect to'
       show:
         title: 'Authorization code'
 
