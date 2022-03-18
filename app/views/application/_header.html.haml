@@ -75,10 +75,14 @@
                     = t("views.header.backstage", default: "Backstage")
                     = gem_count_tag current_or_null_user.pending_referee_labs.count
 
+              %li.divider
               - if current_user.passed_spam_period?
-                %li.divider
                 = link_to oauth_applications_path, class: 'dropdown-item'  do
                   = fa_icon "code", text: t("views.header.developer_console", default: "Developer Console"), class: 'fa-fw'
+              -else
+                %a.dropdown-item.disabled{:role => "button", "aria-disabled" => "true"}  
+                  = t("views.header.developer_console", default: "Developer Console")
+
               %li.divider
               = link_to signout_path, class: 'dropdown-item'  do
                 = fa_icon "sign-out", text: t("views.header.signout", default: "Sign out"), class: 'fa-fw'
