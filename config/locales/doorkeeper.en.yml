@@ -16,6 +16,9 @@ en:
               forbidden_uri: 'is forbidden by the server.'
 
   doorkeeper:
+    scopes:
+      public: 'Access your public profile (including email)'
+
     applications:
       confirmations:
         destroy: 'Are you sure?'
@@ -55,8 +58,9 @@ en:
         title: 'An error has occurred'
       new:
         title: 'Authorization required'
-        prompt: 'Authorize %{client_name} to use your account?'
+        prompt: 'The %{client_name} app is requesting access to your account?'
         able_to: 'This application will be able to'
+        redirect_to: 'Authorizing will redirect to'
       show:
         title: 'Authorization code'
 
@@ -74,7 +78,11 @@ en:
     errors:
       messages:
         # Common error messages
-        invalid_request: 'The request is missing a required parameter, includes an unsupported parameter value, or is otherwise malformed.'
+        invalid_request:
+          unknown: 'The request is missing a required parameter, includes an unsupported parameter value, or is otherwise malformed.'
+          missing_param: 'Missing required parameter: %{value}.'
+          not_support_pkce: 'Invalid code_verifier parameter. Server does not support pkce.'
+          request_not_authorized: 'Request need to be authorized. Required parameter for authorizing request is missing or invalid.'
         invalid_redirect_uri: "The requested redirect uri is malformed or doesn't match client redirect URI."
         unauthorized_client: 'The client is not authorized to perform this request using this method.'
         access_denied: 'The resource owner or authorization server denied the request.'

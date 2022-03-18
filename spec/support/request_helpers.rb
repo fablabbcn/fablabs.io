@@ -85,11 +85,11 @@ module Requests
       end
       
       def _access_token
-        @_access_token ||= FactoryBot.create(:access_token, application: _client_application, resource_owner_id: _user.id).token
+        @_access_token ||= FactoryBot.create(:access_token, application: _client_application, resource_owner_id: _user.id, scopes: "public").token
       end
 
       def _admin_access_token
-        @_admin_access_token ||= FactoryBot.create(:access_token, application: _client_application, resource_owner_id: _admin.id).token
+        @_admin_access_token ||= FactoryBot.create(:access_token, application: _client_application, resource_owner_id: _admin.id, scopes: "public").token
       end
 
       def _client_application
