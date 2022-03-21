@@ -160,7 +160,7 @@ class User < ActiveRecord::Base
   end
 
   def passed_spam_period?
-    return true if Rails.env.test?
+    return true if superadmin?
 
     created_at < 2.months.ago
   end

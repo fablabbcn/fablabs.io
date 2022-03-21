@@ -22,7 +22,8 @@
         = f.input :bio, input_html: { rows: 5 }
         = f.input :url
       - else
-        %p Because of high amount of spam users, biography will only be available after 2 months of activity.
+        .alert.alert-warning.mt-2{:role => "alert"}
+          %p Because of high amount of spam users, the biography section, will only be available after being a member for two months.
 
     - if @user.passed_spam_period?
       %fieldset

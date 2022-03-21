@@ -52,7 +52,7 @@ en:
 
     authorizations:
       buttons:
-        authorize: 'Authorize'
+        authorize: 'Authorize for "%{for}"'
         deny: 'Deny'
       error:
         title: 'An error has occurred'

@@ -4,6 +4,8 @@ require 'spec_helper'
 describe Oauth::ApplicationsController, type: :controller do
     describe 'GET #index' do
         render_views
+        
+        let!(:user) { FactoryBot.create(:user, created_at: 1.months.ago) }
 
         it "will redirect to login if not logged in" do
             get :index
@@ -11,8 +13,25 @@ describe Oauth::ApplicationsController, type: :controller do
             expect(response).to redirect_to("/signin?goto=%2Foauth%2Fapplications")
         end
 
-        it "will show an application list if logged in" do
-            user = FactoryBot.create(:user)
+        it "will return 403 if user is new" do
+            session[:user_id] = user.id
+            
+            get :index
+            expect(response.status).to eq(403)
+        end
+
+        it "will show list if new user is admin" do
+            user.add_role(:superadmin)
+
+            session[:user_id] = user.id
+            
+            get :index
+            expect(response).to be_successful
+        end
+
+        it "will show an application list if not-new user is logged in" do
+            user.created_at = 3.months.ago
+            user.save!
 
             session[:user_id] = user.id
             app = FactoryBot.create(:oauth_application, owner: user)
@@ -32,8 +51,8 @@ describe Oauth::ApplicationsController, type: :controller do
         render_views
 
         before do
-            @user = FactoryBot.create(:user)
-            @anotherUser = FactoryBot.create(:user)
+            @user = FactoryBot.create(:user, created_at: 3.months.ago)
+            @anotherUser = FactoryBot.create(:user, created_at: 3.months.ago)
             @app = FactoryBot.create(:oauth_application, owner: @user)
         end
    

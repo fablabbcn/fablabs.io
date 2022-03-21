@@ -16,13 +16,17 @@ Doorkeeper.configure do
     User.find_by_id(session[:user_id]) || redirect_to(signin_url(goto: request.fullpath))
   end
 
-  # If you want to restrict access to the web interface for adding oauth authorized applications, you need to declare the block below.
-  # FB: disabling the block below to allow users to access the outh/applications page
+  # If you didn't skip applications controller from Doorkeeper routes in your application routes.rb
+  # file then you need to declare this block in order to restrict access to the web interface for
+  # adding oauth authorized applications. In other case it will return 403 Forbidden response
+  # every time somebody will try to access the admin web interface.
+  #
   admin_authenticator do
-    # Put your admin authentication logic here.
-    # Example implementation:
-    # ((user = User.find_by(id: session[:user_id])) && user.has_role?(:superadmin)) || redirect_to(root_path)
-    User.find_by_id(session[:user_id]) || redirect_to(signin_url(goto: request.fullpath))
+    if current_user
+      head :forbidden unless current_user.passed_spam_period?
+    else
+      redirect_to signin_url goto: request.fullpath 
+    end
   end
 
   # Authorization Code expiration time (default 10 minutes).

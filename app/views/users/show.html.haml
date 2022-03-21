@@ -18,12 +18,13 @@
           = fa_icon "key", text: "Change Password"
 
       .my-3
-        - if @user.passed_spam_period?
-          - if @user.bio?
+        - if @user.bio?
+          - if @user.passed_spam_period?
             %h5 Bio
             = simple_format @user.bio
-        - else
-          %p Because of high amount of spam users, biography will only be shown after 2 months of activity.
+          - else
+            .alert.alert-warning{:role => "alert"}
+              %p Because of high amount of spam users, the biography will only be shown after the user has been a memeber for two months.
 
       = render "links", links: @user.links if @user.passed_spam_period?
 
