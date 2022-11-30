@@ -5,4 +5,12 @@ class Job < ApplicationRecord
   def self.recent
     where("updated_at > ?", 90.days.ago)
   end
+
+  def self.ransackable_attributes(auth_object = nil)
+    ['id', 'title', 'description', 'country_code']
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    %w[tags]
+  end
 end

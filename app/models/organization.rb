@@ -1,4 +1,4 @@
-class Organization < ActiveRecord::Base
+class Organization < ApplicationRecord
 
   KINDS = ['global', 'continent', 'country', 'state', 'region', 'province', 'city']
 
@@ -108,5 +108,9 @@ class Organization < ActiveRecord::Base
 
   def set_initial_workflow_state
     self.workflow_state ||= STATE_PENDING
+  end
+
+  def self.ransackable_attributes(auth_object = nil)
+    ['id', 'name', 'description', 'discourse_id', 'discourse_errors', 'workflow_state'] 
   end
 end

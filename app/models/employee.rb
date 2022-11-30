@@ -1,4 +1,4 @@
-class Employee < ActiveRecord::Base
+class Employee < ApplicationRecord
   include Authority::Abilities
   self.authorizer_name = 'EmployeeAuthorizer'
 

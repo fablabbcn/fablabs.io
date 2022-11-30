@@ -241,4 +241,22 @@ class User < ActiveRecord::Base
     self.email.downcase!
   end
 
+  def self.ransackable_attributes(auth_object = nil)
+    publicCols = ['id', 'first_name', 'last_name', 'username', 'country_code'] 
+      
+    if auth_object == :superadmin
+      publicCols + ['email', 'workflow_state']
+    else
+      publicCols
+    end
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    if auth_object == :superadmin
+      %w[roles]
+    else
+      %w[]
+    end
+  end
+
 end

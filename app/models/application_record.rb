@@ -17,4 +17,12 @@ class ApplicationRecord < ActiveRecord::Base
   def country
     ISO3166::Country[country_code]
   end
+
+  def self.ransackable_attributes(auth_object = nil)
+    []
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    []
+  end
 end

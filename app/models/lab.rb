@@ -265,4 +265,15 @@ class Lab < ApplicationRecord
     self.blurb = blurb[0...250].gsub(/\s+/, ' ').gsub(/\n/," ").strip if blurb_changed?
   end
 
+  def self.ransackable_attributes(auth_object = nil)
+    if auth_object == :admin
+      ['id', 'name', 'city', 'country_code', 'activity_status', 'workflow_state', 'is_referee', 'kind']
+    else
+      ['id', 'name', 'city', 'country_code', 'activity_status'] 
+    end
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    %w[lab_tags creator]
+  end
 end

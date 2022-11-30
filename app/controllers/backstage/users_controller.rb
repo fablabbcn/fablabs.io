@@ -2,7 +2,7 @@ class Backstage::UsersController < Backstage::BackstageController
   before_action :require_admin
 
   def index
-    @q = User.ransack(params[:q])
+    @q = User.ransack(params[:q], auth_object: set_ransack_auth_object)
     @q.sorts = 'id desc' if @q.sorts.empty?
     @users = @q.result.page(params[:page])
   end

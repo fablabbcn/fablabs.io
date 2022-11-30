@@ -30,4 +30,8 @@ private
   def referee
     current_user.is_referee? or current_user.is_unique_referee?
   end
+
+  def set_ransack_auth_object
+    superadmin ? :superadmin : (referee ? :admin : nil)
+  end
 end

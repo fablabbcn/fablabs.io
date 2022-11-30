@@ -3,7 +3,7 @@
 # http://en.wikipedia.org/wiki/Cron#Predefined_scheduling_definitions
 # http://stackoverflow.com/questions/5183630/calendar-recurring-repeating-events-best-storage-method
 
-class Event < ActiveRecord::Base
+class Event < ApplicationRecord
 
   include Authority::Abilities
   self.authorizer_name = 'EventAuthorizer'
