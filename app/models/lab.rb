@@ -266,7 +266,7 @@ class Lab < ApplicationRecord
   end
 
   def self.ransackable_attributes(auth_object = nil)
-    if auth_object == :admin
+    if auth_object == :admin or auth_object == :superadmin
       ['id', 'name', 'city', 'country_code', 'activity_status', 'workflow_state', 'is_referee', 'kind']
     else
       ['id', 'name', 'city', 'country_code', 'activity_status'] 
