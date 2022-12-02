@@ -663,7 +663,7 @@ DEPENDENCIES
   coderay
   countries
   country_select
-  dalli
+  dalli (~> 2.7.11)
   discourse_api
   doorkeeper (~> 5.5.0)
   dotenv-rails
