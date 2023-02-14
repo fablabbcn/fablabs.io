@@ -95,7 +95,7 @@ describe User, type: :model  do
     end
 
     it "only allows alphanumerics in username" do
-      %w(wrong-username not_allowed).each do |u|
+      %w(wrong%username not_allowed).each do |u|
         expect{FactoryBot.create(:user, username: u)}.to raise_error(ActiveRecord::RecordInvalid)
       end
     end
