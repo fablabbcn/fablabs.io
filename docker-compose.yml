@@ -10,7 +10,7 @@ services:
       - ./scripts/redis.conf:/usr/local/etc/redis/redis.conf
 
   db:
-    image: postgres:10
+    image: postgres:10.23-bullseye
     restart: always
     hostname: db1
     # persist the database between containers by storing it in a volume
