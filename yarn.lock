@@ -9,7 +9,7 @@ bootstrap-datepicker@~1.6.4:
   dependencies:
     jquery ">=1.7.1"
 
-jquery@>=1.7.1:
+jquery@>=1.7.1, jquery@~3.7.0:
   version "3.7.0"
   resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.7.0.tgz#fe2c01a05da500709006d8790fe21c8a39d75612"
   integrity sha512-umpJ0/k8X0MvD1ds0P9SfowREz2LenHsQaxSohMZ5OMNEU2r0tf8pdeEFTHMFxWVxKNyU9rTtK3CWzUCTKJUeQ==
@@ -20,6 +20,11 @@ leaflet-spin@~1.1.0:
   integrity sha512-OLpeDrrAv1YY8NVSnOP0YfICFFm+IFauL77erXH87ZiTIXl3aPwUJXOd336DrQCe4aFsY+F3oG/1+aXyjqKV2w==
   dependencies:
     spin.js "^2.3.1"
+
+leaflet@~1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/leaflet/-/leaflet-1.0.3.tgz#1f401b98b45c8192134c6c8d69686253805007c8"
+  integrity sha512-MzG53cU+K9ZdX/Wl4o+/6nyx6Ej/ec7MuMRd/VdAxuT8nltdRTE6ekl+QjavwcXN+SSC3jL2PK+Wn4T/ooWibA==
 
 select2@~4.0.3:
   version "4.0.13"

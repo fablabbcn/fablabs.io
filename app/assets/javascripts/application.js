@@ -4,8 +4,9 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require jquery
+//= require jquery/dist/jquery.slim.js
 //= require jquery.limit-1.2
+//= require leaflet
 //= require Control.Loading.js
 //= require jquery.geocomplete
 //= require cocoon
