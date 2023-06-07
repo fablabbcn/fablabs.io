@@ -6,9 +6,8 @@
   "author": "Viktor Smari <viktorsmari@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "bootstrap-datepicker": "1.6.4",
-    "leaflet-spin": "1.1.0",
-    "select2": "4.0.3",
-    "spin.js": "2.3.2"
+    "bootstrap-datepicker": "~1.6.4",
+    "leaflet-spin": "~1.1.0",
+    "select2": "~4.0.3"
   }
 }
