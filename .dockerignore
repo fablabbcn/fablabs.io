@@ -4,3 +4,5 @@ log/*
 node_modules/
 scripts/
 tmp/*
+public/assets/
+.env

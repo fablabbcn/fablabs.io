@@ -10,12 +10,11 @@ RUN apt-get update -qq && apt-get install -y \
   curl
 
 # Install NodeJS
-RUN curl -sL https://deb.nodesource.com/setup_14.x > setup_14.x
-RUN chmod +x setup_14.x
-RUN ./setup_14.x
-RUN apt install nodejs
-RUN /usr/bin/node -v
-RUN npm -v
+RUN curl -fsSL https://deb.nodesource.com/setup_16.x | bash - \
+    && apt-get install -y nodejs \
+    && rm -rf /var/lib/apt/lists/* \
+    && /usr/bin/node -v \
+    && npm -v
 
 ENV APPROOT /fablabs
 WORKDIR /$APPROOT
@@ -30,10 +29,10 @@ COPY . $APPROOT
 RUN gem install bundler
 RUN bundle install
 
-RUN npm install
-
 #Without yarn we cannot run rake assets:precompile'
 RUN npm install yarn -g
+
+RUN yarn install
 
 # Precompile assets here, so we don't have to do it inside a container + restart
 #RUN bin/rake assets:precompile
