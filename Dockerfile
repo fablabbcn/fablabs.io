@@ -22,8 +22,7 @@ WORKDIR /$APPROOT
 # Create application home. App server will need the pids dir so just create everything in one shot
 RUN mkdir -p $APPROOT/tmp/pids
 
-# Copy the Rails application into place
-COPY . $APPROOT
+COPY Gemfile Gemfile.lock .ruby-version $APPROOT/
 
 # Bundler
 RUN gem install bundler
@@ -32,7 +31,11 @@ RUN bundle install
 #Without yarn we cannot run rake assets:precompile'
 RUN npm install yarn -g
 
+COPY package.json yarn.lock $APPROOT/
 RUN yarn install
+
+# Copy the Rails application into place
+COPY . $APPROOT
 
 # Precompile assets here, so we don't have to do it inside a container + restart
 #RUN bin/rake assets:precompile
