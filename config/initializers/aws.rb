@@ -1,5 +1,5 @@
-require 'aws/s3'
+require 'aws-sdk-s3'
 
-AWS.config(
-  access_key_id: ENV["AWS_KEY"],
-  secret_access_key: ENV["AWS_SECRET"])
+Aws.config.update({
+  credentials: Aws::Credentials.new(ENV["AWS_KEY"], ENV["AWS_SECRET"])
+})

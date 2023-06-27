@@ -34,7 +34,7 @@ gem 'countries', require: 'countries/global'
 gem 'country_select'
 gem 'dalli', '~> 3.2.3'
 gem 'discourse_api'
-gem 'doorkeeper', '~>5.5.0'
+gem 'doorkeeper', '~>5.6.0'
 gem 'dotenv-rails'
 gem 'dragonfly'#, '~> 1.1.1'
 gem 'dragonfly-s3_data_store'
@@ -89,12 +89,12 @@ gem 'uglifier'#, '>= 1.3.0'
 
 gem "paperclip"#, "~> 4.2"
 # For paperclip/refile we need:
-gem 'aws-s3'
-gem 'aws-sdk-v1' # Can be used together with v2 because of different namespaces.
+gem 'aws-sdk-s3', '~> 1.0'
+
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
-  gem 'sdoc', require: false
+  gem 'sdoc', '2.3.1', require: false
 end
 
 group :development do
