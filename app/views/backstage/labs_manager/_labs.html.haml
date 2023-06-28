@@ -16,7 +16,7 @@
       = content_tag_for :tr, lab, {class: lab.current_state} do
         %td= lab.id
         %td= link_to lab, backstage_lab_path(lab)
-        %td= lab.country
+        %td= lab.country&.common_name
         %td= lab.current_state
         %td= lab.activity_status || "Unknown"
         %td= lab.kind || "Unknown"

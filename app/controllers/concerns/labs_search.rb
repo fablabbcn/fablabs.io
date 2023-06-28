@@ -48,7 +48,7 @@ module LabsSearch
   end
 
   def match_country(query)
-    @country = ISO3166::Country.find_country_by_name(query)
+    @country = ISO3166::Country.find_country_by_any_name(query)
     @country&.alpha2
   end
 end

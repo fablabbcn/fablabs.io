@@ -187,7 +187,7 @@ describe Lab, type: :model  do
 
     it "has .short_address" do
       lab = FactoryBot.build_stubbed(:lab, city: 'London', country_code: 'gb')
-      expect(lab.short_address).to eq("London, County, #{lab.country}")
+      expect(lab.short_address).to eq("London, County, #{lab.country.common_name}")
     end
 
     it "has .formatted_address" do
@@ -212,10 +212,11 @@ describe Lab, type: :model  do
         FactoryBot.create(:lab, country_code: 'EG')
         FactoryBot.create(:lab, country_code: 'FR')
         FactoryBot.create(:lab, country_code: 'FR')
+        FactoryBot.create(:lab, country_code: 'GB')
         I18n.locale = 'en'
-        expect(Lab.country_list_for Lab.all).to eq([['Egypt', 'EG', 1], ['France', 'FR', 2]])
+        expect(Lab.country_list_for Lab.all).to eq([['Egypt', 'EG', 1], ['France', 'FR', 2] , ['United Kingdom', 'GB', 1]])
         I18n.locale = 'de'
-        expect(Lab.country_list_for Lab.all).to eq([['Ägypten', 'EG', 1], ['Frankreich', 'FR', 2]])
+        expect(Lab.country_list_for Lab.all).to eq([['Ägypten', 'EG', 1], ['Frankreich', 'FR', 2], ['Vereinigtes Königreich', 'GB', 1]])
         I18n.locale = I18n.default_locale
       end
 

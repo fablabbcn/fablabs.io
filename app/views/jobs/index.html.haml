@@ -55,7 +55,7 @@
           %td=link_to job.user, job.user || ''
           %td= job.min_salary
           %td= job.max_salary
-          %td= job.country
+          %td= job.country&.common_name
           %td{title: job.created_at}= time_ago_in_words(job.created_at, include_seconds: false)
           %td
             - if current_user == job.user
