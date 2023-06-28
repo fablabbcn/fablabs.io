@@ -29,7 +29,7 @@ describe MailchimpService::Client do
             'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
             'Authorization'=>'Basic YXBpa2V5OjEyMzQtdXMx',
             'Content-Type'=>'application/json',
-            'User-Agent'=>'Faraday v1.10.2' # Version should be updated with gem upgrades
+            'User-Agent'=>'Faraday v2.7.8' # Version should be updated with gem upgrades
              }
         stub_request(:put, "#{@api_root}/lists/#{list_id}/members/#{user_hash}").
           with(

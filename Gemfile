@@ -115,8 +115,8 @@ group :test, :development do
 end
 
 group :test do
-  gem 'capybara'
-  gem 'capybara-webkit'
+  gem 'capybara', '~> 3.36.0'
+  gem 'capybara-webkit', '~> 1.15.0'
   gem 'guard-rspec'
   gem 'launchy'
   gem 'minitest'
@@ -124,7 +124,7 @@ group :test do
   gem 'pry-rescue'
   gem 'pry-stack_explorer'
   gem 'rails-controller-testing'
-  gem 'selenium-webdriver'
+  gem 'selenium-webdriver', '~> 3.0'
   gem 'shoulda-matchers'
   gem 'test-unit'
   gem 'webmock'
