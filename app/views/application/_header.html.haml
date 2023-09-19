@@ -24,6 +24,10 @@
           = link_to t("views.header.machines"), machines_path, class: 'nav-link'
         %li.nav-item{class: ("active" if current_page?(jobs_path)) }
           = link_to t("views.header.jobs"), jobs_path, class: 'nav-link'
+        %li.nav-item
+          = link_to 'https://fabacademy.org/', target: "_blank", class: 'nav-link' do
+            Fab Academy
+            = fa_icon 'external-link', class: 'ml-1'
         %li.nav-item{class: ("active" if current_page?(events_path)) }
           = link_to  "https://fabevent.org/", target: "_blank", class: 'nav-link' do
             = t("views.header.events")
