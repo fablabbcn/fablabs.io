@@ -22,6 +22,7 @@
 //= require spin.js/spin
 //= require leaflet-spin
 //= require rails-ujs
+//= require ./labs.js
 
 
 document.addEventListener("DOMContentLoaded", function() {
