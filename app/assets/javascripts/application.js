@@ -5,6 +5,7 @@
 // about supported directives.
 //
 //= require jquery/dist/jquery.slim.js
+//= require bootstrap/dist/js/bootstrap.bundle.js
 //= require jquery.limit-1.2
 //= require leaflet
 //= require Control.Loading.js
