@@ -99,6 +99,7 @@ group :doc do
 end
 
 group :development do
+  gem 'listen' # explicitd added (when not installing test gems)
   gem 'bullet' #, github: 'flyerhzm/bullet'
   gem "i18n-tasks", "~> 0.9.33"
   gem 'net-ssh'

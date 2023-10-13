@@ -35,6 +35,27 @@ Install dependencies and create a database:
 
 1. Visit [http://localhost:3000](http://localhost:3000)
 
+
+#### Setup on MacOS
+
+On MacOS to have the exact Ruby version, use a version manager. Default MacOS Ruby is incompatible. See example article [how to setup on mac](https://www.moncefbelyamani.com/how-to-install-xcode-homebrew-git-rvm-ruby-on-mac/)
+
+With `chruby` installed, you can do something like this:
+
+1. `ruby-install 2.6.10`
+1. `chruby 2.6.10`
+1. `gem install bundler:2.3.26` (check Gemfile.lock file)
+1. `bundler install` (optional: `bundle config set --local without 'test'`)
+1. `nvm use` (setup NodeJS with )
+
+
+**Trouble shooting**
+Issue with bundle install and postgress
+a. `brew install libpq` ()
+a. `export PKG_CONFIG_PATH="/usr/local/opt/libpq/lib/pkgconfig"`
+
+
+
 ### Tests
 
 Run tests with:
