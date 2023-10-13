@@ -29,7 +29,7 @@
             %ul.list-unstyled
               %li
                 = link_to "http://fab.cba.mit.edu/about/fab/inv.html", class: "btn btn-primary", title: "This is included in the Official Fab Lab hardware specification", style: "margin: 0" do
-                  = fa_icon "tag"
+                  = icon "tag"
                   Fab Lab Inventory Item
 
         - if @machine.links.length > 0
@@ -38,7 +38,7 @@
             - @machine.links.each do |link|
               %li.machine-link
                 = link_to link.url do
-                  = fa_icon 'link'
+                  = icon 'link'
                   %span.url{itemprop: "sameAs"}= link.description
 
         .heading Machine Revisions

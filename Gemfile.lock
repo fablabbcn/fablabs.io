@@ -229,8 +229,6 @@ GEM
     fog-xml (0.1.4)
       fog-core
       nokogiri (>= 1.5.11, < 2.0.0)
-    font-awesome-rails (4.7.0.8)
-      railties (>= 3.2, < 8.0)
     font-awesome-sass (4.7.0)
       sass (>= 3.2)
     formatador (0.3.0)
@@ -681,7 +679,6 @@ DEPENDENCIES
   fast_jsonapi
   ffaker
   flatpickr
-  font-awesome-rails
   font-awesome-sass (< 5)
   friendly_id
   geocoder

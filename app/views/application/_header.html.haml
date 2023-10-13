@@ -27,23 +27,23 @@
         %li.nav-item
           = link_to 'https://fabacademy.org/', target: "_blank", class: 'nav-link' do
             Fab Academy
-            = fa_icon 'external-link', class: 'ml-1'
+            = icon 'external-link', class: 'ml-1'
         %li.nav-item{class: ("active" if current_page?(events_path)) }
           = link_to  "https://fabevent.org/", target: "_blank", class: 'nav-link' do
             = t("views.header.events")
-            = fa_icon 'external-link', class: 'ml-1'
+            = icon 'external-link', class: 'ml-1'
         %li.nav-item
           = link_to 'https://live.fablabs.io/', target: "_blank", class: 'nav-link' do
             Network
-            = fa_icon 'external-link', class: 'ml-1'
+            = icon 'external-link', class: 'ml-1'
         %li.nav-item
           = link_to 'https://projects.fablabs.io', target: "_blank", class: 'nav-link' do
             = t("views.header.projects")
-            = fa_icon 'external-link', class: 'ml-1'
+            = icon 'external-link', class: 'ml-1'
         %li.nav-item
           = link_to 'https://forum.fablabs.io', target: "_blank", class: 'nav-link' do
             Forum
-            = fa_icon 'external-link', class: 'ml-1'
+            = icon 'external-link', class: 'ml-1'
 
       %ul.nav.navbar-nav.ml-auto
         - if current_user
@@ -57,39 +57,39 @@
                   = gem_count_tag current_or_null_user.referees_count
             %ul.dropdown-menu.dropdown-menu-right
               = link_to current_user, class: 'dropdown-item' do
-                = fa_icon "user", text: t("views.header.me"), class: 'fa-fw'
+                = icon "user", t("views.header.me"), class: 'fa-fw'
               = link_to settings_path, class: 'dropdown-item'  do
-                = fa_icon "cog", text: t("views.header.settings"), class: 'fa-fw'
+                = icon "cog", t("views.header.settings"), class: 'fa-fw'
               - if current_or_null_user.has_role? :superadmin
                 %li.divider
                 = link_to backstage_root_path, class: 'dropdown-item' do
-                  = fa_icon "gamepad", class: 'fa-fw'
+                  = icon "gamepad", class: 'fa-fw'
                   = t("views.header.backstage", default: "Backstage")
                   = gem_count_tag Lab.with_unverified_state.size
                 = link_to admin_root_path, target: '_blank', class: 'dropdown-item' do
-                  = fa_icon "lock", class: 'fa-fw'
+                  = icon "lock", class: 'fa-fw'
                   Admin
                 = link_to stats_path, class: 'dropdown-item' do
-                  = fa_icon "line-chart", class: 'fa-fw'
+                  = icon "line-chart", class: 'fa-fw'
                   Statistics
               - else
                 - if current_or_null_user.is_referee? or current_or_null_user.is_unique_referee?
                   = link_to backstage_root_path, class: 'dropdown-item' do
-                    = fa_icon "gamepad", class: 'fa-fw'
+                    = icon "gamepad", class: 'fa-fw'
                     = t("views.header.backstage", default: "Backstage")
                     = gem_count_tag current_or_null_user.pending_referee_labs.count
 
               %li.divider
               - if current_user.passed_spam_period?
                 = link_to oauth_applications_path, class: 'dropdown-item'  do
-                  = fa_icon "code", text: t("views.header.developer_console", default: "Developer Console"), class: 'fa-fw'
+                  = icon "code", t("views.header.developer_console", default: "Developer Console"), class: 'fa-fw' 
               -else
                 %a.dropdown-item.disabled{:role => "button", "aria-disabled" => "true"}  
                   = t("views.header.developer_console", default: "Developer Console")
 
               %li.divider
               = link_to signout_path, class: 'dropdown-item'  do
-                = fa_icon "sign-out", text: t("views.header.signout", default: "Sign out"), class: 'fa-fw'
+                = icon "sign-out", t("views.header.signout", default: "Sign out"), class: 'fa-fw'
 
         - else
           %li.navbar-btn

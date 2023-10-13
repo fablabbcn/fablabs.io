@@ -40,7 +40,6 @@ gem 'dragonfly'#, '~> 1.1.1'
 gem 'dragonfly-s3_data_store'
 gem 'fast_jsonapi' # To support new v2 JSONAPI
 gem 'flatpickr'
-gem 'font-awesome-rails'
 gem 'friendly_id'
 gem 'groupdate' #used by chartkick
 gem 'geocoder'

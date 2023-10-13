@@ -38,7 +38,7 @@
           = render partial: 'labs/lab', locals: {lab: lab_organization.lab}
       - if current_or_null_user == @organization.creator
         = link_to new_organization_lab_organization_path(@organization), class: 'btn btn-primary' do
-          = fa_icon "plus", text: 'Add lab'
+          = icon "plus", 'Add lab'
 
     .col-lg-4
       = render "links", links: @organization.links

@@ -30,5 +30,5 @@
     - unless current_or_null_user.studied_at? @lab
       %li.person.med
         = link_to new_lab_academic_path(@lab), class: 'button tiny success' do
-          = fa_icon "check-square"
+          = icon "check-square"
           = t(".i_work_here", default: "I study/studied here")
