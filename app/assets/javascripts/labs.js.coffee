@@ -75,12 +75,21 @@ ready = ->
     $('.row-offcanvas').toggleClass('active')
 
 
-# Map in a Lab page
+# Map in a Lab page
 
 
   $('#lab_name').on 'change', () ->
     unless $('#lab_slug').val()
       $('#lab_slug').val( $(this).val().toLowerCase().replace(/[^A-Za-z0-9]/g,''); )
+
+  updateFormWithLatLng = (lat, lng) ->
+    $('.c-labs.a-new #lab_address_1').focus()
+    $("input#lab_latitude").val lat
+    $("input#lab_longitude").val lng
+    $('select#lab_country_code').trigger('change')
+    $('#lab_geoinfo')
+      .find('strong')
+      .text(Number(lat).toFixed(6) + ' / ' + Number(lng).toFixed(6))
 
   # $('.step-2').css(opacity: 0.5)
   $(".c-labs input#geocomplete").geocomplete
@@ -91,15 +100,9 @@ ready = ->
     markerOptions:
       draggable: true
   .on 'geocode:dragged', (event, latLng) ->
-    $("input#lab_latitude").val latLng.lat()
-    $("input#lab_longitude").val latLng.lng()
+    updateFormWithLatLng(latLng.lat(), latLng.lng())
   .on 'geocode:result', (event, result) ->
-    $('.c-labs.a-new #lab_address_1').focus()
-    $("input#lab_latitude").val result.geometry.location.lat()
-    $("input#lab_longitude").val result.geometry.location.lng()
-    $('select#lab_country_code').trigger('change')
-
-
+    updateFormWithLatLng(result.geometry.location.lat(), result.geometry.location.lng())
 
 $(document).ready ready
 # $(document).on "page:load", ready
