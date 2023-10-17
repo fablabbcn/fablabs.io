@@ -5,6 +5,7 @@
 // about supported directives.
 //
 //= require jquery/dist/jquery.slim.js
+//= require bootstrap/dist/js/bootstrap.bundle.js
 //= require jquery.limit-1.2
 //= require leaflet
 //= require Control.Loading.js
@@ -22,6 +23,7 @@
 //= require spin.js/spin
 //= require leaflet-spin
 //= require rails-ujs
+//= require ./labs.js
 
 
 document.addEventListener("DOMContentLoaded", function() {

@@ -18,9 +18,9 @@ class StaticController < ApplicationController
     end
     @recent_labs = recent_labs()
     @news = [
-      { :image_url => "news/fab15.jpg", :title => "FAB 15 Highlights", :url => "https://www.flickr.com/photos/fabfoundation/collections/72157710335192311/", :description => "FAB15 Egypt was a GREAT success. You can view all of the official photos from the FABulous week here."},
-      { :image_url => "news/fabacademy.jpg", :title => "Fab Academy 2020: Registrations open", :url => "https://fabacademy.org", :description => "We're happy to announce that Applications to become a Host Node for Fab Academy 2020 are Now Open." },
-      { :image_url => "news/fabricademy-2019.png", :title => "Fabricademy 2019-2020 Started!", :url => "https://textile-academy.org" , :description => "The new Fabricademy courses focus on sustainable textiles, fashion and wearables."},
+      { :image_url => "news/fab15.jpg", :title => "FAB Bhtuan Highlights", :url => "https://fab23.fabevent.org/media/fab23-bhutan-a-success-by-any-measure", :description => "FAB Bhutan was a GREAT success. Check out the latest here"},
+      { :image_url => "news/fabacademy.jpg", :title => "Fab Academy 2024: Registrations open", :url => "https://fabacademy.org", :description => "We're happy to announce that Applications to become a Host Node for Fab Academy 2024 are Now Open." },
+      { :image_url => "news/fabricademy-2019.png", :title => "Fabricademy 2024 Started!", :url => "https://textile-academy.org" , :description => "The new Fabricademy courses focus on sustainable textiles, fashion and wearables."},
     ]    
     render layout: 'welcome'
 

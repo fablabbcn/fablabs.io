@@ -12,10 +12,10 @@
         = link_to 'Edit on /admin', admin_user_url(@user), class: 'text-secondary d-block'
       - if current_or_null_user == @user
         = link_to settings_path, class: 'button tiny' do
-          = fa_icon "edit", text: "Edit Profile"
+          = icon "edit", "Edit Profile"
         %br
         = link_to password_path, class: 'button tiny' do
-          = fa_icon "key", text: "Change Password"
+          = icon "key", "Change Password"
 
       .my-3
         - if @user.bio?

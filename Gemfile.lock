@@ -136,6 +136,13 @@ GEM
     climate_control (0.2.0)
     cocoon (1.2.15)
     coderay (1.1.3)
+    coffee-rails (4.2.2)
+      coffee-script (>= 2.2.0)
+      railties (>= 4.0.0)
+    coffee-script (2.4.1)
+      coffee-script-source
+      execjs
+    coffee-script-source (1.12.2)
     concurrent-ruby (1.2.2)
     connection_pool (2.4.1)
     countries (5.5.0)
@@ -212,8 +219,6 @@ GEM
     fog-xml (0.1.4)
       fog-core
       nokogiri (>= 1.5.11, < 2.0.0)
-    font-awesome-rails (4.7.0.8)
-      railties (>= 3.2, < 8.0)
     font-awesome-sass (4.7.0)
       sass (>= 3.2)
     formatador (1.1.0)
@@ -370,6 +375,8 @@ GEM
       net-protocol
     net-ssh (7.1.0)
     nio4r (2.5.9)
+    nokogiri (1.15.2-x86_64-darwin)
+      racc (~> 1.4)
     nokogiri (1.15.2-x86_64-linux)
       racc (~> 1.4)
     notiffany (0.1.3)
@@ -632,6 +639,7 @@ GEM
     zonebie (0.6.1)
 
 PLATFORMS
+  x86_64-darwin-19
   x86_64-linux
 
 DEPENDENCIES
@@ -652,6 +660,7 @@ DEPENDENCIES
   chartkick
   cocoon
   coderay
+  coffee-rails (~> 4.2.0)
   countries (~> 5)
   country_select (~> 8.0)
   dalli (~> 3.2.3)
@@ -664,7 +673,6 @@ DEPENDENCIES
   fast_jsonapi
   ffaker
   flatpickr
-  font-awesome-rails
   font-awesome-sass (< 5)
   friendly_id
   geocoder
@@ -682,6 +690,7 @@ DEPENDENCIES
   kaminari
   launchy
   letter_opener
+  listen
   minitest
   momentjs-rails
   nest

@@ -1,0 +1,59 @@
+version: '3.5'
+
+services:
+  redis:
+    image: redis:6
+    command: redis-server /usr/local/etc/redis/redis.conf
+    volumes:
+      - ./scripts/redis.conf:/usr/local/etc/redis/redis.conf
+
+  db:
+    image: postgres:10.23-bullseye
+    # persist the database between containers by storing it in a volume
+    ports:
+      - 5432:5432
+    volumes:
+      - fablabs-postgres:/var/lib/postgresql/data
+      #- ./dump:/dump
+    environment:
+      - POSTGRES_DB=fablabs_develop
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+
+  app:
+    env_file: .env
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./app:/fablabs/app
+      - ./config:/fablabs/config
+      - ./db:/fablabs/db
+      - ./lib:/fablabs/lib
+      - ./log:/fablabs/log
+      - ./public:/fablabs/public
+      - ./spec:/fablabs/spec
+      # - .:/fablabs
+      - app-tmp:/fablabs/tmp
+      - bundle_path:/usr/local/bundle
+    # environment:
+      # - BUNDLE_PATH=/bundle/vendor
+    depends_on:
+      - db
+      - redis
+    ports:
+      - "3000:3000"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100m"
+
+  mailhog:
+    image: 'mailhog/mailhog:latest'
+    ports:
+      - '8025:8025'
+      - '1025:1025'
+
+volumes:
+  fablabs-postgres:
+  app-tmp:
+  bundle_path:

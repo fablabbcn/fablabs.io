@@ -11,10 +11,10 @@
       .col-md-4.py-4
         - if current_user
           = link_to new_lab_path, class: "btn btn-primary" do
-            = fa_icon "plus", text: t(".add_a_lab", default: "Add Lab")
+            = icon "plus", t(".add_a_lab", default: "Add Lab")
         - else
           = link_to new_lab_path, class: "btn btn-primary", title: "You need to be signed in to add a Lab" do
-            = fa_icon "plus", text: t(".add_a_lab", default: "Add Lab")
+            = icon "plus", t(".add_a_lab", default: "Add Lab")
 
 .container-fluid
   = render 'sidemap', zoom_level: 2, icon_size: 30, center_lat: 25, center_lng: 0

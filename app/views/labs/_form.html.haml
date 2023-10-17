@@ -125,7 +125,7 @@
       .question
         %h5 Step 1
         .text-small Enter the lab's address in the textbox below. Then drag the map marker to pinpoint its exact position.
-        = f.input :geocomplete, input_html: { id: 'geocomplete', data: { latlng: "#{@lab.latitude}, #{@lab.longitude}"} }, label: false
+        = f.input :geocomplete, input_html: { id: 'geocomplete', data: { latlng: (@lab.latitude.present? ? "#{@lab.latitude}, #{@lab.longitude}" : "false")} }, label: false
       .question.step-2
         %h5 Step 2
         .text-small Edit the details in the address fields below.
@@ -133,6 +133,8 @@
           .col-lg-6#map-holder
             #location-picker-map
           .col-lg-6
+            #lab_geoinfo
+              %p Marker Lat/Lng coordinates: <strong>#{(@lab.latitude.present? ? "#{@lab.latitude} / #{@lab.longitude}" : "")}</strong>
             = f.input :address_1, input_html: { data: {geo: "street_address"}}, label: 'Lab Address', placeholder: 'Address Line 1'
             = f.input :address_2, label: false, placeholder: 'Address Line 2 (Optional)'
             = f.input :city, input_html: { data: {geo: "locality"}}

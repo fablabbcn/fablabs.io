@@ -8,10 +8,10 @@
     .col-4
       - if current_user
         = link_to new_project_path, class: "btn btn-primary" do
-          = fa_icon "plus", text: t(".new_project", default: "Add a new Project")
+          = icon "plus", t(".new_project", default: "Add a new Project")
       - else
         = link_to new_project_path, class: "btn btn-primary", title: "You need to be signed in to add a Project" do
-          = fa_icon "plus", text: t(".new_project", default: "Add a new Project")
+          = icon "plus", t(".new_project", default: "Add a new Project")
 
 .container
   .row
@@ -21,4 +21,4 @@
     = paginate @projects, theme: 'twitter-bootstrap-4', nav_class: "m-auto pt-3"
     %div
       = link_to map_projects_path, class: "map btn btn-primary" do
-        = fa_icon "globe", text: t("shared.map", default: "Map")
+        = icon "globe", t("shared.map", default: "Map")

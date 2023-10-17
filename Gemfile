@@ -40,7 +40,6 @@ gem 'dragonfly'#, '~> 1.1.1'
 gem 'dragonfly-s3_data_store'
 gem 'fast_jsonapi' # To support new v2 JSONAPI
 gem 'flatpickr'
-gem 'font-awesome-rails'
 gem 'friendly_id'
 gem 'groupdate' #used by chartkick
 gem 'geocoder'
@@ -71,6 +70,7 @@ gem 'redis'
 gem 'rolify'
 gem 'rspec'
 gem 'sass-rails'
+gem 'coffee-rails', '~> 4.2.0'
 gem 'sentry-ruby'
 gem 'sentry-rails'
 gem 'sidekiq'
@@ -98,6 +98,7 @@ group :doc do
 end
 
 group :development do
+  gem 'listen' # explicitd added (when not installing test gems)
   gem 'bullet' #, github: 'flyerhzm/bullet'
   gem "i18n-tasks", "~> 0.9.33"
   gem 'net-ssh'
