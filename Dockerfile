@@ -24,8 +24,8 @@ RUN mkdir -p $APPROOT/tmp/pids
 
 COPY Gemfile Gemfile.lock .ruby-version $APPROOT/
 
-# Bundler
-RUN gem install bundler
+ENV BUNDLER_VERSION=2.4.20
+RUN gem install bundler -v 2.4.20
 RUN bundle install
 
 #Without yarn we cannot run rake assets:precompile'
