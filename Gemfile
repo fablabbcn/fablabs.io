@@ -117,7 +117,6 @@ end
 
 group :test do
   gem 'capybara', '~> 3.36.0'
-  gem 'capybara-webkit', '~> 1.15.0'
   gem 'guard-rspec'
   gem 'launchy'
   gem 'minitest'
