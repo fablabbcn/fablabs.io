@@ -87,11 +87,6 @@ gem 'trumbowyg_rails'#, git: 'https://github.com/TikiTDO/trumbowyg_rails.git'
 gem 'twitter'
 gem 'uglifier'#, '>= 1.3.0'
 
-gem "paperclip"#, "~> 4.2"
-# For paperclip/refile we need:
-gem 'aws-sdk-s3', '~> 1.0'
-
-
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', '2.3.1', require: false
