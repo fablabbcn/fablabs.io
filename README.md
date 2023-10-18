@@ -73,6 +73,10 @@ Run tests with:
 
    `docker-compose exec app rake db:setup`
 
+   OR 
+
+   `docker-compose exec app rake db:schema:load`
+
    If npm does not successfully install do:
 
    `docker-compose exec app npm i`
@@ -112,6 +116,15 @@ Run tests with:
     ```
     ./scripts/docker-backup-db.sh
     ```
+
+1. Other:
+   
+   `docker compose exec app bundle update --patch`
+
+1. Access Postgress database:
+
+   `docker exec -it fablabsio_db_1 psql -d fablabs -U postgres`
+
 
 ## Getting an API Token
 
