@@ -37,7 +37,7 @@
           %ul.list-unstyled
             - @machine.links.each do |link|
               %li.machine-link
-                = link_to link.url do
+                = link_to link.url, target: "_blank" do
                   = icon 'link'
                   %span.url{itemprop: "sameAs"}= link.description
 

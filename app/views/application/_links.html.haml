@@ -4,6 +4,6 @@
     - links.each do |link|
       - cache ["v1", link] do
         %li.lab-link
-          = link_to link.url do
+          = link_to link.url, target: "_blank" do
             -# = url_icon(link.url)
             %span.url{itemprop: "sameAs"}= link.url
