@@ -9,7 +9,6 @@ require 'rspec/rails'
 # require 'rspec/autorun'
 require 'capybara/rspec'
 #require 'headless'
-require 'capybara-webkit'
 # require 'sidekiq/testing'
 require 'pry-byebug'
 # mock support for api requests

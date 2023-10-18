@@ -39,19 +39,6 @@ module Fablabs
       g.integration_specs true
     end
 
-    #
-    # Paperclip configuration options
-    #
-    config.paperclip_defaults = {
-      storage: :s3,
-      s3_credentials: {
-        bucket: ENV['AWS_BUCKET'],
-        access_key_id: ENV['AWS_ACCESS_KEY_ID'],
-        secret_access_key: ENV['AWS_SECRET'],
-        s3_host_name: 's3-eu-west-1.amazonaws.com'
-      }
-    }
-
     config.action_mailer.default_url_options = { host: 'www.fablabs.io', protocol: 'https' }
     config.action_mailer.delivery_method = :smtp
     config.action_mailer.perform_deliveries = true

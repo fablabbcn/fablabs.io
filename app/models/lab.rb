@@ -157,7 +157,7 @@ class Lab < ApplicationRecord
   end
 
   def short_address include_country = true
-    [city, county, (country if include_country)].reject(&:blank?).join(", ")
+    [city, county, (country&.common_name if include_country)].reject(&:blank?).join(", ")
   end
 
   def to_s

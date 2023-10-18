@@ -30,11 +30,11 @@ gem 'bootstrap4-kaminari-views'
 gem 'chartkick'
 gem 'cocoon'
 gem 'coderay'
-gem 'countries', require: 'countries/global'
-gem 'country_select'
+gem 'countries', '~> 5', require: 'countries/global'
+gem 'country_select', '~> 8.0'
 gem 'dalli', '~> 3.2.3'
 gem 'discourse_api'
-gem 'doorkeeper', '~>5.5.0'
+gem 'doorkeeper', '~>5.6.0'
 gem 'dotenv-rails'
 gem 'dragonfly'#, '~> 1.1.1'
 gem 'dragonfly-s3_data_store'
@@ -87,14 +87,9 @@ gem 'trumbowyg_rails'#, git: 'https://github.com/TikiTDO/trumbowyg_rails.git'
 gem 'twitter'
 gem 'uglifier'#, '>= 1.3.0'
 
-gem "paperclip"#, "~> 4.2"
-# For paperclip/refile we need:
-gem 'aws-s3'
-gem 'aws-sdk-v1' # Can be used together with v2 because of different namespaces.
-
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
-  gem 'sdoc', require: false
+  gem 'sdoc', '2.3.1', require: false
 end
 
 group :development do
@@ -116,8 +111,7 @@ group :test, :development do
 end
 
 group :test do
-  gem 'capybara'
-  gem 'capybara-webkit'
+  gem 'capybara', '~> 3.36.0'
   gem 'guard-rspec'
   gem 'launchy'
   gem 'minitest'
@@ -125,7 +119,7 @@ group :test do
   gem 'pry-rescue'
   gem 'pry-stack_explorer'
   gem 'rails-controller-testing'
-  gem 'selenium-webdriver'
+  gem 'selenium-webdriver', '~> 3.0'
   gem 'shoulda-matchers'
   gem 'test-unit'
   gem 'webmock'

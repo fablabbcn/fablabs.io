@@ -2,7 +2,7 @@
 
 Country.class_eval do
   def name
-    translations[I18n.locale.to_s] || names.first
+    translations[I18n.locale.to_s] || common_name.first
   end
 end
 
