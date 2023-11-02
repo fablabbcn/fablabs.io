@@ -19,6 +19,8 @@ class UsersController < ApplicationController
   def create
     return render plain: "Please go back and ensure that the 'ignore' field is EMPTY." if params[:name].present?
 
+    logger.info 'Creating user through Users controller'
+
     @user = User.new user_params
     @user.current_sign_in_ip = request.remote_ip
     if verify_recaptcha(model: @user) && @user.save

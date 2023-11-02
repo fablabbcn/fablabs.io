@@ -9,6 +9,8 @@ class Api::V2::AdminController < Api::V2::ApiController
   def create_user
     error! :forbidden unless current_user.has_role? :superadmin
 
+    logger.info 'Creating user through API v2'
+
     param_dict = JSON.parse(request.body.read)
     params = ActionController::Parameters.new(param_dict)
 
