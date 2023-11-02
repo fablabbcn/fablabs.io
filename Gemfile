@@ -73,7 +73,7 @@ gem 'sass-rails'
 gem 'coffee-rails', '~> 4.2.0'
 gem 'sentry-ruby'
 gem 'sentry-rails'
-gem 'sidekiq'
+gem 'sidekiq', '< 7'
 gem 'simplecov', :require => false, :group => :test
 gem 'simple_form'
 gem 'sitemap_generator'
