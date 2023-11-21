@@ -1,0 +1,33 @@
+<header class="page-header" role="banner">
+  <div class="text-center">
+    <%= link_to root_path do %>
+        <%= image_tag ("logo.svg"), :alt => "fablabs.io" %>
+    <% end %>
+  </div>
+  <h1 class="mt-3">Your Account is Unverified</h1>
+</header>
+
+<main role="main">
+  <p>
+    Please check your inbox <strong><%= current_user.email %></strong> and validate your email address.
+  </p>
+
+  <div class="actions">
+    <p class="mb-4 text-center text-info">
+      It may take a few minutes to reach you. Before we send another, have you checked your spam folder?
+    </p>
+    
+    <%= link_to "Resend Verification Code", resend_verification_email_path, class: "btn btn-success btn-lg btn-block" %>
+
+    <p class="mt-4 text-center text-info">
+      If these steps do not work for you, please write to administrators at:&nbsp;<a href="mailto:webmasters@fablabs.io">webmasters@fablabs.io</a>
+    </p>
+  </div>
+</main>
+
+<!---
+Please check your inbox
+  strong current_user.email
+  and validate your email address.
+   confirm: ""
+-->

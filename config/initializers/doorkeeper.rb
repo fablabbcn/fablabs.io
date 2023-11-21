@@ -10,10 +10,12 @@ Doorkeeper.configure do
 
   # This block will be called to check whether the resource owner is authenticated or not.
   resource_owner_authenticator do
-    if current_user and current_user.verified?
-      current_user
-    else
+    if !current_user
       redirect_to(signin_url(goto: request.fullpath))
+    elsif current_user.unverified?
+      render 'doorkeeper/authorizations/unverified'
+    else
+      current_user
     end
   end
 
