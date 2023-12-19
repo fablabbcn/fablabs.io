@@ -54,7 +54,7 @@ jobs:
     - name: Bundle
       run: |
         pwd
-        gem install bundler
+        gem install bundler -v 2.4.20
         bundle config path vendor/bundle
         bundle install --jobs 4 --retry 3
 
