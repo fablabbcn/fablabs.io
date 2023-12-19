@@ -2,8 +2,10 @@ require "spec_helper"
 
 describe UserMailer, type: :mailer do
 
+  let(:user_emails) { ['email@bitsushi.com', 'fallback@example.com'] }
+
   let(:lab) { FactoryBot.create(:lab) }
-  let(:user) { FactoryBot.create(:user) }
+  let(:user) { FactoryBot.create(:user, email: user_emails[0], email_fallback: user_emails[1]) }
   let(:employee) { FactoryBot.create(:employee, user: user, lab: lab) }
 
   %w(
@@ -57,9 +59,16 @@ describe UserMailer, type: :mailer do
     recovery = FactoryBot.create(:recovery, user: user, email_or_username: [user.email, user.username].sample)
     mail = UserMailer.account_recovery_instructions(user.id)
     expect(mail.subject).to match("Account Recovery Instructions")
-    expect(mail.to).to eq([user.email])
+    expect(mail.to).to eq(['email@bitsushi.com', 'fallback@example.com'])
     expect(mail.from).to eq(["support@fablabs.io"])
     expect(mail.body.encoded).to match( recovery_url(user.recovery_key) )
+  end
+
+  it "account_recovery_instructions_single" do
+    simpleuser = FactoryBot.create(:user, email: 'one@example.com')
+    recovery = FactoryBot.create(:recovery, user: simpleuser, email_or_username: [simpleuser.email, simpleuser.username].sample)
+    mail = UserMailer.account_recovery_instructions(simpleuser.id)
+    expect(mail.to).to eq(['one@example.com'])
   end
 
 end

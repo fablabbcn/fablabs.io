@@ -65,9 +65,7 @@ class UserMailer < ActionMailer::Base
       @user  = User.find(user_id)
       emails = [@user.email_string, @user.email_fallback].reject(&:blank?)
 
-      emails.each do |email|
-        mail(to: email, from: "FabLabs.io <support@fablabs.io>", subject: "Account Recovery Instructions")
-      end
+      mail(to: emails, from: "FabLabs.io <support@fablabs.io>", subject: "Account Recovery Instructions")
     rescue ActiveRecord::RecordNotFound
     end
   end
