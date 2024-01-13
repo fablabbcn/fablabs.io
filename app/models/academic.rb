@@ -28,7 +28,7 @@ class Academic < ActiveRecord::Base
 
   belongs_to :user
   belongs_to :lab
-  belongs_to :approver
+  belongs_to :approver, class_name: 'User'
 
   validates_presence_of :started_in, :lab, :user
 
