@@ -21,7 +21,7 @@
     border-top-left-radius: 9px;
     border-top-right-radius: 9px;
     background-color: white;
-    padding: 7px 4em 0 4em;
+    padding: 2em 4em 2em 4em;
   }
 
   h1 {
@@ -30,10 +30,10 @@
     line-height: 1.5em;
   }
 
-  body > p {
-    width: 33em;
+  div.subtext {
+    width: 32em;
     margin: 0 auto 1em;
-    padding: 1em 0;
+    padding: .5em .5em;
     background-color: #F7F7F7;
     border: 1px solid #CCC;
     border-right-color: #999;
@@ -44,14 +44,22 @@
     color: #666;
     box-shadow:0 3px 8px rgba(50, 50, 50, 0.17);
   }
+  div.subtext > p {
+    font-size: .8em;
+  }
   </style>
 </head>
 
 <body>
   <!-- This file lives in public/500.html -->
-  <div class="dialog">
-    <h1>We're sorry, but something went wrong.</h1>
+  <div>
+    <img src="/default-lab-avatar.png">
   </div>
-  <p>If you are the application owner check the logs for more information.</p>
+  <div class="dialog">
+    <h1>We're sorry, but something went wrong with the internal server.</h1>
+  </div>
+  <div class="subtext">
+    <p>Please contact a system adninistrator to report what happend and the time UTC, so we can help you along.</p>
+  </div>
 </body>
 </html>
