@@ -11,6 +11,8 @@ class LabsController < ApplicationController
 
   # authorize_actions_for Lab, actions: { map: :read, manage_admins: :update}
 
+  rescue_from ActiveRecord::RecordNotFound, :with => :record_not_found
+
   def embed
     @labs = Lab.with_approved_state
     # render :embed, layout: false
@@ -75,11 +77,7 @@ class LabsController < ApplicationController
   end
 
   def show
-    begin
-      @lab = with_approved_or_pending_state(params[:id])
-    rescue ActiveRecord::RecordNotFound
-      return redirect_to root_path, notice: 'Lab not found'
-    end
+    @lab = with_approved_or_pending_state(params[:id])
     # @people = [@lab.creator]
     @employees = @lab.employees.includes(:user).active.order('employees.id ASC')
     @machines = @lab.machines.includes(:brand, :tags)
@@ -133,6 +131,13 @@ class LabsController < ApplicationController
   def allow_iframe
     response.headers.delete 'X-Frame-Options'
     #  From http://jerodsanto.net/2013/12/rails-4-let-specific-actions-be-embedded-as-iframes/
+  end
+
+  def record_not_found
+    respond_to do |format|
+      format.html { render "404", :status => :not_found }
+      format.all { head :not_found }
+    end
   end
 
   def lab_params

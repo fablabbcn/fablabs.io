@@ -1,0 +1,11 @@
+.jumbotron.text-center
+  = title "Lab Not Found - 404 error", class: "text-danger"
+
+  %br
+
+  %p Unable to find any Lab matching the URL provided. Try searching or browse through the list of labs.
+
+  %br
+
+  = link_to t("views.header.labs"), labs_path, class: "btn btn-primary btn-lg"
+

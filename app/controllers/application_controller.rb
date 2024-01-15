@@ -7,6 +7,8 @@ class ApplicationController < ActionController::Base
 
   before_action :sentry_user_context, if: :current_user
 
+  rescue_from ActiveRecord::RecordNotFound, :with => :error_not_found
+
   def require_login
     if current_user.nil?
       redirect_to signin_url(goto: request.path), flash: { error: "You must first sign in to access this page" }
@@ -23,6 +25,13 @@ class ApplicationController < ActionController::Base
   before_action :set_locale
 
   around_action :user_time_zone, if: :current_user
+
+  def error_not_found
+    respond_to do |format|
+      format.html { render "/application/errors/404", :status => :not_found }
+      format.all { head :not_found }
+    end
+  end
 
 private
 

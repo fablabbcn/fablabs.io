@@ -162,6 +162,8 @@ Rails.application.routes.draw do
 
     root to: 'static#alt'
 
+    match '*unmatched', to: 'application#error_not_found', via: :all
+
   end
 
   constraints(ApiSubdomain) do
