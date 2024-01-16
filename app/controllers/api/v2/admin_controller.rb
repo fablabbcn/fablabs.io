@@ -23,7 +23,7 @@ class Api::V2::AdminController < Api::V2::ApiController
       logger.error ex.message
       error! :bad_request
     end
-    UserMailer.welcome(@user.id).deliver_now
+    # TODO: Send verify email if not verified
     render_json ApiUserSerializer.new(@user, {}).serialized_json
   end
 
