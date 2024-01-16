@@ -15,7 +15,8 @@ feature "Resetting your password" do
   end
 
   scenario "with an invalid url" do
-    expect{visit recovery_url('invalidkey')}.to raise_error(ActiveRecord::RecordNotFound)
+    visit recovery_url('invalidkey')
+    expect(page).to have_http_status :not_found
   end
 
   scenario "with an empty password" do

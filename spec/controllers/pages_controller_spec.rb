@@ -5,9 +5,8 @@ describe PagesController, type: :controller do
     it 'not published without current_user' do
       page = FactoryBot.create(:page, published: false)
 
-      expect {
-        get :show, params: { id: page.slug }
-      }.to raise_error(ActiveRecord::RecordNotFound)
+      get :show, params: { id: page.slug }
+      expect(response).to have_http_status :not_found
     end
 
     it 'published' do
@@ -24,9 +23,8 @@ describe PagesController, type: :controller do
 
       page = FactoryBot.create(:page, published: false)
 
-      expect {
-        get :show, params: { id: page.slug }
-      }.to raise_error(ActiveRecord::RecordNotFound)
+      get :show, params: { id: page.slug }
+      expect(response).to have_http_status :not_found
     end
 
     it 'not published with superadmin current_user' do

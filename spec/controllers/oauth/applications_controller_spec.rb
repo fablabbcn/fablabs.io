@@ -76,9 +76,8 @@ describe Oauth::ApplicationsController, type: :controller do
 
 
             session[:user_id] = @anotherUser.id
-            expect {
-              get :show, params: { id: @app.id }
-            }.to raise_error(ActiveRecord::RecordNotFound)
+            get :show, params: { id: @app.id }
+            expect(response).to have_http_status :not_found
             #unauthorized
         end
 

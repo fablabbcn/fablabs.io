@@ -13,7 +13,8 @@ feature "Managing employees" do
     superadmin.add_role :superadmin
     lab.remove(superadmin)
     sign_in_superadmin
-    expect{visit lab_employees_path(lab)}.to raise_error ActiveRecord::RecordNotFound
+    visit lab_employees_path(lab)
+    expect(page).to have_http_status :not_found
   end
 
   scenario "as a superadmin" do
