@@ -42,6 +42,11 @@ class OrganizationsController < ApplicationController
 
   def find_organization
     @organization = Organization.friendly.find(params[:id])
+
+    unless @organization.workflow_state == "approved" || (current_user && (current_user.has_role?(:superadmin) || @organization.creator == current_user))
+      error_not_found
+    end
+
   end
 
   def organization_params
