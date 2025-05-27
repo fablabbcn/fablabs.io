@@ -5,7 +5,7 @@ on: [push, pull_request]
 jobs:
   build:
     name: The Build
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
 
     services:
       redis:
@@ -30,7 +30,7 @@ jobs:
       run: |
         sudo apt-get update -y
         sudo apt-get install libpq-dev
-        sudo apt-get install g++ qt5-default libqt5webkit5-dev gstreamer1.0-plugins-base gstreamer1.0-tools gstreamer1.0-x
+        sudo apt-get install g++ qtbase5-dev qtwebengine5-dev gstreamer1.0-plugins-base gstreamer1.0-tools gstreamer1.0-x
 
     - name: Set up Ruby
       uses: ruby/setup-ruby@v1
