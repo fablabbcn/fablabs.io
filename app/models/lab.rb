@@ -42,8 +42,8 @@ class Lab < ApplicationRecord
   has_many :admin_applications
   has_many :events
   has_many :discussions, as: :discussable
-  has_many :employees
-  has_many :links, as: :linkable
+  has_many :employees, dependent: :destroy
+  has_many :links, as: :linkable, dependent: :destroy
   accepts_nested_attributes_for :links, reject_if: lambda{ |l| l[:url].blank? }, allow_destroy: true
 
   has_many :role_applications
