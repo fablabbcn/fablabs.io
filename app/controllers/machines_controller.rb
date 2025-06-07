@@ -1,7 +1,8 @@
 class MachinesController < ThingsController
 
   before_action :require_login, except: [:index, :show, :search]
-
+  before_action -> { check_user_verification(machines_path) }, only: [:new, :create]
+  
   defaults :resource_class => Machine
 
   def show

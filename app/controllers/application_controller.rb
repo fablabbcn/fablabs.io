@@ -84,6 +84,13 @@ private
     end
   end
 
+  def check_user_verification(fallback_path = root_path)
+    if current_user.unverified?
+      redirect_back fallback_location: fallback_path,
+                    notice: "Please first verify your account email, then you can start creating!"
+    end
+  end
+
   def track_activity(trackable, actor = current_user, action = params[:action])
     current_user.created_activities.create action: action, trackable: trackable, actor: actor
   end

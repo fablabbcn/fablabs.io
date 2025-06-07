@@ -15,6 +15,8 @@ feature "Applying to be an employee" do
     sign_in
     visit lab_url(lab)
     expect(page).to have_link("I work here")
+    click_link "I work here"
+    expect(page).to have_content("verify your account")
   end
 
   scenario "as a verified user" do
@@ -24,6 +26,7 @@ feature "Applying to be an employee" do
     user.verify!
     sign_in user
     visit lab_url(lab)
+    expect(page).to have_link("I work here")
     click_link "I work here"
     fill_in "Job title", with: "King"
     fill_in "employee_description", with: "I sit on a throne"

@@ -9,6 +9,8 @@ class LabsController < ApplicationController
   before_action :require_login, except: %i[index map show mapdata embed list]
   after_action :allow_iframe, only: %i[embed list]
 
+  before_action :check_user_verification, only: [:new, :create]
+
   # authorize_actions_for Lab, actions: { map: :read, manage_admins: :update}
 
   rescue_from ActiveRecord::RecordNotFound, :with => :record_not_found

@@ -1,6 +1,7 @@
 class EmployeesController < ApplicationController
 
   before_action :require_login
+  before_action :check_user_verification, only: [:new, :create]
 
   def new
     @lab = Lab.with_approved_state.friendly.find params[:lab_id]
