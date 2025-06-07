@@ -15,6 +15,11 @@ ActiveAdmin.register Job do
   #   permitted
   # end
 
+  filter :id
+  filter :title
+  filter :description
+  filter :country_code
+
   remove_filter :user
   remove_filter :taggings
   remove_filter :base_tags

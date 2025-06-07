@@ -14,6 +14,11 @@ ActiveAdmin.register Organization do
   #   permitted << :other if params[:action] == 'create' && current_user.admin?
   #   permitted
   # end
+
+  filter :name
+  filter :slug
+  filter :description
+  filter :workflow_state
   
   remove_filter :labs
   remove_filter :lab_organizations

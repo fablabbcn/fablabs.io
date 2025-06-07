@@ -19,6 +19,12 @@ ActiveAdmin.register User do
   scope :verified
   scope :unverified
 
+  filter :first_name
+  filter :last_name
+  filter :username
+  filter :email
+  filter :workflow_state, as: :select
+
   remove_filter :access_grants
   remove_filter :access_tokens
   remove_filter :oauth_applications

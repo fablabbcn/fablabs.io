@@ -31,6 +31,11 @@ class Employee < ApplicationRecord
     approve! if user.present? and user.has_role?(:admin, lab)
   end
 
+  
+  def self.ransackable_attributes(auth_object = nil)
+    ['id', 'job_title', 'description', 'workflow_state', 'created_at']
+  end
+
   def self.ransackable_associations(auth_object = nil)
     super + %w[user lab]
   end

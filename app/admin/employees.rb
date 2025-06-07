@@ -15,6 +15,8 @@ ActiveAdmin.register Employee do
   #   permitted
   # end
 
-  remove_filter :user
-  remove_filter :lab
+  filter :user_first_name_or_user_last_name, as: :string
+  filter :lab_name, as: :string
+  filter :workflow_state, as: :select
+  filter :created_at
 end

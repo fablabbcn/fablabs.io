@@ -46,4 +46,12 @@ class Event < ApplicationRecord
 
 private
 
+  def self.ransackable_attributes(auth_object = nil)
+    ['id', 'slug', 'name', 'description']
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    %w[lab]
+  end
+
 end

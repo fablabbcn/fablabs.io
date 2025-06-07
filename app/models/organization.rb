@@ -111,6 +111,6 @@ class Organization < ApplicationRecord
   end
 
   def self.ransackable_attributes(auth_object = nil)
-    ['id', 'name', 'description', 'discourse_id', 'discourse_errors', 'workflow_state'] 
+    ['id', 'slug', 'name', 'description', 'discourse_id', 'discourse_errors', 'workflow_state'] 
   end
 end

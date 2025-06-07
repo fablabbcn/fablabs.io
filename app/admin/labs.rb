@@ -14,6 +14,16 @@ ActiveAdmin.register Lab do
   #   permitted << :other if params[:action] == 'create' && current_user.admin?
   #   permitted
   # end
+
+  filter :slug
+  filter :name
+  filter :city
+  filter :country_code
+  filter :activity_status, as: :select
+  filter :workflow_state, as: :select
+  filter :is_referee
+  filter :kind, as: :select
+
   scope :all
   scope :approved
   scope :approved_referees

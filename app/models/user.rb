@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  include RansackActiveAdminAccess
 
   has_many :access_grants, class_name: "Doorkeeper::AccessGrant",
                            foreign_key: :resource_owner_id,
@@ -242,9 +243,9 @@ class User < ActiveRecord::Base
   end
 
   def self.ransackable_attributes(auth_object = nil)
-    publicCols = ['id', 'first_name', 'last_name', 'username', 'country_code'] 
-      
-    if auth_object == :superadmin
+    publicCols = ['id', 'first_name', 'last_name', 'username', 'country_code']  + _ransackers.keys
+
+    if ransack_admin_context?(auth_object)
       publicCols + ['email', 'workflow_state']
     else
       publicCols
@@ -252,7 +253,7 @@ class User < ActiveRecord::Base
   end
 
   def self.ransackable_associations(auth_object = nil)
-    if auth_object == :superadmin
+    if ransack_admin_context?(auth_object)
       %w[roles]
     else
       %w[]

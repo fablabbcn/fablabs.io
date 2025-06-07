@@ -15,6 +15,7 @@ ActiveAdmin.register Event do
   #   permitted
   # end
 
-  remove_filter :lab
-  remove_filter :creator
+  filter :name
+  filter :description
+  filter :lab_name, as: :string
 end
