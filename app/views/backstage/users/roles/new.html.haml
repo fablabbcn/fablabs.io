@@ -6,5 +6,5 @@
       = title "User #{@user} roles"
 
       = simple_form_for [:backstage, @user, @role] do |f|
-        = f.input :name, collection: Role::AVAILABLE, allow_blank: false, prompt: false
+        = f.input :name, collection: [:superadmin], allow_blank: false, prompt: false
         = f.submit 'Save', class: 'btn btn-primary btn-lg mt-4'
