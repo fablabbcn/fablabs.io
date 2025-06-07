@@ -25,10 +25,14 @@ class Employee < ApplicationRecord
     user.add_role :admin, lab
   end
 
-private
+  private
 
   def auto_approve_for_admins
     approve! if user.present? and user.has_role?(:admin, lab)
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    super + %w[user lab]
   end
 
 end
