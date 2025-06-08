@@ -12,12 +12,13 @@ class RecoveriesController < ApplicationController
   def create
     @recovery = Recovery.new recovery_params
     @recovery.ip = request.remote_ip
-    if @recovery.save
+
+    if @recovery.valid?
+      @recovery.save
       UserMailer.account_recovery_instructions(@recovery.user.id).deliver_now
-      redirect_to check_inbox_recoveries_url
-    else
-      render :new
     end
+
+    redirect_to check_inbox_recoveries_url
   end
 
   def show
