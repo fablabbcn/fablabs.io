@@ -21,7 +21,11 @@ class RecoveriesController < ApplicationController
   end
 
   def show
-    @recovery = Recovery.find_by(key: params[:id]) || raise(ActiveRecord::RecordNotFound)
+    @recovery = Recovery.find_by(key: params[:id])
+    unless @recovery
+      flash[:error] = "That link is no longer valid."
+      redirect_to root_path and return
+    end
   end
 
   def update

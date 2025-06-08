@@ -19,7 +19,7 @@ feature "Resetting your password" do
 
   scenario "with an invalid url" do
     visit recovery_url('invalidkey')
-    expect(page).to have_http_status :not_found
+    expect(page).to have_content('no longer valid')
   end
 
   scenario "with an empty password" do
