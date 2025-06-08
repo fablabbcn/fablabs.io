@@ -19,7 +19,11 @@ module LabsOperations
   end
 
   def lab_send_action(verbed)
-    UserMailer.send("lab_#{verbed}", @lab.id).deliver_now
+    users = (@lab.direct_admins + [@lab.creator]).compact.uniq
+    users.each do |user|
+      UserMailer.send("lab_#{verbed}", @lab.id, user.id).deliver_now
+    end
+
     mails_referees(verbed)
   end
 
@@ -30,7 +34,7 @@ module LabsOperations
   end
 
   def sends_emails(action)
-    UserMailer.send("lab_#{action}", @lab.id).deliver_now
+    UserMailer.send("lab_#{action}", @lab.id, @lab.creator.id).deliver_now
     AdminMailer.send("lab_#{action}", @lab.id).deliver_now
 
     mails_referees(action)

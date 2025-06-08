@@ -19,9 +19,9 @@ describe UserMailer, type: :mailer do
     more_info_added
   ).each do |action|
     it "lab_#{action} notification" do
-      mail = UserMailer.send("lab_#{action}", lab.id)
+      mail = UserMailer.send("lab_#{action}", lab.id, user.id)
       expect(mail.subject).to eq("[#{lab.name}] #{action.capitalize}")
-      expect(mail.to).to eq([lab.creator.email])
+      expect(mail.to).to eq(['email@bitsushi.com'])
       expect(mail.from).to eq(["notifications@fablabs.io"])
       if action == "submitted"
         expect(mail.body.encoded).to match("submitting #{@lab}")

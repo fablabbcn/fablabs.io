@@ -5,14 +5,12 @@ class UserMailer < ActionMailer::Base
   default from: "FabLabs.io <notifications@fablabs.io>"
 
   %w(submitted approved rejected removed referee_requested_admin_approval referee_rejected referee_approved requested_more_info more_info_added more_info_needed).each do |action|
-    define_method("lab_#{action}") do |lab_id|
+    define_method("lab_#{action}") do |lab_id, user_id|
       begin
         @lab = Lab.find(lab_id)
-        users = (@lab.direct_admins + [@lab.creator]).compact.uniq
-        users.each do |user|
-          @user = user
-          mail(to: @user.email_string, subject: "[#{@lab}] #{action.capitalize}")
-        end
+        @user = User.find(user_id)
+
+        mail(to: @user.email_string, subject: "[#{@lab}] #{action.capitalize}")
       rescue ActiveRecord::RecordNotFound
       end
     end

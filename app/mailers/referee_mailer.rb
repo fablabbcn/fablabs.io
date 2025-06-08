@@ -22,7 +22,7 @@ class RefereeMailer < ActionMailer::Base
     users = (@referee.direct_admins + [@referee.creator]).compact.uniq.map { |u| u.email_string }
     users.join(", ")
     @user = (@referee.creator.nil? ? @referee.direct_admins.first : @referee.creator)
-    mail(to: users, subject: "[Fablabs.io] #{@lab} #{action.capitalize} - #{message}")
+    mail(to: users, subject: "[#{@lab}] #{action.capitalize} - #{message}")
 
   end
 end
