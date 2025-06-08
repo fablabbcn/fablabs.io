@@ -1,3 +1,5 @@
-= render "activities/#{activity.trackable_type.underscore}/#{activity.action}",
+- partial_path = "activities/#{activity.trackable_type.underscore}/#{activity.action}"
+- if lookup_context.exists?(partial_path, [], true)
+  = render partial_path,
           activity.trackable_type.underscore.to_sym => activity.trackable,
           :activity => activity
