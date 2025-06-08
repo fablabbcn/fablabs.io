@@ -12,6 +12,9 @@ feature "Resetting your password" do
     click_button 'Reset Password'
     expect(page).to have_content('Password reset')
     expect(page).to have_link('Sign out')
+
+    # Now test that the recovery key is deleted
+    expect(Recovery.find_by(id: recovery.id)).to be_nil
   end
 
   scenario "with an invalid url" do

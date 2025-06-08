@@ -31,6 +31,7 @@ class RecoveriesController < ApplicationController
       if @recovery.user.update_attributes user_params
         # cookies.permanent[:user_id] = { data: @recovery.user.id, domain: '.fablabs.dev' }
         session[:user_id] = @recovery.user.id
+        @recovery.destroy!
         redirect_to root_path, flash: { success: 'Password reset' }
       else
         render :show
