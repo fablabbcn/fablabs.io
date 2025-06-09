@@ -2,6 +2,10 @@ class RecoveriesController < ApplicationController
 
   layout 'application'
 
+  def index
+    redirect_to action: :new
+  end
+
   def check_inbox; end
 
   def new
