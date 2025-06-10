@@ -2,7 +2,7 @@ ruby File.read(".ruby-version").strip
 
 source 'https://rubygems.org'
 
-gem 'rails','~> 6'
+gem 'rails','~> 6.1.0'
 gem 'workflow', '~> 2.0'#, github: 'geekq/workflow'
 gem 'workflow-activerecord', '>=4.1', '< 6.0'
 
@@ -42,6 +42,7 @@ gem 'gibbon'
 gem 'haml-rails'
 gem 'hpricot'
 gem 'http_accept_language'
+gem 'httparty', '~> 0.23.1'
 gem 'inherited_resources'
 gem 'invisible_captcha'
 gem 'jbuilder'
