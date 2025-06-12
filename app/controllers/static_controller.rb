@@ -1,5 +1,3 @@
-require 'httparty'
-
 class StaticController < ApplicationController
 
   def home
@@ -9,13 +7,6 @@ class StaticController < ApplicationController
   end
 
   def alt
-    @projects = []
-    # TODO: Make the call to wikifactory async. Now it adds seconds delay.
-    begin
-      @projects = recent_projects()
-    rescue Exception => error
-      puts error.inspect
-    end
     @recent_labs = recent_labs()
     @news = [
       { :image_url => "news/fab15.jpg", :title => "FAB Bhtuan Highlights", :url => "https://fab23.fabevent.org/media/fab23-bhutan-a-success-by-any-measure", :description => "FAB Bhutan was a GREAT success. Check out the latest here"},
@@ -82,29 +73,6 @@ class StaticController < ApplicationController
   end
 
   private
-
-  helper_method :recent_projects
-  def recent_projects
-    begin
-
-      response = Rails.cache.fetch('frontpage-projects', expires_in: 1.hours) do
-        HTTParty.get('https://wikifactory.com/api/fablabsio/projects')
-      end
-
-      json = JSON.parse(response.body)
-
-      projects = []
-      if json
-        projects = json.select { |p|
-          p["image_url"] != nil
-        }
-        projects = projects.first(6)
-      end
-      return projects
-    rescue
-      return []
-    end
-  end
 
   helper_method :recent_labs
   def recent_labs
