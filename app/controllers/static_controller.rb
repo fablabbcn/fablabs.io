@@ -47,11 +47,8 @@ class StaticController < ApplicationController
     render json: {
       env: Rails.env,
       version: VERSION,
-      ruby: RUBY_VERSION,
-      rails: Rails::VERSION::STRING,
       branch: GIT_BRANCH,
       revision: GIT_REVISION,
-      message: GIT_MSG,
     }
   end
 
