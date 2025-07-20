@@ -108,6 +108,16 @@ class UsersController < ApplicationController
 
   def show
     @user = User.friendly.find(params[:id])
+
+    if @user.unverified?
+      if current_user == @user
+        # Let the user view their own profile but show a banner
+        flash.now[:alert] = "Please verify your email to make your profile public."
+      else
+        # Why should you get a profile with out work
+        raise ActiveRecord::RecordNotFound
+      end
+    end
   end
 
 private
