@@ -72,6 +72,7 @@ class User < ActiveRecord::Base
   validates :username, format: { :with => /\A[a-zA-Z0-9]+([\.-])?[a-zA-Z0-9]+\z/ }, length: { minimum: 4, maximum: 50 }
   
   validates :first_name, :last_name, :email, :username, presence: true
+  validates :first_name, :last_name, format: { without: /(http|https|\/\/)/, message: "cannot contain URLs" }
   validates_uniqueness_of :email, :username, case_sensitive: false
   validates_uniqueness_of :email_fallback, allow_blank: true
   validates :password, presence: true, length: { minimum: 6 }, if: lambda{ !password.nil? }, on: :update
