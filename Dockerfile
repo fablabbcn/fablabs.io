@@ -48,4 +48,6 @@ COPY entrypoint.sh /usr/bin/
 RUN chmod +x /usr/bin/entrypoint.sh
 ENTRYPOINT ["entrypoint.sh"]
 
+EXPOSE 3000
+
 CMD [ "bin/rails", "server", "-p", "3000", "-b", "0.0.0.0" ]

@@ -2,11 +2,11 @@ services:
   app:
     image: ${CONTAINER_DEPLOY_IMAGE:-fablabsio}
     build: .
-    command: bundle exec puma -C config/puma.rb
+    # command: bundle exec puma -C config/puma.rb
     volumes:
       - .:/fablabs
       - /fablabs/tmp
-    env_file: .env.prod
+    env_file: .env
     environment:
       RAILS_ENV: production
     depends_on:
@@ -14,7 +14,8 @@ services:
       - redis
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.fablabsweb.rule=Host(`www.fablabs.io`)"
+      - "traefik.http.services.fablabsservice.loadbalancer.server.port=3000"
+      - "traefik.http.routers.fablabsweb.rule=Host(`fablabs.io`) || Host(`www.fablabs.io`) || Host(`api.fablabs.io`)"
       - "traefik.http.routers.fablabsweb.entrypoints=websecure"
       - "traefik.http.routers.fablabsweb.tls=true"
       - "traefik.http.routers.fablabsweb.tls.certresolver=letsencrypt"
@@ -32,7 +33,7 @@ services:
     command: bundle exec sidekiq
     volumes_from:
       - app
-    env_file: .env.prod
+    env_file: .env
     environment:
       RAILS_ENV: production
     depends_on:
@@ -50,12 +51,12 @@ services:
     image: postgres:10.23-bullseye
     restart: always
     # hostname: db1
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: password
+    # environment:
+      # POSTGRES_USER: postgres
+      # POSTGRES_PASSWORD: password
     # persist the database between containers by storing it in a volume
     volumes:
-      - pgdata:/var/lib/postgresql/data
+      - fablabsio_fablabs-postgres:/var/lib/postgresql/data
     networks:
       - internal
 
@@ -66,9 +67,11 @@ services:
     command: redis-server /usr/local/etc/redis/redis.conf
     volumes:
       - ./scripts/redis.conf:/usr/local/etc/redis/redis.conf
+    networks:
+      - internal
 
   traefik:
-    image: traefik:v3.4
+    image: traefik:v3.6
     command:
       - "--providers.docker=true"
       - "--providers.docker.exposedbydefault=false"
@@ -82,12 +85,13 @@ services:
       - "443:443"
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
-      - "./traefik/acme.json:/letsencrypt/acme.json"
+      - "./volumes/traefik/certs/acme.json:/letsencrypt/acme.json"
     networks:
       - web
 
 volumes:
-  pgdata:
+  fablabsio_fablabs-postgres:
+    external: true
 
 networks:
   internal:

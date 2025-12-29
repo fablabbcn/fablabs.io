@@ -6,3 +6,4 @@ scripts/
 tmp/*
 public/assets/
 .env
+/volumes/traefik/certs
