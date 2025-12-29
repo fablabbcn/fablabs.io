@@ -35,7 +35,7 @@ class User < ActiveRecord::Base
   has_many :created_events, class_name: 'Event', foreign_key: 'creator_id'
   has_many :created_labs, class_name: 'Lab', foreign_key: 'creator_id'
   has_many :created_projects, class_name: 'Project', foreign_key: 'owner_id'
-  has_many :comments, foreign_key: 'author_id'
+  has_many :comments, foreign_key: 'author_id', dependent: :destroy
   has_many :discussions, foreign_key: 'creator_id'
   has_many :recoveries
   has_many :role_applications
@@ -45,7 +45,7 @@ class User < ActiveRecord::Base
 
   has_many :academics
 
-  has_many :links, as: :linkable
+  has_many :links, as: :linkable, dependent: :destroy
   accepts_nested_attributes_for :links, reject_if: lambda{ |l| l[:url].blank? }, allow_destroy: true
 
   has_many :created_activities, foreign_key: 'creator_id', class_name: 'Activity'
