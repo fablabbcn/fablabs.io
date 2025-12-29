@@ -110,6 +110,12 @@ RSpec.configure do |config|
     WebMock.stub_request(:get, 'https://wikifactory.com/api/fablabsio/projects')
   end
 
+  config.before(:each, type: :feature) do
+    allow(Geocoder).to receive(:search).and_return(
+      [double(latitude: 40.7128, longitude: -74.0060)]
+    )
+  end
+
   config.after(:each) do
   end
 

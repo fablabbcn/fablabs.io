@@ -17,6 +17,8 @@ FactoryBot.define do
     email { FFaker::Internet.email }
     description { FFaker::Lorem.sentence }
     address_1 { FFaker::Address.street_address }
+    latitude { 40.7128 }
+    longitude { -74.0060 }
     improve_approval_application { FFaker::Lorem.sentence }
     county { "County" }
     country_code { "es" }

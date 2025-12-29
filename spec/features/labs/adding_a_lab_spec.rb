@@ -59,6 +59,9 @@ feature "Adding a lab" do
       fill_in 'lab_phone', with: '+39-39333333'
       fill_in 'lab_description', with: 'An awesome place'
       fill_in 'lab_address_1', with: 'Mars'
+      # Help pass validation (since no JS being executed)
+      find('#lab_latitude', visible: false).set(40.7128)
+      find('#lab_longitude', visible: false).set(-74.0060)
       fill_in 'lab_links_attributes_0_url', with: 'http://www.newlab.com'
       fill_in 'lab_employees_attributes_0_job_title', with: 'Spaceman'
       fill_in 'lab_employees_attributes_0_description', with: 'I explore the surface'
