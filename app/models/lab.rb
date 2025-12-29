@@ -77,6 +77,7 @@ class Lab < ApplicationRecord
 
   validates_presence_of :name, :country_code, :slug, :email#, :creator
   validates_presence_of :address_1, on: :create
+  validates_presence_of :latitude, message: 'Missing Lat/Lng coordinates, please fill in address in "Location Step 1" so the map markers is on your lab location.'
 
   validates_inclusion_of :kind, in: kinds.keys, on: :create
 
