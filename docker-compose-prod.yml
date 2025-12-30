@@ -19,6 +19,7 @@ services:
       - "traefik.http.routers.fablabsweb.entrypoints=websecure"
       - "traefik.http.routers.fablabsweb.tls=true"
       - "traefik.http.routers.fablabsweb.tls.certresolver=letsencrypt"
+    restart: unless-stopped
     networks:
       - internal
       - web
@@ -40,6 +41,7 @@ services:
       - app
       - redis
       - db
+    restart: unless-stopped
     networks:
       - internal
     logging:
@@ -49,8 +51,7 @@ services:
 
   db:
     image: postgres:10.23-bullseye
-    restart: always
-    # hostname: db1
+    restart: unless-stopped
     # environment:
       # POSTGRES_USER: postgres
       # POSTGRES_PASSWORD: password
@@ -62,8 +63,7 @@ services:
 
   redis:
     image: redis:6
-    hostname: redis
-    restart: always
+    restart: unless-stopped
     command: redis-server /usr/local/etc/redis/redis.conf
     volumes:
       - ./scripts/redis.conf:/usr/local/etc/redis/redis.conf
@@ -83,6 +83,7 @@ services:
     ports:
       - "80:80"
       - "443:443"
+    restart: unless-stopped
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
       - "./volumes/traefik/certs/acme.json:/letsencrypt/acme.json"
