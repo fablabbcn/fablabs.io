@@ -1,77 +1,58 @@
 # frozen_string_literal: true
 
-# AdminController
-# admin-only api for system-level integrations
 class Api::V2::AdminController < Api::V2::ApiController
   before_action :doorkeeper_authorize! # Requires access token for all actions
+  before_action :authorize_superadmin!
 
-  # create a verified user, sending the welcome email
   def create_user
-    error! :forbidden unless current_user.has_role? :superadmin
-
     logger.info 'Creating user through API v2'
 
     param_dict = JSON.parse(request.body.read)
     params = ActionController::Parameters.new(param_dict)
 
-    @user = User.new user_params
+    @user = User.new(user_params)
+
     begin
       @user.save!
       @user.verify!
     rescue ActiveRecord::RecordInvalid => ex
-      logger.error 'ActiveRecord::RecordInvalid'
       logger.error ex.message
-      error! :bad_request
+      return render json: { error: 'Invalid user data' }, status: :bad_request
     end
-    # TODO: Send verify email if not verified
-    render_json ApiUserSerializer.new(@user, {}).serialized_json
+
+    render json: ApiUserSerializer.new(@user).serializable_hash
   end
 
   def list_users
-    # Your code here
-    error! :forbidden unless current_user.has_role? :superadmin
-    @users, @paginate = paginate User.where('')
-    options = {}
-    options[:meta] = { 'total-pages' => @paginate[:pages] }
-    options[:links] = @paginate
+    @users, @paginate = paginate(User.all)
 
-    render_json ApiUserSerializer.new(@users, options).serialized_json
+    render json: ApiUserSerializer.new(@users, pagination_options(@paginate)).serializable_hash
   end
 
   def search_users
-    # Your code here
-    error! :forbidden unless current_user.has_role? :superadmin
-
     data = params.require(:data).permit(:username, :email)
 
-    @query = User.all
+    query = User.all
+    query = query.where('UPPER(username) = UPPER(?)', data[:username]) if data[:username].present?
+    query = query.where('UPPER(email) = UPPER(?)', data[:email]) if data[:email].present?
 
-    if data['username'].present?
-      @query = @query.where('UPPER(username) = UPPER(?)', data['username'].to_s)
-    end
+    @users, @paginate = paginate(query)
 
-    if data['email'].present?
-      @query = @query.where('UPPER(email) = UPPER(?)', data['email'].to_s)
-    end
-
-    @users, @paginate = paginate @query
-
-    # Your code hereda
-    options = {}
-    options[:meta] = { 'total-pages' => @paginate[:pages] }
-    options[:links] = @paginate
-
-    render_json ApiUserSerializer.new(@users, options).serialized_json
+    render json: ApiUserSerializer.new(@users, pagination_options(@paginate)).serializable_hash
   end
 
   def get_user
-    error! :forbidden unless current_user.has_role? :superadmin
-    options = {}
     @user = User.friendly.find(params[:slug])
-    render_json ApiUserSerializer.new(@user, options).serialized_json
+    render json: ApiUserSerializer.new(@user).serializable_hash
   end
 
   private
+
+  def authorize_superadmin!
+    return if current_user&.has_role?(:superadmin)
+
+    render json: { error: 'Forbidden' }, status: :forbidden
+  end
 
   def user_params
     params.require(:data).permit(
@@ -89,7 +70,14 @@ class Api::V2::AdminController < Api::V2::ApiController
       :use_metric,
       :bio,
       :url,
-      links_attributes: [:id, :link_id, :url, '_destroy']
+      links_attributes: %i[id link_id url _destroy]
     )
+  end
+
+  def pagination_options(paginate)
+    {
+      meta: { 'total-pages' => paginate[:pages] },
+      links: paginate
+    }
   end
 end

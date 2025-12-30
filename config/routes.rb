@@ -174,7 +174,7 @@ Rails.application.routes.draw do
 
     get '/' => 'static#api'
 
-    api version: 0, module: "api/v0", as: "api_v0" do
+    scope path: '0', module: 'api/v0', as: 'api_v0' do
         get 'me' => 'users#me'
         get 'users' => 'users#search'
         get 'labs/search' => 'labs#search'
@@ -195,11 +195,14 @@ Rails.application.routes.draw do
         end
     end
 
-    api version: 1, module: "api/v1", as: "api_v1" do
+    # Redirect legacy /0/... to /v0/...
+    get '/v0/*path', to: redirect(status: 301, path: '/0/%{path}')
+
+    scope path: '1', module: 'api/v1', as: 'api_v1' do
       get 'users' => 'users#search'
     end
 
-    api version: 2, module: "api/v2", as: "api_v2" do
+    scope path: '2', module: 'api/v2', as: 'api_v2' do
 
       # admin routes
       get 'users' => 'admin#list_users'
@@ -226,6 +229,7 @@ Rails.application.routes.draw do
       get 'projects/search' => 'projects#search_projects'
       get 'projects/:id' => 'projects#show'
       put 'projects/:id' => 'projects#update'
+      get 'projects/map' => 'projects#map'
 
       # organizations
       get 'organizations' => 'organizations#index'

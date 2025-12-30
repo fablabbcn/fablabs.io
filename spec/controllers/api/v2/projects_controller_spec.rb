@@ -1,8 +1,6 @@
 require 'rails_helper'
 
 describe Api::V2::ProjectsController, :type => :request do
-  default_version 2
-
   let!(:user) { FactoryBot.create :user }
   let!(:owner) { FactoryBot.create :user }
   let!(:lab) { FactoryBot.create(:lab, name: "Fab Lab BCN", slug: "fablabbcn", workflow_state: :approved) }
@@ -16,7 +14,7 @@ describe Api::V2::ProjectsController, :type => :request do
       get 'http://api.fablabs.dev/2/projects'
 
       expect(response.status).to eq(401)
-      expect(response.content_type).to eq(Mime[:json])
+      expect(response.media_type).to eq(Mime[:json].to_s)
     end
 
 
@@ -26,7 +24,7 @@ describe Api::V2::ProjectsController, :type => :request do
     it "Allows user to list projects" do
       get_as_user 'http://api.fablabs.dev/2/projects'
       expect(response.status).to eq(200)
-      expect(response.content_type).to eq(Mime[:json])
+      expect(response.media_type).to eq(Mime[:json].to_s)
 
       expect(json["data"].size).to eq(1)
 
@@ -43,7 +41,7 @@ describe Api::V2::ProjectsController, :type => :request do
         get "http://api.fablabs.dev/2/projects/#{project.id}"
 
         expect(response.status).to eq(401)
-        expect(response.content_type).to eq(Mime[:json])
+        expect(response.media_type).to eq(Mime[:json].to_s)
 
       end
     end
@@ -54,7 +52,7 @@ describe Api::V2::ProjectsController, :type => :request do
         get_as_user "http://api.fablabs.dev/2/projects/#{project.id}"
 
         expect(response.status).to eq(200)
-        expect(response.content_type).to eq(Mime[:json])
+        expect(response.media_type).to eq(Mime[:json].to_s)
 
         # expect(json["data"].size).to eq(1)
 
@@ -72,7 +70,7 @@ describe Api::V2::ProjectsController, :type => :request do
         get 'http://api.fablabs.dev/2/projects/search', params: {q: project.title}
 
         expect(response.status).to eq(401)
-        expect(response.content_type).to eq(Mime[:json])
+        expect(response.media_type).to eq(Mime[:json].to_s)
 
       end
     end
@@ -81,7 +79,7 @@ describe Api::V2::ProjectsController, :type => :request do
       it "Allows user to search for a project, returning the correct result" do
         get_as_user "http://api.fablabs.dev/2/projects", q: project.title
         expect(response.status).to eq(200)
-        expect(response.content_type).to eq(Mime[:json])
+        expect(response.media_type).to eq(Mime[:json].to_s)
 
         expect(json["data"].size).to eq(1)
 
@@ -95,8 +93,29 @@ describe Api::V2::ProjectsController, :type => :request do
       it "Returns empty results for a search without matches" do
         get_as_user "http://api.fablabs.local/2/projects/search", q: "aeiou3248093840"
         expect(response.status).to eq(200)
-        expect(response.content_type).to eq(Mime[:json])
+        expect(response.media_type).to eq(Mime[:json].to_s)
         expect(json["data"].size).to eq(0)
+      end
+    end
+
+    describe 'GET /api/v2/projects/map' do
+      before do
+
+        15.times do
+          owner = FactoryBot.create(:user)
+          lab = FactoryBot.create(:lab, workflow_state: :approved)
+          project = FactoryBot.create(:project, lab: lab, owner: owner)
+        end
+
+        get_as_user "http://api.fablabs.dev/2/projects/map", options: { page: 1, per_page: 5 }
+      end
+
+      it 'returns paginated project map data' do
+        json = JSON.parse(response.body)
+        puts response.body
+        expect(json["data"].length).to eq(5)
+        expect(json["meta"]).to include("total-pages")
+        expect(json["links"]).to include("self", "next")
       end
     end
 

@@ -3,15 +3,13 @@
 require 'rails_helper'
 
 describe Api::V0::LabsController, type: :request do
-  default_version 0
-
   describe 'GET labs#index.json' do
     context 'When not authenticated'
 
     it "doesn't produce any error" do
       get 'http://api.fablabs.dev/0/labs.json'
       expect(response.status).to eq(200)
-      expect(response.content_type).to eq(Mime[:json])
+      expect(response.media_type).to eq(Mime[:json].to_s)
     end
 
     it 'gives all the results back' do
@@ -69,7 +67,7 @@ describe Api::V0::LabsController, type: :request do
    
       get "http://api.fablabs.dev/0/labs/#{@lab.id}.json" 
       expect(response.status).to eq(200)
-      expect(response.content_type).to eq(Mime[:json])
+      expect(response.media_type).to eq(Mime[:json].to_s)
 
       json_body = JSON.parse(response.body)
       expect(json_body['avatar_url']).to eq(@lab.avatar_url)
@@ -86,7 +84,7 @@ describe Api::V0::LabsController, type: :request do
     it "doesn't produce any error" do
       get 'http://api.fablabs.dev/0/labs/map.json'
       expect(response.status).to eq(200)
-      expect(response.content_type).to eq(Mime[:json])
+      expect(response.media_type).to eq(Mime[:json].to_s)
     end
 
     it 'gives all the results back' do

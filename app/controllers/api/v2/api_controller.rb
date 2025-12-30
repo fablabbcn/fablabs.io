@@ -1,15 +1,12 @@
-class Api::V2::ApiController < RocketPants::Base
-  version 2
-
+class Api::V2::ApiController < ActionController::API
   include ActionController::Head
   include Doorkeeper::Rails::Helpers
 
-  map_error! ActiveRecord::RecordNotFound, RocketPants::NotFound
-
   before_action :doorkeeper_authorize!
 
-protected
+  rescue_from ActiveRecord::RecordNotFound, with: :render_not_found
 
+  protected
 
   def paginate(scope, default_per_page = 10)
     collection = scope.page(params[:page]).per((params[:per_page] || default_per_page).to_i)
@@ -22,17 +19,10 @@ protected
       pages:    total,
       count:    collection.total_count
     }
-    if current > 1 then
-      pagination[:prev] =  current - 1
-    end
-    if current != total then
-      pagination[:next] =  current + 1
-    end
-    
-    return [
-      collection,
-      pagination
-    ]
+    pagination[:prev] = current - 1 if current > 1
+    pagination[:next] = current + 1 if current != total
+
+    [collection, pagination]
   end
 
   def current_resource_owner
@@ -40,20 +30,36 @@ protected
   end
 
   def current_user
-    if doorkeeper_token
-      @current_user ||= User.find(doorkeeper_token.resource_owner_id)
-    end
+    @current_user ||= User.find(doorkeeper_token.resource_owner_id) if doorkeeper_token
   end
 
   def not_implemented
     {
-      "errors": [
+      errors: [
         {
           status: "500",
           title: "Not implemented",
           detail: "Apologies, this method is not yet implemented"
         }
-      ] 
+      ]
+    }
+  end
+
+  def render_not_found
+    render json: { errors: [{ status: "404", title: "Not Found" }] }, status: :not_found
+  end
+
+  def doorkeeper_unauthorized_render_options(error: nil)
+    {
+      json: {
+        errors: [
+          {
+            status: "401",
+            title: "Unauthorized",
+            detail: error&.description || "Access token is missing or invalid"
+          }
+        ]
+      }
     }
   end
 end

@@ -5,12 +5,11 @@ class Api::V2::UserController < Api::V2::ApiController
   def me
     # Your code here
     
-    render_json ApiUserSerializer.new(current_user,{}).serialized_json
-    #render json: {"message" => "yes, it worked"}
+    render json: ApiUserSerializer.new(current_user, {}).serialized_json
   end
 
   def update_user
-    render_json not_implemented
+    render json: not_implemented, status: :not_implemented
   end
 
 

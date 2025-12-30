@@ -1,5 +1,4 @@
 class Lab < ApplicationRecord
-  include RocketPants::Cacheable
   include Authority::Abilities
   include Workflow
   include WorkflowActiverecord

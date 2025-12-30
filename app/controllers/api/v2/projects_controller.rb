@@ -1,44 +1,66 @@
-class Api::V2::ProjectsController <  Api::V2::ApiController
+class Api::V2::ProjectsController < Api::V2::ApiController
   before_action :doorkeeper_authorize!
 
-  #TODO
   def create
-    render_json not_implemented
+    render json: not_implemented, status: :not_implemented
   end
 
   def show
-    # Your code here
-    render_json ApiProjectSerializer.new( Project.friendly.find(params[:id])).serialized_json
+    project = Project.friendly.find(params[:id])
+    render json: ApiProjectSerializer.new(project).serialized_json
   end
 
   def map
-     @projects,@pagination = paginate Project.joins(:collaborations).includes(:lab).references(:lab).collect { |p| {id: p.id, title: p.title, name: p.lab.name, latitude: p.lab.latitude, longitude: p.lab.longitude, kind: p.lab.kind}}
-     options = {}
-     options[:meta] = {'total-pages' => @pagination[:pages] }
-     options[:links] = @pagination
-     render_json ApiProjectSerializer.new(@projects, options).serialized_json
+    projects = Project.joins(:collaborations).includes(:lab).references(:lab)
+
+    mapped_projects = projects.map do |p|
+      {
+        id: p.id,
+        title: p.title,
+        name: p.lab&.name,
+        latitude: p.lab&.latitude,
+        longitude: p.lab&.longitude,
+        kind: p.lab.kind
+      }
+    end
+
+    paginated, pagination = paginate(Kaminari.paginate_array(mapped_projects))
+
+    options = {
+      meta: { 'total-pages' => pagination[:pages] },
+      links: pagination
+    }
+
+    render json: ApiProjectSerializer.new(paginated, options).serialized_json
   end
 
   def index
+    projects, pagination = paginate(Project.includes(:lab, :owner))
 
-    @projects,@pagination = paginate Project.all.includes(:lab,:owner)
-    options = {}
-    options[:meta] = {'total-pages' => @pagination[:pages] }
-    options[:links] = @pagination
-    render_json ApiProjectSerializer.new(@projects, options).serialized_json
+    options = {
+      meta: { 'total-pages' => pagination[:pages] },
+      links: pagination
+    }
+
+    render json: ApiProjectSerializer.new(projects, options).serialized_json
   end
 
   def search_projects
+    query = params[:q].to_s
+    projects, pagination = paginate(
+      Project.where("slug LIKE ? OR title LIKE ?", "%#{query}%", "%#{query.capitalize}%")
+    )
 
-    @projects,@pagination = paginate Project.where("slug LIKE ? or title LIKE ?", "%#{params[:q]}%", "%#{params[:q].capitalize}%")
-    options = {}
-    options[:meta] = {'total-pages' => @pagination[:pages] }
-    options[:links] = @pagination
-    render_json ApiProjectSerializer.new(@projects, options).serialized_json
+    options = {
+      meta: { 'total-pages' => pagination[:pages] },
+      links: pagination
+    }
+
+    render json: ApiProjectSerializer.new(projects, options).serialized_json
   end
 
   # TODO
   def update
-    render_json not_implemented
+    render json: not_implemented, status: :not_implemented
   end
 end

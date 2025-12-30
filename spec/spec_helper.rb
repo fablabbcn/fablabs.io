@@ -59,9 +59,6 @@ RSpec.configure do |config|
   config.include(Shoulda::Matchers::ActiveModel, type: :model)
   config.include(Shoulda::Matchers::ActiveRecord, type: :model)
 
-  config.include RocketPants::TestHelper,    type: :request
-  config.include RocketPants::RSpecMatchers, type: :request
-
   config.include Requests::AuthenticationHelpers
   config.include Requests::JsonHelpers, type: :request
 

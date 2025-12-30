@@ -1,8 +1,6 @@
 require 'rails_helper'
 
 describe Api::V2::LabsController, :type => :request do
-  default_version 2
-
   describe 'GET labs#index' do
 
     context "When authenticated"
@@ -17,7 +15,7 @@ describe Api::V2::LabsController, :type => :request do
 
 
       expect(response.status).to eq(200)
-      expect(response.content_type).to eq(Mime[:json])
+      expect(response.media_type).to eq(Mime[:json].to_s)
 
       expect(json["data"].size).to eq(1)
       @lab = json["data"][0]
@@ -67,7 +65,7 @@ describe Api::V2::LabsController, :type => :request do
         {q: "toscana", type: "fulltext"}
 
       expect(response.status).to eq(200)
-      expect(response.content_type).to eq(Mime[:json])
+      expect(response.media_type).to eq(Mime[:json].to_s)
 
       expect(json["data"].size).to eq(1)
 
@@ -85,7 +83,7 @@ describe Api::V2::LabsController, :type => :request do
       get_as_user "http://api.fablabs.dev/2/labs/search?q=#{@lat}:#{@lng}&type=location"
 
       expect(response.status).to eq(200)
-      expect(response.content_type).to eq(Mime[:json])
+      expect(response.media_type).to eq(Mime[:json].to_s)
 
       expect(json["data"].size).to eq(2)
 
@@ -120,7 +118,7 @@ describe Api::V2::LabsController, :type => :request do
         get_as_user "http://api.fablabs.dev/2/labs/map"
 
         expect(response.status).to eq(200)
-        expect(response.content_type).to eq(Mime[:json])
+        expect(response.media_type).to eq(Mime[:json].to_s)
         expect(json["data"].size).to eq(2)
 
         @labs = json["data"]

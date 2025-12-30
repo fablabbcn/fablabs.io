@@ -1,66 +1,66 @@
 class Api::V2::LabsController < Api::V2::ApiController
-  before_action :doorkeeper_authorize! # Requires access token for all actions
-  # TODO
+  before_action :doorkeeper_authorize!
 
-  # TODO
-  def create
-    render_json not_implemented
+  def index
+    @labs, @paginate = paginate Lab.with_approved_state.includes(:links, :machines)
+    options = {
+      include: [:links, :machines, :'machines.brand'],
+      meta: { 'total-pages' => @paginate[:pages] },
+      links: @paginate
+    }
+
+    render json: ApiLabsSerializer.new(@labs, options).serialized_json
   end
 
   def show
-    # Your code here
-    @lab = Lab.with_approved_state.includes(:links,:machines).find(params[:id])
-    render_json  ApiLabsSerializer.new(@lab, {}).serialized_json
+    @lab = Lab.with_approved_state.includes(:links, :machines).find(params[:id])
+    render json: ApiLabsSerializer.new(@lab, {}).serialized_json
   end
 
-  def add_lab_machine_by_id
-    render_json not_implemented
-  end
+  def map
+    @map, @paginate = paginate Lab.with_approved_state.select(:latitude, :longitude, :slug, :name, :id, :kind)
+    options = {
+      meta: { 'total-pages' => @paginate[:pages] },
+      links: @paginate
+    }
 
-
-  # TODO
-  def get_lab_machines_by_id
-    # Your code here
-    render_json not_implemented
-  end
- 
-  def index
-    @labs,@paginate = paginate Lab.with_approved_state.includes(:links,:machines)
-    options = {}
-    options[:include] = [:links, :machines, :'machines.brand',]
-    options[:meta] = {'total-pages' => @paginate[:pages] }
-    options[:links] = @paginate
-
-    render_json ApiLabsSerializer.new(@labs, options).serialized_json
+    render json: ApiMapSerializer.new(@map, options).serialized_json
   end
 
   def search
-    @kind = params[:type] || 'fulltext'
-    if @kind == 'fulltext' then
-      @labs,@paginate = paginate Lab.with_approved_state.where("slug LIKE ? or name LIKE ?", "%#{params[:q]}%", "%#{params[:q].capitalize}%").includes(:links,:machines)
-    else 
-      @lat,@lng = params['q'].split(':')
-      @labs,@paginate = paginate Lab.with_approved_state.near([@lat, @lng],100).includes(:links,:machines)
+    if params[:type] == 'fulltext' || params[:type].blank?
+      @labs, @paginate = paginate Lab.with_approved_state
+        .where("slug LIKE ? OR name LIKE ?", "%#{params[:q]}%", "%#{params[:q].capitalize}%")
+        .includes(:links, :machines)
+    else
+      @lat, @lng = params[:q].split(':')
+      @labs, @paginate = paginate Lab.with_approved_state
+        .near([@lat, @lng], 100)
+        .includes(:links, :machines)
     end
-    options = {}
-    options[:include] = [:links, :machines, :'machines.brand',]
-    options[:meta] = {'total-pages' => @paginate[:pages] }
-    options[:links] = @paginate
 
-    render_json ApiLabsSerializer.new(@labs, options).serialized_json
+    options = {
+      include: [:links, :machines, :'machines.brand'],
+      meta: { 'total-pages' => @paginate[:pages] },
+      links: @paginate
+    }
+
+    render json: ApiLabsSerializer.new(@labs, options).serialized_json
   end
 
-
-  def map
-    @map, @paginate = paginate Lab.with_approved_state.select(:latitude,:longitude,:slug,:name,:id, :kind)
-    options = {}
-    options[:meta] = {'total-pages' => @paginate[:pages] }
-    options[:links] = @paginate
-    render_json ApiMapSerializer.new(@map, options).serialized_json
+  def create
+    render json: not_implemented, status: :not_implemented
   end
 
-  # TODO
   def update
-    render_json not_implemented
+    render json: not_implemented, status: :not_implemented
+  end
+
+  def add_lab_machine_by_id
+    render json: not_implemented, status: :not_implemented
+  end
+
+  def get_lab_machines_by_id
+    render json: not_implemented, status: :not_implemented
   end
 end
