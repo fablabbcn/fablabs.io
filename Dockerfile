@@ -16,7 +16,7 @@ RUN curl -fsSL https://deb.nodesource.com/setup_16.x | bash - \
     && /usr/bin/node -v \
     && npm -v
 
-ENV APPROOT /fablabs
+ENV APPROOT=/fablabs
 WORKDIR /$APPROOT
 
 # Create application home. App server will need the pids dir so just create everything in one shot
