@@ -57,7 +57,7 @@ Rails.application.configure do
   # config.log_tags = [ :request_id ]
 
   # Rotating logs
-  config.logger = ActiveSupport::Logger.new('log/production.log', 5, 20.megabytes)
+  config.logger = ActiveSupport::Logger.new('log/production.log', 5, 50.megabytes)
 
   # Use a different cache store in production.
   # config.cache_store = :mem_cache_store

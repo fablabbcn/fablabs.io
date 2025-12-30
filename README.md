@@ -148,6 +148,15 @@ curl -X GET 'https://api.fablabs.io/2/labs?page=0&per_page=100'  -H 'Authorizati
 
 ## Production notes
 
+
+
+acme.json must exist before running and be permissioned: touch traefik/acme.json && chmod 600 traefik/acme.json.
+
+
+
+
+
+
 If you are running in production:
 
 - you need to setup the SSL hosts and .env vars from the docker-compose.yml

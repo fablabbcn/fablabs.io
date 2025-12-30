@@ -1,0 +1,99 @@
+services:
+  app:
+    image: ${CONTAINER_DEPLOY_IMAGE:-fablabsio}
+    build: .
+    # command: bundle exec puma -C config/puma.rb
+    volumes:
+      - .:/fablabs
+      - /fablabs/tmp
+    env_file: .env
+    environment:
+      RAILS_ENV: production
+    depends_on:
+      - db
+      - redis
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.services.fablabsservice.loadbalancer.server.port=3000"
+      - "traefik.http.routers.fablabsweb.rule=Host(`fablabs.io`) || Host(`www.fablabs.io`) || Host(`api.fablabs.io`)"
+      - "traefik.http.routers.fablabsweb.entrypoints=websecure"
+      - "traefik.http.routers.fablabsweb.tls=true"
+      - "traefik.http.routers.fablabsweb.tls.certresolver=letsencrypt"
+    networks:
+      - internal
+      - web
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100m"
+
+  worker:
+    image: ${CONTAINER_DEPLOY_IMAGE:-fablabsio}
+    build: .
+    command: bundle exec sidekiq
+    volumes_from:
+      - app
+    env_file: .env
+    environment:
+      RAILS_ENV: production
+    depends_on:
+      - app
+      - redis
+      - db
+    networks:
+      - internal
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100m"
+
+  db:
+    image: postgres:10.23-bullseye
+    restart: always
+    # hostname: db1
+    # environment:
+      # POSTGRES_USER: postgres
+      # POSTGRES_PASSWORD: password
+    # persist the database between containers by storing it in a volume
+    volumes:
+      - fablabsio_fablabs-postgres:/var/lib/postgresql/data
+    networks:
+      - internal
+
+  redis:
+    image: redis:6
+    hostname: redis
+    restart: always
+    command: redis-server /usr/local/etc/redis/redis.conf
+    volumes:
+      - ./scripts/redis.conf:/usr/local/etc/redis/redis.conf
+    networks:
+      - internal
+
+  traefik:
+    image: traefik:v3.6
+    command:
+      - "--providers.docker=true"
+      - "--providers.docker.exposedbydefault=false"
+      - "--entrypoints.web.address=:80"
+      - "--entrypoints.websecure.address=:443"
+      - "--certificatesresolvers.letsencrypt.acme.httpchallenge.entrypoint=web"
+      - "--certificatesresolvers.letsencrypt.acme.email=it@fabacademy.org"
+      - "--certificatesresolvers.letsencrypt.acme.storage=/letsencrypt/acme.json"
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+      - "./volumes/traefik/certs/acme.json:/letsencrypt/acme.json"
+    networks:
+      - web
+
+volumes:
+  fablabsio_fablabs-postgres:
+    external: true
+
+networks:
+  internal:
+  web:
+    external: false
