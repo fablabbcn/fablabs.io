@@ -14,7 +14,7 @@ services:
       - redis
     labels:
       - "traefik.enable=true"
-      - "traefik.docker.network=web"
+      - "traefik.docker.network=fablabsio_web"
       - "traefik.http.services.fablabsservice.loadbalancer.server.port=3000"
       - "traefik.http.routers.fablabsweb.rule=Host(`fablabs.io`) || Host(`www.fablabs.io`) || Host(`api.fablabs.io`)"
       - "traefik.http.routers.fablabsweb.entrypoints=websecure"
@@ -61,6 +61,10 @@ services:
       - fablabsio_fablabs-postgres:/var/lib/postgresql/data
     networks:
       - internal
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "40m"
 
   redis:
     image: redis:6
@@ -70,6 +74,10 @@ services:
       - ./scripts/redis.conf:/usr/local/etc/redis/redis.conf
     networks:
       - internal
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
 
   traefik:
     image: traefik:v3.6
@@ -81,6 +89,22 @@ services:
       - "--certificatesresolvers.letsencrypt.acme.httpchallenge.entrypoint=web"
       - "--certificatesresolvers.letsencrypt.acme.email=it@fabacademy.org"
       - "--certificatesresolvers.letsencrypt.acme.storage=/letsencrypt/acme.json"
+      - "--log.level=WARN"
+      - "--accesslog=true"
+      - "--accesslog.format=json"
+      - "--accesslog.filters.statuscodes=200,300-302"
+      - "--accesslog.filters.retryattempts"
+      - "--accesslog.filters.minduration=10ms"
+      - "--accesslog.fields.defaultmode=drop"
+      - "--accesslog.fields.names.StartUTC=keep"
+      - "--accesslog.fields.names.RouterName=keep"
+      - "--accesslog.fields.names.RequestHost=keep"
+      - "--accesslog.fields.names.RequestMethod=keep"
+      - "--accesslog.fields.names.RequestPath=keep"
+      - "--accesslog.fields.names.RequestProtocol=keep"
+      - "--accesslog.fields.names.RequestScheme=keep"
+      - "--accesslog.fields.names.DownstreamStatus=keep"
+      - "--accesslog.fields.headers.defaultmode=drop"
     ports:
       - "80:80"
       - "443:443"
@@ -90,6 +114,10 @@ services:
       - "./volumes/traefik/certs/acme.json:/letsencrypt/acme.json"
     networks:
       - web
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
 
 volumes:
   fablabsio_fablabs-postgres:
