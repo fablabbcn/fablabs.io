@@ -14,6 +14,7 @@ services:
       - redis
     labels:
       - "traefik.enable=true"
+      - "traefik.docker.network=web"
       - "traefik.http.services.fablabsservice.loadbalancer.server.port=3000"
       - "traefik.http.routers.fablabsweb.rule=Host(`fablabs.io`) || Host(`www.fablabs.io`) || Host(`api.fablabs.io`)"
       - "traefik.http.routers.fablabsweb.entrypoints=websecure"
