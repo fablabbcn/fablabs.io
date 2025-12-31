@@ -2,14 +2,9 @@ ruby File.read(".ruby-version").strip
 
 source 'https://rubygems.org'
 
-gem 'rails','~> 5.2'
+gem 'rails','~> 6.1.0'
 gem 'workflow', '~> 2.0'#, github: 'geekq/workflow'
 gem 'workflow-activerecord', '>=4.1', '< 6.0'
-
-# Using community gems because official support does not cover Rails 5
-# Consider refactor not to use them or find alternatives.
-# Gems hindering Rails 6 upgrade:
-gem 'rocket_pants', git: 'https://github.com/parse/rocket_pants'
 
 gem 'protected_attributes_continued'
 
@@ -36,8 +31,8 @@ gem 'dalli', '~> 3.2.3'
 gem 'discourse_api'
 gem 'doorkeeper', '~>5.6.0'
 gem 'dotenv-rails'
-gem 'dragonfly'#, '~> 1.1.1'
-gem 'dragonfly-s3_data_store'
+gem 'dragonfly', '~> 1.4.0'
+gem 'dragonfly-s3_data_store', '~> 1.3.0'
 gem 'fast_jsonapi' # To support new v2 JSONAPI
 gem 'flatpickr'
 gem 'friendly_id'
@@ -47,6 +42,7 @@ gem 'gibbon'
 gem 'haml-rails'
 gem 'hpricot'
 gem 'http_accept_language'
+gem 'httparty', '~> 0.23.1'
 gem 'inherited_resources'
 gem 'invisible_captcha'
 gem 'jbuilder'

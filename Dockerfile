@@ -1,4 +1,4 @@
-FROM ruby:2.7.8-bullseye
+FROM ruby:3.0.7-bullseye
 
 # Install essential Linux packages
 RUN apt-get update -qq && apt-get install -y \
@@ -10,7 +10,7 @@ RUN apt-get update -qq && apt-get install -y \
   curl
 
 # Install NodeJS
-RUN curl -fsSL https://deb.nodesource.com/setup_16.x | bash - \
+RUN curl -fsSL https://deb.nodesource.com/setup_22.x | bash - \
     && apt-get install -y nodejs \
     && rm -rf /var/lib/apt/lists/* \
     && /usr/bin/node -v \
@@ -24,8 +24,6 @@ RUN mkdir -p $APPROOT/tmp/pids
 
 COPY Gemfile Gemfile.lock .ruby-version $APPROOT/
 
-ENV BUNDLER_VERSION=2.4.20
-RUN gem install bundler -v 2.4.20
 RUN bundle install
 
 #Without yarn we cannot run rake assets:precompile'

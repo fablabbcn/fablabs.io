@@ -6,4 +6,10 @@ class Role < ActiveRecord::Base
 
   AVAILABLE = [ROLE_ADMIN = 'admin', ROLE_SUPERADMIN = 'superadmin']
 
+  private
+
+  def self.ransackable_attributes(auth_object = nil)
+    ["name", "resource_id", "resource_type"]
+  end
+
 end
