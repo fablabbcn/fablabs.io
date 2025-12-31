@@ -13,6 +13,8 @@ require 'capybara/rspec'
 require 'pry-byebug'
 # mock support for api requests
 require 'webmock/rspec'
+require 'shoulda/matchers'
+require 'zonebie'
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
@@ -26,6 +28,7 @@ ActiveRecord::Migration.check_pending! if defined?(ActiveRecord::Migration)
 Shoulda::Matchers.configure do |config|
     config.integrate do |with|
       with.test_framework :rspec
+      with.library :rails
     end
 end
 
