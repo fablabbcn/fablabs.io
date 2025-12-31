@@ -25,6 +25,21 @@ module Fablabs
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.2
+
+    config.autoloader = :zeitwerk
+
+    # Rails 7.1+ config.autoload_lib(ignore: %w(assets tasks templates))
+    lib = root.join("lib")
+
+    config.autoload_paths << lib
+    config.eager_load_paths << lib
+
+    Rails.autoloaders.main.ignore(
+      lib.join("assets"),
+      lib.join("tasks"),
+      lib.join("templates")
+    )
+    
     # TODO: remove next line and fix tests. It's a new default since 5.0
     Rails.application.config.active_record.belongs_to_required_by_default = false
 
@@ -66,7 +81,6 @@ module Fablabs
       password: ENV['EMAIL_PASSWORD']
     }
 
-    config.autoload_paths += %W[#{config.root}/lib]
     config.assets.paths << Rails.root.join('vendor', 'assets')
 
     config.app_generators.scaffold_controller = :scaffold_controller

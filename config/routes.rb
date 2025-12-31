@@ -21,7 +21,7 @@ Rails.application.routes.draw do
 
   resources :sessions
 
-  constraints(WWWSubdomain) do
+  constraints(WwwSubdomain) do
     get "activity" => "activities#index", :as => "activity"
     resources :featured_images
     resources :organizations, only: [:index, :show, :new, :create, :edit, :update] do
