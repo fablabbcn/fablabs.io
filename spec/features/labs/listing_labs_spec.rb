@@ -10,7 +10,7 @@ describe 'Listing labs' do
   end
 
   it 'unapproved labs are not on the index page' do
-    lab = FactoryBot.create(:lab, name: 'A Lab')
+    lab = FactoryBot.create(:lab, :unverified, :pending_approval, name: 'A Lab')
     visit labs_path
     expect(page).to_not have_link 'A Lab'
   end

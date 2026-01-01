@@ -9,6 +9,7 @@ feature "Managing employees" do
   given(:admin) { FactoryBot.create(:employee, user: admin_user, lab: lab, job_title: "Fab Manager"); admin.approve! }
 
   scenario "unverified lab" do
+    lab = FactoryBot.create(:lab, :unverified, :pending_approval)
     superadmin = FactoryBot.create(:user)
     superadmin.add_role :superadmin
     lab.remove(superadmin)
