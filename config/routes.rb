@@ -185,81 +185,14 @@ Rails.application.routes.draw do
 
     get '/' => 'static#api'
 
-    scope path: '0', module: 'api/v0', as: 'api_v0' do
-        get 'me' => 'users#me'
-
-        get 'users' => 'users#search'
-        get 'labs/search' => 'labs#search'
-
-        get 'search/all' => 'search#all'
-        get 'search/labs' => 'search#labs'
-        get 'search/projects' => 'search#projects'
-        get 'search/machines' => 'search#machines'
-
-        resources :coupons do
-          get "redeem", on: :member
-        end
-        resources :labs do
-          get :map, on: :collection
-        end
-        resources :projects do
-          get :map, on: :collection
-        end
+    scope '/0' do
+      get 'me', to: redirect(status: 301, path: '/api/me', subdomain: 'www')
+      get 'labs', to: redirect(status: 301, path: '/api/labs', subdomain: 'www')
     end
 
-    # Redirect legacy /0/... to /v0/...
-    get '/v0/*path', to: redirect(status: 301, path: '/0/%{path}')
+    match '*unmatched', to: 'api/legacy#index', via: [:get, :post, :put]
 
-    scope path: '1', module: 'api/v1', as: 'api_v1' do
-      get 'users' => 'users#search'
-    end
-
-    scope path: '2', module: 'api/v2', as: 'api_v2' do
-
-      # admin routes
-      get 'users' => 'admin#list_users'
-      post 'users' => 'admin#create_user'
-      # user profile
-      get 'users/me' => 'user#me'
-      post 'users/me' => 'user#update_user'
-      post 'users/search' => 'admin#search_users'
-      get 'users/:slug' => 'admin#get_user'
-
-      # labs
-      get 'labs' => 'labs#index'
-      post 'labs' => 'labs#create'
-      get 'labs/search' => 'labs#search'
-      get 'labs/map' => 'labs#map'
-      get 'labs/:id' => 'labs#show'
-      put 'labs/:id' => 'labs#update'
-      get 'labs/:id/relationships/machines' => 'labs#get_lab_machines_by_id'
-      post 'labs/:id/relationships/machines' => 'labs#add_lab_machine_by_id'
-
-      # projects
-      get 'projects' => 'projects#index'
-      post 'projects' => 'projects#create'
-      get 'projects/search' => 'projects#search_projects'
-      get 'projects/:id' => 'projects#show'
-      put 'projects/:id' => 'projects#update'
-      get 'projects/map' => 'projects#map'
-
-      # organizations
-      get 'organizations' => 'organizations#index'
-      post 'organizations' => 'organizations#create'
-      get 'organizations/:id' => 'organizations#show'
-      put 'organizations/:id' => 'organizations#/update'
-
-    end
   end
-
-  # constraints subdomain: 'api' do
-  #   use_doorkeeper
-  #   get '/' => 'static#api'
-  #   api versions: 1, module: "api/v1" do
-  #     get 'me' => 'users#show'
-  #     resources :labs, only: [:index]
-  #   end
-  # end
 
   get ':id' => 'redirects#show'
 
