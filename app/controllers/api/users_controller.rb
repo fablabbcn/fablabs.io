@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-class Api::V2::AdminController < Api::V2::ApiController
-  before_action :doorkeeper_authorize! # Requires access token for all actions
+class Api::UsersController < Api::ApiController
+  before_action :doorkeeper_authorize!
   before_action :authorize_superadmin!
 
   def create_user
@@ -38,7 +38,7 @@ class Api::V2::AdminController < Api::V2::ApiController
 
     @users, @paginate = paginate(query)
 
-    render json: ApiUserSerializer.new(@users, pagination_options(@paginate)).serializable_hash
+    render json: ApiUserSerializer.new(@users, pagination_options(@paginate)).serializable_hash.to_json
   end
 
   def get_user

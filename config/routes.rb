@@ -156,6 +156,17 @@ Rails.application.routes.draw do
       end
     end
 
+    namespace :api, defaults: { format: :json } do
+      get 'me' => 'profile#show'
+      
+      # admin routes (for academany scripts)
+      get 'users/:slug' => 'users#get_user'
+      post 'users' => 'users#create_user'
+      post 'users/search' => 'users#search_users'
+
+      get 'labs' => 'labs#index'
+    end
+
     use_doorkeeper do
       controllers :applications => 'oauth/applications'
     end
@@ -176,6 +187,7 @@ Rails.application.routes.draw do
 
     scope path: '0', module: 'api/v0', as: 'api_v0' do
         get 'me' => 'users#me'
+
         get 'users' => 'users#search'
         get 'labs/search' => 'labs#search'
 

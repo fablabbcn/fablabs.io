@@ -50,7 +50,7 @@ class LabsController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.json { redirect_to "https://api.fablabs.io/0/labs.json" }
+      format.json { redirect_to api_labs_path }
       # format.csv { send_data @labs.to_csv }
     end
   end

@@ -33,7 +33,7 @@ gem 'doorkeeper', '~>5.6.0'
 gem 'dotenv-rails'
 gem 'dragonfly', '~> 1.4.0'
 gem 'dragonfly-s3_data_store', '~> 1.3.0'
-gem 'fast_jsonapi' # To support new v2 JSONAPI
+gem 'jsonapi-serializer', '~> 2.2' # To support JSONAPI.org format
 gem 'flatpickr'
 gem 'friendly_id'
 gem 'groupdate' #used by chartkick
