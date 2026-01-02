@@ -24,9 +24,7 @@ Bundler.require(*Rails.groups)
 module Fablabs
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
-    config.load_defaults 5.2
-
-    config.autoloader = :zeitwerk
+    config.load_defaults 6.1
 
     # Rails 7.1+ config.autoload_lib(ignore: %w(assets tasks templates))
     lib = root.join("lib")
