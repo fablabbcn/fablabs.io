@@ -19,7 +19,7 @@
         - if @machine.tags.length > 0
           .heading Tags
           %ul.taglist.list-unstyled.text-small.list-inline
-            = icon('tags')
+            = icon "fa-solid", "tags"
             - @machine.tags.each do |tag|
               %li.gray.list-inline-item.mb-0
                 %strong
@@ -29,7 +29,7 @@
             %ul.list-unstyled
               %li
                 = link_to "http://fab.cba.mit.edu/about/fab/inv.html", class: "btn btn-primary", title: "This is included in the Official Fab Lab hardware specification", style: "margin: 0" do
-                  = icon "tag"
+                  = icon "fa-solid", "tag"
                   Fab Lab Inventory Item
 
         - if @machine.links.length > 0
@@ -38,7 +38,7 @@
             - @machine.links.each do |link|
               %li.machine-link
                 = link_to link.url, target: "_blank" do
-                  = icon 'link'
+                  = icon "fa-solid", "link"
                   %span.url{itemprop: "sameAs"}= link.description
 
         .heading Machine Revisions
@@ -58,7 +58,7 @@
       - if current_or_null_user.can_update?(@machine)
         = link_to "Edit", edit_machine_path(@machine), class: 'btn btn-primary'
       - if current_or_null_user.can_delete?(@machine)
-        = link_to icon('trash-o'), @machine, method: :delete, class: 'btn btn-danger', data: { confirm: "Are you sure?" }
+        = link_to icon("fa-solid", "trash-can"), @machine, method: :delete, class: 'btn btn-danger', data: { confirm: "Are you sure?" }
 
 
   .row.mt-5

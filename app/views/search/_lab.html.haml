@@ -9,13 +9,13 @@
       %span.url.microdata{itemprop: "url"}= lab_url(lab, {locale: nil})
       .lab-location
         - if lab.short_address(!params[:country]).present?
-          = icon "map-marker"
+          = icon "fa-solid", "location-dot"
           %span.short_address{itemprop: "addressLocality"}= lab.short_address(!params[:country])
           %span.microdata.country{itemprop: "country"}= lab.country_code
         - if lab.email.present?
-          = icon "envelope-o"
+          = icon "fa-solid", "envelope"
           %span.email= mail_to(lab.email, lab.email)
         - if lab.phone.present?
-          = icon "phone"
+          = icon "fa-solid", "phone"
           %span.telephone{itemprop: "telephone"}= lab.phone
       %p.lab-blurb.truncate{itemprop: "description"}= lab.blurb

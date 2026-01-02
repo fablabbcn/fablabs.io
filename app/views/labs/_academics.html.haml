@@ -25,10 +25,10 @@
                 = link_to "Academy Website", academic.url
               .year #{academic.started_in} Student
               -# = academic.id
-              -# .graduated= fa_icon "check-circle-o", text: "Graduated 2013"
+              -# .graduated= icon("fa-solid", "circle-check") + "Graduated 2013"
 
     - unless current_or_null_user.studied_at? @lab
       %li.person.med
         = link_to new_lab_academic_path(@lab), class: 'button tiny success' do
-          = icon "check-square"
+          = icon "fa-solid", "square-check"
           = t(".i_work_here", default: "I study/studied here")

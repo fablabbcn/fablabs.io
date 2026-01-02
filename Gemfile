@@ -11,9 +11,6 @@ gem 'protected_attributes_continued'
 #The `content_tag_for` method has been removed from Rails. To continue using it, add the `record_tag_helper` gem to your Gemfile:
 gem 'record_tag_helper'
 
-# Other Gem issues:
-gem 'font-awesome-sass', '< 5' # https://fontawesome.com/how-to-use/on-the-web/setup/upgrading-from-version-4
-
 gem 'active_model_serializers'
 gem 'activeadmin'
 gem 'acts-as-taggable-on'
@@ -35,6 +32,7 @@ gem 'dragonfly', '~> 1.4.0'
 gem 'dragonfly-s3_data_store', '~> 1.3.0'
 gem 'jsonapi-serializer', '~> 2.2' # To support JSONAPI.org format
 gem 'flatpickr'
+gem "font-awesome-sass", "~> 6.5" # https://docs.fontawesome.com/v6/web/use-with/ruby-on-rails
 gem 'friendly_id'
 gem 'groupdate' #used by chartkick
 gem 'geocoder'

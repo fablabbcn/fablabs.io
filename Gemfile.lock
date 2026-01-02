@@ -202,8 +202,8 @@ GEM
     fog-xml (0.1.4)
       fog-core
       nokogiri (>= 1.5.11, < 2.0.0)
-    font-awesome-sass (4.7.0)
-      sass (>= 3.2)
+    font-awesome-sass (6.7.2)
+      sassc (~> 2.0)
     formatador (1.1.0)
     formtastic (4.0.0)
       actionpack (>= 5.2.0)
@@ -653,7 +653,7 @@ DEPENDENCIES
   factory_bot_rails
   ffaker
   flatpickr
-  font-awesome-sass (< 5)
+  font-awesome-sass (~> 6.5)
   friendly_id
   geocoder
   gibbon
