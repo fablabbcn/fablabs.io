@@ -3,10 +3,6 @@ ruby File.read(".ruby-version").strip
 source 'https://rubygems.org'
 
 gem 'rails','~> 6.1.0'
-gem 'workflow', '~> 2.0'#, github: 'geekq/workflow'
-gem 'workflow-activerecord', '>=4.1', '< 6.0'
-
-gem 'protected_attributes_continued'
 
 #The `content_tag_for` method has been removed from Rails. To continue using it, add the `record_tag_helper` gem to your Gemfile:
 gem 'record_tag_helper'
@@ -80,6 +76,7 @@ gem 'timezone'#, '~> 1.0'
 gem 'trumbowyg_rails'#, git: 'https://github.com/TikiTDO/trumbowyg_rails.git'
 gem 'twitter'
 gem 'uglifier'#, '>= 1.3.0'
+gem 'workflow-activerecord', '~> 6.0' # https://github.com/geekq/workflow-activerecord
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
