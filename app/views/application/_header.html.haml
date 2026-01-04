@@ -27,23 +27,23 @@
         %li.nav-item
           = link_to 'https://fabacademy.org/', target: "_blank", class: 'nav-link' do
             Fab Academy
-            = icon 'fa-solid', 'up-right-from-square', class: 'ml-1'
+            = icon 'fa-solid', 'up-right-from-square', class: 'fa-2xs ml-1'
         %li.nav-item{class: ("active" if current_page?(events_path)) }
           = link_to  "https://fabevent.org/", target: "_blank", class: 'nav-link' do
             = t("views.header.events")
-            = icon 'fa-solid', 'up-right-from-square', class: 'ml-1'
+            = icon 'fa-solid', 'up-right-from-square', class: 'fa-2xs ml-1'
         %li.nav-item
           = link_to 'https://live.fablabs.io/', target: "_blank", class: 'nav-link' do
             Network
-            = icon 'fa-solid', 'up-right-from-square', class: 'ml-1'
+            = icon 'fa-solid', 'up-right-from-square', class: 'fa-2xs ml-1'
         %li.nav-item
           = link_to 'https://projects.fablabs.io', target: "_blank", class: 'nav-link' do
             = t("views.header.projects")
-            = icon 'fa-solid', 'up-right-from-square', class: 'ml-1'
+            = icon 'fa-solid', 'up-right-from-square', class: 'fa-2xs ml-1'
         %li.nav-item
           = link_to 'https://forum.fablabs.io', target: "_blank", class: 'nav-link' do
             Forum
-            = icon 'fa-solid', 'up-right-from-square', class: 'ml-1'
+            = icon 'fa-solid', 'up-right-from-square', class: 'fa-2xs ml-1'
 
       %ul.nav.navbar-nav.ml-auto
         - if current_user
