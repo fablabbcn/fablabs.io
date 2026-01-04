@@ -8,7 +8,7 @@ gem 'rails','~> 6.1.0'
 gem 'record_tag_helper'
 
 gem 'active_model_serializers'
-gem 'activeadmin'
+gem 'activeadmin', '~> 3.4'
 gem 'acts-as-taggable-on'
 gem 'ancestry'#, github: 'stefankroes/ancestry'
 gem 'authority'#, github: 'nathanl/authority'
@@ -73,7 +73,6 @@ gem 'sprockets'
 gem 'sprockets-rails'
 gem 'stamp'
 gem 'timezone'#, '~> 1.0'
-gem 'twitter'
 gem 'uglifier'#, '>= 1.3.0'
 gem 'workflow-activerecord', '~> 6.0' # https://github.com/geekq/workflow-activerecord
 
