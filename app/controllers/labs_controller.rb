@@ -107,7 +107,7 @@ class LabsController < ApplicationController
   def update
     @lab = Lab.friendly.find(params[:id])
     authorize_action_for @lab
-    if @lab.update_attributes lab_params
+    if @lab.update lab_params
       track_activity @lab
       update_workflow_state
       redirect_to lab_url(@lab), notice: 'Lab was successfully updated'

@@ -37,7 +37,7 @@ class RecoveriesController < ApplicationController
     @recovery = Recovery.where(key: params[:id]).first
     user_params = recovery_params[:user_attributes].slice(:password, :password_confirmation)
     if @recovery.user and user_params[:password].present?
-      if @recovery.user.update_attributes user_params
+      if @recovery.user.update user_params
         # cookies.permanent[:user_id] = { data: @recovery.user.id, domain: '.fablabs.dev' }
         session[:user_id] = @recovery.user.id
         @recovery.destroy!

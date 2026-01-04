@@ -206,7 +206,7 @@ feature "Approving a lab" do
     click_button "Request more info"
     expect(page).to have_content("Improve approval application")
 
-    updated_lab.update_attributes(workflow_state: :more_info_added)
+    updated_lab.update(workflow_state: :more_info_added)
     updated_lab.employees.update_all(workflow_state: :more_info_added)
     updated_lab.more_info_added
     new_updated_lab = Lab.find(updated_lab.id)
