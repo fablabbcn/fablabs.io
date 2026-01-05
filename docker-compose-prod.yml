@@ -51,14 +51,13 @@ services:
         max-size: "100m"
 
   db:
-    image: postgres:10.23-bullseye
+    image: postgres:14.20-bookworm
     restart: unless-stopped
     # environment:
       # POSTGRES_USER: postgres
       # POSTGRES_PASSWORD: password
-    # persist the database between containers by storing it in a volume
     volumes:
-      - fablabsio_fablabs-postgres:/var/lib/postgresql/data
+      - postgres-14-data:/var/lib/postgresql/data
     networks:
       - internal
     logging:
@@ -120,8 +119,7 @@ services:
         max-size: "10m"
 
 volumes:
-  fablabsio_fablabs-postgres:
-    external: true
+  postgres-14-data:
 
 networks:
   internal:
