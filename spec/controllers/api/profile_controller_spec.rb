@@ -38,8 +38,10 @@ describe Api::ProfileController, type: :request do
     expect(json['username']).to be_nil
   end
 
-  it 'gets legacy /0/users.json endpoint without errors' do
+  it 'shows profile on legacy /0/users.json endpoint' do
     get_as_user 'http://api.fablabs.dev/0/me.json'
-    expect(response.status).to eq(301)
+    expect(response.status).to eq(200)
+    expect(response.media_type).to eq(Mime[:json].to_s)
+    expect(json['username']).to eq(user.username)
   end
 end

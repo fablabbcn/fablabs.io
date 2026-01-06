@@ -180,13 +180,13 @@ Rails.application.routes.draw do
   constraints(ApiSubdomain) do
 
     use_doorkeeper do
-      controllers :applications => 'oauth/applications'
+      skip_controllers :applications, :authorized_applications
     end
 
     get '/' => 'static#api'
 
     scope '/0' do
-      get 'me', to: redirect(status: 301, path: '/api/me', subdomain: 'www')
+      get 'me' => 'api/profile#show'
       get 'labs', to: redirect(status: 301, path: '/api/labs', subdomain: 'www')
     end
 
