@@ -1,5 +1,3 @@
-version: '3.5'
-
 services:
   redis:
     image: redis:6
@@ -8,13 +6,11 @@ services:
       - ./scripts/redis.conf:/usr/local/etc/redis/redis.conf
 
   db:
-    image: postgres:10.23-bullseye
-    # persist the database between containers by storing it in a volume
+    image: postgres:14.20-bookworm
     ports:
-      - 5432:5432
+      - 55432:5432
     volumes:
-      - fablabs-postgres:/var/lib/postgresql/data
-      #- ./dump:/dump
+      - postgres-14-data:/var/lib/postgresql/data
     environment:
       - POSTGRES_DB=fablabs_develop
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
@@ -54,6 +50,6 @@ services:
       - '1025:1025'
 
 volumes:
-  fablabs-postgres:
+  postgres-14-data:
   app-tmp:
   bundle_path:
