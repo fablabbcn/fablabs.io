@@ -97,6 +97,6 @@ private
   end
 
   def sentry_user_context
-    Sentry.set_user(email: current_user.email, id: current_user.id)
+    Sentry.set_user(email: current_user.email, id: current_user.id) if current_user
   end
 end
