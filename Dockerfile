@@ -16,7 +16,7 @@ RUN curl -fsSL https://deb.nodesource.com/setup_22.x | bash - \
     && /usr/bin/node -v \
     && npm -v
 
-ENV APPROOT /fablabs
+ENV APPROOT=/fablabs
 WORKDIR /$APPROOT
 
 # Create application home. App server will need the pids dir so just create everything in one shot
@@ -45,5 +45,7 @@ COPY . $APPROOT
 COPY entrypoint.sh /usr/bin/
 RUN chmod +x /usr/bin/entrypoint.sh
 ENTRYPOINT ["entrypoint.sh"]
+
+EXPOSE 3000
 
 CMD [ "bin/rails", "server", "-p", "3000", "-b", "0.0.0.0" ]

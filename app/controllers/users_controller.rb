@@ -1,10 +1,10 @@
 class UsersController < ApplicationController
 
-  invisible_captcha only: [:create], honeypot: :subtitle, on_spam: :spam_callback
+  invisible_captcha only: [:create], honeypot: :maker_name, on_spam: :spam_callback
   before_action :require_login, except: [:new, :create, :verify_email, :show, :index]
 
   def spam_callback
-    flash[:notice] = 'Signup failed. Are you a spammer?'
+    flash[:success] = 'We think you are not human! Apologies for the inconvenience.'
     redirect_to root_path
   end
 
@@ -17,13 +17,11 @@ class UsersController < ApplicationController
   end
 
   def create
-    return render plain: "Please go back and ensure that the 'ignore' field is EMPTY." if params[:name].present?
-
     logger.info 'Creating user through Users controller'
 
     @user = User.new user_params
     @user.current_sign_in_ip = request.remote_ip
-    if verify_recaptcha(model: @user) && @user.save
+    if @user.save
       UserMailer.welcome(@user.id).deliver_now
       # cookies.permanent[:user_id] = { value: @user.id, domain: '.fablabs.dev' }
       session[:user_id] = @user.id
@@ -110,6 +108,16 @@ class UsersController < ApplicationController
 
   def show
     @user = User.friendly.find(params[:id])
+
+    if @user.unverified?
+      if current_user == @user
+        # Let the user view their own profile but show a banner
+        flash.now[:alert] = "Please verify your email to make your profile public."
+      else
+        # Why should you get a profile with out work
+        raise ActiveRecord::RecordNotFound
+      end
+    end
   end
 
 private

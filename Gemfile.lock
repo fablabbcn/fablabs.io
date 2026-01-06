@@ -453,7 +453,6 @@ GEM
     rb-inotify (0.11.1)
       ffi (~> 1.0)
     rdoc (6.3.4.1)
-    recaptcha (5.21.1)
     record_tag_helper (1.0.1)
       actionview (>= 5)
     redcarpet (3.6.1)
@@ -663,7 +662,6 @@ DEPENDENCIES
   rails (~> 6.1.0)
   rails-controller-testing
   ransack
-  recaptcha
   record_tag_helper
   redcarpet
   redis

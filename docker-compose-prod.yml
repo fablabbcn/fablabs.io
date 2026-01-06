@@ -1,0 +1,127 @@
+services:
+  app:
+    image: ${CONTAINER_DEPLOY_IMAGE:-fablabsio}
+    build: .
+    # command: bundle exec puma -C config/puma.rb
+    volumes:
+      - .:/fablabs
+      - /fablabs/tmp
+    env_file: .env
+    environment:
+      RAILS_ENV: production
+    depends_on:
+      - db
+      - redis
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=fablabsio_web"
+      - "traefik.http.services.fablabsservice.loadbalancer.server.port=3000"
+      - "traefik.http.routers.fablabsweb.rule=Host(`fablabs.io`) || Host(`www.fablabs.io`) || Host(`api.fablabs.io`)"
+      - "traefik.http.routers.fablabsweb.entrypoints=websecure"
+      - "traefik.http.routers.fablabsweb.tls=true"
+      - "traefik.http.routers.fablabsweb.tls.certresolver=letsencrypt"
+    restart: unless-stopped
+    networks:
+      - internal
+      - web
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100m"
+
+  worker:
+    image: ${CONTAINER_DEPLOY_IMAGE:-fablabsio}
+    build: .
+    command: bundle exec sidekiq
+    volumes_from:
+      - app
+    env_file: .env
+    environment:
+      RAILS_ENV: production
+    depends_on:
+      - app
+      - redis
+      - db
+    restart: unless-stopped
+    networks:
+      - internal
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100m"
+
+  db:
+    image: postgres:14.20-bookworm
+    restart: unless-stopped
+    # environment:
+      # POSTGRES_USER: postgres
+      # POSTGRES_PASSWORD: password
+    volumes:
+      - postgres-14-data:/var/lib/postgresql/data
+    networks:
+      - internal
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "40m"
+
+  redis:
+    image: redis:6
+    restart: unless-stopped
+    command: redis-server /usr/local/etc/redis/redis.conf
+    volumes:
+      - ./scripts/redis.conf:/usr/local/etc/redis/redis.conf
+    networks:
+      - internal
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+
+  traefik:
+    image: traefik:v3.6
+    command:
+      - "--providers.docker=true"
+      - "--providers.docker.exposedbydefault=false"
+      - "--entrypoints.web.address=:80"
+      - "--entrypoints.websecure.address=:443"
+      - "--certificatesresolvers.letsencrypt.acme.httpchallenge.entrypoint=web"
+      - "--certificatesresolvers.letsencrypt.acme.email=it@fabacademy.org"
+      - "--certificatesresolvers.letsencrypt.acme.storage=/letsencrypt/acme.json"
+      - "--log.level=WARN"
+      - "--accesslog=true"
+      - "--accesslog.format=json"
+      - "--accesslog.filters.statuscodes=200,300-302"
+      - "--accesslog.filters.retryattempts"
+      - "--accesslog.filters.minduration=10ms"
+      - "--accesslog.fields.defaultmode=drop"
+      - "--accesslog.fields.names.StartUTC=keep"
+      - "--accesslog.fields.names.RouterName=keep"
+      - "--accesslog.fields.names.RequestHost=keep"
+      - "--accesslog.fields.names.RequestMethod=keep"
+      - "--accesslog.fields.names.RequestPath=keep"
+      - "--accesslog.fields.names.RequestProtocol=keep"
+      - "--accesslog.fields.names.RequestScheme=keep"
+      - "--accesslog.fields.names.DownstreamStatus=keep"
+      - "--accesslog.fields.headers.defaultmode=drop"
+    ports:
+      - "80:80"
+      - "443:443"
+    restart: unless-stopped
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+      - "./volumes/traefik/certs/acme.json:/letsencrypt/acme.json"
+    networks:
+      - web
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+
+volumes:
+  postgres-14-data:
+
+networks:
+  internal:
+  web:
+    external: false

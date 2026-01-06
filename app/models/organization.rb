@@ -33,6 +33,8 @@ class Organization < ApplicationRecord
 
   validates_format_of :email, :with => /\A(.+)@(.+)\z/, allow_blank: true
 
+  validates_with NoEmailsOrLinksValidator, attributes: [:description]
+
   before_save :truncate_blurb
   before_validation :set_initial_workflow_state, on: :create
 

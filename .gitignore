@@ -8,6 +8,7 @@
 /app/assets/images/custom/
 /vendor/assets/bower_components/
 /volumes/proxy/certs
+/volumes/traefik/certs
 
 # Ignore bundler config.
 /.bundle
