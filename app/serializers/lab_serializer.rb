@@ -43,13 +43,17 @@ class LabSerializer < ActiveModel::Serializer
   end
 
   def avatar_url
+    # Only return url if there is an actual avatar (no default image needed in api)
     if object.avatar_uid.present?
-      Dragonfly.app.remote_url_for(object.avatar_uid)
+      object.avatar.thumb('150x150#').url(host: 'https://www.fablabs.io')
     end
   end
 
   def header_url
-    Dragonfly.app.remote_url_for(object.header_uid) if object.header.present?
+    # Only return url if there is an actual header (no default image needed in api)
+    if object.header.present?
+      object.header.thumb("800x").url(host: 'https://www.fablabs.io')
+    end
   end
 
   # def cache_key

@@ -38,16 +38,18 @@ class ApiLabsSerializer   < ApiV2Serializer
         # url_for(controller: Api::V2::LabsController, action: :show, id:  object.id)
         "/2/labs/#{object.id}"   
     end
-  
+
     attribute :avatar_url do | object |
+      # Only return url if there is an actual avatar (no default image needed in api)
       if object.avatar_uid.present?
-        Dragonfly.app.remote_url_for(object.avatar_uid)
+        object.avatar.thumb('150x150#').url(host: 'https://www.fablabs.io')
       end
     end
   
     attribute :header_url do | object |
+      # Only return url if there is an actual header (no default image needed in api)
       if object.header.present?
-        Dragonfly.app.remote_url_for(object.header_uid)
+        object.header.thumb("800x").url(host: 'https://www.fablabs.io')
       end
     end
   
