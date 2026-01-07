@@ -1,9 +1,6 @@
 services:
   redis:
-    image: redis:6
-    command: redis-server /usr/local/etc/redis/redis.conf
-    volumes:
-      - ./scripts/redis.conf:/usr/local/etc/redis/redis.conf
+    image: redis:8.4
 
   db:
     image: postgres:14.20-bookworm

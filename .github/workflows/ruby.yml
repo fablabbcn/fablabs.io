@@ -9,7 +9,7 @@ jobs:
 
     services:
       redis:
-        image: redis:4
+        image: redis:8.4
         ports:
           - 6379:6379
       postgres:

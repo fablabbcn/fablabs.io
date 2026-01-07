@@ -66,11 +66,8 @@ services:
         max-size: "40m"
 
   redis:
-    image: redis:6
+    image: redis:8.4
     restart: unless-stopped
-    command: redis-server /usr/local/etc/redis/redis.conf
-    volumes:
-      - ./scripts/redis.conf:/usr/local/etc/redis/redis.conf
     networks:
       - internal
     logging:
