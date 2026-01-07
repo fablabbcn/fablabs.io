@@ -1,5 +1,6 @@
 class JobsController < ApplicationController
   before_action :require_login, except: [:index, :show]
+  before_action :require_superadmin, only: [:new, :create, :edit, :update, :destroy]
   before_action :edit_job, only: [:edit, :update, :destroy]
 
   # GET /jobs
