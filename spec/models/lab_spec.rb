@@ -163,8 +163,7 @@ describe Lab, type: :model  do
 
   describe "avatar_url" do
     it "contains a default avatar url" do
-      @avatar_url = FactoryBot.create(:lab).avatar_url 
-      expect(@avatar_url).to include('gravatar')
+      @avatar_url = FactoryBot.create(:lab).avatar.url
       expect(@avatar_url).to include('default-lab-avatar')
     end
   end
