@@ -26,7 +26,7 @@ class Backstage::LabsController < Backstage::BackstageController
 
   def update
     @lab = Lab.friendly.find(params[:id])
-    if @lab.update_attributes(lab_params)
+    if @lab.update(lab_params)
       redirect_to backstage_labs_path, notice: "Lab updated"
     else
       render :edit
@@ -57,7 +57,7 @@ class Backstage::LabsController < Backstage::BackstageController
   def request_more_info
     @lab = Lab.friendly.find(params[:id])
 
-    if @lab.update_attributes(lab_params)
+    if @lab.update(lab_params)
       verbed = action_to_verb[action_name.parameterize.underscore.to_sym]
 
       if @lab.send("#{action_name}!", current_user)

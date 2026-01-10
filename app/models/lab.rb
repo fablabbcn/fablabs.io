@@ -1,5 +1,4 @@
 class Lab < ApplicationRecord
-  include RocketPants::Cacheable
   include Authority::Abilities
   include Workflow
   include WorkflowActiverecord
@@ -95,12 +94,12 @@ class Lab < ApplicationRecord
   Capabilities = %w(three_d_printing cnc_milling circuit_production laser precision_milling vinyl_cutting)
   bitmask :capabilities, as: Capabilities
 
-  unless Rails.env.test?
+  # unless Rails.env.test?
     validates :referee_approval_processes, presence: true,
       length: { is:       3,
                 message:  "length is incorrect. In order to be approved you must select %{count} referees." },
       unless: :is_approved?
-  end
+  # end
   # validates :employees, presence: true, on: :create
 
   accepts_nested_attributes_for :employees

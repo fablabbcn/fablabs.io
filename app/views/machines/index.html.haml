@@ -9,7 +9,7 @@
 
         .col-md-6.border-right.py-4.d-flex.justify-content-start
           .title
-            = icon('tags')
+            = icon "fa-solid", "tags"
             Tags:
             %ul.taglist.list-unstyled.text-small.list-inline.mt-2
               - @machines.each do |machine|
@@ -21,9 +21,12 @@
         .col-md-3.py-4
           - if current_user && current_user.created_at < 1.months.ago
             = link_to new_machine_path, class: "btn btn-primary" do
-              = icon "plus", t(".add_a_machine", default: "Add a new Machine")
+              = icon "fa-solid", "plus", t(".add_a_machine", default: "Add a new Machine")
           - else
-            Active users can add new machines.
+            %button.btn.btn-primary.disabled
+              = icon "fa-solid", "plus", t(".add_a_machine", default: "Add a new Machine")
+            %p.small.text-black-50
+              New users need to be active for a month before they can add new machines.
 
   .container
     - if params[:tag].present?

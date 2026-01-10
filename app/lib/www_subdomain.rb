@@ -1,4 +1,4 @@
-class WWWSubdomain
+class WwwSubdomain
     def self.matches? request
        if request.subdomain
           case request.subdomains[0]

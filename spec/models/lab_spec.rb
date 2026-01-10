@@ -3,6 +3,7 @@ require 'spec_helper'
 describe Lab, type: :model  do
 
   let(:lab) { FactoryBot.create(:lab) }
+  let(:unverified_lab) { FactoryBot.create(:lab, :unverified, :unapproved) }
 
   it { should have_many(:academics) }
   it { should have_many(:admin_applications) }
@@ -99,17 +100,17 @@ describe Lab, type: :model  do
   describe "states" do
 
     it "is unverified" do
-      expect(FactoryBot.build(:lab)).to be_unverified
+      expect(FactoryBot.build(:lab, :unverified)).to be_unverified
     end
 
     it "can be removed" do
       superadmin = FactoryBot.create(:user)
       superadmin.add_role :superadmin
-      lab.approve(superadmin)
-      lab.remove(superadmin)
-      expect(lab).to be_removed
-      expect(Lab.with_removed_state).to include(lab)
-      expect(Lab.with_approved_state).to_not include(lab)
+      unverified_lab.approve(superadmin)
+      unverified_lab.remove(superadmin)
+      expect(unverified_lab).to be_removed
+      expect(Lab.with_removed_state).to include(unverified_lab)
+      expect(Lab.with_approved_state).to_not include(unverified_lab)
     end
 
     it "can be approved" do
@@ -123,10 +124,10 @@ describe Lab, type: :model  do
     it "can be rejected" do
       superadmin = FactoryBot.create(:user)
       superadmin.add_role :superadmin
-      lab.reject(superadmin)
-      expect(lab).to be_rejected
-      expect(Lab.with_rejected_state).to include(lab)
-      expect(Lab.with_approved_state).to_not include(lab)
+      unverified_lab.reject(superadmin)
+      expect(unverified_lab).to be_rejected
+      expect(Lab.with_rejected_state).to include(unverified_lab)
+      expect(Lab.with_approved_state).to_not include(unverified_lab)
     end
 
     it "adds employees and makes creator admin when approved" do

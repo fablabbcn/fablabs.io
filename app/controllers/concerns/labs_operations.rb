@@ -3,7 +3,7 @@ module LabsOperations
 
   def update_workflow_state
     if @lab.workflow_state == "more_info_needed"
-      @lab.update_attributes workflow_state: "more_info_added"
+      @lab.update workflow_state: "more_info_added"
       RefereeMailer.lab_more_info_added(@lab.id).deliver_now
       @lab.more_info_added
     end

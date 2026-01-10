@@ -29,6 +29,7 @@ class ApplicationController < ActionController::Base
   def error_not_found
     respond_to do |format|
       format.html { render "/application/errors/404", :status => :not_found }
+      format.json { render json: { error: "Not found" }, status: :not_found }
       format.all { head :not_found }
     end
   end
@@ -96,6 +97,6 @@ private
   end
 
   def sentry_user_context
-    Sentry.set_user(email: current_user.email, id: current_user.id)
+    Sentry.set_user(email: current_user.email, id: current_user.id) if current_user
   end
 end

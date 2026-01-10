@@ -17,7 +17,7 @@ class Backstage::UsersController < Backstage::BackstageController
 
   def update
     @user = User.friendly.find(params[:id])
-    if @user.update_attributes user_params
+    if @user.update user_params
       redirect_to backstage_users_path, notice: "User updated"
     else
       render :edit

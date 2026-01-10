@@ -27,7 +27,7 @@ class AcademicsController < ApplicationController
   def update
     @academic = current_user.academics.find(params[:id])
     # authorize_action_for @employee
-    if @academic.update_attributes academic_params
+    if @academic.update academic_params
       # track_activity @employee, @employee.user
       redirect_to lab_url(@academic.lab), notice: "academic updated"
     else

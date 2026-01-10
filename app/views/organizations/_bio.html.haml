@@ -9,16 +9,18 @@
 .lab-contact-details
   - if organization.phone.present?
     .lab-phone
-      %span.glyphicon.glyphicon-earphone
+      %span.lab-phone.mr-2
+        = icon "fa-solid", "phone"
       %span{itemprop: "telephone"}= organization.phone
   - if organization.email.present?
     .lab-email
-      %span.glyphicon.glyphicon-envelope
+      %span.lab-email.mr-2
+        = icon "fa-solid", "envelope"
       %span{itemprop: "email"}= mail_to organization.email, organization.email
 
 - if current_or_null_user.has_role?(:superadmin)
   = link_to edit_organization_path(organization), class: 'btn btn-primary' do
-    = icon "edit", "Edit Organization"
+    = icon "fa-solid", "pen-to-square", "Edit Organization"
 
 %br
 %br

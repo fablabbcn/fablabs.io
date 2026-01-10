@@ -6,7 +6,7 @@
           - if c.referee_lab.present? and c.id
             %li
               %span
-                = link_to icon('times'), referee_approval_process_path(c), method: :delete
+                = link_to icon("fa-regular", "xmark"), referee_approval_process_path(c), method: :delete
                 = image_tag c.referee_lab.avatar.thumb('90x90#').url, class: 'avatar tiny'
 
 

@@ -52,7 +52,7 @@ class UsersController < ApplicationController
         @client.unsubscribe(@user)
       end
     end
-    if @user.update_attributes user_params
+    if @user.update user_params
       if email_changed
           UserMailer.verification(@user.id).deliver_now
         @user.unverify!
@@ -72,7 +72,7 @@ class UsersController < ApplicationController
   def update_password
     @user = current_user
     if change_password_params[:password] == change_password_params[:password_confirmation] 
-      if @user.update_attributes change_password_params
+      if @user.update change_password_params
         redirect_to root_url, flash: {success: 'Password updated successfully'} 
       else
           render 'change_password'

@@ -29,7 +29,7 @@ class EmployeesController < ApplicationController
   def update
     @employee = Employee.find params[:id]
     authorize_action_for @employee
-    if @employee.update_attributes employee_params
+    if @employee.update employee_params
       track_activity @employee, @employee.user
       redirect_to lab_employees_url(@employee.lab), notice: "Employee updated"
     else

@@ -34,7 +34,7 @@ class EventsController < ApplicationController
     @lab = Lab.friendly.find(params[:lab_id])
     @event = Event.find(params[:id])
     authorize_action_for @event
-    if @event.update_attributes event_params
+    if @event.update event_params
       # track_activity @event, current_user
       redirect_to [@event.lab,@event], notice: "Event Updated"
     else

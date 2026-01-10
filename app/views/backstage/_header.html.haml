@@ -11,7 +11,7 @@
         = link_to 'My labs', [:backstage, :my_labs], class: (controller_name == 'my_labs' ? 'btn btn-primary my-1 mr-1' : 'btn btn-default my-1 mr-1')
         = link_to  [:backstage, :my_projects], class: (controller_name == 'my_projects' ? 'btn btn-primary my-1 mr-1' : 'btn btn-default my-1 mr-1'), target: '_blank' do
           My projects
-          = icon 'external-link'
+          = icon 'fa-solid', 'up-right-from-square'
       - if current_user.has_role? :superadmin
         = link_to 'Labs Manager', [:backstage, :manager], class: (controller_name == 'labs_manager' ? 'btn btn-primary my-1 mr-1' : 'btn btn-default my-1 mr-1')
         = link_to 'Organizations', backstage_organizations_path, class: (controller_name == 'organizations' ? 'btn btn-primary my-1 mr-1' : 'btn btn-default my-1 mr-1')
@@ -21,7 +21,7 @@
         = link_to 'Events', backstage_events_path, class: (controller_name == 'events' ? 'btn btn-primary my-1 mr-1' : 'btn btn-default my-1 mr-1')
         = link_to [:backstage, :projects], class: (controller_name == 'projects' ? 'btn btn-primary my-1 mr-1' : 'btn btn-default my-1 mr-1'), target: '_blank' do
           Projects
-          = icon 'external-link'
+          = icon 'fa-solid', 'up-right-from-square'
 
     .col-md-4.py-4
       - if current_user.is_referee? || current_user.is_unique_referee? || current_user.has_role?(:superadmin)

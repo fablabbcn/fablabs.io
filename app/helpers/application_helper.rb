@@ -70,7 +70,7 @@ module ApplicationHelper
   end
 
   def backstage?
-    controller.class.parent == Backstage
+    controller.class < Backstage::BackstageController
   end
 
   def player(url)

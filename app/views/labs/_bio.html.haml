@@ -19,23 +19,27 @@
       .text-small
         - if lab.phone.present?
           %span.lab-phone.mr-2
-            %span.fa.fa-phone
+            = icon "fa-solid", "phone"
             %span{itemprop: "telephone"}= lab.phone
         - if lab.email.present?
           %span.lab-email
-            %span.fa.fa-envelope
+            = icon "fa-solid", "envelope"
             %span{itemprop: "email"}= mail_to lab.email, lab.email
 
             .ml-auto.mt-3
             - if current_or_null_user.can_update?(@lab)
               .dropdown
                 %button.dropdown-toggle.btn.btn-primary{"type": "button", "data-toggle": "dropdown"}
-                  = icon "edit", t('.manage_lab', default: "Manage Lab")
+                  = icon "fa-regular", "edit"
+                  = t('.manage_lab', default: "Manage Lab")
                 .dropdown-menu
                   = link_to edit_lab_path(@lab), class: 'dropdown-item' do
-                    = icon "edit", t('.edit_lab_details', default: "Edit Lab Details")
+                    = icon "fa-solid", "edit"
+                    = t('.edit_lab_details', default: "Edit Lab Details")
                   = link_to lab_employees_path(@lab), class: 'dropdown-item' do
-                    = icon "group", t('.edit_employee_list', default: "Edit Employee List")
+                    = icon "fa-solid", "users"
+                    = t('.edit_employee_list', default: "Edit Employee List")
                   = link_to new_lab_event_path(@lab), class: 'dropdown-item' do
-                    = icon "calendar", t('.add_event', default: "Add Event")
+                    = icon "fa-solid", "calendar-days"
+                    = t('.add_event', default: "Add Event")
 

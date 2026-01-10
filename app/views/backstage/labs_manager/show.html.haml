@@ -131,8 +131,8 @@
       - if current_user.present?
         - if current_user.has_role? :superadmin
           = link_to edit_backstage_lab_path(@lab), class: 'btn btn-primary' do
-            = icon "edit", "Edit Lab"
+            = icon "fa-solid", "edit", "Edit Lab"
           = link_to lab_employees_path(@lab), class: 'btn btn-primary' do
-            = icon "group", t('shared.edit_employee_list', default: "Edit Employee List")
+            = icon "fa-solid", "users", t('shared.edit_employee_list', default: "Edit Employee List")
           = link_to new_lab_event_path(@lab), class: 'btn btn-primary' do
-            = icon "calendar", t('shared.add_event', default: "Add Event")
+            = icon "fa-solid", "calendar-days", t('shared.add_event', default: "Add Event")
