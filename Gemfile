@@ -36,7 +36,7 @@ gem 'gibbon'
 gem 'haml-rails'
 gem 'hpricot'
 gem 'http_accept_language'
-gem 'httparty', '~> 0.23.1'
+gem 'httparty'
 gem 'inherited_resources'
 gem 'invisible_captcha'
 gem 'jbuilder'
@@ -99,7 +99,7 @@ group :test, :development do
 end
 
 group :test do
-  gem 'capybara', '~> 3.36.0'
+  gem 'capybara', '~> 3.40.0'
   gem 'guard-rspec'
   gem 'launchy'
   gem 'minitest'
@@ -107,7 +107,7 @@ group :test do
   gem 'pry-rescue'
   gem 'pry-stack_explorer'
   gem 'rails-controller-testing'
-  gem 'selenium-webdriver', '~> 3.0'
+  gem 'selenium-webdriver', '~> 4.0'
   gem 'shoulda-matchers'
   gem 'test-unit'
   gem 'webmock'
