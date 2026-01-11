@@ -14,6 +14,8 @@
           - if params[:country].present?
             = hidden_field_tag 'country', params[:country]
           = text_field_tag 'query', params[:query], class: 'form-control', autocomplete: 'off', placeholder: t("views.header.search"), id: 'search-box'
+          %button{type: "submit", hidden: true} Search
+
 
       %ul.navbar-nav
         %li.nav-item{class: ("active" if current_page?(labs_path)) }
