@@ -59,10 +59,10 @@ gem 'redis'
 gem 'rolify'
 gem 'rspec'
 gem 'sassc-rails'
-gem 'coffee-rails', '~> 4.2.0'
+gem 'coffee-rails'
 gem 'sentry-ruby'
 gem 'sentry-rails'
-gem 'sidekiq', '< 7'
+gem 'sidekiq', '< 8'
 gem 'simplecov', :require => false, :group => :test
 gem 'simple_form'
 gem 'sitemap_generator'
@@ -83,7 +83,7 @@ end
 group :development do
   gem 'listen' # explicitd added (when not installing test gems)
   gem 'bullet' #, github: 'flyerhzm/bullet'
-  gem "i18n-tasks", "~> 0.9.33"
+  gem "i18n-tasks"
   gem 'net-ssh'
   gem 'web-console'
   gem 'rack-mini-profiler'
