@@ -187,7 +187,9 @@ Rails.application.routes.draw do
 
     scope '/0' do
       get 'me' => 'api/profile#show'
-      get 'labs', to: redirect(status: 301, path: '/api/labs', subdomain: 'www')
+      get 'labs', to: 'api/labs#index'
+      # TODO: future redirect instead of proxy
+      # get 'labs', to: redirect(status: 301, path: '/api/labs', subdomain: 'www')
     end
 
     match '*unmatched', to: 'api/legacy#index', via: [:get, :post, :put]
