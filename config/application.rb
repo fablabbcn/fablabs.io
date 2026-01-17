@@ -24,7 +24,12 @@ Bundler.require(*Rails.groups)
 module Fablabs
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
-    config.load_defaults 6.1
+    config.load_defaults 7.0
+
+    # Please, add to the `ignore` list any other `lib` subdirectories that do
+    # not contain `.rb` files, or that should not be reloaded or eager loaded.
+    # Common ones are `templates`, `generators`, or `middleware`, for example.
+    config.autoload_lib(ignore: %w(assets tasks templates))
 
     # Configuration for the application, engines, and railties goes here.
     #
@@ -32,26 +37,10 @@ module Fablabs
     # in config/environments, which are processed later.
     #
     # config.time_zone = "Central Time (US & Canada)"
+    # config.eager_load_paths << Rails.root.join("extras")
 
-    # Rails 7.1+ config.autoload_lib(ignore: %w(assets tasks templates))
-    lib = root.join("lib")
-
-    config.autoload_paths << lib
-    config.eager_load_paths << lib
-
-    Rails.autoloaders.main.ignore(
-      lib.join("assets"),
-      lib.join("tasks"),
-      lib.join("templates")
-    )
-    
     # TODO: remove next line and fix tests. It's a new default since 5.0
     Rails.application.config.active_record.belongs_to_required_by_default = false
-
-    # Settings in config/environments/* take precedence over those specified here.
-    # Application configuration can go into files in config/initializers
-    # -- all .rb files in that directory are automatically loaded after loading
-    # the framework and any gems in your application.
 
     config.middleware.insert_before 0, Rack::Cors do
       allow do
