@@ -29,7 +29,7 @@ feature "Approving a lab" do
   end
 
   scenario "as an admin" do
-    lab = FactoryBot.create(:lab, referee: referee)
+    lab = FactoryBot.create(:lab, :unverified, :pending_approval, referee: referee)
     sign_in_superadmin
     visit backstage_lab_path(lab)
     click_button "Approve"
@@ -37,7 +37,7 @@ feature "Approving a lab" do
   end
 
   scenario "approve lab with new process as an admin" do
-    new_lab = FactoryBot.create(:lab, referee: referee)
+    new_lab = FactoryBot.create(:lab, :unverified, :pending_approval, referee: referee)
     sign_in_superadmin
     visit backstage_lab_path(new_lab)
     click_button "Approve"
@@ -45,10 +45,12 @@ feature "Approving a lab" do
   end
 
   scenario "referees approve-reject-approve lab" do
-    new_lab = FactoryBot.create(:lab, referee: referee)
-    new_lab.referee_approval_processes.create(referee_lab: as220)
-    new_lab.referee_approval_processes.create(referee_lab: bcn)
-    new_lab.referee_approval_processes.create(referee_lab: cascina)
+    new_lab = FactoryBot.create(:lab,
+      :unverified,
+      :with_referees,
+      referees: [as220, bcn, cascina],
+      referee: referee
+    )
 
     sign_in lab_admin_bcn
     expect(lab_admin_bcn.is_referee?).to eq(true)
@@ -78,10 +80,12 @@ feature "Approving a lab" do
   end
 
   scenario "referees reject-reject lab" do
-    new_lab = FactoryBot.create(:lab, referee: referee)
-    new_lab.referee_approval_processes.create(referee_lab: as220)
-    new_lab.referee_approval_processes.create(referee_lab: bcn)
-    new_lab.referee_approval_processes.create(referee_lab: cascina)
+    new_lab = FactoryBot.create(:lab, 
+      :unverified,
+      :with_referees,
+      referees: [as220, bcn, cascina],
+      referee: referee
+    )
 
     sign_in lab_admin_bcn
     expect(lab_admin_bcn.is_referee?).to eq(true)
@@ -103,10 +107,12 @@ feature "Approving a lab" do
   end
 
   scenario "referees approve-approve lab" do
-    new_lab = FactoryBot.create(:lab, referee: referee)
-    new_lab.referee_approval_processes.create(referee_lab: as220)
-    new_lab.referee_approval_processes.create(referee_lab: bcn)
-    new_lab.referee_approval_processes.create(referee_lab: cascina)
+    new_lab = FactoryBot.create(:lab,
+      :unverified,
+      :with_referees,
+      referees: [as220, bcn, cascina],
+      referee: referee
+    )
 
     sign_in lab_admin_bcn
     expect(lab_admin_bcn.is_referee?).to eq(true)
@@ -128,10 +134,12 @@ feature "Approving a lab" do
   end
 
   scenario "referees edit form to request more info" do
-    new_lab = FactoryBot.create(:lab, referee: referee)
-    new_lab.referee_approval_processes.create(referee_lab: as220)
-    new_lab.referee_approval_processes.create(referee_lab: bcn)
-    new_lab.referee_approval_processes.create(referee_lab: cascina)
+    new_lab = FactoryBot.create(:lab, 
+      :unverified,
+      :with_referees,
+      referees: [as220, bcn, cascina],
+      referee: referee
+    )
 
     sign_in lab_admin_bcn
     expect(lab_admin_bcn.is_referee?).to eq(true)
@@ -141,10 +149,12 @@ feature "Approving a lab" do
   end
 
   scenario "referees requests more info" do
-    new_lab = FactoryBot.create(:lab, referee: referee)
-    new_lab.referee_approval_processes.create(referee_lab: as220)
-    new_lab.referee_approval_processes.create(referee_lab: bcn)
-    new_lab.referee_approval_processes.create(referee_lab: cascina)
+    new_lab = FactoryBot.create(:lab, 
+      :unverified,
+      :with_referees,
+      referees: [as220, bcn, cascina],
+      referee: referee
+    )
 
     sign_in lab_admin_bcn
     expect(lab_admin_bcn.is_referee?).to eq(true)
@@ -156,10 +166,12 @@ feature "Approving a lab" do
   end
 
   scenario "referees requests admin approval" do
-    new_lab = FactoryBot.create(:lab, referee: referee)
-    new_lab.referee_approval_processes.create(referee_lab: as220)
-    new_lab.referee_approval_processes.create(referee_lab: bcn)
-    new_lab.referee_approval_processes.create(referee_lab: cascina)
+    new_lab = FactoryBot.create(:lab,
+      :unverified,
+      :with_referees,
+      referees: [as220, bcn, cascina],
+      referee: referee
+    )
 
     sign_in lab_admin_bcn
     expect(lab_admin_bcn.is_referee?).to eq(true)
@@ -171,10 +183,12 @@ feature "Approving a lab" do
   end
 
   scenario "referees approves-requests-more-info-approves approval" do
-    new_lab = FactoryBot.create(:lab, referee: referee)
-    new_lab.referee_approval_processes.create(referee_lab: as220)
-    new_lab.referee_approval_processes.create(referee_lab: bcn)
-    new_lab.referee_approval_processes.create(referee_lab: cascina)
+    new_lab = FactoryBot.create(:lab,
+      :unverified,
+      :with_referees,
+      referees: [as220, bcn, cascina],
+      referee: referee
+    )
 
     sign_in lab_admin_as220
     expect(lab_admin_as220.is_referee?).to eq(true)
@@ -192,7 +206,7 @@ feature "Approving a lab" do
     click_button "Request more info"
     expect(page).to have_content("Improve approval application")
 
-    updated_lab.update_attributes(workflow_state: :more_info_added)
+    updated_lab.update(workflow_state: :more_info_added)
     updated_lab.employees.update_all(workflow_state: :more_info_added)
     updated_lab.more_info_added
     new_updated_lab = Lab.find(updated_lab.id)

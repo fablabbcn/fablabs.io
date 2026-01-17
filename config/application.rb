@@ -1,6 +1,20 @@
-require_relative 'boot'
+require_relative "boot"
 
-require 'rails/all'
+require "rails"
+# Pick the frameworks you want:
+require "active_model/railtie"
+require "active_job/railtie"
+require "active_record/railtie"
+# require "active_storage/engine"
+require "action_controller/railtie"
+require "action_mailer/railtie"
+# require "action_mailbox/engine"
+# require "action_text/engine"
+require "action_view/railtie"
+require "action_cable/engine"
+require "sprockets/railtie"
+require "rails/test_unit/railtie"
+
 require 'csv'
 
 # Require the gems listed in Gemfile, including any gems
@@ -10,7 +24,20 @@ Bundler.require(*Rails.groups)
 module Fablabs
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
-    config.load_defaults 5.2
+    config.load_defaults 6.1
+
+    # Rails 7.1+ config.autoload_lib(ignore: %w(assets tasks templates))
+    lib = root.join("lib")
+
+    config.autoload_paths << lib
+    config.eager_load_paths << lib
+
+    Rails.autoloaders.main.ignore(
+      lib.join("assets"),
+      lib.join("tasks"),
+      lib.join("templates")
+    )
+    
     # TODO: remove next line and fix tests. It's a new default since 5.0
     Rails.application.config.active_record.belongs_to_required_by_default = false
 
@@ -52,7 +79,6 @@ module Fablabs
       password: ENV['EMAIL_PASSWORD']
     }
 
-    config.autoload_paths += %W[#{config.root}/lib]
     config.assets.paths << Rails.root.join('vendor', 'assets')
 
     config.app_generators.scaffold_controller = :scaffold_controller

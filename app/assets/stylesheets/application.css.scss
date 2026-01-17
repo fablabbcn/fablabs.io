@@ -14,7 +14,6 @@
  *= require intlTelInput
  *= require messenger
  *= require messenger-theme-flat
- *= require trumbowyg/trumbowyg
  *= require bootstrap/dist/css/bootstrap.min.css
  *= require flatpickr
  *= require leaflet
@@ -24,7 +23,6 @@
  */
 
 @import "common_vars";
-@import "font-awesome-sprockets";
 @import "font-awesome";
 
 a{

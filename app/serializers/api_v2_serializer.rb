@@ -1,6 +1,4 @@
 class ApiV2Serializer
     include Rails.application.routes.url_helpers
-    include FastJsonapi::ObjectSerializer
-    
-
+    include JSONAPI::Serializer
 end

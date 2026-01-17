@@ -5,7 +5,7 @@
     .selection-container
       .icon
         %span
-          = icon('map-marker')
+          = icon "fa-solid", "location-dot"
     .selections
       %ul
         - @machine.facilities.each do |c|
@@ -13,7 +13,7 @@
             %li
               %span
                 - if c.persisted?
-                  = link_to icon('times'), facility_path(c), method: :delete
+                  = link_to icon("fa-regular", "circle-xmark"), facility_path(c), method: :delete
                 - if c.lab.present?
                   = image_tag c.lab.avatar.thumb("90x90#").url, class: 'avatar tiny'
 

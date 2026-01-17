@@ -2,25 +2,13 @@ ruby File.read(".ruby-version").strip
 
 source 'https://rubygems.org'
 
-gem 'rails','~> 5.2'
-gem 'workflow', '~> 2.0'#, github: 'geekq/workflow'
-gem 'workflow-activerecord', '>=4.1', '< 6.0'
-
-# Using community gems because official support does not cover Rails 5
-# Consider refactor not to use them or find alternatives.
-# Gems hindering Rails 6 upgrade:
-gem 'rocket_pants', git: 'https://github.com/parse/rocket_pants'
-
-gem 'protected_attributes_continued'
+gem 'rails','~> 6.1.0'
 
 #The `content_tag_for` method has been removed from Rails. To continue using it, add the `record_tag_helper` gem to your Gemfile:
 gem 'record_tag_helper'
 
-# Other Gem issues:
-gem 'font-awesome-sass', '< 5' # https://fontawesome.com/how-to-use/on-the-web/setup/upgrading-from-version-4
-
 gem 'active_model_serializers'
-gem 'activeadmin'
+gem 'activeadmin', '~> 3.4'
 gem 'acts-as-taggable-on'
 gem 'ancestry'#, github: 'stefankroes/ancestry'
 gem 'authority'#, github: 'nathanl/authority'
@@ -34,12 +22,13 @@ gem 'countries', '~> 5', require: 'countries/global'
 gem 'country_select', '~> 8.0'
 gem 'dalli', '~> 3.2.3'
 gem 'discourse_api'
-gem 'doorkeeper', '~>5.6.0'
+gem 'doorkeeper', '~>5.8.0'
 gem 'dotenv-rails'
-gem 'dragonfly'#, '~> 1.1.1'
-gem 'dragonfly-s3_data_store'
-gem 'fast_jsonapi' # To support new v2 JSONAPI
+gem 'dragonfly', '~> 1.4.0'
+gem 'dragonfly-s3_data_store', '~> 1.3.0'
+gem 'jsonapi-serializer', '~> 2.2' # To support JSONAPI.org format
 gem 'flatpickr'
+gem "font-awesome-sass", "~> 6.5" # https://docs.fontawesome.com/v6/web/use-with/ruby-on-rails
 gem 'friendly_id'
 gem 'groupdate' #used by chartkick
 gem 'geocoder'
@@ -47,6 +36,7 @@ gem 'gibbon'
 gem 'haml-rails'
 gem 'hpricot'
 gem 'http_accept_language'
+gem 'httparty'
 gem 'inherited_resources'
 gem 'invisible_captcha'
 gem 'jbuilder'
@@ -68,11 +58,11 @@ gem 'redcarpet'
 gem 'redis'
 gem 'rolify'
 gem 'rspec'
-gem 'sass-rails'
-gem 'coffee-rails', '~> 4.2.0'
+gem 'sassc-rails'
+gem 'coffee-rails'
 gem 'sentry-ruby'
 gem 'sentry-rails'
-gem 'sidekiq', '< 7'
+gem 'sidekiq', '< 8'
 gem 'simplecov', :require => false, :group => :test
 gem 'simple_form'
 gem 'sitemap_generator'
@@ -82,9 +72,8 @@ gem 'sprockets'
 gem 'sprockets-rails'
 gem 'stamp'
 gem 'timezone'#, '~> 1.0'
-gem 'trumbowyg_rails'#, git: 'https://github.com/TikiTDO/trumbowyg_rails.git'
-gem 'twitter'
 gem 'uglifier'#, '>= 1.3.0'
+gem 'workflow-activerecord', '~> 6.0' # https://github.com/geekq/workflow-activerecord
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
@@ -94,7 +83,7 @@ end
 group :development do
   gem 'listen' # explicitd added (when not installing test gems)
   gem 'bullet' #, github: 'flyerhzm/bullet'
-  gem "i18n-tasks", "~> 0.9.33"
+  gem "i18n-tasks"
   gem 'net-ssh'
   gem 'web-console'
   gem 'rack-mini-profiler'
@@ -110,7 +99,7 @@ group :test, :development do
 end
 
 group :test do
-  gem 'capybara', '~> 3.36.0'
+  gem 'capybara', '~> 3.40.0'
   gem 'guard-rspec'
   gem 'launchy'
   gem 'minitest'
@@ -118,7 +107,7 @@ group :test do
   gem 'pry-rescue'
   gem 'pry-stack_explorer'
   gem 'rails-controller-testing'
-  gem 'selenium-webdriver', '~> 3.0'
+  gem 'selenium-webdriver', '~> 4.0'
   gem 'shoulda-matchers'
   gem 'test-unit'
   gem 'webmock'

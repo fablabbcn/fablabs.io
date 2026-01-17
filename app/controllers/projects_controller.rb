@@ -54,7 +54,7 @@ class ProjectsController < ApplicationController
   def update
     @project = Project.find(params[:id])
     authorize_action_for @project
-    if @project.update_attributes project_params
+    if @project.update project_params
       track_activity @project
       redirect_to project_url(@project), notice: "Project was successfully updated"
     else

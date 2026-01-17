@@ -19,7 +19,6 @@
 //= require messenger-theme-flat
 //= require jquery.autosize
 //= require moment
-//= require trumbowyg/trumbowyg
 //= require spin.js/spin
 //= require leaflet-spin
 //= require rails-ujs
@@ -28,7 +27,7 @@
 
 document.addEventListener("DOMContentLoaded", function() {
 
-  $('textarea.trumbowyg').trumbowyg();
+  // $('textarea.trumbowyg').trumbowyg(); used in Pages; held back sass upgrad; not used for now
   $("select").select2({ width: '100%' });
 
   // This flatpicker does not have the Time, HH:MM

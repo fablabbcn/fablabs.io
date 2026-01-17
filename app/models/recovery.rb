@@ -1,7 +1,7 @@
 class RecoveryUserValidator < ActiveModel::Validator
   def validate(record)
     unless User.where('email = :eu or email_fallback = :eu or username = :eu', eu: record.email_or_username).exists?
-      record.errors[:email_or_username] << "Sorry, we can't find a user with that username or email address"
+      record.errors.add(:email_or_username, message: "Sorry, we can't find a user with that username or email address")
     end
   end
 end

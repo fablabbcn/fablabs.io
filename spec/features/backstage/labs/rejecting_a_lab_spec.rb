@@ -6,7 +6,7 @@ feature "Rejecting a lab" do
   let(:referee_admin) { FactoryBot.create(:user) }
   let(:referee_employee) { FactoryBot.create(:employee, user: referee_admin, lab: referee) }
 
-  let(:lab) { FactoryBot.create(:lab, referee: referee) }
+  let(:lab) { FactoryBot.create(:lab, :unverified, :unapproved, referee: referee) }
   let(:lab_admin) { FactoryBot.create(:user) }
   let(:lab_admin_employee) { FactoryBot.create(:employee, user: lab_admin, lab: lab) }
 

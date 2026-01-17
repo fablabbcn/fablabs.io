@@ -42,9 +42,10 @@ On MacOS to have the exact Ruby version, use a version manager. Default MacOS Ru
 
 With `chruby` installed, you can do something like this:
 
-1. `ruby-install 2.6.10`
-1. `chruby 2.6.10`
-1. `gem install bundler:2.3.26` (check Gemfile.lock file)
+1. Check the current version in `.ruby-version` (e.g 3.0.7)
+1. `ruby-install 3.0.7`
+1. `chruby 3.0.7`
+1. `gem install bundler:2.2.33` (check Gemfile.lock file, version at the bottom)
 1. `bundler install` (optional: `bundle config set --local without 'test'`)
 1. `nvm use` (setup NodeJS with )
 

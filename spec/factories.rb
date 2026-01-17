@@ -26,10 +26,74 @@ FactoryBot.define do
     programs { true }
     tools { true }
     kind { :fab_lab }
-    referee_id { 1 }
     blurb { FFaker::Lorem.sentence }
     phone { FFaker::PhoneNumber.phone_number}
     creator
+
+    after(:build) do |lab|
+      lab.referee_approval_processes ||= build_list(
+        :referee_approval_process,
+        RefereeApprovalProcess.num_referee_labs,
+        referred_lab: lab,
+        approved: true
+      )
+    end
+
+    trait :unapproved do
+      after(:build) do |lab|
+        lab.referee_approval_processes = build_list(
+          :referee_approval_process,
+          RefereeApprovalProcess.num_referee_labs,
+          referred_lab: lab,
+          approved: false
+        )
+      end
+    end
+
+    trait :pending_approval do
+      after(:build) do |lab|
+        lab.referee_approval_processes = build_list(
+          :referee_approval_process,
+          RefereeApprovalProcess.num_referee_labs,
+          referred_lab: lab,
+          approved: nil
+        )
+      end
+    end
+
+    trait :without_referees do
+      after(:build) do |lab|
+        lab.referee_approval_processes = []
+      end
+    end
+
+    trait :with_referees do
+      transient do
+        referees { [] }
+        referee_approved { nil }
+      end
+
+      after(:build) do |lab, evaluator|
+        lab.referee_approval_processes = evaluator.referees.map do |ref|
+          build(
+            :referee_approval_process,
+            referee_lab: ref,
+            referred_lab: lab,
+            approved: evaluator.referee_approved
+          )
+        end
+      end
+    end
+
+    trait :approved do
+      workflow_state { 'approved' }
+    end
+    
+    trait :unverified do
+      workflow_state { 'unverified' }
+    end
+    
+    workflow_state { 'approved' }
   end
 
   factory :repeat do

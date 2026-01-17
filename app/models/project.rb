@@ -1,7 +1,6 @@
 class Project < ActiveRecord::Base
   include Authority::UserAbilities
   include Authority::Abilities
-  include RocketPants::Cacheable
 
   enum visibility: { hidden: 0, visible: 1 }
 

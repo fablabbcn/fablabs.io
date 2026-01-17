@@ -3,13 +3,13 @@ module LabApproveMethods
 
   def referee_approves(referee)
     process = referee_process(referee)
-    process.update_attributes(approved: true) unless process.nil?
+    process.update(approved: true) unless process.nil?
     consensus
   end
 
   def referee_rejects(referee)
     process = referee_process(referee)
-    process.update_attributes(approved: false) unless process.nil?
+    process.update(approved: false) unless process.nil?
     consensus
   end
 
@@ -47,17 +47,17 @@ module LabApproveMethods
     votes_up = referee_approval_processes.where(approved: true).count
     votes_down = referee_approval_processes.where(approved: false).count
     if votes_up >= 2
-      update_attributes(workflow_state: :approved)
+      update(workflow_state: :approved)
       employees.update_all(workflow_state: :approved)
     elsif votes_up == 1 and votes_down == 1
-      update_attributes(workflow_state: :undecided)
+      update(workflow_state: :undecided)
     elsif votes_up == 1 and votes_down == 0
-      update_attributes(workflow_state: :referee_approval)
+      update(workflow_state: :referee_approval)
     elsif votes_up == 0 and votes_down == 1
-      update_attributes(workflow_state: :might_need_review)
+      update(workflow_state: :might_need_review)
     elsif votes_down >=2
       employees.update_all(workflow_state: :rejected)
-      update_attributes(workflow_state: :rejected)
+      update(workflow_state: :rejected)
     end
   end
 
@@ -79,7 +79,7 @@ module LabApproveMethods
 
   def approve(admin)
     if admin.has_role? :superadmin
-      update_attributes(workflow_state: :approved)
+      update(workflow_state: :approved)
       employees.update_all(workflow_state: :approved)
       creator.add_role :admin, self
     else
@@ -89,7 +89,7 @@ module LabApproveMethods
 
   def reject(admin)
     if admin.has_role? :superadmin
-      update_attributes(workflow_state: :rejected)
+      update(workflow_state: :rejected)
       employees.update_all(workflow_state: :rejected)
     else
       consensus
@@ -98,7 +98,7 @@ module LabApproveMethods
 
   def remove(admin)
     if admin.has_role? :superadmin
-      update_attributes(workflow_state: :removed)
+      update(workflow_state: :removed)
       employees.update_all(workflow_state: :removed)
     else
       raise 'Operation not permitted'

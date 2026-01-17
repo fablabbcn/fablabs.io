@@ -1,4 +1,5 @@
 require 'dragonfly'
+require 'dragonfly/s3_data_store'
 
 # Configure
 Dragonfly.app.configure do
@@ -30,7 +31,7 @@ Dragonfly.logger = Rails.logger
 Rails.application.middleware.use Dragonfly::Middleware
 
 # Add model functionality
-if defined?(ActiveRecord::Base)
-  ActiveRecord::Base.extend Dragonfly::Model
-  ActiveRecord::Base.extend Dragonfly::Model::Validations
+ActiveSupport.on_load(:active_record) do
+  extend Dragonfly::Model
+  extend Dragonfly::Model::Validations
 end
