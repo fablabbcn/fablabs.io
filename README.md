@@ -6,9 +6,12 @@
 
 ## This is the official repository for fablabs.io platform project.
 
+Fablabs.io is the online social network of the international Fab Lab community. It started as a spin-off project in Fab Lab Barcelona by Tomas Diez and John Rees, and is the current official list of Fab Labs that share same principles, tools, and philosophy around the future of technology and its role in society. Fablabs.io is an exchange platform for people, labs, projects, machines, events and groups that operate around the Fab Lab Network, which collaboration and communication tools in order to align interests and to expand the global scale of this community.
+
 Fab labs provide widespread access to modern means for invention. They began as an outreach project from MIT’s Center for Bits and Atoms (CBA), and became into a collaborative and global network. You can find more information about Fab Labs on the [Fab Foundation Website](http://www.fabfoundation.org/).
 
 If you are a Fab labs entusiast and/or you would like to contribute to the project please feel free to get in touch by [opening a new issue](https://github.com/fablabbcn/fablabs/issues/new).
+
 
 ## Getting started
 
