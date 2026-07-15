@@ -1,3 +1,9 @@
-<%= @user.first_name %>, Welcome to fablabs.io!
+Hi <%= @user.first_name %>,
 
-Please confirm your email address by visiting the following URL <%= verify_email_url(@user.email_validation_hash) %>
+Thank you for signing up to the fablabs.io platform!
+
+Please confirm your account email address to unlock more features
+by visiting the following URL:
+<%= verify_email_url(@user.email_validation_hash) %>
+
+Regards

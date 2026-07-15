@@ -1,1 +1,6 @@
-<%= @user.first_name %>, please verify your email address by visiting this URL <%= verify_email_url(@user.email_validation_hash) %>
+Hi <%= @user.first_name %>,
+
+Please verify your account email address by visiting this URL:
+<%= verify_email_url(@user.email_validation_hash) %>
+
+Regards
