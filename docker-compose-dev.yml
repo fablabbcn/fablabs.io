@@ -14,6 +14,7 @@ services:
 
   app:
     env_file: .env
+    image: fablabsio-app
     build:
       context: .
       dockerfile: Dockerfile
@@ -25,6 +26,8 @@ services:
       - ./log:/fablabs/log
       - ./public:/fablabs/public
       - ./spec:/fablabs/spec
+      - ./Gemfile:/fablabs/Gemfile
+      - ./Gemfile.lock:/fablabs/Gemfile.lock
       # - .:/fablabs
       - app-tmp:/fablabs/tmp
       - bundle_path:/usr/local/bundle
@@ -38,7 +41,27 @@ services:
     logging:
       driver: "json-file"
       options:
-        max-size: "100m"
+        max-size: "10m"
+
+  worker:
+    env_file: .env
+    image: fablabsio-app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - /fablabs/tmp
+    volumes_from:
+      - app
+    command: bash -c "sleep 3 && bundle exec sidekiq -e $RAILS_ENV"
+    depends_on:
+      - app
+      - db
+      - redis
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
 
   mailhog:
     image: 'mailhog/mailhog:latest'
