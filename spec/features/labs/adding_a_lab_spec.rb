@@ -14,7 +14,7 @@ feature "Adding a lab" do
   end
 
   feature "as a verified user" do
-    Capybara.javascript_driver = :webkit
+    Capybara.javascript_driver = :selenium_headless
     given(:user) { FactoryBot.create(:user, email: "creator@fablabfoundation.com") }
     let!(:as220) { FactoryBot.create(:lab, name: "AS220 Labs", slug: "as220labs", workflow_state: :approved, is_referee: true) }
     let!(:bcn) { FactoryBot.create(:lab, name: "Fab Lab BCN", slug: "fablabbcn", workflow_state: :approved, is_referee: true) }

@@ -35,7 +35,6 @@ gem 'groupdate' #used by chartkick
 gem 'geocoder'
 gem 'gibbon'
 gem 'haml-rails'
-gem 'hpricot'
 gem 'http_accept_language'
 gem 'httparty'
 gem 'inherited_resources'
