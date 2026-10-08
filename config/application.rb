@@ -77,6 +77,8 @@ module Fablabs
 
     config.assets.paths << Rails.root.join('vendor', 'assets')
 
+    config.sass.silence_deprecations = ['import','global-builtin']
+
     config.app_generators.scaffold_controller = :scaffold_controller
   end
 end
