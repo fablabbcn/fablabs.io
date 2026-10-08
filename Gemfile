@@ -27,6 +27,7 @@ gem 'dotenv-rails'
 gem 'dragonfly', '~> 1.4.0'
 gem 'dragonfly-s3_data_store', '~> 1.3.0'
 gem 'jsonapi-serializer', '~> 2.2' # To support JSONAPI.org format
+gem 'json', '< 3' # untill rails 8.1
 gem 'flatpickr'
 gem "font-awesome-sass", "~> 6.5" # https://docs.fontawesome.com/v6/web/use-with/ruby-on-rails
 gem 'friendly_id'
