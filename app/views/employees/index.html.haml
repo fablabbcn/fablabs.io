@@ -28,7 +28,7 @@
               .phone= employee.phone
               .email= mail_to employee.email, employee.email
 
-            %td= employee.created_at.to_s(:short)
+            %td= employee.created_at.to_fs(:short)
             %td.text-right
               = link_to "Edit", edit_employee_path(employee), class: 'btn btn-primary'
               = link_to "Remove", employee, method: :delete, class: 'btn btn-danger', data: { confirm: "Are you sure you want to remove #{employee.user} from #{@lab}? They will no longer be able to manage #{@lab}."}
