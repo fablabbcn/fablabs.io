@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   ActiveAdmin.routes(self)
-  require "admin_constraint"
   require 'sidekiq/web'
   mount Sidekiq::Web, at: '/sidekiq', constraints: AdminConstraint.new
 
