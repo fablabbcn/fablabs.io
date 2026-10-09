@@ -3,10 +3,6 @@ require "active_support/core_ext/integer/time"
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
-  config.hosts << "fablabs.io"
-  config.hosts << "www.fablabs.io"
-  config.hosts << "api.fablabs.io"
-
   # Code is not reloaded between requests.
   config.enable_reloading = false
 
@@ -53,14 +49,15 @@ Rails.application.configure do
   # config.assume_ssl = true
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
-  # config.force_ssl = true
+  config.force_ssl = true
+
+  # Skip http-to-https redirect for the default health check endpoint.
+  # config.ssl_options = { redirect: { exclude: ->(request) { request.path == "/up" } } }
 
   # Log to STDOUT by default
   config.logger = ActiveSupport::Logger.new(STDOUT)
     .tap  { |logger| logger.formatter = ::Logger::Formatter.new }
     .then { |logger| ActiveSupport::TaggedLogging.new(logger) }
-
-  # config.logger = ActiveSupport::Logger.new('log/production.log', 5, 50.megabytes)
 
   # Prepend all log lines with the following tags.
   config.log_tags = [ :request_id ]
@@ -77,6 +74,8 @@ Rails.application.configure do
   # config.active_job.queue_adapter = :resque
   # config.active_job.queue_name_prefix = "fablabs_production"
 
+  # Disable caching for Action Mailer templates even if Action Controller
+  # caching is enabled.
   config.action_mailer.perform_caching = false
 
   # Ignore bad email addresses and do not raise email delivery errors.
@@ -92,6 +91,9 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  # Only use :id for inspections in production.
+  config.active_record.attributes_for_inspect = [ :id ]
 
   # Enable DNS rebinding protection and other `Host` header attacks.
   # config.hosts = [
