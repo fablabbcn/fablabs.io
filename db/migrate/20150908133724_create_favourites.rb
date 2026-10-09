@@ -1,4 +1,4 @@
-class CreateFavourites < ActiveRecord::Migration
+class CreateFavourites < ActiveRecord::Migration[4.2]
   def change
     create_table :favourites do |t|
       t.belongs_to :project, index: true

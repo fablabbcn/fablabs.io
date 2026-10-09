@@ -1,4 +1,4 @@
-class AddFabAwards15TagToProjects < ActiveRecord::Migration
+class AddFabAwards15TagToProjects < ActiveRecord::Migration[4.2]
   def change
     Project.all.each do |project|
       project.tag_list.add("Fab Awards 15")

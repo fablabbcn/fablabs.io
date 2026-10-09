@@ -1,4 +1,4 @@
-class AddGeodataToOrganizations < ActiveRecord::Migration
+class AddGeodataToOrganizations < ActiveRecord::Migration[4.2]
   def change
     add_column :organizations, :geojson, :text
     add_column :organizations, :latitude, :float

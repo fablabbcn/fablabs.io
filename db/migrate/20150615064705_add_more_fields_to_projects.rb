@@ -1,4 +1,4 @@
-class AddMoreFieldsToProjects < ActiveRecord::Migration
+class AddMoreFieldsToProjects < ActiveRecord::Migration[4.2]
   def change
     add_column :projects, :twitter, :string
     add_column :projects, :facebook, :string

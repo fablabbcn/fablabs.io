@@ -1,4 +1,4 @@
-class CreateCategorizes < ActiveRecord::Migration
+class CreateCategorizes < ActiveRecord::Migration[4.2]
   def change
     create_table :categorizes do |t|
       t.belongs_to :project, index: true

@@ -1,4 +1,4 @@
-class AddFab10ToUsers < ActiveRecord::Migration
+class AddFab10ToUsers < ActiveRecord::Migration[4.2]
   def change
     add_column :users, :fab10_coupon_code, :string
     add_index :users, :fab10_coupon_code, unique: true#, nil: false

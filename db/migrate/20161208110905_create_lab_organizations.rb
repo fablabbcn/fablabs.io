@@ -1,4 +1,4 @@
-class CreateLabOrganizations < ActiveRecord::Migration
+class CreateLabOrganizations < ActiveRecord::Migration[4.2]
   def change
     create_table :lab_organizations do |t|
       t.references :lab, index: true

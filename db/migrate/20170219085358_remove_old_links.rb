@@ -1,4 +1,4 @@
-class RemoveOldLinks < ActiveRecord::Migration
+class RemoveOldLinks < ActiveRecord::Migration[4.2]
   def change
     remove_column :organizations, :web
     remove_column :organizations, :github

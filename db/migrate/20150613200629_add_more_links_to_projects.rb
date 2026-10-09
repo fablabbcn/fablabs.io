@@ -1,4 +1,4 @@
-class AddMoreLinksToProjects < ActiveRecord::Migration
+class AddMoreLinksToProjects < ActiveRecord::Migration[4.2]
   def change
     add_column :projects, :vimeo, :string
     add_column :projects, :flickr, :string

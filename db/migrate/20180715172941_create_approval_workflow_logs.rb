@@ -1,4 +1,4 @@
-class CreateApprovalWorkflowLogs < ActiveRecord::Migration
+class CreateApprovalWorkflowLogs < ActiveRecord::Migration[4.2]
   def change
     create_table :approval_workflow_logs do |t|
       t.string :lab_id

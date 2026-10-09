@@ -1,4 +1,4 @@
-class CreateMachineries < ActiveRecord::Migration
+class CreateMachineries < ActiveRecord::Migration[4.2]
   def change
     create_table :machineries do |t|
       t.belongs_to :project, index: true

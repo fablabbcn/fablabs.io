@@ -1,4 +1,4 @@
-class CreateAcademics < ActiveRecord::Migration
+class CreateAcademics < ActiveRecord::Migration[4.2]
   def change
     create_table :academics do |t|
       t.belongs_to :user
