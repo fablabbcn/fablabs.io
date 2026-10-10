@@ -51,7 +51,7 @@ services:
         max-size: "100m"
 
   db:
-    image: postgres:14.20-bookworm
+    image: postgres:14.24-bookworm
     restart: unless-stopped
     # environment:
       # POSTGRES_USER: postgres
@@ -66,7 +66,7 @@ services:
         max-size: "40m"
 
   redis:
-    image: redis:8.4
+    image: redis:8.4.7
     restart: unless-stopped
     networks:
       - internal
@@ -76,7 +76,7 @@ services:
         max-size: "10m"
 
   traefik:
-    image: traefik:v3.6
+    image: traefik:v3.7.14
     command:
       - "--providers.docker=true"
       - "--providers.docker.exposedbydefault=false"
