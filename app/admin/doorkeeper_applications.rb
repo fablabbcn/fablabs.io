@@ -15,6 +15,7 @@ ActiveAdmin.register Doorkeeper::Application do
   #   permitted
   # end
 
+  remove_filter :secret
   remove_filter :access_grants
   remove_filter :access_tokens
   remove_filter :authorized_tokens

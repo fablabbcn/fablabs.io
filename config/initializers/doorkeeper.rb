@@ -3,9 +3,10 @@ Doorkeeper.configure do
   # Currently supported options are :active_record, :mongoid2, :mongoid3, :mongo_mapper
   orm :active_record
 
-
-
   base_controller 'ApplicationController'
+
+  # custom model class
+  application_class "Doorkeeper::Application"
 
 
   # This block will be called to check whether the resource owner is authenticated or not.
