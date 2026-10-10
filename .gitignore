@@ -6,6 +6,7 @@
 /app/assets/javascripts/custom/
 /app/assets/stylesheets/custom/
 /app/assets/images/custom/
+/app/assets/builds
 /vendor/assets/bower_components/
 /volumes/proxy/certs
 /volumes/traefik/certs

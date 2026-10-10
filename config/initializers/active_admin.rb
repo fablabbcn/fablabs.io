@@ -105,12 +105,6 @@ ActiveAdmin.setup do |config|
   # Default:
   config.logout_link_path = "signout"
 
-  # This setting changes the http method used when rendering the
-  # link. For example :get, :delete, :put, etc..
-  #
-  # Default:
-  config.logout_link_method = :get
-
   # == Root
   #
   # Set the action to call for the root path. You can set different

@@ -8,12 +8,13 @@ gem 'rails','~> 8.0.0'
 gem 'record_tag_helper'
 
 gem 'active_model_serializers'
-gem 'activeadmin', '~> 3.4'
+gem 'activeadmin', '4.0.0.beta23'
 gem 'acts-as-taggable-on'
 gem 'ancestry'#, github: 'stefankroes/ancestry'
 gem 'authority'#, github: 'nathanl/authority'
 gem 'bitmask_attributes'
-gem 'bootsnap'
+# Reduces boot times through caching; required in config/boot.rb
+gem "bootsnap", require: false
 gem 'bootstrap4-kaminari-views'
 gem 'chartkick'
 gem 'cocoon'
@@ -21,7 +22,6 @@ gem 'coderay'
 gem 'countries', '~> 5', require: 'countries/global'
 gem 'country_select', '~> 8.0'
 gem 'dalli', '~> 3.2.3'
-gem 'dartsass-sprockets'
 gem 'discourse_api'
 gem 'doorkeeper', '~>5.8.0'
 gem 'dotenv-rails'
@@ -29,7 +29,6 @@ gem 'dragonfly', '~> 1.4.0'
 gem 'dragonfly-s3_data_store', '~> 1.3.0'
 gem 'jsonapi-serializer', '~> 2.2' # To support JSONAPI.org format
 gem 'json', '< 3' # untill rails 8.1
-gem 'flatpickr'
 gem "font-awesome-sass", "~> 6.5" # https://docs.fontawesome.com/v6/web/use-with/ruby-on-rails
 gem 'friendly_id'
 gem 'groupdate' #used by chartkick
@@ -40,17 +39,17 @@ gem 'http_accept_language'
 gem 'httparty'
 gem 'inherited_resources'
 gem 'invisible_captcha'
+# Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem 'jbuilder'
-gem 'jquery-rails'
 gem 'kaminari'
 gem 'letter_opener'
-gem 'momentjs-rails' # Remove? It is already included with Chart.js bundle
 gem 'nest'
 gem 'paper_trail'
 gem 'pg'
 gem 'pg_search'
 gem 'premailer-rails'
-gem 'puma'
+# Use the Puma web server [https://github.com/puma/puma]
+gem "puma", ">= 5.0"
 gem 'rack-attack'
 gem 'rack-cache'
 gem 'rack-cors', require: 'rack/cors'
@@ -59,7 +58,6 @@ gem 'redcarpet'
 gem 'redis'
 gem 'rolify'
 gem 'rspec'
-gem 'coffee-rails'
 gem 'sentry-ruby'
 gem 'sentry-rails'
 gem 'sidekiq', '< 8'
@@ -68,12 +66,17 @@ gem 'simple_form'
 gem 'sitemap_generator'
 gem 'slim'
 gem 'sort_alphabetical'
-gem 'sprockets'
-gem 'sprockets-rails'
 gem 'stamp'
+# Asset pipeline: Propshaft (digests & serves), Dart Sass (stylesheets), esbuild (JavaScript)
+# The modern asset pipeline for Rails [https://github.com/rails/propshaft]
+gem 'propshaft'
+gem 'dartsass-rails'
+gem 'jsbundling-rails'
+gem 'cssbundling-rails' # used by ActiveAdmin (Tailwind CSS build)
+# Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
+gem 'importmap-rails'   # used by ActiveAdmin (admin JS via importmap)
 gem 'csv'
 gem 'timezone'#, '~> 1.0'
-gem 'uglifier'#, '>= 1.3.0'
 gem 'workflow-activerecord', '~> 6.0' # https://github.com/geekq/workflow-activerecord
 
 group :doc do
@@ -115,7 +118,7 @@ group :test do
   gem 'zonebie'
 end
 
-# Use ActiveModel has_secure_password
+# Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 gem 'bcrypt'
 
 # gem 'foreman'

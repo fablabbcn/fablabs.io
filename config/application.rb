@@ -12,7 +12,6 @@ require "action_mailer/railtie"
 # require "action_text/engine"
 require "action_view/railtie"
 require "action_cable/engine"
-require "sprockets/railtie"
 require "rails/test_unit/railtie"
 
 # Require the gems listed in Gemfile, including any gems
@@ -60,9 +59,17 @@ module Fablabs
       g.integration_specs true
     end
 
-    config.assets.paths << Rails.root.join('vendor', 'assets')
-
-    config.sass.silence_deprecations = ['import','global-builtin']
+    # Dart Sass (dartsass-rails) build configuration: entrypoint(s) and options.
+    config.dartsass.builds = { "application.css.scss" => "application.css" }
+    # Silence @import deprecation (legacy Bootstrap 4 / font-awesome stylesheets)
+    # and dependency warnings coming from vendored stylesheets.
+    config.dartsass.build_options = [
+      "--style=compressed",
+      "--no-source-map",
+      "--quiet-deps",
+      "--load-path=node_modules",
+      "--silence-deprecation=import,global-builtin,slash-div,color-functions,legacy-js-api"
+    ]
 
     config.app_generators.scaffold_controller = :scaffold_controller
   end
