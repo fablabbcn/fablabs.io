@@ -1,4 +1,4 @@
-class AddFieldsToUsers < ActiveRecord::Migration
+class AddFieldsToUsers < ActiveRecord::Migration[4.2]
   def change
     add_column :users, :vimeo, :string
     add_column :users, :flickr, :string

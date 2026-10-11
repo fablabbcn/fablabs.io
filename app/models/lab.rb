@@ -29,7 +29,7 @@ class Lab < ApplicationRecord
   end
 
   KINDS = [ 'mini_fab_lab', 'fab_lab', 'mobile']
-  enum kind: { mini_fab_lab: 0, fab_lab: 1, mobile: 3 }
+  enum :kind, { mini_fab_lab: 0, fab_lab: 1, mobile: 3 }
 
   ACTIVITY_STATUS = [
     'planned',

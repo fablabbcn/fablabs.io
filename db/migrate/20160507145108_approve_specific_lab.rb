@@ -1,4 +1,4 @@
-class ApproveSpecificLab < ActiveRecord::Migration
+class ApproveSpecificLab < ActiveRecord::Migration[4.2]
   def change
     lab = Lab.where(slug: "lesfabriquesduponant").first
     bcn = Lab.where(slug: "fablabbcn").first

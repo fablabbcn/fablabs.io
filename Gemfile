@@ -2,7 +2,7 @@ ruby File.read(".ruby-version").strip
 
 source 'https://rubygems.org'
 
-gem 'rails','~> 6.1.0'
+gem 'rails','~> 7.2.0'
 
 #The `content_tag_for` method has been removed from Rails. To continue using it, add the `record_tag_helper` gem to your Gemfile:
 gem 'record_tag_helper'
@@ -21,12 +21,14 @@ gem 'coderay'
 gem 'countries', '~> 5', require: 'countries/global'
 gem 'country_select', '~> 8.0'
 gem 'dalli', '~> 3.2.3'
+gem 'dartsass-sprockets'
 gem 'discourse_api'
 gem 'doorkeeper', '~>5.8.0'
 gem 'dotenv-rails'
 gem 'dragonfly', '~> 1.4.0'
 gem 'dragonfly-s3_data_store', '~> 1.3.0'
 gem 'jsonapi-serializer', '~> 2.2' # To support JSONAPI.org format
+gem 'json', '< 3' # untill rails 8.1
 gem 'flatpickr'
 gem "font-awesome-sass", "~> 6.5" # https://docs.fontawesome.com/v6/web/use-with/ruby-on-rails
 gem 'friendly_id'
@@ -34,7 +36,6 @@ gem 'groupdate' #used by chartkick
 gem 'geocoder'
 gem 'gibbon'
 gem 'haml-rails'
-gem 'hpricot'
 gem 'http_accept_language'
 gem 'httparty'
 gem 'inherited_resources'
@@ -58,7 +59,6 @@ gem 'redcarpet'
 gem 'redis'
 gem 'rolify'
 gem 'rspec'
-gem 'sassc-rails'
 gem 'coffee-rails'
 gem 'sentry-ruby'
 gem 'sentry-rails'
@@ -71,6 +71,7 @@ gem 'sort_alphabetical'
 gem 'sprockets'
 gem 'sprockets-rails'
 gem 'stamp'
+gem 'csv'
 gem 'timezone'#, '~> 1.0'
 gem 'uglifier'#, '>= 1.3.0'
 gem 'workflow-activerecord', '~> 6.0' # https://github.com/geekq/workflow-activerecord

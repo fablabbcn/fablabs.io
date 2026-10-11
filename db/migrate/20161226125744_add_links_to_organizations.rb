@@ -1,4 +1,4 @@
-class AddLinksToOrganizations < ActiveRecord::Migration
+class AddLinksToOrganizations < ActiveRecord::Migration[4.2]
   def change
     add_column :organizations, :web, :string
     add_column :organizations, :github, :string

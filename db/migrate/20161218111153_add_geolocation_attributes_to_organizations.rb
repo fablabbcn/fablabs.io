@@ -1,4 +1,4 @@
-class AddGeolocationAttributesToOrganizations < ActiveRecord::Migration
+class AddGeolocationAttributesToOrganizations < ActiveRecord::Migration[4.2]
   def change
     add_column :organizations, :address_1, :string
     add_column :organizations, :address_2, :string

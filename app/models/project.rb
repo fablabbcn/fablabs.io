@@ -2,7 +2,7 @@ class Project < ActiveRecord::Base
   include Authority::UserAbilities
   include Authority::Abilities
 
-  enum visibility: { hidden: 0, visible: 1 }
+  enum :visibility, { hidden: 0, visible: 1 }
 
   before_save :assign_to_lab, :strip_zeroes
   after_save :discourse_sync_if_needed, if: -> { ENV['DISCOURSE_ENABLED'] }

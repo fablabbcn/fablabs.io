@@ -1,4 +1,4 @@
-class AddActivityStatusToLabs < ActiveRecord::Migration
+class AddActivityStatusToLabs < ActiveRecord::Migration[4.2]
   def change
     add_column :labs, :activity_status, :string
     add_column :labs, :activity_start_at, :date

@@ -15,7 +15,8 @@ module LabApproveMethods
 
   def referee_process(referee)
     referee_approval_processes.where(
-      "referee_lab_id IN (?) AND approved IS ?", referee.admin_labs.map{ |u| u.resource_id }, nil
+      referee_lab_id: referee.admin_labs.map(&:resource_id),
+      approved: nil
     ).first
   end
 

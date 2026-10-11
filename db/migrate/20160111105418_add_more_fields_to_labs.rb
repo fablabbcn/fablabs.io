@@ -1,4 +1,4 @@
-class AddMoreFieldsToLabs < ActiveRecord::Migration
+class AddMoreFieldsToLabs < ActiveRecord::Migration[4.2]
   def change
     add_column :labs, :charter, :boolean, :default => false
     add_column :labs, :public, :boolean, :default => false

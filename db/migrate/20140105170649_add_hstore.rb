@@ -1,4 +1,4 @@
-class AddHstore < ActiveRecord::Migration
+class AddHstore < ActiveRecord::Migration[4.2]
   def up
     execute 'CREATE EXTENSION hstore'
   end

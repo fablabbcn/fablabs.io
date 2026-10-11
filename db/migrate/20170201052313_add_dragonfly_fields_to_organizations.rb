@@ -1,4 +1,4 @@
-class AddDragonflyFieldsToOrganizations < ActiveRecord::Migration
+class AddDragonflyFieldsToOrganizations < ActiveRecord::Migration[4.2]
   def change
     add_column :organizations, :avatar_uid, :string
     add_column :organizations, :avatar_name, :string

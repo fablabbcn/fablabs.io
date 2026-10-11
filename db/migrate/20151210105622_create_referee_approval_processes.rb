@@ -1,4 +1,4 @@
-class CreateRefereeApprovalProcesses < ActiveRecord::Migration
+class CreateRefereeApprovalProcesses < ActiveRecord::Migration[4.2]
   def change
     create_table :referee_approval_processes do |t|
       t.belongs_to :referred_lab, index: true

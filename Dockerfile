@@ -1,10 +1,9 @@
-FROM ruby:3.0.7-bullseye
+FROM ruby:3.3.12-trixie
 
 # Install essential Linux packages
 RUN apt-get update -qq && apt-get install -y \
   build-essential \
   libpq-dev \
-  libqt5webkit5-dev \
   postgresql-client \
   imagemagick \
   curl

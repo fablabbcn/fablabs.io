@@ -15,8 +15,6 @@ require "action_cable/engine"
 require "sprockets/railtie"
 require "rails/test_unit/railtie"
 
-require 'csv'
-
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
@@ -24,27 +22,23 @@ Bundler.require(*Rails.groups)
 module Fablabs
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
-    config.load_defaults 6.1
+    config.load_defaults 7.2
 
-    # Rails 7.1+ config.autoload_lib(ignore: %w(assets tasks templates))
-    lib = root.join("lib")
+    # Please, add to the `ignore` list any other `lib` subdirectories that do
+    # not contain `.rb` files, or that should not be reloaded or eager loaded.
+    # Common ones are `templates`, `generators`, or `middleware`, for example.
+    config.autoload_lib(ignore: %w(assets templates))
 
-    config.autoload_paths << lib
-    config.eager_load_paths << lib
+    # Configuration for the application, engines, and railties goes here.
+    #
+    # These settings can be overridden in specific environments using the files
+    # in config/environments, which are processed later.
+    #
+    # config.time_zone = "Central Time (US & Canada)"
+    # config.eager_load_paths << Rails.root.join("extras")
 
-    Rails.autoloaders.main.ignore(
-      lib.join("assets"),
-      lib.join("tasks"),
-      lib.join("templates")
-    )
-    
     # TODO: remove next line and fix tests. It's a new default since 5.0
     Rails.application.config.active_record.belongs_to_required_by_default = false
-
-    # Settings in config/environments/* take precedence over those specified here.
-    # Application configuration can go into files in config/initializers
-    # -- all .rb files in that directory are automatically loaded after loading
-    # the framework and any gems in your application.
 
     config.middleware.insert_before 0, Rack::Cors do
       allow do
@@ -80,6 +74,8 @@ module Fablabs
     }
 
     config.assets.paths << Rails.root.join('vendor', 'assets')
+
+    config.sass.silence_deprecations = ['import','global-builtin']
 
     config.app_generators.scaffold_controller = :scaffold_controller
   end

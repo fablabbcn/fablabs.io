@@ -1,4 +1,4 @@
-class ResetAllLabs < ActiveRecord::Migration
+class ResetAllLabs < ActiveRecord::Migration[4.2]
   def change
     Lab.where("workflow_state IN (?)",["unverified", "more_info_needed", "more_info_added", "referee_approved"]).each do |lab|
       lab.update(workflow_state: "unverified") if lab.workflow_state != "unverified"

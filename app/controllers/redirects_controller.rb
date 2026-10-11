@@ -8,7 +8,7 @@ class RedirectsController < ApplicationController
   end
 
   def projects
-    redirect_to 'https://projects.fablabs.io', status: 302
+    redirect_to 'https://projects.fablabs.io', allow_other_host: true, status: 302
   end
 
 end
