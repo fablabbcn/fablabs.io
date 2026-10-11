@@ -7,9 +7,18 @@
  * legacy libraries that rely on globals (window.$, window.L, ...) keep working.
  */
 
-// jQuery first; publish as globals for the legacy plugins loaded below.
-const $ = require("jquery/dist/jquery.js")
-window.$ = window.jQuery = $
+import flatpickr from "flatpickr";
+import jQuery from "jquery";
+import moment from 'moment';
+import Rails from '@rails/ujs'
+
+import "./labs.js"
+
+window.$ = window.jQuery = jQuery;
+
+// Nested forms (jQuery plugin; needs window.jQuery)
+require("@nathanvda/cocoon")
+
 
 // Bootstrap 4 (bundle includes Popper)
 require("bootstrap/dist/js/bootstrap.bundle.js")
@@ -26,14 +35,9 @@ require("../../vendor/assets/javascripts/Control.Loading.js")
 // Google Maps geocoding helper (needs the Google Maps API script tag)
 require("../../vendor/assets/javascripts/jquery.geocomplete.js")
 
-// Nested forms (jQuery plugin; needs window.jQuery)
-require("./vendor/cocoon.js")
 
 // List.js collection filtering (exports the List class under CommonJS)
 window.List = require("../../vendor/assets/javascripts/list.js")
-
-// Date picker
-window.flatpickr = require("./vendor/flatpickr.js")
 
 // Underscore.js (self-attaches to window._)
 require("../../vendor/assets/javascripts/underscore.js")
@@ -42,25 +46,20 @@ require("../../vendor/assets/javascripts/underscore.js")
 require("select2/dist/js/select2.js")()
 
 // Messenger notifications (self-attaches to window.Messenger)
-require("../../vendor/assets/javascripts/messenger.js")
-require("../../vendor/assets/javascripts/messenger-theme-flat.js")
+// require("../../vendor/assets/javascripts/messenger.js")
+// require("../../vendor/assets/javascripts/messenger-theme-flat.js")
 
 // Textarea autosize (jQuery plugin)
 require("../../vendor/assets/javascripts/jquery.autosize.js")
-
-// Moment.js
-window.moment = require("./vendor/moment.js")
 
 // Spinner + Leaflet spin plugin (its CommonJS export is an installer function)
 window.Spinner = require("spin.js/spin.js")
 require("leaflet-spin")(window.L, window.Spinner)
 
 // Rails UJS (under a bundler it does not auto-start, so start it explicitly)
-const Rails = require("./vendor/rails-ujs.js")
+// const Rails = require("./vendor/rails-ujs.js")
 window.Rails = Rails
 Rails.start()
-
-require("./labs.js")
 
 document.addEventListener("DOMContentLoaded", function() {
   $("select").select2({ width: '100%' });

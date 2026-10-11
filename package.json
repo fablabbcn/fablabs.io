@@ -5,21 +5,27 @@
   "repository": "git@github.com:fablabbcn/fablabs.io.git",
   "license": "MIT",
   "scripts": {
-    "build": "esbuild app/javascript/application.js app/javascript/active_admin.js --bundle --sourcemap --minify --outdir=app/assets/builds --public-path=/assets",
-    "build:css": "npx @tailwindcss/cli -i ./app/assets/stylesheets/active_admin.css -o ./app/assets/builds/active_admin.css --minify"
+    "build": "esbuild app/javascript/application.js --bundle --sourcemap --format=esm --outdir=app/assets/builds --public-path=/assets",
+    "build:css:activeadmin": "npx @tailwindcss/cli -i ./app/assets/stylesheets/active_admin.css -o ./app/assets/builds/active_admin.css --minify",
+    "build:css": "sass ./app/assets/stylesheets/application.css.scss:./app/assets/builds/application.css --no-source-map --load-path=node_modules --silence-deprecation=import,global-builtin,slash-div,color-functions,legacy-js-api"
   },
   "dependencies": {
-    "@activeadmin/activeadmin": "4.0.0-beta23",
+    "@nathanvda/cocoon": "^1.2.14",
+    "@rails/ujs": "^7.1.3-4",
     "bootstrap": "^4.4.1",
+    "flatpickr": "^4.6.13",
     "jquery": "~3.7.0",
     "leaflet": "~1.0.3",
+    "leaflet-loading": "^0.1.24",
     "leaflet-spin": "~1.1.0",
+    "moment": "^2.20",
     "popper.js": "^1.16.1",
     "select2": "~4.0.3"
   },
   "devDependencies": {
     "@tailwindcss/cli": "^4.0.0",
     "esbuild": "^0.28.2",
+    "sass": "^1.105.1",
     "tailwindcss": "^4.0.0"
   }
 }

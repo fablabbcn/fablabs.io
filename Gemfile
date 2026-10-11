@@ -70,7 +70,6 @@ gem 'stamp'
 # Asset pipeline: Propshaft (digests & serves), Dart Sass (stylesheets), esbuild (JavaScript)
 # The modern asset pipeline for Rails [https://github.com/rails/propshaft]
 gem 'propshaft'
-gem 'dartsass-rails'
 gem 'jsbundling-rails'
 gem 'cssbundling-rails' # used by ActiveAdmin (Tailwind CSS build)
 # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]

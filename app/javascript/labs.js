@@ -5,6 +5,10 @@
  * that existed in the original CoffeeScript.
  */
 
+import jQuery from "jquery";
+
+window.$ = window.jQuery = jQuery;
+
 window.labs = []
 window.map = null
 window.showingContacts = false
@@ -34,7 +38,7 @@ function ready() {
   var options = {
     valueNames: [ 'name', 'year' ]
   }
-  window.userList = new List('students', options)
+  // window.userList = new List('students', options)
 
   var last_valid_selection = $('.referee_approval').val
 

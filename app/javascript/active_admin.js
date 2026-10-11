@@ -1,1 +1,0 @@
-import "@activeadmin/activeadmin"

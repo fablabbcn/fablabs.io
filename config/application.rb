@@ -59,18 +59,6 @@ module Fablabs
       g.integration_specs true
     end
 
-    # Dart Sass (dartsass-rails) build configuration: entrypoint(s) and options.
-    config.dartsass.builds = { "application.css.scss" => "application.css" }
-    # Silence @import deprecation (legacy Bootstrap 4 / font-awesome stylesheets)
-    # and dependency warnings coming from vendored stylesheets.
-    config.dartsass.build_options = [
-      "--style=compressed",
-      "--no-source-map",
-      "--quiet-deps",
-      "--load-path=node_modules",
-      "--silence-deprecation=import,global-builtin,slash-div,color-functions,legacy-js-api"
-    ]
-
     config.app_generators.scaffold_controller = :scaffold_controller
   end
 end

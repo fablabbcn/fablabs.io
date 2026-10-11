@@ -154,9 +154,6 @@ GEM
     csv (3.3.6)
     dalli (3.2.13)
       logger
-    dartsass-rails (0.5.1)
-      railties (>= 6.0.0)
-      sass-embedded (~> 1.63)
     date (3.6.0)
     debug_inspector (1.2.0)
     diff-lcs (1.6.2)
@@ -233,9 +230,6 @@ GEM
       multi_json (>= 1.11.0)
     globalid (1.4.0)
       activesupport (>= 6.1)
-    google-protobuf (4.36.2-x86_64-linux-gnu)
-      bigdecimal
-      rake (~> 13.3)
     groupdate (6.8.0)
       activesupport (>= 7.2)
     guard (2.20.2)
@@ -541,8 +535,6 @@ GEM
     rspec-support (3.13.7)
     ruby-progressbar (1.13.0)
     rubyzip (3.7.0)
-    sass-embedded (1.105.1-x86_64-linux-gnu)
-      google-protobuf (~> 4.31)
     sassc (2.4.0)
       ffi (~> 1.9)
     sdoc (2.3.1)
@@ -650,7 +642,6 @@ DEPENDENCIES
   cssbundling-rails
   csv
   dalli (~> 3.2.3)
-  dartsass-rails
   discourse_api
   doorkeeper (~> 5.8.0)
   dotenv-rails
