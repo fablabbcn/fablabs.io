@@ -3,6 +3,10 @@ require "active_support/core_ext/integer/time"
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
+  config.hosts << "fablabs.io"
+  config.hosts << "www.fablabs.io"
+  config.hosts << "api.fablabs.io"
+
   # Code is not reloaded between requests.
   config.enable_reloading = false
 
@@ -69,6 +73,7 @@ Rails.application.configure do
 
   # Use a different cache store in production.
   # config.cache_store = :mem_cache_store
+  config.cache_store = :redis_cache_store, { url: ENV["REDIS_URL"] }
 
   # Use a real queuing backend for Active Job (and separate queues per environment).
   # config.active_job.queue_adapter = :resque
