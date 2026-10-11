@@ -1,13 +1,13 @@
 /*
- * Ported from labs.js.coffee (CoffeeScript is no longer supported without
- * Sprockets). Behavior is intentionally identical, including the quirky
- * `$('.referee_approval').val` assignment (function reference, not a call)
- * that existed in the original CoffeeScript.
+ * Ported from labs.js.coffee (CoffeeScript is no longer supported
  */
 
 import jQuery from "jquery";
 
 window.$ = window.jQuery = jQuery;
+
+// Google Maps geocoding helper (needs the Google Maps API script tag)
+require("geocomplete");
 
 window.labs = []
 window.map = null
@@ -40,7 +40,7 @@ function ready() {
   }
   // window.userList = new List('students', options)
 
-  var last_valid_selection = $('.referee_approval').val
+  var last_valid_selection = $('.referee_approval').val()
 
   // Toggle fields on load
   toggleActivityDateFields($('.activity-status-radio:checked').val())
@@ -60,20 +60,20 @@ function ready() {
     }
   })
 
-  if ($('#students-filter')) {
-    $('#students-filter a').on('click', function(e) {
-      e.preventDefault()
-      $('#students-filter dd').removeClass('active')
-      $(this).parents('dd').addClass('active')
-      if ($(this).data('year')) {
-        window.userList.filter(function(item) {
-          return parseInt(item._values.year) == parseInt($(this).data('year'))
-        }.bind(this))
-      } else {
-        window.userList.filter()
-      }
-    })
-  }
+  // if ($('#students-filter')) {
+  //   $('#students-filter a').on('click', function(e) {
+  //     e.preventDefault()
+  //     $('#students-filter dd').removeClass('active')
+  //     $(this).parents('dd').addClass('active')
+  //     if ($(this).data('year')) {
+  //       window.userList.filter(function(item) {
+  //         return parseInt(item._values.year) == parseInt($(this).data('year'))
+  //       }.bind(this))
+  //     } else {
+  //       window.userList.filter()
+  //     }
+  //   })
+  // }
 
   $('#check-labs').on('change', function() {
     alert("We already have '" + $(this).val() + "' lab in our database, if it is not yet visible on the site it will be soon")
