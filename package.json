@@ -16,10 +16,6 @@
     "flatpickr": "^4.6.13",
     "geocomplete": "^1.7.0",
     "jquery": "~3.7.0",
-    "leaflet": "~1.0.3",
-    "leaflet-loading": "^0.1.24",
-    "leaflet-spin": "~1.1.0",
-    "moment": "^2.20",
     "popper.js": "^1.16.1",
     "select2": "~4.0.3"
   },

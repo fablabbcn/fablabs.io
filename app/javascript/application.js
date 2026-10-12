@@ -7,7 +7,7 @@
 import bootstrap from "bootstrap";
 import flatpickr from "flatpickr";
 import jQuery from "jquery";
-import moment from 'moment';
+import select2 from 'select2';
 import Rails from '@rails/ujs'
 
 window.$ = window.jQuery = jQuery;
@@ -15,13 +15,13 @@ window.$ = window.jQuery = jQuery;
 // Nested forms (jQuery plugin; needs window.jQuery)
 require("@nathanvda/cocoon")
 
-// Select2 dropdowns (its CommonJS export is a factory that must be called)
-require('select2')();
-
 window.Rails = Rails
 Rails.start()
 
 document.addEventListener("DOMContentLoaded", function() {
+  // Select2 dropdowns (its CommonJS export is a factory that must be called)
+  select2();
+
   $("select").select2({ width: '100%' });
 
   // This flatpickr does not have Time, HH:MM
