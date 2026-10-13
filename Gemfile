@@ -19,16 +19,14 @@ gem 'bootstrap4-kaminari-views'
 gem 'chartkick'
 gem 'cocoon'
 gem 'coderay'
-gem 'countries', '~> 5', require: 'countries/global'
-gem 'country_select', '~> 8.0'
-gem 'dalli', '~> 3.2.3'
+gem 'countries', require: 'countries/global'
+gem 'country_select'
 gem 'discourse_api'
 gem 'doorkeeper', '~>5.9.0'
 gem 'dotenv-rails'
 gem 'dragonfly', '~> 1.4.0'
 gem 'dragonfly-s3_data_store', '~> 1.3.0'
 gem 'jsonapi-serializer', '~> 2.2' # To support JSONAPI.org format
-gem 'json', '< 3' # untill rails 8.1
 gem "font-awesome-sass", "~> 6.5" # https://docs.fontawesome.com/v6/web/use-with/ruby-on-rails
 gem 'friendly_id'
 gem 'groupdate' #used by chartkick
@@ -60,7 +58,7 @@ gem 'rolify'
 gem 'rspec'
 gem 'sentry-ruby'
 gem 'sentry-rails'
-gem 'sidekiq', '< 8'
+gem 'sidekiq'
 gem 'simplecov', :require => false, :group => :test
 gem 'simple_form'
 gem 'sitemap_generator'
@@ -80,7 +78,7 @@ gem 'workflow-activerecord', '~> 6.0' # https://github.com/geekq/workflow-active
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
-  gem 'sdoc', '2.3.1', require: false
+  gem 'sdoc', '~> 2.3', require: false
 end
 
 group :development do
