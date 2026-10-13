@@ -27,7 +27,8 @@ nl:
     home:
       around_the_world: 'WereldWijd '
       beyond_that: En verder?
-      fab_labs_description: Fablabs verlenen een wijdverspreide toegang tot moderne
+      fab_labs_description: |
+        Fablabs verlenen een wijdverspreide toegang tot moderne
         technieken voor uitvindingen. Het begon als een ''outreach project'' van MIT''s
         Center for Bits and Atoms en werd al snel een collaboratief globaal netwerk.
         Je kan meer informatie vinden op de website van %{fab_foundation}. De onderstaande

@@ -27,7 +27,8 @@ de:
     home:
       around_the_world: Weltweit
       beyond_that: Und außerdem?
-      fab_labs_description: Fab Labs bieten Zugang zu modernen Entwicklungsmethoden.
+      fab_labs_description: |
+        Fab Labs bieten Zugang zu modernen Entwicklungsmethoden.
         Was als Projekt am Center for Bits and Atoms (CBA) des MIT begann, wurde zu
         einem weltweiten Netzwerk der Zusammenarbeit. Mehr Informationen über Fab
         Labs findest du auf %{fab_foundation}. Das untenstehende Foto zeigt die Ausstattung
