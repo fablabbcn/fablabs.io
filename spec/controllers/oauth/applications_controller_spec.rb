@@ -40,7 +40,7 @@ describe Oauth::ApplicationsController, type: :controller do
             status, headers, body = *response
             expect(response).to be_successful
             expect(response).to render_template(:index)
-            expect(response.body).to include("Your applications")
+            expect(response.body).to include("Your OAuth applications")
             expect(response.body).to include(app.name)
         end
 

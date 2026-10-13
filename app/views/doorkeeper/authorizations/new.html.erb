@@ -1,10 +1,5 @@
 <header class="page-header" role="banner">
-  <div class="text-center">
-    <%= link_to root_path do %>
-        <%= image_tag ("logo.svg"), :alt => "fablabs.io" %>
-    <% end %>
-  </div>
-  <h1 class="mt-3"><%= t('.title') %></h1>
+  <h1><%= t('.title') %></h1>
 </header>
 
 <main role="main">
@@ -14,7 +9,7 @@
 
   <% if @pre_auth.scopes.count > 0 %>
     <div id="oauth-permissions">
-      <p><%= t('.able_to') %>:</p>
+      <p><%= t('.able_to') %></p>
 
       <ul class="text-info">
         <% @pre_auth.scopes.each do |scope| %>
@@ -26,33 +21,26 @@
 
   <div class="actions">
     <%= form_tag oauth_authorization_path, method: :post do %>
-      <%= hidden_field_tag :client_id, @pre_auth.client.uid %>
-      <%= hidden_field_tag :redirect_uri, @pre_auth.redirect_uri %>
-      <%= hidden_field_tag :state, @pre_auth.state %>
-      <%= hidden_field_tag :response_type, @pre_auth.response_type %>
-      <%= hidden_field_tag :response_mode, @pre_auth.response_mode %>
-      <%= hidden_field_tag :scope, @pre_auth.scope %>
-      <%= hidden_field_tag :code_challenge, @pre_auth.code_challenge %>
-      <%= hidden_field_tag :code_challenge_method, @pre_auth.code_challenge_method %>
-      <%= submit_tag t('doorkeeper.authorizations.buttons.authorize', for: current_user.username), class: "btn btn-success btn-lg btn-block" %>
+      <%= hidden_field_tag :client_id, @pre_auth.client.uid, id: nil %>
+      <%= hidden_field_tag :redirect_uri, @pre_auth.redirect_uri, id: nil %>
+      <%= hidden_field_tag :state, @pre_auth.state, id: nil %>
+      <%= hidden_field_tag :response_type, @pre_auth.response_type, id: nil %>
+      <%= hidden_field_tag :response_mode, @pre_auth.response_mode, id: nil %>
+      <%= hidden_field_tag :scope, @pre_auth.scope, id: nil %>
+      <%= hidden_field_tag :code_challenge, @pre_auth.code_challenge, id: nil %>
+      <%= hidden_field_tag :code_challenge_method, @pre_auth.code_challenge_method, id: nil %>
+      <%= submit_tag t('doorkeeper.authorizations.buttons.authorize'), class: "btn btn-success btn-lg btn-block" %>
     <% end %>
-
-    <p class="my-4 text-center text-info">
-      <%= raw t('.redirect_to') %>
-      <br />
-      <%= @pre_auth.redirect_uri  %>
-    </p>
-
     <%= form_tag oauth_authorization_path, method: :delete do %>
-      <%= hidden_field_tag :client_id, @pre_auth.client.uid %>
-      <%= hidden_field_tag :redirect_uri, @pre_auth.redirect_uri %>
-      <%= hidden_field_tag :state, @pre_auth.state %>
-      <%= hidden_field_tag :response_type, @pre_auth.response_type %>
-      <%= hidden_field_tag :response_mode, @pre_auth.response_mode %>
-      <%= hidden_field_tag :scope, @pre_auth.scope %>
-      <%= hidden_field_tag :code_challenge, @pre_auth.code_challenge %>
-      <%= hidden_field_tag :code_challenge_method, @pre_auth.code_challenge_method %>
-      <%= submit_tag t('doorkeeper.authorizations.buttons.deny'), class: "btn btn-outline-danger btn-lg btn-block" %>
+      <%= hidden_field_tag :client_id, @pre_auth.client.uid, id: nil %>
+      <%= hidden_field_tag :redirect_uri, @pre_auth.redirect_uri, id: nil %>
+      <%= hidden_field_tag :state, @pre_auth.state, id: nil %>
+      <%= hidden_field_tag :response_type, @pre_auth.response_type, id: nil %>
+      <%= hidden_field_tag :response_mode, @pre_auth.response_mode, id: nil %>
+      <%= hidden_field_tag :scope, @pre_auth.scope, id: nil %>
+      <%= hidden_field_tag :code_challenge, @pre_auth.code_challenge, id: nil %>
+      <%= hidden_field_tag :code_challenge_method, @pre_auth.code_challenge_method, id: nil %>
+      <%= submit_tag t('doorkeeper.authorizations.buttons.deny'), class: "btn btn-danger btn-lg btn-block" %>
     <% end %>
   </div>
 </main>

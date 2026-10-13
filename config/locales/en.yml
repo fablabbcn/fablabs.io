@@ -136,6 +136,7 @@ en:
       projects: Projects
       search: "\U0001F50E  Search, anything"
       settings: Settings
+      developer_console: OAuth Applications
     home:
       around_the_world: Around the world
       beyond_that: And beyond that?
