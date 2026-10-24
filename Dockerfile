@@ -1,4 +1,4 @@
-FROM ruby:3.3.12-trixie
+FROM ruby:3.3.13-trixie
 
 # Install essential Linux packages
 RUN apt-get update -qq && apt-get install -y \
