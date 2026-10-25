@@ -13,7 +13,8 @@ class DiscourseController < ApplicationController
     sso.external_id = current_user.id
     sso.sso_secret = secret
 
-    redirect_to sso.to_url("#{ENV['DISCOURSE_ENDPOINT']}session/sso_login")
+    target_url = sso.to_url("#{ENV['DISCOURSE_ENDPOINT']}session/sso_login")
+    redirect_to target_url, allow_other_host: true
   rescue => e
     Rails.logger.error(e.message)
     Rails.logger.error(e.backtrace)
