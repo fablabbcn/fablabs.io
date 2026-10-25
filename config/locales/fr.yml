@@ -26,7 +26,8 @@ fr:
     home:
       around_the_world: Autour du monde
       beyond_that: Et ensuite?
-      fab_labs_description: Les Fab Labs fournissent un accès global aux moyens modernes
+      fab_labs_description: |
+        Les Fab Labs fournissent un accès global aux moyens modernes
         d''invention. Ils ont commencé comme un projet de sensibilisation du MIT Center
         pour Bits and Atoms (CBA) et sont devenus un réseau global et collaboratif.
         Vous pourrez trouver plus d''informations sur les Fab Labs sur %{fab_foundation}.

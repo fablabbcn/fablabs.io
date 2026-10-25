@@ -19,16 +19,16 @@ services:
       context: .
       dockerfile: Dockerfile
     volumes:
-      - ./app:/fablabs/app
-      - ./config:/fablabs/config
-      - ./db:/fablabs/db
-      - ./lib:/fablabs/lib
-      - ./log:/fablabs/log
-      - ./public:/fablabs/public
-      - ./spec:/fablabs/spec
-      - ./Gemfile:/fablabs/Gemfile
-      - ./Gemfile.lock:/fablabs/Gemfile.lock
-      # - .:/fablabs
+      # - ./app:/fablabs/app
+      # - ./config:/fablabs/config
+      # - ./db:/fablabs/db
+      # - ./lib:/fablabs/lib
+      # - ./log:/fablabs/log
+      # - ./public:/fablabs/public
+      # - ./spec:/fablabs/spec
+      # - ./Gemfile:/fablabs/Gemfile
+      # - ./Gemfile.lock:/fablabs/Gemfile.lock
+      - .:/fablabs
       - app-tmp:/fablabs/tmp
       - bundle_path:/usr/local/bundle
     # environment:

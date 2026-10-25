@@ -1,29 +1,11 @@
-/*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
- * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the top of the
- * compiled file, but it's generally better to create a new file per style scope.
- *
- *= require Control.Loading.css
- *= require select2/dist/css/select2
- *= require taggd
- *= require intlTelInput
- *= require messenger
- *= require messenger-theme-flat
- *= require bootstrap/dist/css/bootstrap.min.css
- *= require flatpickr
- *= require leaflet
- *= stub active_admin
- *= require_self
- *= require_tree .
- */
+@import "select2/dist/css/select2";
+
+@import "bootstrap/dist/css/bootstrap.min";
+@import "flatpickr/dist/flatpickr.min";
+
+/* App styles; more imports at bottom */
 
 @import "common_vars";
-@import "font-awesome";
 
 a{
   cursor: pointer;
@@ -31,7 +13,7 @@ a{
 
 #embed-logo {
   display: block;
-  background: image_url("embed-logo.png");
+  background: url("/embed-logo.png");
   width: 200px;
   height: 51px;
   bottom: 18px;
@@ -449,4 +431,21 @@ a.text-primary {
 }
 
 
-
+@import "alt.css.scss";
+@import "backstage/backstage.css.scss";
+@import "backstage/labs.css.scss";
+@import "discourse.css.scss";
+@import "embed.css.scss";
+@import "flags.css.scss";
+@import "footer.css.scss";
+@import "forms.css.scss";
+@import "header.css.scss";
+@import "home.css.scss";
+@import "labs.css.scss";
+@import "machines.css.scss";
+@import "map.css.scss";
+@import "projects.css.scss";
+@import "sessions.css.scss";
+@import "users.css.scss";
+@import "vertical-timeline.css.scss";
+@import "doorkeeper-application";

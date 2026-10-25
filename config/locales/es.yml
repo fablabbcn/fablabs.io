@@ -35,7 +35,8 @@ es:
     home:
       around_the_world: Alrededor del mundo
       beyond_that: Y más alla de eso?
-      fab_labs_description: Los fab labs proporcionan acceso abierto a medios modernos
+      fab_labs_description: |
+        Los fab labs proporcionan acceso abierto a medios modernos
         de invención. Empezaron como un proyecto de extension del Center for Bits
         and Atoms del Massachusetts Institute of Technology, y se convirtió en una
         red global y colaborativa. Puedes encontrar mas informacion  sobre los Fab

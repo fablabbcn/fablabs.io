@@ -12,7 +12,6 @@ require "action_mailer/railtie"
 # require "action_text/engine"
 require "action_view/railtie"
 require "action_cable/engine"
-require "sprockets/railtie"
 require "rails/test_unit/railtie"
 
 # Require the gems listed in Gemfile, including any gems
@@ -22,7 +21,7 @@ Bundler.require(*Rails.groups)
 module Fablabs
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
-    config.load_defaults 7.2
+    config.load_defaults 8.0
 
     # Please, add to the `ignore` list any other `lib` subdirectories that do
     # not contain `.rb` files, or that should not be reloaded or eager loaded.
@@ -59,23 +58,6 @@ module Fablabs
       g.controller_specs true
       g.integration_specs true
     end
-
-    config.action_mailer.default_url_options = { host: 'www.fablabs.io', protocol: 'https' }
-    config.action_mailer.delivery_method = :smtp
-    config.action_mailer.perform_deliveries = true
-    config.action_mailer.raise_delivery_errors = true
-    config.action_mailer.smtp_settings = {
-      authentication: ENV['EMAIL_AUTHENTICATION'],
-      address: ENV['EMAIL_ADDRESS'],
-      port: ENV['EMAIL_PORT'].to_i,
-      domain: ENV['EMAIL_DOMAIN'],
-      user_name: ENV['EMAIL_USERNAME'],
-      password: ENV['EMAIL_PASSWORD']
-    }
-
-    config.assets.paths << Rails.root.join('vendor', 'assets')
-
-    config.sass.silence_deprecations = ['import','global-builtin']
 
     config.app_generators.scaffold_controller = :scaffold_controller
   end

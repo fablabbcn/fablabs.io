@@ -27,7 +27,8 @@ it:
     home:
       around_the_world: In tutto il mondo
       beyond_that: E oltre quello?
-      fab_labs_description: I Fab Lab forniscono un accesso diffuso a moderni strumenti
+      fab_labs_description: |
+        I Fab Lab forniscono un accesso diffuso a moderni strumenti
         di invenzione. Sono iniziati come un progetto di estensione del Center for
         Bits and Atoms (CBA) presso il MIT, e sono diventati una rete collaborativa
         e globale. Puoi trovare maggior informazioni sui Fab Lab sul sito della %{fab_foundation}.

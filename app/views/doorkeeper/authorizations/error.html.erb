@@ -3,5 +3,7 @@
 </div>
 
 <main role="main">
-  <pre><%= @pre_auth.error_response.body[:error_description] %></pre>
+  <pre>
+    <%= (local_assigns[:error_response] ? error_response : @pre_auth.error_response).body[:error_description] %>
+  </pre>
 </main>
