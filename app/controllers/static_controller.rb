@@ -8,11 +8,11 @@ class StaticController < ApplicationController
 
   def alt
     @recent_labs = recent_labs()
-    @news = [
-      { :image_url => "news/fab15.jpg", :title => "FAB25 Czechia Highlights", :url => "https://fab25.fabevent.org/", :description => "FABx brought together 1000+ participants in the heart of Europe for an unforgettable week of keynotes, talks, hands-on workshops, making, networking, and cultural experiences."},
-      { :image_url => "news/fabacademy.jpg", :title => "Fab Academy 2026: Registrations open", :url => "https://fabacademy.org", :description => "We're happy to announce that applications to join as a student or host node for Fab Academy 2026 are now open." },
-      { :image_url => "news/fabricademy-2019.png", :title => "Fabricademy 2025 Started!", :url => "https://textile-academy.org" , :description => "The new Fabricademy courses focus on sustainable textiles, fashion and wearables."},
-    ]    
+    # @news = [
+    #   { :image_url => "news/fab15.jpg", :title => "FAB25 Czechia Highlights", :url => "https://fab25.fabevent.org/", :description => "FABx brought together 1000+ participants in the heart of Europe for an unforgettable week of keynotes, talks, hands-on workshops, making, networking, and cultural experiences."},
+    #   { :image_url => "news/fabacademy.jpg", :title => "Fab Academy 2026: Registrations open", :url => "https://fabacademy.org", :description => "We're happy to announce that applications to join as a student or host node for Fab Academy 2026 are now open." },
+    #   { :image_url => "news/fabricademy-2019.png", :title => "Fabricademy 2025 Started!", :url => "https://textile-academy.org" , :description => "The new Fabricademy courses focus on sustainable textiles, fashion and wearables."},
+    # ]    
     render layout: 'welcome'
 
   end
