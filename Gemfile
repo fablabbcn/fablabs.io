@@ -8,7 +8,7 @@ gem 'rails','~> 8.1.0'
 gem 'record_tag_helper'
 
 gem 'active_model_serializers'
-gem 'activeadmin', '4.0.0.beta23'
+gem 'activeadmin', '>= 4.0.0.beta23'
 gem 'acts-as-taggable-on'
 gem 'ancestry'#, github: 'stefankroes/ancestry'
 gem 'authority'#, github: 'nathanl/authority'
