@@ -16,10 +16,21 @@ services:
       - "traefik.enable=true"
       - "traefik.docker.network=fablabsio_web"
       - "traefik.http.services.fablabsservice.loadbalancer.server.port=3000"
-      - "traefik.http.routers.fablabsweb.rule=Host(`fablabs.io`) || Host(`www.fablabs.io`) || Host(`api.fablabs.io`)"
+      # www + api app
+      - "traefik.http.routers.fablabsweb.rule=Host(`www.fablabs.io`) || Host(`api.fablabs.io`)"
       - "traefik.http.routers.fablabsweb.entrypoints=websecure"
       - "traefik.http.routers.fablabsweb.tls=true"
       - "traefik.http.routers.fablabsweb.tls.certresolver=letsencrypt"
+      # root -> www redirect
+      - "traefik.http.routers.fablabsredirect.rule=Host(`fablabs.io`)"
+      - "traefik.http.routers.fablabsredirect.entrypoints=websecure"
+      - "traefik.http.routers.fablabsredirect.tls=true"
+      - "traefik.http.routers.fablabsredirect.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.fablabsredirect.priority=100"
+      - "traefik.http.routers.fablabsredirect.middlewares=wwwredirect"
+      - "traefik.http.middlewares.wwwredirect.redirectregex.regex=^https://fablabs\\.io/(.*)"
+      - "traefik.http.middlewares.wwwredirect.redirectregex.replacement=https://www.fablabs.io/$${1}"
+      - "traefik.http.middlewares.wwwredirect.redirectregex.permanent=true"
     restart: unless-stopped
     networks:
       - internal
